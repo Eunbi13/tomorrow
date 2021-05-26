@@ -6,7 +6,7 @@
 <head>
 <c:import url="./template/bootStrap.jsp"></c:import>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>내일부터 하는 인테리어, 내일의 집</title>
  <style>
   .fakeimg {
     height: 200px;
@@ -19,6 +19,7 @@
   <h1>tmhouse index test</h1>
   <p>tmhouse index test tmhouse index test</p> 
 </div>
+
 <c:import url="./template/header.jsp"></c:import>
 
 

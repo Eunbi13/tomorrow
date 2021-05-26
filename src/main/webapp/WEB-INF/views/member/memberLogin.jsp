@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <c:import url="../template/bootStrap.jsp"></c:import>
-<title>${title }</title>
+<title>내일부터 하는 인테리어, 내일의 집</title>
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
