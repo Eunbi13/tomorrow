@@ -14,7 +14,7 @@
 <h1>login form</h1>
 	<form action="./login" method="post">
 		<div class="form-group">
-			<input type="email" name="email" class="form-control" placeholder="이메일">
+			<input type="email" name="username" class="form-control" placeholder="이메일">
 		</div>
 		<div class="form-group">
 			<input type="password" name="password" class="form-control" placeholder="비밀번호">

@@ -65,9 +65,9 @@ public class MemberService implements UserDetailsService{
 	
 	
 	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		MemberVO memberVO = new MemberVO();
-		memberVO.setEmail(email);
+		memberVO.setEmail(username);
 		memberVO=memberMapper.memberLogin(memberVO);
 		System.out.println("email: "+memberVO.getEmail());
 		System.out.println("username: "+memberVO.getUsername());
