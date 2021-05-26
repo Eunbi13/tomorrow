@@ -1,15 +1,24 @@
 package com.tmh.t1.member;
 
-import org.hibernate.validator.constraints.Length;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.validator.constraints.Length;
 import lombok.Data;
 
 @Data
 public class MemberVO {
+	@NotEmpty
+	@Email
 	private String email;
-	@Length(max = 15, min = 2)
-	private String userName;
+	@NotEmpty
+	@Length(max=15, min=2)
+	private String username;
+	@NotEmpty
+	@Length(max=15, min=8)
 	private String password;
+	@NotEmpty
+	private String passwordCheck;
 	private boolean enabled;
 	
 	
