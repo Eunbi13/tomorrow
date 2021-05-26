@@ -15,7 +15,7 @@ public class ShippingVO {
 	
 	private String shipAddress;
 	
-	private boolean shipDefault;
+	private boolean isDefault;
 	
 	private String username;
 

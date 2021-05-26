@@ -59,8 +59,8 @@ public class ShippingController {
 		@PostMapping("shippingInsert")
 		public String setInsert(ShippingVO shippingVO, Model model)throws Exception{
 			int result = shippingService.setInsert(shippingVO);
-
-			return "redirect:./shippingList";
+			System.out.println("입력성공");
+			return "redirect:./";
 			
 		}
 		
