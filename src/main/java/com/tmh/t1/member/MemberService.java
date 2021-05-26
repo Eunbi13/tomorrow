@@ -1,5 +1,8 @@
 package com.tmh.t1.member;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -43,22 +46,32 @@ public class MemberService implements UserDetailsService{
 //======join=====	
 	@Transactional(rollbackFor = Exception.class)
 	public Long memberJoin(MemberVO memberVO)throws Exception{
-		
+	//password encryption
 		memberVO.setPassword(passwordEncoder.encode(memberVO.getPassword()));
-		
+	//insert data
 		Long result = memberMapper.memberJoin(memberVO);
 		if(result<1) {
 			throw new Exception();
 		}
+	//insert auth
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("username", memberVO.getUsername());
+		map.put("roleName", "ROLE_U");
+		result = memberMapper.setRole(map);
+		
 		return result;
 	}
 //======Login=====	
 	
 	
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		MemberVO memberVO = new MemberVO();
+		memberVO.setEmail(email);
+		memberVO=memberMapper.memberLogin(memberVO);
+		System.out.println("email: "+memberVO.getEmail());
+		System.out.println("username: "+memberVO.getUsername());
+		return memberVO;
 	}
 	
 	

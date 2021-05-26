@@ -6,6 +6,6 @@
 	<configuration>
 		<typeAliases>
   			<typeAlias type="com.tmh.t1.member.MemberVO" alias="MemberVO"/>
-  			
+  			<typeAlias type="com.tmh.t1.member.RoleVO" alias="RoleVO"/>
 		</typeAliases>
 	</configuration>

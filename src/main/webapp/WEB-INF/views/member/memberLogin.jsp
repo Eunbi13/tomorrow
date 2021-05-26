@@ -10,9 +10,18 @@
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-<div class="container">
-	<h1>@@@</h1>
-
+<div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+<h1>login form</h1>
+	<form action="./login" method="post">
+		<div class="form-group">
+			<input type="email" name="email" class="form-control" placeholder="이메일">
+		</div>
+		<div class="form-group">
+			<input type="password" name="password" class="form-control" placeholder="비밀번호">
+		</div>
+		<button class="btn btn-primary">button</button>
+	</form>
+	
 
 
 

@@ -1,5 +1,6 @@
 package com.tmh.t1.member;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	
+//========join========	
 	@GetMapping("memberJoin")
 	public String memberJoin(Model model) throws Exception{
 		model.addAttribute("memberVO",new MemberVO());
@@ -37,10 +38,15 @@ public class MemberController {
 		
 		return "redirect:/";
 	}
+//=======login========	
+	@GetMapping("login")
+	public String memberLogin() throws Exception{
+		return "member/memberLogin";
+	}
 	
-	@GetMapping("memberLogin")
-	public String memberLogin(Model model) throws Exception{
-		model.addAttribute("title", "LoginPage");
-		return "member/memberJoin";
+	@GetMapping("memberLoginResult")
+	public String memberLoginResult(HttpSession session)throws Exception{
+		System.out.println("login성공");
+		return "redirect:/";
 	}
 }

@@ -14,4 +14,32 @@
 		<select id="usernameCheck" parameterType="MemberVO" resultType="java.lang.Long">
 			SELECT COUNT(*) FROM member WHERE username=#{username}
 		</select>
+		<insert id="setRole" parameterType="java.util.Map">
+			INSERT INTO member_role (username, id) 
+			VALUES(#{username}, (SELECT id FROM role WHERE rolename=#{roleName}))
+		</insert>
+		
+		<select id="memberLogin" parameterType="MemberVO" resultMap="LoginResult">
+			SELECT M.*, MR.*, R.*
+			FROM member M LEFT JOIN member_role MR
+			ON M.username=MR.username
+			INNER JOIN role R
+			ON MR.id=R.id
+			WHERE email=#{email}
+		</select>
+		<resultMap type="MemberVO" id="LoginResult">
+			<id column="email" property="email"/>
+			<result column="username" property="username"/>
+			<result column="password" property="password"/>
+			<result column="enabled" property="enabled"/>
+			<result column="homePage" property="homePage"/>
+			<result column="gender" property="gender"/>
+			<result column="intro" property="intro"/>
+			<result column="profileImage" property="profileImage"/>
+			<collection property="roles" javaType="java.util.List" ofType="RoleVO">
+				<result column="id" property="id"/>
+				<result column="roleName" property="roleName"/>
+			</collection>
+		</resultMap>
+		
 	</mapper>

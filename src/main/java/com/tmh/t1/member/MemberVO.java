@@ -28,12 +28,12 @@ public class MemberVO implements UserDetails{
 	private String passwordCheck;
 	private boolean enabled;
 	
-	private List<RoleVO> roles;
-//====업데이트====
 	private String homePage;
 	private String gender;
 	private String intro;
 	private String profileImage;
+	
+	private List<RoleVO> roles;
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -30,7 +30,7 @@
         <a class="nav-link" href="/member/memberJoin">Join</a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="/member/memberLogin">Login</a>
+        <a class="nav-link" href="/member/login">Login</a>
       </li>
       
     </ul>
