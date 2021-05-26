@@ -1,13 +1,20 @@
 package com.tmh.t1.member;
 
+import java.util.Collection;
+import java.util.List;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import lombok.Data;
 
 @Data
-public class MemberVO {
+public class MemberVO implements UserDetails{
+//====회원가입====
 	@NotEmpty
 	@Email
 	private String email;
@@ -21,13 +28,33 @@ public class MemberVO {
 	private String passwordCheck;
 	private boolean enabled;
 	
-	
+	private List<RoleVO> roles;
+//====업데이트====
 	private String homePage;
 	private String gender;
 	private String intro;
 	private String profileImage;
-
 	
-//권한 부분은 수정 필요
-//brandVO 
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	
+	
 }

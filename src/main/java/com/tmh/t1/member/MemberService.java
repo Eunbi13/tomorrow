@@ -1,15 +1,21 @@
 package com.tmh.t1.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 
 @Service
-public class MemberService {
+public class MemberService implements UserDetailsService{
 	
 	@Autowired
 	private MemberMapper memberMapper;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	public boolean memberErrors(MemberVO memberVO, Errors errors)throws Exception{
 		boolean check = errors.hasErrors();
@@ -37,6 +43,9 @@ public class MemberService {
 //======join=====	
 	@Transactional(rollbackFor = Exception.class)
 	public Long memberJoin(MemberVO memberVO)throws Exception{
+		
+		memberVO.setPassword(passwordEncoder.encode(memberVO.getPassword()));
+		
 		Long result = memberMapper.memberJoin(memberVO);
 		if(result<1) {
 			throw new Exception();
@@ -44,4 +53,14 @@ public class MemberService {
 		return result;
 	}
 //======Login=====	
+	
+	
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
 }
