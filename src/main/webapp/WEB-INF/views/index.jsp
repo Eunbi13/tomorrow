@@ -15,10 +15,7 @@
   </style>
 </head>
 <body>
-<div class="jumbotron text-center" style="margin-bottom:0">
-  <h1>tmhouse index test</h1>
-  <p>tmhouse index test tmhouse index test</p> 
-</div>
+
 
 <c:import url="./template/header.jsp"></c:import>
 

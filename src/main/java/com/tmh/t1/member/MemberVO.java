@@ -55,6 +55,10 @@ public class MemberVO implements UserDetails{
 		// TODO Auto-generated method stub
 		return true;
 	}
-	
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return this.enabled;
+	}
 	
 }

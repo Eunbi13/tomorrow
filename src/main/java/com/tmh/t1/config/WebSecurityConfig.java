@@ -40,10 +40,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.antMatchers("/**").permitAll()
 				.and()
 			.formLogin()
+				.usernameParameter("email")
 				.loginPage("/member/login")
 				.defaultSuccessUrl("/member/memberLoginResult")
 				.permitAll()
-				.and()
+			//	.and()
 			//.logout()
 			;
 	}

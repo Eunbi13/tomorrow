@@ -1,5 +1,7 @@
 package com.tmh.t1.member;
 
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -46,6 +48,14 @@ public class MemberController {
 	
 	@GetMapping("memberLoginResult")
 	public String memberLoginResult(HttpSession session)throws Exception{
+		
+		Enumeration<String> eu=session.getAttributeNames();
+
+		while(eu.hasMoreElements()) {
+			System.out.println("이름: "+eu.nextElement());
+		}
+		
+		
 		System.out.println("login성공");
 		return "redirect:/";
 	}
