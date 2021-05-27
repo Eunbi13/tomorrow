@@ -19,5 +19,8 @@ public class OrderVO {
 	private Date orderDay;
 	private String status;
 	private String productNum;
+	private String name;
+	private String email;
+	private String phone;
 	
 }

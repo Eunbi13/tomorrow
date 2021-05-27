@@ -80,7 +80,7 @@ margin-top: 20px;
 <c:import url="../template/header.jsp"></c:import>
 
 
-<div class="container rounded bg-white">
+<div class="container-fluid rounded bg-white">
     <div class="row d-flex justify-content-center pb-5">
         <div class="col-sm-5 col-md-6 ml-1">
             <div class="py-4 d-flex flex-row">
@@ -90,34 +90,43 @@ margin-top: 20px;
         <section class="_3oseG">
            <div class="d-flex">
                 <div class="p-1">배송지</div>
-                <div class="ml-auto p-1">변경</div>
+                
+                <div class="ml-auto p-1"><!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+ 변경
+</button></div>
+                  <!-- Button trigger modal -->
+
+                  
             </div>
             <hr>
             
 	            <div class="d-flex pt-2">
 	            <div class="bbqwt">
-				<div class="checkout-container _3tfrw">
-				<div class="_2s2Nq"><div class="_3dE3S">장민경</div>
-				<div><div class="_2w0fH">기본배송지</div>
-				</div>
-				</div>
-				<div class="">경기 고양시 일산동구 탄중로 343 (중산동) 중산마을5단지아파트, 513동 404호</div>
+					<div class="checkout-container _3tfrw">
+						<div class="_2s2Nq"><div class="_3dE3S">장민경</div>
+							<div>
+								<div class="_2w0fH">기본배송지</div>
+							</div>
+					</div>
+					<div class="">경기 고양시 일산동구 탄중로 343 (중산동) 중산마을5단지아파트, 513동 404호</div>
 				<div class="">
-				<div class="">장민경</div>
-				<div class="">010-7399-9178</div>
+					<div class="">장민경</div>
+					<div class="">010-7399-9178</div>
 				</div>
 				<div class="css-nj6fnr-DeliveryRequestInput e84q8kd0">
-				<div class="_3Bt8k">
-				<select class="_3ASDR _1qwAY _3K8Q8">
-				<option value="0">배송시 요청사항을 선택해주세요</option>
-				<option value="1">부재시 문앞에 놓아주세요</option>
-				<option value="2">배송전에 미리 연락주세요</option>
-				<option value="3">부재시 경비실에 맡겨 주세요</option>
-				<option value="4">부재시 전화주시거나 문자 남겨 주세요</option>
-				<option value="5">직접입력</option>
-				</select>
+					<div class="_3Bt8k">
+						<select class="_3ASDR _1qwAY _3K8Q8">
+							<option value="0">배송시 요청사항을 선택해주세요</option>
+							<option value="1">부재시 문앞에 놓아주세요</option>
+							<option value="2">배송전에 미리 연락주세요</option>
+							<option value="3">부재시 경비실에 맡겨 주세요</option>
+							<option value="4">부재시 전화주시거나 문자 남겨 주세요</option>
+							<option value="5">직접입력</option>
+						</select>
 				<svg width="1em" height="1em" viewBox="0 0 10 10" fill="currentColor" class="IgBXR">
-				<path d="M0 3l5 5 5-5z"></path></svg>
+					<path d="M0 3l5 5 5-5z"></path>
+				</svg>
 				</div>
 				</div>
 				</div>
@@ -134,6 +143,38 @@ margin-top: 20px;
              
             </div>
             <hr>
+            
+		  <form class="form" action="/action_page.php">
+		      <div class="form-group row">
+			    <label class="control-label col-sm-2" for="name">이름</label>
+			    <div class="col-sm-8">
+			      <input type="text" class="form-control" id="name" name="name">
+			    </div>
+			  </div>
+			  <div class="form-group row">
+			    <label class="control-label col-sm-2" for="email">이메일</label>
+			    <div class="col-sm-8">
+			      <input type="email" class="form-control" id="email" name="email">
+			    </div>
+			  </div>
+			  <div class="form-group row">
+			    <label class="control-label col-sm-2" for="phone">휴대전화</label>
+			    <div class="col-sm-8">
+			      <input type="text" class="form-control" id="phone" name="phone">
+			    </div>
+			  </div>
+			  
+			  <!-- 혹시 인증번호 발송 기능 사용하면 넣
+			   <div class="form-group">
+			    <div class="col-sm-offset-2 col-sm-10">
+			      <button type="submit" class="btn btn-default">Submit</button>
+			    </div>
+			  </div> -->
+			</form>
+			
+			
+			
+            
             
             
             </section>
