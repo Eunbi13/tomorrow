@@ -32,7 +32,7 @@ public class MemberController {
 	}
 	
 	@PostMapping("join")
-	public String memberJoin(Model model, @Valid MemberVO memberVO, Errors errors) throws Exception{
+	public String memberJoin(@Valid MemberVO memberVO, Errors errors) throws Exception{
 		if(memberService.memberErrors(memberVO, errors)) {
 			return "member/memberJoin";
 		}
