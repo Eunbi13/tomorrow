@@ -22,7 +22,7 @@ public class MemberVO implements UserDetails{
 	@Length(max=15, min=2)
 	private String username;
 	@NotEmpty
-	@Length(max=15, min=8)
+	@Length(max=15, min=4)
 	private String password;
 	@NotEmpty
 	private String passwordCheck;
