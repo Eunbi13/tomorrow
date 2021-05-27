@@ -3,20 +3,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="./jquery-3.4.1.min.js"></script>
+	<link rel="stylesheet" href="./bootstrapt/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="./bootstrapt/css/bootstrap.css" />
+	<script src="./bootstrapt/js/bootstrap.min.js"></script> 
 <c:import url="../template/bootStrap.jsp"></c:import>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
 <body>
 
 
 
-<!-- Button trigger modal -->
-<button type="button" id="myModalBtn" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+
+<button type="button" id="myModalBtn" class="btn btn-toggle" data-toggle="modal" data-target="#myModal">
   shipping Insert
 </button>
 
-<!-- Modal -->
+<!--Modal  -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -67,7 +72,7 @@
 					</div>
 					
 					
-					<!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
+					iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요
 					<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
 					<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
 					</div>
@@ -103,5 +108,5 @@ $('#myModalBtn').click(function(e){
 
 </script>
 
-</body>
+</body> 
 </html>

@@ -7,6 +7,8 @@
   <configuration>
   	<typeAliases>
   		<typeAlias type="com.tmh.t1.shipping.ShippingVO" alias="ShippingVO"/>
+  		<typeAlias type="com.tmh.t1.order.OrderVO" alias="OrderVO"/>
+  		
   	
   	
   	

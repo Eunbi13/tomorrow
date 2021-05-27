@@ -8,10 +8,43 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+
+table{
+    margin-left:auto; 
+    margin-right:auto;
+    border-collapse: separate;
+}
+
+td{
+   border-collapse: separate;
+    border: 0.5px solid Gainsboro;
+    border-radius: 5%;
+    padding: 10px 10px 0px 10px;
+
+}
+
+
+.card_pay{
+	 text-align: center;
+}
+p{
+	 text-align: center;
+}
+
+.card-img-top{
+    padding: -30px;
+    align: center;
+    width: 100px;
+    height: 70px;
+    object-fit: cover;
+  
+}
 section{
-margin-top: 30px;
+	margin-top: 30px;
 }
 ._2w0fH {
+    text-align: center;
+    width: 72px;
     padding: 3px 8px;
     box-sizing: border-box;
     border: 1px solid #35c5f0;
@@ -92,9 +125,10 @@ margin-top: 20px;
                 <div class="p-1">배송지</div>
                 
                 <div class="ml-auto p-1"><!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
- 변경
-</button></div>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+				 변경
+				</button>
+				</div>
                   <!-- Button trigger modal -->
 
                   
@@ -104,12 +138,16 @@ margin-top: 20px;
 	            <div class="d-flex pt-2">
 	            <div class="bbqwt">
 					<div class="checkout-container _3tfrw">
-						<div class="_2s2Nq"><div class="_3dE3S">장민경</div>
+						<div class="_2s2Nq">
+						   <div class="_3dE3S" style="float:left;"> 배송지제목: ${shipping.shipTitle}</div>
+							
+							<c:if test="${shipping.isDefault == true}">
 							<div>
-								<div class="_2w0fH">기본배송지</div>
+								<div class="_2w0fH" style="float:left;">기본배송지</div>
 							</div>
+							</c:if>
 					</div>
-					<div class="">경기 고양시 일산동구 탄중로 343 (중산동) 중산마을5단지아파트, 513동 404호</div>
+					<div class="" style="clear:both;">경기 고양시 일산동구 탄중로 343 (중산동) 중산마을5단지아파트, 513동 404호</div>
 				<div class="">
 					<div class="">장민경</div>
 					<div class="">010-7399-9178</div>
@@ -179,12 +217,33 @@ margin-top: 20px;
             
             </section>
             
+            
+            
+            
              <section>
              <div class="d-flex">
                 <div class="p-1">주문상품</div>
              
             </div>
             <hr>
+            
+            <div class="card">
+			  <div class="card-header">
+			  <div class="d-flex">
+                <div class="p-1">회사이름</div>
+			  <div class="ml-auto p-1"> 무료배송 </div>
+			  </div>
+			  </div>
+			  
+			  <div class="card-body">
+			  	<ul class="list-group list-group-flush">
+				    <li class="list-group-item">제품 1</li>
+				    <li class="list-group-item">제품 2</li>
+				    <li class="list-group-item">제품 3</li>
+				 </ul>
+			    
+			  </div>
+			</div>
             
             
             </section>
@@ -193,10 +252,28 @@ margin-top: 20px;
             <section>
              <div class="d-flex">
                 <div class="p-1">결제수단</div>
-             
             </div>
-            <hr>
             
+            <hr>
+       
+          <div class="">
+            <table>
+	       <td>
+		       <p><img class="card-img-top" src="../resources/images/img_card.png" alt="Card image cap"></p>
+		       <p>카드</p>
+	       </td>
+	       <td>
+	        <p><img class="card-img-top" src="../resources/images/img_vbank.webp" alt="Card image cap"></p>
+	            <p>무통장</p>
+	       </th>
+	       <td>
+	        <p> <img class="card-img-top" src="../resources/images/img_kakaopay.webp" alt="Card image cap"></p>
+	        <p>카카오페이</p>
+	     </td>
+	        </table>
+	       </div>
+	       
+				
             </section>
           
              <!--부트스트랩  -->

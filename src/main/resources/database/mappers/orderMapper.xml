@@ -6,7 +6,7 @@
     <mapper namespace="com.tmh.t1.order.OrderMapper">
     
     	<select id="getSelect" parameterType="OrderVO" resultType="OrderVO">
-    		select * from order where shipNum=#{shipNum}
+    		select * from order where orderNum=#{orderNum}
     	</select>
     	
     	<select id="getList" parameterType="OrderVO" resultType="OrderVO">
@@ -14,12 +14,16 @@
     	</select>
     	
     	<insert id="setInsert" parameterType="OrderVO">
-    		insert into order(shipTitle, shipName, shipPhone, shipAddress, shipDefault, userName) 
-    		values(#{shipTitle}, #{shipName}, #{shipPhone}, #{shipAddress}, #{shipDefault}, #{userName})
+    		insert into 
+    		order(shipNum, username, cartNum, paymentType, itemsPrice, shippingFee,
+    		       payment, shippingMemo, orderDate, status, productNum, name, email, phone) 
+    		values
+    		(#{shipNum}, #{username}, #{cartNum}, #{paymentType}, #{itemsPrice}, #{shippingFee},
+    		#{payment}, #{shippingMemo}, #{orderDate}, #{status}, #{productNum}, #{name}, #{email}, #{phone})
     	</insert>
     	
-    	<delete id="setDelet" parameterType="OrderVO">
-    		delete order where shipNum=#{shipNum}
+    	<delete id="setDelete" parameterType="OrderVO">
+    		delete order where orderNum=#{orderNum}
     	</delete>
     	
     	
