@@ -1,5 +1,7 @@
 package com.tmh.t1.brand;
 
+import java.util.List;
+
 import javax.validation.constraints.NotEmpty;
 
 import lombok.Data;
@@ -28,4 +30,6 @@ public class BrandVO {
 	private boolean accept;//false여야 함
 	
 	//category 가져와야함 brand_category를 거쳐서 쿼리문 짜기 
+	//임시 파일 이 파일 지울때 config도 수정해야함 
+	private List<CategoryVO> categories;
 }
