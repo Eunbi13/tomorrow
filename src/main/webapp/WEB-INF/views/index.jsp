@@ -18,7 +18,7 @@
 
 
 <c:import url="./template/header.jsp"></c:import>
-<h1>${session.SPRING_SECURITY_CONTEXT }</h1>
+
 
 <div class="container" style="margin-top:30px">
   <div class="row">

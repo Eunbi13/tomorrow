@@ -35,8 +35,6 @@ public class MemberVO implements UserDetails{
 	private String intro;
 	private String profileImage;
 	
-	private BrandVO brandVO;
-	
 	private List<RoleVO> roles;
 	
 	@Override

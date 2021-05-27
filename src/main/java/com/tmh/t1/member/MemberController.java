@@ -6,14 +6,11 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,14 +22,15 @@ public class MemberController {
 	private MemberService memberService;
 	
 //========join========	
-	@GetMapping("join")
+	@GetMapping("memberJoin")
 	public String memberJoin(Model model) throws Exception{
 		model.addAttribute("memberVO",new MemberVO());
 		return "member/memberJoin";
 	}
 	
-	@PostMapping("join")
-	public String memberJoin(@Valid MemberVO memberVO, Errors errors) throws Exception{
+	@PostMapping("memberJoin")
+	public String memberJoin(Model model, @Valid MemberVO memberVO, Errors errors) throws Exception{
+
 		if(memberService.memberErrors(memberVO, errors)) {
 			return "member/memberJoin";
 		}
@@ -49,21 +47,16 @@ public class MemberController {
 	}
 	
 	@GetMapping("memberLoginResult")
-	public String memberLoginResult(HttpSession session, Authentication auth)throws Exception{
+	public String memberLoginResult(HttpSession session)throws Exception{
 		
 		Enumeration<String> eu=session.getAttributeNames();
 
 		while(eu.hasMoreElements()) {
 			System.out.println("이름: "+eu.nextElement());
 		}
-		Object obj = session.getAttribute("SPRING_SECURITY_CONTEXT");
-		SecurityContextImpl sc = (SecurityContextImpl)obj;
-		auth = sc.getAuthentication();
+		
 		
 		System.out.println("login성공");
 		return "redirect:/";
 	}
-	
-
-	
 }
