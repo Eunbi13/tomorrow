@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<c:import url="./template/bootStrap.jsp"></c:import>
+<c:import url="../template/bootStrap.jsp"></c:import>
 <meta charset="UTF-8">
 <title>Insert title here</title>
  <style>
@@ -19,13 +19,13 @@
   <h1>tmhouse index test</h1>
   <p>tmhouse index test tmhouse index test</p> 
 </div>
-<c:import url="./template/header.jsp"></c:import>
+<c:import url="../template/header.jsp"></c:import>
 
 
 	<div class="container" style="margin-top:30px">
 		<h1>Housewarming List Page</h1>
 	</div>
 
-<c:import url="./template/footer.jsp"></c:import>
+<c:import url="../template/footer.jsp"></c:import>
 </body>
 </html>
