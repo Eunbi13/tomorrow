@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="jumbotron text-center" style="margin-bottom:0">
   <h1>tmhouse index test</h1>
@@ -33,12 +33,21 @@
         </div>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="/member/memberJoin">Join</a>
+        <a class="nav-link" href="/member/join">Join</a>
       </li>
        <li class="nav-item">
         <a class="nav-link" href="/member/login">Login</a>
       </li>
-      
+      <c:if test="">
+      </c:if>
+      <c:if test="">
+       <li class="nav-item">
+        <a class="nav-link" href="/member/join">Join</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="/member/login">Login</a>
+      </li>
+      </c:if>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
