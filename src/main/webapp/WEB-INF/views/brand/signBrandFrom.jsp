@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,20 +20,22 @@
 		<li>입점 신청과 관련된 내용은 일반 고객센터 접수가 불가능합니다. 참고 바랍니다.</li>
 	</ul>
 	
-	<form action="./signBrand" method="post">
+	<form:form action="./signBrand" modelAttribute="brandVO" method="post">
 
 		<div>
 			<h3>회사 정보</h3>
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">회사이름<span>*</span></label>
 				<div class="col-sm-10">
-					<input type="text" name="companyName" class="form-control" placeholder="내일의 집">
+					<form:input type="text" path="companyName" class="form-control" placeholder="내일의 집"></form:input>
+					<form:errors path="companyName" cssStyle="font-size: 0.8em"></form:errors> 
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">사업자 등록번호<span>*</span></label>
 				<div class="col-sm-10">
-					<input type="text" name="registrationNum" class="form-control" placeholder="123-45-67890">
+					<form:input type="text" path="registrationNum" class="form-control" placeholder="123-45-67890"></form:input>
+					<form:errors path="registrationNum" cssStyle="font-size: 0.8em"></form:errors> 
 				</div>
 			</div>
 			<div class="form-group row">
@@ -47,19 +50,22 @@
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">이름<span>*</span></label>
 				<div class="col-sm-10">
-					<input type="text" name="managerName" class="form-control" placeholder="집냥이">
+					<form:input type="text" path="managerName" class="form-control" placeholder="집냥이"></form:input>
+					<form:errors path="managerName" cssStyle="font-size: 0.8em"></form:errors> 
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">전화번호<span>*</span></label>
 				<div class="col-sm-10">
-					<input type="text" name="managerPhone" class="form-control" placeholder="010-1234-5678">
+					<form:input type="text" path="managerPhone" class="form-control" placeholder="010-1234-5678"></form:input>
+					<form:errors path="managerPhone" cssStyle="font-size: 0.8em"></form:errors>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">이메일<span>*</span></label>
 				<div class="col-sm-10">
-					<input type="text" name="managerEmail" class="form-control" placeholder="zipnyang@tmh.t1">
+					<form:input type="text" path="managerEmail" class="form-control" placeholder="zipnyang@tmh.t1"></form:input>
+					<form:errors path="managerEmail" cssStyle="font-size: 0.8em"></form:errors>
 				</div>
 			</div>
 		</div>	
@@ -68,7 +74,8 @@
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">대표브랜드 이름<span>*</span></label>
 				<div class="col-sm-10">
-					<input type="text" name="brandName" class="form-control" placeholder="내일의집 가구">
+					<form:input type="text" path="brandName" class="form-control" placeholder="내일의집 가구"></form:input>
+					<form:errors path="brandName" cssStyle="font-size: 0.8em"></form:errors>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -95,13 +102,14 @@
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">상품 소개<span>*</span></label>
 				<div class="col-sm-10">
-					<textarea rows="2"  style="width:100%; resize: none;" name="@@@" placeholder="판매하시는 상품에 대한 설명을 입력해주세요"></textarea>
+					<form:textarea rows="2" path="brandIntro" style="width:100%; resize: none;" placeholder="판매하시는 상품에 대한 설명을 입력해주세요"></form:textarea>
+					<form:errors path="brandIntro" cssStyle="font-size: 0.8em"></form:errors>
 				</div>
-			</div>
+			</div> 
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">판매 관련 파일 첨부</label>
 				<div class="input-group col-sm-10">
-					<input type="file"><p></p> 
+					<input type="file" name="referenceFile"><p></p> 
 				</div>
 			</div>
 			<div class="form-group row">
@@ -113,7 +121,7 @@
 			</div>
 		</div>
 		<button class="btn btn-primary">button</button>
-	</form>
+	</form:form>
 
 
 
