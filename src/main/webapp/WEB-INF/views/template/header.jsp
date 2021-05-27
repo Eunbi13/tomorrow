@@ -27,18 +27,20 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="/member/myPage">Mypage</a>
-          <a class="dropdown-item" href="#">a</a>
+          <a class="dropdown-item" href="/brand/signBrand">판매자 신청</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">a</a>
         </div>
       </li>
-       <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link" href="/member/memberJoin">Join</a>
       </li>
-       <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link" href="/member/login">Login</a>
       </li>
-      
+       <li class="nav-item">
+        <a class="nav-link" href="/member/logout">Logout</a>
+      </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
