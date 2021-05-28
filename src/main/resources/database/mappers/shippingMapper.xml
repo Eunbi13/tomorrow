@@ -20,7 +20,7 @@
     		values(#{shipTitle}, #{shipName}, #{shipPhone}, #{shipAddress}, #{shipDefault}, #{userName})
     	</insert>
     	
-    	<delete id="setDelet" parameterType="ShippingVO">
+    	<delete id="setDelete" parameterType="ShippingVO">
     		delete shipping where shipNum=#{shipNum}
     	</delete>
     	

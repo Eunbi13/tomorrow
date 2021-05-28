@@ -8,7 +8,8 @@
   	<typeAliases>
   		<typeAlias type="com.tmh.t1.shipping.ShippingVO" alias="ShippingVO"/>
   		<typeAlias type="com.tmh.t1.order.OrderVO" alias="OrderVO"/>
-  		
+  		<typeAlias type="com.tmh.t1.member.MemberVO" alias="MemberVO"/>
+  	  	<typeAlias type="com.tmh.t1.cart.CartVO" alias="CartVO"/>
   	
   	
   	
