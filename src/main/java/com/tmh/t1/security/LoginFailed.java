@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.validation.Errors;
 
 public class LoginFailed implements AuthenticationFailureHandler{
 
@@ -19,16 +20,17 @@ public class LoginFailed implements AuthenticationFailureHandler{
 		String errorCode = exception.getClass().toString();
 		errorCode=errorCode.substring(errorCode.lastIndexOf(".")+1);
 		
-		String message="";
+		
+		String message=""; //message.properties Key
 		switch (errorCode) {
 		case "InternalAuthenticationServiceException":
-			message="없는 이메일";
+			message="login.email.not";
 			break;
 		case "BadCredentialsException":
-			message="비번 실수";
+			message="login.password.not";
 			break;
 		default:
-			message="실패";
+			message="login.not";
 			break;
 		}
 		
