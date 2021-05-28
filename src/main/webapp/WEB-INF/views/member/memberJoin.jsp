@@ -35,35 +35,29 @@
 	
 <br><br>
 		<div>
-			<div class="custom-control custom-checkbox">
-				<input type="checkbox" class="custom-control-input"> 
-				<label class="custom-control-label">
-					전체 동의 </label>
+			<div class="custom-control custom-checkbox">			
+				<input type="checkbox" id="all"> 전체 동의
 			</div>
 			
 			<div class="custom-control custom-checkbox">
-				<input type="checkbox" class="custom-control-input"> 
-				<label class="custom-control-label">
-					만 14세 이상입니다.(필수)</label>
+				<input type="checkbox" class="one"> 만 14세 이상입니다.(필수)
+				
 			</div>
 			<div class="custom-control custom-checkbox">
-				<input type="checkbox" class="custom-control-input"> 
-				<label class="custom-control-label">
-					이용약관(필수)</label>
+				<input type="checkbox" class="one"> 이용약관(필수)
+			
 			</div>
 			<div class="custom-control custom-checkbox">
-				<input type="checkbox" class="custom-control-input"> 
-				<label class="custom-control-label">
-					개입정보 수집 및 이용동의(필수)</label>
+				<input type="checkbox" class="one"> 개입정보 수집 및 이용동의(필수)
+				
 			</div>
 			<div class="custom-control custom-checkbox">
-				<input type="checkbox" class="custom-control-input"> 
-				<label class="custom-control-label">
-					이벤트, 프로모션 알람 메일 수신(선택)</label>
+				<input type="checkbox" class="other"> 이벤트, 프로모션 알람 메일 수신(선택)
 			</div>
+			<!-- 메일수신 미정 -->
 		</div>
 <br><br>
-		<button class="btn btn-primary">button</button>
+		<div class="btn btn-primary">button</div>
 	</form:form>
 
 </div>
