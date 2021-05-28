@@ -35,6 +35,6 @@ public class LoginFailed implements AuthenticationFailureHandler{
 		}
 		
 		request.setAttribute("message", message);
-		request.getRequestDispatcher("/member/login").forward(request, response);;
+		request.getRequestDispatcher("/member/login").forward(request, response);
 	}
 }
