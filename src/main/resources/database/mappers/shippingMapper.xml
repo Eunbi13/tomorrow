@@ -5,6 +5,8 @@
     
     <mapper namespace="com.tmh.t1.shipping.ShippingMapper">
     
+
+    
     	<select id="getSelect" parameterType="ShippingVO" resultType="ShippingVO">
     		select * from shipping where shipNum=#{shipNum}
     	</select>
