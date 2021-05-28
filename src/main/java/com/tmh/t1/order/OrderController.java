@@ -57,6 +57,7 @@ public class OrderController {
 		orderVO.setUserName("id1");
 		//orderVO.setUserName(memberVO);
 		// 1.장바구니에서 결제 -> cartVO validity=true 인 것만 가져오기..
+		
 		// 2.바로결제 -> 상품번호 가져오기 
 		
 	
