@@ -38,7 +38,7 @@
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 	          <a class="dropdown-item" href="/member/myPage">Mypage</a>
-	          <sec:authorize access="hasRole('ROLE_U')"> 
+	       	 <sec:authorize access="hasRole('ROLE_U')">
 	          <a class="dropdown-item" href="/brand/signBrand">판매자 신청</a>
 	          </sec:authorize>
 	          <div class="dropdown-divider"></div>

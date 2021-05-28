@@ -12,6 +12,9 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 
+	<h1>마이페이지다!</h1>
+	
+	
 	
 	<sec:authorize access="hasRole('ROLE_U')"> 
 	<h1>유저</h1>

@@ -45,6 +45,7 @@ public class MemberController {
 
 		System.out.println("email: "+auth.getName());
 		System.out.println("VO: "+auth.getPrincipal());
+		System.out.println("auth: "+auth.getAuthorities());
 
 		System.out.println("login성공");
 		return "redirect:/";
