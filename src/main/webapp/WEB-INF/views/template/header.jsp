@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <h1>tmhouse index test</h1>
+  <p>tmhouse index test tmhouse index test</p> 
+</div>
+
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <a class="navbar-brand" href="#">내일의집</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,7 +16,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
@@ -20,17 +26,17 @@
           profileImage
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="member/myPage">Mypage</a>
+          <a class="dropdown-item" href="/member/myPage">Mypage</a>
           <a class="dropdown-item" href="#">a</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">a</a>
         </div>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="member/memberJoin">Join</a>
+        <a class="nav-link" href="/member/memberJoin">Join</a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="member/memberLogin">Login</a>
+        <a class="nav-link" href="/member/login">Login</a>
       </li>
       
     </ul>
