@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.tmh.t1.security.LoginFailed;
+
 
 @Configuration
 @EnableWebSecurity
@@ -43,6 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.usernameParameter("email")
 				.loginPage("/member/login")
 				.defaultSuccessUrl("/member/memberLoginResult")
+				.failureHandler(new LoginFailed())
 				.permitAll()
 				.and()
 			.logout()

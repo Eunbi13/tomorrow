@@ -22,7 +22,7 @@
 		<button class="btn btn-primary">button</button>
 	</form>
 	
-
+<h1>${message }</h1>
 
 
 

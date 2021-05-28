@@ -27,6 +27,11 @@ public class MemberController {
 	public String memberLogin() throws Exception{
 		return "member/memberLogin";
 	}
+	
+	@PostMapping("login")
+	public String memberFailed() throws Exception{
+		return "member/memberLogin";
+	}
 
 	@GetMapping("memberLoginResult")
 	public String memberLoginResult(HttpSession session, Authentication auth)throws Exception{
