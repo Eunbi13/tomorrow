@@ -5,7 +5,7 @@
   
   <configuration>
   	<typeAliases>
-  		<typeAlias type="com.tmh.t1.HousewarmingVO" alias="HousewarmingVO"/>
+  		<typeAlias type="com.tmh.t1.housewarming.HousewarmingVO" alias="HousewarmingVO"/>
   	</typeAliases>
   
   </configuration>
