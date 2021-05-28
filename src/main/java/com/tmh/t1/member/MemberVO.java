@@ -1,5 +1,6 @@
 package com.tmh.t1.member;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.tmh.t1.brand.BrandVO;
@@ -39,8 +41,13 @@ public class MemberVO implements UserDetails{
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+
+		for(RoleVO roleVO: this.roles) {
+			authorities.add(new SimpleGrantedAuthority(roleVO.getRoleName()));
+		}
+
+		return authorities;
 	}
 	@Override
 	public boolean isAccountNonExpired() {
