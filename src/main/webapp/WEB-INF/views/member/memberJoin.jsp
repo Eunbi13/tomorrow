@@ -18,7 +18,7 @@
 			<form:errors path="email" cssStyle="font-size: 0.8em"></form:errors> 
 		</div>
 		<div class="form-group">
-			<small>8자 이상 입력해주세요.</small>
+			<small>4자 이상 입력해주세요.</small>
 			<form:password class="form-control" placeholder="비밀번호" path="password"></form:password>
 			<form:errors path="password" cssStyle="font-size: 0.8em"></form:errors> 
 		</div>

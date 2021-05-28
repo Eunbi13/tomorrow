@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <div class="jumbotron text-center" style="margin-bottom:0">
   <h1>tmhouse index test</h1>
@@ -21,24 +22,31 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          profileImage
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/member/myPage">Mypage</a>
-          <a class="dropdown-item" href="#">a</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">a</a>
-        </div>
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" href="/member/memberJoin">Join</a>
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" href="/member/login">Login</a>
-      </li>
       
+      <sec:authorize access="!isAuthenticated()">
+	      <li class="nav-item">
+	        <a class="nav-link" href="/member/memberJoin">Join</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/member/login">Login</a>
+	      </li>
+      </sec:authorize>
+      <sec:authorize access="isAuthenticated()">
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          profileImage
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	          <a class="dropdown-item" href="/member/myPage">Mypage</a>
+	          <a class="dropdown-item" href="/brand/signBrand">판매자 신청</a>
+	          <div class="dropdown-divider"></div>
+	          <a class="dropdown-item" href="#">a</a>
+	        </div>
+	      </li>
+	       <li class="nav-item">
+	        <a class="nav-link" href="/member/logout">Logout</a>
+	      </li>
+      </sec:authorize>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
