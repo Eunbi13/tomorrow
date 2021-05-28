@@ -19,7 +19,18 @@ public class MemberService implements UserDetailsService{
 	private MemberMapper memberMapper;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+//login	
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		MemberVO memberVO = new MemberVO();
+		memberVO.setEmail(email);
+		memberVO=memberMapper.memberLogin(memberVO);
+		System.out.println("email: "+memberVO.getEmail());
+		System.out.println("username: "+memberVO.getUsername());
+		return memberVO;
+	}
 	
+//errors	
 	public boolean memberErrors(MemberVO memberVO, Errors errors)throws Exception{
 		boolean check = errors.hasErrors();
 		
@@ -43,7 +54,8 @@ public class MemberService implements UserDetailsService{
 		
 		return check;
 	}
-//======join=====	
+	
+//join
 	@Transactional(rollbackFor = Exception.class)
 	public Long memberJoin(MemberVO memberVO)throws Exception{
 	//password encryption
@@ -61,18 +73,8 @@ public class MemberService implements UserDetailsService{
 		
 		return result;
 	}
-//======Login=====	
+
 	
-	
-	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		MemberVO memberVO = new MemberVO();
-		memberVO.setEmail(email);
-		memberVO=memberMapper.memberLogin(memberVO);
-		System.out.println("email: "+memberVO.getEmail());
-		System.out.println("username: "+memberVO.getUsername());
-		return memberVO;
-	}
 	
 	
 	
