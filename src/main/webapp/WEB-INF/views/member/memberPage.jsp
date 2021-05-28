@@ -12,20 +12,17 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 
-	<h1>마이페이지다!</h1>
+	<h1>마이페이지!</h1>
 	
 	
 	
 	<sec:authorize access="hasRole('ROLE_U')"> 
-	<h1>유저</h1>
 		<c:import url="./memberPages/u_Page.jsp"></c:import>
 	</sec:authorize>
 	<sec:authorize access="hasRole('ROLE_B')">
-	<h1>판매자</h1>
 		<c:import url="./memberPages/b_Page.jsp"></c:import>
 	</sec:authorize>
 	<sec:authorize access="hasRole('ROLE_M')">
-	<h1>관리자</h1>
 		<c:import url="./memberPages/m_Page.jsp"></c:import>
 	</sec:authorize>
 
