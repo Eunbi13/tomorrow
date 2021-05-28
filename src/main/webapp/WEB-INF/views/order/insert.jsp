@@ -139,7 +139,7 @@ margin-top: 20px;
 	            <div class="bbqwt">
 					<div class="checkout-container _3tfrw">
 						<div class="_2s2Nq">
-						   <div class="_3dE3S" style="float:left;"> 배송지제목: ${shipping.shipTitle}</div>
+						   <div class="_3dE3S" style="float:left;"> 배송지제목:</div>
 							
 							<c:if test="${shipping.isDefault == true}">
 							<div>
@@ -149,7 +149,7 @@ margin-top: 20px;
 					</div>
 					<div class="" style="clear:both;">경기 고양시 일산동구 탄중로 343 (중산동) 중산마을5단지아파트, 513동 404호</div>
 				<div class="">
-					<div class="">장민경</div>
+					<div class="">${orderVO}</div>
 					<div class="">010-7399-9178</div>
 				</div>
 				<div class="css-nj6fnr-DeliveryRequestInput e84q8kd0">

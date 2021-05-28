@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,20 +40,24 @@ public class OrderController {
 	
 	
 	@GetMapping("insert")
-	public void setInsert(OrderVO orderVO, HttpSession session)throws Exception{
-		MemberVO memberVO=(MemberVO)session.getAttribute("member");
+	public ModelAndView setInsert(OrderVO orderVO, HttpSession session)throws Exception{
+		//MemberVO memberVO=(MemberVO)session.getAttribute("member");
 		//디폴트 배송지 가져오기
 		//아이디는 input hidden에 넣기 
-		orderVO.setUserName(null);
-		// 장바구니에서 결제 -> cartVO validity=true 인 것만 가져오기..
-		// 바로결제 -> 상품번호 가져오기 
+		//orderVO.setUserName(memberVO);
+		// 1.장바구니에서 결제 -> cartVO validity=true 인 것만 가져오기..
+		// 2.바로결제 -> 상품번호 가져오기 
+		ModelAndView mv = new ModelAndView();
+		orderVO.setUserName("id1");
+		mv.addObject("orderVO", orderVO);
 		
-		
+		return mv;
 	}
 	
 	@PostMapping("insert")
-	public void setInsert(OrderVO orderVO)throws Exception{
-		
+	public String setInsert(OrderVO orderVO)throws Exception{
+		int result =orderService.setInsert(orderVO);
+		return "../";
 	}
 	
 	
