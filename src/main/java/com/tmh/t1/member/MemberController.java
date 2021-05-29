@@ -21,10 +21,22 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+
+//myPage
+	@GetMapping("myPage")
+	public String memberPage() throws Exception{
+		return "member/memberPage";
+	}
+	
 	
 //login	
 	@GetMapping("login")
 	public String memberLogin() throws Exception{
+		return "member/memberLogin";
+	}
+	
+	@PostMapping("login")
+	public String memberFailed() throws Exception{
 		return "member/memberLogin";
 	}
 
@@ -33,6 +45,7 @@ public class MemberController {
 
 		System.out.println("email: "+auth.getName());
 		System.out.println("VO: "+auth.getPrincipal());
+		System.out.println("auth: "+auth.getAuthorities());
 
 		System.out.println("login성공");
 		return "redirect:/";

@@ -32,14 +32,37 @@
 			<form:errors path="username" cssStyle="font-size: 0.8em"></form:errors> 
 		</div>
 		
-	<button class="btn btn-primary">button</button>
+	
+<br><br>
+		<div>
+			<div class="custom-control custom-checkbox">			
+				<input type="checkbox" id="all"> 전체 동의
+			</div>
+			
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="one"> 만 14세 이상입니다.(필수)
+				
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="one"> 이용약관(필수)
+			
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="one"> 개입정보 수집 및 이용동의(필수)
+				
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="other"> 이벤트, 프로모션 알람 메일 수신(선택)
+			</div>
+			<!-- 메일수신 미정 -->
+		</div>
+<br><br>
+		<div class="btn btn-primary">button</div>
 	</form:form>
-
-
-
-
 
 </div>
 <c:import url="../template/footer.jsp"></c:import>
+
+<script type="text/javascript" src="/js/memberJoin.js"></script>
 </body>
 </html>

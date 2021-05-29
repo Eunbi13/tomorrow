@@ -79,7 +79,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">취급 카테고리(checkBox)</label>
+				<label class="col-sm-2 col-form-label">취급 카테고리<span>*</span></label>
 				<div class="col-sm-10">
 				<div class=" form-check form-check-inline ">
 					<input class="form-check-input" type="checkbox" name="categoryID">

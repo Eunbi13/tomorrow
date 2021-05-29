@@ -11,14 +11,24 @@
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-<div class="container">
-	<h1>@@@</h1>
+
+	<h1>마이페이지!</h1>
+	
+	
+	
+	<sec:authorize access="hasRole('ROLE_U')"> 
+		<c:import url="./memberPages/u_Page.jsp"></c:import>
+	</sec:authorize>
+	<sec:authorize access="hasRole('ROLE_B')">
+		<c:import url="./memberPages/b_Page.jsp"></c:import>
+	</sec:authorize>
+	<sec:authorize access="hasRole('ROLE_M')">
+		<c:import url="./memberPages/m_Page.jsp"></c:import>
+	</sec:authorize>
 
 
 
 
-
-</div>
 <c:import url="../template/footer.jsp"></c:import>
 </body>
 </html>
