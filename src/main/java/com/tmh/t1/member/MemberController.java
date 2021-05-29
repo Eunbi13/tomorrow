@@ -68,7 +68,7 @@ public class MemberController {
 		Long result = memberService.memberJoin(memberVO);
 		System.out.println("회원가입 성공: "+result);
 
-		return "redirect:/";
+		return "redirect:/member/login";
 	}
 
 }

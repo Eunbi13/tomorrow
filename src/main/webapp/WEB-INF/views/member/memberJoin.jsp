@@ -57,6 +57,7 @@
 			<!-- 메일수신 미정 -->
 		</div>
 <br><br>
+		<div id="error"></div>
 		<div class="btn btn-primary">button</div>
 	</form:form>
 

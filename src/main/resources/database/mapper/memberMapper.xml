@@ -5,8 +5,8 @@
 
 	<mapper namespace="com.tmh.t1.member.MemberMapper">
 		<insert id="memberJoin" parameterType="MemberVO">
-			INSERT INTO member (email, PASSWORD, username, enabled ) 
-			VALUES (#{email}, #{password}, #{username}, true)
+			INSERT INTO member (email, PASSWORD, username, enabled, profileImage ) 
+			VALUES (#{email}, #{password}, #{username}, true, #{profileImage})
 		</insert>
 		<select id="emailCheck" parameterType="MemberVO" resultType="java.lang.Long">
 			SELECT COUNT(*) FROM member WHERE email=#{email}

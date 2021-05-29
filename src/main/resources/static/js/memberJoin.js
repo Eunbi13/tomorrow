@@ -37,10 +37,11 @@ $('.other').click(function(){
 });
 
 
-$('.btn').click(function(){
-		
-	if(check||result){
-		alert('hi')
+$('.btn').click(function(){		
+	if(check&&result){
+		$('#frm').submit();
+	}else{
+		$('#error').append('필수 동의 항목입니다.');
 	}
 });
 
