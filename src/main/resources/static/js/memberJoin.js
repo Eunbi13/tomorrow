@@ -11,7 +11,7 @@ $('#all').click(function(){
 	$('.one').prop("checked", check);
 	$('.other').prop("checked", check);
 });
-//개별동의 
+//필수 동의 
 $('.one').click(function(){
 	result = true;
 	$('.one').each(function(){
@@ -20,23 +20,27 @@ $('.one').click(function(){
 			result = false;
 		}
 	});
-	check = result;
-	/*if(check){
-		$('#all').prop("checked", check);
-	}*/
+	if(result&&result2){
+		$('#all').prop("checked", result);
+	}else{
+		$('#all').prop("checked", result);
+	}
 });
-
+//선택 동의 
 $('.other').click(function(){
 	result2 = $('.other').prop("checked");
 	if(result&&result2){
 		$('#all').prop("checked", result2);
+	}else{
+		$('#all').prop("checked", result);
 	}
 });
 
 
 $('.btn').click(function(){
-		alert(check)
-	if(check){
+		
+	if(check||result){
+		alert('hi')
 	}
 });
 
