@@ -3,6 +3,9 @@ package com.tmh.t1.cart;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.context.annotation.Configuration;
+
 
 @Mapper
 public interface CartMapper {

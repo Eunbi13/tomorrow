@@ -150,6 +150,7 @@ margin-top: 20px;
 					<div class="" style="clear:both;">경기 고양시 일산동구 탄중로 343 (중산동) 중산마을5단지아파트, 513동 404호</div>
 				<div class="">
 					<div class="">${orderVO}</div>
+					<div class="">${shippingVO}</div>
 					<div class="">010-7399-9178</div>
 				</div>
 				<div class="css-nj6fnr-DeliveryRequestInput e84q8kd0">

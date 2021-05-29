@@ -12,7 +12,7 @@
 			SELECT COUNT(*) FROM member WHERE email=#{email}
 		</select>
 		<select id="usernameCheck" parameterType="MemberVO" resultType="java.lang.Long">
-			SELECT COUNT(*) FROM member WHERE username=#{username}
+			SELECT COUNT(*) FROM member WHERE username=#{username} 
 		</select>
 		<insert id="setRole" parameterType="java.util.Map">
 			INSERT INTO member_role (username, id) 

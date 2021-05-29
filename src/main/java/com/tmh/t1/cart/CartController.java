@@ -24,9 +24,9 @@ public class CartController {
 	public ModelAndView getList(CartVO cartVO)throws Exception{
 		ModelAndView mv= new ModelAndView();
 		cartVO.setUsername("id1");
-	   //  List<CartVO> ar =cartService.getList(cartVO);
+	    List<CartVO> ar =cartService.getList(cartVO);
 	    
-	   // mv.addObject("cartList", ar);
+	    mv.addObject("cartList", ar);
 	    mv.setViewName("cart/list");
 	    
 	    return mv;

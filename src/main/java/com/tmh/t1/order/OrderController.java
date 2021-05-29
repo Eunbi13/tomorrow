@@ -52,7 +52,10 @@ public class OrderController {
 		//디폴트 배송지 가져오기
 		ShippingVO shippingVO= new ShippingVO();
 		shippingVO.setUsername("id1");
-		List<ShippingVO> shipArr =shippingService.getList(shippingVO);
+		shippingVO.setShipNum(1L);
+		shippingVO=shippingService.getSelect(shippingVO);
+		System.out.println(shippingVO);
+		//List<ShippingVO> shipArr =shippingService.getList(shippingVO);
 		//아이디는 input hidden에 넣기 
 		orderVO.setUserName("id1");
 		//orderVO.setUserName(memberVO);
@@ -61,7 +64,9 @@ public class OrderController {
 		// 2.바로결제 -> 상품번호 가져오기 
 		
 	
-		mv.addObject("shipArr", shipArr);
+		//mv.addObject("shipArr", shipArr);
+		
+		mv.addObject("shippingVO", shippingVO);
 		mv.addObject("orderVO", orderVO);
 		
 		return mv;
