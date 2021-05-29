@@ -11,11 +11,13 @@
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-
-	<h1>마이페이지!</h1>
-	
-	
-	
+	<div class="container">
+	<h1>마이페이지</h1>
+		<img alt="" src="<sec:authentication property="principal.profileImage"/>"><br>
+		<h3><sec:authentication property="principal.username"/></h3><br>
+		<a class="btn btn-link" href="#">설정</a>
+	</div>
+<br><br>
 	<sec:authorize access="hasRole('ROLE_U')"> 
 		<c:import url="./memberPages/u_Page.jsp"></c:import>
 	</sec:authorize>

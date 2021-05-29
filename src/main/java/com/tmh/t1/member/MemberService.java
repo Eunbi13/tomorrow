@@ -61,6 +61,7 @@ public class MemberService implements UserDetailsService{
 	//password encryption
 		memberVO.setPassword(passwordEncoder.encode(memberVO.getPassword()));
 	//insert data
+		memberVO.setProfileImage("/images/none.jpg");
 		Long result = memberMapper.memberJoin(memberVO);
 		if(result<1) {
 			throw new Exception();
