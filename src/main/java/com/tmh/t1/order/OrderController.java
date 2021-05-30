@@ -53,7 +53,7 @@ public class OrderController {
 		ShippingVO shippingVO= new ShippingVO();
 		shippingVO.setUsername("id1");
 		shippingVO.setShipNum(1L);
-		shippingVO=shippingService.getSelect(shippingVO);
+		//shippingVO=shippingService.getSelect(shippingVO);
 		System.out.println(shippingVO);
 		//List<ShippingVO> shipArr =shippingService.getList(shippingVO);
 		//아이디는 input hidden에 넣기 

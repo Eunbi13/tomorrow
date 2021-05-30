@@ -16,7 +16,7 @@ public class CartService {
     }
 	
 	public List<CartVO> getList(CartVO cartVO)throws Exception{
-		return cartMapper.getList(cartVO);
+		return cartMapper.cartList(cartVO);
 	}
 	
 	public int setInsert(CartVO cartVO)throws Exception{

@@ -9,7 +9,7 @@
     		select * from cart where cartNum=#{cartNum} 
     	</select>
     	
-    	<select id="getList" parameterType="CartVO" resultType="CartVO">
+    	<select id="cartList" parameterType="CartVO" resultType="CartVO">
     		select * from cart where username=#{username}
     	</select>
     	
