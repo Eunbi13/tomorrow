@@ -11,7 +11,8 @@
   		<typeAlias type="com.tmh.t1.member.MemberVO" alias="MemberVO"/>
   	  	<typeAlias type="com.tmh.t1.cart.CartVO" alias="CartVO"/>
   	
-  	
+  		<typeAlias type="com.tmh.t1.housewarming.HousewarmingVO" alias="HousewarmingVO"/>
+  		<typeAlias type="com.tmh.t1.housewarming.HwFileVO" alias="HwFileVO"/>
   	
   	
   	</typeAliases>
