@@ -13,7 +13,7 @@
 <c:import url="../template/header.jsp"></c:import>
 <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
 <h1>login form</h1>
-<%-- <spring:message code="${message}" ></spring:message> --%>
+<spring:message code="${message}" ></spring:message>
 <br>
 	<form action="./login" method="post">
 		<div class="form-group">
