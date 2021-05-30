@@ -58,14 +58,14 @@
 		</div>
 <br><br>
 
-	<button>button real</button>
+	
 		<div id="error"></div>
-		<div class="btn btn-primary">button</div>
+		<div id="btn"class="btn btn-primary">button</div>
 	</form:form>
 
 </div>
 <c:import url="../template/footer.jsp"></c:import>
 
-<!-- <script type="text/javascript" src="/js/memberJoin.js"></script> -->
+<script type="text/javascript" src="/js/memberJoin.js"></script>
 </body>
 </html>
