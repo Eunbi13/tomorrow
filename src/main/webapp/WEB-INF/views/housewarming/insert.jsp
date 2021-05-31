@@ -115,7 +115,7 @@
 								<input type="text" class="form-control myCheck" id="bottomColor" name="bottomColor">
 							</div>
 							<div class="form-group">
-								<label for="detail">세부공사</label> 
+								<label for="detail">세부공사</label>
 								<input type="text" class="form-control myCheck" id="detail" name="detail">
 							</div>
 							<div class="form-group">
@@ -133,8 +133,8 @@
 			
 			<div class="form-group">
 				<div class="jumbotron mt-3">
-				    <p class="lead">추가하기 버튼으로 커버 사진을 업로드 해주세요.</p>
-				    <input type="file" id="fileName" name="fileName">
+				    <p class="lead" for="file">추가하기 버튼으로 커버 사진을 업로드 해주세요.</p>
+				    <input type="file" id="file" name="file">
 				</div>
 			</div>
 			<div class="form-group">

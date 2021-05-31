@@ -1,6 +1,8 @@
 package com.tmh.t1.housewarming;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
 public class HousewarmingVO {
@@ -8,7 +10,7 @@ public class HousewarmingVO {
 	private Long hwNum;
 	private String username;
 	private String space;
-	private String spaceSize;
+	private int spaceSize;
 	private String work;
 	private String field;
 	private String familyType;
@@ -27,4 +29,5 @@ public class HousewarmingVO {
 	private String contents;
 	private Long hit;
 	
+	private HwFileVO hwFileVO;
 }

@@ -18,7 +18,7 @@ import com.tmh.t1.util.FileManager;
 public class HousewarmingService {
 	
 	@Autowired
-	HousewarmingMapper housewarmingMapper;
+	private HousewarmingMapper housewarmingMapper;
 	@Autowired
 	private FileManager fileManager;
 	
@@ -47,11 +47,11 @@ public class HousewarmingService {
 		String filePath= this.filePath;
 		
 		String fileName= fileManager.save(file, filePath);
-		System.out.println(fileName);
+		System.out.println("FileName : " + fileName);
 		HwFileVO hwFileVO = new HwFileVO();
 		hwFileVO.setFileName(fileName);
 		hwFileVO.setOriginName(file.getOriginalFilename());
-		hwFileVO.setHwNum(hwFileVO.getHwNum());
+		hwFileVO.setHwNum(housewarmingVO.getHwNum());
 		housewarmingMapper.setFileInsert(hwFileVO);
 		return result;
 	}

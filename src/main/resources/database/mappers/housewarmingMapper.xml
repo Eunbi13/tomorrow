@@ -37,7 +37,7 @@
    			<result column="username" property="username"/>
    			<result column="contents" property="contents"/>
    			<result column="hit" property="hit"/>
-   			<collection property="files" javaType="java.util.List" ofType="HwFileVO">
+   			<collection property="hwFileVO" javaType="HwFileVO">
    				<id column="fileNum" property="fileNum"/>
    				<result column="fileName" property="fileName"/>
    				<result column="originName" property="originName"/>
@@ -45,8 +45,8 @@
    		</resultMap>
    		
    		<insert id="setInsert" parameterType="HousewarmingVO" useGeneratedKeys="true" keyProperty="hwNum">
-   			insert into housewarming (space, spaceSize, work, field, familyType, style, period, budget, totalTone, wallColor, bottomColor, detail, link, copyright, coverImg, title, username, contents, hit)
-   			values(#{space}, #{spaceSize}, #{work}, #{field}, #{familyType}, #{style}, #{period}, #{budget}, #{totalTone}, #{wallColor}, #{bottomColor}, #{detail}, #{link}, #{copyright}, 0, #{title}, 'user02', #{contents}, 0)
+   			insert into housewarming (space, spaceSize, work, field, familyType, area, style, period, budget, totalTone, wallColor, bottomColor, detail, link, copyright, coverImg, title, username, contents, hit)
+   			values(#{space}, #{spaceSize}, #{work}, #{field}, #{familyType}, #{area}, #{style}, #{period}, #{budget}, #{totalTone}, #{wallColor}, #{bottomColor}, #{detail}, #{link}, #{copyright}, #{coverImg}, #{title}, #{username}, #{contents}, #{hit})
    		</insert>
    		
    		<insert id="setFileInsert" parameterType="HwFileVO">
