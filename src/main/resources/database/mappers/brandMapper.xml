@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 	<mapper namespace="com.tmh.t1.brand.BrandMapper">
-		<insert id="signBrand" parameterType="BrandVO">
+		<insert id="signBrand" parameterType="BrandVO" useGeneratedKeys="true" keyProperty="brandNum">
 			INSERT INTO brand(username, companyName, registrationNum, companyHomepage, 
 							  managerName, managerPhone, managerEmail, 
 							  brandName, brandIntro, referenceFile, accept) 
@@ -12,4 +12,9 @@
 					#{managerName}, #{managerPhone}, #{managerEmail}, 
 					#{brandName}, #{brandIntro}, #{referenceFile}, #{accept});	
 		</insert>
+		
+		<select id="getCategory" resultType="CategoryVO">
+			SELECT categoryID, category_detail_NM FROM category WHERE category_NM = '대분류'
+		</select>
+		
 	</mapper>

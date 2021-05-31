@@ -1,5 +1,7 @@
 package com.tmh.t1.brand;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import com.tmh.t1.category.CategoryVO;
 
 @Controller
 @RequestMapping("/brand/**")
@@ -21,18 +25,36 @@ public class BrandController {
 	@GetMapping("signBrand")
 	public String signBrand(Model model)throws Exception{
 		model.addAttribute("brandVO", new BrandVO());
+		
+		List<CategoryVO> category_NM = brandService.getCategory();
+		for(CategoryVO ar : category_NM) {
+			System.out.println(ar);
+		}
+		//model.addAttribute("category", category_NM);
+		
 		return "/brand/signBrandFrom";
 	}
 	
 	@PostMapping("signBrand")
-	public String signBrand(@Valid BrandVO brandVO, Errors errors, Authentication auth)throws Exception{
+	public String signBrand(@Valid BrandVO brandVO, Errors errors, Authentication auth, MultipartFile files, Model model)throws Exception{
+		System.out.println(brandVO);
+		
 		if(errors.hasErrors()) {
+			System.out.println("에러발생");
+			System.out.println(errors.getErrorCount());
+			System.out.println(errors.getAllErrors());
 			return "/brand/signBrandFrom";
 		}
 		
-		brandService.signBrand(brandVO, auth);
+		Long result=brandService.signBrand(brandVO, auth, files);
+
+		/*
+		 * alert('${msg}'); location.href="${path}";
+		 */
+		model.addAttribute("msg", "신청되었습니다.");
+		model.addAttribute("path", "/");
 		
-		return "redirect:/";
+		return "/common/commonResult";
 	}
 	
 	

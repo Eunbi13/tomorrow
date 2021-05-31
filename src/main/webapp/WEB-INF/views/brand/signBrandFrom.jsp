@@ -20,7 +20,7 @@
 		<li>입점 신청과 관련된 내용은 일반 고객센터 접수가 불가능합니다. 참고 바랍니다.</li>
 	</ul>
 	
-	<form:form action="./signBrand" modelAttribute="brandVO" method="post">
+	<form:form action="./signBrand" modelAttribute="brandVO" method="post" enctype="multipart/form-data">
 
 		<div>
 			<h3>회사 정보</h3>
@@ -109,7 +109,8 @@
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">판매 관련 파일 첨부</label>
 				<div class="input-group col-sm-10">
-					<input type="file" name="referenceFile"><p></p> 
+					<input type="file" name="files"><p></p> 
+					
 				</div>
 			</div>
 			<div class="form-group row">
