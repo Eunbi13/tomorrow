@@ -41,9 +41,12 @@ public class HousewarmingController {
 	}
 	
 	@GetMapping("insert")
-	public void setInsert(Model model, HttpSession session) throws Exception {
-		model.addAttribute("vo", new HousewarmingVO());
-		model.addAttribute("action", "insert");
+	public void setInsert(Model model, HttpSession session, Authentication auth) throws Exception {
+		String username = auth.getName();
+		System.out.println("************USER NAME : " + username + "******************");
+		HousewarmingVO housewarmingVO = new HousewarmingVO();
+		housewarmingVO.setUsername(username);
+		model.addAttribute("vo", housewarmingVO);
 	}
 	
 	@PostMapping("insert")

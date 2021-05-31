@@ -145,6 +145,10 @@
 				<label for="contents">Contents:</label>
 				<textarea class="form-control myCheck" rows="5" id="contents" name="contents"></textarea>
 			</div>
+			
+			<div class="form-group">
+				<input type="text" class="form-control myCheck" id="username" name="username" value="${vo.username}">
+			</div>
 
 			<div>
 				<button type="submit" class="btn btn-outline-primary">WRITE</button>
