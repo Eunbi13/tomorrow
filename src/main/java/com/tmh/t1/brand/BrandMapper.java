@@ -1,8 +1,9 @@
 package com.tmh.t1.brand;
 
-import org.springframework.stereotype.Service;
+import org.apache.ibatis.annotations.Mapper;
 
-@Service
+@Mapper
 public interface BrandMapper {
 
+	public Long signBrand(BrandVO brandVO) throws Exception;
 }

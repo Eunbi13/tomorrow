@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 public class BrandVO {
 	private Long brandNum;
-	private String userName;
+	private String username;
 	@NotEmpty
 	private String companyName;
 	@NotEmpty
