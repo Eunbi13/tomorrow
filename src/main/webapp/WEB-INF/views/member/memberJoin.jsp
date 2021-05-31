@@ -60,7 +60,7 @@
 
 
 		<div id="error"></div>
-		<div class="btn btn-primary">button</div>
+		<div id="btn" class="btn btn-primary">button</div>
 	</form:form>
 
 </div>
