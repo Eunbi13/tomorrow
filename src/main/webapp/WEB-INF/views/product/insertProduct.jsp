@@ -58,14 +58,6 @@
 
 </div>
 <c:import url="../template/footer.jsp"></c:import>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#summernote').summernote({
-	        placeholder: 'Please insert product detailed.',
-	        tabsize: 2,
-	        height: 500
-	      });
-	});
-</script>
+
 </body>
 </html>
