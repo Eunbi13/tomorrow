@@ -4,10 +4,13 @@ import lombok.Data;
 
 @Data
 public class CategoryVO {
-	private Long productNum;
-	private Long optionNum;
-	private String optionKinds;
-	private String opitonName;
-	private Long optionPrice;
+	private int categoryID;
+	private String groupID;
+	private int category_LEV;
+	private String category_NM;
+	private int category_detail;
+	private String category_detail_NM;
+	private int category_parent;
+	private int category_detail_parent;
 
 }
