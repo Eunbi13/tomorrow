@@ -33,9 +33,8 @@ public class BrandVO {
 	@Nullable
 	private String referenceFile;
 	private boolean accept;
-	
 
-	private List<CategoryVO> categories;
+	private String [] categories;
 	
 	public boolean isAccept() {
 		this.accept=false;

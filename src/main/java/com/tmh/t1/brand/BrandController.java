@@ -21,24 +21,33 @@ public class BrandController {
 
 	@Autowired
 	private BrandService brandService;
-
+	
+	@GetMapping("home")
+	public String brandHome(BrandVO brandVO)throws Exception{
+		
+		
+		
+		return "/brand/brandHome";
+	}
+	
+//판매자 등록
 	@GetMapping("signBrand")
 	public String signBrand(Model model)throws Exception{
 		model.addAttribute("brandVO", new BrandVO());
 		
-		List<CategoryVO> category_NM = brandService.getCategory();
-		for(CategoryVO ar : category_NM) {
-			
+		List<CategoryVO> category = brandService.getCategory();
+		for(CategoryVO ar : category) {
+			System.out.println(ar.getCategory_detail_NM());
+			System.out.println(ar.getCategoryID());
 		}
-		//model.addAttribute("category", category_NM);
+		model.addAttribute("categories", category);
 		
 		return "/brand/signBrandFrom";
 	}
 	
 	@PostMapping("signBrand")
 	public String signBrand(@Valid BrandVO brandVO, Errors errors, Authentication auth, MultipartFile files, Model model)throws Exception{
-		System.out.println(brandVO);
-		
+	
 		if(errors.hasErrors()) {
 			System.out.println("에러발생");
 			System.out.println(errors.getErrorCount());
@@ -47,7 +56,7 @@ public class BrandController {
 		}
 		
 		Long result=brandService.signBrand(brandVO, auth, files);
-
+		System.out.println("브랜드 신청: "+result);
 		if(result>0) {
 			model.addAttribute("msg", "신청되었습니다.");
 			model.addAttribute("path", "/");
