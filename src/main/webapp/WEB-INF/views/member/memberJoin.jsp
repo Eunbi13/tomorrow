@@ -66,6 +66,6 @@
 </div>
 <c:import url="../template/footer.jsp"></c:import>
 
-<!-- <script type="text/javascript" src="/js/memberJoin.js"></script> -->
+<script type="text/javascript" src="/js/memberJoin.js"></script> 
 </body>
 </html>
