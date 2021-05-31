@@ -4,7 +4,7 @@
 
 let check = false;
 let result = false;
-let result2 = false;
+let otherCheck = false;
 //전체 동의
 $('#all').click(function(){
 	check = $('#all').prop("checked");
@@ -20,28 +20,31 @@ $('.one').click(function(){
 			result = false;
 		}
 	});
-	if(result&&result2){
-		$('#all').prop("checked", result);
+	if(result&&otherCheck){
+		$('#all').prop("checked", true);
 	}else{
-		$('#all').prop("checked", result);
+		$('#all').prop("checked", false);
 	}
 });
 //선택 동의 
 $('.other').click(function(){
-	result2 = $('.other').prop("checked");
-	if(result&&result2){
-		$('#all').prop("checked", result2);
+	otherCheck = $('.other').prop("checked");
+	if(result&&otherCheck){
+		$('#all').prop("checked", true);
 	}else{
-		$('#all').prop("checked", result);
+		$('#all').prop("checked", false);
 	}
 });
 
-
-$('.btn').click(function(){		
-	if(check&&result){
+let count = 0;
+$('#btn').click(function(){		
+	if(check||result){
 		$('#frm').submit();
 	}else{
-		$('#error').append('필수 동의 항목입니다.');
+		if(count<1){
+			$('#error').append('필수 동의 항목입니다.');
+			count++;
+		}
 	}
 });
 
