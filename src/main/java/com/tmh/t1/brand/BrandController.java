@@ -28,7 +28,7 @@ public class BrandController {
 		
 		List<CategoryVO> category_NM = brandService.getCategory();
 		for(CategoryVO ar : category_NM) {
-			System.out.println(ar);
+			
 		}
 		//model.addAttribute("category", category_NM);
 		
