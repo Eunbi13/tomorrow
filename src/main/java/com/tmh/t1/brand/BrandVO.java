@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.constraints.NotEmpty;
 
+import com.tmh.t1.category.CategoryVO;
+
 import lombok.Data;
 
 @Data
