@@ -38,13 +38,13 @@ public class HousewarmingController {
 	}
 	
 	@GetMapping("insert")
-	public String setInsert(Model model, HttpSession session) throws Exception {
+	public void setInsert(Model model, HttpSession session) throws Exception {
 		model.addAttribute("vo", new HousewarmingVO());
 		model.addAttribute("action", "insert");
 		
 //		Object obj = session.getAttribute("member");
 //		MemberVO memberVO = null;
-		String path="redirect:/member/login";
+//		String path="redirect:/member/login";
 //		//if(obj != null) {}
 //		if(obj instanceof MemberVO) {
 //			memberVO = (MemberVO)obj;
@@ -54,7 +54,7 @@ public class HousewarmingController {
 //			}
 //		}	
 		
-		return path;
+//		return path;
 	}
 	
 	@PostMapping("insert")
