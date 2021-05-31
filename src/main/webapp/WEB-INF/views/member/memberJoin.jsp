@@ -58,7 +58,7 @@
 		</div>
 <br><br>
 
-	<button>button real</button>
+
 		<div id="error"></div>
 		<div class="btn btn-primary">button</div>
 	</form:form>
