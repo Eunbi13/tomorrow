@@ -146,7 +146,7 @@
 				<textarea class="form-control myCheck" rows="5" id="contents" name="contents"></textarea>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group" hidden="hidden">
 				<input type="text" class="form-control myCheck" id="username" name="username" value="${vo.username}">
 			</div>
 

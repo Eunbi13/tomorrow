@@ -29,5 +29,5 @@ public class HousewarmingVO {
 	private String contents;
 	private Long hit;
 	
-	private HwFileVO hwFileVO;
+	private HwFileVO file;
 }
