@@ -4,6 +4,11 @@
 
 <mapper namespace="com.tmh.t1.category.CategoryMapper">
 
+	<!-- brand, productInset 사용 -->
+	<select id="getBigCategory" resultType="CategoryVO">
+			SELECT categoryID, category_detail_NM FROM category WHERE category_NM = '대분류'
+		</select>
+
 	<select id="selectCategory" resultType="CategoryVO"
 		parameterType="CategoryVO">
 		SELECT

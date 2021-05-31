@@ -13,9 +13,8 @@
 					#{brandName}, #{brandIntro}, #{referenceFile}, #{accept});	
 		</insert>
 		
-		<select id="getCategory" resultType="CategoryVO">
-			SELECT categoryID, category_detail_NM FROM category WHERE category_NM = '대분류'
-		</select>
+		
+
 		
 		<insert id="setBrand_Category" parameterType="java.util.Map" >
 			INSERT INTO brand_category (brandNum, categoryID) VALUES (#{brandNum}, #{categoryID});

@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.tmh.t1.category.CategoryMapper;
+import com.tmh.t1.category.CategoryService;
 import com.tmh.t1.category.CategoryVO;
 
 @Controller
@@ -21,6 +24,7 @@ public class BrandController {
 
 	@Autowired
 	private BrandService brandService;
+	
 	
 	@GetMapping("home")
 	public String brandHome(BrandVO brandVO)throws Exception{
@@ -35,11 +39,11 @@ public class BrandController {
 	public String signBrand(Model model)throws Exception{
 		model.addAttribute("brandVO", new BrandVO());
 		
-		List<CategoryVO> category = brandService.getCategory();
-		for(CategoryVO ar : category) {
-			System.out.println(ar.getCategory_detail_NM());
-			System.out.println(ar.getCategoryID());
-		}
+		List<CategoryVO> category = brandService.getBigCategory();
+//		for(CategoryVO ar : category) {
+//			System.out.println(ar.getCategory_detail_NM());
+//			System.out.println(ar.getCategoryID());
+//		}
 		model.addAttribute("categories", category);
 		
 		return "/brand/signBrandFrom";

@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.tmh.t1.category.CategoryMapper;
 import com.tmh.t1.category.CategoryVO;
 import com.tmh.t1.util.FileManager;
 
@@ -18,11 +19,13 @@ public class BrandService {
 	@Autowired
 	private BrandMapper brandMapper;
 	@Autowired
+	private CategoryMapper categoryMapper;
+	@Autowired
 	private FileManager fileManager;
 
-	//get signBrand
-	public List<CategoryVO> getCategory() throws Exception{
-		return brandMapper.getCategory();
+//대분류 카테고리 카테고리 mapper에서 가져오기 
+	public List<CategoryVO> getBigCategory() throws Exception{
+		return categoryMapper.getBigCategory();
 	}
 	
 	//post signBrand

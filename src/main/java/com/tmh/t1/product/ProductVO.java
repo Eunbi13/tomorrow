@@ -1,5 +1,8 @@
 package com.tmh.t1.product;
 
+
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -14,4 +17,6 @@ public class ProductVO {
 	private String contents;
 	private double discount;
 	private Long shippingFee;
+	
+	
 }
