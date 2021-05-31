@@ -134,6 +134,15 @@ top : 100px;
 	<br>
 	<h5>카테고리</h5>
 	<br>
+	
+	<c:forEach items="${list}" var="vo">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">${vo.productName}</h5>
+					<p class="card-text">${vo.productPrice}</p>\
+				</div>
+			</div>
+	</c:forEach>
 		
 	
 <script type="text/javascript" src="../resources/js/productList.js"></script>
