@@ -48,10 +48,14 @@ public class BrandController {
 		
 		Long result=brandService.signBrand(brandVO, auth, files);
 
+		if(result>0) {
+			model.addAttribute("msg", "신청되었습니다.");
+			model.addAttribute("path", "/");
+			return "/common/commonResult";
+		}
 		
-		model.addAttribute("msg", "신청되었습니다.");
-		model.addAttribute("path", "/");
-		
+		model.addAttribute("msg", "신청할 수 없습니다.");
+		model.addAttribute("path", "/brand/signBrandFrom");
 		return "/common/commonResult";
 	}
 	
