@@ -48,9 +48,7 @@ public class BrandController {
 		
 		Long result=brandService.signBrand(brandVO, auth, files);
 
-		/*
-		 * alert('${msg}'); location.href="${path}";
-		 */
+		
 		model.addAttribute("msg", "신청되었습니다.");
 		model.addAttribute("path", "/");
 		
