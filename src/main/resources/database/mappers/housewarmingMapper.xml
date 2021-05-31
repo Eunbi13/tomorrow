@@ -12,7 +12,7 @@
    		<select id="getSelect" resultMap="selectResult" parameterType="HousewarmingVO">
 			SELECT H.*, HF.* from
 			housewarming H left join hwFile HF
-			on N.hwNum = NF.hwNum
+			on H.hwNum = HF.hwNum
 			WHERE H.hwNum=#{hwNum}
    		</select>
    		
@@ -46,9 +46,9 @@
    		
    		<insert id="setInsert" parameterType="HousewarmingVO" useGeneratedKeys="true" keyProperty="num">
    			insert into housewarming (hwNum, space, spaceSize, work, field, familyType, style, period, budget, 
-   			totalTone, wallColor, bottomColor, detail, link, copyright, title, username, contents, hit)
+   			totalTone, wallColor, bottomColor, detail, link, copyright, coverImg, title, username, contents, hit)
    			values(#{hwNum}, #{space}, #{spaceSize}, #{work}, #{field}, #{familyType}, #{style}, #{period}, #{budget}, 
-   			#{totalTone}, #{wallColor}, #{bottomColor}, #{detail}, #{link}, #{copyright}, #{title}, #{username}, #{contents}, 0)
+   			#{totalTone}, #{wallColor}, #{bottomColor}, #{detail}, #{link}, #{copyright}, 0, #{title}, #{username}, #{contents}, 0)
    		</insert>
    		
    		<insert id="setFileInsert" parameterType="HwFileVO">
