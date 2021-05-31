@@ -1,8 +1,14 @@
 package com.tmh.t1.brand;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-@Service
+import org.apache.ibatis.annotations.Mapper;
+
+import com.tmh.t1.category.CategoryVO;
+
+@Mapper
 public interface BrandMapper {
 
+	public List<CategoryVO> getCategory() throws Exception;
+	public Long signBrand(BrandVO brandVO) throws Exception;
 }
