@@ -44,11 +44,9 @@
    			</collection>
    		</resultMap>
    		
-   		<insert id="setInsert" parameterType="HousewarmingVO" useGeneratedKeys="true" keyProperty="num">
-   			insert into housewarming (hwNum, space, spaceSize, work, field, familyType, style, period, budget, 
-   			totalTone, wallColor, bottomColor, detail, link, copyright, coverImg, title, username, contents, hit)
-   			values(#{hwNum}, #{space}, #{spaceSize}, #{work}, #{field}, #{familyType}, #{style}, #{period}, #{budget}, 
-   			#{totalTone}, #{wallColor}, #{bottomColor}, #{detail}, #{link}, #{copyright}, 0, #{title}, #{username}, #{contents}, 0)
+   		<insert id="setInsert" parameterType="HousewarmingVO" useGeneratedKeys="true" keyProperty="hwNum">
+   			insert into housewarming (space, spaceSize, work, field, familyType, style, period, budget, totalTone, wallColor, bottomColor, detail, link, copyright, coverImg, title, username, contents, hit)
+   			values(#{space}, #{spaceSize}, #{work}, #{field}, #{familyType}, #{style}, #{period}, #{budget}, #{totalTone}, #{wallColor}, #{bottomColor}, #{detail}, #{link}, #{copyright}, 0, #{title}, 'user02', #{contents}, 0)
    		</insert>
    		
    		<insert id="setFileInsert" parameterType="HwFileVO">

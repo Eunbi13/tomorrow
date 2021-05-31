@@ -19,7 +19,7 @@
 <body>
 	<div class="container">
 
-		<form id="frm" action="#" method="post">
+		<form id="frm" action="./insert" method="post">
 			<div class="accordion" id="detailForm">
 				<div class="card">
 					<div class="card-head" id="headingOne">

@@ -24,7 +24,7 @@ public class HousewarmingController {
 	@Autowired
 	private HousewarmingService housewarmingService;
 	
-//	@Value("${housewarming.filePath}")
+	@Value("${housewarming.filePath}")
 	private String filePath;
 	
 	@GetMapping("list")
@@ -41,18 +41,18 @@ public class HousewarmingController {
 	}
 	
 	@GetMapping("insert")
-	public void setInsert(HousewarmingVO housewarmingVO, Model model, HttpSession session, Authentication auth) throws Exception {
+	public void setInsert(HousewarmingVO housewarmingVO, Model model, HttpSession session) throws Exception {
 //		HousewarmingVO housewarmingVO = new HousewarmingVO();
 //		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		System.out.println("Username : " + auth.getName());
-		housewarmingVO.setUsername(auth.getName());
+//		System.out.println("Username : " + auth.getName());
+//		housewarmingVO.setUsername(auth.getName());
 		model.addAttribute("vo", housewarmingVO);
 		model.addAttribute("action", "insert");
 	}
 	
 	@PostMapping("insert")
-	public String setInsert(HousewarmingVO housewarmingVO, MultipartFile [] files)throws Exception{
-		int result = housewarmingService.setInsert(housewarmingVO, files);
+	public String setInsert(HousewarmingVO housewarmingVO, MultipartFile file)throws Exception{
+		int result = housewarmingService.setInsert(housewarmingVO, file);
 		System.out.println("Insert : " + result);
 		return "redirect:./list";
 	}
