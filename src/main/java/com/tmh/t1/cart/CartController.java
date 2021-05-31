@@ -25,9 +25,9 @@ public class CartController {
 		ModelAndView mv= new ModelAndView();
 		cartVO.setUsername("id1");
 		System.out.println("cartVO"+cartVO);
-	   // List<CartVO> ar =cartService.getList(cartVO);
+	    List<CartVO> ar =cartService.getList(cartVO);
 	    
-	    //mv.addObject("cartList", ar);
+	    mv.addObject("cartList", ar);
 	    mv.setViewName("cart/list");
 	    
 	    return mv;

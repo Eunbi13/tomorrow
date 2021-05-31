@@ -37,9 +37,9 @@ public class OrderController {
 	@GetMapping("list")
 	public ModelAndView getList(OrderVO orderVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		List<OrderVO> ar = orderService.getList(orderVO);
+		//List<OrderVO> ar = orderService.getList(orderVO);
 		
-		mv.addObject("orderList", ar);
+		//mv.addObject("orderList", ar);
 		return mv;
 
 	}
