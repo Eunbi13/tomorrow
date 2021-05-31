@@ -177,7 +177,7 @@ margin-top: 20px;
 				    	  <div  style="font-size: 14px; font-weight: lighter; padding-bottom:10px;"> 이미주 010-1234-1234 </div>
 				    	
 						
-				    	 <div style="width:130px; height:50px; float: left;">
+				    	 <div style="width:150px; height:50px; float: left;">
 							 <button type="button" class="btn" style="font-size:14px; border: 1px solid LightGray">삭제</button>   
 							 <button type="button" class="btn" style="font-size:14px; border: 1px solid LightGray">수정</button>
 						 </div>
@@ -200,7 +200,7 @@ margin-top: 20px;
 				    	  <div  style="font-size: 14px; font-weight: lighter; padding-bottom:10px;"> 이미주 010-1234-1234 </div>
 				    	
 						
-				    	 <div style="width:130px; height:50px; float: left;">
+				    	 <div style="width:150px; height:50px; float: left;">
 							 <button type="button" class="btn" style="font-size:14px; border: 1px solid LightGray">삭제</button>   
 							 <button type="button" class="btn" style="font-size:14px; border: 1px solid LightGray">수정</button>
 						 </div>
@@ -223,7 +223,7 @@ margin-top: 20px;
 				    	  <div  style="font-size: 14px; font-weight: lighter; padding-bottom:10px;"> 이미주 010-1234-1234 </div>
 				    	
 						
-				    	 <div style="width:130px; height:50px; float: left;">
+				    	 <div style="width:150px; height:50px; float: left;">
 							 <button type="button" class="btn" style="font-size:14px; border: 1px solid LightGray">삭제</button>   
 							 <button type="button" class="btn" style="font-size:14px; border: 1px solid LightGray">수정</button>
 						 </div>
@@ -246,7 +246,7 @@ margin-top: 20px;
 				    	  <div  style="font-size: 14px; font-weight: lighter; padding-bottom:10px;"> 이미주 010-1234-1234 </div>
 				    	
 						
-				    	 <div style="width:130px; height:50px; float: left;">
+				    	 <div style="width:150px; height:50px; float: left;">
 							 <button type="button" class="btn" style="font-size:14px; border: 1px solid LightGray">삭제</button>   
 							 <button type="button" class="btn" style="font-size:14px; border: 1px solid LightGray">수정</button>
 						 </div>
