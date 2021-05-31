@@ -60,6 +60,7 @@
 
 
 		<div id="error"></div>
+		<button class="">join</button>
 		<div class="btn btn-primary">button</div>
 	</form:form>
 
