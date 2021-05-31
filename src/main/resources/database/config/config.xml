@@ -15,6 +15,11 @@
   	
   		<typeAlias type="com.tmh.t1.housewarming.HousewarmingVO" alias="HousewarmingVO"/>
   		<typeAlias type="com.tmh.t1.housewarming.HwFileVO" alias="HwFileVO"/>
+  		
+  		<typeAlias type="com.tmh.t1.product.ProductVO" alias="ProductVO"/>
+  		<typeAlias type="com.tmh.t1.category.CategoryVO" alias="CategoryVO"/>
+  		<typeAlias type="com.tmh.t1.option.OptionVO" alias="OptionVO"/>
+  		
   	
   	
   	</typeAliases>
