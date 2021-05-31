@@ -23,6 +23,13 @@ public class ProductController {
 		model.addAttribute("list", ar);
 	}
 	
+	//test
+	@GetMapping("list2")
+	public void getList2(ProductVO productVO, Model model)throws Exception {
+		List<ProductVO> ar = productService.getList(productVO);
+		model.addAttribute("list2", ar);
+	}
+	
 	@GetMapping("select")
 	public ModelAndView getSelect(ProductVO productVO)throws Exception{
 		ModelAndView mv = new ModelAndView();

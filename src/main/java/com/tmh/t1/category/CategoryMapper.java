@@ -5,5 +5,9 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface CategoryMapper {
 
-	public CategoryVO selectCategory(CategoryVO categoryVO)throws Exception;
+	public CategoryVO selectCategoryOne(CategoryVO categoryVO)throws Exception;
+	
+	public CategoryVO selectCategoryTwo(CategoryVO categoryVO)throws Exception;
+	
+	public CategoryVO selectCategoryThree(CategoryVO categoryVO)throws Exception;
 }

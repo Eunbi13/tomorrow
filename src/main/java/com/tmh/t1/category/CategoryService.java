@@ -9,7 +9,15 @@ public class CategoryService {
 	@Autowired
 	private CategoryMapper categoryMapper;
 
-	public CategoryVO selectCategory(CategoryVO categoryVO) throws Exception{
-		return categoryMapper.selectCategory(categoryVO);
+	public CategoryVO selectCategoryOne(CategoryVO categoryVO) throws Exception{
+		return categoryMapper.selectCategoryOne(categoryVO);
+	}
+	
+	public CategoryVO selectCategoryTwo(CategoryVO categoryVO) throws Exception{
+		return categoryMapper.selectCategoryTwo(categoryVO);
+	}
+	
+	public CategoryVO selectCategoryThree(CategoryVO categoryVO) throws Exception{
+		return categoryMapper.selectCategoryThree(categoryVO);
 	}
 }
