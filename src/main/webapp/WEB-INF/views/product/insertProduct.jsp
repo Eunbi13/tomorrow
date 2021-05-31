@@ -70,7 +70,7 @@
 				<input class="form-control" name="discount" type="number" placeholder="Please discount">
 			</div>
 		</div>
-		
+		<!--  -->
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label">배송비 설정</label>
 			<div class="col-sm-10">
