@@ -1,5 +1,7 @@
 package com.tmh.t1.housewarming;
 
+import java.util.List;
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,5 +31,5 @@ public class HousewarmingVO {
 	private String contents;
 	private Long hit;
 	
-	private HwFileVO file;
+	private List<HwFileVO> files;
 }

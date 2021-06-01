@@ -50,8 +50,8 @@ public class HousewarmingController {
 	}
 	
 	@PostMapping("insert")
-	public String setInsert(HousewarmingVO housewarmingVO, MultipartFile file)throws Exception{
-		int result = housewarmingService.setInsert(housewarmingVO, file);
+	public String setInsert(HousewarmingVO housewarmingVO, MultipartFile [] files)throws Exception{
+		int result = housewarmingService.setInsert(housewarmingVO, files);
 		System.out.println("Insert : " + result);
 		return "redirect:./list";
 	}
