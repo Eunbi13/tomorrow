@@ -134,7 +134,7 @@
 			<div class="form-group">
 				<div class="jumbotron mt-3">
 				    <p class="lead">추가하기 버튼으로 커버 사진을 업로드 해주세요.</p>
-				    <input type="file" name="files">
+				    <input type="file" name="file">
 				</div>
 			</div>
 			<div class="form-group">

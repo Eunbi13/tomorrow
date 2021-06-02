@@ -2,16 +2,12 @@ package com.tmh.t1.housewarming;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.tmh.t1.member.MemberVO;
 import com.tmh.t1.util.FileManager;
 
 @Service
@@ -38,7 +34,7 @@ public class HousewarmingService {
 	}
 	
 	// Insert
-	public int setInsert(HousewarmingVO housewarmingVO, MultipartFile [] files) throws Exception {
+	public int setInsert(HousewarmingVO housewarmingVO, MultipartFile file) throws Exception {
 		int result = housewarmingMapper.setInsert(housewarmingVO);
 		
 		if(result<1) {
@@ -46,20 +42,17 @@ public class HousewarmingService {
 		}
 		
 		String filePath= this.filePath;
+		System.out.println("FILE PATH" + filePath);
 		
-		if(files == null) {
+		if(file == null) {
 			System.out.println("***************NULL***************");
-		}
+		} else {
 		
-		for(MultipartFile multipartFile:files) {
-			if(multipartFile.getSize()==0) {
-				continue;
-			}
-			String fileName= fileManager.save(multipartFile, filePath);
+			String fileName= fileManager.save(file, filePath);
 			System.out.println("FileName : " + fileName);
 			HwFileVO hwFileVO = new HwFileVO();
 			hwFileVO.setFileName(fileName);
-			hwFileVO.setOriginName(multipartFile.getOriginalFilename());
+			hwFileVO.setOriginName(file.getOriginalFilename());
 			hwFileVO.setHwNum(housewarmingVO.getHwNum());
 			housewarmingMapper.setFileInsert(hwFileVO);
 		}

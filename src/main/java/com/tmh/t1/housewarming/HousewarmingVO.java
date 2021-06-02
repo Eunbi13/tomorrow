@@ -31,5 +31,5 @@ public class HousewarmingVO {
 	private String contents;
 	private Long hit;
 	
-	private List<HwFileVO> files;
+	private HwFileVO hwfile;
 }
