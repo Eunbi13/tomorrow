@@ -3,7 +3,7 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
    
-
+<div class="addOption">
 	<div class="col-sm-12 options" > 
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label">옵션 종류</label>
@@ -24,14 +24,15 @@
 			</div>
 		</div>
 	</div>
-	<div id="add">추가하기</div>
+	<div id="add">옵션 추가하기</div>
+	
 	<div class="col-sm-12">
-	<label class="col-sm-2 col-form-label">옵션 세부 사항 설정</label>
+	<label class="col-sm-2 col-form-label">추가 세부 사항 설정</label>
 			사용안함<input type="radio" class="notDetailUse" name="option" checked>
 			사용<input type="radio" class="detailUse" name="option">
-			<div id="option"></div>
-		</div>
-	
-		<button>button2</button>
+		<div class="detailOption"></div>
+	</div>
+</div>	
+		<button id="dddd">button2</button>
 
 	

@@ -1,7 +1,9 @@
 /**
  * 
  */
-
+$('#notUse').click(function(){
+	$('#option').empty();
+});
 
 $('#use').click(function(){
 	$.ajax({
@@ -15,7 +17,12 @@ $('#use').click(function(){
 	
 });
 
-$('#notUse').click(function(){
-	$('#option').empty();
+$('#option').on("click", ".notDetailUse",function(){
+	$('.detailOption').empty();
 });
 
+$('#option').on("click", ".detailUse",function(){
+	let optionForm = $('.addOption').html();
+	$('.detailOption').append(optionForm);
+	alert('hi')
+});
