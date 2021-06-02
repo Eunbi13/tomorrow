@@ -19,7 +19,7 @@
   		
   		<typeAlias type="com.tmh.t1.product.ProductVO" alias="ProductVO"/>
   		<typeAlias type="com.tmh.t1.category.CategoryVO" alias="CategoryVO"/>
-  		<typeAlias type="com.tmh.t1.option.Pro_OptionVO" alias="OptionVO"/>
+  		<typeAlias type="com.tmh.t1.option.OptionsVO" alias="OptionsVO"/>
   		
   		<typeAlias type="com.tmh.t1.product.ProductImagesVO" alias="ProductImagesVO"/>
   	

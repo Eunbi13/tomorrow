@@ -24,9 +24,11 @@ public class ProductController {
 	
 	//insert product 
 	@GetMapping("insert")
-	public String setProduct(Model model)throws Exception{
+	public String setProduct(Model model,Authentication auth)throws Exception{
 		
-		List<CategoryVO> bigCategory =productService.getBigCategory();
+		
+		
+		List<CategoryVO> bigCategory =productService.getBigCategory(auth);
 		
 		model.addAttribute("bigCategory", bigCategory);
 		

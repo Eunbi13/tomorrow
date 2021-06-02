@@ -17,6 +17,8 @@
 
 
 	<form action="./insert" method="post" enctype="multipart/form-data">
+	
+	<div class="col-sm-8">
 		<div class="form-group">
 			<label class="col-sm-2 col-form-label">대표 이미지</label>
 			<input type="file" name="rep">
@@ -36,7 +38,35 @@
 		<div class="form-group">
 			<textarea id="summernote" name="contents" class="form-control" id="exampleFormControlTextarea1" placeholder="Please contents"></textarea>
 		</div>
+	</div>
+	<div class="col-sm-4">
+		<div class="form-group"><!-- 더하기 버튼이 필요(옵션도,,) -->
+			<label for="exampleFormControlTextarea1">상품 이름</label>
+			<input class="form-control" name="productName" type="text" placeholder="Please ProductName">
+		</div>
 	
+		<div class="form-group row">
+			<label class="col-form-label">가격</label>
+			<div class="col-sm-10">
+				<input class="form-control" name="productPrice" type="number" placeholder="Please productPrice">
+			</div>
+		</div>
+	
+		<div class="form-group row">
+			<label class="col-form-label">할인율 설정</label>
+			<div class="col-sm-10">
+				<input class="form-control" name="discount" type="number" placeholder="Please discount">
+			</div>
+		</div>
+		
+		<div class="form-group row">
+			<label class="col-form-label">배송비 설정</label>
+			<div class="col-sm-10">
+				<input class="form-control" name="shippingFee" type="number" placeholder="Please shippingFee">
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-12"> 
 		<div class="form-group row"><!-- 클릭하면 ajax로 중부류, 소분류 불러오기 -->
 			<label class="col-sm-2 col-form-label">취급 카테고리<span>*</span></label>
 			<div class="col-sm-10">
@@ -49,41 +79,25 @@
 				</c:forEach>
 			</div>
 		</div>
-	
-	<!-- 브랜드번호, 대표이미지, 타이틀, 컨텐츠 넘기고 카테고리넘은,,,잘모르겠고, 
-	안한거: 상품 이름, 가격, 할인율, 배송비 -->
-		<div class="form-group"><!-- 더하기 버튼이 필요(옵션도,,) -->
-			<label for="exampleFormControlTextarea1">상품 이름</label>
-			<input class="form-control" name="productName" type="text" placeholder="Please ProductName">
-		</div>
-	
-		<div class="form-group row">
-			<label class="col-sm-2 col-form-label">가격</label>
-			<div class="col-sm-10">
-				<input class="form-control" name="productPrice" type="number" placeholder="Please productPrice">
-			</div>
-		</div>
-	
-		<div class="form-group row">
-			<label class="col-sm-2 col-form-label">할인율 설정</label>
-			<div class="col-sm-10">
-				<input class="form-control" name="discount" type="number" placeholder="Please discount">
-			</div>
-		</div>
-		
-		<div class="form-group row">
-			<label class="col-sm-2 col-form-label">배송비 설정</label>
-			<div class="col-sm-10">
-				<input class="form-control" name="shippingFee" type="number" placeholder="Please shippingFee">
-			</div>
-		</div>
-	
+	</div>
 		<button>button</button>
 	</form>
+
+	<form action="/options/setOption" method="post">
+		<!-- 옵션 productInsert.js&optionForm -->
+		<div class="col-sm-12">
+		<label class="col-sm-2 col-form-label">옵션 설정</label>
+			사용안함<input type="radio" id="notUse" name="o1" checked>
+			사용<input type="radio" id="use" name="o1">
+			<div id="option"></div>
+		</div>
+	</form>	
+		
+	
 
 
 </div>
 <c:import url="../template/footer.jsp"></c:import>
-
+<script type="text/javascript" src="/js/productInsert.js"></script>
 </body>
 </html>

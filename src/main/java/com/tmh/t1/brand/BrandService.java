@@ -19,13 +19,11 @@ public class BrandService {
 	@Autowired
 	private BrandMapper brandMapper;
 	@Autowired
-	private CategoryMapper categoryMapper;
-	@Autowired
 	private FileManager fileManager;
 
 //대분류 카테고리 카테고리 mapper에서 가져오기 
 	public List<CategoryVO> getBigCategory() throws Exception{
-		return categoryMapper.getBigCategory();
+		return brandMapper.getBigCategory();
 	}
 	
 	//post signBrand

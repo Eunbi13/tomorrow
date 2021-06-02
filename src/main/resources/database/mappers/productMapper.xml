@@ -4,11 +4,10 @@
     
     <mapper namespace="com.tmh.t1.product.ProductMapper">
     	
-    
+    <!-- 김은비 -->
     	<select id="getBrandNum" parameterType="java.lang.String" resultType="java.lang.Long">
     		SELECT brandNum FROM brand WHERE username=#{username}
-    	</select>
-    
+    	</select> 
     	<insert id="setProduct" parameterType="ProductVO" useGeneratedKeys="true" keyProperty="produtNum">
 			INSERT INTO product (brandNum, productPic, title, contents, 
 								 productName, categoryNum, productPrice, discount, shippingFee) 
@@ -18,7 +17,16 @@
     	<insert id="setImages" parameterType="ProductImagesVO">
 			INSERT INTO productImage (productNum, fileName) VALUES (#{productNum}, #{fileName})
 		</insert>
-    
+		
+		
+		<select id="getBigCategory" parameterType="java.lang.String" resultType="CategoryVO">
+			SELECT categoryID, category_detail_NM FROM category WHERE categoryID IN 
+				(SELECT categoryID FROM brand_category WHERE brandnum = 
+					(SELECT brandNum FROM brand WHERE username =#{username}) )
+		</select>
+		
+		
+    <!-- 장은 -->
     	<select id="getList" parameterType="ProductVO" resultType="ProductVO">
     		select * from product
     	</select>
