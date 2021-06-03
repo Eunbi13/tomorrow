@@ -31,10 +31,12 @@ public class CartVO {
 	
 	private Long cartPrice;
 	
+	private Long optionPrice;
+	
 	
 	private String optionKinds;
 	private String optionName;
-	private Long optionPrice;
+
 	
 	private Long pricePerProduct; 
 	    

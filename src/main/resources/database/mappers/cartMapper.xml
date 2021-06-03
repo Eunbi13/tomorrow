@@ -39,7 +39,7 @@
     
     
         <select id="getCartList" parameterType="CartVO" resultMap="cartListResult">
-    		select C.*, C.cartPrice, O.* from 
+    		select C.*, C.cartPrice, C.optionPrice, O.* from 
 			(select * from cart where username=#{username}) C 
 			inner join options O
 			on C.optionNum = O.optionNum;
@@ -56,11 +56,11 @@
 	    	<result column="isBundled" property="isBundled" />
 	    	<result column="isFree" property="isFree" />
 	    	<result column="cartPrice" property="cartPrice" />
+	    	<result column="optionPrice" property="optionPrice" />
 	        <collection property="optionList" javaType="java.util.List" ofType="optionVO">
 	        	<id column="optionNum" property="optionNum" />
 	        	<result column="optionKinds" property="optionKinds" />
 	        	<result column="optionName" property="optionName" />
-	        	<result column="optionPrice" property="optionPrice" />
 	        </collection>
 	    	
 	    	
@@ -80,8 +80,8 @@
     	</select>
     	
     	<insert id="setInsert" parameterType="CartVO">
-    		insert into cart(username, brandNum, productNum, optionNum, amount, validity, isBundled, isFree,) 
-    		values(#{username}, #{brandNum}, #{productNum}, #{optionNum}, #{amount}, #{validity}, #{isBundled}, #{isFree})
+    		insert into cart(username, brandNum, productNum, optionNum, amount, validity, isBundled, isFree, cartPrice, optionPrice) 
+    		values(#{username}, #{brandNum}, #{productNum}, #{optionNum}, #{amount}, #{validity}, #{isBundled}, #{isFree},#{cartPrice},#{optionPrice})
     	</insert>
     	
     	<delete id="setOptionDelete" parameterType="CartVO">

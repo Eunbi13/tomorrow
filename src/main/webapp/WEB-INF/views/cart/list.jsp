@@ -6,20 +6,21 @@
 <head>
 <style type="text/css">
 
+input:focus {
+outline:none;
+}
+
+
 .product-bottom{
  margin-top: -15px;
  margin-bottom: -20px;
 }
-
 .d-top{
 margin-top:20px;
 }
-
 .p-2{
 	font-size: 16px;
 }
-
-
 .card{
     margin-bottom: 15px;
 }
@@ -48,16 +49,7 @@ img{
     padding-bottom: 20px;
 }
 </style>
-<script type="text/javascript">
-function cartVOPrice() {
-	
-}
 
-$(#directInputBox${cartVO.cartNum})
-
-$("#cartVOPrice").html(str);
-
-</script>
 <c:import url="../template/bootStrap.jsp"></c:import>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -92,7 +84,7 @@ $("#cartVOPrice").html(str);
         <!-- brand -->
  
         
-        <c:forEach items="${brandAr}"  var="brandVO">
+        <c:forEach items="${brandAr}"  var="brandVO" varStatus="b">
 
          <div class="card">
 			  <div class="card-header">
@@ -105,7 +97,7 @@ $("#cartVOPrice").html(str);
 			  	<ul class="list-unstyled">
 			
 			  	
-			  	<c:forEach items="${productAr}" var="productVO">
+			  	<c:forEach items="${productAr}" var="productVO" varStatus="p">
 			  	
 			  	<c:if test="${brandVO.brandNum eq productVO.brandNum}">
 			  	
@@ -127,18 +119,19 @@ $("#cartVOPrice").html(str);
 					    <span aria-hidden="true">&times;</span>
 					 </button>
 					  
-					  <c:forEach items="${cartAr}" var="cartVO">
+					  <c:forEach items="${cartAr}" var="cartVO" varStatus="i">
 					  <c:if test="${productVO.productNum eq cartVO.productNum}">
-					      <c:out value="${cartVO.cartPrice}"/>
-					  <c:out value="${cartVO.optionNum}"/>
+					     
 					       <c:forEach items="${cartVO.optionList}" var="optionList">
 					   <!-- option -->
+					       <input type="hidden" class="cartNum" id="cartNum" title="${cartVO.cartNum}">
+					       <input type="hidden" class="optionPrice" id="optionPrice${i.index}" name="optionPrice" title="${cartVO.optionPrice}" value="${cartVO.optionPrice}">
+							  		     
 						   <li>
 							  <div style="width:100%; height:100%; padding-bottom:40px; word-break:break-all;word-wrap:break-word;" class="alert alert-secondary alert-dismissible fade show" role="alert">
 							  		<div class="option">  <c:out value="${optionList.optionKinds}"/>: ${optionList.optionName} </div>
 							  		   <div style="width:70px; height:20px; font-size:12px; float: left;">
-							  		   <c:out value="${cartVO.amount}"/>: ${cartVO.amount}
-							  		     <input type="hidden" class="cartNum" id="cartNum" title="${cartVO.cartNum}">
+							  		     
 							  		   
 											<%-- <select style="width:70px; height:20px;" class="form-control amountSelect" id="amountSelect${cartVO.cartNum}" title="${cartVO.amount}" name="amount" value="${cartVO.amount}">
 										      <option value="1">1</option>
@@ -153,12 +146,14 @@ $("#cartVOPrice").html(str);
 										      <option value="directInput">10+</option>
 										    </select> --%>
 										     <!-- 상단의 select box에 수량 10개이상 선택시 나타날 인풋박스 -->
-										     <input style="width:70px; height:20px;" type="text" class="directInputBox" id="directInputBox" name="amount" value="${cartVO.amount}"/>
+										     <input style="width:70px; height:20px;" type="text" class="directInputBox"  title="${i.index}" id="directInputBox" name="amount" value="${cartVO.amount}"/>
 										</div>
-										<div style="width:70px; height:20px; font-size:16px;  font-weight: bold; float: right;">
-										      <input type="hidden" class="optionPrice" id="optionPrice" name="optionPrice" title="${optionList.optionPrice}">
-											<div id="cartVOPrice"> ${cartVO.cartPrice}  </div>원
-										</div>
+										<div style="width:200px; height:23px; font-size:16px;  font-weight: bold; float: right;">
+										      
+											       <input readonly="readonly" onchange="plus()" id="cartVOPrice${i.index}" class="cartPricePlus${p.index} cartPricePlus" title="${p.index}" value="${cartVO.cartPrice}" style=" width:180px; height:20px; background-color:transparent;border:0 solid black; text-align:right;" />
+											  원
+					
+										</div> 
 							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							    <span aria-hidden="true">&times;</span>
 							  </button>
@@ -179,7 +174,8 @@ $("#cartVOPrice").html(str);
 				    		
 				    		<!-- 그냥. 돌아가는옵션들의 가격 = cartPrice 를 애드해서 뿌려줄까..? -->
 				    		<div class="p-2" style=" font-size:18px;  font-weight: bold;">
-				    				${productVO.productNum} 25,800원
+				    				<input  readonly="readonly" id="productVOPrice${p.index}" class="productPrice${b.index}  productPrice" title="${b.index}" style=" width:200px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
+				    			
 				    		</div>
 				    	</div>
 				        
@@ -193,11 +189,9 @@ $("#cartVOPrice").html(str);
 				  
 				  </c:forEach>
 				  
-			
-				  
+
 				 </ul>
-				 
-		
+
 			    
 			  </div>
 					  <div class="card-footer text-center text-muted">
@@ -209,9 +203,7 @@ $("#cartVOPrice").html(str);
 			</c:forEach>
 			
 	       		 <!-- brand end -->
-	       		 
-	       		 
-	
+	  
 				
         </section>
           
@@ -229,15 +221,17 @@ $("#cartVOPrice").html(str);
              
                 </div>
                 <div class="p-2 d-flex">
-                    <div class="col-8">총 상품 금액</div>
-                    <div class="ml-auto">0원</div>
+                    <div class="col-6">총 상품 금액</div>
+                    <div class="ml-auto">  				    			
+                    	<input readonly="readonly" id="totalPrice" class="totalPrice" style=" width:100px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
+                    </div>
                 </div>
                 <div class="p-2 d-flex">
-                    <div class="col-8">총 배송비</div>
+                    <div class="col-6">총 배송비</div>
                     <div class="ml-auto">0원</div>
                 </div>
                       <div class="p-2 d-flex">
-                    <div class="col-8">총 할인금액</div>
+                    <div class="col-6">총 할인금액</div>
                     <div class="ml-auto">0원</div>
                 </div>
              
@@ -247,7 +241,7 @@ $("#cartVOPrice").html(str);
                 <div class="border-top px-4 mx-3"></div>
                 
                 <div class="p-2 d-flex pt-3">
-                    <div class="col-8"><b>결제 금액</b></div>
+                    <div class="col-6"><b>결제 금액</b></div>
                     <div class="ml-auto"><b class="green">0원</b></div>
                 </div>
             </div>
@@ -259,66 +253,205 @@ $("#cartVOPrice").html(str);
     </div>
 </div>
 	</form>		
+<script type="text/javascript">
+// product당 가격(=option가격들의 합) 세팅
+let total=0;
+
+$(".cartPricePlus").each(function(){ 
+	total=total+parseInt($(this).val());
+
+    // Do this when value changes
+    
+    let p_index = $(this).attr("title"); 
+    console.log("p_index:"+p_index);
+     
+    let price=0; //각 option들의 가격을 더한 product범위의 가격
+	
+	
+	$(".cartPricePlus"+p_index).each(function(){
+		price=price+parseInt($(this).val());
+     });
+     
+	$("#productVOPrice"+p_index).val(price);
+	
+	console.log("price:"+price);
+    
+	console.log("total:"+total);
+	
+	
+
+});
+
+$("#totalPrice").val(total);
+
+
+$(".productPrice").each(function(){ 
+	
+
+    // Do this when value changes
+    
+    let b_index = $(this).attr("title"); 
+    console.log("b_index:"+b_index);
+     
+    let brandPrice=0; //각 option들의 가격을 더한 product범위의 가격
+	
+	
+	$(".productPrice"+b_index).each(function(){
+		brandPrice=brandPrice+parseInt($(this).val());
+     });
+     
+	
+	
+	console.log("brandPrice:"+brandPrice);
+    
+    if(brandPrice>=30000){
+    	alert(b_index+" is over30000");
+    }
+	
+	
+
+});
+
+
+	
+
+
+	
+
+
+$(".directInputBox").keyup(function(){ //수량을 변경하면 바뀌는 금액들
+	//ajax DB Update
+	let index = $(this).attr("title"); // cartVO의 index숫자
+	let don = $("#optionPrice"+index).val(); //단가
+	
+	let p= $(this).val()*don; // 변화된 option 가격
+	$("#cartVOPrice"+index).val(p); // 변화된 option 가격 표시
+	
+	//----------------option 가격이 변하면 실행되는 함수
+	$("#cartVOPrice"+index).on('input', function() {
+	    // Do this when value changes
+	    
+	    let p_index = $(this).attr("title"); 
+	   
+	    let price=0; //각 option들의 가격을 더한 product범위의 가격
+		
+		
+		$(".cartPricePlus"+p_index).each(function(){
+			price=price+parseInt($(this).val());
+	     });
+	     
+		$("#productVOPrice"+p_index).val(price);
+		
+		//-----총 상품 금액 변경
+		totalAgain=0;
+		
+		$(".cartPricePlus").each(function(){
+			totalAgain=totalAgain+parseInt($(this).val());
+		});
+		
+		$("#totalPrice").val(totalAgain);
+		
+	});
+	
+	//----------readonly input의 value가 변한 걸 감지하기 위한 함수 
+	let $input = $("#cartVOPrice"+index);
+
+
+	(function ($) {
+	    var originalVal = $.fn.val;
+	    $.fn.val = function (value) {
+	        var res = originalVal.apply(this, arguments);
+	 
+	        if (this.is('input:text') && arguments.length >= 1) {
+	            // this is input type=text setter
+	            this.trigger("input");
+	        }
+	 
+	        return res;
+	    };
+	})(jQuery);
+	//---------------------
+	
+
+	
+	
+});
+
+
+
+/* function plus(){
+	console.log("hi");
+
+	let pindex = $(this).attr("title"); // productVO의 index숫자
+	console.log(pindex);
+	
+     let price=0; //각 option들의 가격을 더한 product범위의 가격
+	
+	
+	$(".cartPricePlus"+pindex).each(function(){
+		price=price+$(this).val()
+     });
+     
+	$("#productPrice"+pindex).val(price);
+	
+	console.log(price);
+};
+
+ */
+/* 
+$(".cartPricePlus").html().change(function(){
+	
+	let pindex = $(this).attr("title"); // productVO의 index숫자
+	console.log(pindex);
+	
+     let price=0; //각 option들의 가격을 더한 product범위의 가격
+	
+	
+	$(".cartPricePlus"+pindex).each(function(){
+		price=price+$(this).html()
+     });
+	
+	console.log(price);
+}); */
+
+
+</script>
 
 <script type="text/javascript">
-
-
-
-var list = new Array();
-
+/* var list = new Array();
 list.push(${cartVO.cartNum});
-console.log(list);
-
+console.log(list); */
 /* 
 //직접입력 인풋박스 기존에는 숨어있다가
-
 let amount  = $("#amountSelect").attr("title");
 console.log(amount)
-
-
 for (i=1; i < cnt[province].length;i++){ 
 		sel.options[i] = new Option(cnt[province][i], cnt[province][i]);
-
 		if( amount == sel.options[i].value){
 		    sel.options[i].selected = true;
 	
 		} 
-
 $("#amountSelect").val(amount).prop("selected", true); 
 		
-
-
-
 $("#directInputBox").hide();
  */
 /* 
 $(".amountSelect").change(function() {
-
               //직접입력을 누를 때 나타남
-
 		if($(".amountSelect").val() == "directInput") {
 			$(".directInputBox").show();
 			$(".amountSelect").hide();
 		}  else {
 			$(".directInputBox").hide();
 		}
-
 	}) 
-
 	
-
 });
   
  */
-
-
-
-
   
     
  
-
-
 </script>
 
 

@@ -51,15 +51,15 @@ public class CartController {
 
 	    List<CartVO> ar =cartService.getList(cartVO);
 	    
-	    ProductVO productVO = new ProductVO();
-	    
-	    Long pricePerProduct = cartService.getPricePerProduct(cartVO);
-	    
-
-	    
-	    Long priceTotalProduct = cartService.getPriceTotalProduct(cartVO);
-	    
-	    
+//	    ProductVO productVO = new ProductVO();
+//	    
+//	    Long pricePerProduct = cartService.getPricePerProduct(cartVO);
+//	    
+//
+//	    
+//	    Long priceTotalProduct = cartService.getPriceTotalProduct(cartVO);
+//	    
+//	    
 	   
 	    
 	  //  System.out.println("brandAr"+brandAr);
