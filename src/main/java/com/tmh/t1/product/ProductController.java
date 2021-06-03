@@ -28,9 +28,9 @@ public class ProductController {
 		
 		
 		
-		List<CategoryVO> bigCategory =productService.getBigCategory(auth);
+		//List<CategoryVO> bigCategory =productService.getBigCategory(auth);
 		
-		model.addAttribute("bigCategory", bigCategory);
+		//model.addAttribute("bigCategory", bigCategory);
 		
 		return "product/insertProduct";
 	}

@@ -83,20 +83,21 @@
 		<button>button</button>
 	</form>
 
+</div>
+		
+	<div class="container " style="margin-bottom: 50px;">
+	<div class="col-sm-12">
+		옵션 추가<input type="button" id="use" name="o1">
+	</div>
+
+
 	<form action="/options/setOption" method="post">
 		<!-- 옵션 productInsert.js&optionForm -->
-		<div class="col-sm-12">
-		<label class="col-sm-2 col-form-label">옵션 설정</label>
-			사용안함<input type="radio" id="notUse" name="o1" checked>
-			사용<input type="radio" id="use" name="o1">
 			<div id="option"></div>
-		</div>
 	</form>	
-		
-	
-
 
 </div>
+
 <c:import url="../template/footer.jsp"></c:import>
 <script type="text/javascript" src="/js/productInsert.js"></script>
 </body>
