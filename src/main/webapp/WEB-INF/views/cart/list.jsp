@@ -48,20 +48,31 @@ img{
     padding-bottom: 20px;
 }
 </style>
+<script type="text/javascript">
+function cartVOPrice() {
+	
+}
+
+$(#directInputBox${cartVO.cartNum})
+
+$("#cartVOPrice").html(str);
+
+</script>
 <c:import url="../template/bootStrap.jsp"></c:import>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
+<form name="calFrm" action="./doPlus" method="get"> 
 <div class="container-fluid rounded bg-white">
     <div class="row d-flex justify-content-center pb-5">
         <div class="col-sm-5 col-md-6 ml-1">
         
          
-           
+         
             <!-- d-flex -->
-        
+    
                   <div class="d-flex justify-content-between d-top">
 				    <div class="p-2 ">
 		                       <div class="custom-control custom-checkbox">
@@ -79,20 +90,28 @@ img{
             
         <section class="">
         <!-- brand -->
+ 
+        
+        <c:forEach items="${brandAr}"  var="brandVO">
 
          <div class="card">
 			  <div class="card-header">
 				 
-	                <div class="p-1" style="text-align: center; font-size:16px;">생활공작소 배송</div>
+	                <div class="p-1" style="text-align: center; font-size:16px;"> <c:out value="${brandVO.brandName}"/> 배송</div>
 			
 			  </div>
 			  
 			  <div class="card-body">
 			  	<ul class="list-unstyled">
+			
+			  	
+			  	<c:forEach items="${productAr}" var="productVO">
+			  	
+			  	<c:if test="${brandVO.brandNum eq productVO.brandNum}">
 			  	
 			     <!-- product  -->
 			  	
-				  <li class="media">
+				  <li class="media mb-4">
 				    <!-- Checked checkbox -->
 		            <div class="custom-control custom-checkbox">
 					  <input type="checkbox" class="custom-control-input" id="customCheck2">
@@ -101,228 +120,80 @@ img{
 					<!-- Checked checkbox  end -->
 				    <img src="../resources/images/glove.webp" class="mr-3" alt="...">
 				    <div class="media-body">
-				      <div class="mt-0 mb-1 productName">[생활공작소] 고무장갑 일반형(33cm) 5입(그레이/베이지) 2size(S/M)</div>
+				      <div class="mt-0 mb-1 productName">${productVO.productName}</div>
 				         <div class="shipping">무료배송 | 일반택배</div>
 				    </div>
 				    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					    <span aria-hidden="true">&times;</span>
 					 </button>
 					  
+					  <c:forEach items="${cartAr}" var="cartVO">
+					  <c:if test="${productVO.productNum eq cartVO.productNum}">
+					      <c:out value="${cartVO.cartPrice}"/>
+					  <c:out value="${cartVO.optionNum}"/>
+					       <c:forEach items="${cartVO.optionList}" var="optionList">
 					   <!-- option -->
 						   <li>
 							  <div style="width:100%; height:100%; padding-bottom:40px; word-break:break-all;word-wrap:break-word;" class="alert alert-secondary alert-dismissible fade show" role="alert">
-							  		<div class="option">구성: 01. 고무장갑 5입 / 색상/사이즈: 베이지 M</div>
+							  		<div class="option">  <c:out value="${optionList.optionKinds}"/>: ${optionList.optionName} </div>
 							  		   <div style="width:70px; height:20px; font-size:12px; float: left;">
-											<select style="width:70px; height:20px;" "class="form-control" id="exampleFormControlSelect1">
-										      <option>1</option>
-										      <option>2</option>
-										      <option>3</option>
-										      <option>4</option>
-										      <option>5</option>
-										    </select>
+							  		   <c:out value="${cartVO.amount}"/>: ${cartVO.amount}
+							  		     <input type="hidden" class="cartNum" id="cartNum" title="${cartVO.cartNum}">
+							  		   
+											<%-- <select style="width:70px; height:20px;" class="form-control amountSelect" id="amountSelect${cartVO.cartNum}" title="${cartVO.amount}" name="amount" value="${cartVO.amount}">
+										      <option value="1">1</option>
+										      <option value="2">2</option>
+										      <option value="3">3</option>
+										      <option value="4">4</option>
+										      <option value="5">5</option>
+										      <option value="6">6</option>
+										      <option value="7">7</option>
+										      <option value="8">8</option>
+										      <option value="9">9</option>
+										      <option value="directInput">10+</option>
+										    </select> --%>
+										     <!-- 상단의 select box에 수량 10개이상 선택시 나타날 인풋박스 -->
+										     <input style="width:70px; height:20px;" type="text" class="directInputBox" id="directInputBox" name="amount" value="${cartVO.amount}"/>
 										</div>
 										<div style="width:70px; height:20px; font-size:16px;  font-weight: bold; float: right;">
-										12,900원
+										      <input type="hidden" class="optionPrice" id="optionPrice" name="optionPrice" title="${optionList.optionPrice}">
+											<div id="cartVOPrice"> ${cartVO.cartPrice}  </div>원
 										</div>
 							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							    <span aria-hidden="true">&times;</span>
 							  </button>
 							 </div>
+							 
 					       </li>
+				       
 				      <!-- option end-->
-				       <!-- option -->
-						   <li>
-							  <div style="width:100%; height:100%; padding-bottom:40px; word-break:break-all;word-wrap:break-word;" class="alert alert-secondary alert-dismissible fade show" role="alert">
-							  		<div class="option">구성: 01. 고무장갑 5입 / 색상/사이즈: 베이지 M</div>
-							  		   <div style="width:70px; height:20px; font-size:12px; float: left;">
-											<select style="width:70px; height:20px;" "class="form-control" id="exampleFormControlSelect1">
-										      <option>1</option>
-										      <option>2</option>
-										      <option>3</option>
-										      <option>4</option>
-										      <option>5</option>
-										    </select>
-										</div>
-										<div style="width:70px; height:20px; font-size:16px;  font-weight: bold; float: right;">
-										12,900원
-										</div>
-							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							    <span aria-hidden="true">&times;</span>
-							  </button>
-							 </div>
-					       </li>
-				      <!-- option end-->
+				           </c:forEach>
+				      </c:if>
+				      </c:forEach>
+				      
+				      
 				      	<div class="d-flex justify-content-between product-bottom">
 				    		<div class="p-2" style="font-size:14px;" >
 				    			옵션변경  |  바로결제
 				    		</div>
+				    		
+				    		<!-- 그냥. 돌아가는옵션들의 가격 = cartPrice 를 애드해서 뿌려줄까..? -->
 				    		<div class="p-2" style=" font-size:18px;  font-weight: bold;">
-				    				25,800원
+				    				${productVO.productNum} 25,800원
 				    		</div>
 				    	</div>
 				        
 			        
 					 </li>
-					   
-				  <!-- product end -->
-				  
+					 
 				  <hr>
-				  
-				   <!-- product 2 -->
-				  <li class="media my-4 ">
-						 <!-- Checked checkbox -->
-		            <div class="custom-control custom-checkbox">
-					  <input type="checkbox" class="custom-control-input" id="customCheck2">
-					  <label class="custom-control-label" for="customCheck2"></label>
-					</div>
-					<!-- Checked checkbox  end -->
-				    <img src="../resources/images/glove.webp" class="mr-3" alt="...">
-				    <div class="media-body">
-				      <div class="mt-0 mb-1 productName">[생활공작소] 고무장갑 일반형(33cm) 5입(그레이/베이지) 2size(S/M)</div>
-				         <div class="shipping">무료배송 | 일반택배</div>
-				    </div>
-				    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					    <span aria-hidden="true">&times;</span>
-					 </button>
-					  
-					   <!-- option -->
-						   <li>
-							  <div style="width:100%; height:100%; padding-bottom:40px; word-break:break-all;word-wrap:break-word;" class="alert alert-secondary alert-dismissible fade show" role="alert">
-							  		<div class="option">구성: 01. 고무장갑 5입 / 색상/사이즈: 베이지 M</div>
-							  		   <div style="width:70px; height:20px; font-size:12px; float: left;">
-											<select style="width:70px; height:20px;" "class="form-control" id="exampleFormControlSelect1">
-										      <option>1</option>
-										      <option>2</option>
-										      <option>3</option>
-										      <option>4</option>
-										      <option>5</option>
-										    </select>
-										</div>
-										<div style="width:70px; height:20px; font-size:16px;  font-weight: bold; float: right;">
-										12,900원
-										</div>
-							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							    <span aria-hidden="true">&times;</span>
-							  </button>
-							 </div>
-					       </li>
-				      <!-- option end-->
-				       <!-- option -->
-						   <li>
-							  <div style="width:100%; height:100%; padding-bottom:40px; word-break:break-all;word-wrap:break-word;" class="alert alert-secondary alert-dismissible fade show" role="alert">
-							  		<div class="option">구성: 01. 고무장갑 5입 / 색상/사이즈: 베이지 M</div>
-							  		   <div style="width:70px; height:20px; font-size:12px; float: left;">
-											<select style="width:70px; height:20px;" "class="form-control" id="exampleFormControlSelect1">
-										      <option>1</option>
-										      <option>2</option>
-										      <option>3</option>
-										      <option>4</option>
-										      <option>5</option>
-										    </select>
-										</div>
-										<div style="width:70px; height:20px; font-size:16px;  font-weight: bold; float: right;">
-										12,900원
-										</div>
-							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							    <span aria-hidden="true">&times;</span>
-							  </button>
-							 </div>
-					       </li>
-				      <!-- option end-->
-				      	<div class="d-flex justify-content-between product-bottom">
-				    		<div class="p-2" style="font-size:14px;" >
-				    			옵션변경  |  바로결제
-				    		</div>
-				    		<div class="p-2" style=" font-size:18px;  font-weight: bold;">
-				    				25,800원
-				    		</div>
-				    	</div>
-				        
-			        
-					 </li>
 					   
 				  <!-- product end -->
+				  </c:if>
 				  
-				   
+				  </c:forEach>
+				  
 			
-			    <hr>
-				  
-				  <!-- product 2 -->
-				  <li class="media my-4 ">
-					 <!-- Checked checkbox -->
-		            <div class="custom-control custom-checkbox">
-					  <input type="checkbox" class="custom-control-input" id="customCheck2">
-					  <label class="custom-control-label" for="customCheck2"></label>
-					</div>
-					<!-- Checked checkbox  end -->
-				    <img src="../resources/images/glove.webp" class="mr-3" alt="...">
-				    <div class="media-body">
-				      <div class="mt-0 mb-1 productName">[생활공작소] 고무장갑 일반형(33cm) 5입(그레이/베이지) 2size(S/M)</div>
-				         <div class="shipping">무료배송 | 일반택배</div>
-				    </div>
-				    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					    <span aria-hidden="true">&times;</span>
-					 </button>
-					  
-					   <!-- option -->
-						   <li>
-							  <div style="width:100%; height:100%; padding-bottom:40px; word-break:break-all;word-wrap:break-word;" class="alert alert-secondary alert-dismissible fade show" role="alert">
-							  		<div class="option">구성: 01. 고무장갑 5입 / 색상/사이즈: 베이지 M</div>
-							  		   <div style="width:70px; height:20px; font-size:12px; float: left;">
-											<select style="width:70px; height:20px;" "class="form-control" id="exampleFormControlSelect1">
-										      <option>1</option>
-										      <option>2</option>
-										      <option>3</option>
-										      <option>4</option>
-										      <option>5</option>
-										    </select>
-										</div>
-										<div style="width:70px; height:20px; font-size:16px;  font-weight: bold; float: right;">
-										12,900원
-										</div>
-							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							    <span aria-hidden="true">&times;</span>
-							  </button>
-							 </div>
-					       </li>
-				      <!-- option end-->
-				       <!-- option -->
-						   <li>
-							  <div style="width:100%; height:100%; padding-bottom:40px; word-break:break-all;word-wrap:break-word;" class="alert alert-secondary alert-dismissible fade show" role="alert">
-							  		<div class="option">구성: 01. 고무장갑 5입 / 색상/사이즈: 베이지 M</div>
-							  		   <div style="width:70px; height:20px; font-size:12px; float: left;">
-											<select style="width:70px; height:20px;" "class="form-control" id="exampleFormControlSelect1">
-										      <option>1</option>
-										      <option>2</option>
-										      <option>3</option>
-										      <option>4</option>
-										      <option>5</option>
-										    </select>
-										</div>
-										<div style="width:70px; height:20px; font-size:16px;  font-weight: bold; float: right;">
-										12,900원
-										</div>
-							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							    <span aria-hidden="true">&times;</span>
-							  </button>
-							 </div>
-					       </li>
-				      <!-- option end-->
-				      	<div class="d-flex justify-content-between product-bottom">
-				    		<div class="p-2" style="font-size:14px;" >
-				    			옵션변경  |  바로결제
-				    		</div>
-				    		<div class="p-2" style=" font-size:18px;  font-weight: bold;">
-				    				25,800원
-				    		</div>
-				    	</div>
-				        
-			        
-					 </li>
-					   
-				  <!-- product end -->
-				  
-		
 				  
 				 </ul>
 				 
@@ -335,339 +206,12 @@ img{
 			  
 			</div>
 			
-	       		 <!-- brand end -->
-	       		 
-	       		<!-- brand -->
-
-         <div class="card">
-			  <div class="card-header">
-				 
-	                <div class="p-1" style="text-align: center; font-size:16px;">생활공작소 배송</div>
-			
-			  </div>
-			  
-			  <div class="card-body">
-			  	<ul class="list-unstyled">
-			  	
-			     <!-- product  -->
-			  	
-				  <li class="media">
-				    <!-- Checked checkbox -->
-		            <div class="custom-control custom-checkbox">
-					  <input type="checkbox" class="custom-control-input" id="customCheck2">
-					  <label class="custom-control-label" for="customCheck2"></label>
-					</div>
-					<!-- Checked checkbox  end -->
-				    <img src="../resources/images/glove.webp" class="mr-3" alt="...">
-				    <div class="media-body">
-				      <div class="mt-0 mb-1 productName">[생활공작소] 고무장갑 일반형(33cm) 5입(그레이/베이지) 2size(S/M)</div>
-				         <div class="shipping">무료배송 | 일반택배</div>
-				    </div>
-				    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					    <span aria-hidden="true">&times;</span>
-					 </button>
-					  
-					   <!-- option -->
-						   <li>
-							  <div style="width:100%; height:100%; padding-bottom:40px; word-break:break-all;word-wrap:break-word;" class="alert alert-secondary alert-dismissible fade show" role="alert">
-							  		<div class="option">구성: 01. 고무장갑 5입 / 색상/사이즈: 베이지 M</div>
-							  		   <div style="width:70px; height:20px; font-size:12px; float: left;">
-											<select style="width:70px; height:20px;" "class="form-control" id="exampleFormControlSelect1">
-										      <option>1</option>
-										      <option>2</option>
-										      <option>3</option>
-										      <option>4</option>
-										      <option>5</option>
-										    </select>
-										</div>
-										<div style="width:70px; height:20px; font-size:16px;  font-weight: bold; float: right;">
-										12,900원
-										</div>
-							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							    <span aria-hidden="true">&times;</span>
-							  </button>
-							 </div>
-					       </li>
-				      <!-- option end-->
-				       <!-- option -->
-						   <li>
-							  <div style="width:100%; height:100%; padding-bottom:40px; word-break:break-all;word-wrap:break-word;" class="alert alert-secondary alert-dismissible fade show" role="alert">
-							  		<div class="option">구성: 01. 고무장갑 5입 / 색상/사이즈: 베이지 M</div>
-							  		   <div style="width:70px; height:20px; font-size:12px; float: left;">
-											<select style="width:70px; height:20px;" "class="form-control" id="exampleFormControlSelect1">
-										      <option>1</option>
-										      <option>2</option>
-										      <option>3</option>
-										      <option>4</option>
-										      <option>5</option>
-										    </select>
-										</div>
-										<div style="width:70px; height:20px; font-size:16px;  font-weight: bold; float: right;">
-										12,900원
-										</div>
-							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							    <span aria-hidden="true">&times;</span>
-							  </button>
-							 </div>
-					       </li>
-				      <!-- option end-->
-				         <p>
-				      				 <div style=" font-size:12px; float: left;">
-											옵션변경 | 바로결제
-											</div>
-									<div style=" font-size:16px;  font-weight: bold; float: right;">
-									25,800원
-									</div>
-						  </p>
-			        
-					 </li>
-					   
-				  <!-- product end -->
-				  
-				  <hr>
-				  
-				   <!-- product 2 -->
-				  <li class="media my-4 ">
-						 <!-- Checked checkbox -->
-		            <div class="custom-control custom-checkbox">
-					  <input type="checkbox" class="custom-control-input" id="customCheck2">
-					  <label class="custom-control-label" for="customCheck2"></label>
-					</div>
-					<!-- Checked checkbox  end -->
-				    <img src="../resources/images/glove.webp" class="mr-3" alt="...">
-				    <div class="media-body">
-				      <div class="mt-0 mb-1 productName">[생활공작소] 고무장갑 일반형(33cm) 5입(그레이/베이지) 2size(S/M)</div>
-				         <div class="shipping">무료배송 | 일반택배</div>
-				    </div>
-				    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					    <span aria-hidden="true">&times;</span>
-					 </button>
-					  
-					   <!-- option -->
-						   <li>
-							  <div style="width:100%; height:100%; padding-bottom:40px; word-break:break-all;word-wrap:break-word;" class="alert alert-secondary alert-dismissible fade show" role="alert">
-							  		<div class="option">구성: 01. 고무장갑 5입 / 색상/사이즈: 베이지 M</div>
-							  		   <div style="width:70px; height:20px; font-size:12px; float: left;">
-											<select style="width:70px; height:20px;" "class="form-control" id="exampleFormControlSelect1">
-										      <option>1</option>
-										      <option>2</option>
-										      <option>3</option>
-										      <option>4</option>
-										      <option>5</option>
-										    </select>
-										</div>
-										<div style="width:70px; height:20px; font-size:16px;  font-weight: bold; float: right;">
-										12,900원
-										</div>
-							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							    <span aria-hidden="true">&times;</span>
-							  </button>
-							 </div>
-					       </li>
-				      <!-- option end-->
-				       <!-- option -->
-						   <li>
-							  <div style="width:100%; height:100%; padding-bottom:40px; word-break:break-all;word-wrap:break-word;" class="alert alert-secondary alert-dismissible fade show" role="alert">
-							  		<div class="option">구성: 01. 고무장갑 5입 / 색상/사이즈: 베이지 M</div>
-							  		   <div style="width:70px; height:20px; font-size:12px; float: left;">
-											<select style="width:70px; height:20px;" "class="form-control" id="exampleFormControlSelect1">
-										      <option>1</option>
-										      <option>2</option>
-										      <option>3</option>
-										      <option>4</option>
-										      <option>5</option>
-										    </select>
-										</div>
-										<div style="width:70px; height:20px; font-size:16px;  font-weight: bold; float: right;">
-										12,900원
-										</div>
-							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							    <span aria-hidden="true">&times;</span>
-							  </button>
-							 </div>
-					       </li>
-				      <!-- option end-->
-				         <p>
-				      				 <div style=" font-size:12px; float: left;">
-										 옵션변경 | 바로결제
-									</div>
-									<div style=" font-size:16px;  font-weight: bold; float: right;">
-									25,800원
-									</div>
-					     </p>
-			        
-					 </li>
-					  
-				  <!-- product end -->
-				   
-			
-			    <hr>
-				  
-				  <!-- product 2 -->
-				  <li class="media my-4 ">
-						 <!-- Checked checkbox -->
-		            <div class="custom-control custom-checkbox">
-					  <input type="checkbox" class="custom-control-input" id="customCheck2">
-					  <label class="custom-control-label" for="customCheck2"></label>
-					</div>
-					<!-- Checked checkbox  end -->
-				    <img src="../resources/images/glove.webp" class="mr-3" alt="...">
-				    <div class="media-body">
-				      <div class="mt-0 mb-1 productName">[생활공작소] 고무장갑 일반형(33cm) 5입(그레이/베이지) 2size(S/M)</div>
-				         <div class="shipping">무료배송 | 일반택배</div>
-				    </div>
-				    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					    <span aria-hidden="true">&times;</span>
-					 </button>
-					  
-					   <!-- option -->
-						   <li>
-							  <div style="width:100%; height:100%; padding-bottom:40px; word-break:break-all;word-wrap:break-word;" class="alert alert-secondary alert-dismissible fade show" role="alert">
-							  		<div class="option">구성: 01. 고무장갑 5입 / 색상/사이즈: 베이지 M</div>
-							  		   <div style="width:70px; height:20px; font-size:12px; float: left;">
-											<select style="width:70px; height:20px;" "class="form-control" id="exampleFormControlSelect1">
-										      <option>1</option>
-										      <option>2</option>
-										      <option>3</option>
-										      <option>4</option>
-										      <option>5</option>
-										    </select>
-										</div>
-										<div style="width:70px; height:20px; font-size:16px;  font-weight: bold; float: right;">
-										12,900원
-										</div>
-							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							    <span aria-hidden="true">&times;</span>
-							  </button>
-							 </div>
-					       </li>
-				      <!-- option end-->
-				       <!-- option -->
-						   <li>
-							  <div style="width:100%; height:100%; padding-bottom:40px; word-break:break-all;word-wrap:break-word;" class="alert alert-secondary alert-dismissible fade show" role="alert">
-							  		<div class="option">구성: 01. 고무장갑 5입 / 색상/사이즈: 베이지 M</div>
-							  		   <div style="width:70px; height:20px; font-size:12px; float: left;">
-											<select style="width:70px; height:20px;" "class="form-control" id="exampleFormControlSelect1">
-										      <option>1</option>
-										      <option>2</option>
-										      <option>3</option>
-										      <option>4</option>
-										      <option>5</option>
-										    </select>
-										</div>
-										<div style="width:70px; height:20px; font-size:16px;  font-weight: bold; float: right;">
-										12,900원
-										</div>
-							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							    <span aria-hidden="true">&times;</span>
-							  </button>
-							 </div>
-					       </li>
-				      <!-- option end-->
-				         <p>
-				      				 <div style=" font-size:12px; float: left;">
-										 옵션변경 | 바로결제
-									 </div>
-									<div style=" font-size:16px;  font-weight: bold; float: right;">
-									25,800원
-									</div>
-						  </p>
-			        
-					 </li>
-					   
-				  <!-- product end -->
-			
-			     	    <hr>
-			     	    <!-- product 2 -->
-				  <li class="media my-4 ">
-						 <!-- Checked checkbox -->
-		            <div class="custom-control custom-checkbox">
-					  <input type="checkbox" class="custom-control-input" id="customCheck2">
-					  <label class="custom-control-label" for="customCheck2"></label>
-					</div>
-					<!-- Checked checkbox  end -->
-				    <img src="../resources/images/glove.webp" class="mr-3" alt="...">
-				    <div class="media-body">
-				      <div class="mt-0 mb-1 productName">[생활공작소] 고무장갑 일반형(33cm) 5입(그레이/베이지) 2size(S/M)</div>
-				         <div class="shipping">무료배송 | 일반택배</div>
-				    </div>
-				    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					    <span aria-hidden="true">&times;</span>
-					 </button>
-					  
-					   <!-- option -->
-						   <li>
-							  <div style="width:100%; height:100%; padding-bottom:40px; word-break:break-all;word-wrap:break-word;" class="alert alert-secondary alert-dismissible fade show" role="alert">
-							  		<div class="option">구성: 01. 고무장갑 5입 / 색상/사이즈: 베이지 M</div>
-							  		   <div style="width:70px; height:20px; font-size:12px; float: left;">
-											<select style="width:70px; height:20px;" "class="form-control" id="exampleFormControlSelect1">
-										      <option>1</option>
-										      <option>2</option>
-										      <option>3</option>
-										      <option>4</option>
-										      <option>5</option>
-										    </select>
-										</div>
-										<div style="width:70px; height:20px; font-size:16px;  font-weight: bold; float: right;">
-										12,900원
-										</div>
-							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							    <span aria-hidden="true">&times;</span>
-							  </button>
-							 </div>
-					       </li>
-				      <!-- option end-->
-				       <!-- option -->
-						   <li>
-							  <div style="width:100%; height:100%; padding-bottom:40px; word-break:break-all;word-wrap:break-word;" class="alert alert-secondary alert-dismissible fade show" role="alert">
-							  		<div class="option">구성: 01. 고무장갑 5입 / 색상/사이즈: 베이지 M</div>
-							  		   <div style="width:70px; height:20px; font-size:12px; float: left;">
-											<select style="width:70px; height:20px;" "class="form-control" id="exampleFormControlSelect1">
-										      <option>1</option>
-										      <option>2</option>
-										      <option>3</option>
-										      <option>4</option>
-										      <option>5</option>
-										    </select>
-										</div>
-										<div style="width:70px; height:20px; font-size:16px;  font-weight: bold; float: right;">
-										12,900원
-										</div>
-							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							    <span aria-hidden="true">&times;</span>
-							  </button>
-							 </div>
-					       </li>
-				      <!-- option end-->
-				         <p>
-				      				 <div style=" font-size:12px; float: left;">
-										 옵션변경 | 바로결제
-								    </div>
-									<div style=" font-size:16px;  font-weight: bold; float: right; text-align: right;">
-									25,800원
-									</div>
-						  </p>
-			        
-					 </li>
-					   
-				  <!-- product end -->
-			     
-		
-				  
-				 </ul>
-				 
-		
-			    
-			  </div>
-					  <div class="card-footer text-center text-muted">
-					   배송비 무료
-					  </div>
-			  
-			</div>
+			</c:forEach>
 			
 	       		 <!-- brand end -->
 	       		 
-				
+	       		 
+	
 				
         </section>
           
@@ -714,10 +258,70 @@ img{
         
     </div>
 </div>
+	</form>		
 
-<script>
+<script type="text/javascript">
+
+
+
+var list = new Array();
+
+list.push(${cartVO.cartNum});
+console.log(list);
+
+/* 
+//직접입력 인풋박스 기존에는 숨어있다가
+
+let amount  = $("#amountSelect").attr("title");
+console.log(amount)
+
+
+for (i=1; i < cnt[province].length;i++){ 
+		sel.options[i] = new Option(cnt[province][i], cnt[province][i]);
+
+		if( amount == sel.options[i].value){
+		    sel.options[i].selected = true;
+	
+		} 
+
+$("#amountSelect").val(amount).prop("selected", true); 
+		
+
+
+
+$("#directInputBox").hide();
+ */
+/* 
+$(".amountSelect").change(function() {
+
+              //직접입력을 누를 때 나타남
+
+		if($(".amountSelect").val() == "directInput") {
+			$(".directInputBox").show();
+			$(".amountSelect").hide();
+		}  else {
+			$(".directInputBox").hide();
+		}
+
+	}) 
+
+	
+
+});
   
+ */
+
+
+
+
+  
+    
+ 
+
+
 </script>
+
+
 
 <c:import url="../template/footer.jsp"></c:import>
 </body>
