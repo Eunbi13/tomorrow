@@ -7,6 +7,7 @@
     	
     	<select id="getList" resultType="HousewarmingVO">
 			select * from housewarming
+			order by hwNum desc
    		</select>
    		
    		<select id="getSelect" resultMap="selectResult" parameterType="HousewarmingVO">
@@ -57,5 +58,5 @@
    		<update id="setHitUpdate" parameterType="HousewarmingVO">
    			update housewarming set hit=hit+1 where hwNum=#{hwNum}
    		</update>
-    
+   		
     </mapper>

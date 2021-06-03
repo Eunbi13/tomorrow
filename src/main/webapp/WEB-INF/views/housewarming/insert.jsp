@@ -76,16 +76,26 @@
 							</div>
 							<div class="form-group">
 								<label for="familyType">가족형태</label> 
-								<select class="form-control myCheck" id="familyType" name="familyType">
-							      <option>선택해주세요.</option>
-							      <option>싱글라이프</option>
-							      <option>신혼부부</option>
-							      <option>아기가 있는 집</option>
-							      <option>취학 자녀가 있는 집</option>
-							      <option>부모님과 함께 사는 집</option>
-							      <option>기타</option>
-							    </select>
+								<div class="dropdown">
+									<button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									    선택해주세요.
+									</button>
+									<div class="dropdown-menu familyType">
+								      <input class="dropdown-item fmtOption" type="button" value="싱글라이프">
+								      <input class="dropdown-item fmtOption" type="button" value="신혼부부">
+								      <input class="dropdown-item fmtOption" type="button" value="아기가 있는 집">
+								      <input class="dropdown-item fmtOption" type="button" value="취학 자녀가 있는 집">
+								      <input class="dropdown-item fmtOption" type="button" value="부모님과 함께 사는 집">
+								      <input class="dropdown-item fmtOption" type="button" value="기타">
+								    </div>
+								</div>
+								
+								<div id="fmt">
+									<!-- dropdown 버튼 클릭시 버튼 추가, 삭제 -->
+								</div>
+								
 							</div>
+							
 							<div class="form-group">
 								<label for="area">지역</label> 
 								<input type="text" class="form-control myCheck" id="area" name="area">
@@ -157,6 +167,15 @@
 	</div>
 
 	<c:import url="../template/footer.jsp"></c:import>
+	
+	<div id="sampleFmt">
+		<div>
+			<input class="btn btn-primary delete" id="fmtBtn" type="button">
+		</div>
+	</div>
+	
+	
+	<script type="text/javascript" src="/js/hwInsert.js"></script>
 
 </body>
 </html>
