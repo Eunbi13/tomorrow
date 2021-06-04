@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +21,8 @@ public class BrandService {
 	private BrandMapper brandMapper;
 	@Autowired
 	private FileManager fileManager;
+	@Value("${brandInsert.filePath}")
+	private String filePath;
 
 //대분류 카테고리 카테고리 mapper에서 가져오기 
 	public List<CategoryVO> getBigCategory() throws Exception{
@@ -41,7 +44,6 @@ public class BrandService {
 		}
 		
 		if(files.getSize()>0) {
-			String filePath="signBrand/";
 			String fileName=fileManager.save(files, filePath);
 			System.out.println(files.getOriginalFilename());
 			System.out.println(fileName);
