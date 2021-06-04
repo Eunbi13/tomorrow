@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.Errors;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tmh.t1.category.CategoryMapper;
@@ -24,6 +25,21 @@ public class BrandService {
 	@Value("${brandInsert.filePath}")
 	private String filePath;
 
+	//에러설정(판매자번호)
+	public boolean brandError(Errors errors, BrandVO brandVO)throws Exception{
+		boolean check = errors.hasErrors();
+		
+		if(brandMapper.getRegistrationNum(brandVO)>0) {
+			errors.rejectValue("registrationNum", "brandVO.registrationNum.has");
+			check = true;
+		}
+		
+		
+		return check;
+	}
+	
+	
+	
 //대분류 카테고리 카테고리 mapper에서 가져오기 
 	public List<CategoryVO> getBigCategory() throws Exception{
 		return brandMapper.getBigCategory();
@@ -37,7 +53,6 @@ public class BrandService {
 		
 		for(String c : brandVO.getCategories()) {
 			Map<String , String> map = new HashMap<String, String>();
-			
 			map.put("categoryID", c);
 			map.put("brandNum", brandVO.getBrandNum()+"");
 			result =brandMapper.setBrand_Category(map);

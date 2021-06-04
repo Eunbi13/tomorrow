@@ -41,8 +41,8 @@ public class BrandController {
 		
 		List<CategoryVO> category = brandService.getBigCategory();
 //		for(CategoryVO ar : category) {
-//			System.out.println(ar.getCategory_detail_NM());
-//			System.out.println(ar.getCategoryID());
+//			System.out.println("컨트롤러 카테고리 이름: "+ar.getCategory_detail_NM());
+//			System.out.println("컨트롤러 카테고리 아이디: "+ar.getCategoryID());
 //		}
 		model.addAttribute("categories", category);
 		
@@ -52,12 +52,11 @@ public class BrandController {
 	@PostMapping("signBrand")
 	public String signBrand(@Valid BrandVO brandVO, Errors errors, Authentication auth, MultipartFile files, Model model)throws Exception{
 	
-		if(errors.hasErrors()) {
+		if(brandService.brandError(errors, brandVO)) {
 			System.out.println("에러발생");
-			System.out.println(errors.getErrorCount());
-			System.out.println(errors.getAllErrors());
 			return "/brand/signBrandFrom";
 		}
+		
 		
 		Long result=brandService.signBrand(brandVO, auth, files);
 		System.out.println("브랜드 신청: "+result);
