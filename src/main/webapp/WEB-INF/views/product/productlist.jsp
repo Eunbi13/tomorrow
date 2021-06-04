@@ -12,17 +12,17 @@ h5{
 }
 * {box-sizing:border-box}
 
-.slideshow-container {
-width: 100%;
-height: 300px;
+.bannerslideshow-container {
+width: 100%; 
+height: 15%; 
 position: static;
 margin: auto;
 margin-top: 50px;
 }
 
-.main_slideImg{
+.bannermain_slideImg{
 width: 100%; 
-height: 300px; 
+height: 15%; 
 top : 100px;
 
 }

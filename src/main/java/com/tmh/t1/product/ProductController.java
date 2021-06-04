@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/store/**")
+@RequestMapping("/product/**")
 public class ProductController {
 	//store list, select
 	
