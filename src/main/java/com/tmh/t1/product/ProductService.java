@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +25,9 @@ public class ProductService {
 	private OptionsMapper optionsMapper;
 	@Autowired
 	private FileManager fileManager;
+	@Value("${productInsert.filePath}")
+	private String filePath;
+	
 	
 	//get insert //대분류 카테고리 카테고리 mapper에서 가져오기 
 	public List<CategoryVO> getBigCategory(Authentication auth) throws Exception{
@@ -35,13 +39,13 @@ public class ProductService {
 	@Transactional(rollbackFor = Exception.class)
 	public Long setProduct(Authentication auth, ProductVO productVO,OptionsVO optionsVO , MultipartFile [] files, MultipartFile rep)throws Exception{
 		ProductImagesVO imagesVO = new ProductImagesVO();
-		String path="product/images";
+		
 		
 		//brandNum 넣기 
 		productVO.setBrandNum(productMapper.getBrandNum(auth.getName()));
 		
 		//대표 이미지
-		String fileName = fileManager.save(rep, path);
+		String fileName = fileManager.save(rep, filePath);
 		productVO.setProductPic(fileName);
 		//저장
 		Long result = productMapper.setProduct(productVO);
@@ -52,7 +56,7 @@ public class ProductService {
 		imagesVO.setProductNum(productVO.getProductNum());
 		for(MultipartFile f: files) {
 			if(f.getSize()>0) {
-				fileName =fileManager.save(f, path);
+				fileName =fileManager.save(f, filePath);
 				imagesVO.setFileName(fileName);
 				result = productMapper.setImages(imagesVO);
 			}
