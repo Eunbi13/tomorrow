@@ -57,7 +57,7 @@
 	    	<result column="isFree" property="isFree" />
 	    	<result column="cartPrice" property="cartPrice" />
 	    	<result column="optionPrice" property="optionPrice" />
-	        <collection property="optionList" javaType="java.util.List" ofType="optionVO">
+	        <collection property="optionList" javaType="java.util.List" ofType="OptionsVO">
 	        	<id column="optionNum" property="optionNum" />
 	        	<result column="optionKinds" property="optionKinds" />
 	        	<result column="optionName" property="optionName" />
