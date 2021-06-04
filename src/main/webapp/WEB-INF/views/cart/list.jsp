@@ -522,9 +522,9 @@ $("#carts").on("click", "#selectedDelete", function(){
 		data:{productNum:ar},
 		success:function(data){
 			alert('삭제하였습니다');
-			for(var a in index_ar){
-				$("#products"+index_ar[a]).remove();
-				console.log(index_ar[a]+"가 삭제됨");
+			for(var a in ar){
+				$("#products"+ar[a]).remove();
+				console.log(ar[a]+"가 삭제됨");
 			}
 			// 총 상품 가격 다시 계산
 			totalAgain=0;
@@ -656,7 +656,61 @@ $("#carts").on("click", "#selectedDelete", function(){
 						console.log(brandNum+"brandNum가 삭제됨");
 			    	}
 				
-				
+			    ////배송비, 총 배송비 변경
+					//무료배송여부 
+						$(".productPrice").each(function(){ 
+							
+						    
+						    let b_index = $(this).attr("title"); 
+						    console.log("b_index:"+b_index);
+						     
+						    let brandPrice=0; 
+							
+							
+							$(".productPrice"+b_index).each(function(){
+								brandPrice=brandPrice+parseInt($(this).val());
+						     });
+						     
+							
+							
+							console.log("brandPrice:"+brandPrice);
+						    
+						    if(brandPrice>=30000){
+						    	console.log(b_index+" is over30000");
+						    	$(".freeShipping"+b_index).val(1);
+						    	$("#shipping"+b_index).val("배송비 무료");
+						    	$("#shipping"+b_index).attr("title", 0);
+						    } else{
+						    	$("#shipping"+b_index).val("배송비 3000원");
+						    	$("#shipping"+b_index).attr("title", 3000);
+						    	
+						
+						    }
+							
+						
+						});
+						//총 배송비
+						let totalShipping=0; 
+						
+						$(".shipping").each(function(){
+							
+							let shipping =$(this).attr("title");
+							console.log("shipping:"+shipping);
+							
+							totalShipping= totalShipping+parseInt(shipping);	
+							
+						});
+						 
+						console.log(totalShipping);
+						
+						$("#totalShipping").val(totalShipping);// 총 배송비 입력 
+						
+						//----------총 결제금액
+						
+						let payment=totalShipping+parseInt($("#totalPrice").val());
+						
+						$("#payment").val(payment);  //총 결제금액 입력
+						
 				
 				
 				}
