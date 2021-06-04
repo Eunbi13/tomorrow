@@ -120,10 +120,11 @@
 				</div>
 			</div>
 		</fieldset>
+		<button>gu</button>
+	</form>
 		
 		<div id="btn" class="btn btn-secondary">저장하기</div>
-		<small>adfasdgads.</small>
-	</form>
+		<small>adfasdgads</small>
 </div>
 
 <c:import url="../template/footer.jsp"></c:import>

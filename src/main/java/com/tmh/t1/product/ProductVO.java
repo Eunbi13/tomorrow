@@ -19,7 +19,6 @@ public class ProductVO {
 	private double discount;
 	private Long shippingFee;
 	
-	
+	private ProductImagesVO productImagesVO;
 	private OptionsVO optionsVO;
-	private List<OptionsVO> optionsVOs;
 }

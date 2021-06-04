@@ -50,9 +50,11 @@ public class ProductService {
 		//상품 이미지
 		imagesVO.setProductNum(productVO.getProductNum());
 		for(MultipartFile f: files) {
-			fileName =fileManager.save(f, path);
-			imagesVO.setFileName(fileName);
-			result = productMapper.setImages(imagesVO);
+			if(f.getSize()>0) {
+				fileName =fileManager.save(f, path);
+				imagesVO.setFileName(fileName);
+				result = productMapper.setImages(imagesVO);
+			}
 		}
 		
 		//옵션 저장
