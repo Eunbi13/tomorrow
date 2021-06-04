@@ -4,16 +4,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<c:import url="./template/bootStrap.jsp"></c:import>
+<c:import url="../template/bootStrap.jsp"></c:import>
 <meta charset="UTF-8">
 <title>내일부터 하는 인테리어, 내일의 집</title>
 <!----------------- Bootstrap ----------------->
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/4.6/examples/album/">
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.6/dist/css/bootstrap.min.css" rel="stylesheet"
+<!-- <link href="/docs/4.6/dist/css/bootstrap.min.css" rel="stylesheet"
 	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
-	crossorigin="anonymous">
+	crossorigin="anonymous"> -->
 <!-- Favicons -->
 <link rel="apple-touch-icon"
 	href="/docs/4.6/assets/img/favicons/apple-touch-icon.png"
@@ -22,7 +22,7 @@
 	sizes="32x32" type="image/png">
 <link rel="icon" href="/docs/4.6/assets/img/favicons/favicon-16x16.png"
 	sizes="16x16" type="image/png">
-<link rel="manifest" href="/docs/4.6/assets/img/favicons/manifest.json">
+<!-- <link rel="manifest" href="/docs/4.6/assets/img/favicons/manifest.json"> -->
 <link rel="mask-icon"
 	href="/docs/4.6/assets/img/favicons/safari-pinned-tab.svg"
 	color="#563d7c">
@@ -50,7 +50,7 @@
 }
 </style>
 <!-- Custom styles for this template -->
-<link href="album.css" rel="stylesheet">
+<!-- <link href="album.css" rel="stylesheet"> -->
 <!----------------- /Bootstrap ----------------->
 
 
@@ -58,10 +58,6 @@
 
 </head>
 <body>
-	<div class="jumbotron text-center" style="margin-bottom: 0">
-		<h1>tmhouse index test</h1>
-		<p>tmhouse index test tmhouse index test</p>
-	</div>
 	<c:import url="../template/header.jsp"></c:import>
 
 
@@ -70,7 +66,7 @@
 		<div class="row">
 			<c:forEach items="#{list}" var="vo">
 				<div class="col-md-4">
-					<a href="select">
+					<a href="./select?hwNum=${vo.hwNum}">
 						<div class="card mb-4 shadow-sm">
 							<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img"
 								aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">

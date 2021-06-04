@@ -18,8 +18,7 @@
 </head>
 <body>
 	<div class="container">
-
-		<form id="frm" action="./insert" method="post" enctype="multipart/form-data">
+	
 			<div class="accordion" id="detailForm">
 				<div class="card">
 					<div class="card-head" id="headingOne">
@@ -76,8 +75,8 @@
 							</div>
 							<div class="form-group">
 								<label for="familyType">가족형태</label> 
-								<!-- <input type="text" class="form-control myCheck" id="familyType" name="familyType"> -->
-								<div class="dropdown">
+								<input type="text" class="form-control myCheck" id="familyType" name="familyType">
+								<!-- <div class="dropdown">
 								<button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									    선택해주세요.
 									</button>
@@ -92,8 +91,8 @@
 								</div>
 								
 								<div id="fmt">
-									<!-- dropdown 버튼 클릭시 버튼 추가, 삭제 -->
-								</div>
+									dropdown 버튼 클릭시 버튼 추가, 삭제
+								</div> -->
 								
 							</div>
 							
@@ -103,38 +102,11 @@
 							</div>
 							<div class="form-group">
 								<label for="style">스타일</label> 
-								<div class="dropdown">
-								<button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									    선택해주세요.
-									</button>
-									<div class="dropdown-menu style">
-								      <input class="dropdown-item styleOption" type="button" value="모던">
-								      <input class="dropdown-item styleOption" type="button" value="미니멀&심플">
-								      <input class="dropdown-item styleOption" type="button" value="내추럴">
-								      <input class="dropdown-item styleOption" type="button" value="북유럽">
-								      <input class="dropdown-item styleOption" type="button" value="빈티지&레트로">
-								      <input class="dropdown-item styleOption" type="button" value="클래식&앤틱">
-								      <input class="dropdown-item styleOption" type="button" value="프렌치&프로방스">
-								      <input class="dropdown-item styleOption" type="button" value="러블리&로맨틱">
-								      <input class="dropdown-item styleOption" type="button" value="인터스트리얼">
-								      <input class="dropdown-item styleOption" type="button" value="한국&아시아">
-								      <input class="dropdown-item styleOption" type="button" value="유니크&믹스매치">
-								    </div>
-								</div>
-								<div id="style">
-									<!-- dropdown 버튼 클릭시 버튼 추가, 삭제 -->
-								</div>
+								<input type="text" class="form-control myCheck" id="style" name="style">
 							</div>
 							<div class="form-group">
 								<label for="period">기간</label> 
-								<div class="input-group">
-									<input type="text" class="form-control myCheck" id="period" name="period">
-									<p id="periodText"></p>
-									<input type="radio" class="form-control myCheck week" id="periodType" name="periodType">
-									<label for="periodType">주</label>
-									<input type="radio" class="form-control myCheck month" id="periodType" name="periodType">
-									<label for="periodType">개월</label>
-								</div>
+								<input type="text" class="form-control myCheck" id="period" name="period">
 							</div>
 							<div class="form-group">
 								<label for="budget">예산</label> 
@@ -142,53 +114,19 @@
 							</div>
 							<div class="form-group">
 								<label for="totalTone">전체톤</label> 
-								<div class="input-group">
-									<c:forEach begin="0" end="12">
-										<input type="checkbox" class="form-control myCheck" id="totalTone" name="totalTone">
-									</c:forEach>
-								</div>
+								<input type="text" class="form-control myCheck" id="totalTone" name="totalTone">
 							</div>
 							<div class="form-group">
 								<label for="wallColor">벽컬러</label> 
-								<div class="input-group">
-									<c:forEach begin="0" end="12">
-										<input type="radio" class="form-control myCheck" id="wallColor" name="wallColor">
-									</c:forEach>
-								</div>
+								<input type="text" class="form-control myCheck" id="wallColor" name="wallColor">
 							</div>
 							<div class="form-group">
 								<label for="bottomColor">바닥컬러</label> 
-								<div class="input-group">
-								<c:forEach begin="0" end="12">
-									<input type="radio" class="form-control myCheck" id="bottomColor" name="bottomColor">
-								</c:forEach>
-								</div>
+								<input type="text" class="form-control myCheck" id="bottomColor" name="bottomColor">
 							</div>
 							<div class="form-group">
 								<label for="detail">세부공사</label>
-								<div class="dropdown">
-								<button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									    선택해주세요.
-									</button>
-									<div class="dropdown-menu detail">
-								      <input class="dropdown-item detailOption" type="button" value="헤링본 마루">
-								      <input class="dropdown-item detailOption" type="button" value="대리석 바닥">
-								      <input class="dropdown-item detailOption" type="button" value="원목마루">
-								      <input class="dropdown-item detailOption" type="button" value="포세린타일">
-								      <input class="dropdown-item detailOption" type="button" value="폴리싱타일">
-								      <input class="dropdown-item detailOption" type="button" value="주방리모델링">
-								      <input class="dropdown-item detailOption" type="button" value="조명시공">
-								      <input class="dropdown-item detailOption" type="button" value="폴딩도어">
-								      <input class="dropdown-item detailOption" type="button" value="중문">
-								      <input class="dropdown-item detailOption" type="button" value="가벽&파티션">
-								      <input class="dropdown-item detailOption" type="button" value="슬라이딩도어">
-								      <input class="dropdown-item detailOption" type="button" value="아트월">
-								      <input class="dropdown-item detailOption" type="button" value="발코니확장">
-								    </div>
-								</div>
-								<div id="detail">
-									<!-- dropdown 버튼 클릭시 버튼 추가, 삭제 -->
-								</div>
+								<input type="text" class="form-control myCheck" id="detail" name="detail">
 							</div>
 							<div class="form-group">
 								<label for="link">링크</label> 
@@ -215,7 +153,7 @@
 			</div>
 			<div class="form-group">
 				<label for="contents">Contents:</label>
-				<textarea class="form-control myCheck contents" rows="5" id="contents" name="contents"></textarea>
+				<textarea class="form-control myCheck" rows="5" id="contents" name="contents"></textarea>
 			</div>
 			
 			<div class="form-group" hidden="hidden">
@@ -223,21 +161,15 @@
 			</div>
 
 			<div>
-				<button type="submit" class="btn btn-outline-primary">WRITE</button>
+				<button type="submit" class="btn btn-outline-primary">Update</button>
 			</div>
 		</form>
 	</div>
 
 	<c:import url="../template/footer.jsp"></c:import>
 	
-	<div id="sample" hidden="hidden">
-		<div>
-			<input class="btn btn-primary delete" type="button">
-		</div>
-	</div>
 	
-	
-	<script type="text/javascript" src="/js/hwInsert.js"></script>
+	<!-- <script type="text/javascript" src="/js/hwInsert.js"></script> -->
 
 </body>
 </html>

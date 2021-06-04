@@ -15,11 +15,11 @@ import com.tmh.t1.util.FileManager;
 public class HousewarmingService {
 	
 	@Autowired
-	HousewarmingMapper housewarmingMapper;
+	private HousewarmingMapper housewarmingMapper;
 	@Autowired
 	private FileManager fileManager;
 	
-//	@Value("${housewarming.filePath}")
+	@Value("${housewarming.filePath}")
 	private String filePath;
 	
 	// List
@@ -34,7 +34,7 @@ public class HousewarmingService {
 	}
 	
 	// Insert
-	public int setInsert(HousewarmingVO housewarmingVO, MultipartFile [] files) throws Exception {
+	public int setInsert(HousewarmingVO housewarmingVO, MultipartFile file) throws Exception {
 		int result = housewarmingMapper.setInsert(housewarmingVO);
 		
 		if(result<1) {
@@ -42,17 +42,18 @@ public class HousewarmingService {
 		}
 		
 		String filePath= this.filePath;
+		System.out.println("FILE PATH" + filePath);
 		
-		for(MultipartFile multipartFile:files) {
-			if(multipartFile.getSize()==0) {
-				continue;
-			}
-			String fileName= fileManager.save(multipartFile, filePath);
-			System.out.println(fileName);
+		if(file == null) {
+			System.out.println("***************NULL***************");
+		} else {
+		
+			String fileName= fileManager.save(file, filePath);
+			System.out.println("FileName : " + fileName);
 			HwFileVO hwFileVO = new HwFileVO();
 			hwFileVO.setFileName(fileName);
-			hwFileVO.setOriginName(multipartFile.getOriginalFilename());
-			hwFileVO.setHwNum(hwFileVO.getHwNum());
+			hwFileVO.setOriginName(file.getOriginalFilename());
+			hwFileVO.setHwNum(housewarmingVO.getHwNum());
 			housewarmingMapper.setFileInsert(hwFileVO);
 		}
 		return result;

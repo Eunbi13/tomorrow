@@ -31,7 +31,12 @@
 		  Write
 		</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        	<a class="dropdown-item" href="/housewarming/insert">Housewarming</a>
+        	<sec:authorize access="!isAuthenticated()">
+        		<a class="dropdown-item" href="/member/login">Housewarming</a>
+        	</sec:authorize>
+        	<sec:authorize access="isAuthenticated()">
+        		<a class="dropdown-item" href="/housewarming/insert">Housewarming</a>
+        	</sec:authorize>
         </div>
       </li>
 

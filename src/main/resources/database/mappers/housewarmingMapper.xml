@@ -7,12 +7,13 @@
     	
     	<select id="getList" resultType="HousewarmingVO">
 			select * from housewarming
+			order by hwNum desc
    		</select>
    		
    		<select id="getSelect" resultMap="selectResult" parameterType="HousewarmingVO">
 			SELECT H.*, HF.* from
 			housewarming H left join hwFile HF
-			on N.hwNum = NF.hwNum
+			on H.hwNum = HF.hwNum
 			WHERE H.hwNum=#{hwNum}
    		</select>
    		
@@ -37,18 +38,16 @@
    			<result column="username" property="username"/>
    			<result column="contents" property="contents"/>
    			<result column="hit" property="hit"/>
-   			<collection property="files" javaType="java.util.List" ofType="HwFileVO">
+   			<collection property="hwfile" javaType="HwFileVO">
    				<id column="fileNum" property="fileNum"/>
    				<result column="fileName" property="fileName"/>
    				<result column="originName" property="originName"/>
    			</collection>
    		</resultMap>
    		
-   		<insert id="setInsert" parameterType="HousewarmingVO" useGeneratedKeys="true" keyProperty="num">
-   			insert into housewarming (hwNum, space, spaceSize, work, field, familyType, style, period, budget, 
-   			totalTone, wallColor, bottomColor, detail, link, copyright, title, username, contents, hit)
-   			values(#{hwNum}, #{space}, #{spaceSize}, #{work}, #{field}, #{familyType}, #{style}, #{period}, #{budget}, 
-   			#{totalTone}, #{wallColor}, #{bottomColor}, #{detail}, #{link}, #{copyright}, #{title}, #{username}, #{contents}, 0)
+   		<insert id="setInsert" parameterType="HousewarmingVO" useGeneratedKeys="true" keyProperty="hwNum">
+   			insert into housewarming (space, spaceSize, work, field, familyType, area, style, period, budget, totalTone, wallColor, bottomColor, detail, link, copyright, coverImg, title, username, contents)
+   			values(#{space}, #{spaceSize}, #{work}, #{field}, #{familyType}, #{area}, #{style}, #{period}, #{budget}, #{totalTone}, #{wallColor}, #{bottomColor}, #{detail}, #{link}, #{copyright}, 1, #{title}, #{username}, #{contents})
    		</insert>
    		
    		<insert id="setFileInsert" parameterType="HwFileVO">
@@ -59,5 +58,16 @@
    		<update id="setHitUpdate" parameterType="HousewarmingVO">
    			update housewarming set hit=hit+1 where hwNum=#{hwNum}
    		</update>
-    
+   		
+   		<update id="setUpdate" parameterType="HousewarmingVO">
+   			update housewarming 
+   			set space=#{space}, spaceSize=#{spaceSize}, work=#{work}, field=#{field}, familyType=#{familyType}, area=#{area}, style=#{style}, period=#{period}, budget=#{budget}, 
+   			totalTone=#{totalTone}, wallColor=#{wallColor}, bottomColor=#{bottomColor}, detail=#{detail}, link=#{link}, copyright=#{copyright}, title=#{title}, contents=#{contents} 
+   			where hwNum=#{hwNum}
+   		</update>
+   		
+   		<delete id="setDelete" parameterType="HousewarmingVO">
+   			delete from housewarming where hwNum=#{hwNum}
+   		</delete>
+   		
     </mapper>
