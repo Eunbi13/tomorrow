@@ -44,7 +44,7 @@ img{
   font-weight: bold;
   font-size: 16px;
 }
-.shipping{
+.shippingType{
    font-size: 12px;
     padding-bottom: 20px;
 }
@@ -113,7 +113,7 @@ img{
 				    <img src="../resources/images/glove.webp" class="mr-3" alt="...">
 				    <div class="media-body">
 				      <div class="mt-0 mb-1 productName">${productVO.productName}</div>
-				         <div class="shipping">무료배송 | 일반택배</div>
+				         <div class="shippingType">무료배송 | 일반택배</div>
 				    </div>
 				   
 					  
@@ -125,7 +125,7 @@ img{
 					     <li id="carts${i.index}" title="${cartVO.brandNum}">
 					       <input type="hidden" class="cartNum " id="cartNum${i.index}" title="${cartVO.cartNum}">
 					       <input type="hidden" class="optionPrice" id="optionPrice${i.index}" name="optionPrice" title="${cartVO.optionPrice}" value="${cartVO.optionPrice}">
-						   <input type="hidden" class="freeShipping${b.index}" name="isFree" value="${cartVO.isFree}"/> 		     
+						   <input type="hidden" class="freeShipping${b.index}" name="isFree" value=""/> 		     
 						   
 							  <div title="${cartVO.productNum}" style="width:100%; height:100%; padding-bottom:40px; word-break:break-all;word-wrap:break-word;" class="cartCheck${cartVO.productNum} alert alert-secondary alert-dismissible fade show" role="">
 							  		<div class="option">  <c:out value="${optionList.optionKinds}"/>: ${optionList.optionName} </div>
@@ -194,7 +194,7 @@ img{
 			    
 			  </div>
 					  <div class="card-footer text-center text-muted">
-					  	<input readonly="readonly" id="shipping${b.index}" value="배송비 무료">
+					  	<input readonly="readonly" class="shipping" id="shipping${b.index}" title="0" value="배송비 무료" style=" width:120px; height:30px; background-color:transparent;border:0 solid black; text-align:center;">
 					  </div>
 			  
 			</div>
@@ -227,7 +227,9 @@ img{
                 </div>
                 <div class="p-2 d-flex">
                     <div class="col-6">총 배송비</div>
-                    <div class="ml-auto">0원</div>
+                    <div class="ml-auto">
+                      <input readonly="readonly" id="totalShipping" class="totalShipping" style=" width:100px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
+                    </div>
                 </div>
                       <div class="p-2 d-flex">
                     <div class="col-6">총 할인금액</div>
@@ -241,7 +243,11 @@ img{
                 
                 <div class="p-2 d-flex pt-3">
                     <div class="col-6"><b>결제 금액</b></div>
-                    <div class="ml-auto"><b class="green">0원</b></div>
+                    <div class="ml-auto">
+                   	 <b class="green">
+                   	   <input readonly="readonly" id="payment" class="payment" style=" width:100px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
+                   	 </b>
+                    </div>
                 </div>
             </div>
             
@@ -280,11 +286,13 @@ $(".cartPricePlus").each(function(){
 
 });
 
-$("#totalPrice").val(total); // 총 상품 금액
+$("#totalPrice").val(total); // 총 상품 금액 입력
 
 //------------check box를 건들때 마다 총 상품 금액 변경
 
-//무료배송여부 결정 
+
+
+//무료배송여부 
 $(".productPrice").each(function(){ 
 	
     
@@ -305,13 +313,41 @@ $(".productPrice").each(function(){
     if(brandPrice>=30000){
     	console.log(b_index+" is over30000");
     	$(".freeShipping"+b_index).val(1);
+    	$("#shipping"+b_index).val("배송비 무료");
+    	$("#shipping"+b_index).attr("title", 0);
+    } else{
+    	$("#shipping"+b_index).val("배송비 3000원");
+    	$("#shipping"+b_index).attr("title", 3000);
+    	
+
     }
-	
 	
 
 });
+//총 배송비
+let totalShipping=0; 
 
-//묶음배송여부 결정
+$(".shipping").each(function(){
+	
+	let shipping =$(this).attr("title");
+	console.log("shipping:"+shipping);
+	
+	totalShipping= totalShipping+parseInt(shipping);	
+	
+});
+ 
+console.log(totalShipping);
+
+$("#totalShipping").val(totalShipping);// 총 배송비 입력 
+
+//----------총 결제금액
+
+let payment=totalShipping+total;
+
+$("#payment").val(payment);  //총 결제금액 입력
+
+
+// ------세팅끝
 
 
 
@@ -370,6 +406,64 @@ $(".directInputBox").keyup(function(){
 	})(jQuery);
 	//---------------------
 	
+	//배송비, 총 배송비 변경
+		//무료배송여부 
+			$(".productPrice").each(function(){ 
+				
+			    
+			    let b_index = $(this).attr("title"); 
+			    console.log("b_index:"+b_index);
+			     
+			    let brandPrice=0; 
+				
+				
+				$(".productPrice"+b_index).each(function(){
+					brandPrice=brandPrice+parseInt($(this).val());
+			     });
+			     
+				
+				
+				console.log("brandPrice:"+brandPrice);
+			    
+			    if(brandPrice>=30000){
+			    	console.log(b_index+" is over30000");
+			    	$(".freeShipping"+b_index).val(1);
+			    	$("#shipping"+b_index).val("배송비 무료");
+			    	$("#shipping"+b_index).attr("title", 0);
+			    } else{
+			    	$("#shipping"+b_index).val("배송비 3000원");
+			    	$("#shipping"+b_index).attr("title", 3000);
+			    	
+			
+			    }
+				
+			
+			});
+			//총 배송비
+			let totalShipping=0; 
+			
+			$(".shipping").each(function(){
+				
+				let shipping =$(this).attr("title");
+				console.log("shipping:"+shipping);
+				
+				totalShipping= totalShipping+parseInt(shipping);	
+				
+			});
+			 
+			console.log(totalShipping);
+			
+			$("#totalShipping").val(totalShipping);// 총 배송비 입력 
+			
+			//----------총 결제금액
+			
+			let payment=totalShipping+parseInt($("#totalPrice").val());
+			
+			$("#payment").val(payment);  //총 결제금액 입력
+			
+				
+
+	
 	 //--------ajax DB Update (완성!!)
 	let amount = $(this).val();
 	let cartPrice=$("#cartVOPrice"+index).val();
@@ -402,7 +496,7 @@ $(".directInputBox").keyup(function(){
 });
 
 
-//--------------------------------ajax Delete 
+//--------------------------------ajax Delete   (삭제후 배송료 변경하기)
 
 //--------check box (product) 선택삭제  ( 완성!!)
 
@@ -448,7 +542,65 @@ $("#carts").on("click", "#selectedDelete", function(){
 					$("#card"+brand_ar[b]).remove();
 					console.log(brand_ar[b]+"가 삭제됨");
 		    	}
+		    	
+		    	
 			}
+		    ////배송비, 총 배송비 변경
+				//무료배송여부 
+					$(".productPrice").each(function(){ 
+						
+					    
+					    let b_index = $(this).attr("title"); 
+					    console.log("b_index:"+b_index);
+					     
+					    let brandPrice=0; 
+						
+						
+						$(".productPrice"+b_index).each(function(){
+							brandPrice=brandPrice+parseInt($(this).val());
+					     });
+					     
+						
+						
+						console.log("brandPrice:"+brandPrice);
+					    
+					    if(brandPrice>=30000){
+					    	console.log(b_index+" is over30000");
+					    	$(".freeShipping"+b_index).val(1);
+					    	$("#shipping"+b_index).val("배송비 무료");
+					    	$("#shipping"+b_index).attr("title", 0);
+					    } else{
+					    	$("#shipping"+b_index).val("배송비 3000원");
+					    	$("#shipping"+b_index).attr("title", 3000);
+					    	
+					
+					    }
+						
+					
+					});
+					//총 배송비
+					let totalShipping=0; 
+					
+					$(".shipping").each(function(){
+						
+						let shipping =$(this).attr("title");
+						console.log("shipping:"+shipping);
+						
+						totalShipping= totalShipping+parseInt(shipping);	
+						
+					});
+					 
+					console.log(totalShipping);
+					
+					$("#totalShipping").val(totalShipping);// 총 배송비 입력 
+					
+					//----------총 결제금액
+					
+					let payment=totalShipping+parseInt($("#totalPrice").val());
+					
+					$("#payment").val(payment);  //총 결제금액 입력
+					
+				
 		   
 		}
 	})

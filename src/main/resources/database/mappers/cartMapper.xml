@@ -39,7 +39,7 @@
     
     
         <select id="getCartList" parameterType="CartVO" resultMap="cartListResult">
-    		select C.*, C.cartPrice, C.optionPrice, O.* from 
+    		select C.*, C.isFree, C.cartPrice, C.optionPrice, O.* from 
 			(select * from cart where username=#{username}) C 
 			inner join options O
 			on C.optionNum = O.optionNum;
