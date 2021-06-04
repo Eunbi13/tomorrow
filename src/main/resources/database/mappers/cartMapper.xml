@@ -4,31 +4,97 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
     <mapper namespace="com.tmh.t1.cart.CartMapper">
+   
+	<select id="getPriceTotalProduct" parameterType="CartVO" resultType="java.lang.Long">
+       		select sum(cartPrice) from cart 
+            where username=#{username} and productNum in 
+            (select productNum from cart where username=#{username} group by productNum)
+        </select> 
+    		
     
-    <select id="getSelect" parameterType="CartVO" resultType="CartVO">
+       <select id="getPricePerProduct" parameterType="CartVO" resultType="java.lang.Long">
+       		select sum(cartPrice) from cart 
+            where username=#{username} and productNum=#{productNum};
+       </select> 
+
+    
+	    <select id="getProductList" parameterType="CartVO" resultType="ProductVO">
+	    
+		    select productNum, productName, productPrice, productPic, shippingFee, brandNum from product
+			where productNum 
+			in 
+			(select productNum from cart where username=#{username} 
+			and brandNum 
+			in 
+			(select brandNum from cart where username=#{username} group by brandNum) 
+			group by productNum)
+				    
+	    </select>
+	    
+	     <select id="getBrandList" parameterType="CartVO" resultType="BrandVO">
+			select brandNum, brandName from brand
+			where brandNum in (select brandNum from cart where username=#{username} group by brandNum)
+	    </select>
+    
+    
+    
+        <select id="getCartList" parameterType="CartVO" resultMap="cartListResult">
+    		select C.*, C.isFree, C.cartPrice, C.optionPrice, O.* from 
+			(select * from cart where username=#{username}) C 
+			inner join options O
+			on C.optionNum = O.optionNum;
+	    </select>
+	    
+	    <resultMap type="CartVO" id="cartListResult">
+	    	<id column="cartNum" property="cartNum" />
+	    	<result column="username" property="username" />
+	    	<result column="brandNum" property="brandNum" />
+	        <result column="productNum" property="productNum" />
+	        <result column="optionNum" property="optionNum" />
+	    	<result column="amount" property="amount" />
+	        <result column="validity" property="validity" />
+	    	<result column="isBundled" property="isBundled" />
+	    	<result column="isFree" property="isFree" />
+	    	<result column="cartPrice" property="cartPrice" />
+	    	<result column="optionPrice" property="optionPrice" />
+	        <collection property="optionList" javaType="java.util.List" ofType="optionVO">
+	        	<id column="optionNum" property="optionNum" />
+	        	<result column="optionKinds" property="optionKinds" />
+	        	<result column="optionName" property="optionName" />
+	        </collection>
+	    	
+	    	
+	    
+	    
+	    
+	    </resultMap>
+    
+    
+	   
+        <select id="getSelect" parameterType="CartVO" resultType="CartVO">
     		select * from cart where cartNum=#{cartNum} 
     	</select>
     	
-    	<select id="cartList" parameterType="CartVO" resultType="CartVO">
+    	<select id="getList" parameterType="CartVO" resultType="CartVO">
     		select * from cart where username=#{username}
     	</select>
     	
     	<insert id="setInsert" parameterType="CartVO">
-    		insert into cart(username, brandNum, productNum, optionNum, amount, validity, isBundled, isFree) 
-    		values(#{username}, #{brandNum}, #{productNum}, #{optionNum}, #{amount}, #{validity}, #{isBundled}, #{isFree})
+    		insert into cart(username, brandNum, productNum, optionNum, amount, validity, isBundled, isFree, cartPrice, optionPrice) 
+    		values(#{username}, #{brandNum}, #{productNum}, #{optionNum}, #{amount}, #{validity}, #{isBundled}, #{isFree},#{cartPrice},#{optionPrice})
     	</insert>
     	
     	<delete id="setOptionDelete" parameterType="CartVO">
-    		delete cart where cartNum=#{cartNum}
+    		delete from cart where cartNum=#{cartNum}
     	</delete>
     	
     	<delete id="setProductDelete" parameterType="CartVO">
-    		delete cart where productNum=#{productNum} and username=#{username}
+    		delete from cart where productNum=#{productNum} and username=#{username}
     	</delete>
     	
-    	<update id="setUpdate" parameterType="CartVO">
-    		update cart set optionNum=#{optionNum}, amount=#{amount}, validity=#{validity}, isBundled=#{isBundled}, isFree=#{isFree}
-    		where productNum=#{productNum} and username=#{username}
+    	<update id="setAmountUpdate" parameterType="CartVO">
+    		update cart set amount=#{amount}, cartPrice=#{cartPrice}
+    		where cartNum=#{cartNum} and username=#{username}
     	</update>
     
     

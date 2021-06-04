@@ -42,7 +42,7 @@ public class MemberController {
 
 	@GetMapping("memberLoginResult")
 	public String memberLoginResult(HttpSession session, Authentication auth)throws Exception{
-
+		
 		System.out.println("email: "+auth.getName());
 		System.out.println("VO: "+auth.getPrincipal());
 		System.out.println("auth: "+auth.getAuthorities());
