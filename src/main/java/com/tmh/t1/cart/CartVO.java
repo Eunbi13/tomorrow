@@ -2,14 +2,14 @@ package com.tmh.t1.cart;
 
 import java.util.List;
 
-import com.tmh.t1.option.OptionVO;
+import com.tmh.t1.option.OptionsVO;
 
 import lombok.Data;
 
 @Data
 public class CartVO {
 	
-	private List<OptionVO> optionList;
+	private List<OptionsVO> optionList;
 	
 	private Long cartNum;
 	

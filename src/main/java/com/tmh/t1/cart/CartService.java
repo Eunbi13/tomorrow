@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.tmh.t1.brand.BrandVO;
-import com.tmh.t1.option.OptionVO;
+import com.tmh.t1.option.OptionsVO;
 import com.tmh.t1.product.ProductVO;
 
 @Service
@@ -42,8 +42,8 @@ public class CartService {
     	  System.out.println("vo.getProductNum():"+vo.getProductNum());
     	  System.out.println("vo.getCartPrice():"+vo.getCartPrice()); 
     	  
-    	  List<OptionVO> optList = vo.getOptionList();
-    	  for(OptionVO optVO: optList) {
+    	  List<OptionsVO> optList = vo.getOptionList();
+    	  for(OptionsVO optVO: optList) {
     		  System.out.println("optVO.getOptionNum()"+optVO.getOptionNum());
     	  }
     	   

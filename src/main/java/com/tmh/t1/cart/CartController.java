@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.tmh.t1.brand.BrandVO;
 import com.tmh.t1.member.MemberVO;
-import com.tmh.t1.option.OptionVO;
+
 import com.tmh.t1.product.ProductVO;
 
 @Controller

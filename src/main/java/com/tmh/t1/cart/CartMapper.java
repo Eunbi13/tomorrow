@@ -6,7 +6,6 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.tmh.t1.brand.BrandVO;
-import com.tmh.t1.option.OptionVO;
 import com.tmh.t1.product.ProductVO;
 
 
