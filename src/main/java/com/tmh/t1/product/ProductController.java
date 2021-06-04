@@ -31,13 +31,11 @@ public class ProductController {
 	}
 	
 	@GetMapping("productselect")
-	public ModelAndView getSelect(ProductVO productVO)throws Exception{
+	public void getSelect(ProductVO productVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		productVO = productService.getSelect(productVO);
 		mv.addObject("vo", productVO);
 		mv.setViewName("product/productselect");
-		
-		return mv;
 	}
 	
 }
