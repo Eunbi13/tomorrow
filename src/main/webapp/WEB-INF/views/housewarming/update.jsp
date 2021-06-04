@@ -18,9 +18,7 @@
 </head>
 <body>
 	<div class="container">
-	<h1>update page</h1>
-
-		<%-- <form id="frm" action="./update?hwNum=${vo.hwNum}" method="post" enctype="multipart/form-data">
+	
 			<div class="accordion" id="detailForm">
 				<div class="card">
 					<div class="card-head" id="headingOne">
@@ -165,7 +163,7 @@
 			<div>
 				<button type="submit" class="btn btn-outline-primary">Update</button>
 			</div>
-		</form> --%>
+		</form>
 	</div>
 
 	<c:import url="../template/footer.jsp"></c:import>
