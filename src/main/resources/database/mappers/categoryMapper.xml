@@ -4,6 +4,8 @@
 
 <mapper namespace="com.tmh.t1.category.CategoryMapper">
 
+	
+
 	<select id="selectCategory" resultType="CategoryVO"
 		parameterType="CategoryVO">
 		SELECT

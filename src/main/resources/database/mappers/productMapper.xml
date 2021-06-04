@@ -3,7 +3,33 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
     <mapper namespace="com.tmh.t1.product.ProductMapper">
-    
+    	
+    <!-- 김은비 -->
+    	<select id="getBrandNum" parameterType="java.lang.String" resultType="java.lang.Long">
+    		SELECT brandNum FROM brand WHERE username=#{username}
+    	</select> 
+    	<insert id="setProduct" parameterType="ProductVO" useGeneratedKeys="true" keyProperty="productNum">
+			INSERT INTO product (brandNum, productPic, contents, 
+								 productName, productPrice, discount, shippingFee) 
+			VALUES (#{brandNum},#{productPic},#{contents},
+					#{productName},#{productPrice},#{discount},#{shippingFee})
+    	</insert>
+    	<insert id="setImages" parameterType="ProductImagesVO">
+			INSERT INTO productimages (productNum, fileName) VALUES (#{productNum}, #{fileName})
+		</insert>
+		
+		
+		<select id="getBigCategory" parameterType="java.lang.String" resultType="CategoryVO">
+			SELECT categoryID, category_detail_NM FROM category WHERE categoryID IN 
+				(SELECT categoryID FROM brand_category WHERE brandnum = 
+					(SELECT brandNum FROM brand WHERE username =#{username}) )
+		</select>
+		<insert id="setProduct_Options" parameterType="java.util.Map">
+			INSERT INTO product_options VALUES (#{productNum}, #{optionNum})
+		</insert>
+		
+		
+    <!-- 장은 -->
     	<select id="getList" parameterType="ProductVO" resultType="ProductVO">
     		select * from product
     	</select>

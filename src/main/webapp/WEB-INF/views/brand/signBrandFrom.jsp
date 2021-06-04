@@ -20,7 +20,7 @@
 		<li>입점 신청과 관련된 내용은 일반 고객센터 접수가 불가능합니다. 참고 바랍니다.</li>
 	</ul>
 	
-	<form:form action="./signBrand" modelAttribute="brandVO" method="post">
+	<form:form action="./signBrand" modelAttribute="brandVO" method="post" enctype="multipart/form-data">
 
 		<div>
 			<h3>회사 정보</h3>
@@ -81,22 +81,12 @@
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">취급 카테고리<span>*</span></label>
 				<div class="col-sm-10">
-				<div class=" form-check form-check-inline ">
-					<input class="form-check-input" type="checkbox" name="categoryID">
-					<label class="form-check-label" for="inlineCheckbox1">카테고리 아이디와 브랜드번호를 인서트할것</label>
-					<input class="form-check-input" type="checkbox" name="categoryID">
-					<label class="form-check-label" for="inlineCheckbox1">브랜드 번호는 미리 받아서 넣으면 됨,,</label>
-					<input class="form-check-input" type="checkbox" name="categoryID">
-					<label class="form-check-label" for="inlineCheckbox1">카테고리도 대분류인거 선택해서 조회하고</label>
-					<input class="form-check-input" type="checkbox" name="categoryID">
-					<label class="form-check-label" for="inlineCheckbox1">모델에 담아서 여기에 뿌리면 됨</label>
-					<input class="form-check-input" type="checkbox" name="categoryID">
-					<label class="form-check-label" for="inlineCheckbox1">벨류에 카테고리아이디 담고</label>
-					<input class="form-check-input" type="checkbox" name="categoryID">
-					<label class="form-check-label" for="inlineCheckbox1">이름은 여기에 뿌리고</label>
-					<input class="form-check-input" type="checkbox" name="categoryID">
-					<label class="form-check-label" for="inlineCheckbox1">어쩌구 저쩌구 </label>
-				</div>
+				<c:forEach items="${categories }" var="vo">
+					<div class=" form-check form-check-inline ">
+						<input class="form-check-input" type="checkbox" name="categories" value="${vo.categoryID}">
+						<label class="form-check-label" for="inlineCheckbox1">${vo.category_detail_NM }</label>
+					</div>
+				</c:forEach>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -109,7 +99,8 @@
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">판매 관련 파일 첨부</label>
 				<div class="input-group col-sm-10">
-					<input type="file" name="referenceFile"><p></p> 
+					<input type="file" name="files"><p></p> 
+					
 				</div>
 			</div>
 			<div class="form-group row">
