@@ -35,7 +35,7 @@ public class ProductController {
 		ModelAndView mv = new ModelAndView();
 		productVO = productService.getSelect(productVO);
 		mv.addObject("vo", productVO);
-		mv.setViewName("product/select");
+		mv.setViewName("product/productselect");
 		
 		return mv;
 	}

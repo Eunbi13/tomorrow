@@ -235,10 +235,12 @@ to {
 
 	<c:forEach items="${list}" var="vo">
 		<div class="card">
-			<div class="product-card-body">
-				<h5 class="card-title">${vo.productName}</h5>
-				<p class="card-text">${vo.productPrice}</p>
-			</div>
+			<a href="productselect">
+				<div class="product-card-body">
+					<h5 class="card-title">${vo.productName}</h5>
+					<p class="card-text">${vo.productPrice}</p>
+				</div>
+			</a>
 		</div>
 	</c:forEach>
 
