@@ -135,15 +135,21 @@
 							</div>
 							<div class="form-group">
 								<label for="totalTone">전체톤</label> 
-								<input type="text" class="form-control myCheck" id="totalTone" name="totalTone">
+									<c:forEach begin="0" end="12">
+										<input type="checkbox" class="form-control myCheck" id="totalTone" name="totalTone">
+									</c:forEach>
 							</div>
 							<div class="form-group">
 								<label for="wallColor">벽컬러</label> 
-								<input type="text" class="form-control myCheck" id="wallColor" name="wallColor">
+								<c:forEach begin="0" end="12">
+									<input type="radio" class="form-control myCheck" id="wallColor" name="wallColor">
+								</c:forEach>
 							</div>
 							<div class="form-group">
 								<label for="bottomColor">바닥컬러</label> 
-								<input type="text" class="form-control myCheck" id="bottomColor" name="bottomColor">
+								<c:forEach begin="0" end="12">
+									<input type="radio" class="form-control myCheck" id="bottomColor" name="bottomColor">
+								</c:forEach>
 							</div>
 							<div class="form-group">
 								<label for="detail">세부공사</label>
