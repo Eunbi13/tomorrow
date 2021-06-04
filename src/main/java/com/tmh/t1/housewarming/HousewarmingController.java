@@ -34,10 +34,9 @@ public class HousewarmingController {
 	}
 	
 	@GetMapping("select")
-	public void getSelect(HousewarmingVO housewarmingVO) throws Exception {
-		ModelAndView mv = new ModelAndView();
+	public void getSelect(HousewarmingVO housewarmingVO, Model model) throws Exception {
 		housewarmingVO = housewarmingService.getSelect(housewarmingVO);
-		mv.addObject("vo", housewarmingVO);
+		model.addAttribute("vo", housewarmingVO);
 	}
 	
 	@GetMapping("insert")

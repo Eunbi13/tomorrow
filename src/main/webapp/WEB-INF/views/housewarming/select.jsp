@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,11 +64,11 @@
 <body>
 	<c:import url="../template/header.jsp"></c:import>
 	
+	<!-- coverImg -->
 	<div>
-		<!-- <img alt="coverImg" src="" > -->
-		<c:forEach items="${vo.hwfile}" var="file">
-			<a href="/upload/housewarming/${file.fileName}">${file.originName}</a>
-		</c:forEach>
+		<%-- <c:forEach items="${vo.hwfile}" var="file"> --%>
+			<a href="/upload/housewarming/${vo.hwfile.fileName}">${file.originName}</a>
+		<%-- </c:forEach> --%>
 	</div>
 
 	<div class="container" style="margin-top: 30px">
@@ -77,36 +78,65 @@
 			<div class="blog-post">
 				<h2 class="blog-post-title">${vo.title}</h2>
 				<p class="blog-post-meta">
-					<a href="#">${vo.username}</a>
-					<input type="button" class="btn btn-primary" value="팔로우">
+					<a href="#">${vo.username}</a> <input type="button"
+						class="btn btn-primary" value="팔로우">
 				</p>
 				<div class="jumbotron mt-3">
-				    <p>공간 ${vo.space}</p>
-				    <p>평수 ${vo.spaceSize}</p>
-				    <p>작업 ${vo.work}</p>
-				    <p>분야 ${vo.field}</p>
-				    <p>가족형태 ${vo.familyType}</p>
-				    <p>지역 ${vo.area}</p>
-				    <p>기간 ${vo.period}</p>
-				    <p>예산 ${vo.budget}</p>
-				    <p>세부공사 ${vo.detail}</p>
+					<table class="table table-borderless">
+						<tbody>
+							<tr>
+								<th scope="row">공간</th>
+								<td>${vo.space}</td>
+							</tr>
+							<tr>
+								<th scope="row">평수</th>
+								<td>${vo.spaceSize}</td>
+							</tr>
+							<tr>
+								<th scope="row">작업</th>
+								<td>${vo.work}</td>
+							</tr>
+							<tr>
+								<th scope="row">분야</th>
+								<td>${vo.field}</td>
+							</tr>
+							<tr>
+								<th scope="row">가족형태</th>
+								<td>${vo.familyType}</td>
+							</tr>
+							<tr>
+								<th scope="row">지역</th>
+								<td>${vo.area}</td>
+							</tr>
+							<tr>
+								<th scope="row">기간</th>
+								<td>${vo.period}</td>
+							</tr>
+							<tr>
+								<th scope="row">예산</th>
+								<td>${vo.budget}</td>
+							</tr>
+							<tr>
+								<th scope="row">세부공사</th>
+								<td>${vo.detail}</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 
-				<p>
-					${vo.contents}
-				</p>
+				<p>${vo.contents}</p>
 				<p>
 					Yeah, she dances to her own beat. Oh, no. You could've been the
 					greatest. 'Cause, baby, <a href="#">you're a firework</a>. Maybe a
 					reason why all the doors are closed. Open up your heart and just
 					let it begin. So très chic, yeah, she's a classic.
 				</p>
-				
+
 			</div>
 
 		</div>
-		
-		<sec:authentication property="principal" var="pinfo"/>
+
+		<sec:authentication property="principal" var="pinfo" />
 		<sec:authorize access="isAuthenticated()">
 			<c:if test="${pinfo.username eq vo.username}">
 				<button type="button" class="btn btn-primary">Update</button>
