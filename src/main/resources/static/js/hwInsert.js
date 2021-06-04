@@ -5,6 +5,7 @@
 let familyType = '';
 let cnt = 0;
 let stCnt = 0;
+let dtCnt = 0;
 
 // button 클릭시 delete
 // 눌렀던 버튼을 다시 누르면 delete
@@ -43,6 +44,23 @@ $(".styleOption").on("click", function() {
 	
 });
 
+// .detailOption 클릭
+$(".detailOption").on("click", function() {
+	// 해당 value를 fmtBtn의 value로 설정
+	// value 추출
+	console.log($(this).val());
+	dtType = $(this).val();
+	
+	dtchange()
+	
+	// fmtBtn 추가
+	$("#detail").append($("#sample").html());
+	dtCnt++;
+	
+	del()
+	
+});
+
 
 function changee() {
 	$(".delete").each(function(s1, s2) {
@@ -61,6 +79,14 @@ function stchange() {
 	});
 }
 
+function dtchange() {
+	$(".delete").each(function(s1, s2) {
+		if(s1 == dtCnt) {
+			$(this).val(dtType);
+		}
+	});
+}
+
 
 function del() {
 	$(".delete").each(function(s1, s2) {
@@ -69,3 +95,7 @@ function del() {
 		});
 	});
 }
+
+$(".contents").on("click", function() {
+	
+})

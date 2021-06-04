@@ -147,7 +147,29 @@
 							</div>
 							<div class="form-group">
 								<label for="detail">세부공사</label>
-								<input type="text" class="form-control myCheck" id="detail" name="detail">
+								<div class="dropdown">
+								<button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									    선택해주세요.
+									</button>
+									<div class="dropdown-menu detail">
+								      <input class="dropdown-item detailOption" type="button" value="헤링본 마루">
+								      <input class="dropdown-item detailOption" type="button" value="대리석 바닥">
+								      <input class="dropdown-item detailOption" type="button" value="원목마루">
+								      <input class="dropdown-item detailOption" type="button" value="포세린타일">
+								      <input class="dropdown-item detailOption" type="button" value="폴리싱타일">
+								      <input class="dropdown-item detailOption" type="button" value="주방리모델링">
+								      <input class="dropdown-item detailOption" type="button" value="조명시공">
+								      <input class="dropdown-item detailOption" type="button" value="폴딩도어">
+								      <input class="dropdown-item detailOption" type="button" value="중문">
+								      <input class="dropdown-item detailOption" type="button" value="가벽&파티션">
+								      <input class="dropdown-item detailOption" type="button" value="슬라이딩도어">
+								      <input class="dropdown-item detailOption" type="button" value="아트월">
+								      <input class="dropdown-item detailOption" type="button" value="발코니확장">
+								    </div>
+								</div>
+								<div id="detail">
+									<!-- dropdown 버튼 클릭시 버튼 추가, 삭제 -->
+								</div>
 							</div>
 							<div class="form-group">
 								<label for="link">링크</label> 
@@ -174,7 +196,7 @@
 			</div>
 			<div class="form-group">
 				<label for="contents">Contents:</label>
-				<textarea class="form-control myCheck" rows="5" id="contents" name="contents"></textarea>
+				<textarea class="form-control myCheck contents" rows="5" id="contents" name="contents"></textarea>
 			</div>
 			
 			<div class="form-group" hidden="hidden">
