@@ -127,7 +127,14 @@
 							</div>
 							<div class="form-group">
 								<label for="period">기간</label> 
-								<input type="text" class="form-control myCheck" id="period" name="period">
+								<div class="input-group">
+									<input type="text" class="form-control myCheck" id="period" name="period">
+									<p id="periodText"></p>
+									<input type="radio" class="form-control myCheck week" id="periodType" name="periodType">
+									<label for="periodType">주</label>
+									<input type="radio" class="form-control myCheck month" id="periodType" name="periodType">
+									<label for="periodType">개월</label>
+								</div>
 							</div>
 							<div class="form-group">
 								<label for="budget">예산</label> 
@@ -223,7 +230,7 @@
 
 	<c:import url="../template/footer.jsp"></c:import>
 	
-	<div id="sample">
+	<div id="sample" hidden="hidden">
 		<div>
 			<input class="btn btn-primary delete" type="button">
 		</div>
