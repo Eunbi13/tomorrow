@@ -111,8 +111,8 @@ to {
 	}
 }
 
-.category-list_fold {
-	display: flex;
+.product-card-body {
+	flex-direction: row;
 }
 </style>
 <c:import url="../template/bootStrap.jsp"></c:import>
@@ -235,10 +235,9 @@ to {
 
 	<c:forEach items="${list}" var="vo">
 		<div class="card">
-			<div class="card-body">
+			<div class="product-card-body">
 				<h5 class="card-title">${vo.productName}</h5>
 				<p class="card-text">${vo.productPrice}</p>
-				\
 			</div>
 		</div>
 	</c:forEach>
