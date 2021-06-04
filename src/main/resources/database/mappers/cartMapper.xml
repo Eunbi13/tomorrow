@@ -85,7 +85,7 @@
     	</insert>
     	
     	<delete id="setOptionDelete" parameterType="CartVO">
-    		delete cart where cartNum=#{cartNum}
+    		delete from cart where cartNum=#{cartNum}
     	</delete>
     	
     	<delete id="setProductDelete" parameterType="CartVO">

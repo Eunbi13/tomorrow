@@ -86,7 +86,7 @@ img{
         
         <c:forEach items="${brandAr}"  var="brandVO" varStatus="b">
 
-         <div class="card">
+         <div id="card${brandVO.brandNum}" class="card">
 			  <div class="card-header">
 				 
 	                <div class="p-1" style="text-align: center; font-size:16px;"> <c:out value="${brandVO.brandName}"/> 배송</div>
@@ -102,11 +102,11 @@ img{
 			  	<c:if test="${brandVO.brandNum eq productVO.brandNum}">
 			  	
 			     <!-- product  -->
-			  	
-				  <li class="media mb-4" id="products${p.index}">
+			  	<div id="products${p.index}">
+				  <li class="media mb-4" >
 				    <!-- Checked checkbox -->
-		            <div class="custom-control custom-checkbox">
-					  <input type="checkbox" class="custom-control-input del" id="Check${p.index}" value="${productVO.productNum}">
+		            <div class="custom-control custom-checkbox productCheck${productVO.brandNum}" title="${productVO.brandNum}">
+					  <input type="checkbox" class="custom-control-input del" id="Check${p.index}" title="${p.index}" value="${productVO.productNum}">
 					  <label class="custom-control-label" for="Check${p.index}"></label>
 					</div>
 					<!-- Checked checkbox  end -->
@@ -124,11 +124,12 @@ img{
 					     
 					       <c:forEach items="${cartVO.optionList}" var="optionList">
 					   <!-- option -->
-					       <input type="hidden" class="cartNum" id="cartNum" title="${cartVO.cartNum}">
+					     <li id="carts${i.index}">
+					       <input type="hidden" class="cartNum" id="cartNum${i.index}" title="${cartVO.cartNum}">
 					       <input type="hidden" class="optionPrice" id="optionPrice${i.index}" name="optionPrice" title="${cartVO.optionPrice}" value="${cartVO.optionPrice}">
 						   <input type="hidden" class="freeShipping${b.index}" name="isFree" /> 		     
-						   <li>
-							  <div style="width:100%; height:100%; padding-bottom:40px; word-break:break-all;word-wrap:break-word;" class="alert alert-secondary alert-dismissible fade show" role="alert">
+						   
+							  <div style="width:100%; height:100%; padding-bottom:40px; word-break:break-all;word-wrap:break-word;" class="alert alert-secondary alert-dismissible fade show" role="">
 							  		<div class="option">  <c:out value="${optionList.optionKinds}"/>: ${optionList.optionName} </div>
 							  		   <div style="width:70px; height:20px; font-size:12px; float: left;">
 							  		     
@@ -154,7 +155,7 @@ img{
 											  원
 					
 										</div> 
-							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							  <button type="button" class="close delete"  title="${i.index}" data-dismiss="" aria-label="Close">
 							    <span aria-hidden="true">&times;</span>
 							  </button>
 							 </div>
@@ -172,17 +173,17 @@ img{
 				    			옵션변경  |  바로결제
 				    		</div>
 				    		
-				    		<!-- 그냥. 돌아가는옵션들의 가격 = cartPrice 를 애드해서 뿌려줄까..? -->
+				    		<!-- productPrice -->
 				    		<div class="p-2" style=" font-size:18px;  font-weight: bold;">
 				    				<input  readonly="readonly" id="productVOPrice${p.index}" class="productPrice${b.index}  productPrice" title="${b.index}" style=" width:200px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
 				    			
 				    		</div>
 				    	</div>
 				        
-			        
+			             <hr>
 					 </li>
 					 
-				  <hr>
+				 </div>
 					   
 				  <!-- product end -->
 				  </c:if>
@@ -398,17 +399,23 @@ $(".directInputBox").keyup(function(){
 });
 
 
-//----------ajax Delete 
+//--------------------------------ajax Delete 
 
+//--------check box (product) 선택삭제  ( 완성!!)
 
 $("#carts").on("click", "#selectedDelete", function(){
 	const ar = []; //빈 배열
+	const index_ar =[];
+	const brand_ar=[];
 	$(".del").each(function(){
 		let ch = $(this).prop("checked");
 		if(ch){
-			ar.push($(this).val());
+			ar.push($(this).val()); //productNum!
+			index_ar.push($(this).attr("title"));
+			brand_ar.push($(this).parent().attr("title")); //brandNum!
 		}
 	});
+	console.log(brand_ar);
 	
 	
 	$.ajax({
@@ -418,11 +425,71 @@ $("#carts").on("click", "#selectedDelete", function(){
 		data:{productNum:ar},
 		success:function(data){
 			alert('삭제하였습니다');
+			for(var a in index_ar){
+				$("#products"+index_ar[a]).remove();
+				console.log(index_ar[a]+"가 삭제됨");
+			}
+			// 총 상품 가격 다시 계산
+			totalAgain=0;
+		
+		    $(".cartPricePlus").each(function(){
+			totalAgain=totalAgain+parseInt($(this).val());
+		    });
+		
+		    $("#totalPrice").val(totalAgain);
 			
+		    //  같은 brand에 다른 상품이 있는지 찾아 보고 없으면 brand 카드까지 삭제
+		    for(var b in brand_ar){
+		    	
+		    	if($(".productCheck"+brand_ar[b]).length < 1){
+					$("#card"+brand_ar[b]).remove();
+					console.log(brand_ar[b]+"가 삭제됨");
+		    	}
+			}
+		   
 		}
 	})
 
 });
+
+//--------- X눌러 option 삭제  
+
+ $(".delete").click(function () {
+	 
+	 alert("hi");
+	 let index = $(this).attr("title");
+	 console.log(index+":index");
+	 let cartNum= $("#cartNum"+index).attr("title");
+	 console.log(cartNum+":cartNum");
+	 $.ajax({
+		 type:"get",
+		 url:"../cart/optionDelete",
+		 data:{
+			 cartNum: cartNum
+		 },
+		 success:function(data){
+				alert('삭제하였습니다');
+				$("#carts"+index).remove();
+				console.log(index+"가 삭제됨");
+				
+				 // 총 상품 가격 다시 계산
+				 totalAgain=0;
+		
+			    $(".cartPricePlus").each(function(){
+				totalAgain=totalAgain+parseInt($(this).val());
+			    });
+			
+			    $("#totalPrice").val(totalAgain);
+
+				 //같은 상품에 가지고 있는 다른 옵션이 있는지 찾아오고 없으면 상품까지 삭제
+				 //  같은 brand에 다른 상품이 있는지 찾아 보고 없으면 brand 카드까지 삭제
+				
+				
+				
+				}
+	 })
+	
+ });
 
  
 

@@ -92,8 +92,14 @@ public class CartController {
 	}
 	
 	@GetMapping("optionDelete")
-	public int setOptionDelete(CartVO cartVO)throws Exception{
-		return cartService.setOptionDelete(cartVO);
+	public ModelAndView setOptionDelete(Long cartNum)throws Exception{
+		System.out.println("start!!!");
+		ModelAndView mv = new ModelAndView();
+		int result = cartService.setOptionDelete(cartNum);
+		System.out.println("finish!!");
+		mv.addObject("result", result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
 	}
 	
 	@GetMapping("productDelete")

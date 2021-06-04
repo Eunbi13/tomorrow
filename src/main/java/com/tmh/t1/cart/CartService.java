@@ -71,7 +71,9 @@ public class CartService {
 		return cartMapper.setInsert(cartVO);
 	}
 	
-	public int setOptionDelete(CartVO cartVO)throws Exception{
+	public int setOptionDelete(Long cartNum)throws Exception{
+		CartVO cartVO = new CartVO();
+		cartVO.setCartNum(cartNum);
 		return cartMapper.setOptionDelete(cartVO);
 	}
 	
@@ -89,6 +91,7 @@ public class CartService {
 			long num = productNum[i];
 			cartVO.setProductNum(num);;
 			cartVO.setUsername(username);
+			
 			
 			result = cartMapper.setProductDelete(cartVO);
 		}
