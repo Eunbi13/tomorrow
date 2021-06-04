@@ -103,7 +103,27 @@
 							</div>
 							<div class="form-group">
 								<label for="style">스타일</label> 
-								<input type="text" class="form-control myCheck" id="style" name="style">
+								<div class="dropdown">
+								<button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									    선택해주세요.
+									</button>
+									<div class="dropdown-menu style">
+								      <input class="dropdown-item styleOption" type="button" value="모던">
+								      <input class="dropdown-item styleOption" type="button" value="미니멀&심플">
+								      <input class="dropdown-item styleOption" type="button" value="내추럴">
+								      <input class="dropdown-item styleOption" type="button" value="북유럽">
+								      <input class="dropdown-item styleOption" type="button" value="빈티지&레트로">
+								      <input class="dropdown-item styleOption" type="button" value="클래식&앤틱">
+								      <input class="dropdown-item styleOption" type="button" value="프렌치&프로방스">
+								      <input class="dropdown-item styleOption" type="button" value="러블리&로맨틱">
+								      <input class="dropdown-item styleOption" type="button" value="인터스트리얼">
+								      <input class="dropdown-item styleOption" type="button" value="한국&아시아">
+								      <input class="dropdown-item styleOption" type="button" value="유니크&믹스매치">
+								    </div>
+								</div>
+								<div id="style">
+									<!-- dropdown 버튼 클릭시 버튼 추가, 삭제 -->
+								</div>
 							</div>
 							<div class="form-group">
 								<label for="period">기간</label> 
@@ -169,9 +189,9 @@
 
 	<c:import url="../template/footer.jsp"></c:import>
 	
-	<div id="sampleFmt">
+	<div id="sample">
 		<div>
-			<input class="btn btn-primary delete" id="fmtBtn" type="button">
+			<input class="btn btn-primary delete" type="button">
 		</div>
 	</div>
 	
