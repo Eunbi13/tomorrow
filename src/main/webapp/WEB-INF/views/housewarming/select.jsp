@@ -136,12 +136,21 @@
 
 		</div>
 
-		<sec:authentication property="principal" var="pinfo" />
+		<%-- <sec:authentication property="principal" var="pinfo" />
 		<sec:authorize access="isAuthenticated()">
 			<c:if test="${pinfo.username eq vo.username}">
 				<button type="button" class="btn btn-primary">Update</button>
 			</c:if>
+		</sec:authorize> --%>
+		
+		<sec:authentication property="principal" var="pinfo" />
+		<sec:authorize access="isAuthenticated()">
+			<c:if test="${pinfo.username eq vo.username}">
+				<a href="./update?hwNum=${vo.hwNum}" class="btn btn-success">Update</a>
+			</c:if>
 		</sec:authorize>
+		
+		<a href="./delete?hwNum=${vo.hwNum}" class="btn btn-danger">Delete</a>
 	</div>
 
 	<c:import url="../template/footer.jsp"></c:import>
