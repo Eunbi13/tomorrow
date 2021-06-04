@@ -20,5 +20,5 @@ public class ProductVO {
 	private Long shippingFee;
 	
 	private ProductImagesVO productImagesVO;
-	private OptionsVO optionsVO;
+//	private OptionsVO optionsVO;
 }

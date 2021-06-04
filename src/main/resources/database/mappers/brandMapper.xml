@@ -21,4 +21,8 @@
 			SELECT groupId, category_detail_NM FROM category 
 			WHERE category_detail_parent=0 AND category_parent=0
 		</select>
+		
+		
+		
+		
 	</mapper>

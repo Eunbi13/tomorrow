@@ -2,12 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.tmh.t1.option.Options">
+<mapper namespace="com.tmh.t1.option.OptionsMapper">
 	<insert id="setOption" parameterType="OptionsVO" useGeneratedKeys="true" keyProperty="optionNum">
-		INSERT into Options (kinds, NAME, price, ref, step) 
-		VALUES (#{kinds},#{name},#{price},#{optionNum}, 0)
+		INSERT into Options (optionKinds, optionName, optionPrice) 
+		VALUES (#{optionKinds},#{optionName},#{optionPrice})
 	</insert>
-	
+	<update id="updateOption" parameterType="OptionsVO">
+		UPDATE options SET ref=#{ref}, step=#{step} WHERE optionNum=#{optionNum}
+	</update>
 
 	
 </mapper>

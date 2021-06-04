@@ -24,6 +24,9 @@
 				(SELECT categoryID FROM brand_category WHERE brandnum = 
 					(SELECT brandNum FROM brand WHERE username =#{username}) )
 		</select>
+		<insert id="setProduct_Options" parameterType="java.util.Map">
+			INSERT INTO product_options VALUES (#{productNum}, #{optionNum})
+		</insert>
 		
 		
     <!-- 장은 -->

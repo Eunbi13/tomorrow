@@ -37,9 +37,9 @@ public class ProductController {
 	}
 	
 	@PostMapping("insert")
-	public String setProduct(Authentication auth,ProductVO productVO, MultipartFile [] files, MultipartFile rep)throws Exception{
+	public String setProduct(Authentication auth,ProductVO productVO,OptionsVO optionsVO, MultipartFile [] files, MultipartFile rep)throws Exception{
 		
-		productService.setProduct(auth, productVO, files, rep);
+		productService.setProduct(auth, productVO, optionsVO, files, rep);
 		
 		return "/option/optionInsert.";
 	}
