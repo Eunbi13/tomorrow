@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tmh.t1.category.CategoryVO;
+import com.tmh.t1.option.OptionsVO;
 
 @Controller
 @RequestMapping("/product/**")
@@ -28,19 +29,19 @@ public class ProductController {
 		
 		
 		
-		//List<CategoryVO> bigCategory =productService.getBigCategory(auth);
+		List<CategoryVO> bigCategory =productService.getBigCategory(auth);
 		
-		//model.addAttribute("bigCategory", bigCategory);
+		model.addAttribute("bigCategory", bigCategory);
 		
 		return "product/insertProduct";
 	}
 	
 	@PostMapping("insert")
-	public String setProduct(Authentication auth,ProductVO productVO, MultipartFile [] files, MultipartFile rep)throws Exception{
+	public String setProduct(Authentication auth,ProductVO productVO,OptionsVO optionsVO, MultipartFile [] files, MultipartFile rep)throws Exception{
 		
-		productService.setProduct(auth, productVO, files, rep);
+		productService.setProduct(auth, productVO, optionsVO, files, rep);
 		
-		return "/";
+		return "/option/optionInsert.";
 	}
 	
 	@GetMapping("list")

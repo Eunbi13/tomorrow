@@ -9,5 +9,6 @@ public class OptionsVO {
 	private String optionKinds;
 	private String optionName;
 	private Long optionPrice;
-	private Long extendsNum;
+	private Long ref;
+	private Long step;
 }

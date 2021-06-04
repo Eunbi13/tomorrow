@@ -1,29 +1,18 @@
 /**
  * 
  */
-
-//더하기 버튼
-$('#option').on("click", ".add",function(){
-	alert('hio')
-	
-});
-
-//옵션 추가
-
+let url="";
+let use= false;
 $('#use').click(function(){
-	
-	
-	
+	use = $('#use').prop("checked");
 });
 
-//디테일 옵션 추가
-$('#option').on("click", ".notDetailUse",function(){
-	$('.detailOption').empty();
+$('#btn').click(function(){
+	if(!use){
+		$('#productFrm').submit();
+	}else{
+		alert(use);
+	}
 	
-});
-$('#option').on("click", ".detailUse",function(){
-	
-	let optionForm = $('.options').html();
-	$('.detailOption').append(optionForm);
 	
 });

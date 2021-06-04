@@ -4,8 +4,8 @@
 
 <mapper namespace="com.tmh.t1.option.Options">
 	<insert id="setOption" parameterType="OptionsVO" useGeneratedKeys="true" keyProperty="optionNum">
-		INSERT into Options (productNum, kinds, NAME, price, extendsNum) 
-		VALUES (#{productNum},#{kinds},#{name},#{price},#{extendsNum})
+		INSERT into Options (productNum, kinds, NAME, price, ref, step) 
+		VALUES (#{productNum},#{kinds},#{name},#{price},#{optionNum}, 0)
 	</insert>
 	
 

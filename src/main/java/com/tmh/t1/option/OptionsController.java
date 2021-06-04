@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/options/**")
 public class OptionsController {
 	
-	@GetMapping("setOption")
+	@GetMapping("insert")
 	public String setOption() throws Exception{
-		return "options/optionForm";
+		return "options/optionInsert";
 	}
 	
-	@PostMapping("setOption")
+	@PostMapping("insert")
 	public void setOption(OptionsVO optionsVO)throws Exception{
 		System.out.println(optionsVO.getOptionKinds());
 		System.out.println(optionsVO.getOptionName());

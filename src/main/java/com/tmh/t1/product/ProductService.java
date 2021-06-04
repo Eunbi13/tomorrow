@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tmh.t1.category.CategoryMapper;
 import com.tmh.t1.category.CategoryVO;
 import com.tmh.t1.option.OptionsMapper;
+import com.tmh.t1.option.OptionsVO;
 import com.tmh.t1.util.FileManager;
 
 @Service
@@ -18,7 +20,7 @@ public class ProductService {
 	@Autowired
 	private ProductMapper productMapper;
 	@Autowired
-	private OptionsMapper optionMapper;
+	private OptionsMapper optionsMapper;
 	@Autowired
 	private FileManager fileManager;
 	
@@ -29,16 +31,22 @@ public class ProductService {
 	}
 	
 	//post insert
-	public Long setProduct(Authentication auth, ProductVO productVO, MultipartFile [] files, MultipartFile rep)throws Exception{
+	@Transactional(rollbackFor = Exception.class)
+	public Long setProduct(Authentication auth, ProductVO productVO ,OptionsVO optionsVO, MultipartFile [] files, MultipartFile rep)throws Exception{
 		ProductImagesVO imagesVO = new ProductImagesVO();
-		
 		String path="product/images";
+		
+		//brandNum 넣기 
+		productVO.setBrandNum(productMapper.getBrandNum(auth.getName()));
 		
 		//대표 이미지
 		String fileName = fileManager.save(rep, path);
 		productVO.setProductPic(fileName);
+		//저장
 		Long result = productMapper.setProduct(productVO);
-		
+		if(result<1) {
+			throw new Exception();
+		}
 		//상품 이미지
 		imagesVO.setProductNum(productVO.getProductNum());
 		for(MultipartFile f: files) {
@@ -47,8 +55,12 @@ public class ProductService {
 			result = productMapper.setImages(imagesVO);
 		}
 		
-		//옵션
-		
+		//옵션 저장
+		optionsVO.setProductNum( productVO.getProductNum());
+		result=optionsMapper.setOption(optionsVO);
+		if(result<1) {
+			throw new Exception();
+		}
 		
 		return result;
 	}
