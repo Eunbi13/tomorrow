@@ -11,14 +11,8 @@ $('#option').on("click", ".add",function(){
 //옵션 추가
 
 $('#use').click(function(){
-		$.ajax({
-			type: "GET",
-			url: "/options/setOption",
-			success: function(data){
-				$('#option').append(data);
-			}
-		})
-	}
+	
+	
 	
 });
 

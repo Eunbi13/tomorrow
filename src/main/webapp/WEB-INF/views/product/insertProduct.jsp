@@ -16,89 +16,104 @@
 <h1>상품 등록 페이지 </h1>
 
 
-	<form action="./insert" method="post" enctype="multipart/form-data">
-	
-	<div class="col-sm-8">
-		<div class="form-group">
-			<label class="col-sm-2 col-form-label">대표 이미지</label>
-			<input type="file" name="rep">
-			<div class="col-sm-10">
-				<small>※ 필수 항목 입니다.</small>
+	<form  action="./insert" method="post" enctype="multipart/form-data">
+		<fieldset >
+			<legend>제품 정보<span>*</span></legend>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">상품명</label>
+				<input class="form-control col-sm-10" name="productName" type="text" placeholder="Please ProductName">
 			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-2 col-form-label">사진 올리기 </label>
-			<input type="file" name="files">
-		</div>
-
-		<div class="form-group">
-			<input class="form-control" name="title" type="text" placeholder="Please title">
-		</div>
-	
-		<div class="form-group">
-			<textarea id="summernote" name="contents" class="form-control" id="exampleFormControlTextarea1" placeholder="Please contents"></textarea>
-		</div>
-	</div>
-	<div class="col-sm-4">
-		<div class="form-group"><!-- 더하기 버튼이 필요(옵션도,,) -->
-			<label for="exampleFormControlTextarea1">상품 이름</label>
-			<input class="form-control" name="productName" type="text" placeholder="Please ProductName">
-		</div>
-	
-		<div class="form-group row">
-			<label class="col-form-label">가격</label>
-			<div class="col-sm-10">
-				<input class="form-control" name="productPrice" type="number" placeholder="Please productPrice">
+		</fieldset>
+<br>
+		<fieldset >
+			<legend>이미지</legend>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">대표 이미지<span>*</span></label>
+				<input type="file" name="rep" class="form-control col-sm-10" >
 			</div>
-		</div>
-	
-		<div class="form-group row">
-			<label class="col-form-label">할인율 설정</label>
-			<div class="col-sm-10">
-				<input class="form-control" name="discount" type="number" placeholder="Please discount">
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">사진 올리기 </label>
+				<input type="file" name="files" class="form-control col-sm-10" >
 			</div>
-		</div>
-		
-		<div class="form-group row">
-			<label class="col-form-label">배송비 설정</label>
-			<div class="col-sm-10">
-				<input class="form-control" name="shippingFee" type="number" placeholder="Please shippingFee">
-			</div>
-		</div>
-	</div>
-	<div class="col-sm-12"> 
-		<div class="form-group row"><!-- 클릭하면 ajax로 중부류, 소분류 불러오기 -->
-			<label class="col-sm-2 col-form-label">취급 카테고리<span>*</span></label>
-			<div class="col-sm-10">
-				<label class="col-sm-2 col-form-label">대분류</label>
-				<c:forEach items="${bigCategory}" var="vo">
-				<div class=" form-check form-check-inline ">
-					<input class="form-check-input" type="checkbox" name="categories" value="${vo.categoryID}">
-					<label class="form-check-label" for="inlineCheckbox1">${vo.category_detail_NM }</label>
+		</fieldset>
+<br>
+		<fieldset >
+		<legend>판매가<span>*</span></legend>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">가격</label>
+				<div class="col-sm-10">
+					<input class="form-control" name="productPrice" type="number" placeholder="Please productPrice">
 				</div>
-				</c:forEach>
 			</div>
-		</div>
-	</div>
-		<button>button</button>
-	</form>
-
-</div>
 		
-	<div class="container " style="margin-bottom: 50px;">
-	<div class="col-sm-12">
-		옵션 추가<input type="button" id="use" name="o1">
-	</div>
+			<div class="form-group row">
+				<label class="col-sm-2  col-form-label">할인율//설정함 설정 안함 추가</label>
+				<div class="col-sm-10">
+					<input class="form-control" name="discount" type="number" placeholder="Please discount">
+				</div>
+			</div>
+			
+			<div class="form-group row">
+				<label class="col-sm-2  col-form-label">배송비 설정</label>
+				<div class="col-sm-10">
+					<input class="form-control" name="shippingFee" type="number" placeholder="Please shippingFee">
+				</div>
+			</div>
+		</fieldset>
+<br>
+		<fieldset>
+			<legend>카테고리<span>*</span></legend>	
+			<div class="col-sm-12"> 
+				<div class="form-group row"><!-- 클릭하면 ajax로 중부류, 소분류 불러오기 -->
+					<div class="col-sm-10">
+						<label class="col-sm-2 col-form-label">대분류</label>
+						<c:forEach items="${bigCategory}" var="vo">
+						<div class=" form-check form-check-inline ">
+							<input class="form-check-input" type="checkbox" name="categories" value="${vo.categoryID}">
+							<label class="form-check-label" for="inlineCheckbox1">${vo.category_detail_NM }</label>
+						</div>
+						</c:forEach>
+					</div>
+				</div>
+			</div>
+		</fieldset>
+<br>
+		
+		
+		<fieldset>
+			<legend>옵션</legend>
+			<div class="col-sm-12">
+			<label class="col-sm-2 col-form-label">옵션 구성 타입 </label>
+				조합 일체선택형<input type="radio" id="notUse" name="o1" checked>
+				조합 분리선택형<input type="radio" id="use" name="o1">
+				<div id="option">
+					<div class="form-group row col-sm-3">
+					<label class="col-form-label">옵션 종류</label>
+					<div >
+						<input class="form-control" name="optionKinds" type="text" placeholder="Please kinds">
+					</div>
+				</div>
+				<div class="form-group row col-sm-3">
+					<label class="col-form-label">옵션별 이름</label>
+					<div >
+						<input class="form-control" name="optionName" type="text" placeholder="Please name">
+					</div>
+				</div>
+				<div class="form-group row col-sm-3">
+					<label class="col-form-label">옵션별 가격</label>
+					<div >
+						<input class="form-control" name="optionPrice" type="number" placeholder="Please price">
+					</div>
+				</div>
+				
+				</div>
+			</div>
+		</fieldset>
 
-
-	<form action="/options/setOption" method="post">
-		<!-- 옵션 productInsert.js&optionForm -->
-			<div id="option"></div>
-	</form>	
-
+	</form>
 </div>
 
-<c:import url="../template/footer.jsp"></c:import>
-<script type="text/javascript" src="/js/productInsert.js"></script>
+<c:import url="../template/footer.jsp"></c:import><!-- 
+<script type="text/javascript" src="/js/productInsert.js"></script> -->
 </body>
 </html>

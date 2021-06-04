@@ -25,6 +25,7 @@
 				<input class="form-control" name="optionPrice" type="number" placeholder="Please price">
 			</div>
 		</div>
+		
 		<div class="add form-group row col-sm-1">
 			<img alt="옵션 추가하기" src="/images/plusIcon.png"  style="height: 30px; width: 30px;">	
 		</div>
