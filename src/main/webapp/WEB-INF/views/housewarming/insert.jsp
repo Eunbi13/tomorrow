@@ -76,8 +76,9 @@
 							</div>
 							<div class="form-group">
 								<label for="familyType">가족형태</label> 
-								<div class="dropdown">
-									<button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<input type="text" class="form-control myCheck" id="familyType" name="familyType">
+								<!-- <div class="dropdown">
+								<button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									    선택해주세요.
 									</button>
 									<div class="dropdown-menu familyType">
@@ -91,8 +92,8 @@
 								</div>
 								
 								<div id="fmt">
-									<!-- dropdown 버튼 클릭시 버튼 추가, 삭제 -->
-								</div>
+									dropdown 버튼 클릭시 버튼 추가, 삭제
+								</div> -->
 								
 							</div>
 							
@@ -175,7 +176,7 @@
 	</div>
 	
 	
-	<script type="text/javascript" src="/js/hwInsert.js"></script>
+	<!-- <script type="text/javascript" src="/js/hwInsert.js"></script> -->
 
 </body>
 </html>

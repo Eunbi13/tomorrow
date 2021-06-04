@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,10 +62,13 @@
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
-	<div class="jumbotron text-center" style="margin-bottom: 0">
-		<p>cover image</p>
+	
+	<div>
+		<!-- <img alt="coverImg" src="" > -->
+		<c:forEach items="${vo.hwfile}" var="file">
+			<a href="/upload/housewarming/${file.fileName}">${file.originName}</a>
+		</c:forEach>
 	</div>
-
 
 	<div class="container" style="margin-top: 30px">
 		<div class="row">
@@ -101,6 +105,13 @@
 			</div>
 
 		</div>
+		
+		<sec:authentication property="principal" var="pinfo"/>
+		<sec:authorize access="isAuthenticated()">
+			<c:if test="${pinfo.username eq vo.username}">
+				<button type="button" class="btn btn-primary">Update</button>
+			</c:if>
+		</sec:authorize>
 	</div>
 
 	<c:import url="../template/footer.jsp"></c:import>

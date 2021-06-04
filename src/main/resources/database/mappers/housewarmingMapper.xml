@@ -38,7 +38,7 @@
    			<result column="username" property="username"/>
    			<result column="contents" property="contents"/>
    			<result column="hit" property="hit"/>
-   			<collection property="file" javaType="HwFileVO">
+   			<collection property="hwfile" javaType="HwFileVO">
    				<id column="fileNum" property="fileNum"/>
    				<result column="fileName" property="fileName"/>
    				<result column="originName" property="originName"/>
