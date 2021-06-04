@@ -3,28 +3,20 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.tmh.t1.category.CategoryMapper">
+<select id="selectCategoryOne" parameterType="CategoryVO" resultType="CategoryVO">
+SELECT groupId, category_detail_NM FROM category WHERE category_detail_parent=1 AND category_parent=1
+</select>
 
-	<select id="selectCategory" resultType="CategoryVO"
-		parameterType="CategoryVO">
-		SELECT
-		CONCAT(A.group_ID, A.category_LEV, A.category_detail_LEV) AS n_key,
-		A.category_NM,
-		CONCAT(repeat(' ',A.category_parent_LEV * 3), A.category_detail_NM) as category_name,
-		CASE A.category_parent_LEV
-		WHEN 0 THEN C.category_detail_NM
-		WHEN 1 THEN CONCAT(B.category_detail_NM,' > ', A.category_detail_NM)
-		WHEN 2 THEN CONCAT(C.category_detail_NM, ' > ', B.category_detail_NM,' >
-		', A.category_detail_NM)
-		END as navigator
-		FROM Template_TB A LEFT JOIN Template_TB B
-		ON A.category_parent_LEV = B.category_LEV
-		AND A.category_detail_parent_LEV = B.category_detail_LEV
-		LEFT JOIN Template_TB C
-		ON A.group_ID = C.group_ID
-		WHERE A.category_ID > 0
-		AND C.category_id = ( SELECT category_id FROM Template_TB sub2 where
-		category_ID > 0 and category_LEV = 1)
-		ORDER BY navigator
-	</select>
+<select id="selectCategoryTwo" parameterType="CategoryVO" resultType="CategoryVO">
+SELECT * FROM category WHERE category_detail_parent=2 AND category_parent=2 AND groupid=
+(SELECT distinct groupId FROM category WHERE category_detail_parent=1 AND category_parent=1)
+</select>
+
+<select id="selectCategoryThree" parameterType="CategoryVO" resultType="CategoryVO">
+SELECT * FROM 
+(SELECT * FROM category WHERE category_detail_parent=2 AND category_parent=2 AND groupid=
+(SELECT distinct groupId FROM category WHERE category_detail_parent=1 AND category_parent=1)) C
+ WHERE C.category_detail_lev=3
+ </select>
 </mapper>
 

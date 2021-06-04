@@ -10,27 +10,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/product/**")
+@RequestMapping("/store/**")
 public class ProductController {
 	//store list, select
 	
 	@Autowired
 	private ProductService productService;
 	
-	@GetMapping("list")
+	@GetMapping("productlist")
 	public void getList(ProductVO productVO, Model model)throws Exception {
 		List<ProductVO> ar = productService.getList(productVO);
 		model.addAttribute("list", ar);
 	}
 	
 	//test
-	@GetMapping("list2")
+	@GetMapping("productlist2")
 	public void getList2(ProductVO productVO, Model model)throws Exception {
 		List<ProductVO> ar = productService.getList(productVO);
 		model.addAttribute("list2", ar);
 	}
 	
-	@GetMapping("select")
+	@GetMapping("productselect")
 	public ModelAndView getSelect(ProductVO productVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		productVO = productService.getSelect(productVO);

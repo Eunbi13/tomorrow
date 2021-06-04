@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("")
+@RequestMapping("/store/**")
 public class CategoryController {
 	
 	@Autowired
 	private CategoryService categoryService;
 	
-	@GetMapping("")
+	@GetMapping("category")
 	public void selectCategory()throws Exception{
 //		ModelAndView mv = new ModelAndView();
 		
