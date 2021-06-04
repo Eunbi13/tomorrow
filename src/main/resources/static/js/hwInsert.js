@@ -96,6 +96,12 @@ function del() {
 	});
 }
 
+// contents 클릭시 사진추가 버튼 생성
 $(".contents").on("click", function() {
 	
 })
+
+// 기간 -> 주, 개월 클릭시 text 변경
+$(".week").on("click", function() {
+	$("#periodText").text("주");
+});
