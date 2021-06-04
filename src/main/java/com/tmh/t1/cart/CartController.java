@@ -111,10 +111,10 @@ public class CartController {
 		return mv;
 	}
 	
-	@PostMapping("update")
-	public ModelAndView setUpdate(CartVO cartVO)throws Exception{
+	@PostMapping("amountUpdate")
+	public ModelAndView setAmountUpdate(CartVO cartVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = cartService.setUpdate(cartVO);
+		int result = cartService.setAmountUpdate(cartVO);
 		mv.addObject("result", result);
 		mv.setViewName("common/ajaxResult");
 		return mv;

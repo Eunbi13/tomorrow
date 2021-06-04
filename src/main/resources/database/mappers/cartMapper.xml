@@ -92,10 +92,9 @@
     		delete from cart where productNum=#{productNum} and username=#{username}
     	</delete>
     	
-    	<update id="setUpdate" parameterType="CartVO">
-    		update cart set optionNum=#{optionNum}, amount=#{amount}, validity=#{validity}, 
-    		isBundled=#{isBundled}, isFree=#{isFree},cartPrice=#{cartPrice},optionPrice=#{optionPrice}
-    		where productNum=#{productNum} and username=#{username}
+    	<update id="setAmountUpdate" parameterType="CartVO">
+    		update cart set amount=#{amount}, cartPrice=#{cartPrice}
+    		where cartNum=#{cartNum} and username=#{username}
     	</update>
     
     

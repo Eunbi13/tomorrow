@@ -98,8 +98,13 @@ public class CartService {
 		return result;
 	}
 	
-	public int setUpdate(CartVO cartVO)throws Exception{
-		return cartMapper.setUpdate(cartVO);
+	public int setAmountUpdate(CartVO cartVO)throws Exception{
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal; 
+		String username = userDetails.getUsername();
+		cartVO.setUsername(username);
+		
+		return cartMapper.setAmountUpdate(cartVO);
 	}
 
 
