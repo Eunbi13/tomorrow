@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -75,12 +76,7 @@ public class CartController {
 		
 	}
 	
-	@GetMapping("doPlus")
-	@ResponseBody
-	public long plus(long num1, long num2) {
-		long rs = num1+num2;
-		return rs;
-	}
+	
 	
 //	@GetMapping("doPlusJson")
 //	@ResponseBody
@@ -101,14 +97,22 @@ public class CartController {
 	}
 	
 	@GetMapping("productDelete")
-	public int setProductDelete(CartVO cartVO)throws Exception{
-		return cartService.setProductDelete(cartVO);
+	public ModelAndView setProductDelete(long [] productNum)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = cartService.setProductDelete(productNum);
+		mv.addObject("result", result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
 	}
 	
-	@GetMapping("update")
-	public int setUpdate(CartVO cartVO)throws Exception{
-		return cartService.setUpdate(cartVO);
+	@PostMapping("update")
+	public ModelAndView setUpdate(CartVO cartVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = cartService.setUpdate(cartVO);
+		mv.addObject("result", result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
 	}
-
-
+    
+	
 }

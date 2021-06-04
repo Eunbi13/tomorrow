@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.tmh.t1.brand.BrandVO;
@@ -73,8 +75,24 @@ public class CartService {
 		return cartMapper.setOptionDelete(cartVO);
 	}
 	
-	public int setProductDelete(CartVO cartVO)throws Exception{
-		return cartMapper.setProductDelete(cartVO);
+	public int setProductDelete(long [] productNum)throws Exception{
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal; 
+		String username = userDetails.getUsername();
+	   
+	   	System.out.println("username:"+username);
+	   	
+		int result=0;
+		
+		for(int i=0; i<productNum.length;i++) {
+			CartVO cartVO = new CartVO();
+			long num = productNum[i];
+			cartVO.setProductNum(num);;
+			cartVO.setUsername(username);
+			
+			result = cartMapper.setProductDelete(cartVO);
+		}
+		return result;
 	}
 	
 	public int setUpdate(CartVO cartVO)throws Exception{
