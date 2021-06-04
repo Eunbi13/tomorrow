@@ -8,11 +8,6 @@ $('#use').click(function(){
 });
 
 $('#btn').click(function(){
-	if(!use){
-		$('#productFrm').submit();
-	}else{
-		alert(use);
-	}
-	
+
 	
 });

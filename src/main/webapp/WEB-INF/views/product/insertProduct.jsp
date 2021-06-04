@@ -122,7 +122,7 @@
 		</fieldset>
 		
 		<div id="btn" class="btn btn-secondary">저장하기</div>
-		<small>조합 분리형을 선택한 경우, 개별 옵션 페이지로 넘어갑니다.</small>
+		<small>adfasdgads.</small>
 	</form>
 </div>
 

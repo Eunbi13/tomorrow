@@ -2,6 +2,10 @@ package com.tmh.t1.product;
 
 
 
+import java.util.List;
+
+import com.tmh.t1.option.OptionsVO;
+
 import lombok.Data;
 
 @Data
@@ -16,4 +20,6 @@ public class ProductVO {
 	private Long shippingFee;
 	
 	
+	private OptionsVO optionsVO;
+	private List<OptionsVO> optionsVOs;
 }

@@ -32,7 +32,7 @@ public class ProductService {
 	
 	//post insert
 	@Transactional(rollbackFor = Exception.class)
-	public Long setProduct(Authentication auth, ProductVO productVO ,OptionsVO optionsVO, MultipartFile [] files, MultipartFile rep)throws Exception{
+	public Long setProduct(Authentication auth, ProductVO productVO , MultipartFile [] files, MultipartFile rep)throws Exception{
 		ProductImagesVO imagesVO = new ProductImagesVO();
 		String path="product/images";
 		
@@ -56,8 +56,7 @@ public class ProductService {
 		}
 		
 		//옵션 저장
-		optionsVO.setProductNum( productVO.getProductNum());
-		result=optionsMapper.setOption(optionsVO);
+		//List<Long> optionNums = //optionNum을 배열로 받아둬야 함 product_options때문에 
 		if(result<1) {
 			throw new Exception();
 		}
