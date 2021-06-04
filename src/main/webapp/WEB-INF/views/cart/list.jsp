@@ -68,7 +68,7 @@ img{
                   <div class="d-flex justify-content-between d-top">
 				    <div class="p-2 ">
 		                       <div class="custom-control custom-checkbox">
-								  <input type="checkbox" class="custom-control-input" id="allCheck">
+								  <input type="checkbox" checked class="custom-control-input" id="allCheck">
 								  <label class="custom-control-label" style="font-size:18px;" for="allCheck">모두선택</label>
 								</div>
 				    </div>
@@ -106,7 +106,7 @@ img{
 				  <li class="media mb-4" >
 				    <!-- Checked checkbox -->
 		            <div class="custom-control custom-checkbox productCheck${productVO.brandNum}" title="${productVO.brandNum}">
-					  <input type="checkbox" class="custom-control-input del" id="Check${p.index}" title="${p.index}" value="${productVO.productNum}">
+					  <input type="checkbox" checked class="custom-control-input del" id="Check${p.index}" title="${p.index}" value="${productVO.productNum}">
 					  <label class="custom-control-label" for="Check${p.index}"></label>
 					</div>
 					<!-- Checked checkbox  end -->
@@ -122,10 +122,10 @@ img{
 					     
 					       <c:forEach items="${cartVO.optionList}" var="optionList">
 					   <!-- option -->
-					     <li id="carts${i.index}" title="${cartVO.brandVO}">
+					     <li id="carts${i.index}" title="${cartVO.brandNum}">
 					       <input type="hidden" class="cartNum " id="cartNum${i.index}" title="${cartVO.cartNum}">
 					       <input type="hidden" class="optionPrice" id="optionPrice${i.index}" name="optionPrice" title="${cartVO.optionPrice}" value="${cartVO.optionPrice}">
-						   <input type="hidden" class="freeShipping${b.index}" name="isFree" /> 		     
+						   <input type="hidden" class="freeShipping${b.index}" name="isFree" value="${cartVO.isFree}"/> 		     
 						   
 							  <div title="${cartVO.productNum}" style="width:100%; height:100%; padding-bottom:40px; word-break:break-all;word-wrap:break-word;" class="cartCheck${cartVO.productNum} alert alert-secondary alert-dismissible fade show" role="">
 							  		<div class="option">  <c:out value="${optionList.optionKinds}"/>: ${optionList.optionName} </div>
@@ -194,7 +194,7 @@ img{
 			    
 			  </div>
 					  <div class="card-footer text-center text-muted">
-					   배송비 무료
+					  	<input readonly="readonly" id="shipping${b.index}" value="배송비 무료">
 					  </div>
 			  
 			</div>
@@ -253,14 +253,15 @@ img{
 </div>
 	</form>		
 <script type="text/javascript">
-// product당 가격(=option가격들의 합) 세팅
-let total=0;
+//--------첫 로딩 시 금액 세팅
+
+let total=0; //총 상품 금액
 
 $(".cartPricePlus").each(function(){ 
 	total=total+parseInt($(this).val());
 
     
-    let p_index = $(this).attr("title"); 
+    let p_index = $(this).attr("title"); //productAr의 index
     console.log("p_index:"+p_index);
      
     let price=0; //각 option들의 가격을 더한 product범위의 가격
@@ -270,17 +271,18 @@ $(".cartPricePlus").each(function(){
 		price=price+parseInt($(this).val());
      });
      
-	$("#productVOPrice"+p_index).val(price);
+	$("#productVOPrice"+p_index).val(price); // product당 가격(=option가격들의 합) 세팅
 	
 	console.log("price:"+price);
     
 	console.log("total:"+total);
 	
-	
 
 });
 
-$("#totalPrice").val(total);
+$("#totalPrice").val(total); // 총 상품 금액
+
+//------------check box를 건들때 마다 총 상품 금액 변경
 
 //무료배송여부 결정 
 $(".productPrice").each(function(){ 
@@ -308,6 +310,8 @@ $(".productPrice").each(function(){
 	
 
 });
+
+//묶음배송여부 결정
 
 
 
@@ -463,7 +467,7 @@ $("#carts").on("click", "#selectedDelete", function(){
 	 let productNum=$(this).parent().attr("title")  //productNum 
 	 console.log(productNum+":productNum");
 	 let brandNum= $("#carts"+index).attr("title"); //brandnum
-	 console.log(brandnum+":brandnum");
+	 console.log(brandNum+":brandNum");
 	 
 	 
 	 $.ajax({
@@ -486,18 +490,18 @@ $("#carts").on("click", "#selectedDelete", function(){
 			
 			    $("#totalPrice").val(totalAgain);
 
-				 //같은 상품에 가지고 있는 다른 옵션이 있는지 찾아오고 없으면 상품까지 삭제
+				 //같은 상품안에 가지고 있는 다른 옵션이 있는지 찾아오고 없으면 상품까지 삭제
 				 if($(".cartCheck"+ productNum).length < 1){
-					 $("#products"+procuctNum).remove();
-					 console.log(procuctNum+"procuctNum 가 삭제됨");
+					 $("#products"+productNum).remove();
+					 console.log(productNum+"productNum 가 삭제됨");
 				 }
 				 
-				 // 같은 brand에 다른 상품이 있는지 찾아 보고 없으면 brand 카드까지 삭제
+				 //같은 brand에 가지고 있는 다른 상품이 있는지 찾아 보고 없으면 brand 카드까지 삭제
 			  
 			    	
 			    	if($(".productCheck"+brandNum).length < 1){
-						$("#card"+brand_ar[b]).remove();
-						console.log(brand_ar[b]+"가 삭제됨");
+						$("#card"+brandNum).remove();
+						console.log(brandNum+"brandNum가 삭제됨");
 			    	}
 				
 				
