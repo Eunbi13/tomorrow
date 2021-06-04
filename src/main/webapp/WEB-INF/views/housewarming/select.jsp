@@ -70,49 +70,20 @@
 		</c:forEach>
 	</div>
 
-	<div class="container" style="margin-top: 30px">
-		<div class="row">
-			<h5 class="pb-4 mb-4">온라인 집들이</h5>
-
-			<div class="blog-post">
-				<h2 class="blog-post-title">${vo.title}</h2>
-				<p class="blog-post-meta">
-					<a href="#">${vo.username}</a>
-					<input type="button" class="btn btn-primary" value="팔로우">
-				</p>
-				<div class="jumbotron mt-3">
-				    <p>공간 ${vo.space}</p>
-				    <p>평수 ${vo.spaceSize}</p>
-				    <p>작업 ${vo.work}</p>
-				    <p>분야 ${vo.field}</p>
-				    <p>가족형태 ${vo.familyType}</p>
-				    <p>지역 ${vo.area}</p>
-				    <p>기간 ${vo.period}</p>
-				    <p>예산 ${vo.budget}</p>
-				    <p>세부공사 ${vo.detail}</p>
-				</div>
-
-				<p>
-					${vo.contents}
-				</p>
-				<p>
-					Yeah, she dances to her own beat. Oh, no. You could've been the
-					greatest. 'Cause, baby, <a href="#">you're a firework</a>. Maybe a
-					reason why all the doors are closed. Open up your heart and just
-					let it begin. So très chic, yeah, she's a classic.
-				</p>
-				
-			</div>
-
-		</div>
-		
-		<sec:authentication property="principal" var="pinfo"/>
-		<sec:authorize access="isAuthenticated()">
-			<c:if test="${pinfo.username eq vo.username}">
-				<button type="button" class="btn btn-primary">Update</button>
-			</c:if>
-		</sec:authorize>
-	</div>
+	<div class="container">
+	<h2>${vo.title}</h2>
+	<h2>${vo.contents}</h2>
+	
+	<a href="@{./update(num=${vo.hwNum})}" class="btn btn-success">Update</a>
+	<a href="@{./delete(num=${vo.hwNum})}" class="btn btn-danger">Delete</a>
+	<a href="@{./reply(num=${vo.hwNum})}" class="btn btn-info">Reply</a>
+	
+	<c:forEach items="${vo.hwfile}" var="file">
+		<!-- <a th:href="@{|/upload/${board}/${fileVO.fileName}|}" th:text="${fileVO.oriName}"></a> -->
+		<a href="@{./fileDown(fileName=${file.fileName}, originName=${file.originName})}">${file.originName}</a>
+	</c:forEach>>
+	
+</div>
 
 	<c:import url="../template/footer.jsp"></c:import>
 </body>

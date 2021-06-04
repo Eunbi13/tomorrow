@@ -47,12 +47,33 @@ public class HousewarmingController {
 		HousewarmingVO housewarmingVO = new HousewarmingVO();
 		housewarmingVO.setUsername(username);
 		model.addAttribute("vo", housewarmingVO);
+		model.addAttribute("action", "insert");
 	}
 	
 	@PostMapping("insert")
 	public String setInsert(HousewarmingVO housewarmingVO, MultipartFile file) throws Exception {
 		int result = housewarmingService.setInsert(housewarmingVO, file);
 		System.out.println("Insert : " + result);
+		return "redirect:./list";
+	}
+	
+	@GetMapping("update")
+	public String setUpdate(HousewarmingVO housewarmingVO, Model model) throws Exception {
+		housewarmingVO = housewarmingService.getSelect(housewarmingVO);
+		model.addAttribute("vo", housewarmingVO);
+		model.addAttribute("action", "update");
+		return "board/form";
+	}
+	
+	@PostMapping("update")
+	public String setUpdate(HousewarmingVO housewarmingVO) throws Exception {
+		int result = housewarmingService.setUpdate(housewarmingVO);
+		return "redirect:./list";
+	}
+	
+	@GetMapping("delete")
+	public String setDelete(HousewarmingVO housewarmingVO) throws Exception {
+		int result = housewarmingService.setDelete(housewarmingVO);
 		return "redirect:./list";
 	}
 

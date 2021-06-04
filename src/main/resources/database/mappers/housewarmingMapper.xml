@@ -59,4 +59,16 @@
    			update housewarming set hit=hit+1 where hwNum=#{hwNum}
    		</update>
    		
+   		<update id="setUpdate" parameterType="HousewarmingVO">
+   			update housewarming 
+   			set space=#{space}, spaceSize=#{spaceSize}, work=#{work}, field=#{field}, familyType=#{familyType}, area=#{area}, style=#{style}, 
+   				period=#{period}, budget=#{budget}, totalTone=#{totalTone}, wallColor=#{wallColor}, bottomColor=#{bottomColor}, detail=#{detail}, 
+   				link=#{link}, copyright=#{copyright}, title=#{title}, contents=#{contents} 
+   			where hwNum=#{hwNum}
+   		</update>
+   		
+   		<delete id="setDelete" parameterType="HousewarmingVO">
+   			delete from housewarming where hwNum=#{hwNum}
+   		</delete>
+   		
     </mapper>
