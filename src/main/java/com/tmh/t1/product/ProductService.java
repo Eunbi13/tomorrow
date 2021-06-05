@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.tmh.t1.category.CategoryMapper;
 import com.tmh.t1.category.CategoryVO;
 import com.tmh.t1.option.OptionsMapper;
 import com.tmh.t1.option.OptionsVO;
@@ -23,6 +24,8 @@ public class ProductService {
 	private ProductMapper productMapper;
 	@Autowired
 	private OptionsMapper optionsMapper;
+	@Autowired 
+	private CategoryMapper categoryMapper;
 	@Autowired
 	private FileManager fileManager;
 	@Value("${productInsert.filePath}")
