@@ -172,8 +172,8 @@ img{
 				    		</div>
 				    		
 				    		<!-- productPrice -->
-				    		<div class="p-2" style=" font-size:18px;  font-weight: bold;">
-				    				<input  readonly="readonly" id="productVOPrice${p.index}" class="productPrice${b.index}  productPrice" title="${b.index}" style=" width:200px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
+				    		<div class="p-2" style=" font-size:18px;  font-weight: bold;" title="${p.index}">
+				    				<input  readonly="readonly" id="productVOPrice${p.index}" class="productPrice${b.index} productNum_productPrice${productVO.productNum} productPrice" title="${b.index}" style=" width:200px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
 				    			
 				    		</div>
 				    	</div>
@@ -288,7 +288,7 @@ $(".cartPricePlus").each(function(){
 
 $("#totalPrice").val(total); // 총 상품 금액 입력
 
-//------------check box를 건들때 마다 총 상품 금액 변경
+
 
 
 
@@ -347,9 +347,120 @@ let payment=totalShipping+total;
 $("#payment").val(payment);  //총 결제금액 입력
 
 
-// ------세팅끝
+// ----------세팅끝
 
+//------------check box(범위: product)를 건들때 마다 총 상품 금액 변경
+$(".del").click(function(){
+    const checkedNum = [];
+	//모든 checkbox를 검사해서 checked 된 것들만...계산해서 총 상품 가격, 총배송비, 총 결제금액 계산
+	$(".del").each(function(){
+		if($(this).prop('checked')==true){
+			
+		    console.log('체크된 상태:'+$(this).val());
+		    let productNum=$(this).val();
+	
+		    checkedNum.push(productNum);
 
+		} else{
+		    console.log('체크 안 된 상태:'+$(this).val());
+
+		}
+	});
+	console.log("checkedNum:"+checkedNum)
+	
+	
+				$(".productPrice").each(function(){ 
+				       
+					
+				    
+				    let b_index = $(this).attr("title");  //${b.index} brand index
+				    console.log("b_index:"+b_index);
+				     
+				    let brandPrice=0; 
+					
+					
+					
+						  for(let c in checkedNum){
+							
+							     console.log( "checkedNum[c]: "+checkedNum[c]);
+							    
+							     $(".productPrice"+b_index).each(function(){// 그 브랜드 안의 product의 반복(돌때, 체크 된 애들만..)
+							    
+							            if($(".productNum_productPrice"+checkedNum[c]) == $(".productPrice"+b_index)){
+							            	console.log("productNum_productPrice: "+$('.productNum_productPrice'+checkedNum[c]));
+							          // 체크된, 프로덕트 넘버 애들만 더해서 브랜드 가격 만들기
+							             brandPrice=brandPrice+parseInt($(this).val()); // product당 가격의 반복 = brand당 총 가격
+								              }
+							     
+							     });
+							     
+			                }
+			      
+				     
+				
+			  
+			
+			
+					
+					console.log("brandPrice:"+brandPrice);
+				    
+				    if(brandPrice>=30000){//product당 가격의 반복 = brand당 총 가격이 3만원넘으면
+				    	console.log(b_index+" is over30000");
+				    	//$(".freeShipping"+b_index).val(1);
+				    	//$("#shipping"+b_index).val("배송비 무료");
+				    	$("#shipping"+b_index).attr("title", 0);
+				    } else{
+				    	//$("#shipping"+b_index).val("배송비 3000원");
+				    	$("#shipping"+b_index).attr("title", 3000);
+				    	
+				
+				    }
+						//모든 브랜드 프라이스 더하면 총 상품가격- 중복 가능성있음.. 그럼 임의의 인풋만들어 브랜드 가격 저장해놓기.
+		
+			
+				});
+				//총 배송비
+				let totalShipping=0; 
+				
+				$(".shipping").each(function(){//
+					
+					let shipping =$(this).attr("title");
+					console.log("shipping:"+shipping);
+					
+					totalShipping= totalShipping+parseInt(shipping);	
+					
+				});
+				 
+				console.log(totalShipping);
+				
+				$("#totalShipping").val(totalShipping);// 총 배송비 입력 오케비
+				
+				//----------총 결제금액!!
+			//총 상품 가격 부터 다시.
+			let totalcheckedPrice= 0;
+			
+			for(let c in checkedNum){
+			       $(".productNum_productPrice"+c).each(function(){ 
+			           totalcheckedPrice= totalcheckedPrice+parseInt($(this).val());
+			           console.log(".productNum_productPrice: "+parseInt($(this).val()));
+			      });
+			
+			}
+			
+			   $("#totalPrice").val(totalcheckedPrice);
+				
+				let payment=totalShipping+parseInt($("#totalPrice").val());
+				
+				$("#payment").val(payment);  //총 결제금액 입력
+				
+				
+				
+
+	
+	
+});
+
+//------------check box(범위: product)를 건들때 마다 총 상품 금액 변경   end
 
 	
 //--------------------수량을 변경하면 바뀌는 금액들
@@ -411,14 +522,14 @@ $(".directInputBox").keyup(function(){
 			$(".productPrice").each(function(){ 
 				
 			    
-			    let b_index = $(this).attr("title"); 
+			    let b_index = $(this).attr("title");  //${b.index} brand index
 			    console.log("b_index:"+b_index);
 			     
 			    let brandPrice=0; 
 				
 				
-				$(".productPrice"+b_index).each(function(){
-					brandPrice=brandPrice+parseInt($(this).val());
+				$(".productPrice"+b_index).each(function(){// 그 브랜드 안의 product의 반복
+					brandPrice=brandPrice+parseInt($(this).val());  // product당 가격의 반복 = brand당 총 가격
 			     });
 			     
 				
