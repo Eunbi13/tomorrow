@@ -1,6 +1,7 @@
 package com.tmh.t1.product;
 
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -38,10 +39,16 @@ public class ProductController {
 	
 	@PostMapping("insert")
 	public String setProduct(Authentication auth,ProductVO productVO,OptionsVO optionsVO, MultipartFile [] files, MultipartFile rep)throws Exception{
+		System.out.println(optionsVO.getOptionKinds());//1,1 이런식으로 들어옴 흠,,, 파싱해야겠는데?
+		System.out.println(optionsVO.getOptionName());
+		System.out.println(optionsVO.getOptionPrice());
+		System.out.println(optionsVO.toString());
 		
 		productService.setProduct(auth, productVO, optionsVO, files, rep);
 		
-		return "/option/optionInsert.";
+		System.out.println("성공");
+		return "product/insertProduct";
+		//return "/option/optionInsert.";
 	}
 	
 	@GetMapping("list")

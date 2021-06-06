@@ -1,8 +1,10 @@
 package com.tmh.t1.product;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,7 +42,7 @@ public class ProductService {
 	
 	//post insert
 	@Transactional(rollbackFor = Exception.class)
-	public Long setProduct(Authentication auth, ProductVO productVO,OptionsVO optionsVO , MultipartFile [] files, MultipartFile rep)throws Exception{
+	public Long setProduct(Authentication auth, ProductVO productVO, OptionsVO optionsVO , MultipartFile [] files, MultipartFile rep)throws Exception{
 		ProductImagesVO imagesVO = new ProductImagesVO();
 		
 		
@@ -66,23 +68,86 @@ public class ProductService {
 		}
 		
 		//옵션 저장
-		optionsMapper.setOption(optionsVO);
-		Long optionNum =optionsVO.getOptionNum();
-		
-		optionsVO.setRef(optionNum);
-		optionsVO.setStep(0L);
-		optionsMapper.updateOption(optionsVO);
-		
-		Map<String, Long> map = new HashMap<String, Long>();
-		map.put("productNum", productVO.getProductNum());
-		map.put("optionNum", optionNum);
-		result = productMapper.setProduct_Options(map);
-		
-		//	List<Long> optionNums = //optionNum을 배열로 받아둬야 함 product_options때문에 
-		if(result<1) {
-			throw new Exception();
+		String [] k= optionsVO.getOptionKinds().split(",");
+		String [] n = optionsVO.getOptionName().split(",");
+		String [] p = optionsVO.getOptionPrice().split(",");
+				
+		List<Long> optionNums = new ArrayList<Long>();
+		List<String> kindsList = new ArrayList<String>();
+		List<String> namesList = new ArrayList<String>();
+		List<String> pricesList = new ArrayList<String>();
+		for(int i =0; i<k.length; i++) {
+			System.out.println(k[i]);
+			System.out.println(n[i]);
+			System.out.println(p[i]);
+			kindsList.add(k[i]);
+			namesList.add(n[i]);
+			pricesList.add(p[i]);
+			System.out.println(i);
 		}
+/**
 		
+		StringTokenizer kinds = new StringTokenizer(optionsVO.getOptionKinds(), ",");
+		StringTokenizer names = new StringTokenizer(optionsVO.getOptionName(), ",");
+		StringTokenizer prices = new StringTokenizer(optionsVO.getOptionPrice(), ",");
+ 
+		int c=0;
+		while (kinds.hasMoreElements()) {
+			System.out.println("남은개수: "+kinds.countTokens());
+			System.out.println("kinds: "+kinds.nextToken());
+			System.out.println("names: "+names.nextToken());
+			System.out.println("prices: "+prices.nextToken());
+			//여기까진만 쓰면 되는데 add를 쓰면 조건식이 false가 되는듯 근데 왜?
+			kindsList.add(kinds.nextToken());
+			namesList.add(names.nextToken());
+			pricesList.add(prices.nextToken());
+			System.out.println(c);
+			c++;
+//			
+//			optionsVO = new OptionsVO();
+//			optionsVO.setOptionKinds(kinds.nextToken());
+//			optionsVO.setOptionName(names.nextToken());
+//			optionsVO.setOptionPrice(prices.nextToken());
+//			result=optionsMapper.setOption(optionsVO);
+//			System.out.println("result"+result);
+//			System.out.println(optionsVO.toString());
+//			Long optionNum =optionsVO.getOptionNum();
+//			optionNums.add(optionNum);
+		}
+*/
+
+		
+		
+//		Map<String, Long> map = new HashMap<String, Long>();
+//		map.put("productNum", productVO.getProductNum());
+//		for(Long e : optionNums) {
+//			System.out.println(e);
+//			map.put("optionNum", e);
+//			result = productMapper.setProduct_Options(map);
+//			System.out.println("프로덕트_옵션 성공");
+//			if(result==0) {
+//				break;
+//			}
+//		}
+		//optionsMapper.setOption(optionsVO);
+		
+		
+//		Long optionNum =optionsVO.getOptionNum();
+//		
+//		optionsVO.setRef(optionNum);
+//		optionsVO.setStep(0L);
+//		optionsMapper.updateOption(optionsVO);
+//		
+//		Map<String, Long> map = new HashMap<String, Long>();
+//		map.put("productNum", productVO.getProductNum());
+//		map.put("optionNum", optionNum);
+//		result = productMapper.setProduct_Options(map);
+//		
+		
+//		if(result<1) {
+//			throw new Exception();
+//		}
+//		
 		return result;
 	}
 	

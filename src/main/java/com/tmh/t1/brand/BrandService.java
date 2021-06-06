@@ -20,6 +20,9 @@ public class BrandService {
 	
 	@Autowired
 	private BrandMapper brandMapper;
+//	@Autowired
+//	private CategoryMapper categoryMapper;
+	//의미 있는지 물어보기
 	@Autowired
 	private FileManager fileManager;
 	@Value("${brandInsert.filePath}")

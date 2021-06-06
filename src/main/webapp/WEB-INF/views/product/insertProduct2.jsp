@@ -111,25 +111,7 @@
 					<div class="form-group row col-sm-3">
 						<label class="col-form-label">옵션별 가격</label>
 						<div >
-							<input class="form-control" name="optionPrice" type="text" placeholder="Please price">
-						</div>
-					</div>
-					<div class="form-group row col-sm-3">
-						<label class="col-form-label">옵션 종류</label>
-						<div >
-							<input class="form-control" name="optionKinds" type="text" placeholder="Please kinds">
-						</div>
-					</div>
-					<div class="form-group row col-sm-3">
-						<label class="col-form-label">옵션별 이름</label>
-						<div >
-							<input class="form-control" name="optionName" type="text" placeholder="Please name">
-						</div>
-					</div>
-					<div class="form-group row col-sm-3">
-						<label class="col-form-label">옵션별 가격</label>
-						<div >
-							<input class="form-control" name="optionPrice" type="text" placeholder="Please price">
+							<input class="form-control" name="optionPrice" type="number" placeholder="Please price">
 						</div>
 					</div>
 					<div class="form-group row col-sm-1" >
