@@ -9,6 +9,8 @@
 <c:import url="../template/bootStrap.jsp"></c:import>
 <c:import url="../template/summernote.jsp"></c:import>
 <title>내일부터 하는 인테리어, 내일의 집</title>
+
+
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
@@ -88,8 +90,8 @@
 			</div>
 		</fieldset>
 	<br>
-
-		<fieldset>
+		
+<fieldset>
 			<legend>옵션</legend>
 			<div class="col-sm-12">
 				<label class="col-sm-2 col-form-label">옵션 구성 타입 </label>
@@ -143,9 +145,10 @@
 				</div>
 			</div>
 		</fieldset>
+		
 		<button>gu</button>
 	</form>
-		
+	
 		<div id="btn" class="btn btn-secondary">저장하기</div>
 		<small>adfasdgads</small>
 </div>
