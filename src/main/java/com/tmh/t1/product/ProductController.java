@@ -44,13 +44,19 @@ public class ProductController {
 		return "/option/optionInsert.";
 	}
 	
-	@GetMapping("list")
+	@GetMapping("productlist")
 	public void getList(ProductVO productVO, Model model)throws Exception {
 		List<ProductVO> ar = productService.getList(productVO);
-		model.addAttribute("list", ar);
+		model.addAttribute("productlist", ar);
 	}
 	
-	@GetMapping("select")
+	@GetMapping("productlist2")
+	public void getList2(ProductVO productVO, Model model)throws Exception {
+		List<ProductVO> ar = productService.getList(productVO);
+		model.addAttribute("productlist2", ar);
+	}
+	
+	@GetMapping("productselect")
 	public ModelAndView getSelect(ProductVO productVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		productVO = productService.getSelect(productVO);
