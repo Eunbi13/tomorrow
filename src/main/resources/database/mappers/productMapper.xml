@@ -18,12 +18,7 @@
 			INSERT INTO productimages (productNum, fileName) VALUES (#{productNum}, #{fileName})
 		</insert>
 		
-		
-		<select id="getBigCategory" parameterType="java.lang.String" resultType="CategoryVO">
-			SELECT categoryID, category_detail_NM FROM category WHERE categoryID IN 
-				(SELECT categoryID FROM brand_category WHERE brandnum = 
-					(SELECT brandNum FROM brand WHERE username =#{username}) )
-		</select>
+
 		<insert id="setProduct_Options" parameterType="java.util.Map">
 			INSERT INTO product_options VALUES (#{productNum}, #{optionNum})
 		</insert>

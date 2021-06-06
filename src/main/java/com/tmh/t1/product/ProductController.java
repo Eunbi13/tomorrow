@@ -27,15 +27,31 @@ public class ProductController {
 	//insert product 
 	@GetMapping("insert")
 	public String setProduct(Model model,Authentication auth)throws Exception{
-		
-		
-		
-		List<CategoryVO> bigCategory =productService.getBigCategory(auth);
-		
-		model.addAttribute("bigCategory", bigCategory);
-		
+		List<CategoryVO> categoryOne =productService.getCategoryOne(auth);
+		model.addAttribute("categoryOne", categoryOne);
 		return "product/insertProduct";
 	}
+	
+	@GetMapping("getCategoryTwo")
+	public String getCategoryTwo(Model model, int categoryID)throws Exception{
+		CategoryVO categoryVO = new CategoryVO();
+		categoryVO.setCategoryID(categoryID);
+		List<CategoryVO> categoryTwo = productService.getCategoryTwo(categoryVO);
+		model.addAttribute("category", categoryTwo);
+		model.addAttribute("detail", "중분류");
+		return "product/categoryForm";
+	}
+	
+	@GetMapping("getCategoryThree")
+	public String getCategoryThree(Model model, int categoryID)throws Exception{
+		CategoryVO categoryVO = new CategoryVO();
+		categoryVO.setCategoryID(categoryID);
+		List<CategoryVO> categoryThree = productService.getCategoryThree(categoryVO);
+		model.addAttribute("category", categoryThree);
+		model.addAttribute("detail", "소분류");
+		return "product/categoryForm";
+	}
+	
 	
 	@PostMapping("insert")
 	public String setProduct(Authentication auth,ProductVO productVO,OptionsVO optionsVO, MultipartFile [] files, MultipartFile rep)throws Exception{

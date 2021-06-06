@@ -35,9 +35,15 @@ public class ProductService {
 	
 	
 	//get insert //대분류 카테고리 카테고리 mapper에서 가져오기 
-	public List<CategoryVO> getBigCategory(Authentication auth) throws Exception{
+	public List<CategoryVO> getCategoryOne(Authentication auth) throws Exception{
 		String username=auth.getName();
-		return productMapper.getBigCategory(username);
+		return categoryMapper.getCategoryOne(username);
+	}
+	public List<CategoryVO> getCategoryTwo(CategoryVO categoryVO)throws Exception{
+		return categoryMapper.getCategoryTwo(categoryVO);
+	}
+	public List<CategoryVO> getCategoryThree(CategoryVO categoryVO)throws Exception{
+		return categoryMapper.getCategoryThree(categoryVO);
 	}
 	
 	//post insert

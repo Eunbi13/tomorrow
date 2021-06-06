@@ -18,5 +18,22 @@ SELECT * FROM
 (SELECT distinct groupId FROM category WHERE category_detail_parent=1 AND category_parent=1)) C
  WHERE C.category_detail_lev=3
  </select>
+ 
+<!-- productInsert에서 사용 -->
+<select id="getCategoryOne" parameterType="java.lang.String" resultType="CategoryVO">
+	SELECT categoryID, category_detail_NM FROM category WHERE categoryID IN 
+		(SELECT categoryID FROM brand_category WHERE brandNum = 
+			(SELECT brandNum FROM brand WHERE username =#{username}) )
+</select>
+<select id="getCategoryTwo" parameterType="CategoryVO" resultType="CategoryVO">
+	SELECT categoryID, category_detail_NM FROM category WHERE groupId=
+		(SELECT groupId FROM category WHERE categoryID=#{categoryID} ) AND category_LEV=2
+</select>
+<select id="getCategoryThree" parameterType="CategoryVO" resultType="CategoryVO">
+	SELECT categoryID, category_detail_NM FROM category WHERE category_detail_parent= 
+		(SELECT category_detail_LEV FROM category WHERE categoryID=#{categoryID}) AND category_LEV=3
+</select>
+
+ 
 </mapper>
 

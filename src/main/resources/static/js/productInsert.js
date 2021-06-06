@@ -1,13 +1,32 @@
 /**
- * 
+ * 옵션쪽 구현 아직 안함
  */
-let url="";
-let use= false;
-$('#use').click(function(){
-	use = $('#use').prop("checked");
+
+$('.ch').click(function(){
+	let categoryID=$(this).prop("value");
+	$.ajax({
+		type:"GET",
+		url:"./getCategoryTwo",
+		data:{categoryID: categoryID},
+		success:function(data){
+			$('#two').append(data);
+		}
+		
+	});
 });
 
-$('#btn').click(function(){
-
+$('#two').on('click', '.ch2', function(){
+	let categoryID = $(this).prop("value");
+	$.ajax({
+		type:"GET",
+		url:"./getCategoryThree",
+		data:{categoryID: categoryID},
+		success:function(data){
+			$('#three').append(data);
+		}
+		
+	});
 	
 });
+
+
