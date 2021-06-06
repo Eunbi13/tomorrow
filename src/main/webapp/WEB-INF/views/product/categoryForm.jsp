@@ -7,7 +7,7 @@
 						<label class="col-sm-2 col-form-label">${detail}</label>
 						<c:forEach items="${category}" var="vo">
 						<div class=" form-check form-check-inline ">
-							<input class="form-check-input ch2" type="checkbox" name="categories" value="${vo.categoryID}">
+							<input class="form-check-input ch2" type="checkbox" name="" value="${vo.categoryID}">
 							<label class="form-check-label" for="inlineCheckbox1">${vo.category_detail_NM }</label>
 						</div>
 						</c:forEach>

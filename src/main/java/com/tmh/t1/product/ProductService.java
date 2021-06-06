@@ -48,7 +48,7 @@ public class ProductService {
 	
 	//post insert
 	@Transactional(rollbackFor = Exception.class)
-	public Long setProduct(Authentication auth, ProductVO productVO, OptionsVO optionsVO , MultipartFile [] files, MultipartFile rep)throws Exception{
+	public Long setProduct(Authentication auth, ProductVO productVO,String categoryID, OptionsVO optionsVO , MultipartFile [] files, MultipartFile rep)throws Exception{
 		ProductImagesVO imagesVO = new ProductImagesVO();
 		
 		
@@ -56,8 +56,11 @@ public class ProductService {
 		productVO.setBrandNum(productMapper.getBrandNum(auth.getName()));
 		
 		//대표 이미지
-		String fileName = fileManager.save(rep, filePath);
-		productVO.setProductPic(fileName);
+		String fileName="";
+		if(rep.getSize()>0) {
+			fileName = fileManager.save(rep, filePath);
+			productVO.setProductPic(fileName);
+		}
 		//저장
 		Long result = productMapper.setProduct(productVO);
 		if(result<1) {
@@ -94,7 +97,6 @@ public class ProductService {
 			Long optionsNum=optionsVO.getOptionNum();
 			System.out.println(optionsNum);
 			optionNums.add(optionsNum);
-			//왜 마지막꺼가 한번 더 들어가지? 
 		}
 /**
 		
@@ -124,11 +126,10 @@ public class ProductService {
 //			optionNums.add(optionNum);
 		}
 */
-
-		
-		
 		Map<String, Long> map = new HashMap<String, Long>();
 		map.put("productNum", productVO.getProductNum());
+		map.put("categoryID", Long.parseLong(categoryID));
+		productMapper.setProduct_category(map);
 		for(Long e : optionNums) {
 			System.out.println(e);
 			map.put("optionNum", e);
@@ -139,7 +140,6 @@ public class ProductService {
 				break;
 			}
 		}
-		optionsMapper.setOption(optionsVO);
 		
 		
 //		Long optionNum =optionsVO.getOptionNum();

@@ -23,6 +23,10 @@ $('#two').on('click', '.ch2', function(){
 		data:{categoryID: categoryID},
 		success:function(data){
 			$('#three').append(data);
+			$('#three').on('click', '.ch2', function(){
+				$(this).prop("name", "categoryID");
+				
+			});
 		}
 		
 	});

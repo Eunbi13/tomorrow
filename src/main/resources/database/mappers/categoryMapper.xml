@@ -34,6 +34,7 @@ SELECT * FROM
 		(SELECT category_detail_LEV FROM category WHERE categoryID=#{categoryID}) AND category_LEV=3
 </select>
 
+
  
 </mapper>
 

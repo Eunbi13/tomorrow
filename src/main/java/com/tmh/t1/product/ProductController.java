@@ -54,17 +54,17 @@ public class ProductController {
 	
 	
 	@PostMapping("insert")
-	public String setProduct(Authentication auth,ProductVO productVO,OptionsVO optionsVO, MultipartFile [] files, MultipartFile rep)throws Exception{
+	public String setProduct(Authentication auth,ProductVO productVO,String categoryID, OptionsVO optionsVO, MultipartFile [] files, MultipartFile rep)throws Exception{
 //		System.out.println(optionsVO.getOptionKinds());//1,1 이런식으로 들어옴 흠,,, 파싱해야겠는데?
 //		System.out.println(optionsVO.getOptionName());
 //		System.out.println(optionsVO.getOptionPrice());
 //		System.out.println(optionsVO.toString());
-//		
-		System.out.println("step: "+optionsVO.getStep());
-		productService.setProduct(auth, productVO, optionsVO, files, rep);
+		System.out.println("얘가 문제일듯 "+categoryID);
+//		System.out.println("step: "+optionsVO.getStep());
+		productService.setProduct(auth, productVO,categoryID, optionsVO, files, rep);
 		
 		System.out.println("성공");
-		return "/";
+		return "redirect:/";
 		//return "/option/optionInsert.";
 	}
 	

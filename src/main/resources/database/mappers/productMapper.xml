@@ -18,6 +18,9 @@
 			INSERT INTO productimages (productNum, fileName) VALUES (#{productNum}, #{fileName})
 		</insert>
 		
+		<insert id="setProduct_category" parameterType="java.util.Map">
+			INSERT INTO product_category VALUES (#{productNum}, #{categoryID})
+		</insert>
 
 		<insert id="setProduct_Options" parameterType="java.util.Map">
 			INSERT INTO product_options VALUES (#{productNum}, #{optionNum})
