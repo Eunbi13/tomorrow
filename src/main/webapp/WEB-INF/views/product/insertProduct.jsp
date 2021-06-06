@@ -114,6 +114,11 @@
 							<input class="form-control" name="optionPrice" type="text" placeholder="Please price">
 						</div>
 					</div>
+					<div class="form-group row col-sm-1" >
+						<img alt="" src="/images/plusIcon.png" style="width: 30px; height: 30px;">
+					</div>
+				</div>
+				<div>
 					<div class="form-group row col-sm-3">
 						<label class="col-form-label">옵션 종류</label>
 						<div >

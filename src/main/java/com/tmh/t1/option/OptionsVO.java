@@ -11,4 +11,6 @@ public class OptionsVO {
 	private String optionPrice;
 	private Long ref;
 	private Long step;
+	
+	private String head;
 }

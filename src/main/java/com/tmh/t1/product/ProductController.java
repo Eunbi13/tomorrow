@@ -39,15 +39,16 @@ public class ProductController {
 	
 	@PostMapping("insert")
 	public String setProduct(Authentication auth,ProductVO productVO,OptionsVO optionsVO, MultipartFile [] files, MultipartFile rep)throws Exception{
-		System.out.println(optionsVO.getOptionKinds());//1,1 이런식으로 들어옴 흠,,, 파싱해야겠는데?
-		System.out.println(optionsVO.getOptionName());
-		System.out.println(optionsVO.getOptionPrice());
-		System.out.println(optionsVO.toString());
-		
+//		System.out.println(optionsVO.getOptionKinds());//1,1 이런식으로 들어옴 흠,,, 파싱해야겠는데?
+//		System.out.println(optionsVO.getOptionName());
+//		System.out.println(optionsVO.getOptionPrice());
+//		System.out.println(optionsVO.toString());
+//		
+		System.out.println("step: "+optionsVO.getStep());
 		productService.setProduct(auth, productVO, optionsVO, files, rep);
 		
 		System.out.println("성공");
-		return "product/insertProduct";
+		return "/";
 		//return "/option/optionInsert.";
 	}
 	

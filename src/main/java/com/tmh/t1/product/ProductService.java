@@ -57,7 +57,7 @@ public class ProductService {
 		if(result<1) {
 			throw new Exception();
 		}
-		//상품 이미지
+		//추가 이미지 저장
 		imagesVO.setProductNum(productVO.getProductNum());
 		for(MultipartFile f: files) {
 			if(f.getSize()>0) {
@@ -71,19 +71,24 @@ public class ProductService {
 		String [] k= optionsVO.getOptionKinds().split(",");
 		String [] n = optionsVO.getOptionName().split(",");
 		String [] p = optionsVO.getOptionPrice().split(",");
-				
+	
 		List<Long> optionNums = new ArrayList<Long>();
-		List<String> kindsList = new ArrayList<String>();
-		List<String> namesList = new ArrayList<String>();
-		List<String> pricesList = new ArrayList<String>();
+
 		for(int i =0; i<k.length; i++) {
+			optionsVO = new OptionsVO();
 			System.out.println(k[i]);
 			System.out.println(n[i]);
 			System.out.println(p[i]);
-			kindsList.add(k[i]);
-			namesList.add(n[i]);
-			pricesList.add(p[i]);
 			System.out.println(i);
+
+			optionsVO.setOptionKinds(k[i]);
+			optionsVO.setOptionName(n[i]);
+			optionsVO.setOptionPrice(p[i]);
+			optionsMapper.setOption(optionsVO);
+			Long optionsNum=optionsVO.getOptionNum();
+			System.out.println(optionsNum);
+			optionNums.add(optionsNum);
+			//왜 마지막꺼가 한번 더 들어가지? 
 		}
 /**
 		
@@ -98,9 +103,7 @@ public class ProductService {
 			System.out.println("names: "+names.nextToken());
 			System.out.println("prices: "+prices.nextToken());
 			//여기까진만 쓰면 되는데 add를 쓰면 조건식이 false가 되는듯 근데 왜?
-			kindsList.add(kinds.nextToken());
-			namesList.add(names.nextToken());
-			pricesList.add(prices.nextToken());
+			 * 
 			System.out.println(c);
 			c++;
 //			
@@ -118,18 +121,19 @@ public class ProductService {
 
 		
 		
-//		Map<String, Long> map = new HashMap<String, Long>();
-//		map.put("productNum", productVO.getProductNum());
-//		for(Long e : optionNums) {
-//			System.out.println(e);
-//			map.put("optionNum", e);
-//			result = productMapper.setProduct_Options(map);
-//			System.out.println("프로덕트_옵션 성공");
-//			if(result==0) {
-//				break;
-//			}
-//		}
-		//optionsMapper.setOption(optionsVO);
+		Map<String, Long> map = new HashMap<String, Long>();
+		map.put("productNum", productVO.getProductNum());
+		for(Long e : optionNums) {
+			System.out.println(e);
+			map.put("optionNum", e);
+			result = productMapper.setProduct_Options(map);
+			System.out.println("프로덕트_옵션 성공");
+			if(result==0) {
+				System.out.println("result가 0이다 ");
+				break;
+			}
+		}
+		optionsMapper.setOption(optionsVO);
 		
 		
 //		Long optionNum =optionsVO.getOptionNum();
