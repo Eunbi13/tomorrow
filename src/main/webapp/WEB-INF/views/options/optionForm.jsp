@@ -36,7 +36,7 @@
 							<input class="form-control names" type="text" placeholder="Please name">
 						</div>
 					</div>
-
+					
 				</div>
 			</div>
 			<div class="addForm"></div>
