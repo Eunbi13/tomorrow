@@ -50,23 +50,21 @@ public class ProductService {
 	@Transactional(rollbackFor = Exception.class)
 	public Long setProduct(Authentication auth, ProductVO productVO,String categoryID, OptionsVO optionsVO , MultipartFile [] files, MultipartFile rep)throws Exception{
 		ProductImagesVO imagesVO = new ProductImagesVO();
-		
-		System.out.println(categoryID);
-		//brandNum 넣기 
+		//1. username에 저장된 brandNum 넣기 
 		productVO.setBrandNum(productMapper.getBrandNum(auth.getName()));
 		
-		//대표 이미지
+		//2. 대표이미지 컴퓨터에 저장
 		String fileName="";
 		if(rep.getSize()>0) {
 			fileName = fileManager.save(rep, filePath);
 			productVO.setProductPic(fileName);
 		}
-		//저장
+		//3. 데이터베이스에 인서트
 		Long result = productMapper.setProduct(productVO);
 		if(result<1) {
 			throw new Exception();
 		}
-		//추가 이미지 저장
+		//4. 추가 이미지 저장
 		imagesVO.setProductNum(productVO.getProductNum());
 		for(MultipartFile f: files) {
 			if(f.getSize()>0) {
@@ -85,10 +83,6 @@ public class ProductService {
 
 		for(int i =0; i<k.length; i++) {
 			optionsVO = new OptionsVO();
-			System.out.println(k[i]);
-			System.out.println(n[i]);
-			System.out.println(p[i]);
-			System.out.println(i);
 
 			optionsVO.setOptionKinds(k[i]);
 			optionsVO.setOptionName(n[i]);
@@ -98,38 +92,10 @@ public class ProductService {
 			System.out.println(optionsNum);
 			optionNums.add(optionsNum);
 		}
-/**
-		
-		StringTokenizer kinds = new StringTokenizer(optionsVO.getOptionKinds(), ",");
-		StringTokenizer names = new StringTokenizer(optionsVO.getOptionName(), ",");
-		StringTokenizer prices = new StringTokenizer(optionsVO.getOptionPrice(), ",");
- 
-		int c=0;
-		while (kinds.hasMoreElements()) {
-			System.out.println("남은개수: "+kinds.countTokens());
-			System.out.println("kinds: "+kinds.nextToken());
-			System.out.println("names: "+names.nextToken());
-			System.out.println("prices: "+prices.nextToken());
-			//여기까진만 쓰면 되는데 add를 쓰면 조건식이 false가 되는듯 근데 왜?
-			 * 
-			System.out.println(c);
-			c++;
-//			
-//			optionsVO = new OptionsVO();
-//			optionsVO.setOptionKinds(kinds.nextToken());
-//			optionsVO.setOptionName(names.nextToken());
-//			optionsVO.setOptionPrice(prices.nextToken());
-//			result=optionsMapper.setOption(optionsVO);
-//			System.out.println("result"+result);
-//			System.out.println(optionsVO.toString());
-//			Long optionNum =optionsVO.getOptionNum();
-//			optionNums.add(optionNum);
-		}
-*/
-		String [] c = categoryID.split(",");
+
 		Map<String, Long> map = new HashMap<String, Long>();
 		map.put("productNum", productVO.getProductNum());
-		map.put("categoryID", Long.parseLong(c[1]));
+		map.put("categoryID", Long.parseLong(categoryID));
 		productMapper.setProduct_category(map);
 		for(Long e : optionNums) {
 			System.out.println(e);
@@ -141,24 +107,11 @@ public class ProductService {
 				break;
 			}
 		}
+
+		if(result<1) {
+			throw new Exception();
+		}
 		
-		
-//		Long optionNum =optionsVO.getOptionNum();
-//		
-//		optionsVO.setRef(optionNum);
-//		optionsVO.setStep(0L);
-//		optionsMapper.updateOption(optionsVO);
-//		
-//		Map<String, Long> map = new HashMap<String, Long>();
-//		map.put("productNum", productVO.getProductNum());
-//		map.put("optionNum", optionNum);
-//		result = productMapper.setProduct_Options(map);
-//		
-		
-//		if(result<1) {
-//			throw new Exception();
-//		}
-//		
 		return result;
 	}
 	
