@@ -39,7 +39,6 @@ $('#add').click(function(){
 
 
 $('table').hide();
-
 $('#modal').click(function(){
 let kind="";
 let names="";
@@ -65,10 +64,11 @@ let names="";
 });
 
 function table(kind, name){
-	let table1='<tr>'+
-		'<td><input type="text" readonly="readonly" name="optionKinds" value="'+kind+'" style="border:none"></td>'+
-		'<td><input type="text" readonly="readonly" name="optionName" value="'+name+'" style="border:none"></td>'+
-		'<td><input type="number" name="optionPrice" value="0" ></td>'+
+	let t1=
+	'<tr>'+
+		'<td><input name="optionKinds" type="text" readonly="readonly"    value="'+kind+'" style="border:none"></td>'+
+		'<td><input name="optionName"  type="text" readonly="readonly"    value="'+name+'" style="border:none"></td>'+
+		'<td><input name="optionPrice" type="number" class="form-control" value="0" ></td>'+
 	'</tr>';
-	return table1;
+	return t1;
 }

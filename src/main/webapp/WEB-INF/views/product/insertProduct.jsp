@@ -107,18 +107,19 @@
 			<div>
 				<c:import url="../options/optionForm.jsp"></c:import>
 			</div>
-			
+			<div class="container-sm">
 			<table class="table" >
 			 	<thead>
-					<tr>
+					<tr id="thead">
 						<th scope="col">옵션명</th>
 						<th scope="col">옵션값</th>
 						<th scope="col">옵션가격</th>
 					</tr>
 				</thead>
-				<tbody></tbody>
+				<tbody>
+				</tbody>
 			</table>
-			
+			</div>
 			
 		</fieldset>
 
