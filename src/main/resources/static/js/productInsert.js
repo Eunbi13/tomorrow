@@ -33,6 +33,7 @@ $('#two').on('click', '.ch2', function(){
 });
 
 
+<<<<<<< HEAD
 $('#add').click(function(){
 	$('.addForm').append($('.optionForm').html());
 });
@@ -57,3 +58,5 @@ function table(kinds, name){
 		'<td>'+name+'</td>'+
 	'</tr>'
 }
+=======
+>>>>>>> parent of 5a3fa14 (1)
