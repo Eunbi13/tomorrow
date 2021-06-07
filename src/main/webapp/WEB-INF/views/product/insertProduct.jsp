@@ -9,8 +9,6 @@
 <c:import url="../template/bootStrap.jsp"></c:import>
 <c:import url="../template/summernote.jsp"></c:import>
 <title>내일부터 하는 인테리어, 내일의 집</title>
-
-
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
@@ -95,59 +93,23 @@
 		</fieldset>
 	<br>
 		
-<fieldset>
+		<fieldset>
 			<legend>옵션</legend>
-			<div class="col-sm-12">
-				<label class="col-sm-2 col-form-label">옵션 구성 타입 </label>
+			<label class="col-sm-2 col-form-label">옵션 구성 타입 </label>
 				조합 일체선택형<input type="radio" id="notUse" name="o1" checked>
 				조합 분리선택형<input type="radio" id="use" name="o1">
-				<div >
-					<div class="form-group row col-sm-3">
-						<label class="col-form-label">옵션 종류</label>
-						<div >
-							<input class="form-control" name="optionKinds" type="text" placeholder="Please kinds">
-						</div>
-					</div>
-					<div class="form-group row col-sm-3">
-						<label class="col-form-label">옵션별 이름</label>
-						<div >
-							<input class="form-control" name="optionName" type="text" placeholder="Please name">
-						</div>
-					</div>
-					<div class="form-group row col-sm-3">
-						<label class="col-form-label">옵션별 가격</label>
-						<div >
-							<input class="form-control" name="optionPrice" type="text" placeholder="Please price">
-						</div>
-					</div>
-					<div class="form-group row col-sm-1" >
-						<img alt="" src="/images/plusIcon.png" style="width: 30px; height: 30px;">
-					</div>
-				</div>
-				<div>
-					<div class="form-group row col-sm-3">
-						<label class="col-form-label">옵션 종류</label>
-						<div >
-							<input class="form-control" name="optionKinds" type="text" placeholder="Please kinds">
-						</div>
-					</div>
-					<div class="form-group row col-sm-3">
-						<label class="col-form-label">옵션별 이름</label>
-						<div >
-							<input class="form-control" name="optionName" type="text" placeholder="Please name">
-						</div>
-					</div>
-					<div class="form-group row col-sm-3">
-						<label class="col-form-label">옵션별 가격</label>
-						<div >
-							<input class="form-control" name="optionPrice" type="text" placeholder="Please price">
-						</div>
-					</div>
-					<div class="form-group row col-sm-1" >
-						<img alt="" src="/images/plusIcon.png" style="width: 30px; height: 30px;">
-					</div>
-				</div>
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+			  옵션추가하기
+			</button>
+			
+			<div>
+				<c:import url="../options/optionForm.jsp"></c:import>
 			</div>
+			
+			<table>여기에 넣기</table>
+
+
 		</fieldset>
 		
 		<button>gu</button>
@@ -159,6 +121,7 @@
 
 <c:import url="../template/footer.jsp"></c:import>
 <script type="text/javascript" src="/js/productInsert.js"></script>
+
 
 </body>
 </html>

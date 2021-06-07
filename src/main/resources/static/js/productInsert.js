@@ -31,5 +31,3 @@ $('#two').on('click', '.ch2', function(){
 	});
 	
 });
-
-
