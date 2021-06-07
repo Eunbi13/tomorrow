@@ -4,17 +4,28 @@
 <!-- PRODUCT LIST //// STORE -->
 <!DOCTYPE html>
 <html>
-<head><!-- 카테고리 수정중 -->
+<head>
+<!-- 카테고리 수정중 -->
 <style type="text/css">
-.store-index-section{
-	margin-top: 50px;
+.store-category-flex-container {
+	display: flex;
+	flex-wrap: nowrap;
+	width: 80px;
 }
-.store-index-section>h1{
-	color: #000;
-    font-weight: 700;
-    font-size: 20px;
-    margin-bottom: 14px;
-    position: relative;
+
+.store-category-flex-container>img {
+	margin: 10px;
+	padding: 20px;
+}
+
+.cateogry-list-name {
+	text-align: center;
+	font-size: 15px;
+	margin-top: 10px;
+}
+
+.store-category-list-head {
+	margin: 20px;
 }
 </style>
 <c:import url="../template/bootStrap.jsp"></c:import>
@@ -24,86 +35,83 @@
 <body>
 	<c:import url="../template/header.jsp"></c:import>
 
-		<section
-		class="container store-index-sectoin store-index-cateogry-list">
-		<h1 class="store-index-category-list-title">카테고리</h1>
-		<div class="category-list-wrap">
-			<div class="category-list_fold">
-				<!-- 카테고리 리스트 -->
-				<!-- flex -->
-				<div class="category-item-wrap">
-					<a href=""> <!-- 각 카테고리 항목 -->
-						<div class="category-item">
-							<img class="category-item image"
-								src="../resources/images/categoryPic/A1.webp">
-							<div class="category-item title">가구</div>
-						</div>
-					</a> <a href=""> <!-- 각 카테고리 항목 -->
-						<div class="category-item">
-							<img class="category-item image"
-								src="../resources/images/categoryPic/B2.webp">
-							<div class="category-item title">패브릭</div>
-						</div>
-					</a> <a href=""> <!-- 각 카테고리 항목 -->
-						<div class="category-item">
-							<img class="category-item image"
-								src="../resources/images/categoryPic/C3.webp">
-							<div class="category-item title">홈데코/조명</div>
-						</div>
-					</a> <a href=""> <!-- 각 카테고리 항목 -->
-						<div class="category-item">
-							<img class="category-item image"
-								src="../resources/images/categoryPic/D4.webp">
-							<div class="category-item title">가전</div>
-						</div>
-					</a> <a href=""> <!-- 각 카테고리 항목 -->
-						<div class="category-item">
-							<img class="category-item image"
-								src="../resources/images/categoryPic/E5.webp">
-							<div class="category-item title">수납/정리</div>
-						</div>
-					</a> <a href=""> <!-- 각 카테고리 항목 -->
-						<div class="category-item">
-							<img class="category-item image"
-								src="../resources/images/categoryPic/F6.webp">
-							<div class="category-item title">생활용품</div>
-						</div>
-					</a> <a href=""> <!-- 각 카테고리 항목 -->
-						<div class="category-item">
-							<img class="category-item image"
-								src="../resources/images/categoryPic/G7.webp">
-							<div class="category-item title">주방</div>
-						</div>
-					</a> <a href=""> <!-- 각 카테고리 항목 -->
-						<div class="category-item">
-							<img class="category-item image"
-								src="../resources/images/categoryPic/H8.webp">
-							<div class="category-item title">생필품</div>
-						</div>
-					</a> <a href=""> <!-- 각 카테고리 항목 -->
-						<div class="category-item">
-							<img class="category-item image"
-								src="../resources/images/categoryPic/I9.webp">
-							<div class="category-item title">DIY/공구</div>
-						</div>
-					</a> <a href=""> <!-- 각 카테고리 항목 -->
-						<div class="category-item">
-							<img class="category-item image"
-								src="../resources/images/categoryPic/J10.webp">
-							<div class="category-item title">반려동물</div>
-						</div>
-					</a> <a href=""> <!-- 각 카테고리 항목 -->
-						<div class="category-item">
-							<img class="category-item image"
-								src="../resources/images/categoryPic/K11.webp">
-							<div class="category-item title">홈트레이닝</div>
-						</div>
-					</a>
-
-				</div>
-			</div>
+	<!-- 카테고리 리스트 -->
+	<h1 class="store-category-list-head">카테고리</h1>
+	<div class="store-category-flex-container">
+		<div>
+			<img class="category-item image"
+				src="../resources/images/categoryPic/A1.webp">
+			<div class="cateogry-list-name">가구</div>
 		</div>
-	</section>
+		<div>
+			<img class="category-item image"
+				src="../resources/images/categoryPic/B2.webp">
+			<div class="cateogry-list-name">패브릭</div>
+		</div>
+		<div>
+			<img class="category-item image"
+				src="../resources/images/categoryPic/C3.webp">
+			<div class="cateogry-list-name">홈데코/조명</div>
+		</div>
+		<div>
+			<img class="category-item image"
+				src="../resources/images/categoryPic/D4.webp">
+			<div class="cateogry-list-name">가전</div>
+		</div>
+		<div>
+			<img class="category-item image"
+				src="../resources/images/categoryPic/E5.webp">
+			<div class="cateogry-list-name">수납/정리</div>
+		</div>
+		<div>
+			<img class="category-item image"
+				src="../resources/images/categoryPic/F6.webp">
+			<div class="cateogry-list-name">생활용품</div>
+		</div>
+		<div>
+			<img class="category-item image"
+				src="../resources/images/categoryPic/G7.webp">
+			<div class="cateogry-list-name">주방</div>
+		</div>
+		<div>
+			<img class="category-item image"
+				src="../resources/images/categoryPic/H8.webp">
+			<div class="cateogry-list-name">생필품</div>
+		</div>
+		<div>
+			<img class="category-item image"
+				src="../resources/images/categoryPic/I9.webp">
+			<div class="cateogry-list-name">DIY/공구</div>
+		</div>
+		<div>
+			<img class="category-item image"
+				src="../resources/images/categoryPic/J10.webp">
+			<div class="cateogry-list-name">반려동물</div>
+		</div>
+		<div>
+			<img class="category-item image"
+				src="../resources/images/categoryPic/K11.webp">
+			<div class="cateogry-list-name">홈트레이닝</div>
+		</div>
+	</div>
+
+	<div class="store-list-item">
+		<c:forEach items="${list}" var="vo">
+			<div class="store-item-list">
+				<a href="./productselect?productNum=${vo.productNum}"> <img
+					class="item-img" src="../resources/images/storeEX/glove.webp"
+					alt="item pic">
+					<div class="card-body">
+						<h4 class="item-title">${vo.productName}</h4>
+						<p class="item-price">${vo.productPrice}</p>
+						<a href="#" class="btn btn-primary">See Profile</a>
+					</div>
+				</a>
+			</div>
+		</c:forEach>
+
+	</div>
+
 
 </body>
 </html>

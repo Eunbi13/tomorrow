@@ -234,11 +234,14 @@ to {
 	<br>
 
 	<c:forEach items="${list}" var="vo">
-		<div class="card">
-			<a href="productselect">
-				<div class="product-card-body">
-					<h5 class="card-title">${vo.productName}</h5>
-					<p class="card-text">${vo.productPrice}</p>
+		<div class="store-item-list">
+			<a href="./productselect?productNum=${vo.productNum}"> <img
+				class="item-img" src="../resources/images/storeEX/glove.webp"
+				alt="item pic">
+				<div class="card-body">
+					<h4 class="item-title">${vo.productName}</h4>
+					<p class="item-price">${vo.productPrice}</p>
+					<a href="#" class="btn btn-primary">See Profile</a>
 				</div>
 			</a>
 		</div>
