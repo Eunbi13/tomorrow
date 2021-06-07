@@ -51,7 +51,7 @@ public class ProductService {
 	public Long setProduct(Authentication auth, ProductVO productVO,String categoryID, OptionsVO optionsVO , MultipartFile [] files, MultipartFile rep)throws Exception{
 		ProductImagesVO imagesVO = new ProductImagesVO();
 		
-		
+		System.out.println(categoryID);
 		//brandNum 넣기 
 		productVO.setBrandNum(productMapper.getBrandNum(auth.getName()));
 		
@@ -126,9 +126,10 @@ public class ProductService {
 //			optionNums.add(optionNum);
 		}
 */
+		String [] c = categoryID.split(",");
 		Map<String, Long> map = new HashMap<String, Long>();
 		map.put("productNum", productVO.getProductNum());
-		map.put("categoryID", Long.parseLong(categoryID));
+		map.put("categoryID", Long.parseLong(c[1]));
 		productMapper.setProduct_category(map);
 		for(Long e : optionNums) {
 			System.out.println(e);
