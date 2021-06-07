@@ -47,23 +47,22 @@ public class ProductController {
 	@GetMapping("productlist")
 	public void getList(ProductVO productVO, Model model)throws Exception {
 		List<ProductVO> ar = productService.getList(productVO);
-		model.addAttribute("productlist", ar);
+		model.addAttribute("list", ar);
 	}
 	
+	//test
 	@GetMapping("productlist2")
 	public void getList2(ProductVO productVO, Model model)throws Exception {
 		List<ProductVO> ar = productService.getList(productVO);
-		model.addAttribute("productlist2", ar);
+		model.addAttribute("list", ar);
 	}
 	
 	@GetMapping("productselect")
-	public ModelAndView getSelect(ProductVO productVO)throws Exception{
+	public void getSelect(ProductVO productVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		productVO = productService.getSelect(productVO);
 		mv.addObject("vo", productVO);
-		mv.setViewName("product/select");
-		
-		return mv;
+		mv.setViewName("product/productselect");
 	}
 	
 }

@@ -27,6 +27,19 @@
 .store-category-list-head {
 	margin: 20px;
 }
+
+.store-list-item-card {
+	width: 300px;
+	margin: 20px;
+	float: left;
+}
+
+.item-img {
+	width: 300px;
+}
+.card-price{
+	float: left;
+}
 </style>
 <c:import url="../template/bootStrap.jsp"></c:import>
 <meta charset="UTF-8">
@@ -97,14 +110,14 @@
 
 	<div class="store-list-item">
 		<c:forEach items="${list}" var="vo">
-			<div class="store-item-list">
+			<div class="store-list-item-card">
 				<a href="./productselect?productNum=${vo.productNum}"> <img
 					class="item-img" src="../resources/images/storeEX/glove.webp"
 					alt="item pic">
-					<div class="card-body">
-						<h4 class="item-title">${vo.productName}</h4>
-						<p class="item-price">${vo.productPrice}</p>
-						<a href="#" class="btn btn-primary">See Profile</a>
+					<div class="item-title">${vo.productName}</div>
+					<div class="card-price">
+						<div class="item-price">${vo.productPrice}</div>
+						<div class="item-discount">${vo.discount}%</div>
 					</div>
 				</a>
 			</div>
