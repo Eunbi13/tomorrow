@@ -37,23 +37,38 @@ $('#add').click(function(){
 	$('.addForm').append($('.optionForm').html());
 });
 
-$('#signUpOption').click(function(){
-	
-	$('tbody').empty();
-	let kinds = $('.kinds').value();
-	alert(kinds);
-	let names = $('.names').value();
-	let nameList = names.split('/');
-	for(name of nameList){
+
+$('table').hide();
+
+$('#modal').click(function(){
+let kind="";
+let names="";
+	$('.kinds').each(function(i, k){
+		kind = $(k).val();
+		console.log(kind);
 		
-		alert(name)
-		$('tbody').append(table(kinds, name))
-	}
+		$('.names').each(function(j, n){
+			if(i==j){
+				names = $(n).val().split('/');
+				for(nm of names){
+					console.log(nm);
+					table(kind, nm);
+					$('tbody').append(table(kind, nm));
+					$('table').show();
+				}
+			}
+		});
+		
+	});
+	
+	
 });
 
-function table(kinds, name){
-	'<tr>'+
-		'<td>'+kinds+'</td>'+
-		'<td>'+name+'</td>'+
-	'</tr>'
+function table(kind, name){
+	let table1='<tr>'+
+		'<td><input type="text" readonly="readonly" name="optionKinds" value="'+kind+'" style="border:none"></td>'+
+		'<td><input type="text" readonly="readonly" name="optionName" value="'+name+'" style="border:none"></td>'+
+		'<td><input type="number" name="optionPrice" value="0" ></td>'+
+	'</tr>';
+	return table1;
 }
