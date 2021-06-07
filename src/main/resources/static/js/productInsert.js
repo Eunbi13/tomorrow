@@ -31,3 +31,29 @@ $('#two').on('click', '.ch2', function(){
 	});
 	
 });
+
+
+$('#add').click(function(){
+	$('.addForm').append($('.optionForm').html());
+});
+
+$('#signUpOption').click(function(){
+	
+	$('tbody').empty();
+	let kinds = $('.kinds').value();
+	alert(kinds);
+	let names = $('.names').value();
+	let nameList = names.split('/');
+	for(name of nameList){
+		
+		alert(name)
+		$('tbody').append(table(kinds, name))
+	}
+});
+
+function table(kinds, name){
+	'<tr>'+
+		'<td>'+kinds+'</td>'+
+		'<td>'+name+'</td>'+
+	'</tr>'
+}

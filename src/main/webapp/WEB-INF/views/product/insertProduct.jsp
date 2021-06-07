@@ -95,19 +95,61 @@
 		
 		<fieldset>
 			<legend>옵션</legend>
-			<label class="col-sm-2 col-form-label">옵션 구성 타입 </label>
-				조합 일체선택형<input type="radio" id="notUse" name="o1" checked>
-				조합 분리선택형<input type="radio" id="use" name="o1">
-			<!-- Button trigger modal -->
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-			  옵션추가하기
-			</button>
 			
-			<div>
-				<c:import url="../options/optionForm.jsp"></c:import>
+		
+			
+			 <ul>
+				<li>옵션 명: 옵션의 이름을 정합니다</li>
+				<li>옵션 값: 옵션의 값을 정합니다. '/'을 기준으로 입력해주세요</li>
+				<li>옵션 가격: 옵션별로 가격을 책정합니다. 아무것도 입력하지 않을 경우 +0원으로 입력됩니다.</li>
+			</ul>
+       
+	        <div class="optionForm">
+				<div class="col-sm-11 row">
+					<div class="form-group col-md-4">
+						<label>옵션명</label>
+						<div >
+							<input class="form-control kinds" type="text" placeholder="Please kinds" value="">
+						</div>
+					</div>
+					<div class="form-group col-md-8">
+						<label>옵션값</label>
+						<div >
+							<input class="form-control names" type="text" placeholder="Please name">
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<div class="addForm"></div>
+			
+			<div class="col-sm-1 row form-group" >
+				<div class="form-control" id="add" >+</div>
+			</div>
+			<div class="col-sm-1 row form-group" >
+				<div class="btn" id="signUpOption" >등록</div>
+			</div>
+			<div class="col-sm-12">
+				<label class="col-sm-2 col-form-label">옵션 구성 타입 </label>
+					조합 일체선택형<input type="radio" id="notUse" name="o1" checked>
+					조합 분리선택형<input type="radio" id="use" name="o1">
+			</div>
+	
+			<div class="col-sm-12" id="table">
+				<table>
+					<thead>
+						<tr>
+							<td>옵션명</td>
+							<td>옵션값</td>
+							<td>옵션가격</td>
+						</tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+				</table>
 			</div>
 			
-			<table>여기에 넣기</table>
 
 
 		</fieldset>
@@ -115,8 +157,7 @@
 		<button>gu</button>
 	</form>
 	
-		<div id="btn" class="btn btn-secondary">저장하기</div>
-		<small>adfasdgads</small>
+		
 </div>
 
 <c:import url="../template/footer.jsp"></c:import>

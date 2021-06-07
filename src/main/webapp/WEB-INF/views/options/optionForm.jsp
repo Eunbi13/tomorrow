@@ -39,8 +39,9 @@
 				</div>
 			</div>
 			<div class="addForm"></div>
+			
 			<div class="col-sm-1 row form-group" >
-				<div class="form-control add" >+</div>
+				<div class="form-control" id="add" >+</div>
 			</div>
 		</fieldset>
       </div>
