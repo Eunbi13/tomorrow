@@ -56,7 +56,7 @@
 					</div>
 				</div>
 			</div>
-<<<<<<< HEAD
+
 			<div class="addForm"></div>
 			
 			<div class="col-sm-1 row form-group" >
@@ -70,6 +70,3 @@
     </div>
   </div>
 </div>
-=======
-		</fieldset>
->>>>>>> parent of 5a3fa14 (1)
