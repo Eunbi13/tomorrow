@@ -9,23 +9,30 @@
     		select * from order where orderNum=#{orderNum}
     	</select>
     	
+    	
     	<select id="getList" parameterType="OrderVO" resultType="OrderVO">
     		select * from order where username=#{username}
     	</select>
     	
-    	<insert id="setInsert" parameterType="OrderVO">
-    		insert into 
-    		order(shipNum, username, cartNum, paymentType, itemsPrice, shippingFee,
-    		       payment, shippingMemo, orderDate, status, productNum, name, email, phone) 
-    		values
-    		(#{shipNum}, #{username}, #{cartNum}, #{paymentType}, #{itemsPrice}, #{shippingFee},
-    		#{payment}, #{shippingMemo}, #{orderDate}, #{status}, #{productNum}, #{name}, #{email}, #{phone})
+    	<insert id="setInsert" parameterType="OrderVO" useGeneratedKeys="true" keyProperty="orderNum">
+    		insert into order(username, itemsPrice, shippingFee, payment) 
+    		values (#{username}, #{itemsPrice}, #{shippingFee}, #{payment})
     	</insert>
+    	
+    	
+    	
+    	 
     	
     	<delete id="setDelete" parameterType="OrderVO">
     		delete order where orderNum=#{orderNum}
     	</delete>
     	
+    	
+    
+    
+    
+        
+    
     	
     
     </mapper>

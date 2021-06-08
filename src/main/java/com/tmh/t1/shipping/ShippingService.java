@@ -12,6 +12,11 @@ public class ShippingService {
 	@Autowired
 	private ShippingMapper shippingMapper;
 	
+	
+	public ShippingVO getDefaultSelect(ShippingVO shippingVO)throws Exception{
+		return shippingMapper.getDefaltSelect(shippingVO);
+	}
+	
 	public ShippingVO getSelect(ShippingVO shippingVO)throws Exception{
 		return shippingMapper.getSelect(shippingVO);
 	}

@@ -5,7 +5,7 @@
     
     <mapper namespace="com.tmh.t1.cart.CartMapper">
    
-	<select id="getPriceTotalProduct" parameterType="CartVO" resultType="java.lang.Long">
+	<!-- <select id="getPriceTotalProduct" parameterType="CartVO" resultType="java.lang.Long">
        		select sum(cartPrice) from cart 
             where username=#{username} and productNum in 
             (select productNum from cart where username=#{username} group by productNum)
@@ -15,7 +15,7 @@
        <select id="getPricePerProduct" parameterType="CartVO" resultType="java.lang.Long">
        		select sum(cartPrice) from cart 
             where username=#{username} and productNum=#{productNum};
-       </select> 
+       </select>  -->
 
     
 	    <select id="getProductList" parameterType="CartVO" resultType="ProductVO">
@@ -23,24 +23,68 @@
 		    select productNum, productName, productPrice, productPic, shippingFee, brandNum from product
 			where productNum 
 			in 
-			(select productNum from cart where username=#{username} 
+			(select productNum from cart where username=#{username} and 
+			<if test="valid =='zero'">
+			validity='0'or'1'
+			</if>
+			<if test="valid =='one'">
+			 validity='1'
+			</if>
+			<if test="valid =='two'">
+			validity='2'
+			</if>
 			and brandNum 
 			in 
-			(select brandNum from cart where username=#{username} group by brandNum) 
+			(select brandNum from cart where username=#{username} and 
+			<if test="valid =='zero'">
+			validity='0'or'1'
+			</if>
+			<if test="valid =='one'">
+			 validity='1'
+			</if>
+			<if test="valid =='two'">
+			validity='2'
+			</if>
+			group by brandNum) 
 			group by productNum)
 				    
-	    </select>
+	    </select> 
+
 	    
 	     <select id="getBrandList" parameterType="CartVO" resultType="BrandVO">
 			select brandNum, brandName from brand
-			where brandNum in (select brandNum from cart where username=#{username} group by brandNum)
-	    </select>
+			where brandNum in 
+			(select brandNum from cart where username=#{username} and 
+			<if test="valid =='zero'">
+			validity='0'or'1'
+			</if>
+			<if test="valid =='one'">
+			 validity='1'
+			</if>
+			<if test="valid =='two'">
+			validity='2'
+			</if>
+			
+			group by brandNum)
+	    </select> 
     
     
     
         <select id="getCartList" parameterType="CartVO" resultMap="cartListResult">
     		select C.*, C.isFree, C.cartPrice, C.optionPrice, O.* from 
-			(select * from cart where username=#{username}) C 
+			(select * from cart where username=#{username} and 
+			
+			<if test="valid =='zero'">
+			validity='0'or'1'
+			</if>
+			<if test="valid =='one'">
+			 validity='1'
+			</if>
+			<if test="valid =='two'">
+			validity='2'
+			</if>
+			
+			) C 
 			inner join options O
 			on C.optionNum = O.optionNum;
 	    </select>
@@ -79,10 +123,12 @@
     		select * from cart where username=#{username}
     	</select>
     	
-    	<insert id="setInsert" parameterType="CartVO">
+    	<insert id="setInsert" parameterType="CartVO" useGeneratedKeys="true" keyProperty="cartNum"> 
     		insert into cart(username, brandNum, productNum, optionNum, amount, validity, isBundled, isFree, cartPrice, optionPrice) 
     		values(#{username}, #{brandNum}, #{productNum}, #{optionNum}, #{amount}, #{validity}, #{isBundled}, #{isFree},#{cartPrice},#{optionPrice})
     	</insert>
+    	
+    	
     	
     	<delete id="setOptionDelete" parameterType="CartVO">
     		delete from cart where cartNum=#{cartNum}
@@ -91,6 +137,16 @@
     	<delete id="setProductDelete" parameterType="CartVO">
     		delete from cart where productNum=#{productNum} and username=#{username}
     	</delete>
+    	
+    	<update id="setValidityUpdate" parameterType="CartVO">
+    	    update cart set validity='1'
+    		where productNum=#{productNum} and username=#{username}
+    	</update>
+    	
+    	<update id="setUnValidityUpdate" parameterType="CartVO">
+    	    update cart set validity='0'
+    		where productNum=#{productNum} and username=#{username}
+    	</update>
     	
     	<update id="setAmountUpdate" parameterType="CartVO">
     		update cart set amount=#{amount}, cartPrice=#{cartPrice}

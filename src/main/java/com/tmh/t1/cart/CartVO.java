@@ -9,6 +9,10 @@ import lombok.Data;
 @Data
 public class CartVO {
 	
+    private Long orderNum;
+	
+	private String valid;
+	
 	private List<OptionsVO> optionList;
 	
 	private Long cartNum;
@@ -23,7 +27,7 @@ public class CartVO {
 	
 	private Long amount;
 	
-	private boolean validity;
+	private Long validity;
 	
 	private boolean isBundled;
 	
@@ -34,12 +38,5 @@ public class CartVO {
 	private Long optionPrice;
 	
 	
-	private String optionKinds;
-	private String optionName;
-
-	
-	private Long pricePerProduct; 
-	    
-	private Long priceTotalProduct;
 
 }

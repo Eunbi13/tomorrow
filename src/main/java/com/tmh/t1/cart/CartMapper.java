@@ -12,9 +12,9 @@ import com.tmh.t1.product.ProductVO;
 
 @Mapper
 public interface CartMapper {
-	public Long getPriceTotalProduct(CartVO cartVO)throws Exception;
-	
-	public Long getPricePerProduct(CartVO cartVO)throws Exception;
+//	public Long getPriceTotalProduct(CartVO cartVO)throws Exception;
+//	
+//	public Long getPricePerProduct(CartVO cartVO)throws Exception;
 	
 	public List<ProductVO> getProductList(CartVO cartVO)throws Exception;
 	
@@ -31,6 +31,10 @@ public interface CartMapper {
 	public int setOptionDelete(CartVO cartVO)throws Exception;
 	
 	public int setProductDelete(CartVO cartVO)throws Exception;
+	
+	public int setValidityUpdate(CartVO cartVO)throws Exception;
+	
+	public int setUnValidityUpdate(CartVO cartVO)throws Exception;
 	
 	public int setAmountUpdate(CartVO cartVO)throws Exception;
 

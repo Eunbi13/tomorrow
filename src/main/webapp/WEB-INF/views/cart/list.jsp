@@ -56,7 +56,7 @@ img{
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-<form name="calFrm" action="./update" method="post"> 
+
 <div class="container-fluid rounded bg-white" id="carts">
     <div class="row d-flex justify-content-center pb-5">
         <div class="col-sm-5 col-md-6 ml-1">
@@ -106,7 +106,7 @@ img{
 				  <li class="media mb-4" >
 				    <!-- Checked checkbox -->
 		            <div class="custom-control custom-checkbox productCheck${productVO.brandNum}" title="${productVO.brandNum}">
-					  <input type="checkbox" checked class="custom-control-input del" name="validity" id="check${productVO.productNum}" title="${p.index}" value="${productVO.productNum}">
+					  <input type="checkbox" checked class="custom-control-input del" name="validity1" id="check${productVO.productNum}" title="${productVO.productNum}" value="1">
 					  <label class="custom-control-label" for="check${productVO.productNum}"></label>
 					</div>
 					<!-- Checked checkbox  end -->
@@ -213,10 +213,12 @@ img{
         
         <!-- 결제 창 -->
         
+        
         <div class="col-sm-3 col-md-4 offset-md-1 mobile">
             <div class="py-4 d-flex justify-content-end">
               
             </div>
+            <form id="orderFrm" action="../order/insert" method="post"> 
             <div class="bg-light rounded d-flex flex-column">
                 <div class="p-2 ml-3">
              
@@ -224,13 +226,13 @@ img{
                 <div class="p-2 d-flex">
                     <div class="col-6">총 상품 금액</div>
                     <div class="ml-auto">  				    			
-                    	<input readonly="readonly" id="totalPrice" class="totalPrice" style=" width:100px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
+                    	<input readonly="readonly" name="itemsPrice" id="totalPrice" class="totalPrice" style=" width:100px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
                     </div>
                 </div>
                 <div class="p-2 d-flex">
                     <div class="col-6">총 배송비</div>
                     <div class="ml-auto">
-                      <input readonly="readonly" id="totalShipping" class="totalShipping" style=" width:100px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
+                      <input readonly="readonly" name="shippingFee" id="totalShipping" class="totalShipping" style=" width:100px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
                     </div>
                 </div>
                       <div class="p-2 d-flex">
@@ -247,20 +249,75 @@ img{
                     <div class="col-6"><b>결제 금액</b></div>
                     <div class="ml-auto">
                    	 <b class="green">
-                   	   <input readonly="readonly" id="payment" class="payment" style=" width:100px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
+                   	   <input readonly="readonly" name="payment" id="payment" class="payment" style=" width:100px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
                    	 </b>
                     </div>
                 </div>
             </div>
-            
-                <div> <a href="../order/insert"><input type="button"  value="개 상품 구매하기" id="payBtn" class="btn btn-info btn-block pay"></a> </div>
+            </form>	
+                <div> <input type="submit"  value="개 상품 구매하기" id="payBtn" class="btn btn-info btn-block pay"> </div>
        
         </div>
         
+        	
     </div>
 </div>
-	</form>		
+     
+	
 <script type="text/javascript">
+
+$("#payBtn").click(function(){
+	//각 cartVO의 validity 검사-> ajax를 이용해 DB에 업데이트 
+	// Ajax 끝마치고 submit 하기
+	 const validity_ar=[];
+	 const un_validity_ar=[];
+
+	$(".del").each(function(){
+		if($(this).prop("checked")){
+			validity_ar.push($(this).attr("title"));
+		} else{
+			un_validity_ar.push($(this).attr("title"));
+		}
+		
+	});
+	
+	$.ajax({
+		type: "post",
+		url:"../cart/validityUpdate",
+		async: false,
+		traditional: true,
+		data:{
+			productNum:validity_ar,
+			unProductNum:un_validity_ar
+
+		},
+		success:function(data){
+			data = data.trim();
+			if(data==1){
+				alert('validity 등록 성공');
+				
+				 $("#orderFrm").submit();
+
+			}else {
+				alert('validity 등록 실패');
+			}
+		}
+	})
+	
+	
+	
+
+	
+	
+	
+		
+    //----------ajax DB Update   
+
+	
+    
+});
+
+
 //==============================첫 로딩 시 금액 세팅
 
 let total=0; //총 상품 금액
@@ -350,9 +407,11 @@ let payment=totalShipping+total;
 $("#payment").val(payment);  //총 결제금액 입력
 
 //상품구매 버튼표기
-let validity =$('input:checkbox[name=validity]').length;
-console.log(validity);
-$('#payBtn').val(validity+"개 상품 구매하기");
+let validity1 =$('input:checkbox[name=validity1]').length;
+console.log(validity1);
+$('#payBtn').val(validity1+"개 상품 구매하기");
+
+
 
 // ----------세팅끝
 
@@ -368,15 +427,17 @@ $('#allCheck').change( function(){
     var imChecked = $(this).is(":checked");
     if(imChecked){
         $('.del').prop('checked',true);
-        let validity1 =$('input:checkbox[name=validity]:checked').length;
+        let validity1 =$('input:checkbox[name=validity1]:checked').length;
     	console.log("validity1:"+validity1);
     	$('#payBtn').val(validity1+"개 상품 구매하기");
+    	
 
     } else {
         $('.del').prop('checked',false);
-        let validity1 =$('input:checkbox[name=validity]:checked').length;
+        let validity1 =$('input:checkbox[name=validity1]:checked').length;
     	console.log("validity1:"+validity1);
     	$('#payBtn').val(validity1+"개 상품 구매하기");
+    	
 
     }
 });
@@ -386,6 +447,7 @@ $(".del").click(function(){
 	$(".del").each(function(){
 		if(!$(this).prop("checked")){
 			result=false;
+			$(this).val("0");
 		}
 	});
 	
@@ -407,19 +469,21 @@ $(".del, #allCheck").change(function(){
 	$(".del").each(function(){
 		if($(this).prop('checked')==true){
 			
-		    console.log('체크된 상태:'+$(this).val());
-		    let productNum=$(this).val();
+		    console.log('체크된 상태:'+$(this).attr("title"));
+		    let productNum=$(this).attr("title");
+		    $(this).val("1");
 	
 		    checkedNum.push(productNum);
 
 		} else{
-		    console.log('체크 안 된 상태:'+$(this).val());
+		    console.log('체크 안 된 상태:'+$(this).attr("title"));
+		    $(this).val("0");
 
 		}
 	});
 	
 	//상품구매 버튼표기
-	let validity1 =$('input:checkbox[name=validity]:checked').length;
+	let validity1 =$('input:checkbox[name=validity1]:checked').length;
 	console.log("validity1:"+validity1);
 	$('#payBtn').val(validity1+"개 상품 구매하기");
 	console.log("checkedNum:"+checkedNum)
@@ -574,13 +638,13 @@ $(".directInputBox").keyup(function(){
 	$(".del").each(function(){
 		if($(this).prop('checked')==true){
 			
-		    console.log('체크된 상태:'+$(this).val());
-		    let productNum=$(this).val();
+		    console.log('체크된 상태:'+$(this).attr("title"));
+		    let productNum=$(this).attr("title");
 	
 		    checkedNum.push(productNum);
 
 		} else{
-		    console.log('체크 안 된 상태:'+$(this).val());
+		    console.log('체크 안 된 상태:'+$(this).attr("title"));
 
 		}
 	});
@@ -723,13 +787,12 @@ $(".directInputBox").keyup(function(){
 
 $("#carts").on("click", "#selectedDelete", function(){
 	const ar = []; //빈 배열
-	const index_ar =[];  //${p.index}
 	const brand_ar=[];
 	$(".del").each(function(){
 		let ch = $(this).prop("checked");
 		if(ch){
-			ar.push($(this).val()); //productNum!
-			index_ar.push($(this).attr("title")); //${p.index}
+			ar.push($(this).attr("title")); //productNum!
+		
 			brand_ar.push($(this).parent().attr("title")); //brandNum!
 		}
 	});
@@ -891,7 +954,7 @@ $("#carts").on("click", "#selectedDelete", function(){
 							});
 							//상품구매 버튼표기
 							
-							 let validity1 =$('input:checkbox[name=validity]:checked').length;
+							 let validity1 =$('input:checkbox[name=validity1]:checked').length;
 						    	console.log("validity1:"+validity1);
 						    	$('#payBtn').val(validity1+"개 상품 구매하기");
 							
@@ -910,7 +973,6 @@ $("#carts").on("click", "#selectedDelete", function(){
 
  $(".delete").click(function () {
 	 
-	 alert("hi");
 	 let index = $(this).attr("title");
 	 console.log(index+":index");
 	 let cartNum= $("#cartNum"+index).attr("title"); //cartNum
@@ -966,13 +1028,13 @@ $("#carts").on("click", "#selectedDelete", function(){
 			    	$(".del").each(function(){
 			    		if($(this).prop('checked')==true){
 			    			
-			    		    console.log('체크된 상태:'+$(this).val());
-			    		    let productNum=$(this).val();
+			    		    console.log('체크된 상태:'+$(this).attr("title"));
+			    		    let productNum=$(this).attr("title");
 			    	
 			    		    checkedNum.push(productNum);
 
 			    		} else{
-			    		    console.log('체크 안 된 상태:'+$(this).val());
+			    		    console.log('체크 안 된 상태:'+$(this).attr("title"));
 
 			    		}
 			    	});
@@ -1080,9 +1142,10 @@ $("#carts").on("click", "#selectedDelete", function(){
 			    				
 			    				//상품구매 버튼표기
 								
-								 let validity1 =$('input:checkbox[name=validity]:checked').length;
+								 let validity1 =$('input:checkbox[name=validity1]:checked').length;
 							    	console.log("validity1:"+validity1);
 							    	$('#payBtn').val(validity1+"개 상품 구매하기");
+							    	
 			    				
 			    				
 			    	         

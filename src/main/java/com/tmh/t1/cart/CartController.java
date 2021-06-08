@@ -40,6 +40,7 @@ public class CartController {
 		UserDetails userDetails = (UserDetails)principal; 
 		String username = userDetails.getUsername();
 	   	cartVO.setUsername(username);
+	   	cartVO.setValid("zero");
 	   	System.out.println("username:"+username);
 	   	
 	    List<BrandVO> brandAr = cartService.getBrandList(cartVO);
@@ -110,6 +111,20 @@ public class CartController {
 		mv.setViewName("common/ajaxResult");
 		return mv;
 	}
+	
+	
+	@PostMapping("validityUpdate")
+	public ModelAndView setValidityUpdate(long [] productNum, long [] unProductNum)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = cartService.setValidityUpdate(productNum, unProductNum);
+		
+		mv.addObject("result", result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
+	
+	
+	
 	
 	@PostMapping("amountUpdate")
 	public ModelAndView setAmountUpdate(CartVO cartVO)throws Exception{

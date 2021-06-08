@@ -18,15 +18,7 @@ public class CartService {
 	@Autowired
 	private CartMapper cartMapper;
 	
-    public Long getPriceTotalProduct(CartVO cartVO)throws Exception{
-	   return cartMapper.getPriceTotalProduct(cartVO);
-	   
-    }
-	
-	public Long getPricePerProduct(CartVO cartVO)throws Exception{
-		
-		return cartMapper.getPricePerProduct(cartVO);
-	}
+    
 	
 	public List<ProductVO> getProductList(CartVO cartVO)throws Exception{
 		List<ProductVO>  productList = cartMapper.getProductList(cartVO);
@@ -89,7 +81,8 @@ public class CartService {
 		for(int i=0; i<productNum.length;i++) {
 			CartVO cartVO = new CartVO();
 			long num = productNum[i];
-			cartVO.setProductNum(num);;
+			cartVO.setProductNum(num);
+			System.out.println("productNum"+num);
 			cartVO.setUsername(username);
 			
 			
@@ -97,6 +90,49 @@ public class CartService {
 		}
 		return result;
 	}
+	
+	public int setValidityUpdate(long [] productNum, long [] unProductNum)throws Exception{
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal; 
+		String username = userDetails.getUsername();
+		
+		
+		int result=0;
+		
+		if(productNum !=null) {  //null 처리
+		
+			for(int i=0; i<productNum.length;i++) {
+				CartVO cartVO = new CartVO();
+				long num = productNum[i];
+				cartVO.setProductNum(num);
+				System.out.println("1로 변한 productNum"+num);
+				cartVO.setUsername(username);
+				
+				result = cartMapper.setValidityUpdate(cartVO);
+				
+			}
+		}
+		
+		
+		if(unProductNum != null) {
+		 
+			for(int i=0; i<unProductNum.length;i++) {
+				CartVO cartVO = new CartVO();
+				long num = unProductNum[i];
+				cartVO.setProductNum(num);
+				System.out.println("0 으로 변한 productNum"+num);
+				cartVO.setUsername(username);
+				
+				
+				result = cartMapper.setUnValidityUpdate(cartVO);
+			}
+		
+		}
+		
+		
+		return result;
+	}
+	
 	
 	public int setAmountUpdate(CartVO cartVO)throws Exception{
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 

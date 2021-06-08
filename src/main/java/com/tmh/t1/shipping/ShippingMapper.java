@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ShippingMapper {
 	
+	public ShippingVO getDefaltSelect(ShippingVO shippingVO)throws Exception;
+	
 	//Select
 	public ShippingVO getSelect(ShippingVO shippingVO)throws Exception;
 	//List
