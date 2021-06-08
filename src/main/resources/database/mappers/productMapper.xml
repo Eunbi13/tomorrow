@@ -30,9 +30,20 @@
 		
 		
     <!-- 장은 -->
-    	<select id="getList" parameterType="ProductVO" resultType="ProductVO">
+    	<select id="getProductList" parameterType="ProductVO" resultType="ProductVO">
     		select * from product
     	</select>
+    	
+    	<select id="getBrandList" parameterType="ProductVO" resultType="BrandVO">
+    		select brandName from brand
+			where brandNum IN (SELECT brandNum FROM product WHERE productNum=#{productNum})
+    	</select>
+    	
+    	<select id="getOptionsList" parameterType="ProductVO" resultType="OptionsVO">
+    		SELECT * from options
+			where productNum IN (SELECT productNum FROM product WHERE productNum=#{productNum})
+    	</select>
+    	
     
     	<select id="getSelect" parameterType="ProductVO" resultType="ProductVO">
     		select * from product where productNum=#{productNum}

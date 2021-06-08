@@ -16,7 +16,7 @@ public class ProductVO {
 	private Long productPrice;
 	private String productPic;
 	private String contents;
-	private double discount;
+	private Long discountPrice;
 	private Long shippingFee;
 	
 	private ProductImagesVO productImagesVO;

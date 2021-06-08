@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tmh.t1.brand.BrandVO;
 import com.tmh.t1.category.CategoryVO;
 import com.tmh.t1.option.OptionsVO;
 
@@ -45,16 +46,15 @@ public class ProductController {
 	}
 	
 	@GetMapping("productlist")
-	public void getList(ProductVO productVO, Model model)throws Exception {
-		List<ProductVO> ar = productService.getList(productVO);
-		model.addAttribute("list", ar);
-	}
-	
-	//test
-	@GetMapping("productlist2")
-	public void getList2(ProductVO productVO, Model model)throws Exception {
-		List<ProductVO> ar = productService.getList(productVO);
-		model.addAttribute("list", ar);
+	public void getProductList(ProductVO productVO, Model model)throws Exception {
+		List<ProductVO> productar = productService.getProductList(productVO);
+		model.addAttribute("productlist", productar);
+		
+		List<BrandVO> brandar = productService.getBrandList(productVO);
+		model.addAttribute("brand", brandar);
+		
+		List<OptionsVO> optionsar = productService.getOptionsList(productVO);
+		model.addAttribute("options", optionsar);
 	}
 	
 	@GetMapping("productselect")

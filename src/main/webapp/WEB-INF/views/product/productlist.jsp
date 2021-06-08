@@ -244,7 +244,7 @@ to {
 
 
 	<div class="store-list-item">
-		<c:forEach items="${list}" var="vo">
+		<c:forEach items="${productlist}" var="vo">
 			<div class="store-list-item-card">
 				<a href="./productselect?productNum=${vo.productNum}"> <img
 					class="item-img" src="../resources/images/storeEX/glove.webp"
@@ -252,7 +252,7 @@ to {
 					<div class="item-title" style="color: black;">${vo.productName}</div>
 					<div class="card-price">
 						<div class="item-price" style="color: black;">${vo.productPrice}</div>
-						<div class="item-discount" style="color: pink;">${vo.discount}%</div>
+						<div class="item-discount" style="color: #ff9696;">${vo.discountPrice}%</div>
 					</div>
 				</a>
 			</div>
