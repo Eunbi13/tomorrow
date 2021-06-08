@@ -142,11 +142,17 @@ to {
 .item-img {
 	width: 300px;
 }
-.card-price{
+
+.card-price {
 	font-weight: bold;
 	font-size: 20px;
 }
-.item-price{
+
+.item-price {
+	float: left;
+}
+
+. btn-secondary{
 	float: left;
 }
 
@@ -249,20 +255,31 @@ to {
 		</div>
 	</div>
 
-
+	<!-- 상품 리스트 -->
 	<div class="store-list-item">
 		<c:forEach items="${productlist}" var="vo">
 			<div class="store-list-item-card">
 				<a href="./productselect?productNum=${vo.productNum}"> <img
 					class="item-img" src="../resources/images/storeEX/glove.webp"
 					alt="item pic">
-					<div class="brand">
-						${vo.brandNum } ${brand }
-					</div>
+					<div class="brand">${vo.brandNum } ${brand }</div>
 					<div class="item-title" style="color: black;">${vo.productName}</div>
 					<div class="card-price">
-						<div class="item-price discount" style="color: #75bdff;">${vo.discountPrice}%</div>
-						<div class="item-price won" style="color: black; margin-left: 10px;">${vo.productPrice}</div>
+						<c:choose>
+							<c:when test="${vo.discountPrice eq 0}"></c:when>
+							<c:otherwise>
+								<div class="item-price discount" style="color: #75bdff; margin-right: 10px;">${vo.discountPrice}%</div>
+							</c:otherwise>
+						</c:choose>
+
+						<div class="item-price won"
+							style="color: black; ">${vo.productPrice}</div>
+					</div>
+					<br>
+					<div class="item-ship">
+						<c:if test="${vo.shippingFee eq 0 }">
+							무료배송
+						</c:if>
 					</div>
 				</a>
 			</div>
