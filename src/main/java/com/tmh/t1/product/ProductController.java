@@ -68,6 +68,12 @@ public class ProductController {
 	public void getSelect2(ProductVO productVO, Model model)throws Exception{
 		productVO = productService.getSelect(productVO);
 		model.addAttribute("vo", productVO);
+		
+		List<BrandVO> brandar = productService.getBrandList(productVO);
+		model.addAttribute("brand", brandar);
+		
+		List<OptionsVO> optionsar = productService.getOptionsList(productVO);
+		model.addAttribute("options", optionsar);
 	}
 	
 }

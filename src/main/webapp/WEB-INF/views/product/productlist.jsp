@@ -142,6 +142,13 @@ to {
 .item-img {
 	width: 300px;
 }
+.card-price{
+	font-weight: bold;
+	font-size: 20px;
+}
+.item-price{
+	float: left;
+}
 
 </style>
 <c:import url="../template/bootStrap.jsp"></c:import>
@@ -249,10 +256,13 @@ to {
 				<a href="./productselect?productNum=${vo.productNum}"> <img
 					class="item-img" src="../resources/images/storeEX/glove.webp"
 					alt="item pic">
+					<div class="brand">
+						${vo.brandNum } ${brand }
+					</div>
 					<div class="item-title" style="color: black;">${vo.productName}</div>
 					<div class="card-price">
-						<div class="item-price" style="color: black;">${vo.productPrice}</div>
-						<div class="item-discount" style="color: #ff9696;">${vo.discountPrice}%</div>
+						<div class="item-price discount" style="color: #75bdff;">${vo.discountPrice}%</div>
+						<div class="item-price won" style="color: black; margin-left: 10px;">${vo.productPrice}</div>
 					</div>
 				</a>
 			</div>

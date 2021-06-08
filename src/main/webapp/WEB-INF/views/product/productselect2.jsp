@@ -59,7 +59,14 @@
 				src="../resources/images/storeEX/glove.webp">
 		</div>
 		<div class="store-select-wrap content">
-			<div class="store-select-content-brand"> ${brand } 브랜드 </div>
+			<div class="store-select-content-brand"> 
+				<c:if test="${brandVO.brandNum eq productVO.brandNum}">
+					test
+					${brand}
+					${brandVO.brandName }
+				</c:if>
+				브랜드
+			</div>
 			<div class="store-select-content-name">${vo.productName}</div>
 			<div class="store-select-content-price">
 				<div class="store-select-content-price-discount"
@@ -80,6 +87,7 @@
 					</c:otherwise>
 				</c:choose>
 			</div>
+			<br>
 			<div class="store-select-content-options">
 				<c:forEach items="${options}" var="optionsVO">
 					<option value="${options}">${options}</option>
