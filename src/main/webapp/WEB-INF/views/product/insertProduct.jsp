@@ -27,7 +27,7 @@
 						<label class="col-sm-2 col-form-label">대분류</label>
 						<c:forEach items="${categoryOne}" var="vo">
 						<div class=" form-check form-check-inline ">
-							<input class="form-check-input ch" type="checkbox" value="${vo.categoryID}">
+							<input class="form-check-input ch" type="checkbox" name="one" value="${vo.categoryID}">
 							<label class="form-check-label" for="inlineCheckbox1">${vo.category_detail_NM }</label>
 						</div>
 						</c:forEach>

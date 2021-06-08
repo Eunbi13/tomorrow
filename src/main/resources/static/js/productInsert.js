@@ -1,35 +1,52 @@
 /**
  * 옵션쪽 구현 아직 안함
  */
+
 //대분류에서 선택시
+
 $('.ch').click(function(){
-	let categoryID=$(this).prop("value");
-	$.ajax({
-		type:"GET",
-		url:"./getCategoryTwo",
-		data:{categoryID: categoryID},
-		success:function(data){
-			$('#two').append(data);
-		}
+	let check = $('.ch').prop('checked');
+	$('#two').empty();
+	$('#three').empty();
+	$('.ch[name="one"]').prop('checked', false);
+	$(this).prop('checked', true);
+	
+	if(check){
+		let categoryID=$(this).prop("value");
 		
-	});
+		$.ajax({
+			type:"GET",
+			url:"./getCategoryTwo",
+			data:{categoryID: categoryID},
+			success:function(data){
+				$('#two').append(data);
+			}
+		});
+		
+	}
 });
 //중분류에서 선택시
 $('#two').on('click', '.ch2', function(){
-	let categoryID = $(this).prop("value");
-	$.ajax({
-		type:"GET",
-		url:"./getCategoryThree",
-		data:{categoryID: categoryID},
-		success:function(data){
-			$('#three').append(data);
-			$('#three').on('click', '.ch2', function(){
-				$(this).prop("name", "categoryID");
-			});
-		}
-		
-	});
+	let check = $(this).prop('checked');
+	$('#three').empty();
+	$('.ch2[name="two"]').prop('checked', false);
+	$(this).prop('checked', true);
+	if(check){
+		let categoryID = $(this).prop("value");
 	
+		$.ajax({
+			type:"GET",
+			url:"./getCategoryThree",
+			data:{categoryID: categoryID},
+			success:function(data){
+				$('#three').append(data);
+				$('#three').on('click', '.ch2', function(){
+					$(this).prop("name", "categoryID");
+				});
+			}
+			
+		});
+	}
 });
 
 //modal controller
@@ -37,12 +54,12 @@ let check =false;
 $('#use').click(function(){
 	check=$('#use').prop('checked');
 });
-$('table').hide();
+
 $('#add').click(function(){
 	$('.addForm').append($('.optionForm').html());
 });
 
-function makeTable(kind, i){
+function makeThead(kind, i){
 	let thead=
 		'<table class="table">'+
 			'<thead>'+	 	
@@ -68,11 +85,9 @@ let step="";
 	$('.kinds').each(function(i, k){
 
 		kind = $(k).val();
-		//makeTable
-		$('#test').append(makeTable(kind, i));
-		
-		console.log($('tbody').attr('title'));
-			$('table').show();
+		//makeThead
+		$('#test').append(makeThead(kind, i));
+			
 			$('.names').each(function(j, n){
 				if(i==j){
 					names = $(n).val().split('/');
@@ -83,22 +98,18 @@ let step="";
 						}else{
 							step='0';
 						}
-						
-						$('.t'+i).append(table(kind, nm, step));
+						//makeTbody
+						$('.t'+i).append(makeTbody(kind, nm, step));
 						
 					}
 				}//if i==j
 			});
-
-	})
-		
-		
-		
+	})	
 });
 	
 
 
-function table(kind, name, step){
+function makeTbody(kind, name, step){
 	let t1=
 		
 		'<tr>'+
