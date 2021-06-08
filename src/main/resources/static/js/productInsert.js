@@ -42,34 +42,55 @@ $('#add').click(function(){
 	$('.addForm').append($('.optionForm').html());
 });
 
-let optionTable='<c:import url="../options/optionTable.jsp"></c:import>';
+function makeTable(kind, i){
+	let thead=
+		'<table class="table">'+
+			'<thead>'+	 	
+				'<tr id="thead">'+				
+				'<th scope="col"></th>'+					
+				'<th scope="col" class="kind'+i+'">'+kind+'</th>'+					
+				'<th scope="col">옵션가격</th>'+					
+				'<th scope="col"></th>'+					
+				'</tr>'+				
+			'</thead>'+				
+			'<tbody class="t'+i+'">'+
+			'</tbody>'+			
+		'</table>';			
+					
+	return thead;
+};
+
 
 $('#modal').click(function(){
 let kind="";
 let names="";
 let step="";
 	$('.kinds').each(function(i, k){
+
 		kind = $(k).val();
-		console.log(kind);
-		$('.kind1').text(kind);//컬럼명
+		//makeTable
+		$('#test').append(makeTable(kind, i));
+		
+		console.log($('tbody').attr('title'));
 			$('table').show();
 			$('.names').each(function(j, n){
 				if(i==j){
 					names = $(n).val().split('/');
 					for(nm of names){
-						console.log(nm);
+						
 						if(check){
-							step=i;
+							step=i;//조합형일 경우
 						}else{
 							step='0';
 						}
 						
-						$('tbody').append(table(kind, nm, step));
+						$('.t'+i).append(table(kind, nm, step));
 						
 					}
-				}
+				}//if i==j
 			});
-		})
+
+	})
 		
 		
 		
