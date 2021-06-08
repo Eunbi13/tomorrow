@@ -10,9 +10,9 @@
     	</select> 
     	<insert id="setProduct" parameterType="ProductVO" useGeneratedKeys="true" keyProperty="productNum">
 			INSERT INTO product (brandNum, productPic, contents, 
-								 productName, productPrice, discount, shippingFee) 
+								 productName, productPrice, discountPrice, shippingFee) 
 			VALUES (#{brandNum},#{productPic},#{contents},
-					#{productName},#{productPrice},#{discount},#{shippingFee})
+					#{productName},#{productPrice},#{discountPrice},#{shippingFee})
     	</insert>
     	<insert id="setImages" parameterType="ProductImagesVO">
 			INSERT INTO productimages (productNum, fileName) VALUES (#{productNum}, #{fileName})

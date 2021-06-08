@@ -80,9 +80,9 @@
 			</div>
 		
 			<div class="form-group row">
-				<label class="col-sm-2  col-form-label">할인율</label>
+				<label class="col-sm-2  col-form-label">판매가격</label>
 				<div class="col-sm-10">
-					<input class="form-control" name="discount" type="number" placeholder="Please number">
+					<input class="form-control" name="discountPrice" type="number" placeholder="Please number">
 				</div>
 			</div>
 			
@@ -111,8 +111,8 @@
 			<table class="table" >
 			 	<thead>
 					<tr id="thead">
-						<th scope="col">옵션명</th>
-						<th scope="col">옵션값</th>
+						<th scope="col" id="kind1">옵션명</th>
+						<th scope="col"></th>
 						<th scope="col">옵션가격</th>
 					</tr>
 				</thead>
