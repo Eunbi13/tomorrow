@@ -4,11 +4,11 @@
 
 <mapper namespace="com.tmh.t1.option.OptionsMapper">
 	<insert id="setOption" parameterType="OptionsVO" useGeneratedKeys="true" keyProperty="optionNum">
-		INSERT into Options (optionKinds, optionName, optionPrice) 
-		VALUES (#{optionKinds},#{optionName},#{optionPrice})
+		INSERT into Options (optionKinds, optionName, optionPrice, step) 
+		VALUES (#{optionKinds},#{optionName},#{optionPrice},#{step})
 	</insert>
 	<update id="updateOption" parameterType="OptionsVO">
-		UPDATE options SET ref=#{ref}, step=#{step} WHERE optionNum=#{optionNum}
+		UPDATE options SET ref=#{optionNum} WHERE optionNum=#{optionNum}
 	</update>
 
 	

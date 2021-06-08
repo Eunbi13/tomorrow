@@ -78,18 +78,20 @@ public class ProductService {
 		String [] k= optionsVO.getOptionKinds().split(",");
 		String [] n = optionsVO.getOptionName().split(",");
 		String [] p = optionsVO.getOptionPrice().split(",");
-	
+		String [] s = optionsVO.getStep().split(",");
 		List<Long> optionNums = new ArrayList<Long>();
 
 		for(int i =0; i<k.length; i++) {
 			optionsVO = new OptionsVO();
-
 			optionsVO.setOptionKinds(k[i]);
 			optionsVO.setOptionName(n[i]);
 			optionsVO.setOptionPrice(p[i]);
+			optionsVO.setStep(s[i]);
+			
 			optionsMapper.setOption(optionsVO);
 			Long optionsNum=optionsVO.getOptionNum();
 			System.out.println(optionsNum);
+			optionsMapper.updateOption(optionsVO);
 			optionNums.add(optionsNum);
 		}
 

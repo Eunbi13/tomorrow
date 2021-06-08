@@ -10,7 +10,6 @@ public class OptionsVO {
 	private String optionName;
 	private String optionPrice;
 	private Long ref;
-	private Long step;
+	private String step;
 	
-	private String head;
 }
