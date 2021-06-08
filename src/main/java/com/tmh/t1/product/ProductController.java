@@ -58,11 +58,16 @@ public class ProductController {
 	}
 	
 	@GetMapping("productselect")
-	public void getSelect(ProductVO productVO)throws Exception{
-		ModelAndView mv = new ModelAndView();
+	public void getSelect(ProductVO productVO, Model model)throws Exception{
 		productVO = productService.getSelect(productVO);
-		mv.addObject("vo", productVO);
-		mv.setViewName("product/productselect");
+		model.addAttribute("vo", productVO);
+	}
+	
+
+	@GetMapping("productselect2")
+	public void getSelect2(ProductVO productVO, Model model)throws Exception{
+		productVO = productService.getSelect(productVO);
+		model.addAttribute("vo", productVO);
 	}
 	
 }
