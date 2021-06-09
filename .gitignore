@@ -72,3 +72,5 @@ target/classes/META-INF/maven/com.tmh/t1/pom.properties
 .factorypath
 .settings/org.eclipse.jdt.apt.core.prefs
 target/classes/META-INF/maven/com.tmh/t1/pom.properties
+.classpath
+.factorypath
