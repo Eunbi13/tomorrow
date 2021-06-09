@@ -90,7 +90,7 @@ $('#modal').click(function(){
 							step='0';
 						}
 						//makeTbody
-						$('.t'+countI).append(makeTbody(kind, nm, step));
+						$('tbody.t'+countI).append(makeTbody(kind, nm, step));
 						
 					}
 				}//if i==j
@@ -103,21 +103,45 @@ $('#modal').click(function(){
 	$('.optionForm').html(optionForm);
 });
 
-$('#table').on('click','.table', function(){
-	$('this').html();
-	console.log($('this').html())
-	$('this :td.add').click(function(){
-		alert('hi')
-	})
-	//kind, step 가져와야함
-	console.log($('this').toString())
-	$('this').addClass('select');
-	//console.log($('this').html())
-	console.log($('td.add').parent().html());//tr의 내부가 나타남
-	console.log($('td.add').parent().parent().html());//tfoot내부 
-	console.log($('td.add').parent().parent().parent().html());//table까지 나타나지만, 무조건 첫번째 요소
+$('#table').on('click','table', function(e){
+	let kind="";
+	let step="";
 	let name="";
+	$('td.add').click(function(){
+		let a = $(this).attr('title');
+		console.log(a);//[name="optionKinds"]
+		
+		let c=$('tbody.'+a).html();
+		console.log(c)
+		
+		let f=$(c+' :nth-child(1):eq(0)').html();
+			console.log(f)
+		let x = $(c+'>:eq(0)').children('td:eq(0)').html();
+		console.log(x)
+		let xx = $(c+'>:eq(0)').children('td');//[]
+		$(xx).each(function(i, x){
+			
+			console.log('xx: '+$(x).html());//xx: <input name="optionKinds" hidden="hidden" value="sd" class="tdKind">
+			console.log('xx: '+$(x).attr('name'));
+			console.log('xx: '+$($(x).html()).attr('name'));
+			
+			if($($(x).html()).attr('name')=='optionKinds'){
+				 kind = $($(x).html()).val();
+				console.log(kind)
+			}else if($($(x).html()).attr('name')=='step'){
+				step = $($(x).html()).val();
+				console.log(step);
+			}
+		})
+		
+		//$('tbody.'+a).append('<tr>'+b+'</tr>');//그리고 makeTbody()사용하기 
+		console.log('=========')
+		let aa = $('tbody.'+$(this).attr('title')).html();
+		let bb = $(aa+'>:eq(0)').children('td:eq(0)').html();
+		console.log(bb)
 	
+	$('tbody.'+a).append(makeTbody(kind, name, step));
+	})
 });
 
 //make Table code
@@ -133,15 +157,15 @@ function makeThead(kind, i){
 				'</thead>'+				
 				'<tbody class="t'+i+'">'+
 				'</tbody>'+
-				'<tfoot><tr><td></td><td></td><td></td><td class="add">+</td></tr></tfoot>'+			
+				'<tfoot><tr><td></td><td></td><td></td><td class="add" title="t'+i+'">+</td></tr></tfoot>'+			
 			'</table>';	
 };
 
 function makeTbody(kind, name, step){
 	return 	'<tr>'+
-				'<td><input name="optionKinds" hidden="hidden"	value="'+kind+'"></td>'+
-				'<td><input name="optionName"  type="text"		value="'+name+'" class="form-control" ></td>'+
-				'<td><input name="optionPrice" type="number"	value="0" 		 class="form-control" ></td>'+
-				'<td><input name="step"		   hidden="hidden"	value="'+step+'"></td>'+
+				'<td><input name="optionKinds" hidden="hidden"	value="'+kind+'" class="tdKind"></td>'+
+				'<td><input name="optionName"  type="text"		value="'+name+'" class="tdName form-control" ></td>'+
+				'<td><input name="optionPrice" type="number"	value="0" 		 class="tdPrice form-control" ></td>'+
+				'<td><input name="step"		   hidden="hidden"	value="'+step+'" class="tdStep"></td>'+
 			'</tr>';
 }
