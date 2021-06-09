@@ -118,7 +118,7 @@ $('#modal').click(function(){
 	$('.optionForm').html(optionForm);
 });
 
-$('#table').on('click','table', function(e){
+$('#table').on('click','table', function(){
 	let kind="";
 	let step="";
 	let name="";
@@ -126,22 +126,49 @@ $('#table').on('click','table', function(e){
 		let a = $(this).attr('title');
 		console.log(a);//[name="optionKinds"]
 		
-		let c=$('tbody.'+a).html();
+		let count = $('tbody.'+a+'>tr').length;
+		console.log(count);
+		
+		let c=$('tbody.'+a+'>:eq(0)').html();
 		console.log(c)
 		console.log('===========');
-		console.log($(c+'>:eq(0)').html())
+		console.log($(c+'>:eq(0)').html());
+		console.log('===========');
+//		console.log($(c+'>:eq(0)').children('td').html())
 //		let f=$(c+' :nth-child(1):eq(0)').html();
 //			console.log(f)
 //		let x = $(c+'>:eq(0)').children('td:eq(0)').html();
 //		console.log('xxxxxxxxxxx'+x)
-		let oo = $(c+'>:eq(0)').children('td');//[]
+		console.log($(c+' td').html())
+		$(c+' td').each(function(i,k){
+			console.log('k'+$(k).html())
+			console.log('k'+$($(k).html()).attr('name'))
+			console.log('k'+i)
+			if($($(k).html()).attr('name')=='optionKinds'){
+				kind=$($(k).html()).val();
+			}
+			if($($(k).html()).attr('name')=='step'){
+				step=$($(k).html()).val();
+			}
+		})
+		console.log('===========');
+		console.log('===========');
+		/*let oo = $(c).children('td');//[]
 		$(oo).each(function(i, o){
 			console.log('oo: '+$(o).html());
 			console.log('oo: '+$(o).attr('name'));
 			console.log('oo: '+$($(o).html()).attr('name'));
-		});
+			console.log(i)
+			if($($(o).html()).attr('name')=='optionKinds'){
+				 kind = $($(o).html()).val();
+				console.log(kind)
+			}else if($($(o).html()).attr('name')=='step'){
+				step = $($(o).html()).val();
+				console.log(step);
+			}
+		});*/
 		console.log('===========');
-		let xx = $(c+'>:eq(0)').children('td');//[]
+	/*	let xx = $(c+'>:eq(0)').children('td');//[]
 		$(xx).each(function(i, x){
 			
 			console.log('xx: '+$(x).html());//xx: <input name="optionKinds" hidden="hidden" value="sd" class="tdKind">
@@ -155,16 +182,18 @@ $('#table').on('click','table', function(e){
 				step = $($(x).html()).val();
 				console.log(step);
 			}
-		})
+		})*/
 		
 		//$('tbody.'+a).append('<tr>'+b+'</tr>');//그리고 makeTbody()사용하기 
 		console.log('=========')
-		let aa = $('tbody.'+$(this).attr('title')).html();
-		let bb = $(aa+'>:eq(0)').children('td:eq(0)').html();
-		console.log(bb)
 	
-	$('tbody.'+a).append(makeTbody(kind, name, step));
-	})
+		$('tbody.'+a).append(makeTbody(kind, name, step));
+		stop = $('tbody.'+a+'>tr').length;
+		console.log(stop);
+		if(count+1==stop){
+			return false;
+		}
+	});
 });
 
 //make Table code
