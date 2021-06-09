@@ -7,13 +7,10 @@ $('#imageAdd').click(function(){
 $('.imageAdd').on('click', 'div.imageInput', function(){
 	$('.deleteImage').click(function(){
 		alert('hi')
-	$(this).html();
-	console.log($(this).html())
+		$(this).html();
+		console.log($(this).html())
+	});
 });
-});
-
-
-
 //대분류에서 선택시
 $('.ch').click(function(){
 	let check = $('.ch').prop('checked');
@@ -118,6 +115,7 @@ $('#modal').click(function(){
 	$('.optionForm').html(optionForm);
 });
 
+
 $('#table').on('click','table', function(){
 	let kind="";
 	let step="";
@@ -126,6 +124,8 @@ $('#table').on('click','table', function(){
 		let a = $(this).attr('title');
 		console.log(a);//[name="optionKinds"]
 		
+		//makeTbody할때 내가 클릭한 총 횟수만큼 이벤트가 일어남,, 왜지?
+		//그걸 방지하기 위한 count와 stop 변수
 		let count = $('tbody.'+a+'>tr').length;
 		console.log(count);
 		
@@ -134,12 +134,8 @@ $('#table').on('click','table', function(){
 		console.log('===========');
 		console.log($(c+'>:eq(0)').html());
 		console.log('===========');
-//		console.log($(c+'>:eq(0)').children('td').html())
-//		let f=$(c+' :nth-child(1):eq(0)').html();
-//			console.log(f)
-//		let x = $(c+'>:eq(0)').children('td:eq(0)').html();
-//		console.log('xxxxxxxxxxx'+x)
 		console.log($(c+' td').html())
+		console.log('===========');
 		$(c+' td').each(function(i,k){
 			console.log('k'+$(k).html())
 			console.log('k'+$($(k).html()).attr('name'))
@@ -151,40 +147,7 @@ $('#table').on('click','table', function(){
 				step=$($(k).html()).val();
 			}
 		})
-		console.log('===========');
-		console.log('===========');
-		/*let oo = $(c).children('td');//[]
-		$(oo).each(function(i, o){
-			console.log('oo: '+$(o).html());
-			console.log('oo: '+$(o).attr('name'));
-			console.log('oo: '+$($(o).html()).attr('name'));
-			console.log(i)
-			if($($(o).html()).attr('name')=='optionKinds'){
-				 kind = $($(o).html()).val();
-				console.log(kind)
-			}else if($($(o).html()).attr('name')=='step'){
-				step = $($(o).html()).val();
-				console.log(step);
-			}
-		});*/
-		console.log('===========');
-	/*	let xx = $(c+'>:eq(0)').children('td');//[]
-		$(xx).each(function(i, x){
-			
-			console.log('xx: '+$(x).html());//xx: <input name="optionKinds" hidden="hidden" value="sd" class="tdKind">
-			console.log('xx: '+$(x).attr('name'));
-			console.log('xx: '+$($(x).html()).attr('name'));
-			
-			if($($(x).html()).attr('name')=='optionKinds'){
-				 kind = $($(x).html()).val();
-				console.log(kind)
-			}else if($($(x).html()).attr('name')=='step'){
-				step = $($(x).html()).val();
-				console.log(step);
-			}
-		})*/
 		
-		//$('tbody.'+a).append('<tr>'+b+'</tr>');//그리고 makeTbody()사용하기 
 		console.log('=========')
 	
 		$('tbody.'+a).append(makeTbody(kind, name, step));
