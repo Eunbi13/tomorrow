@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.tmh.t1.brand.BrandVO;
 import com.tmh.t1.category.CategoryMapper;
 import com.tmh.t1.category.CategoryVO;
 import com.tmh.t1.option.OptionsMapper;
@@ -119,13 +120,21 @@ public class ProductService {
 	
 	
 	//list
-	public List<ProductVO> getList(ProductVO productVO)throws Exception{
-		return productMapper.getList(productVO);
-	}
-	
-	//select
-	public ProductVO getSelect(ProductVO productVO)throws Exception{
-		return productMapper.getSelect(productVO);
-	}
+		public List<ProductVO> getProductList(ProductVO productVO)throws Exception{
+			return productMapper.getProductList(productVO);
+		}
+		
+		public List<BrandVO> getBrandList(ProductVO productVO)throws Exception{
+			return productMapper.getBrandList(productVO);
+		}
+		
+		public List<OptionsVO> getOptionsList(ProductVO productVO)throws Exception{
+			return productMapper.getOptionsList(productVO);
+		}
+		
+		//select
+		public ProductVO getSelect(ProductVO productVO)throws Exception{
+			return productMapper.getSelect(productVO);
+		}
 
 }
