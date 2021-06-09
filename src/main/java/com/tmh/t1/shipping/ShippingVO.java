@@ -16,6 +16,8 @@ public class ShippingVO {
 	private String shipAddress;
 	
 	private boolean isDefault;
+
+	private String postcode;
 	
 	private String username;
 
@@ -74,6 +76,15 @@ public class ShippingVO {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
+	public String getPostcode() {
+		return postcode;
+	}
+
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+	
 
 	
 }

@@ -37,18 +37,19 @@ public class ShippingController {
 	
 	//리스트
 	@GetMapping("shippingList")
-	public ModelAndView getList(ShippingVO shippingVO, HttpSession session, ModelAndView mv)throws Exception{
+	public ModelAndView getList(ShippingVO shippingVO,  ModelAndView mv)throws Exception{
+		System.out.println("리스트 입장!");
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
 		UserDetails userDetails = (UserDetails)principal; 
 		String username = userDetails.getUsername();
 		shippingVO.setUsername(username);
 		
 		List<ShippingVO> ar = shippingService.getList(shippingVO);
+	    System.out.println("리스트 성공!");
 		
-		
-		mv.addObject("shippingList", ar);
+		mv.addObject("shippingAr", ar);
 		mv.addObject("vo", shippingVO);
-		mv.setViewName("order/page");
+	
 		return mv;
 	}
 	
@@ -62,6 +63,10 @@ public class ShippingController {
 		
 		@PostMapping("shippingInsert")
 		public String setInsert(ShippingVO shippingVO, Model model)throws Exception{
+			System.out.println("shippingInsert 입장성공");
+			System.out.println(shippingVO.getIsDefault());
+			System.out.println(shippingVO.getShipName());
+		
 			int result = shippingService.setInsert(shippingVO);
 			System.out.println("입력성공");
 			return "redirect:./";

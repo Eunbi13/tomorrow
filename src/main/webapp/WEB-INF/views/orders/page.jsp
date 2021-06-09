@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -190,42 +192,46 @@ margin-top: 20px;
 
       </div>
       <div class="modal-body modal-scroll-panel ">
-        
-            <c:forEach items="${shippingAr}" var="shipping">
-        	<!-- shipping select -->
-	          <div class="card" style="width: 100%; height:200px; margin-bottom: 10px; border: 1px solid LightGray; border-radius:10px;">
-				  <div class="card-body ">
-			
-				  
-				      <div class="card-title" style="float:left; font-weight: bold; font-size: 18px;">${shipping.shipTitle}</div>
-				           <c:if test="${shipping.isDefault == true}">
-							<div>
-								<div class="_2w0fH" style="float:left;">기본배송지</div>
-							</div>
-							</c:if>
-				     
-				          <div style="font-size: 16px;  clear:both; "> ${shipping.shipAddress}</div>
-				    	  <div  style="font-size: 14px; font-weight: lighter; padding-bottom:10px;"> ${shipping.shipName} ${shipping.shipPhone} </div>
-				    	
-						
-				    	 <div style="width:150px; height:50px; float: left;">
-							 <button type="button" class="btn" style="font-size:14px; border: 1px solid LightGray">삭제</button>   
-							 <button type="button" class="btn" style="font-size:14px; border: 1px solid LightGray">수정</button>
-						 </div>
-						 <div style="width:70px; height:50px;  float: right;">
-						   <button type="button" class="btn btn-default shipSelect" style="font-size:14px;" title="${shipping.shipNum}" >선택</button>
-						 </div>
+          <div id="shippingList">
+              <div id="shippingListSize" title="${fn:length(shippingAr)}">
+	            <c:forEach items="${shippingAr}" var="shipping" varStatus="status">
+	           
+	            
+	        	<!-- shipping select -->
+		          <div class="card" style="width: 100%; height:200px; margin-bottom: 10px; border: 1px solid LightGray; border-radius:10px;">
+					  <div class="card-body ">
+				         
 					  
+					      <div class="card-title" style="float:left; font-weight: bold; font-size: 18px;">${shipping.shipTitle}</div>
+					           <c:if test="${shipping.isDefault == true}">
+								<div>
+									<div class="_2w0fH" style="float:left;">기본배송지</div>
+								</div>
+								</c:if>
+					     
+					          <div style="font-size: 16px;  clear:both; "> ${shipping.shipAddress}</div>
+					    	  <div  style="font-size: 14px; font-weight: lighter; padding-bottom:10px;"> ${shipping.shipName} ${shipping.shipPhone} </div>
+					    	
+							
+					    	 <div title="${shipping.shipNum}" style="width:150px; height:50px; float: left;">
+								 <button type="button" class="btn shipDelBtn" title="${shipping.shipNum}"  style="font-size:14px; border: 1px solid LightGray">삭제</button>   
+								 <button type="button" class="btn shipUpdateBtn" title="${shipping.shipNum}"  style="font-size:14px; border: 1px solid LightGray">수정</button>
+							 </div>
+							 <div style="width:70px; height:50px;  float: right;">
+							   <button type="button" class="btn btn-default shipSelect" style="font-size:14px;" title="${shipping.shipNum}" >선택</button>
+							 </div>
+						  
+					  </div>
 				  </div>
-			  </div>
-			  	<!-- shipping select  end -->
-			  	
-			  	</c:forEach>
-			  
+				  	<!-- shipping select  end -->
+				  	
+				  	</c:forEach>
+				  </div>	
+		 </div>
 	
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn  btn-toggle btn-default btn-lg btn-block" data-toggle="modal" data-target="#shippingInsertModal" style="font-size:24px;">배송지 추가</button>
+        <button type="button" id="shippingAdd" class="btn  btn-toggle btn-default btn-lg btn-block" data-toggle="modal" data-target="#shippingInsertModal" style="font-size:24px;">배송지 추가</button>
 
       </div>
     </div>
@@ -238,7 +244,7 @@ margin-top: 20px;
 
 
 <!-- 배송지 추가 Modal  -->
-<div class="modal fade" id="shippingInsertModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div id="shippingInsertModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -247,7 +253,7 @@ margin-top: 20px;
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form id="shipFrm1" action="./shippingInsert" method="post">
+      <form id="shipFrm1" action="../shipping/shippingInsert" method="post">
       <div class="modal-body shipInsertBody">
      	 
      	 
@@ -294,7 +300,7 @@ margin-top: 20px;
 					
 					<div class="form-check">
 						<label class="form-check-label"> 
-						<input type="checkbox" class="form-check-input" name="isDefault"  style="margin-bottom: 100px">기본 배송지로 등록
+						<input type="checkbox" class="form-check-input" name="isDefault" id="isDefault"  style="margin-bottom: 100px">기본 배송지로 등록
 						</label>
 					</div>
 					
@@ -308,7 +314,7 @@ margin-top: 20px;
         
       </div>
       <div class="modal-footer">
-                <button type="button" id="shipInsert" class="btn btn-default btn-lg btn-block" style="font-size:24px;">저장</button>
+                <button type="button" id="shipInsertBtn" class="btn btn-default btn-lg btn-block" style="font-size:24px;">저장</button>
         
       </div>
        </form>
@@ -447,7 +453,7 @@ margin-top: 20px;
 							<option value="4">부재시 전화주시거나 문자 남겨 주세요</option>
 							<option value="5">직접입력</option>
 						</select>
-				  	<textarea style="overflow: hidden; overfolw-wrap: break-word; width: 100%;  height: 56px; font-size:16px;" placeholder="배송 요청사항을 입력해주세요" maxlength="50" row="1" class="directInputBox"  id="directInputBox" name="shippingMemo"></textarea>
+				  	<textarea style="overflow: hidden; overflow-wrap: break-word; width: 100%;  height: 56px; font-size:16px;" placeholder="배송 요청사항을 입력해주세요" maxlength="50" row="1" class="directInputBox"  id="directInputBox" name="shippingMemo"></textarea>
 				  
 				</div>
 				</div>
@@ -644,17 +650,17 @@ margin-top: 20px;
 		
 $("#directInputBox").hide();
 
-
-$(".shippingMemo").change(function() {
+/* 
+$("#shippingMemo").change(function() {
               //직접입력을 선텍하면 나타남
-		if($(".shippingMemo").val() == "5") {
+		if($("#shippingMemo").val() == "5") {
 			$("#directInputBox").show();
 			
 		}  else {
 			$("#directInputBox").hide();
 		}
 });
-  
+   */
  
 
 /* $(function(){
@@ -675,8 +681,63 @@ $(".shippingMemo").change(function() {
 	
 }) */
 
+//shipping Delete!
+$(".shipDelBtn").click(function(){
+	console.log("삭제 클릭");
+
+	let shipNum = $(this).attr("title");
+	console.log(shipNum);
+	let result =confirm("삭제하시겠습니까?");
+	if(result){
+		console.log("삭제 통과")
+		$.get("../shipping/shippingDelete?shipNum="+shipNum, function(data){
+			
+			alert("배송지를 삭제하였습니다.");
+			getList();
+			
+		});
+	}
+	
+	
+});
+
+
+//이미 배송지수가 5개라면 '배송지 5개 초과로 입력할 수 없습니다.'경고창띄우기
+$("#shippingAdd").click(function(){
+	
+	let shippingLength=$("#shippingListSize").attr("title");
+	if(shippingLength>4){
+		alert("배송지는 5개까지 입력할 수 있습니다."
+				+"다른 배송지를 입력하시려면 배송지 리스트안의 배송지를 삭제하시고 진행해주세요.")
+		//배송지가 5개 이상일때 shipping insert창의 연결을 끊는다
+		$(this).attr("data-target"," ");
+			  
+	
+	} else{
+		$(this).attr("data-target","#shippingInsertModal");
+	}
+	
+});
+
 // shipping Insert!
-$("#shipInsert").click(function(){
+$("#shipInsertBtn").click(function(){
+	
+	
+	let shipTitle= $("#shipTitle").val();
+	let shipName= $("#shipName").val();
+	let shipPhone= $("#shipPhone").val();
+	let shipAddress= $("#sample6_address").val();
+	let shipDetailAddress= $("#sample6_detailAddress").val();
+	shipAddress = shipAddress +" "+ shipDetailAddress;
+	let postcode= $("#sample6_postcode").val();
+	
+	let username= $("#username").val();
+	//checkbox 체크여부 받아오기
+	let isDefault= $("#isDefault").prop("checked");
+   console.log(isDefault);
+   if(isDefault){
+	   //isDefault true를 체크했다면, 다른 shipping의 Defalut를 false로 업데이트 해줘야
+   }
 	
 	
 	$.post("../shipping/shippingInsert",
@@ -686,23 +747,65 @@ $("#shipInsert").click(function(){
 		        shipPhone: shipPhone, 
 		        shipAddress: shipAddress,
 		        postcode: postcode,
-		        isDefault: isDefault
+		        isDefault: isDefault,
+		        username:username
 		
 			},
 			function(data){
+				console.log("시도!!");
 				data=data.trim();
+				
+				
 				if(data==1){
+				    $("#shipTitle").val('');
+					$("#shipName").val('');
+					$("#shipPhone").val('');
+					$("#sample6_address").val('');
+					$("#sample6_detailAddress").val('');
+				
+					$("#sample6_postcode").val('');
+					$("#isDefault").val('');
+					$("#username").val('');
 					
-					$('#shippingInsertModal').modal("hide"); //shipping Insert 모달 닫기 
 					
+					/* if(isDefault){
+						//default를 선택하면 다른 shippingVO의 default를 다 false로 만들어줘야한다
+						//ajax update 만들어서 넣어주시기
+						//ajax list만들어서 넣어주기
+					} */
 				}else{
 					alert("등록 실패했습니다.");
 				}
-			}
+			
+      });
 	
+	// shipping list 갱신하기 
+	 $.get("../shipping/shippingList",function(data){
+			console.log(data)
+			$("#shippingList").empty();
+			$("#shippingList").html(data.trim());
+		
+		});
+	 
+	 $("#shippingInsertModal").modal("hide"); //shipping Insert 모달 닫기 
+	
+
 });
  
- 
+//shipping List
+
+function getList(){
+	let username= $("#username").val();
+	
+	 $.get("../shipping/shippingList?username="+username,function(data){
+			console.log(data)
+			$("#shippingList").empty();
+			$("#shippingList").html(data.trim());
+		
+		});
+	
+	
+	}
  
 
 	
@@ -718,6 +821,8 @@ $(".shipSelect").click(function(){
 		$("#shippingSel").html(data.trim());
 		$('#shippingListModal').modal("hide"); //모달 닫기 
 	});
+    
+});
 	
 	 //--------ajax
 function getSelect(){
@@ -730,12 +835,12 @@ function getSelect(){
  }
 
 	
+//shipping 삭제
+
+
 	
-		
-    //----------ajax  
 	
-	
-});
+
 
 </script>
 
