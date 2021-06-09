@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -54,6 +55,7 @@ public class ShippingController {
 	}
 	
 	//삽입
+	
 		@GetMapping("shippingInsert")
 		public void setInsert(ShippingVO shippingVO)throws Exception{
 			ModelAndView mv = new ModelAndView();
@@ -61,16 +63,16 @@ public class ShippingController {
 			mv.setViewName("shipping/shippingInsert");
 		}
 		
+		@ResponseBody
 		@PostMapping("shippingInsert")
-		public String setInsert(ShippingVO shippingVO, Model model)throws Exception{
+		public int setInsert(ShippingVO shippingVO, Model model)throws Exception{
 			System.out.println("shippingInsert 입장성공");
 			System.out.println(shippingVO.getIsDefault());
 			System.out.println(shippingVO.getShipName());
 		
 			int result = shippingService.setInsert(shippingVO);
 			System.out.println("입력성공");
-			return "redirect:./";
-			
+			return result;
 		}
 		
 		//삭제
@@ -95,7 +97,7 @@ public class ShippingController {
 		@GetMapping("shippingUpdate")
 		public void setUpdate(ShippingVO shippingVO, Model model)throws Exception{
 			shippingVO = shippingService.getSelect(shippingVO);
-			model.addAttribute("vo", shippingVO);
+			model.addAttribute("shipVO", shippingVO);
 		}
 		
 		@PostMapping("shippingUpdate")

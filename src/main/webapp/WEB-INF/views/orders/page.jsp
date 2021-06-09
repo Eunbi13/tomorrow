@@ -178,6 +178,8 @@ margin-top: 20px;
 <body>
 <c:import url="../template/header.jsp"></c:import>
 
+<input type="hidden" id="ordersUsername" title="${ordersVO.username}">
+
 
 
 <!-- 배송지 리스트 Modal -->
@@ -215,7 +217,7 @@ margin-top: 20px;
 							
 					    	 <div title="${shipping.shipNum}" style="width:150px; height:50px; float: left;">
 								 <button type="button" class="btn shipDelBtn" title="${shipping.shipNum}"  style="font-size:14px; border: 1px solid LightGray">삭제</button>   
-								 <button type="button" class="btn shipUpdateBtn" title="${shipping.shipNum}"  style="font-size:14px; border: 1px solid LightGray">수정</button>
+								 <button type="button" class="btn shipUpdateBtn" id="shipUpdateBtn${shipping.shipNum}" title="${shipping.shipNum}" data-toggle="modal" data-target="#shippingUpdateModal" style="font-size:14px; border: 1px solid LightGray">수정</button>
 							 </div>
 							 <div style="width:70px; height:50px;  float: right;">
 							   <button type="button" class="btn btn-default shipSelect" style="font-size:14px;" title="${shipping.shipNum}" >선택</button>
@@ -240,6 +242,90 @@ margin-top: 20px;
 </div>
 
 <!-- 배송지 리스트 Modal 끝 -->
+
+<!-- 배송지 수정 Modal  -->
+<div id="shippingUpdateModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" id="exampleModalLongTitle" style="font-size:24px; font-weight:bold;">배송지 추가</div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div id="shippingUp">
+      <form id="shipFrm1" action="../shipping/shippingInsert" method="post">
+      <div class="modal-body shipInsertBody">
+     	 
+     	 
+     	 <div class="form-group">
+				<input type="hidden" id="username" name="username" value="${ordersVO.username}">
+		</div>
+     	 	  <div class="form-group row shipInsert">
+			    <label for="shipTitle" class="col-sm-3 col-form-label">배송지명</label>
+			    <div class="col-sm-9">
+			      <input type="text" name="shipTitle" class="form-control" id="shipTitle" value="${shipVO.shipTitle}">
+			    </div>
+			  </div>
+			  <div class="form-group row shipInsert">
+			    <label for="shipName" class="col-sm-3 col-form-label">받는 사람</label>
+			    <div class="col-sm-9">
+			      <input type="text" name="shipName" class="form-control" id="shipName" value="${shipVO.shipName}">
+			    </div>
+			  </div>
+			  <div class="form-group row shipInsert">
+			    <label for="inputPassword" class="col-sm-3 col-form-label">연락처</label>
+			    <div class="col-sm-9">
+			      <input type="text" name="shipPhone" class="form-control" id="shipPhone" value="${shipVO.shipPhone}">
+			    </div>
+			  </div>
+			  <div class="form-group row shipInsert">
+			    <label for="inputPassword" class="col-sm-3 col-form-label"> 주소 </label>
+			    <div class="col-sm-9 row">
+			    
+			    
+                     <div class="col-sm-6">
+			    	<input type="text" id="sample6_postcode" placeholder="우편번호" name="postcode" class="form-control" value="${shipVO.postcode}" style="font-size:16px; display:inline-block; margin-bottom:10px;" >
+			    	  </div>
+			    	  <div class="col-sm-6">
+			    	  
+					<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="form-control btn btn-outline-secondary" style="font-size:16px; display:inline-block; margin-bottom:10px;">
+			            </div>
+			    </div>
+			    <label for="inputPassword" class="col-sm-3 col-form-label"> </label>
+			    <div class="col-sm-9">
+			  
+					<input type="text" id="sample6_address" placeholder="주소" name="shipAddress" value="${shipVO.shipAddress}"class="form-control" style="font-size:16px; margin-bottom:10px;">
+					<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="shipDetailAddress" value="${shipVO.shipDetailAddress}"class="form-control" style="font-size:16px; margin-bottom:10px;">
+				
+					
+					<div class="form-check">
+						<label class="form-check-label"> 
+						<input type="checkbox" class="form-check-input" name="isDefault" id="isDefault" value="${shipVO.shipTitle}" style="margin-bottom: 100px">기본 배송지로 등록
+						</label>
+					</div>
+					
+					
+			    </div>
+			  </div>
+            
+		 
+           
+			
+        
+      </div>
+      <div class="modal-footer">
+                <button type="button" id="shipInsertBtn" class="btn btn-default btn-lg btn-block" style="font-size:24px;">저장</button>
+        
+      </div>
+       </form>
+       </div>
+      
+    </div>
+  </div>
+</div>
+
 
 
 
@@ -680,9 +766,33 @@ $("#shippingMemo").change(function() {
 	}
 	
 }) */
+//shipping Update!
+$(document).on('click',".shipUpdateBtn", function(){
+
+	console.log(" 수정 클릭");
+
+	let shipNum = $(this).attr("title");
+	console.log(shipNum);
+
+		$.get("../shipping/shippingUpdate?shipNum="+shipNum, function(data){
+			console.log(data)
+			$("#shippingUp").empty();
+			$("#shippingUp").html(data.trim());
+			
+			
+		   
+			
+		});
+		
+		
+	
+});
+  
+
 
 //shipping Delete!
-$(".shipDelBtn").click(function(){
+$(document).on('click',".shipDelBtn", function(){
+
 	console.log("삭제 클릭");
 
 	let shipNum = $(this).attr("title");
@@ -693,9 +803,21 @@ $(".shipDelBtn").click(function(){
 		$.get("../shipping/shippingDelete?shipNum="+shipNum, function(data){
 			
 			alert("배송지를 삭제하였습니다.");
-			getList();
+			//getList
+			let username= $("#ordersUsername").attr("title");
+			console.log("username:"+ username);
+			 $.get("../shipping/shippingList?username="+username,function(data){
+					console.log(data)
+					$("#shippingList").empty();
+					$("#shippingList").html(data.trim());
+				
+				});
+		   
 			
 		});
+		
+		
+
 	}
 	
 	
@@ -720,82 +842,102 @@ $("#shippingAdd").click(function(){
 });
 
 // shipping Insert!
-$("#shipInsertBtn").click(function(){
-	
-	
+$(document).on('click',"#shipInsertBtn", function(){
+
 	let shipTitle= $("#shipTitle").val();
 	let shipName= $("#shipName").val();
 	let shipPhone= $("#shipPhone").val();
 	let shipAddress= $("#sample6_address").val();
 	let shipDetailAddress= $("#sample6_detailAddress").val();
-	shipAddress = shipAddress +" "+ shipDetailAddress;
 	let postcode= $("#sample6_postcode").val();
 	
-	let username= $("#username").val();
+	let username= $("#ordersUsername").attr("title");
+
 	//checkbox 체크여부 받아오기
 	let isDefault= $("#isDefault").prop("checked");
    console.log(isDefault);
+   console.log("username:"+username);
    if(isDefault){
 	   //isDefault true를 체크했다면, 다른 shipping의 Defalut를 false로 업데이트 해줘야
    }
-	
-	
-	$.post("../shipping/shippingInsert",
-			{
-		        shipTitle: shipTitle,
-		        shipName: shipName,
-		        shipPhone: shipPhone, 
-		        shipAddress: shipAddress,
-		        postcode: postcode,
-		        isDefault: isDefault,
-		        username:username
-		
-			},
-			function(data){
-				console.log("시도!!");
-				data=data.trim();
-				
-				
-				if(data==1){
-				    $("#shipTitle").val('');
-					$("#shipName").val('');
-					$("#shipPhone").val('');
-					$("#sample6_address").val('');
-					$("#sample6_detailAddress").val('');
-				
-					$("#sample6_postcode").val('');
-					$("#isDefault").val('');
-					$("#username").val('');
-					
-					
-					/* if(isDefault){
-						//default를 선택하면 다른 shippingVO의 default를 다 false로 만들어줘야한다
-						//ajax update 만들어서 넣어주시기
-						//ajax list만들어서 넣어주기
-					} */
-				}else{
-					alert("등록 실패했습니다.");
-				}
+   
+   $.ajax({
+   	type: "post",
+   	url: "../shipping/shippingInsert",
+   	data:{
+   		shipTitle: shipTitle,
+        shipName: shipName,
+        shipPhone: shipPhone, 
+        shipAddress: shipAddress,
+        shipDetailAddress:shipDetailAddress,
+        postcode: postcode,
+        isDefault: isDefault,
+        username:username
+   	},
+   	success:function(data){
+   		
+			console.log("시도!!");
+			data= $.trim(data);
+			console.log(data);
 			
-      });
+			if(data=='1'){
+				alert("배송지 입력 성공했습니다.");
+			    $("#shipTitle").val('');
+				$("#shipName").val('');
+				$("#shipPhone").val('');
+				$("#sample6_address").val('');
+				$("#sample6_detailAddress").val('');
+			
+				$("#sample6_postcode").val('');
+				$("#isDefault").val('');
+				
+				// shipping list 갱신하기 
+			    username= $("#ordersUsername").attr("title");
+			     
+				 $.get("../shipping/shippingList?username="+username,function(data){
+						console.log(data)
+						$("#shippingList").empty();
+						$("#shippingList").html(data.trim());
+					
+					});
+				 
+				 $("#shippingInsertModal").modal("hide"); //shipping Insert 모달 닫기 
+				
+				
+				
+				/* if(isDefault){
+					//default를 선택하면 다른 shippingVO의 default를 다 false로 만들어줘야한다
+					//ajax update 만들어서 넣어주시기
+					//ajax list만들어서 넣어주기
+				} */
+			}else{
+				alert("등록 실패했습니다.");
+			}
+   		
+      	}
+   	
+      
+    })
+    
+    
+     
+    
+    
+    
+    
+
 	
-	// shipping list 갱신하기 
-	 $.get("../shipping/shippingList",function(data){
-			console.log(data)
-			$("#shippingList").empty();
-			$("#shippingList").html(data.trim());
-		
-		});
-	 
-	 $("#shippingInsertModal").modal("hide"); //shipping Insert 모달 닫기 
+  });
+	
+	
 	
 
-});
+
  
 //shipping List
 
 function getList(){
-	let username= $("#username").val();
+	let username= $("#ordersUsername").attr("title");
 	
 	 $.get("../shipping/shippingList?username="+username,function(data){
 			console.log(data)
@@ -810,11 +952,13 @@ function getList(){
 
 	
 //shipping list에서 선택 버튼 누를시, 주문페이지에 나타는 배송지 정보가 변한다. 	
-
-$(".shipSelect").click(function(){
+$(document).on('click', '.shipSelect', function(){
 	let shipNum =$(this).attr("title");
 	
     console.log(shipNum);
+    
+    
+    
     $.get("../shipping/shippingSelect?shipNum="+shipNum,function(data){
 		console.log(data)
 		$("#shippingSel").empty();

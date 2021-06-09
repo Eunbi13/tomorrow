@@ -5,6 +5,8 @@ import lombok.Data;
 
 public class ShippingVO {
 	
+   
+	
 	private Long shipNum;
 	
 	private String shipTitle;
@@ -14,6 +16,8 @@ public class ShippingVO {
 	private String shipPhone;
 	
 	private String shipAddress;
+	
+	 private String shipDetailAddress;
 	
 	private boolean isDefault;
 
@@ -83,6 +87,14 @@ public class ShippingVO {
 
 	public void setPostcode(String postcode) {
 		this.postcode = postcode;
+	}
+
+	public String getShipDetailAddress() {
+		return shipDetailAddress;
+	}
+
+	public void setShipDetailAddress(String shipDetailAddress) {
+		this.shipDetailAddress = shipDetailAddress;
 	}
 	
 
