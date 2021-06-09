@@ -1,6 +1,6 @@
 /**
  * 
- */
+*/
 
 let familyType = '';
 let cnt = 0;
@@ -15,11 +15,19 @@ $(".fmtOption").on("click", function() {
 	// 해당 value를 fmtBtn의 value로 설정
 	// value 추출
 	console.log($(this).val());
-	familyType = $(this).val();
+	type = $(this).val();
 	
-	changee()
+	$(".delete").each(function(s1, s2) {
+		if(s1 == cnt) {
+			// fmtBtn value 설정
+			console.log($(this).val());
+			$(this).val(type);
+			console.log($(this).val());
+		}
+	});
 	
 	// fmtBtn 추가
+	console.log("sample" + $("#sample").html());
 	$("#fmt").append($("#sample").html());
 	cnt++;
 	
@@ -32,11 +40,19 @@ $(".styleOption").on("click", function() {
 	// 해당 value를 fmtBtn의 value로 설정
 	// value 추출
 	console.log($(this).val());
-	stType = $(this).val();
+	type = $(this).val();
 	
-	stchange()
+	$(".delete").each(function(s1, s2) {
+		if(s1 == stCnt) {
+			// fmtBtn value 설정
+			console.log($(this).val());
+			$(this).val(type);
+			console.log($(this).val());
+		}
+	});
 	
 	// fmtBtn 추가
+	console.log("sample" + $("#sample").html());
 	$("#style").append($("#sample").html());
 	stCnt++;
 	
@@ -49,11 +65,19 @@ $(".detailOption").on("click", function() {
 	// 해당 value를 fmtBtn의 value로 설정
 	// value 추출
 	console.log($(this).val());
-	dtType = $(this).val();
+	type = $(this).val();
 	
-	dtchange()
+	$(".delete").each(function(s1, s2) {
+		if(s1 == dtCnt) {
+			// fmtBtn value 설정
+			console.log($(this).val());
+			$(this).val(type);
+			console.log($(this).val());
+		}
+	});
 	
 	// fmtBtn 추가
+	console.log("sample" + $("#sample").html());
 	$("#detail").append($("#sample").html());
 	dtCnt++;
 	
@@ -66,23 +90,7 @@ function changee() {
 	$(".delete").each(function(s1, s2) {
 		if(s1 == cnt) {
 			// fmtBtn value 설정
-			$(this).val(familyType);
-		}
-	});
-}
-
-function stchange() {
-	$(".delete").each(function(s1, s2) {
-		if(s1 == stCnt) {
-			$(this).val(stType);
-		}
-	});
-}
-
-function dtchange() {
-	$(".delete").each(function(s1, s2) {
-		if(s1 == dtCnt) {
-			$(this).val(dtType);
+			$(this).val(type);
 		}
 	});
 }
@@ -105,3 +113,30 @@ $(".contents").on("click", function() {
 $(".week").on("click", function() {
 	$("#periodText").text("주");
 });
+$(".month").on("click", function() {
+	$("#periodText").text("개월");
+});
+
+let ar = ['black', 'white', 'gray', 'beige', 'brown', 'darkbrown', 
+		'red', 'pink', 'yellow', 'green', 'mint', 'blue', 'darkblue'];
+let checkTone = '';		
+
+/*
+$(".total").each(function(s1, s2) {
+	for(let i in ar) {
+		if(s1 == i) {
+			che
+		}
+	}
+	console.log(s1);
+	
+});
+*/
+
+
+
+
+
+
+
+

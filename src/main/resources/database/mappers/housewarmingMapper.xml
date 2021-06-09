@@ -38,6 +38,8 @@
    			<result column="username" property="username"/>
    			<result column="contents" property="contents"/>
    			<result column="hit" property="hit"/>
+   			<result column="like" property="like"/>
+   			<result column="scrap" property="scrap"/>
    			<collection property="hwfile" javaType="HwFileVO">
    				<id column="fileNum" property="fileNum"/>
    				<result column="fileName" property="fileName"/>
@@ -62,9 +64,17 @@
    		<update id="setUpdate" parameterType="HousewarmingVO">
    			update housewarming 
    			set space=#{space}, spaceSize=#{spaceSize}, work=#{work}, field=#{field}, familyType=#{familyType}, area=#{area}, style=#{style}, period=#{period}, budget=#{budget}, 
-   			totalTone=#{totalTone}, wallColor=#{wallColor}, bottomColor=#{bottomColor}, detail=#{detail}, link=#{link}, copyright=#{copyright}, title=#{title}, contents=#{contents} 
+   			totalTone=#{totalTone}, wallColor=#{wallColor}, bottomColor=#{bottomColor}, detail=#{detail}, link=#{link}, copyright=#{copyright}, title=#{title}, contents=#{contents}, like=#{like}, scrap=#{scrap} 
    			where hwNum=#{hwNum}
    		</update>
+   		
+   		<!-- <update id="setLikeInsert" parameterType="HousewarmingVO">
+   			insert into hwLike values(#{hwNum}, #{username})
+   		</update>
+   		
+   		<update id="setScrapInsert" parameterType="HousewarmingVO">
+   			insert into hwScrap values(#{hwNum}, #{username})
+   		</update> -->
    		
    		<delete id="setDelete" parameterType="HousewarmingVO">
    			delete from housewarming where hwNum=#{hwNum}
