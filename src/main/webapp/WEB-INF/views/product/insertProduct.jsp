@@ -54,10 +54,16 @@
 				<label class="col-sm-2 col-form-label">대표 이미지<span>*</span></label>
 				<input type="file" name="rep" class="form-control col-sm-10" >
 			</div>
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">사진 올리기 </label>
-				<input type="file" name="files" class="form-control col-sm-10" >
+			<div class="imageAdd">
+				<div>
+					<div class="form-group row imageInput" >
+						<label class="col-sm-2 col-form-label">추가 이미지 </label>
+						<input type="file" name="files" class="form-control col-sm-9" >
+						<label class="col-sm-1 col-form-labe deleteImage">x</label>
+					</div>
+				</div>
 			</div>
+			<div id="imageAdd" class="btn">+</div>
 		</fieldset>
 <br>
 

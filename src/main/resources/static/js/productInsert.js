@@ -1,3 +1,18 @@
+//imageAdd
+$('#imageAdd').click(function(){
+	
+	let imageInput = $('.imageAdd>:eq(0)').html();
+	$('.imageAdd').append(imageInput);
+});
+$('.imageAdd').on('click', 'div.imageInput', function(){
+	$('.deleteImage').click(function(){
+		alert('hi')
+	$(this).html();
+	console.log($(this).html())
+});
+});
+
+
 
 //대분류에서 선택시
 $('.ch').click(function(){
@@ -113,11 +128,19 @@ $('#table').on('click','table', function(e){
 		
 		let c=$('tbody.'+a).html();
 		console.log(c)
-		
-		let f=$(c+' :nth-child(1):eq(0)').html();
-			console.log(f)
-		let x = $(c+'>:eq(0)').children('td:eq(0)').html();
-		console.log(x)
+		console.log('===========');
+		console.log($(c+'>:eq(0)').html())
+//		let f=$(c+' :nth-child(1):eq(0)').html();
+//			console.log(f)
+//		let x = $(c+'>:eq(0)').children('td:eq(0)').html();
+//		console.log('xxxxxxxxxxx'+x)
+		let oo = $(c+'>:eq(0)').children('td');//[]
+		$(oo).each(function(i, o){
+			console.log('oo: '+$(o).html());
+			console.log('oo: '+$(o).attr('name'));
+			console.log('oo: '+$($(o).html()).attr('name'));
+		});
+		console.log('===========');
 		let xx = $(c+'>:eq(0)').children('td');//[]
 		$(xx).each(function(i, x){
 			
