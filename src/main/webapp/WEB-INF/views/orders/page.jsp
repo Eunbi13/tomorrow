@@ -17,27 +17,36 @@ shipping  -->
 <title>Insert title here</title>
 <style type="text/css">
 
-.btn-default
+.ship-change{
+color: #A63F82;
+
+
+}
+.ship-change:hover, .ship-change:focus, .ship-change:active{
+color: #732944;
+text-decoration: none;
+}
+
+
+
+.btn-default{
  
-{
- 
-background-color: #a63f82;
+background-color: #A63F82;
  
 color:#FFF;
  
-border-color: #e5b8d7;
+border-color: #A63F82;
  
 }
  
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
  
  
- 
 background-color: #732944;
  
 color:#FFF;
  
-border-color: #946a98;
+border-color: #732944;
  
 }
 .shipInsertBody{
@@ -109,12 +118,12 @@ section{
     width: 72px;
     padding: 3px 8px;
     box-sizing: border-box;
-    border: 1px solid #946a98;
+    border: 1px solid #A63F82;
     border-radius: 100px;
     font-size: 12px;
     font-weight: bold;
     line-height: 14px;
-    color: #946a98;
+    color: #A63F82; 
     margin-left: 8px;
     user-select: none;
 }
@@ -153,7 +162,7 @@ section{
 margin-top: 20px;
 }
 .green {
-    color: #e5b8d7;
+    color: #A63F82;
     font-weight: 680;
 }
 
@@ -204,7 +213,7 @@ margin-top: 20px;
 							 <button type="button" class="btn" style="font-size:14px; border: 1px solid LightGray">수정</button>
 						 </div>
 						 <div style="width:70px; height:50px;  float: right;">
-						   <button type="button" class="btn btn-info shipSelect" style="font-size:14px;" title="${shipping.shipNum}" >선택</button>
+						   <button type="button" class="btn btn-default shipSelect" style="font-size:14px;" title="${shipping.shipNum}" >선택</button>
 						 </div>
 					  
 				  </div>
@@ -216,7 +225,7 @@ margin-top: 20px;
 	
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn  btn-toggle btn-info btn-lg btn-block" data-toggle="modal" data-target="#shippingInsertModal" style="font-size:24px;">배송지 추가</button>
+        <button type="button" class="btn  btn-toggle btn-default btn-lg btn-block" data-toggle="modal" data-target="#shippingInsertModal" style="font-size:24px;">배송지 추가</button>
 
       </div>
     </div>
@@ -238,12 +247,12 @@ margin-top: 20px;
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form id="frm" action="./shippingInsert" method="post">
+      <form id="shipFrm1" action="./shippingInsert" method="post">
       <div class="modal-body shipInsertBody">
      	 
      	 
      	 <div class="form-group">
-				<input type="hidden" id="username" name="username" value="id1">
+				<input type="hidden" id="username" name="username" value="${ordersVO.username}">
 		</div>
      	 	  <div class="form-group row shipInsert">
 			    <label for="shipTitle" class="col-sm-3 col-form-label">배송지명</label>
@@ -269,23 +278,23 @@ margin-top: 20px;
 			    
 			    
                       <div class="col-sm-6">
-			    	<input type="text" id="sample6_postcode" placeholder="우편번호" name="shipAddress" class="form-control" style="font-size:16px; display:inline-block; margin-bottom:10px;" >
+			    	<input type="text" id="sample6_postcode" placeholder="우편번호" name="postcode" class="form-control" style="font-size:16px; display:inline-block; margin-bottom:10px;" >
 			    	  </div>
 			    	  <div class="col-sm-6">
 			    	  
-					<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" name="shipAddress" class="form-control btn btn-outline-info" style="font-size:16px; display:inline-block; margin-bottom:10px;">
+					<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="form-control btn btn-outline-secondary" style="font-size:16px; display:inline-block; margin-bottom:10px;">
 			            </div>
 			    </div>
 			    <label for="inputPassword" class="col-sm-3 col-form-label"> </label>
 			    <div class="col-sm-9">
 			  
 					<input type="text" id="sample6_address" placeholder="주소" name="shipAddress" class="form-control" style="font-size:16px; margin-bottom:10px;">
-					<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="shipAddress" class="form-control" style="font-size:16px; margin-bottom:10px;">
+					<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="shipDetailAddress" class="form-control" style="font-size:16px; margin-bottom:10px;">
 				
 					
 					<div class="form-check">
 						<label class="form-check-label"> 
-						<input type="checkbox" class="form-check-input" name="shipDefault" value="1" style="margin-bottom: 100px">기본 배송지로 등록
+						<input type="checkbox" class="form-check-input" name="isDefault"  style="margin-bottom: 100px">기본 배송지로 등록
 						</label>
 					</div>
 					
@@ -299,7 +308,7 @@ margin-top: 20px;
         
       </div>
       <div class="modal-footer">
-                <button type="button" class="btn btn-info btn-lg btn-block" style="font-size:24px;">저장</button>
+                <button type="button" id="shipInsert" class="btn btn-default btn-lg btn-block" style="font-size:24px;">저장</button>
         
       </div>
        </form>
@@ -322,13 +331,16 @@ margin-top: 20px;
            <div class="d-flex">
                 <div class="">배송지</div>
                 
+         
+               <c:if test="${!empty shippingAr}">
+                
                 <div class="ml-auto "><!-- Button trigger modal -->
 				
 				<!-- 배송지 리스트 button -->
-                <a class="ship-change" data-toggle="modal" data-target="#shippingListModal" style="text-decoration: none;">변경</a>
+                <a class="ship-change" data-toggle="modal" data-target="#shippingListModal">변경</a>
 				</div>
-                  <!-- Button trigger modal -->
-
+                  <!-- Button trigger modal --> 
+                </c:if>
                   
             </div>
             <hr>
@@ -336,24 +348,94 @@ margin-top: 20px;
 	            <div class="d-flex pt-1">
 	            <div class="bbqwt">
 					<div class="checkout-container ">
-					
-					
-		<div id="shippingSel">
-						<div class="_2s2Nq">
-						   <div id="shipTitle" class="shippingTitle${shippingVO.shipNum}" style="float:left; font-size:20px; font-weight: bold;"> ${shippingVO.shipTitle} </div>
+		<!-- 가지고 있는 배송지가 없는 경우 입력창을 띄우고, 결제하기를 누를 때 ajax 를 이용해서 저장된다 -->
+		<c:if test="${empty shippingAr}">
+		  shipping empty!!!
+		       <form id="frm" action="./shippingInsert" method="post">
+			      <div class="modal-body shipInsertBody">
+			     	 
+			     	 
+			     	 <div class="form-group">
+							<input type="hidden" id="username" name="username" value="id1">
+					</div>
+			     	 	  <div class="form-group row shipInsert">
+						    <label for="shipTitle" class="col-sm-3 col-form-label">배송지명</label>
+						    <div class="col-sm-9">
+						      <input type="text" name="shipTitle" class="form-control" id="shipTitle" >
+						    </div>
+						  </div>
+						  <div class="form-group row shipInsert">
+						    <label for="shipName" class="col-sm-3 col-form-label">받는 사람</label>
+						    <div class="col-sm-9">
+						      <input type="text" name="shipName" class="form-control" id="shipName">
+						    </div>
+						  </div>
+						  <div class="form-group row shipInsert">
+						    <label for="inputPassword" class="col-sm-3 col-form-label">연락처</label>
+						    <div class="col-sm-9">
+						      <input type="text" name="shipPhone" class="form-control" id="shipPhone">
+						    </div>
+						  </div>
+						  <div class="form-group row shipInsert">
+						    <label for="inputPassword" class="col-sm-3 col-form-label"> 주소 </label>
+						    <div class="col-sm-9 row">
+						    
+						    
+			                      <div class="col-sm-6">
+						    	<input type="text" id="sample7_postcode" placeholder="우편번호" name="shipAddress" class="sample6_postcode form-control" style="font-size:16px; display:inline-block; margin-bottom:10px;" >
+						    	  </div>
+						    	  <div class="col-sm-6">
+						    	  
+								<input type="button" onclick="sample7_execDaumPostcode()" value="우편번호 찾기" name="shipAddress" class="form-control btn btn-outline-secondary" style="font-size:16px; display:inline-block; margin-bottom:10px;">
+						            </div>
+						    </div>
+						    <label for="inputPassword" class="col-sm-3 col-form-label"> </label>
+						    <div class="col-sm-9">
+						  
+								<input type="text" id="sample7_address" placeholder="주소" name="shipAddress" class="sample6_address form-control" style="font-size:16px; margin-bottom:10px;">
+								<input type="text" id="sample7_detailAddress" placeholder="상세주소" name="shipAddress" class="sample6_detailAddress form-control" style="font-size:16px; margin-bottom:10px;">
 							
-							<c:if test="${shippingVO.isDefault == true}">
-							<div>
-								<div class="_2w0fH" style="float:left;">기본배송지</div>
-							</div>
-							</c:if>
-					   </div>
-					
-					<div id="shipAddress" class="shippingAddress${shippingVO.shipNum}" style="clear:both; font-size:18px;">${shippingVO.shipAddress}</div>
-				<div class="">
-					<div id="shipNameNPhone" class="" style="font-size:15px; color:gray; padding-bottom:15px;">${shippingVO.shipName}  ${shippingVO.shipPhone}</div>
-				</div>
-		</div>		
+								
+								<div class="form-check">
+									<label class="form-check-label"> 
+									<input type="checkbox" class="form-check-input" name="shipDefault" value="1" style="margin-bottom: 100px">기본 배송지로 등록
+									</label>
+								</div>
+								
+								
+						    </div>
+						  </div>
+			            
+					 
+			           
+						
+			        
+			      </div>
+			      
+			       </form>
+		</c:if>	
+		<c:if test="${!empty shippingAr}">
+		shipping 있음!
+		
+				<div id="shippingSel">
+								<div class="_2s2Nq">
+								   <div id="shipTitle" class="shippingTitle${shippingVO.shipNum}" style="float:left; font-size:20px; font-weight: bold;"> ${shippingVO.shipTitle} </div>
+									
+									<c:if test="${shippingVO.isDefault == true}">
+									<div>
+										<div class="_2w0fH" style="float:left;">기본배송지</div>
+									</div>
+									</c:if>
+							   </div>
+							
+							<div id="shipAddress" class="shippingAddress${shippingVO.shipNum}" style="clear:both; font-size:18px;">${shippingVO.shipAddress}</div>
+						<div class="">
+							<div id="shipNameNPhone" class="" style="font-size:15px; color:gray; padding-bottom:15px;">${shippingVO.shipName}  ${shippingVO.shipPhone}</div>
+						</div>
+				</div>		
+		</c:if>	
+	 
+		
 				
 				<div class="css-nj6fnr-DeliveryRequestInput e84q8kd0">
 					<div class="_3Bt8k">
@@ -555,14 +637,16 @@ margin-top: 20px;
 <script type="text/javascript" src="/js/shippingInsert.js"></script> 
 
 <script type="text/javascript">
-//직접입력 인풋박스 기존에는 숨어있다가
+
+
+// shippingMemo : 직접입력 인풋박스 기존에는 숨어있다가
 
 		
 $("#directInputBox").hide();
 
 
 $(".shippingMemo").change(function() {
-              //직접입력을 누를 때 나타남
+              //직접입력을 선텍하면 나타남
 		if($(".shippingMemo").val() == "5") {
 			$("#directInputBox").show();
 			
@@ -591,11 +675,38 @@ $(".shippingMemo").change(function() {
 	
 }) */
 
-
- //--------ajax
+// shipping Insert!
+$("#shipInsert").click(function(){
+	
+	
+	$.post("../shipping/shippingInsert",
+			{
+		        shipTitle: shipTitle,
+		        shipName: shipName,
+		        shipPhone: shipPhone, 
+		        shipAddress: shipAddress,
+		        postcode: postcode,
+		        isDefault: isDefault
+		
+			},
+			function(data){
+				data=data.trim();
+				if(data==1){
+					
+					$('#shippingInsertModal').modal("hide"); //shipping Insert 모달 닫기 
+					
+				}else{
+					alert("등록 실패했습니다.");
+				}
+			}
+	
+});
+ 
+ 
+ 
 
 	
-		
+//shipping list에서 선택 버튼 누를시, 주문페이지에 나타는 배송지 정보가 변한다. 	
 
 $(".shipSelect").click(function(){
 	let shipNum =$(this).attr("title");

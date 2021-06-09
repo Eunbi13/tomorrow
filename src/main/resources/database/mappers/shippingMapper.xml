@@ -8,6 +8,10 @@
     		select * from shipping where username=#{username} and isDefault=#{isDefault}
     	</select>
     	
+    	 <select id="getDefaultNum" parameterType="ShippingVO" resultType="java.lang.Long">
+    		select shipNum from shipping where username=#{username} and isDefault=#{isDefault}
+    	</select>
+    	
     	<select id="getSelect" parameterType="ShippingVO" resultType="ShippingVO">
     		select * from shipping where shipNum=#{shipNum}
     	</select>
@@ -22,8 +26,8 @@
     	</select>
     	
     	<insert id="setInsert" parameterType="ShippingVO">
-    		insert into shipping(shipTitle, shipName, shipPhone, shipAddress, shipDefault, userName) 
-    		values(#{shipTitle}, #{shipName}, #{shipPhone}, #{shipAddress}, #{shipDefault}, #{userName})
+    		insert into shipping(shipTitle, shipName, shipPhone, shipAddress, postcode, isDefault, userName) 
+    		values(#{shipTitle}, #{shipName}, #{shipPhone}, #{shipAddress}, #{postcode}, #{isDefault}, #{userName})
     	</insert>
     	
     	<delete id="setDelete" parameterType="ShippingVO">

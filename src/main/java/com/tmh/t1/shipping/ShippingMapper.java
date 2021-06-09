@@ -10,6 +10,8 @@ public interface ShippingMapper {
 	
 	public ShippingVO getDefaultSelect(ShippingVO shippingVO)throws Exception;
 	
+	public Long getDefaultNum(ShippingVO shippingVO)throws Exception;
+	
 	public Long getMinNum(ShippingVO shippingVO)throws Exception;
 	//Select
 	public ShippingVO getSelect(ShippingVO shippingVO)throws Exception;

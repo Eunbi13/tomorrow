@@ -118,19 +118,29 @@ public class OrdersController {
     	ShippingVO shippingVO= new ShippingVO();
 		shippingVO.setUsername(username);
 		List<ShippingVO> shippingAr = shippingService.getList(shippingVO);
-		shippingVO.setIsDefault(true);
-		shippingVO=shippingService.getDefaultSelect(shippingVO);
-		//만약 디폴트 배송지가 없으면? 회원의 배송지넘버중 가장 작은수를 선택해서 띄운다.
-		//만약 배송지가 아예없으면? 입력창 띄우기--page.jsp에서 
-		if(shippingVO.getShipNum() == null) {
-			shippingVO.setUsername(username);
-			Long shipNum= shippingService.getMinNum(shippingVO);
-			shippingVO.setShipNum(shipNum);
+		if(shippingAr == null) {
+			//만약 배송지가 아예없으면? 입력창 띄우기--page.jsp에서 
+		} else {
+			shippingVO.setIsDefault(true);
+			Long DefaultNum=shippingService.getDefaultNum(shippingVO);
+			shippingVO.setShipNum(DefaultNum);
 			shippingVO = shippingService.getSelect(shippingVO);
+			
+			//만약 디폴트 배송지가 없으면? 회원의 배송지넘버중 가장 작은수를 선택해서 띄운다.
+			if(shippingVO == null) {
+			    shippingVO= new ShippingVO();
+			    shippingVO.setUsername(username);
+				Long shipNum= shippingService.getMinNum(shippingVO);
+				shippingVO.setShipNum(shipNum);
+				shippingVO = shippingService.getSelect(shippingVO);
+			}
+		
 		}
 		System.out.println("shippingVO:"+shippingVO);
 		
-	    ordersVO.setShipNum(shippingVO.getShipNum()); 
+		if(shippingVO != null) {
+	    ordersVO.setShipNum(shippingVO.getShipNum());  
+		}
 
         List<BrandVO> brandAr = cartService.getBrandList(cartVO);
     

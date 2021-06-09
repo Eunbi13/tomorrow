@@ -17,6 +17,10 @@ public class ShippingService {
 		return shippingMapper.getDefaultSelect(shippingVO);
 	}
 	
+	public Long getDefaultNum(ShippingVO shippingVO)throws Exception{
+		return shippingMapper.getDefaultNum(shippingVO);
+	}
+	
 	public Long getMinNum(ShippingVO shippingVO)throws Exception{
 		return shippingMapper.getMinNum(shippingVO);
 	}
