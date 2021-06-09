@@ -9,8 +9,6 @@
 <c:import url="../template/bootStrap.jsp"></c:import>
 <c:import url="../template/summernote.jsp"></c:import>
 <title>내일부터 하는 인테리어, 내일의 집</title>
-
-
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
@@ -23,19 +21,17 @@
 			<legend>카테고리<span>*</span></legend>	
 			<div class="col-sm-12"> 
 				<div class="form-group row"><!-- 클릭하면 ajax로 중부류, 소분류 불러오기 -->
-					<div class="col-sm-12">
+					<div class="col-sm-10">
 						<label class="col-sm-2 col-form-label">대분류</label>
-						<c:forEach items="${categoryOne}" var="vo">
+						<c:forEach items="${bigCategory}" var="vo">
 						<div class=" form-check form-check-inline ">
-							<input class="form-check-input ch" type="checkbox" name="one" value="${vo.categoryID}">
+							<input class="form-check-input" type="checkbox" name="categories" value="${vo.categoryID}">
 							<label class="form-check-label" for="inlineCheckbox1">${vo.category_detail_NM }</label>
 						</div>
 						</c:forEach>
 					</div>
 				</div>
 			</div>
-			<div id="two"></div>
-			<div id="three"></div>
 		</fieldset>
 <br>
 	
@@ -63,9 +59,7 @@
 
 		<fieldset>
 			<legend>상세 페이지 작성</legend>
-		<div class="form-group">
-			<textarea id="summernote" name="contents" class="form-control" id="exampleFormControlTextarea1" placeholder="Please contents"></textarea>
-		</div> 
+			<input id="summernote" name="contents"> 
 			
 		</fieldset>	
 		
@@ -80,9 +74,9 @@
 			</div>
 		
 			<div class="form-group row">
-				<label class="col-sm-2  col-form-label">판매가격</label>
+				<label class="col-sm-2  col-form-label">할인율</label>
 				<div class="col-sm-10">
-					<input class="form-control" name="discountPrice" type="number" placeholder="Please number">
+					<input class="form-control" name="discount" type="number" placeholder="Please number">
 				</div>
 			</div>
 			
@@ -94,29 +88,43 @@
 			</div>
 		</fieldset>
 	<br>
-				<fieldset>
+
+		<fieldset>
 			<legend>옵션</legend>
-			<label class="col-sm-2 col-form-label">옵션 구성 타입 </label>
+			<div class="col-sm-12">
+				<label class="col-sm-2 col-form-label">옵션 구성 타입 </label>
 				조합 일체선택형<input type="radio" id="notUse" name="o1" checked>
 				조합 분리선택형<input type="radio" id="use" name="o1">
-			<!-- Button trigger modal -->
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-			  옵션추가하기
-			</button>
-
-			<div>
-				<c:import url="../options/optionForm.jsp"></c:import>
+				<div >
+					<div class="form-group row col-sm-3">
+						<label class="col-form-label">옵션 종류</label>
+						<div >
+							<input class="form-control" name="optionKinds" type="text" placeholder="Please kinds">
+						</div>
+					</div>
+					<div class="form-group row col-sm-3">
+						<label class="col-form-label">옵션별 이름</label>
+						<div >
+							<input class="form-control" name="optionName" type="text" placeholder="Please name">
+						</div>
+					</div>
+					<div class="form-group row col-sm-3">
+						<label class="col-form-label">옵션별 가격</label>
+						<div >
+							<input class="form-control" name="optionPrice" type="number" placeholder="Please price">
+						</div>
+					</div>
+					<div class="form-group row col-sm-1" >
+						<img alt="" src="/images/plusIcon.png" style="width: 30px; height: 30px;">
+					</div>
+				</div>
 			</div>
-			<div class="container-sml" id="test">
-				
-			</div>
-			
 		</fieldset>
-
 		<button>gu</button>
 	</form>
-	
 		
+		<div id="btn" class="btn btn-secondary">저장하기</div>
+		<small>adfasdgads</small>
 </div>
 
 <c:import url="../template/footer.jsp"></c:import>

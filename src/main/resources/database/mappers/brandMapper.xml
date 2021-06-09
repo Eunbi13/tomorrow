@@ -4,6 +4,11 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 	<mapper namespace="com.tmh.t1.brand.BrandMapper">
+		<select id="getRegistrationNum" parameterType="BrandVO" resultType="java.lang.Long">
+			select count(*) from brand where registrationNum=#{registrationNum}
+		</select>
+	
+	
 		<insert id="signBrand" parameterType="BrandVO" useGeneratedKeys="true" keyProperty="brandNum">
 			INSERT INTO brand(username, companyName, registrationNum, companyHomepage, 
 							  managerName, managerPhone, managerEmail, 
@@ -14,11 +19,11 @@
 		</insert>
 		
 		<insert id="setBrand_Category" parameterType="java.util.Map" >
-			INSERT INTO brand_category (brandNum, categoryID) VALUES (#{brandNum}, #{categoryID});
+			INSERT INTO brand_category (brandNum, categoryID) VALUES (#{brandNum}, #{categoryID})
 		</insert>
 		
 		<select id="getBigCategory" resultType="CategoryVO">
-			SELECT groupId, category_detail_NM FROM category 
+			SELECT categoryID, category_detail_NM FROM category 
 			WHERE category_detail_parent=0 AND category_parent=0
 		</select>
 		

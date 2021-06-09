@@ -8,7 +8,8 @@ public class OptionsVO {
 	private Long optionNum;
 	private String optionKinds;
 	private String optionName;
-	private Long optionPrice;
+	private String optionPrice;
 	private Long ref;
-	private Long step;
+	private String step;
+	
 }

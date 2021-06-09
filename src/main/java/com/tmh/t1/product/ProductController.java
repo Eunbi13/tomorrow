@@ -1,6 +1,7 @@
 package com.tmh.t1.product;
 
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -26,22 +27,45 @@ public class ProductController {
 	//insert product 
 	@GetMapping("insert")
 	public String setProduct(Model model,Authentication auth)throws Exception{
-		
-		
-		
-		List<CategoryVO> bigCategory =productService.getBigCategory(auth);
-		
-		model.addAttribute("bigCategory", bigCategory);
-		
+		List<CategoryVO> categoryOne =productService.getCategoryOne(auth);
+		model.addAttribute("categoryOne", categoryOne);
 		return "product/insertProduct";
 	}
 	
+	@GetMapping("getCategoryTwo")
+	public String getCategoryTwo(Model model, int categoryID)throws Exception{
+		CategoryVO categoryVO = new CategoryVO();
+		categoryVO.setCategoryID(categoryID);
+		List<CategoryVO> categoryTwo = productService.getCategoryTwo(categoryVO);
+		model.addAttribute("category", categoryTwo);
+		model.addAttribute("detail", "중분류");
+		return "product/categoryForm";
+	}
+	
+	@GetMapping("getCategoryThree")
+	public String getCategoryThree(Model model, int categoryID)throws Exception{
+		CategoryVO categoryVO = new CategoryVO();
+		categoryVO.setCategoryID(categoryID);
+		List<CategoryVO> categoryThree = productService.getCategoryThree(categoryVO);
+		model.addAttribute("category", categoryThree);
+		model.addAttribute("detail", "소분류");
+		return "product/categoryForm";
+	}
+	
+	
 	@PostMapping("insert")
-	public String setProduct(Authentication auth,ProductVO productVO,OptionsVO optionsVO, MultipartFile [] files, MultipartFile rep)throws Exception{
+	public String setProduct(Authentication auth,ProductVO productVO,String categoryID, OptionsVO optionsVO, MultipartFile [] files, MultipartFile rep)throws Exception{
+//		System.out.println(optionsVO.getOptionKinds());//1,1 이런식으로 들어옴 흠,,, 파싱해야겠는데?
+//		System.out.println(optionsVO.getOptionName());
+//		System.out.println(optionsVO.getOptionPrice());
+//		System.out.println(optionsVO.toString());
+		System.out.println("얘가 문제일듯 "+categoryID);
+//		System.out.println("step: "+optionsVO.getStep());
+		productService.setProduct(auth, productVO,categoryID, optionsVO, files, rep);
 		
-		productService.setProduct(auth, productVO, optionsVO, files, rep);
-		
-		return "/option/optionInsert.";
+		System.out.println("성공");
+		return "redirect:/";
+		//return "/option/optionInsert.";
 	}
 	
 	@GetMapping("list")

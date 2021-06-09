@@ -4,6 +4,7 @@ package com.tmh.t1.product;
 
 import java.util.List;
 
+import com.tmh.t1.category.CategoryVO;
 import com.tmh.t1.option.OptionsVO;
 
 import lombok.Data;
@@ -16,9 +17,11 @@ public class ProductVO {
 	private Long productPrice;
 	private String productPic;
 	private String contents;
-	private double discount;
+	private Long discountPrice;
 	private Long shippingFee;
 	
 	private ProductImagesVO productImagesVO;
-//	private OptionsVO optionsVO;
+	
+	//private List<OptionsVO> optionsVOs;
+	//private CategoryVO categoryVO;
 }

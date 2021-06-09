@@ -1,8 +1,10 @@
 package com.tmh.t1.product;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.tmh.t1.category.CategoryMapper;
 import com.tmh.t1.category.CategoryVO;
 import com.tmh.t1.option.OptionsMapper;
 import com.tmh.t1.option.OptionsVO;
@@ -23,6 +26,8 @@ public class ProductService {
 	private ProductMapper productMapper;
 	@Autowired
 	private OptionsMapper optionsMapper;
+	@Autowired 
+	private CategoryMapper categoryMapper;
 	@Autowired
 	private FileManager fileManager;
 	@Value("${productInsert.filePath}")
@@ -30,29 +35,36 @@ public class ProductService {
 	
 	
 	//get insert //대분류 카테고리 카테고리 mapper에서 가져오기 
-	public List<CategoryVO> getBigCategory(Authentication auth) throws Exception{
+	public List<CategoryVO> getCategoryOne(Authentication auth) throws Exception{
 		String username=auth.getName();
-		return productMapper.getBigCategory(username);
+		return categoryMapper.getCategoryOne(username);
+	}
+	public List<CategoryVO> getCategoryTwo(CategoryVO categoryVO)throws Exception{
+		return categoryMapper.getCategoryTwo(categoryVO);
+	}
+	public List<CategoryVO> getCategoryThree(CategoryVO categoryVO)throws Exception{
+		return categoryMapper.getCategoryThree(categoryVO);
 	}
 	
 	//post insert
 	@Transactional(rollbackFor = Exception.class)
-	public Long setProduct(Authentication auth, ProductVO productVO,OptionsVO optionsVO , MultipartFile [] files, MultipartFile rep)throws Exception{
+	public Long setProduct(Authentication auth, ProductVO productVO,String categoryID, OptionsVO optionsVO , MultipartFile [] files, MultipartFile rep)throws Exception{
 		ProductImagesVO imagesVO = new ProductImagesVO();
-		
-		
-		//brandNum 넣기 
+		//1. username에 저장된 brandNum 넣기 
 		productVO.setBrandNum(productMapper.getBrandNum(auth.getName()));
 		
-		//대표 이미지
-		String fileName = fileManager.save(rep, filePath);
-		productVO.setProductPic(fileName);
-		//저장
+		//2. 대표이미지 컴퓨터에 저장
+		String fileName="";
+		if(rep.getSize()>0) {
+			fileName = fileManager.save(rep, filePath);
+			productVO.setProductPic(fileName);
+		}
+		//3. 데이터베이스에 인서트
 		Long result = productMapper.setProduct(productVO);
 		if(result<1) {
 			throw new Exception();
 		}
-		//상품 이미지
+		//4. 추가 이미지 저장
 		imagesVO.setProductNum(productVO.getProductNum());
 		for(MultipartFile f: files) {
 			if(f.getSize()>0) {
@@ -63,19 +75,41 @@ public class ProductService {
 		}
 		
 		//옵션 저장
-		optionsMapper.setOption(optionsVO);
-		Long optionNum =optionsVO.getOptionNum();
-		
-		optionsVO.setRef(optionNum);
-		optionsVO.setStep(0L);
-		optionsMapper.updateOption(optionsVO);
-		
+		String [] k= optionsVO.getOptionKinds().split(",");
+		String [] n = optionsVO.getOptionName().split(",");
+		String [] p = optionsVO.getOptionPrice().split(",");
+		String [] s = optionsVO.getStep().split(",");
+		List<Long> optionNums = new ArrayList<Long>();
+
+		for(int i =0; i<k.length; i++) {
+			optionsVO = new OptionsVO();
+			optionsVO.setOptionKinds(k[i]);
+			optionsVO.setOptionName(n[i]);
+			optionsVO.setOptionPrice(p[i]);
+			optionsVO.setStep(s[i]);
+			
+			optionsMapper.setOption(optionsVO);
+			Long optionsNum=optionsVO.getOptionNum();
+			System.out.println(optionsNum);
+			optionsMapper.updateOption(optionsVO);
+			optionNums.add(optionsNum);
+		}
+
 		Map<String, Long> map = new HashMap<String, Long>();
 		map.put("productNum", productVO.getProductNum());
-		map.put("optionNum", optionNum);
-		result = productMapper.setProduct_Options(map);
-		
-		//	List<Long> optionNums = //optionNum을 배열로 받아둬야 함 product_options때문에 
+		map.put("categoryID", Long.parseLong(categoryID));
+		productMapper.setProduct_category(map);
+		for(Long e : optionNums) {
+			System.out.println(e);
+			map.put("optionNum", e);
+			result = productMapper.setProduct_Options(map);
+			System.out.println("프로덕트_옵션 성공");
+			if(result==0) {
+				System.out.println("result가 0이다 ");
+				break;
+			}
+		}
+
 		if(result<1) {
 			throw new Exception();
 		}
