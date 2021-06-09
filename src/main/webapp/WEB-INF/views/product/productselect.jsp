@@ -78,6 +78,16 @@
 			</div>
 		</div>
 		<div class="product-selling-card-gallery-wrap-container"></div>
+		
+		<div class="store-select-content">
+			<div>브랜드</div>
+			<div>${vo.productName}</div>
+			<div>${vo.productPrice}</div>
+			<div>${vo.discount}%</div>
+			<div></div>
+			
+			<div></div>
+		</div>
 	</div>
 </body>
 </html>

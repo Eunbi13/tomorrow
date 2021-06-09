@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tmh.t1.brand.BrandVO;
 import com.tmh.t1.category.CategoryVO;
 import com.tmh.t1.option.OptionsVO;
 
@@ -68,20 +69,35 @@ public class ProductController {
 		//return "/option/optionInsert.";
 	}
 	
-	@GetMapping("list")
-	public void getList(ProductVO productVO, Model model)throws Exception {
-		List<ProductVO> ar = productService.getList(productVO);
-		model.addAttribute("list", ar);
+	@GetMapping("productlist")
+	public void getProductList(ProductVO productVO, Model model)throws Exception {
+		List<ProductVO> productar = productService.getProductList(productVO);
+		model.addAttribute("productlist", productar);
+		
+		List<BrandVO> brandar = productService.getBrandList(productVO);
+		model.addAttribute("brand", brandar);
+		
+		List<OptionsVO> optionsar = productService.getOptionsList(productVO);
+		model.addAttribute("options", optionsar);
 	}
 	
-	@GetMapping("select")
-	public ModelAndView getSelect(ProductVO productVO)throws Exception{
-		ModelAndView mv = new ModelAndView();
+	@GetMapping("productselect")
+	public void getSelect(ProductVO productVO, Model model)throws Exception{
 		productVO = productService.getSelect(productVO);
-		mv.addObject("vo", productVO);
-		mv.setViewName("product/select");
+		model.addAttribute("vo", productVO);
+	}
+	
+
+	@GetMapping("productselect2")
+	public void getSelect2(ProductVO productVO, Model model)throws Exception{
+		productVO = productService.getSelect(productVO);
+		model.addAttribute("vo", productVO);
 		
-		return mv;
+		List<BrandVO> brandar = productService.getBrandList(productVO);
+		model.addAttribute("brand", brandar);
+		
+		List<OptionsVO> optionsar = productService.getOptionsList(productVO);
+		model.addAttribute("options", optionsar);
 	}
 	
 }
