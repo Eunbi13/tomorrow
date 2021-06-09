@@ -3,19 +3,19 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-    <mapper namespace="com.tmh.t1.order.OrderMapper">
+    <mapper namespace="com.tmh.t1.orders.OrdersMapper">
     
-    	<select id="getSelect" parameterType="OrderVO" resultType="OrderVO">
-    		select * from order where orderNum=#{orderNum}
+    	<select id="getSelect" parameterType="OrdersVO" resultType="OrdersVO">
+    		select * from orders where orderNum=#{orderNum}
     	</select>
     	
     	
-    	<select id="getList" parameterType="OrderVO" resultType="OrderVO">
-    		select * from order where username=#{username}
+    	<select id="getList" parameterType="OrdersVO" resultType="OrdersVO">
+    		select * from orders where username=#{username}
     	</select>
     	
-    	<insert id="setInsert" parameterType="OrderVO" useGeneratedKeys="true" keyProperty="orderNum">
-    		insert into order(username, itemsPrice, shippingFee, payment) 
+    	<insert id="setInsert" parameterType="OrdersVO" useGeneratedKeys="true" keyProperty="orderNum">
+    		insert into orders(username, itemsPrice, shippingFee, payment) 
     		values (#{username}, #{itemsPrice}, #{shippingFee}, #{payment})
     	</insert>
     	
@@ -23,8 +23,8 @@
     	
     	 
     	
-    	<delete id="setDelete" parameterType="OrderVO">
-    		delete order where orderNum=#{orderNum}
+    	<delete id="setDelete" parameterType="OrdersVO">
+    		delete orders where orderNum=#{orderNum}
     	</delete>
     	
     	

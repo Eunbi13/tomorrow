@@ -218,7 +218,7 @@ img{
             <div class="py-4 d-flex justify-content-end">
               
             </div>
-            <form id="orderFrm" action="../order/insert" method="post"> 
+            <form id="orderFrm" action="../orders/insert" method="post"> 
             <div class="bg-light rounded d-flex flex-column">
                 <div class="p-2 ml-3">
              
@@ -255,7 +255,7 @@ img{
                 </div>
             </div>
             </form>	
-                <div> <input type="submit"  value="개 상품 구매하기" id="payBtn" class="btn btn-info btn-block pay"> </div>
+                <div> <input type="button"  value="개 상품 구매하기" id="payBtn" class="btn btn-info btn-block pay"> </div>
        
         </div>
         
@@ -702,7 +702,7 @@ $(".directInputBox").keyup(function(){
 				$("#totalShipping").val(totalShipping);// 총 배송비 입력 오케비
 				
 				//----------총 결제금액!!
-			//총 상품 가격 부터 다시.
+			//총 상품 가격 부터 다시 계산
 			let totalcheckedPrice= 0;
 			
 			for(let c in checkedNum){

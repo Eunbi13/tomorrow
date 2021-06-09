@@ -1,4 +1,4 @@
-package com.tmh.t1.order;
+package com.tmh.t1.orders;
 
 import java.util.List;
 
@@ -22,11 +22,11 @@ import com.tmh.t1.shipping.ShippingService;
 import com.tmh.t1.shipping.ShippingVO;
 
 @Controller
-@RequestMapping("/order/**")
-public class OrderController {
+@RequestMapping("/orders/**")
+public class OrdersController {
 	
 	@Autowired
-	private OrderService orderService;
+	private OrdersService ordersService;
 	
 	@Autowired
 	private ShippingService shippingService;
@@ -34,17 +34,17 @@ public class OrderController {
 	@Autowired
 	private CartService cartService;
 	
-	@GetMapping("select")
-	public ModelAndView getSelect(OrderVO orderVO)throws Exception{
+	@GetMapping("page")
+	public ModelAndView getSelect(OrdersVO ordersVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		orderVO =orderService.getSelect(orderVO);
+		ordersVO =ordersService.getSelect(ordersVO);
 		
-		mv.addObject("orderVO", orderVO);
+		mv.addObject("ordersVO", ordersVO);
         return mv;
 	}
 	
 	@GetMapping("list")
-	public ModelAndView getList(OrderVO orderVO)throws Exception{
+	public ModelAndView getList(OrdersVO ordersVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		//List<OrderVO> ar = orderService.getList(orderVO);
 		
@@ -82,24 +82,24 @@ public class OrderController {
 //	
 	
 	@GetMapping("insert")
-	public void setInsert(OrderVO orderVO)throws Exception{
-	
-		//orderVO.setUserName(memberVO);
-		// 1.장바구니에서 결제 -> cartVO validity=true 인 것만 가져오기..
-		
-		// 2.바로결제 -> 상품번호 가져오기 
-		
-		
-
+	public void setInsert(OrdersVO ordersVO)throws Exception{
+	System.out.println("겟 맵핑 입장!!");
+//		//orderVO.setUserName(memberVO);
+//		// 1.장바구니에서 결제 -> cartVO validity=true 인 것만 가져오기..
+//		 
+//		// 2.바로결제 -> 상품번호 가져오기 
+//		
+//		
+//
 	}
 	
 	@PostMapping("insert")
-	public ModelAndView setInsert(OrderVO orderVO, ModelAndView mv)throws Exception{
-		
+	public ModelAndView setInsert(OrdersVO ordersVO, ModelAndView mv)throws Exception{
+		System.out.println("입장!!");
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
 		UserDetails userDetails = (UserDetails)principal; 
 		String username = userDetails.getUsername();
-		orderVO.setUsername(username);
+		ordersVO.setUsername(username);
 		
 		CartVO cartVO = new CartVO();
 		
@@ -110,21 +110,52 @@ public class OrderController {
 
 	    System.out.println(cartAr);
 	
-		int result = orderService.setInsert(orderVO, cartAr);
+		int result = ordersService.setInsert(ordersVO, cartAr);
 		
+		System.out.println("controller: "+ordersVO.getOrderNum());
+		
+		//디폴트 배송지 가져오기
+    	ShippingVO shippingVO= new ShippingVO();
+		shippingVO.setUsername(username);
+		List<ShippingVO> shippingAr = shippingService.getList(shippingVO);
+		shippingVO.setIsDefault(true);
+		shippingVO=shippingService.getDefaultSelect(shippingVO);
+		//만약 디폴트 배송지가 없으면? 회원의 배송지넘버중 가장 작은수를 선택해서 띄운다.
+		//만약 배송지가 아예없으면? 입력창 띄우기--page.jsp에서 
+		if(shippingVO.getShipNum() == null) {
+			shippingVO.setUsername(username);
+			Long shipNum= shippingService.getMinNum(shippingVO);
+			shippingVO.setShipNum(shipNum);
+			shippingVO = shippingService.getSelect(shippingVO);
+		}
+		System.out.println("shippingVO:"+shippingVO);
+		
+	    ordersVO.setShipNum(shippingVO.getShipNum()); 
 
-		mv.addObject("orderVO", orderVO);
-		mv.setViewName("./page");
+        List<BrandVO> brandAr = cartService.getBrandList(cartVO);
+    
+        List<ProductVO> productAr = cartService.getProductList(cartVO);
+    
+     
+       //shipNum   으로만 꺼내려면.. join 해야할듯
+        mv.addObject("shippingAr", shippingAr);
+        mv.addObject("brandAr", brandAr);
+	    mv.addObject("productAr", productAr);
+	    mv.addObject("cartAr", cartAr);
+
+        mv.addObject("shippingVO", shippingVO);
+		mv.addObject("ordersVO", ordersVO);
+		mv.setViewName("orders/page");
 		
 		return mv;
 	}
 	
 	
 	@GetMapping("delete")
-	public ModelAndView setDelete(OrderVO orderVO)throws Exception{
+	public ModelAndView setDelete(OrdersVO ordersVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
-		int result = orderService.setDelete(orderVO);
+		int result = ordersService.setDelete(ordersVO);
 		String message="삭제 실패";
 		String path="./";
 		

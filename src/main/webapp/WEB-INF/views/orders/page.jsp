@@ -16,6 +16,30 @@ shipping  -->
 
 <title>Insert title here</title>
 <style type="text/css">
+
+.btn-default
+ 
+{
+ 
+background-color: #a63f82;
+ 
+color:#FFF;
+ 
+border-color: #e5b8d7;
+ 
+}
+ 
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+ 
+ 
+ 
+background-color: #732944;
+ 
+color:#FFF;
+ 
+border-color: #946a98;
+ 
+}
 .shipInsertBody{
  height: 550px;
 }
@@ -85,11 +109,12 @@ section{
     width: 72px;
     padding: 3px 8px;
     box-sizing: border-box;
-    border: 1px solid #35c5f0;
+    border: 1px solid #946a98;
     border-radius: 100px;
     font-size: 12px;
+    font-weight: bold;
     line-height: 14px;
-    color: #35c5f0;
+    color: #946a98;
     margin-left: 8px;
     user-select: none;
 }
@@ -128,8 +153,8 @@ section{
 margin-top: 20px;
 }
 .green {
-    color: rgb(15, 207, 143);
-    font-weight: 680
+    color: #e5b8d7;
+    font-weight: 680;
 }
 
 @media(max-width:567px) {
@@ -157,16 +182,21 @@ margin-top: 20px;
       </div>
       <div class="modal-body modal-scroll-panel ">
         
-        
+            <c:forEach items="${shippingAr}" var="shipping">
         	<!-- shipping select -->
 	          <div class="card" style="width: 100%; height:200px; margin-bottom: 10px; border: 1px solid LightGray; border-radius:10px;">
 				  <div class="card-body ">
+			
 				  
-				      <div class="card-title" style=" font-weight: bold; font-size: 18px;">본가</div>
-				   
+				      <div class="card-title" style="float:left; font-weight: bold; font-size: 18px;">${shipping.shipTitle}</div>
+				           <c:if test="${shipping.isDefault == true}">
+							<div>
+								<div class="_2w0fH" style="float:left;">기본배송지</div>
+							</div>
+							</c:if>
 				     
-				          <div style="font-size: 16px; "> 서울 강남구 개포로 202 (개포동) 석인빌딩, 쌍용</div>
-				    	  <div  style="font-size: 14px; font-weight: lighter; padding-bottom:10px;"> 이미주 010-1234-1234 </div>
+				          <div style="font-size: 16px;  clear:both; "> ${shipping.shipAddress}</div>
+				    	  <div  style="font-size: 14px; font-weight: lighter; padding-bottom:10px;"> ${shipping.shipName} ${shipping.shipPhone} </div>
 				    	
 						
 				    	 <div style="width:150px; height:50px; float: left;">
@@ -174,81 +204,14 @@ margin-top: 20px;
 							 <button type="button" class="btn" style="font-size:14px; border: 1px solid LightGray">수정</button>
 						 </div>
 						 <div style="width:70px; height:50px;  float: right;">
-						   <button type="button" class="btn btn-info" style="font-size:14px;" >선택</button>
+						   <button type="button" class="btn btn-info shipSelect" style="font-size:14px;" title="${shipping.shipNum}" >선택</button>
 						 </div>
 					  
 				  </div>
 			  </div>
 			  	<!-- shipping select  end -->
 			  	
-			  	<!-- shipping select -->
-	          <div class="card" style="width: 100%; height:200px; margin-bottom: 10px; border: 1px solid LightGray; border-radius:10px;">
-				  <div class="card-body ">
-				  
-				      <div class="card-title" style=" font-weight: bold; font-size: 18px;">본가</div>
-				   
-				     
-				          <div style="font-size: 16px; "> 서울 강남구 개포로 202 (개포동) 석인빌딩, 쌍용</div>
-				    	  <div  style="font-size: 14px; font-weight: lighter; padding-bottom:10px;"> 이미주 010-1234-1234 </div>
-				    	
-						
-				    	 <div style="width:150px; height:50px; float: left;">
-							 <button type="button" class="btn" style="font-size:14px; border: 1px solid LightGray">삭제</button>   
-							 <button type="button" class="btn" style="font-size:14px; border: 1px solid LightGray">수정</button>
-						 </div>
-						 <div style="width:70px; height:50px;  float: right;">
-						   <button type="button" class="btn btn-info" style="font-size:14px;" >선택</button>
-						 </div>
-					  
-				  </div>
-			  </div>
-			  	<!-- shipping select  end -->
-			  	
-			  	<!-- shipping select -->
-	          <div class="card" style="width: 100%; height:200px; margin-bottom: 10px; border: 1px solid LightGray; border-radius:10px;">
-				  <div class="card-body ">
-				  
-				      <div class="card-title" style=" font-weight: bold; font-size: 18px;">본가</div>
-				   
-				     
-				          <div style="font-size: 16px; "> 서울 강남구 개포로 202 (개포동) 석인빌딩, 쌍용</div>
-				    	  <div  style="font-size: 14px; font-weight: lighter; padding-bottom:10px;"> 이미주 010-1234-1234 </div>
-				    	
-						
-				    	 <div style="width:150px; height:50px; float: left;">
-							 <button type="button" class="btn" style="font-size:14px; border: 1px solid LightGray">삭제</button>   
-							 <button type="button" class="btn" style="font-size:14px; border: 1px solid LightGray">수정</button>
-						 </div>
-						 <div style="width:70px; height:50px;  float: right;">
-						   <button type="button" class="btn btn-info" style="font-size:14px;" >선택</button>
-						 </div>
-					  
-				  </div>
-			  </div>
-			  	<!-- shipping select  end -->
-			  	
-			  	<!-- shipping select -->
-	          <div class="card" style="width: 100%; height:200px; margin-bottom: 10px; border: 1px solid LightGray; border-radius:10px;">
-				  <div class="card-body ">
-				  
-				      <div class="card-title" style=" font-weight: bold; font-size: 18px;">본가</div>
-				   
-				     
-				          <div style="font-size: 16px; "> 서울 강남구 개포로 202 (개포동) 석인빌딩, 쌍용</div>
-				    	  <div  style="font-size: 14px; font-weight: lighter; padding-bottom:10px;"> 이미주 010-1234-1234 </div>
-				    	
-						
-				    	 <div style="width:150px; height:50px; float: left;">
-							 <button type="button" class="btn" style="font-size:14px; border: 1px solid LightGray">삭제</button>   
-							 <button type="button" class="btn" style="font-size:14px; border: 1px solid LightGray">수정</button>
-						 </div>
-						 <div style="width:70px; height:50px;  float: right;">
-						   <button type="button" class="btn btn-info" style="font-size:14px;" >선택</button>
-						 </div>
-					  
-				  </div>
-			  </div>
-			  	<!-- shipping select  end -->
+			  	</c:forEach>
 			  
 	
       </div>
@@ -357,9 +320,9 @@ margin-top: 20px;
             
         <section class="_3oseG">
            <div class="d-flex">
-                <div class="p-1">배송지</div>
+                <div class="">배송지</div>
                 
-                <div class="ml-auto p-1"><!-- Button trigger modal -->
+                <div class="ml-auto "><!-- Button trigger modal -->
 				
 				<!-- 배송지 리스트 button -->
                 <a class="ship-change" data-toggle="modal" data-target="#shippingListModal" style="text-decoration: none;">변경</a>
@@ -370,26 +333,31 @@ margin-top: 20px;
             </div>
             <hr>
             
-	            <div class="d-flex pt-2">
+	            <div class="d-flex pt-1">
 	            <div class="bbqwt">
-					<div class="checkout-container _3tfrw">
+					<div class="checkout-container ">
+					
+					
+		<div id="shippingSel">
 						<div class="_2s2Nq">
-						   <div class="_3dE3S" style="float:left;"> 배송지제목:</div>
+						   <div id="shipTitle" class="shippingTitle${shippingVO.shipNum}" style="float:left; font-size:20px; font-weight: bold;"> ${shippingVO.shipTitle} </div>
 							
-							<c:if test="${shipping.isDefault == true}">
+							<c:if test="${shippingVO.isDefault == true}">
 							<div>
 								<div class="_2w0fH" style="float:left;">기본배송지</div>
 							</div>
 							</c:if>
-					</div>
-					<div class="" style="clear:both;">경기 고양시 일산동구 탄중로 343 (중산동) 중산마을5단지아파트, 513동 404호</div>
+					   </div>
+					
+					<div id="shipAddress" class="shippingAddress${shippingVO.shipNum}" style="clear:both; font-size:18px;">${shippingVO.shipAddress}</div>
 				<div class="">
-					<div class="">${orderVO}</div>
-					<div class="">010-7399-9178</div>
+					<div id="shipNameNPhone" class="" style="font-size:15px; color:gray; padding-bottom:15px;">${shippingVO.shipName}  ${shippingVO.shipPhone}</div>
 				</div>
+		</div>		
+				
 				<div class="css-nj6fnr-DeliveryRequestInput e84q8kd0">
 					<div class="_3Bt8k">
-						<select class="_3ASDR _1qwAY _3K8Q8">
+						<select id="shippingMemo" class="_3ASDR _1qwAY _3K8Q8 shippingMemo">
 							<option value="0">배송시 요청사항을 선택해주세요</option>
 							<option value="1">부재시 문앞에 놓아주세요</option>
 							<option value="2">배송전에 미리 연락주세요</option>
@@ -397,7 +365,8 @@ margin-top: 20px;
 							<option value="4">부재시 전화주시거나 문자 남겨 주세요</option>
 							<option value="5">직접입력</option>
 						</select>
-				
+				  	<textarea style="overflow: hidden; overfolw-wrap: break-word; width: 100%;  height: 56px; font-size:16px;" placeholder="배송 요청사항을 입력해주세요" maxlength="50" row="1" class="directInputBox"  id="directInputBox" name="shippingMemo"></textarea>
+				  
 				</div>
 				</div>
 				</div>
@@ -558,11 +527,11 @@ margin-top: 20px;
                 </div>
                 <div class="p-2 d-flex">
                     <div class="col-8">총 상품 금액</div>
-                    <div class="ml-auto">0원</div>
+                    <div class="ml-auto">${ordersVO.itemsPrice}원</div>
                 </div>
                 <div class="p-2 d-flex">
                     <div class="col-8">배송비</div>
-                    <div class="ml-auto">0원</div>
+                    <div class="ml-auto">${ordersVO.shippingFee}원</div>
                 </div>
              
                 <div class="border-top px-4 mx-3"> </div>
@@ -572,11 +541,11 @@ margin-top: 20px;
                 
                 <div class="p-2 d-flex pt-3">
                     <div class="col-8"><b>최종 결제 금액</b></div>
-                    <div class="ml-auto"><b class="green">0원</b></div>
+                    <div class="ml-auto"><b class="green">${ordersVO.payment}원</b></div>
                 </div>
             </div>
             
-                <div>    <input type="button" onclick="iamport()"value="원 결제하기" class="btn btn-info btn-block pay"> </div>
+                <div>    <input type="button" onclick="iamport()"value="${ordersVO.payment}원 결제하기" class="btn btn-default btn-block pay"> </div>
        
         </div>
     </div>
@@ -584,7 +553,84 @@ margin-top: 20px;
 <c:import url="../template/footer.jsp"></c:import>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="/js/shippingInsert.js"></script> 
+
 <script type="text/javascript">
+//직접입력 인풋박스 기존에는 숨어있다가
+
+		
+$("#directInputBox").hide();
+
+
+$(".shippingMemo").change(function() {
+              //직접입력을 누를 때 나타남
+		if($(".shippingMemo").val() == "5") {
+			$("#directInputBox").show();
+			
+		}  else {
+			$("#directInputBox").hide();
+		}
+});
+  
+ 
+
+/* $(function(){
+	//shipping select는 이벤트락 없더라도 뿌려야한다. 
+	getList(1)
+	
+	// shipping select를 가져오는 함수선언 - 호출을 해야 실행
+    function getList(page){
+		//기본페이지 처리
+		if(!page) page =1;
+		//데이터 수집
+		let pageInfo = {};
+		pageInfo.page = page;
+		pageInfo.no = $("#no").text();
+		//ajax 객체 호출 처리 -get 방식으로 처리할거라면  body에 안들어가고 url에 포함이..
+		
+	}
+	
+}) */
+
+
+ //--------ajax
+
+	
+		
+
+$(".shipSelect").click(function(){
+	let shipNum =$(this).attr("title");
+	
+    console.log(shipNum);
+    $.get("../shipping/shippingSelect?shipNum="+shipNum,function(data){
+		console.log(data)
+		$("#shippingSel").empty();
+		$("#shippingSel").html(data.trim());
+		$('#shippingListModal').modal("hide"); //모달 닫기 
+	});
+	
+	 //--------ajax
+function getSelect(){
+    $.get("../shipping/shippingSelect?shipNum="+shipNum,function(data){
+		console.log(data)
+		$("#shippingSel").empty();
+		$("#shippingSel").html(data.trim());
+		
+	});
+ }
+
+	
+	
+		
+    //----------ajax  
+	
+	
+});
+
+</script>
+
+
+<script type="text/javascript">
+
 function iamport(){
 	//가맹점 식별코드
 	IMP.init('imp63068221');
@@ -618,6 +664,7 @@ function iamport(){
 
 
 </script>
+
 
 </body>
 </html>

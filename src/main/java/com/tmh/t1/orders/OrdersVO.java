@@ -1,4 +1,4 @@
-package com.tmh.t1.order;
+package com.tmh.t1.orders;
 
 import java.sql.Date;
 import java.util.List;
@@ -8,7 +8,7 @@ import com.tmh.t1.cart.CartVO;
 import lombok.Data;
 
 @Data
-public class OrderVO {
+public class OrdersVO {
 	
 	private List<CartVO> cartsList;
 

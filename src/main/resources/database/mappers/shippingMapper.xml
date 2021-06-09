@@ -5,12 +5,16 @@
     
     <mapper namespace="com.tmh.t1.shipping.ShippingMapper">
         <select id="getDefaultSelect" parameterType="ShippingVO" resultType="ShippingVO">
-    		select * from shipping where username=#{username} and isDefault=#{isDefault)
+    		select * from shipping where username=#{username} and isDefault=#{isDefault}
+    	</select>
+    	
+    	<select id="getSelect" parameterType="ShippingVO" resultType="ShippingVO">
+    		select * from shipping where shipNum=#{shipNum}
     	</select>
 
     
-    	<select id="getSelect" parameterType="ShippingVO" resultType="ShippingVO">
-    		select * from shipping where shipNum=#{shipNum}
+    	<select id="getMinNum" parameterType="ShippingVO" resultType="java.lang.Long">
+    		select min(shipNum) from shipping where username=#{username}
     	</select>
     	
     	<select id="getList" parameterType="ShippingVO" resultType="ShippingVO">

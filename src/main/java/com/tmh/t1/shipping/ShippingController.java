@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,24 +29,26 @@ public class ShippingController {
 		@GetMapping("shippingSelect")
 		public ModelAndView getSelect(ShippingVO shippingVO)throws Exception{
 			ModelAndView mv = new ModelAndView();
-			shippingVO = shippingService.getSelect(shippingVO);
-			mv.addObject("dto", shippingVO);
-			mv.setViewName("shpping/shippingSelect");
+		    shippingVO = shippingService.getSelect(shippingVO);
+		    mv.addObject("shippingVO", shippingVO);
+		
 			return mv;
 		}
 	
 	//리스트
 	@GetMapping("shippingList")
 	public ModelAndView getList(ShippingVO shippingVO, HttpSession session, ModelAndView mv)throws Exception{
-	//	MemberVO memberVO= (MemberVO) session.getAttribute("member");
-	//	shippingVO.setUsername(memberVO.getUsername());
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal; 
+		String username = userDetails.getUsername();
+		shippingVO.setUsername(username);
 		
 		List<ShippingVO> ar = shippingService.getList(shippingVO);
 		
 		
-		mv.addObject("list", ar);
+		mv.addObject("shippingList", ar);
 		mv.addObject("vo", shippingVO);
-		mv.setViewName("shipping/shippingList");
+		mv.setViewName("order/page");
 		return mv;
 	}
 	
