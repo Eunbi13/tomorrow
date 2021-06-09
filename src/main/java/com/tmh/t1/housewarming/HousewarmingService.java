@@ -2,6 +2,8 @@ package com.tmh.t1.housewarming;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,8 @@ public class HousewarmingService {
 	private HousewarmingMapper housewarmingMapper;
 	@Autowired
 	private FileManager fileManager;
+	@Autowired
+	private HttpSession session;
 	
 	@Value("${housewarming.filePath}")
 	private String filePath;
@@ -70,6 +74,5 @@ public class HousewarmingService {
 		int result = housewarmingMapper.setDelete(housewarmingVO);
 		return result;
 	}
-	
 
 }
