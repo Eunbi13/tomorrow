@@ -27,13 +27,13 @@
 					<div class="form-group col-md-4">
 						<label>옵션명</label>
 						<div >
-							<input class="form-control kinds" type="text" placeholder="Please kinds">
+							<input class="form-control kinds" name="op" type="text" placeholder="Please kinds">
 						</div>
 					</div>
 					<div class="form-group col-md-8">
 						<label>옵션값</label>
 						<div >
-							<input class="form-control names" type="text" placeholder="Please name">
+							<input class="form-control names" name="op" type="text" placeholder="Please name">
 						</div>
 					</div>
 					
