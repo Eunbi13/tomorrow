@@ -100,20 +100,20 @@
 				조합 일체선택형<input type="radio" id="notUse" name="o1" checked>
 				조합 분리선택형<input type="radio" id="use" name="o1">
 			<!-- Button trigger modal -->
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+			<button id="optionButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
 			  옵션추가하기
 			</button>
 
 			<div>
 				<c:import url="../options/optionForm.jsp"></c:import>
 			</div>
-			<div class="container-sml" id="test">
+			<div class="container-sml" id="table">
 				
 			</div>
 			
 		</fieldset>
 
-		<button>gu</button>
+		<button>저장하기</button>
 	</form>
 	
 		

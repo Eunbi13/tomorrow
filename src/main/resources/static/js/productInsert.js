@@ -59,26 +59,14 @@ $('#add').click(function(){
 	$('.addForm').append($('.optionForm').html());
 });
 
-function makeThead(kind, i){
-	let thead=
-		'<table class="table">'+
-			'<thead>'+	 	
-				'<tr id="thead">'+				
-				'<th scope="col"></th>'+					
-				'<th scope="col" class="kind'+i+'">'+kind+'</th>'+					
-				'<th scope="col">옵션가격</th>'+					
-				'<th scope="col"></th>'+					
-				'</tr>'+				
-			'</thead>'+				
-			'<tbody class="t'+i+'">'+
-			'</tbody>'+			
-		'</table>';			
-					
-	return thead;
-};
 
+
+$('#optionButton').click(function(){
+	$('#table').empty();
+})
 
 $('#modal').click(function(){
+	
 let kind="";
 let names="";
 let step="";
@@ -86,7 +74,7 @@ let step="";
 
 		kind = $(k).val();
 		//makeThead
-		$('#test').append(makeThead(kind, i));
+		$('#table').append(makeThead(kind, i));
 			
 			$('.names').each(function(j, n){
 				if(i==j){
@@ -107,11 +95,26 @@ let step="";
 	})	
 });
 	
-
+function makeThead(kind, i){
+	let thead=
+		'<table class="table">'+
+			'<thead>'+	 	
+				'<tr id="thead">'+				
+				'<th scope="col"></th>'+					
+				'<th scope="col" class="kind'+i+'">'+kind+'</th>'+					
+				'<th scope="col">옵션가격</th>'+					
+				'<th scope="col"></th>'+					
+				'</tr>'+				
+			'</thead>'+				
+			'<tbody class="t'+i+'">'+
+			'</tbody>'+			
+		'</table>';			
+					
+	return thead;
+};
 
 function makeTbody(kind, name, step){
 	let t1=
-		
 		'<tr>'+
 			'<td><input name="optionKinds" hidden="hidden"	  value="'+kind+'" style="border:none"></td>'+
 			'<td><input name="optionName"  type="text"   readonly="readonly"  value="'+name+'" style="border:none"></td>'+
