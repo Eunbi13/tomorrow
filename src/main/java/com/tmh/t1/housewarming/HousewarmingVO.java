@@ -32,4 +32,7 @@ public class HousewarmingVO {
 	private Long hit;
 	
 	private HwFileVO hwfile;
+	
+	private Long like;
+	private Long scrap;
 }

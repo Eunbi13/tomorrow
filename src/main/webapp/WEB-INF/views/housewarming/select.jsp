@@ -151,8 +151,29 @@
 		</sec:authorize>
 		
 		<a href="./delete?hwNum=${vo.hwNum}" class="btn btn-danger">Delete</a>
+		
+		<div>
+			<input type="button" class="btn btn-primary" id="like" value="Like">
+			<p> 좋아요 : ${vo.like} </p>
+			<input type="button" class="btn btn-success" id="scrap" value="Scrap">
+			<p> 스크랩 : ${vo.scrap} </p>
+		</div>
+		
+		<div class="reply">
+			<h4>댓글</h4>
+			<div class="form-group">
+				<input type="text" class="form-control" id="writer" name="username" hidden="hidden">
+				<input type="text" class="form-control" placeholder="격려와 칭찬은 작성자에게 큰 힘이 됩니다 :)">
+				<input type="button" class="btn" id="write" value="등록">
+			</div>
+			<div id="comments" title="${vo.hwNum}">
+				<!-- reply list -->
+			</div>
+		</div>
 	</div>
 
 	<c:import url="../template/footer.jsp"></c:import>
+	
+	<script type="text/javascript" src="../resources/js/hwReply.js"></script>
 </body>
 </html>

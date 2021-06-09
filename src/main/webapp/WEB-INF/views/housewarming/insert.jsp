@@ -1,23 +1,76 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <c:import url="../template/bootStrap.jsp"></c:import>
+<c:import url="../template/summernote.jsp"></c:import>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>내일부터 하는 인테리어, 내일의 집</title>
+ <style>
+  .fakeimg {
+    height: 200px;
+    background: #aaa;
+  }
+  </style>
+</head>
+<body>
 
-<style>
-.fakeimg {
-	height: 200px;
-	background: #aaa;
-}
-</style>
+	<nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+	  <a class="navbar-brand" href="/">내일의 집</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  
+	  <div class="collapse navbar-collapse" id="navbarCollapse">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item">
+	        <!-- <a type="button" class="nav-link addPic">pic</a> -->
+	        <button type="button" class="note-btn btn btn-lg" tabindex="-1" title="" aria-label="Picture" data-original-title="Picture">
+	        	<i class="note-icon-picture"></i>
+	        </button>
+	      </li>
+	      <li class="nav-item">
+	        <a type="button" class="nav-link setTitle">제목</a>
+	      </li>
+	      <li class="nav-item">
+	        <a type="button" class="nav-link setContents">본문</a>
+	      </li>
+	      <li class="nav-item">
+	        <a type="button" class="nav-link setBord">bord</a>
+	      </li>
+	      <li class="nav-item">
+	        <a type="button" class="nav-link setItalic">italic</a>
+	      </li>
+	      <li class="nav-item">
+	        <a type="button" class="nav-link setUnder">under</a>
+	      </li>
+	      <li class="nav-item">
+	        <a type="button" class="nav-link setColor">black</a>
+	      </li>
+	      <li class="nav-item">
+	        <a type="button" class="nav-link setColor">red</a>
+	      </li>
+	      <li class="nav-item">
+	        <a type="button" class="nav-link setColor">blue</a>
+	      </li>
+	      <li class="nav-item">
+	        <a type="button" class="nav-link setLink">link</a>
+	      </li>
+	    </ul>
+	    
+	    <form class="form-inline mt-2 mt-md-0">
+	      <button class="btn btn-outline-primary my-2 my-sm-3 save" type="submit">임시저장</button>
+	      <button class="btn btn-primary my-2 my-sm-3 submit" type="submit">발행신청</button>
+	    </form>
+	  </div>
+	</nav>
 
 </head>
 <body>
-	<div class="container">
+
+	<div class="container" style="margin-top:100px">
 
 		<form id="frm" action="./insert" method="post" enctype="multipart/form-data">
 			<div class="accordion" id="detailForm">
@@ -144,7 +197,7 @@
 								<label for="totalTone">전체톤</label> 
 								<div class="input-group">
 									<c:forEach begin="0" end="12">
-										<input type="checkbox" class="form-control myCheck" id="totalTone" name="totalTone">
+										<input type="checkbox" class="form-control myCheck total" id="totalTone" name="totalTone">
 									</c:forEach>
 								</div>
 							</div>
@@ -215,7 +268,16 @@
 			</div>
 			<div class="form-group">
 				<label for="contents">Contents:</label>
-				<textarea class="form-control myCheck contents" rows="5" id="contents" name="contents"></textarea>
+				<!-- <div class="note-btn-group btn-group note-insert">
+					<button type="button" class="note-btn btn btn-default btn-sm" tabindex="-1" title="" aria-label="Link (⌘+K)" data-original-title="Link (⌘+K)">
+						<i class="note-icon-link"></i>
+					</button>
+					<button type="file" class="note-btn btn btn-default btn-sm" tabindex="-1" title="" aria-label="Picture" data-original-title="Picture">
+						<i class="note-icon-picture"></i>
+					</button>
+				</div> -->
+				<input class="form-control myCheck contents" id="summernote" name="contents">
+				<!-- <textarea class="form-control myCheck" rows="5" id="contents" name="contents"></textarea> -->
 			</div>
 			
 			<div class="form-group" hidden="hidden">
