@@ -42,7 +42,8 @@
 .store-select-content-price-won {
 	margin-left: 10px;
 }
-.store-select-content-ship{
+
+.store-select-content-ship {
 	float: left;
 }
 </style>
@@ -59,7 +60,7 @@
 				src="../resources/images/storeEX/glove.webp">
 		</div>
 		<div class="store-select-wrap content">
-			<div class="store-select-content-brand"> 
+			<div class="store-select-content-brand">
 				<c:if test="${brandVO.brandNum eq productVO.brandNum}">
 					test
 					${brand}
@@ -74,9 +75,11 @@
 			</div>
 			<div class="store-select-content-price">
 				<div class="store-select-content-price-won">${vo.productPrice}</div>
-			</div> <br><br>
+			</div>
+			<br> <br>
 			<div class="store-select-content-ship">배송</div>
-			<div class="store-select-content-ship" style="margin-left: 10px; font-weight: bold;">
+			<div class="store-select-content-ship"
+				style="margin-left: 10px; font-weight: bold;">
 				<c:choose>
 					<c:when test="${vo.shippingFee eq 0}">
 					무료배송
@@ -92,9 +95,40 @@
 				<c:forEach items="${options}" var="optionsVO">
 					<option value="${options}">${options}</option>
 				</c:forEach>
+				<label for="optionNum">option</label> <select>
+					<option value="optionKinds">${optionKinds }</option>
+					<c:forEach var="list" items="${options}">
+						<option value="수정중">${optionName}</option>
+					</c:forEach>
+				</select>
 			</div>
+
+			<div class="store-select-buttons">
+				<button type="button"
+					class="store-select-button btn btn-outline-primary"
+					style="color: #75bdff;">장바구니</button>
+				<button type="button" class="store-select-button btn btn-primary"
+					style="background-color: #75bdff;">바로구매</button>
+
+			</div>
+
 		</div>
+
+
+
 	</div>
+
+	<div>
+		<nav class="navbar navbar-expand-sm bg-light justify-content-center">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="#">상품정보</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">배송/환불</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">추천</a></li>
+			</ul>
+		</nav>
+	</div>
+
+
 
 </body>
 </html>

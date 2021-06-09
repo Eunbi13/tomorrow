@@ -1,21 +1,24 @@
 package com.tmh.t1.category;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
-@RequestMapping("/store/**")
+@RequestMapping("/product/**")
 public class CategoryController {
 	
 	@Autowired
 	private CategoryService categoryService;
 	
 	@GetMapping("category")
-	public void selectCategory()throws Exception{
-//		ModelAndView mv = new ModelAndView();
-		
+	public void getCategory(CategoryVO categoryVO, Model model)throws Exception{
+		List<CategoryVO> ar = categoryService.getCategory(categoryVO);
+		model.addAttribute("vo", ar);
 	}
 }
