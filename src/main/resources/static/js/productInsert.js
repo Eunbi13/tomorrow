@@ -1,15 +1,10 @@
 //imageAdd
 $('#imageAdd').click(function(){
-	
-	let imageInput = $('.imageAdd>:eq(0)').html();
-	$('.imageAdd').append(imageInput);
+	let imageInput = $('#filesSample').html();
+	$('#files').append(imageInput);
 });
-$('.imageAdd').on('click', 'div.imageInput', function(){
-	$('.deleteImage').click(function(){
-		alert('hi')
-		$(this).html();
-		console.log($(this).html())
-	});
+$('#files').on('click', '.deleteImage', function(){
+	$(this).parent().remove();
 });
 //대분류에서 선택시
 $('.ch').click(function(){

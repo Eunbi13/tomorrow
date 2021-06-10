@@ -55,9 +55,13 @@
 				<input type="file" name="rep" class="form-control col-sm-10" >
 			</div>
 			<div class="imageAdd">
-				<div>
-					<div class="form-group row imageInput" >
-						<label class="col-sm-2 col-form-label">추가 이미지 </label>
+				<div id="files">
+					<div style="font-weight: bold">추가 이미지</div>
+					
+				</div>
+				<div id="filesSample" style="display: none">
+					<div class="form-group row" >
+						<label class="col-sm-2 col-form-label"></label>
 						<input type="file" name="files" class="form-control col-sm-9" >
 						<label class="col-sm-1 col-form-labe deleteImage">x</label>
 					</div>
