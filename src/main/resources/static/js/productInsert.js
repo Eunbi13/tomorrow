@@ -62,13 +62,21 @@ $('#three').on('click', '.ch2', function(){
 	$('.ch2[title="three"]').prop('checked', false);
 	$(this).prop('checked', true);
 })
-
-//modal controller
-//일체형일경우 false, 조합형일 경우 true
+/*
+modal controller
+일체형일경우 false, 조합형일 경우 true
+옵션 구성 타입의 값이 달라지면 table초기화
+*/
 let check =false;
-$('#use').click(function(){
+
+$('#notUse').change(function(){
 	check=$('#use').prop('checked');
-});
+	$('#table').empty();
+})
+$('#use').change(function(){
+	check=$('#use').prop('checked');
+	$('#table').empty();
+})
 //modal내부에 +버튼
 $('#add').click(function(){
 	$('.addForm').append($('.optionForm').html());
@@ -109,6 +117,7 @@ $('#modal').click(function(){
 //modal 닫힐 때 input창 초기화
 	let optionForm =$('.optionForm').html();
 	$('.optionForm').empty();
+	$('.addForm').empty();
 	$('.optionForm').html(optionForm);
 });
 
@@ -145,14 +154,16 @@ $('#table').on('click','table', function(){
 	});
 
 	//테이블 삭제
-		
+	$('.tableDelete').click(function(){
+		$(this).parents('table').remove();
+	});
 	//테이블에 행 삭제
 	$('.rowDelete').click(function(){
 		let tbody =$(this).parent().parent().html();
 		count = $(tbody+'>tr').length-1;
 		$(this).parent().remove();
 		console.log('dd'+count)
-	})
+	});
 	
 });
 
@@ -167,7 +178,7 @@ function makeThead(kind, i){
 					'<th scope="col" class="kind'+i+'">'+kind+'</th>'+					
 					'<th scope="col">옵션가격</th>'+					
 					'<th scope="col"></th>'+
-					'<th scope="col"></th>'+					
+					'<th scope="col" class="tableDelete">x</th>'+					
 					'</tr>'+				
 				'</thead>'+				
 				'<tbody class="t'+i+'">'+
