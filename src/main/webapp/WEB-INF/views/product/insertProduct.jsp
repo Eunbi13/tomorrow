@@ -115,12 +115,9 @@
 			</button>
 
 			<div>
-		
-			        	<div id="importForm">
-							<c:import url="../options/optionForm.jsp"></c:import>
-						</div>
-
-		
+				<div id="importForm">
+					<c:import url="../options/optionForm.jsp"></c:import>
+				</div>
 			</div>
 			<div class="container-sml" id="table">
 				

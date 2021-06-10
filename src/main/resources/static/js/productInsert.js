@@ -3,9 +3,11 @@ $('#imageAdd').click(function(){
 	let imageInput = $('#filesSample').html();
 	$('#files').append(imageInput);
 });
+//imageDelete
 $('#files').on('click', '.deleteImage', function(){
 	$(this).parent().remove();
 });
+
 //대분류에서 선택시
 $('.ch').click(function(){
 	let check = $('.ch').prop('checked');
@@ -111,30 +113,22 @@ $('#modal').click(function(){
 });
 
 
+	let count =0;
 $('#table').on('click','table', function(){
-	let kind="";
-	let step="";
-	let name="";
+	//테이블에 행 추가
 	$('td.add').click(function(){
+		let kind="";
+		let step="";
+		let name="";
+		//table 찾기 위한 title 값
 		let a = $(this).attr('title');
-		console.log(a);//[name="optionKinds"]
-		
 		//makeTbody할때 내가 클릭한 총 횟수만큼 이벤트가 일어남,, 왜지?
 		//그걸 방지하기 위한 count와 stop 변수
-		let count = $('tbody.'+a+'>tr').length;
-		console.log(count);
+		count = $('tbody.'+a+'>tr').length;
 		
+		console.log(count)
 		let c=$('tbody.'+a+'>:eq(0)').html();
-		console.log(c)
-		console.log('===========');
-		console.log($(c+'>:eq(0)').html());
-		console.log('===========');
-		console.log($(c+' td').html())
-		console.log('===========');
 		$(c+' td').each(function(i,k){
-			console.log('k'+$(k).html())
-			console.log('k'+$($(k).html()).attr('name'))
-			console.log('k'+i)
 			if($($(k).html()).attr('name')=='optionKinds'){
 				kind=$($(k).html()).val();
 			}
@@ -143,16 +137,26 @@ $('#table').on('click','table', function(){
 			}
 		})
 		
-		console.log('=========')
-	
 		$('tbody.'+a).append(makeTbody(kind, name, step));
-		stop = $('tbody.'+a+'>tr').length;
-		console.log(stop);
+		let stop = $('tbody.'+a+'>tr').length;
 		if(count+1==stop){
 			return false;
 		}
 	});
+
+	//테이블 삭제
+		
+	//테이블에 행 삭제
+	$('.rowDelete').click(function(){
+		let tbody =$(this).parent().parent().html();
+		count = $(tbody+'>tr').length-1;
+		$(this).parent().remove();
+		console.log('dd'+count)
+	})
+	
 });
+
+
 
 //make Table code
 function makeThead(kind, i){
@@ -162,12 +166,13 @@ function makeThead(kind, i){
 					'<th scope="col"></th>'+					
 					'<th scope="col" class="kind'+i+'">'+kind+'</th>'+					
 					'<th scope="col">옵션가격</th>'+					
+					'<th scope="col"></th>'+
 					'<th scope="col"></th>'+					
 					'</tr>'+				
 				'</thead>'+				
 				'<tbody class="t'+i+'">'+
 				'</tbody>'+
-				'<tfoot><tr><td></td><td></td><td></td><td class="add" title="t'+i+'">+</td></tr></tfoot>'+			
+				'<tfoot><tr><td></td><td></td><td></td><td></td><td class="add" title="t'+i+'">+</td></tr></tfoot>'+			
 			'</table>';	
 };
 
@@ -177,5 +182,6 @@ function makeTbody(kind, name, step){
 				'<td><input name="optionName"  type="text"		value="'+name+'" class="tdName form-control" ></td>'+
 				'<td><input name="optionPrice" type="number"	value="0" 		 class="tdPrice form-control" ></td>'+
 				'<td><input name="step"		   hidden="hidden"	value="'+step+'" class="tdStep"></td>'+
+				'<td class="rowDelete" >x</td>'+
 			'</tr>';
 }
