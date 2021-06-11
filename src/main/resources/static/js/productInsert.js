@@ -122,7 +122,7 @@ $('#modal').click(function(){
 });
 
 
-	let count =0;
+let count =0;
 $('#table').on('click','table', function(){
 	//테이블에 행 추가
 	$('td.add').click(function(){
@@ -152,11 +152,7 @@ $('#table').on('click','table', function(){
 			return false;
 		}
 	});
-
-	//테이블 삭제
-	$('.tableDelete').click(function(){
-		$(this).parents('table').remove();
-	});
+	
 	//테이블에 행 삭제
 	$('.rowDelete').click(function(){
 		let tbody =$(this).parent().parent().html();
@@ -165,6 +161,37 @@ $('#table').on('click','table', function(){
 		console.log('dd'+count)
 	});
 	
+	//테이블 삭제
+	$('.tableDelete').click(function(){
+		$(this).parents('table').remove();
+		
+		//중복 방지를 위해 테이블에 있는 값들을 수정해야함
+		let tNum =$('table').length;
+		console.log(tNum)
+		$('table').each(function(i, t){
+			console.log('i: '+i)
+			let table = $(t).html();
+			console.log(table)
+			$(table).each(function(i,table){
+				console.log($(table).html())//tr부터
+				let test = $($(table).html()).html()//td부터
+				console.log(test)
+			
+			})
+			/*let thead = $(t).find('thead>tr').html();
+			//thead = $(thead+'.tH').html();
+			console.log(thead);
+			;
+			console.log($(thead).find('.tH').html())
+			
+			$(tbody).addClass('')
+			//tbody = $(tbody).find('input[name="step"]').html();
+			console.log(tbody);
+			let tfoot = $(t).find('tfoot>tr').html();
+			//tfoot = $(tfoot).find(td.tF).html();
+			console.log(tfoot);*/
+		});
+	});
 });
 
 
@@ -173,22 +200,26 @@ $('#table').on('click','table', function(){
 function makeThead(kind, i){
 	return	'<table class="table">'+
 				'<thead>'+	 	
-					'<tr id="thead">'+				
-					'<th scope="col"></th>'+					
-					'<th scope="col" class="kind'+i+'">'+kind+'</th>'+					
-					'<th scope="col">옵션가격</th>'+					
-					'<th scope="col"></th>'+
-					'<th scope="col" class="tableDelete">x</th>'+					
+					'<tr class="thead">'+				
+						'<th scope="col"></th>'+					
+						'<th scope="col" class="tH kind'+i+'">'+kind+'</th>'+					
+						'<th scope="col">옵션가격</th>'+					
+						'<th scope="col"></th>'+
+						'<th scope="col" class="tableDelete">x</th>'+					
 					'</tr>'+				
 				'</thead>'+				
-				'<tbody class="t'+i+'">'+
+				'<tbody class="tB t'+i+'">'+
 				'</tbody>'+
-				'<tfoot><tr><td></td><td></td><td></td><td></td><td class="add" title="t'+i+'">+</td></tr></tfoot>'+			
+				'<tfoot>'+
+					'<tr class="tfoot">'+
+						'<td></td><td></td><td></td><td></td><td class="add tF" title="t'+i+'">+</td>'+
+					'</tr>'+
+				'</tfoot>'+			
 			'</table>';	
 };
 
 function makeTbody(kind, name, step){
-	return 	'<tr>'+
+	return 	'<tr class="tbody">'+
 				'<td><input name="optionKinds" hidden="hidden"	value="'+kind+'" class="tdKind"></td>'+
 				'<td><input name="optionName"  type="text"		value="'+name+'" class="tdName form-control" ></td>'+
 				'<td><input name="optionPrice" type="number"	value="0" 		 class="tdPrice form-control" ></td>'+
