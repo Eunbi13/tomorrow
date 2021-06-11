@@ -27,6 +27,7 @@ public class ShippingController {
 	private ShippingService shippingService;
 	
 	//셀렉트
+	    @ResponseBody
 		@GetMapping("shippingSelect")
 		public ModelAndView getSelect(ShippingVO shippingVO)throws Exception{
 			ModelAndView mv = new ModelAndView();
@@ -37,6 +38,7 @@ public class ShippingController {
 		}
 	
 	//리스트
+    @ResponseBody
 	@GetMapping("shippingList")
 	public ModelAndView getList(ShippingVO shippingVO,  ModelAndView mv)throws Exception{
 		System.out.println("리스트 입장!");
@@ -99,11 +101,23 @@ public class ShippingController {
 			shippingVO = shippingService.getSelect(shippingVO);
 			model.addAttribute("shipVO", shippingVO);
 		}
-		
+		@ResponseBody
 		@PostMapping("shippingUpdate")
-		public String setUpdate(ShippingVO shippingVO)throws Exception{
+		public int setUpdate(ShippingVO shippingVO)throws Exception{
+			System.out.println("shippingupdate 입장성공");
 			int result = shippingService.setUpdate(shippingVO);
-			return "redirect:./shippingList";
+			System.out.println("shippingupdate 입력 성공");
+	     return result;
+		}
+		
+		
+		//배송지 입력, 수정시 기본배송지 지정할 경우, 원래 기본배송지이던 배송지의 default를 false로 바꾼다. 
+		@ResponseBody
+		@PostMapping("shippingDefaultUpdate")
+		public int setDefaultUpdate(ShippingVO shippingVO)throws Exception{
+			int result = shippingService.setDefaultUpdate(shippingVO);
+			System.out.println("default update 입력 성공");
+			return result;
 		}
 		
 		

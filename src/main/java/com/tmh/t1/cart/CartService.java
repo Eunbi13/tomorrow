@@ -107,9 +107,10 @@ public class CartService {
 				cartVO.setProductNum(num);
 				System.out.println("1로 변한 productNum"+num);
 				cartVO.setUsername(username);
+				cartVO.setValid("one");
 				
 				result = cartMapper.setValidityUpdate(cartVO);
-				
+				System.out.println("service:setValidityUpdate: ProductNum mapper성공!");
 			}
 		}
 		
@@ -122,12 +123,14 @@ public class CartService {
 				cartVO.setProductNum(num);
 				System.out.println("0 으로 변한 productNum"+num);
 				cartVO.setUsername(username);
+				cartVO.setValid("zero");
 				
-				
-				result = cartMapper.setUnValidityUpdate(cartVO);
+				result = cartMapper.setValidityUpdate(cartVO);
+				System.out.println("service:setValidityUpdate: unProductNum mapper성공!");
 			}
 		
 		}
+		System.out.println("service:setValidityUpdate끝 부분");
 		
 		
 		return result;
@@ -141,6 +144,15 @@ public class CartService {
 		cartVO.setUsername(username);
 		
 		return cartMapper.setAmountUpdate(cartVO);
+	}
+	
+	public int setOrderUpdate(CartVO cartVO)throws Exception{
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal; 
+		String username = userDetails.getUsername();
+		cartVO.setUsername(username);
+		
+		return cartMapper.setOrderUpdate(cartVO);
 	}
 
 

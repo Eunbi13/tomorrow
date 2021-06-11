@@ -60,7 +60,9 @@ public class OrdersService {
 	public int setDelete(OrdersVO ordersVO)throws Exception{
 		return ordersMapper.setDelete(ordersVO);
 	}
-	
+	public int setUpdate(OrdersVO ordersVO)throws Exception{
+		return ordersMapper.setUpdate(ordersVO);
+	}
 	
 
 }

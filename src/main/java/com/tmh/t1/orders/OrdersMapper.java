@@ -19,5 +19,7 @@ public interface OrdersMapper {
 	
 	public int setDelete(OrdersVO ordesVO)throws Exception;
 	
+	public int setUpdate(OrdersVO ordesVO)throws Exception;
+	
 
 }

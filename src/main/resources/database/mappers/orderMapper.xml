@@ -19,13 +19,15 @@
     		values (#{username}, #{itemsPrice}, #{shippingFee}, #{payment})
     	</insert>
     	
-    	
-    	
-    	 
-    	
     	<delete id="setDelete" parameterType="OrdersVO">
     		delete orders where orderNum=#{orderNum}
     	</delete>
+    	
+    	<update id="setUpdate" parameterType="OrdersVO">
+    	    update orders set shipNum=#{shipNum}, shippingMemo=#{shippingMemo}, paymentType=#{paymentType}, 
+    	    name=#{name},email=#{email}, phone=#{phone}
+    	    where orderNum=#{orderNum}
+    	</update>
     	
     	
     

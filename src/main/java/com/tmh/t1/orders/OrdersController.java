@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tmh.t1.brand.BrandVO;
@@ -46,9 +47,11 @@ public class OrdersController {
 	@GetMapping("list")
 	public ModelAndView getList(OrdersVO ordersVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		//List<OrderVO> ar = orderService.getList(orderVO);
 		
-		//mv.addObject("orderList", ar);
+		List<OrdersVO> ar=ordersService.getList(ordersVO);
+		
+		
+		mv.addObject("orderList", ar);
 		return mv;
 
 	}
@@ -92,7 +95,7 @@ public class OrdersController {
 //		
 //
 	}
-	
+	@ResponseBody 
 	@PostMapping("insert")
 	public ModelAndView setInsert(OrdersVO ordersVO, ModelAndView mv)throws Exception{
 		System.out.println("입장!!");
@@ -147,7 +150,7 @@ public class OrdersController {
         List<ProductVO> productAr = cartService.getProductList(cartVO);
     
      
-       //shipNum   으로만 꺼내려면.. join 해야할듯
+      
         mv.addObject("shippingAr", shippingAr);
         mv.addObject("brandAr", brandAr);
 	    mv.addObject("productAr", productAr);
@@ -160,9 +163,33 @@ public class OrdersController {
 		return mv;
 	}
 	
+	@GetMapping("update")
+    public void setUpdate(OrdersVO ordersVO)throws Exception{
+	}
 	
+	@ResponseBody 
+	@PostMapping("update")
+	public int setUpdate(OrdersVO ordersVO, ModelAndView mv)throws Exception{
+		System.out.println("orders/update mapping enter!!");
+
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal; 
+		String username = userDetails.getUsername();
+		
+		ordersVO.setUsername(username);
+		int result=ordersService.setUpdate(ordersVO);
+		
+	
+		mv.addObject("ordersVO", ordersVO);
+		mv.setViewName("orders/update");
+		return result;
+		
+	}
+	
+	@ResponseBody 
 	@GetMapping("delete")
 	public ModelAndView setDelete(OrdersVO ordersVO)throws Exception{
+
 		ModelAndView mv = new ModelAndView();
 		
 		int result = ordersService.setDelete(ordersVO);
@@ -180,5 +207,7 @@ public class OrdersController {
 		mv.setViewName("common/commonResult");
 		return mv;
 	}
+	
+	
 
 }

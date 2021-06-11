@@ -133,6 +133,11 @@ webkit-box-flex: 1; */
  				<div class="filter-bar_control-list">
  					<ul class="filter-bar_control-list_left">
  						<li class="filter-bar_control-list_item filter-bar_control-list_item-icon">
+ 						  ${orderList}
+ 						  
+ 						  <c:forEach items="${orderList}" var="ordersVO">
+ 						   ordernum:  ${ordersVO.orderNum}
+ 						  </c:forEach>
  							<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 							    기간
 							  </button>

@@ -25,7 +25,7 @@
 			in 
 			(select productNum from cart where username=#{username} and 
 			<if test="valid =='zero'">
-			validity='0'or'1'
+			(validity='0'or validity='1')
 			</if>
 			<if test="valid =='one'">
 			 validity='1'
@@ -37,7 +37,7 @@
 			in 
 			(select brandNum from cart where username=#{username} and 
 			<if test="valid =='zero'">
-			validity='0'or'1'
+			(validity='0'or validity='1')
 			</if>
 			<if test="valid =='one'">
 			 validity='1'
@@ -56,7 +56,7 @@
 			where brandNum in 
 			(select brandNum from cart where username=#{username} and 
 			<if test="valid =='zero'">
-			validity='0'or'1'
+			(validity='0'or validity='1')
 			</if>
 			<if test="valid =='one'">
 			 validity='1'
@@ -75,7 +75,7 @@
 			(select * from cart where username=#{username} and 
 			
 			<if test="valid =='zero'">
-			validity='0'or'1'
+			(validity='0'or validity='1')
 			</if>
 			<if test="valid =='one'">
 			 validity='1'
@@ -106,10 +106,7 @@
 	        	<result column="optionKinds" property="optionKinds" />
 	        	<result column="optionName" property="optionName" />
 	        </collection>
-	    	
-	    	
-	    
-	    
+
 	    
 	    </resultMap>
     
@@ -139,18 +136,29 @@
     	</delete>
     	
     	<update id="setValidityUpdate" parameterType="CartVO">
-    	    update cart set validity='1'
-    		where productNum=#{productNum} and username=#{username}
-    	</update>
-    	
-    	<update id="setUnValidityUpdate" parameterType="CartVO">
-    	    update cart set validity='0'
+    	    update cart set 
+    	    
+    	    <if test="valid =='zero'">
+			validity='0'
+			</if>
+			<if test="valid =='one'">
+			 validity='1'
+			</if>
+			<if test="valid =='two'">
+			validity='2'
+			</if>
+			
     		where productNum=#{productNum} and username=#{username}
     	</update>
     	
     	<update id="setAmountUpdate" parameterType="CartVO">
     		update cart set amount=#{amount}, cartPrice=#{cartPrice}
     		where cartNum=#{cartNum} and username=#{username}
+    	</update>
+    	
+    	<update id="setOrderUpdate" parameterType="CartVO">
+    		update cart set orderNum=#{orderNum}, validity='2'
+    		where validity='1' and username=#{username}
     	</update>
     
     

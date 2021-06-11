@@ -23,5 +23,7 @@ public interface ShippingMapper {
 	public int setDelete(ShippingVO shippingVO)throws Exception;
 	//Update
 	public int setUpdate(ShippingVO shippingVO)throws Exception;
+	//배송지 입력, 수정시 기본배송지 지정할 경우, 원래 기본배송지이던 배송지의 default를 false로 바꾼다. 
+	public int setDefaultUpdate(ShippingVO shippingVO)throws Exception;
 	
 }

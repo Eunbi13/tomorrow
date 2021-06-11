@@ -35,8 +35,14 @@
     	</delete>
     	
     	<update id="setUpdate" parameterType="ShippingVO">
-    		update shipping set shipTitle=#{shipTitle}, shipName=#{shipName}, shipPhone=#{shipPhone}, shipAddress=#{shipAddress}, shipDefault=#{shipDefault}
+    		update shipping set shipTitle=#{shipTitle}, shipName=#{shipName}, shipPhone=#{shipPhone}, 
+    		shipAddress=#{shipAddress}, shipDetailAddress=#{shipDetailAddress}, postcode=#{postcode}, isDefault=#{isDefault}
     		where shipNum=#{shipNum}
+    	</update>
+    	
+    	<update id="setDefaultUpdate" parameterType="ShippingVO">
+    		update shipping set isDefault='0'
+    		where username=#{username} and isDefault='1'
     	</update>
     
     </mapper>

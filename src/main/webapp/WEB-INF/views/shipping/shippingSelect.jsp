@@ -5,6 +5,8 @@
 
 <div id="shippingSel">
 						<div class="_2s2Nq">
+						  <input type="hidden" id="shipNum" value="${shippingVO.shipNum}">
+						
 						   <div id="shipTitle" class="shippingTitle${shippingVO.shipNum}" style="float:left; font-size:20px; font-weight: bold;"> ${shippingVO.shipTitle} </div>
 							
 							<c:if test="${shippingVO.isDefault == true}">
