@@ -64,7 +64,7 @@
 				<c:if test="${brandVO.brandNum eq productVO.brandNum}">
 					test
 					${brand}
-					${brandVO.brandName }
+					${brandVO.brandName}
 				</c:if>
 				브랜드
 			</div>

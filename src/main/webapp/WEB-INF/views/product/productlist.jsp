@@ -270,8 +270,7 @@ to {
 							<c:otherwise>
 								<div class="item-price discount" style="color: #75bdff; margin-right: 10px;">${vo.discountPrice}%</div>
 							</c:otherwise>
-						</c:choose>
-
+						</c:choose>	
 						<div class="item-price won"
 							style="color: black; ">${vo.productPrice}</div>
 					</div>

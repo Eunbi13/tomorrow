@@ -50,6 +50,11 @@ body {
 	<!-- 사이드 메뉴 -->
 	<%-- <c:forEach></c:forEach> --%>
 	<div class="sidenav">
+		<c:forEach items="${categorylist}" var="vo">
+			<div class="category-bar-big">
+				
+			</div>
+		</c:forEach>
 		<a href="#">가구</a>
 			<ul>
 				<li>소파/거실가구</li>
@@ -61,7 +66,6 @@ body {
 		<a href="#">홈데코</a>
 		<a href="#">가전</a>
 		<a href="#">수납/정리</a>
-<!-- 		<a href="#">{vo.detail_category_name }</a> -->
 		<a href="#">생활</a>
 		<a href="#">주방</a>
 	</div>
@@ -69,7 +73,8 @@ body {
 	<!-- 메인 -->
 	<div class="main">
 		<h2>Sidenav Example</h2>
-		<p>분류별 select page</p>
+		
+		
 	</div>
 
 	
