@@ -1,6 +1,7 @@
 package com.tmh.t1.product;
 
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,10 +76,10 @@ public class ProductController {
 		model.addAttribute("productlist", productar);
 		
 		List<BrandVO> brandar = productService.getBrandList(productVO);
-		model.addAttribute("brand", brandar);
+//		String brandN = brandar.get(0).getBrandName().toString();
+//		model.addAttribute("brand", brandN);
+		model.addAttribute("brandar", brandar);
 		
-		List<OptionsVO> optionsar = productService.getOptionsList(productVO);
-		model.addAttribute("options", optionsar);
 	}
 	
 	@GetMapping("productselect")
@@ -94,10 +95,14 @@ public class ProductController {
 		model.addAttribute("vo", productVO);
 		
 		List<BrandVO> brandar = productService.getBrandList(productVO);
-		model.addAttribute("brand", brandar);
+		String brandN = brandar.get(0).getBrandName().toString();
+		model.addAttribute("brand", brandN);
 		
 		List<OptionsVO> optionsar = productService.getOptionsList(productVO);
-		model.addAttribute("options", optionsar);
+		String optionK = optionsar.get(3).getOptionKinds().toString();
+		model.addAttribute("optionK", optionK);
+		String optionN = optionsar.get(4).getOptionName().toString();
+		model.addAttribute("optionN", optionN);
 	}
 	
 }

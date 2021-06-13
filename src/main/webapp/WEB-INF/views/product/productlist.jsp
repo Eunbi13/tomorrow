@@ -152,10 +152,10 @@ to {
 	float: left;
 }
 
-. btn-secondary{
+.
+btn-secondary {
 	float: left;
 }
-
 </style>
 <c:import url="../template/bootStrap.jsp"></c:import>
 <meta charset="UTF-8">
@@ -262,19 +262,22 @@ to {
 				<a href="./productselect?productNum=${vo.productNum}"> <img
 					class="item-img" src="../resources/images/storeEX/glove.webp"
 					alt="item pic">
-					<div class="brand">${vo.brandNum } ${brand }</div>
+					<div class="brand">
+						<c:if test="${brandVO.brandNum eq productVO.brandNum}">
+						${vo.brandNum }
+						</c:if>
+					</div>
 					<div class="item-title" style="color: black;">${vo.productName}</div>
 					<div class="card-price">
 						<c:choose>
 							<c:when test="${vo.discountPrice eq 0}"></c:when>
 							<c:otherwise>
-								<div class="item-price discount" style="color: #75bdff; margin-right: 10px;">${vo.discountPrice}%</div>
+								<div class="item-price discount"
+									style="color: #75bdff; margin-right: 10px;">${vo.discountPrice}%</div>
 							</c:otherwise>
-						</c:choose>	
-						<div class="item-price won"
-							style="color: black; ">${vo.productPrice}</div>
-					</div>
-					<br>
+						</c:choose>
+						<div class="item-price won" style="color: black;">${vo.productPrice - (vo.productPrice / 100 * vo.discountPrice)}원</div>
+					</div> <br>
 					<div class="item-ship">
 						<c:if test="${vo.shippingFee eq 0 }">
 							무료배송

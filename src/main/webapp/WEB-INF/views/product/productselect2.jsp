@@ -62,19 +62,21 @@
 		<div class="store-select-wrap content">
 			<div class="store-select-content-brand">
 				<c:if test="${brandVO.brandNum eq productVO.brandNum}">
-					test
-					${brand}
-					${brandVO.brandName}
+				${brand}
 				</c:if>
-				브랜드
 			</div>
 			<div class="store-select-content-name">${vo.productName}</div>
 			<div class="store-select-content-price">
 				<div class="store-select-content-price-discount"
-					style="color: #75bdff;">${vo.discountPrice}%</div>
+					style="color: #75bdff;">
+					<!-- 할인율 0퍼 이상일 때만 표시 -->
+					<c:if test="${vo. discountPrice != 0}"> 
+					${vo.discountPrice}%
+					</c:if>
+				</div>
 			</div>
 			<div class="store-select-content-price">
-				<div class="store-select-content-price-won">${vo.productPrice}</div>
+				<div class="store-select-content-price-won">${vo.productPrice - (vo.productPrice / 100 * vo.discountPrice)}원</div>
 			</div>
 			<br> <br>
 			<div class="store-select-content-ship">배송</div>
@@ -92,15 +94,15 @@
 			</div>
 			<br>
 			<div class="store-select-content-options">
-				<c:forEach items="${options}" var="optionsVO">
-					<option value="${options}">${options}</option>
-				</c:forEach>
-				<label for="optionNum">option</label> <select>
-					<option value="optionKinds">${optionKinds }</option>
-					<c:forEach var="list" items="${options}">
-						<option value="수정중">${optionName}</option>
-					</c:forEach>
-				</select>
+
+				<form>
+					<select name="options">
+						<option value="optionKinds">${optionK}</option>
+						<c:forEach items="${optionN }" var="vo">
+						<option value="optionName">${optionN}</option>
+						</c:forEach>
+					</select>
+				</form>
 			</div>
 
 			<div class="store-select-buttons">
@@ -128,6 +130,9 @@
 		</nav>
 	</div>
 
+	<script>
+		
+	</script>
 
 
 </body>
