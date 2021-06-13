@@ -30,6 +30,10 @@
 		<select id="getBrandHomeList" parameterType="java.lang.Long" resultType="ProductVO">
 			SELECT * FROM product WHERE brandNum=#{brandNum}  GROUP BY productNum DESC
 		</select>
+		<select id="getPList" parameterType="BrandVO" resultType="ProductVO">
+			SELECT P.* FROM product P, (SELECT * FROM brand WHERE username=#{username} or brandNum=#{brandNum}) B 
+			WHERE P.brandNum=B.brandNum GROUP BY productNum DESC
+		</select>
 		
     <!-- 장은 -->
     	<select id="getProductList" parameterType="ProductVO" resultType="ProductVO">

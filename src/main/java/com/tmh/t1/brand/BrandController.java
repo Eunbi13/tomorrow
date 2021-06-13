@@ -30,15 +30,16 @@ public class BrandController {
 	
 	@GetMapping("home")
 	public String brandHome(BrandVO brandVO, Model model)throws Exception{
-		BrandVO brandInfo = brandService.getBrandInfo(brandVO);
+		 brandVO = brandService.getBrandInfo(brandVO);
+		 
 		//PRODUCT LIST
 		List<ProductVO> productList = brandService.getBrandHomeList(brandVO);
 		//category List
-		brandService.getBrandHomeCategory(brandVO);
+		//brandService.getBrandHomeCategory(brandVO);
 		
 
 		
-		model.addAttribute("brandName", brandInfo);
+		model.addAttribute("brandVO", brandVO);
 		model.addAttribute("productList", productList);
 		model.addAttribute("productListSize", productList.size());
 //		model.addAttribute("one", map.get("one"));

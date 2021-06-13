@@ -34,6 +34,10 @@ public class ProductService {
 	@Value("${productInsert.filePath}")
 	private String filePath;
 	
+	public List<ProductVO> getPList(BrandVO brandVO)throws Exception{
+		return productMapper.getPList(brandVO);
+	};
+	
 	
 	//get insert //대분류 카테고리 카테고리 mapper에서 가져오기 
 	public List<CategoryVO> getCategoryOne(Authentication auth) throws Exception{

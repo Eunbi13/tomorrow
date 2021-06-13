@@ -28,7 +28,7 @@
 		</select>
 		
 		<select id="getBrandInfo" parameterType="BrandVO" resultType="BrandVO">
-			SELECT brandname FROM brand WHERE brandNum=#{brandNum}
+			SELECT * FROM brand WHERE brandNum=#{brandNum} OR username=#{username}
 		</select>
 		
 		

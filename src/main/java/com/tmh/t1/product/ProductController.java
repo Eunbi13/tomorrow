@@ -25,6 +25,14 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+	//임시로 productList 의논해볼것
+	@PostMapping("list")
+	public String getList(BrandVO brandVO,Model model)throws Exception{
+		List<ProductVO> list=productService.getPList(brandVO);
+		model.addAttribute("productList", list);
+		model.addAttribute("productListSize", list.size());
+		return "template/productList";
+	}
 	//insert product 
 	@GetMapping("insert")
 	public String setProduct(Model model,Authentication auth)throws Exception{
