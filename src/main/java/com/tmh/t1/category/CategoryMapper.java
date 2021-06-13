@@ -20,5 +20,5 @@ public interface CategoryMapper {
 	public List<CategoryVO> getCategoryTwo(CategoryVO categoryVO)throws Exception;
 	public List<CategoryVO> getCategoryThree(CategoryVO categoryVO)throws Exception;
 	public List<CategoryVO> getCategoryID(Long BrandNum)throws Exception;
-	public CategoryVO getBrandCategory(CategoryVO categoryVO)throws Exception;
+	public List<CategoryVO> getBrandCategory(CategoryVO categoryVO)throws Exception;
 }

@@ -39,26 +39,29 @@ public class BrandService {
 	public List<ProductVO> getBrandHomeList(BrandVO brandVO)throws Exception{
 		return productMapper.getBrandHomeList(brandVO.getBrandNum());
 	}
-	public Map<String, List<CategoryVO>> getBrandHomeCategory(BrandVO brandVO)throws Exception{
+
+	public void/* Map<String, List<CategoryVO>>*/ getBrandHomeCategory(BrandVO brandVO)throws Exception{
 		
 		List<CategoryVO> three = categoryMapper.getCategoryID(brandVO.getBrandNum());
 		List<CategoryVO> two = new ArrayList<CategoryVO>();
-		for(CategoryVO vo : three) {
-			two.add(categoryMapper.getBrandCategory(vo));
+		//List<CategoryVO> two = categoryMapper.getBrandCategory(three);
+		
+		
+		for(CategoryVO vo : three) { 
+			two = categoryMapper.getBrandCategory(vo);
 		}
-		List<CategoryVO> one = new ArrayList<CategoryVO>();
-		for(CategoryVO vo :two) {
-			one.add(categoryMapper.getBrandCategory(vo));
-		}
-		for(int i =0; i<one.size(); i++) {
-			System.out.println(i+": "+one.get(i));
-		}
-		//three, two, one 전부 보내고 싶은데,,!
-		Map<String, List<CategoryVO>> map = new HashMap<String, List<CategoryVO>>();
-		map.put("one", one);
-		map.put("two", two);
-		map.put("three", three);
-		return map;
+		System.out.println(two);
+//		List<CategoryVO> one = new ArrayList<CategoryVO>(); 
+//		for(CategoryVO vo :two) {
+//			one.add(categoryMapper.getBrandCategory(vo)); } 
+//		for(int i =0; i<one.size();i++) { 
+//		System.out.println(i+": "+one.get(i)); } 
+//		//three, two, one 전부 보내고싶은데,,! 
+//		Map<String, List<CategoryVO>> map = new HashMap<String,
+//		List<CategoryVO>>(); map.put("one", one); map.put("two", two);
+//		map.put("three", three); 
+//		return map;
+		
 	}
 
 	//에러설정(판매자번호)

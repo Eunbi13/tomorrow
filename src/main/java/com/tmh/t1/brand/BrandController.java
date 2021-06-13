@@ -34,16 +34,16 @@ public class BrandController {
 		//PRODUCT LIST
 		List<ProductVO> productList = brandService.getBrandHomeList(brandVO);
 		//category List
-		Map<String, List<CategoryVO>> map = brandService.getBrandHomeCategory(brandVO);
+		brandService.getBrandHomeCategory(brandVO);
 		
 
 		
 		model.addAttribute("brandName", brandInfo);
 		model.addAttribute("productList", productList);
 		model.addAttribute("productListSize", productList.size());
-		model.addAttribute("one", map.get("one"));
-		model.addAttribute("two", map.get("two"));
-		model.addAttribute("three", map.get("three"));
+//		model.addAttribute("one", map.get("one"));
+//		model.addAttribute("two", map.get("two"));
+//		model.addAttribute("three", map.get("three"));
 		return "/brand/brandHome";
 	}
 	

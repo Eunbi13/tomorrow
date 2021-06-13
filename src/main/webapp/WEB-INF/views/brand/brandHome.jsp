@@ -15,28 +15,32 @@
 <c:import url="../template/header.jsp"></c:import>
 <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
 	<h1>${brandName.brandName }</h1>
-	
-	
-	<div class="아이템리스트ㅡㅡ">
+		<div class="카테고리">
+			<c:forEach items="${one}" var="one" varStatus="i">
+				<div>${one.category_detail_NM}</div>
+			</c:forEach>
+		</div>
+
+		<div class="아이템리스트">
 		<h1>프로덕트 개수: ${productListSize}</h1>
-		<c:forEach items="${productList}" var="pvo" varStatus="i">
+		<c:forEach items="${productList}" var="vo" varStatus="i">
 			<div class="">
 				<div>
-					<a href="./productselect?productNum=${pvo.productNum}">
-						<img alt="" src="/upload/productImages/${pvo.productPic }" style="width: 250px; height: 250px">
+					<a href="./productselect?productNum=${vo.productNum}">
+						<img alt="" src="/upload/productImages/${vo.productPic }" style="width: 250px; height: 250px">
 					</a>
 				</div>
 				<small>${brandName.brandName }</small>
 				<small>${i.index }</small>
 				<div>
-					<a href="./productselect?productNum=${pvo.productNum}">${pvo.productName }</a>
+					<a href="./productselect?productNum=${vo.productNum}">${vo.productName }</a>
 				</div>
-				<span hidden="hidden" class="price">${pvo.productPrice}</span>
+				<span hidden="hidden" class="price">${vo.productPrice}</span>
 				<div>
 					<span class="percent"></span><span>%</span>
-					<span class="disPrice" title="${pvo.discountPrice }"><fmt:formatNumber value="${pvo.discountPrice }" groupingUsed="true"/></span>
+					<span class="disPrice" title="${vo.discountPrice }"><fmt:formatNumber value="${vo.discountPrice }" groupingUsed="true"/></span>
 				</div>
-				<c:if test="${pvo.shippingFee eq 0}"><div>무료배송</div></c:if>
+				<c:if test="${vo.shippingFee eq 0}"><div>무료배송</div></c:if>
 			</div>
 		</c:forEach>
 	</div>

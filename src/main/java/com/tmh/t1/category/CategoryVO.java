@@ -1,5 +1,7 @@
 package com.tmh.t1.category;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -12,4 +14,6 @@ public class CategoryVO {
 	private String category_detail_NM;
 	private int category_parent;
 	private int category_detail_parent;
+	
+	private List<CategoryVO> categorys;
 }
