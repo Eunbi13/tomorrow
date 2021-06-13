@@ -22,10 +22,10 @@ import com.tmh.t1.option.OptionsVO;
 @RequestMapping("/product/**")
 public class ProductController {
 	//store list, select
-	
+
 	@Autowired
 	private ProductService productService;
-	
+
 	//insert product 
 	@GetMapping("insert")
 	public String setProduct(Model model,Authentication auth)throws Exception{
@@ -33,7 +33,7 @@ public class ProductController {
 		model.addAttribute("categoryOne", categoryOne);
 		return "product/insertProduct";
 	}
-	
+
 	@GetMapping("getCategoryTwo")
 	public String getCategoryTwo(Model model, int categoryID)throws Exception{
 		CategoryVO categoryVO = new CategoryVO();
@@ -43,7 +43,7 @@ public class ProductController {
 		model.addAttribute("detail", "중분류");
 		return "product/categoryForm";
 	}
-	
+
 	@GetMapping("getCategoryThree")
 	public String getCategoryThree(Model model, int categoryID)throws Exception{
 		CategoryVO categoryVO = new CategoryVO();
@@ -53,57 +53,61 @@ public class ProductController {
 		model.addAttribute("detail", "소분류");
 		return "product/categoryForm";
 	}
-	
-	
+
+
 	@PostMapping("insert")
 	public String setProduct(Authentication auth,ProductVO productVO,String categoryID, OptionsVO optionsVO, MultipartFile [] files, MultipartFile rep)throws Exception{
-//		System.out.println(optionsVO.getOptionKinds());//1,1 이런식으로 들어옴 흠,,, 파싱해야겠는데?
-//		System.out.println(optionsVO.getOptionName());
-//		System.out.println(optionsVO.getOptionPrice());
-//		System.out.println(optionsVO.toString());
+		//		System.out.println(optionsVO.getOptionKinds());//1,1 이런식으로 들어옴 흠,,, 파싱해야겠는데?
+		//		System.out.println(optionsVO.getOptionName());
+		//		System.out.println(optionsVO.getOptionPrice());
+		//		System.out.println(optionsVO.toString());
 		System.out.println("얘가 문제일듯 "+categoryID);
-//		System.out.println("step: "+optionsVO.getStep());
+		//		System.out.println("step: "+optionsVO.getStep());
 		productService.setProduct(auth, productVO,categoryID, optionsVO, files, rep);
-		
+
 		System.out.println("성공");
 		return "redirect:/";
 		//return "/option/optionInsert.";
 	}
-	
+
 	@GetMapping("productlist")
 	public void getProductList(ProductVO productVO, Model model)throws Exception {
 		List<ProductVO> productar = productService.getProductList(productVO);
 		model.addAttribute("productlist", productar);
-		
+
 		List<BrandVO> brandar = productService.getBrandList(productVO);
-//		String brandN = brandar.get(0).getBrandName().toString();
-//		model.addAttribute("brand", brandN);
+		//		String brandN = brandar.get(0).getBrandName().toString();
+		//		model.addAttribute("brand", brandN);
 		model.addAttribute("brandar", brandar);
-		
+
 	}
-	
+
 	@GetMapping("productselect")
 	public void getSelect(ProductVO productVO, Model model)throws Exception{
 		productVO = productService.getSelect(productVO);
 		model.addAttribute("vo", productVO);
 	}
-	
+
 
 	@GetMapping("productselect2")
 	public void getSelect2(ProductVO productVO, Model model)throws Exception{
 		productVO = productService.getSelect(productVO);
 		model.addAttribute("vo", productVO);
-		
+
 		List<BrandVO> brandar = productService.getBrandList(productVO);
 		String brandN = brandar.get(0).getBrandName().toString();
 		model.addAttribute("brand", brandN);
-		
+
 		List<OptionsVO> optionsar = productService.getOptionsList(productVO);
 		model.addAttribute("optionsar", optionsar);
-//		String optionK = optionsar.get(3).getOptionKinds().toString();
-//		model.addAttribute("optionK", optionK);
-//		String optionN = optionsar.get(4).getOptionName().toString();
-//		model.addAttribute("optionN", optionN);
+		int opsize = optionsar.size();
+		model.addAttribute("opsize", opsize);
+		String optionK = optionsar.get(2).getOptionKinds().toString();
+		model.addAttribute("optionK", optionK);
+		for(int i=0; i<opsize; i++) {
+			String optionN = optionsar.get(3).getOptionName().toString();
+			model.addAttribute("optionN", optionN); 
+			};
 	}
-	
+
 }

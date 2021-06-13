@@ -103,17 +103,22 @@
 				tt
 				</c:otherwise>
 			</c:choose>	
-				${fn:length(optionsar)}
+			---
 				${ optionsar}
-				
-				<%-- <form>
+				---
+				ffkfk
+				${opsize }
+				fkfk
+				${ optionK} //
+				${optionN }
+				<form>
 					<select name="options">
 						<option value="optionKinds">${optionK}</option>
-						<c:forEach items="${optionN }" var="vo">
+						<c:forEach items="${optionN}" var="vo">
 						<option value="optionName">${optionN}</option>
 						</c:forEach>
 					</select>
-				</form> --%>
+				</form>
 			</div>
 
 			<div class="store-select-buttons">
