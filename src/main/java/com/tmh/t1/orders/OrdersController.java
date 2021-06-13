@@ -163,14 +163,18 @@ public class OrdersController {
 		return mv;
 	}
 	
-	@GetMapping("update")
-    public void setUpdate(OrdersVO ordersVO)throws Exception{
-	}
+//	@GetMapping("update")
+//    public void setUpdate(OrdersVO ordersVO)throws Exception{
+//	}
 	
 	@ResponseBody 
 	@PostMapping("update")
-	public int setUpdate(OrdersVO ordersVO, ModelAndView mv)throws Exception{
+	public ModelAndView setUpdate(OrdersVO ordersVO, ModelAndView mv)throws Exception{
 		System.out.println("orders/update mapping enter!!");
+		System.out.println("getName"+ordersVO.getName());
+		System.out.println("getEmail"+ ordersVO.getEmail());
+		System.out.println("getPhone"+ ordersVO.getPhone());
+
 
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
 		UserDetails userDetails = (UserDetails)principal; 
@@ -178,11 +182,11 @@ public class OrdersController {
 		
 		ordersVO.setUsername(username);
 		int result=ordersService.setUpdate(ordersVO);
-		
-	
+		System.out.println("almost orders/update mapping success!!");
+	  
 		mv.addObject("ordersVO", ordersVO);
 		mv.setViewName("orders/update");
-		return result;
+		return mv;
 		
 	}
 	

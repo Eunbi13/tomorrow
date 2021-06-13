@@ -516,7 +516,6 @@ margin-top: 20px;
 			     	 
 			     	 
 			     	 <div class="form-group">
-							<input type="hidden" id="username" name="username" value="id1">
 					</div>
 			     	 	  <div class="form-group row shipInsert">
 						    <label for="shipTitle" class="col-sm-3 col-form-label">배송지명</label>
@@ -599,7 +598,7 @@ margin-top: 20px;
 				
 				<div class="css-nj6fnr-DeliveryRequestInput e84q8kd0">
 					<div class="_3Bt8k">
-						<select id="shippingMemo" class="_3ASDR _1qwAY _3K8Q8 shippingMemo">
+						<select id="shippingMemo" class="_3ASDR _1qwAY _3K8Q8 shippingMemo" name="shippingMemo">
 							<option value="0">배송시 요청사항을 선택해주세요</option>
 							<option value="1">부재시 문앞에 놓아주세요</option>
 							<option value="2">배송전에 미리 연락주세요</option>
@@ -607,7 +606,7 @@ margin-top: 20px;
 							<option value="4">부재시 전화주시거나 문자 남겨 주세요</option>
 							<option value="5">직접입력</option>
 						</select>
-				  	<textarea style="overflow: hidden; overflow-wrap: break-word; width: 100%;  height: 56px; font-size:16px;" placeholder=" 배송 요청사항을 입력해주세요" maxlength="50" row="1" class="directInputBox"  id="directInputBox" name="shippingMemo"></textarea>
+				  	<textarea style="overflow: hidden; overflow-wrap: break-word; width: 100%;  height: 56px; font-size:16px;" placeholder=" 배송 요청사항을 입력해주세요" maxlength="50" row="1" class="directInputBox"  id="directInputBox" ></textarea>
 				  
 				</div>
 				</div>
@@ -626,7 +625,9 @@ margin-top: 20px;
             </div>
             <hr>
             
-		  <form class="form" action="/action_page.php">
+		  <form id="updateFrm" action="./update" method="post">
+		       <input type="hidden" name="orderNum" value="${ordersVO.orderNum}">
+		                                          
 		      <div class="form-group row">
 		    
 			    <label class="control-label col-sm-2 middle" for="name">이름</label>
@@ -835,7 +836,8 @@ margin-top: 20px;
                 
                 <div class="p-2 d-flex pt-3">
                     <div class="col-8"><b>최종 결제 금액</b></div>
-                    <input type="hidden" id="orderNum" value="${ordersVO.orderNum}">
+                     <input type="hidden" id="orderNum" value="${ordersVO.orderNum}">
+                    
                     <div class="ml-auto" id="payment" title="${ordersVO.payment}"><b class="green"> ${ordersVO.payment}원</b></div>
                 </div>
             </div>
@@ -1306,10 +1308,10 @@ function iamport(){
 											//shippingMemo는 선택된 selected된 값을 가져오고 그것이 5일 경우에는, 또 따로 받아온다.
 											
 											let shippingMemo=$("#shippingMemo option:selected").val();
-											if(shippingMemo=5){
-												shippingMemo= $("#directInputBox").val();
-											}else{
-												shippingMemo = $("#shippingMemo option:selected").text();
+											console.log("shippingMemo value :"+shippingMemo);
+											if(shippingMemo==5){
+												console.log("입장. 쉽핑 수정을 위한,,")
+												shippingMemo= $("#directInputBox").val();	
 											}
 											console.log("shippingMemo:"+shippingMemo);
 											console.log("paymentType:"+paymentType);
@@ -1322,24 +1324,17 @@ function iamport(){
 													 shipNum:shipNum, 
 													 paymentType:paymentType, 
 													 shippingMemo:shippingMemo,
-													 name:name,
-													 email:email, 
-													 phone:phone,
 													 orderNum: orderNum
 												},
 												success:function(data){
-													console.log("data:"+data);
+													
 													data= $.trim(data);
 													console.log("trim 이후 data"+data);
+													alert('업데이트 성공');
 													
-													if(data>0){
-														alert('업데이트 성공');
-														window.location.href = "./update";
-
-														
-													}else {
-														alert('업데이트 실패');
-													}
+													
+													$("#updateFrm").submit();
+													
 												}
 											})
 											
