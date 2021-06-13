@@ -3,11 +3,15 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
     <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
+    
+    <a class="btn" href="/product/insert">글쓰기</a>
+    <a class="btn" href="/product/delete">판매중지하기</a>
 <div class="아이템리스트">
 	<h1>프로덕트 개수: ${productListSize}</h1>
 	<c:forEach items="${productList}" var="vo" varStatus="i">
 		<div class="">
 			<div>
+				<div hidden="hidden">${vo.productNum}</div>
 				<a href="./productselect?productNum=${vo.productNum}">
 					<img alt="" src="/upload/productImages/${vo.productPic }" style="width: 250px; height: 250px">
 				</a>

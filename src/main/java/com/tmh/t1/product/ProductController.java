@@ -25,6 +25,13 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+	@GetMapping("delete")
+	public String getList(ProductVO productVO)throws Exception{
+		
+		return "redirect:./";
+	}
+	
+	
 	//임시로 productList 의논해볼것
 	@PostMapping("list")
 	public String getList(BrandVO brandVO,Model model)throws Exception{
