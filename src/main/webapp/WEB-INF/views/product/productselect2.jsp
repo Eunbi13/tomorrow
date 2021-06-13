@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!-- PRODUCT SELECT //// STORE -->
 <!-- class 이름 정리 -->
 <!DOCTYPE html>
@@ -94,15 +95,25 @@
 			</div>
 			<br>
 			<div class="store-select-content-options">
-
-				<form>
+			<c:choose>
+				<c:when test="${fn:length(optionsar) > '1'} ">
+				 ee sdfsdf ---왜안나오지
+				</c:when> 
+				<c:otherwise>
+				tt
+				</c:otherwise>
+			</c:choose>	
+				${fn:length(optionsar)}
+				${ optionsar}
+				
+				<%-- <form>
 					<select name="options">
 						<option value="optionKinds">${optionK}</option>
 						<c:forEach items="${optionN }" var="vo">
 						<option value="optionName">${optionN}</option>
 						</c:forEach>
 					</select>
-				</form>
+				</form> --%>
 			</div>
 
 			<div class="store-select-buttons">

@@ -32,6 +32,7 @@
     		select * from product
     	</select>
     	
+    	
     	<select id="getBrandList" parameterType="ProductVO" resultType="BrandVO">
     		select brandName from brand
 			where brandNum IN (SELECT brandNum FROM product WHERE productNum=#{productNum})

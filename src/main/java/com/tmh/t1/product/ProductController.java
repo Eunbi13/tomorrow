@@ -99,10 +99,11 @@ public class ProductController {
 		model.addAttribute("brand", brandN);
 		
 		List<OptionsVO> optionsar = productService.getOptionsList(productVO);
-		String optionK = optionsar.get(3).getOptionKinds().toString();
-		model.addAttribute("optionK", optionK);
-		String optionN = optionsar.get(4).getOptionName().toString();
-		model.addAttribute("optionN", optionN);
+		model.addAttribute("optionsar", optionsar);
+//		String optionK = optionsar.get(3).getOptionKinds().toString();
+//		model.addAttribute("optionK", optionK);
+//		String optionN = optionsar.get(4).getOptionName().toString();
+//		model.addAttribute("optionN", optionN);
 	}
 	
 }
