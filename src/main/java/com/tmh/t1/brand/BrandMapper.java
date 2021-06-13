@@ -18,4 +18,6 @@ public interface BrandMapper {
 
 	public List<CategoryVO> getBigCategory() throws Exception;
 	
+	public BrandVO getBrandInfo(BrandVO brandVO)throws Exception;
+	
 }

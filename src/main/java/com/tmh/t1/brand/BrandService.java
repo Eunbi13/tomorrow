@@ -1,5 +1,6 @@
 package com.tmh.t1.brand;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.tmh.t1.category.CategoryMapper;
 import com.tmh.t1.category.CategoryVO;
+import com.tmh.t1.product.ProductMapper;
+import com.tmh.t1.product.ProductVO;
 import com.tmh.t1.util.FileManager;
 
 @Service
@@ -20,13 +23,43 @@ public class BrandService {
 	
 	@Autowired
 	private BrandMapper brandMapper;
-//	@Autowired
-//	private CategoryMapper categoryMapper;
-	//의미 있는지 물어보기
+	@Autowired
+	private CategoryMapper categoryMapper;
+	@Autowired
+	private ProductMapper productMapper;
 	@Autowired
 	private FileManager fileManager;
 	@Value("${brandInsert.filePath}")
 	private String filePath;
+	
+	//brandHome
+	public BrandVO getBrandInfo(BrandVO brandVO) throws Exception{
+		return brandMapper.getBrandInfo(brandVO);
+	}
+	public List<ProductVO> getBrandHomeList(BrandVO brandVO)throws Exception{
+		return productMapper.getBrandHomeList(brandVO.getBrandNum());
+	}
+	public Map<String, List<CategoryVO>> getBrandHomeCategory(BrandVO brandVO)throws Exception{
+		
+		List<CategoryVO> three = categoryMapper.getCategoryID(brandVO.getBrandNum());
+		List<CategoryVO> two = new ArrayList<CategoryVO>();
+		for(CategoryVO vo : three) {
+			two.add(categoryMapper.getBrandCategory(vo));
+		}
+		List<CategoryVO> one = new ArrayList<CategoryVO>();
+		for(CategoryVO vo :two) {
+			one.add(categoryMapper.getBrandCategory(vo));
+		}
+		for(int i =0; i<one.size(); i++) {
+			System.out.println(i+": "+one.get(i));
+		}
+		//three, two, one 전부 보내고 싶은데,,!
+		Map<String, List<CategoryVO>> map = new HashMap<String, List<CategoryVO>>();
+		map.put("one", one);
+		map.put("two", two);
+		map.put("three", three);
+		return map;
+	}
 
 	//에러설정(판매자번호)
 	public boolean brandError(Errors errors, BrandVO brandVO)throws Exception{
@@ -40,9 +73,6 @@ public class BrandService {
 		
 		return check;
 	}
-	
-	
-	
 //대분류 카테고리 카테고리 mapper에서 가져오기 
 	public List<CategoryVO> getBigCategory() throws Exception{
 		return brandMapper.getBigCategory();

@@ -26,6 +26,10 @@
 			INSERT INTO product_options VALUES (#{productNum}, #{optionNum})
 		</insert>
 		
+		<!-- brandHome -->
+		<select id="getBrandHomeList" parameterType="java.lang.Long" resultType="ProductVO">
+			SELECT * FROM product WHERE brandNum=#{brandNum}  GROUP BY productNum DESC
+		</select>
 		
     <!-- 장은 -->
     	<select id="getProductList" parameterType="ProductVO" resultType="ProductVO">

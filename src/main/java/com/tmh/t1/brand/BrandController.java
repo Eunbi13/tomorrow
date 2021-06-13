@@ -1,6 +1,7 @@
 package com.tmh.t1.brand;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.tmh.t1.category.CategoryMapper;
 import com.tmh.t1.category.CategoryService;
 import com.tmh.t1.category.CategoryVO;
+import com.tmh.t1.product.ProductVO;
 
 @Controller
 @RequestMapping("/brand/**")
@@ -27,10 +29,21 @@ public class BrandController {
 	
 	
 	@GetMapping("home")
-	public String brandHome(BrandVO brandVO)throws Exception{
+	public String brandHome(BrandVO brandVO, Model model)throws Exception{
+		BrandVO brandInfo = brandService.getBrandInfo(brandVO);
+		//PRODUCT LIST
+		List<ProductVO> productList = brandService.getBrandHomeList(brandVO);
+		//category List
+		Map<String, List<CategoryVO>> map = brandService.getBrandHomeCategory(brandVO);
 		
+
 		
-		
+		model.addAttribute("brandName", brandInfo);
+		model.addAttribute("productList", productList);
+		model.addAttribute("productListSize", productList.size());
+		model.addAttribute("one", map.get("one"));
+		model.addAttribute("two", map.get("two"));
+		model.addAttribute("three", map.get("three"));
 		return "/brand/brandHome";
 	}
 	

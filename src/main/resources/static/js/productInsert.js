@@ -171,13 +171,24 @@ $('#table').on('click','table', function(){
 		$('table').each(function(i, t){
 			console.log('i: '+i)
 			let table = $(t).html();
-			console.log(table)
-			$(table).each(function(i,table){
-				console.log($(table).html())//tr부터
-				let test = $($(table).html()).html()//td부터
-				console.log(test)
-			
-			})
+			console.log(table);//table 부터 시작,, 
+			//여기까지 thead랑 뜸>>t에서 해결을 봐야함.
+			let thead = $(t).find('thead').html();//이래도 tr이 뜸,, thead
+			//thead x tbody class, step &tfoot title
+			/*$(table).each(function(i,j){
+				console.log($(j).html())
+				//여기서부터 tr이 뜸
+			})*/
+			//let thead = $(t+':has(thead)').html();
+			console.log('THEAD:: '+thead);
+			let tbody = $(table).nextAll('tbody').html();
+			console.log('TBODY:: '+tbody);
+			let tfoot = $(table).nextAll('tfoot').html();
+			console.log('TFOOT:: '+tfoot);
+			console.log('==================');
+			$($(tbody).parent().html()).removeClass();
+			console.log($(tbody).parent())//undifined
+			$($(tbody).parent().html()).addClass('t'+i)
 			/*let thead = $(t).find('thead>tr').html();
 			//thead = $(thead+'.tH').html();
 			console.log(thead);
@@ -202,17 +213,17 @@ function makeThead(kind, i){
 				'<thead>'+	 	
 					'<tr class="thead">'+				
 						'<th scope="col"></th>'+					
-						'<th scope="col" class="tH kind'+i+'">'+kind+'</th>'+					
+						'<th scope="col">'+kind+'</th>'+					
 						'<th scope="col">옵션가격</th>'+					
 						'<th scope="col"></th>'+
 						'<th scope="col" class="tableDelete">x</th>'+					
 					'</tr>'+				
 				'</thead>'+				
-				'<tbody class="tB t'+i+'">'+
+				'<tbody class="t'+i+'">'+
 				'</tbody>'+
 				'<tfoot>'+
 					'<tr class="tfoot">'+
-						'<td></td><td></td><td></td><td></td><td class="add tF" title="t'+i+'">+</td>'+
+						'<td></td><td></td><td></td><td></td><td class="add" title="t'+i+'">+</td>'+
 					'</tr>'+
 				'</tfoot>'+			
 			'</table>';	

@@ -22,7 +22,9 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
       </li>
-      
+      <li class="nav-item">
+        <a class="nav-link" href="/brand/home?brandNum=2">임시브랜드홈</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="/housewarming/list">Housewarming</a>
       </li>

@@ -24,6 +24,9 @@ public interface ProductMapper {
 	public List<ProductVO> getProductList(ProductVO productVO)throws Exception;
 	public List<BrandVO> getBrandList(ProductVO productVO)throws Exception;
 	public List<OptionsVO> getOptionsList(ProductVO productVO)throws Exception;
+	
+	public List<ProductVO> getBrandHomeList(Long brandNum)throws Exception;
+	
 	//select
 	public ProductVO getSelect(ProductVO productVO)throws Exception;
 	
