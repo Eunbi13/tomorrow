@@ -21,5 +21,8 @@ public interface OrdersMapper {
 	
 	public int setUpdate(OrdersVO ordesVO)throws Exception;
 	
+	public int setAjaxUpdate(OrdersVO ordesVO)throws Exception;
+	
+	
 
 }

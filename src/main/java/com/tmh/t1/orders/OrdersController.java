@@ -191,6 +191,34 @@ public class OrdersController {
 	}
 	
 	@ResponseBody 
+	@PostMapping("ajaxUpdate")
+	public int setAjaxUpdate(OrdersVO ordersVO, ModelAndView mv)throws Exception{
+		System.out.println("orders/ajaxUpdate mapping enter!!");
+		System.out.println("ordersVO.getShipNum():"+ordersVO.getShipNum());
+		System.out.println("ordersVO.getPaymentType():"+ordersVO.getPaymentType());
+		System.out.println("ordersVO.getShippingMemo():"+ordersVO.getShippingMemo());
+		System.out.println("ordersV.getOrderNum()():"+ordersVO.getOrderNum());
+
+
+
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal; 
+		String username = userDetails.getUsername();
+		
+		ordersVO.setUsername(username);
+		int result=ordersService.setAjaxUpdate(ordersVO);
+		System.out.println("result:"+result);
+		System.out.println("getItemsPrice:"+ordersVO.getItemsPrice());
+		
+		
+	 
+		return result;
+		
+	}
+	
+	
+	
+	@ResponseBody 
 	@GetMapping("delete")
 	public ModelAndView setDelete(OrdersVO ordersVO)throws Exception{
 

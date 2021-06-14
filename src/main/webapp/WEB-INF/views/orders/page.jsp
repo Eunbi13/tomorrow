@@ -1300,9 +1300,7 @@ function iamport(){
 						        //넘어온 cartVO의 orderNum에도 이 order넘버를 넣어준다!
 						        
 							                orderNum = $("#orderNum").val();
-										    email= $("#email").val();
-											name=$("#name").val();
-										    phone=$("#phone").val();
+										  
 											let paymentType = rsp.card_name;
 											let shipNum=$("#shipNum").val();
 											//shippingMemo는 선택된 selected된 값을 가져오고 그것이 5일 경우에는, 또 따로 받아온다.
@@ -1316,24 +1314,30 @@ function iamport(){
 											console.log("shippingMemo:"+shippingMemo);
 											console.log("paymentType:"+paymentType);
 											console.log("shipNum:"+shipNum);
+											console.log("orderNum:"+orderNum);
 											
 											$.ajax({
 												type: "post",
-												url:"../orders/update",
+												url:"../orders/ajaxUpdate",
 												data:{
 													 shipNum:shipNum, 
 													 paymentType:paymentType, 
 													 shippingMemo:shippingMemo,
-													 orderNum: orderNum
+													 orderNum:orderNum
 												},
 												success:function(data){
 													
 													data= $.trim(data);
 													console.log("trim 이후 data"+data);
+													if(data>0){
 													alert('업데이트 성공');
 													
 													
-													$("#updateFrm").submit();
+													    $("#updateFrm").submit();
+													}else{
+														
+													alert('업데이트 실패');
+													}
 													
 												}
 											})

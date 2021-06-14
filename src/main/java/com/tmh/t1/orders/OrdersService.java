@@ -63,6 +63,10 @@ public class OrdersService {
 	public int setUpdate(OrdersVO ordersVO)throws Exception{
 		return ordersMapper.setUpdate(ordersVO);
 	}
+	public int setAjaxUpdate(OrdersVO ordersVO)throws Exception{
+	    System.out.println("ajax 서비스로 넘어옴");
+		return ordersMapper.setAjaxUpdate(ordersVO);
+	}
 	
 
 }

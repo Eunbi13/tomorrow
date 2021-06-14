@@ -23,8 +23,14 @@
     		delete orders where orderNum=#{orderNum}
     	</delete>
     	
+    	<update id="setAjaxUpdate" parameterType="OrdersVO">
+    	    update orders set  
+    	    shipNum=#{shipNum}, shippingMemo=#{shippingMemo}, paymentType=#{paymentType}
+    	    where orderNum=#{orderNum}
+    	</update>
+    	
     	<update id="setUpdate" parameterType="OrdersVO">
-    	    update orders set shipNum=#{shipNum}, shippingMemo=#{shippingMemo}, paymentType=#{paymentType}, 
+    	    update orders set  
     	    name=#{name},email=#{email}, phone=#{phone}
     	    where orderNum=#{orderNum}
     	</update>

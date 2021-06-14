@@ -84,38 +84,38 @@ webkit-box-flex: 1; */
 <div class="container">
  주문배송내역 조회
  	<div class="order_list_menu rounded">
- 		<a class="order_list_menu_list" href="/order/list?before=24&status=0">
+ 		<a class="order_list_menu_list" href="/orders/list?before=24&status=">
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">입금대기</div>
  				<div class="order_list_menu_list_value"> 0 </div>
  				
  			</div>
  		</a>
- 		<a class="order_list_menu_list" href="/order/list?before=24&status=1">
+ 		<a class="order_list_menu_list" href="/orders/list?before=24&status=2">
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">결제완료</div>
  				<div class="order_list_menu_list_value"> 0 </div>
  			</div>
  		</a>
- 		<a class="order_list_menu_list" href="/order/list?before=24&status=2">
+ 		<a class="order_list_menu_list" href="/orders/list?before=24&status=3">
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">배송준비</div>
  				<div class="order_list_menu_list_value"> 0 </div>
  			</div>
  		</a>
- 		<a class="order_list_menu_list" href="/order/list?before=24&status=3">
+ 		<a class="order_list_menu_list" href="/orders/list?before=24&status=4">
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">배송중</div>
  				<div class="order_list_menu_list_value"> 0 </div>
  			</div>
  		</a>
- 		<a class="order_list_menu_list" href="/order/list?before=24&status=4">
+ 		<a class="order_list_menu_list" href="/orders/list?before=24&status=5">
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">배송완료</div>
  				<div class="order_list_menu_list_value"> 0 </div>
  			</div>
  		</a>
- 		<a class="order_list_menu_list" href="/order/list?before=24&status=5">
+ 		<a class="order_list_menu_list" href="/orders/list?before=24&status=6">
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">구매확정</div>
  				<div class="order_list_menu_list_value"> 0 </div>
@@ -133,7 +133,7 @@ webkit-box-flex: 1; */
  				<div class="filter-bar_control-list">
  					<ul class="filter-bar_control-list_left">
  						<li class="filter-bar_control-list_item filter-bar_control-list_item-icon">
- 						  ${orderList}
+ 			
  						  
  						  <c:forEach items="${orderList}" var="ordersVO">
  						   ordernum:  ${ordersVO.orderNum}
@@ -142,12 +142,12 @@ webkit-box-flex: 1; */
 							    기간
 							  </button>
 							  <div class="dropdown-menu">
-							    <a class="dropdown-item" href="#">1개월 전</a>
-							    <a class="dropdown-item" href="#">3개월 전</a>
-							    <a class="dropdown-item" href="#">6개월 전</a>
-							    <a class="dropdown-item" href="#">1년 전</a>
-							    <a class="dropdown-item" href="#">2년 전</a>
-							    <a class="dropdown-item" href="#">3년 전</a>
+							    <a class="dropdown-item" href="list?before=1">1개월 전</a>
+							    <a class="dropdown-item" href="list?before=3">3개월 전</a>
+							    <a class="dropdown-item" href="list?before=6">6개월 전</a>
+							    <a class="dropdown-item" href="list?before=12">1년 전</a>
+							    <a class="dropdown-item" href="list?before=24">2년 전</a>
+							    <a class="dropdown-item" href="list?before=36">3년 전</a>
 							  </div>
 							  </li>
 							  <li>
