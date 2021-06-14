@@ -256,38 +256,8 @@ btn-secondary {
 	</div>
 
 	<!-- 상품 리스트 -->
-	<div class="store-list-item">
-		<c:forEach items="${productlist}" var="vo">
-			<div class="store-list-item-card">
-				<a href="./productselect?productNum=${vo.productNum}"> <img
-					class="item-img" src="../resources/images/storeEX/glove.webp"
-					alt="item pic">
-					<div class="brand">
-						<c:if test="${brandVO.brandNum eq productVO.brandNum}">
-						${vo.brandVO.brandName }
-						</c:if>
-					</div>
-					<div class="item-title" style="color: black;">${vo.productName}</div>
-					<div class="card-price">
-						<c:choose>
-							<c:when test="${vo.discountPrice eq vo.productPrice}"></c:when>
-							<c:otherwise>
-								<div class="item-price discount"
-									style="color: #75bdff; margin-right: 10px;">${(vo.productPrice - vo.discountPrice)/100}%</div>
-							</c:otherwise>
-						</c:choose>
-						<div class="item-price won" style="color: black;">${vo.discountPrice}원</div>
-					</div> <br>
-					<div class="item-ship">
-						<c:if test="${vo.shippingFee eq 0 }">
-							무료배송
-						</c:if>
-					</div>
-				</a>
-			</div>
-		</c:forEach>
-
-	</div>
+	<c:import url="../template/productlistT.jsp"></c:import>
+	
 
 	<script type="text/javascript" src="../resources/js/productList.js"></script>
 
