@@ -40,30 +40,26 @@ public class BrandService {
 		return productMapper.getBrandHomeList(brandVO.getBrandNum());
 	}
 
-	public void/* Map<String, List<CategoryVO>>*/ getBrandHomeCategory(BrandVO brandVO)throws Exception{
+	public Map<String, List<CategoryVO>> getBrandHomeCategory(BrandVO brandVO)throws Exception{
 		List<Integer> categoryIDs = new ArrayList<Integer>();
 		
 		List<CategoryVO> three = categoryMapper.getCategoryID(brandVO.getBrandNum());
-		List<CategoryVO> two = new ArrayList<CategoryVO>();
-		//List<CategoryVO> two = categoryMapper.getBrandCategory(three);
-		
-		
 		for(CategoryVO vo : three) { 
 			categoryIDs.add(vo.getCategoryID());
 		}
 		System.out.println(categoryIDs.size());
-		two = categoryMapper.getBrandCategory(categoryIDs);
+		List<CategoryVO> two = categoryMapper.getBrandCategory(categoryIDs);
 		System.out.println(two);
-//		List<CategoryVO> one = new ArrayList<CategoryVO>(); 
-//		for(CategoryVO vo :two) {
-//			one.add(categoryMapper.getBrandCategory(vo)); } 
-//		for(int i =0; i<one.size();i++) { 
-//		System.out.println(i+": "+one.get(i)); } 
-//		//three, two, one 전부 보내고싶은데,,! 
-//		Map<String, List<CategoryVO>> map = new HashMap<String,
-//		List<CategoryVO>>(); map.put("one", one); map.put("two", two);
-//		map.put("three", three); 
-//		return map;
+		for(CategoryVO vo : two) { 
+			categoryIDs.add(vo.getCategoryID());
+		}
+		List<CategoryVO> one = categoryMapper.getBrandCategory(categoryIDs);
+		System.out.println(one);
+		
+		Map<String, List<CategoryVO>> map = new HashMap<String,
+		List<CategoryVO>>(); map.put("one", one); map.put("two", two);
+		map.put("three", three); 
+		return map;
 		
 	}
 

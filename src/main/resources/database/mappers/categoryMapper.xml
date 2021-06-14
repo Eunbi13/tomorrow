@@ -51,11 +51,13 @@ SELECT * FROM
 	WHERE C.categoryID=PC.categoryID
 </select>
 <select id="getBrandCategory" parameterType="java.util.List" resultType="CategoryVO">
-SELECT * FROM category where categoryID IN 
+	SELECT distinct C.* FROM category C, (SELECT * FROM category where categoryID IN 
 	<foreach collection="categoryIDs" item="categoryID" index="idx" separator="," open="(" close=")">
     	#{categoryID}
-    </foreach>
-	
+    </foreach>) ID
+	WHERE C.category_detail_LEV=ID.category_detail_parent 
+	AND C.category_LEV=ID.category_parent
+	AND C.groupID=ID.groupID
 	
 </select>
 
