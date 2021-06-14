@@ -11,14 +11,18 @@
 
 	<c:forEach items="${productlist}" var="vo">
 		<div class="store-list-item-card">
-			<a href="./productselect?productNum=${vo.productNum}"> <img
-				class="item-img" src="../resources/images/storeEX/glove.webp"
-				alt="item pic"> <!-- 브랜드 이름 -->
+			<a href="./productselect2?productNum=${vo.productNum}">
+			<img class="item-img" src="../resources/images/storeEX/glove.webp"
+				alt="item pic">
+				
+				<!-- 브랜드 이름 -->
 				<div class="brand" style="color: gray;">
 					<c:if test="${brandVO.brandNum eq productVO.brandNum}">
 						${vo.brandVO.brandName }
 					</c:if>
-				</div> <!-- 제품 이름 title -->
+				</div>
+				
+				<!-- 제품 이름 title -->
 				<div class="item-title" style="color: black;">
 					${vo.productName}</div> <!-- 가격 -->
 				<div class="card-price">
@@ -35,7 +39,8 @@
 					<div class="item-price won" style="color: black;">
 						${vo.discountPrice}원</div>
 				</div>
-
+	
+				<!-- 무배 특가 미니배너 -->
 				<div class="minbanner">
 					<div class="minbanner-ship">
 						<c:if test="${vo.shippingFee eq 0 }">
