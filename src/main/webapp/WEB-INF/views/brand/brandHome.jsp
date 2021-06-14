@@ -19,7 +19,7 @@
 			<div class="categoryOne">
 			<ul>
 				<c:forEach items="${one}" var="one" varStatus="i">
-					<li><span>${one.groupID}</span><span>${one.category_detail_NM}</span></li>
+					<li title="${one.categoryID}"><span >${one.categoryID}</span><span>${one.groupID}</span><span>${one.category_detail_NM}</span></li>
 				</c:forEach>
 			</ul>
 				 <%--<c:forEach items="${one}" var="one" varStatus="i">

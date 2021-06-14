@@ -1,6 +1,18 @@
 /**
  * 
  */
+//category select
+$('li').click(function(){
+	let id = $(this).attr('title');
+	console.log(id)
+});
+
+
+
+
+
+
+
 let price = [];
 let disPrice = [];
 $('.price').each(function(i, p){
@@ -18,4 +30,6 @@ $('.percent').each(function(k, per){
 	$(per).text(parseInt(percent));
 //	console.log(parseInt(percent))
 })
+
+
 

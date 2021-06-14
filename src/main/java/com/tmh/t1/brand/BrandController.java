@@ -34,8 +34,6 @@ public class BrandController {
 		//PRODUCT LIST
 		List<ProductVO> productList = brandService.getBrandHomeList(brandVO);
 		//category List
-		//Map<String, List<CategoryVO>> map=brandService.getBrandHomeCategory(brandVO);
-		
 		List<CategoryVO> one = brandService.getBrandCategory(brandVO);
 		
 		model.addAttribute("brandName", brandInfo);
