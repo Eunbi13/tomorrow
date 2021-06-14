@@ -72,10 +72,12 @@ let check =false;
 $('#notUse').change(function(){
 	check=$('#use').prop('checked');
 	$('#table').empty();
+	tcount=0;
 })
 $('#use').change(function(){
 	check=$('#use').prop('checked');
 	$('#table').empty();
+	tcount=0;
 })
 //modal내부에 +버튼
 $('#add').click(function(){
@@ -91,7 +93,8 @@ $('#modal').click(function(){
 	let step="";
 	
 	$('.kinds').each(function(i, k){
-		countI = count+i;
+		//countI = count+i;
+		countI=tcount++;
 		kind = $(k).val();
 		//makeThead
 		$('#table').append(makeThead(kind, countI));
@@ -123,9 +126,10 @@ $('#modal').click(function(){
 
 
 let count =0;
-$('#table').on('click','table', function(){
+let tcount=0;
+$('#table').on('click','td.add', function(){
 	//테이블에 행 추가
-	$('td.add').click(function(){
+	//$('td.add').click(function(){
 		let kind="";
 		let step="";
 		let name="";
@@ -148,11 +152,13 @@ $('#table').on('click','table', function(){
 		
 		$('tbody.'+a).append(makeTbody(kind, name, step));
 		let stop = $('tbody.'+a+'>tr').length;
-		if(count+1==stop){
-			return false;
-		}
-	});
+		//if(count+1==stop){
+		//	return false;
+		//}
+	//});
 	
+});
+$('#table').on('click','table',function(){
 	//테이블에 행 삭제
 	$('.rowDelete').click(function(){
 		let tbody =$(this).parent().parent().html();
@@ -165,7 +171,7 @@ $('#table').on('click','table', function(){
 	$('.tableDelete').click(function(){
 		$(this).parents('table').remove();
 		
-		//중복 방지를 위해 테이블에 있는 값들을 수정해야함
+		/*//중복 방지를 위해 테이블에 있는 값들을 수정해야함
 		let tNum =$('table').length;
 		console.log(tNum)
 		$('table').each(function(i, t){
@@ -178,8 +184,9 @@ $('#table').on('click','table', function(){
 			/*$(table).each(function(i,j){
 				console.log($(j).html())
 				//여기서부터 tr이 뜸
-			})*/
+			})
 			//let thead = $(t+':has(thead)').html();
+			thead=$(t).children('thead').html();
 			console.log('THEAD:: '+thead);
 			let tbody = $(table).nextAll('tbody').html();
 			console.log('TBODY:: '+tbody);
@@ -200,15 +207,15 @@ $('#table').on('click','table', function(){
 			console.log(tbody);
 			let tfoot = $(t).find('tfoot>tr').html();
 			//tfoot = $(tfoot).find(td.tF).html();
-			console.log(tfoot);*/
-		});
+			console.log(tfoot);
+		});*/
 	});
+
 });
-
-
 
 //make Table code
 function makeThead(kind, i){
+	//tcount++;
 	return	'<table class="table">'+
 				'<thead>'+	 	
 					'<tr class="thead">'+				
@@ -227,6 +234,7 @@ function makeThead(kind, i){
 					'</tr>'+
 				'</tfoot>'+			
 			'</table>';	
+			
 };
 
 function makeTbody(kind, name, step){
