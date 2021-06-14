@@ -18,6 +18,20 @@
 		<div class="카테고리">
 			<c:forEach items="${one}" var="one" varStatus="i">
 				<div>${one.category_detail_NM}</div>
+				<div>${one.groupID}</div>
+				
+				<%-- <c:if test="${one.groupID eq two.groupID}">
+					<p>gigi</p>
+				</c:if> --%>
+				
+			</c:forEach>
+			<p>=====</p>
+			<c:forEach items="${two}" var="two" varStatus="i">
+				<div>${two.category_detail_NM}</div>
+			</c:forEach>
+			<p>=====</p>
+			<c:forEach items="${three}" var="three" varStatus="i">
+				<div>${three.category_detail_NM}</div>
 			</c:forEach>
 		</div>
 

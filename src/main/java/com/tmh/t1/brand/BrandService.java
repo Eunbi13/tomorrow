@@ -47,17 +47,20 @@ public class BrandService {
 		for(CategoryVO vo : three) { 
 			categoryIDs.add(vo.getCategoryID());
 		}
-		System.out.println(categoryIDs.size());
+		//System.out.println(three);
+		//System.out.println(categoryIDs.size());
 		List<CategoryVO> two = categoryMapper.getBrandCategory(categoryIDs);
-		System.out.println(two);
+		//System.out.println(two);
+		categoryIDs = new ArrayList<Integer>();
 		for(CategoryVO vo : two) { 
 			categoryIDs.add(vo.getCategoryID());
 		}
 		List<CategoryVO> one = categoryMapper.getBrandCategory(categoryIDs);
-		System.out.println(one);
+		//System.out.println(one);
 		
-		Map<String, List<CategoryVO>> map = new HashMap<String,
-		List<CategoryVO>>(); map.put("one", one); map.put("two", two);
+		Map<String, List<CategoryVO>> map = new HashMap<String,List<CategoryVO>>(); 
+		map.put("one", one); 
+		map.put("two", two);
 		map.put("three", three); 
 		return map;
 		
