@@ -81,6 +81,8 @@ public class ProductController {
 		model.addAttribute("brandar", brandar);
 
 	}
+	
+
 
 	@GetMapping("productselect")
 	public void getSelect(ProductVO productVO, Model model)throws Exception{
@@ -104,9 +106,12 @@ public class ProductController {
 		model.addAttribute("opsize", opsize);
 		String optionK = optionsar.get(2).getOptionKinds().toString();
 		model.addAttribute("optionK", optionK);
+		String optionN = optionsar.get(3).getOptionName().toString();
+		model.addAttribute("optionN", optionN); 
 		for(int i=0; i<opsize; i++) { //list?
-			String optionN = optionsar.get(3).getOptionName().toString();
-			model.addAttribute("optionN", optionN); 
+			OptionsVO optionsVO = optionsar.get(i);
+			System.out.println("optionK :"+optionsVO.getOptionKinds());
+			System.out.println("optionN :"+optionsVO.getOptionName());
 			};
 	}
 

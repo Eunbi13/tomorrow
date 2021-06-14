@@ -97,7 +97,7 @@
 			<div class="store-select-content-options">
 			<c:choose>
 				<c:when test="${fn:length(optionsar) > '1'} ">
-				 ee sdfsdf ---왜안나오지
+				 ---왜안나오지
 				</c:when> 
 				<c:otherwise>
 				tt
@@ -111,24 +111,24 @@
 				--옵션카인드
 				${ optionK} --옵션이름
 				${optionN }
-				<form>
+				<form action="test">
 					<select name="options">
-						<option value="optionKinds">${optionK}</option>
-						<c:forEach items="${optionN}" var="vo">
-						<option value="optionName">${optionN}</option>
+						<option value="optionKinds" >${optionK}</option>
+						<c:forEach items="${optionsar}" var="vo">
+						<option>${vo.optionName}</option>
 						</c:forEach>
 					</select>
-				</form>
-			</div>
-
 			<div class="store-select-buttons">
-				<button type="button"
+				<button type="submit"
 					class="store-select-button btn btn-outline-primary"
 					style="color: #75bdff;">장바구니</button>
 				<button type="button" class="store-select-button btn btn-primary"
 					style="background-color: #75bdff;">바로구매</button>
-
+				optionNum > 넘어가게 ?
 			</div>
+				</form>
+			</div>
+
 
 		</div>
 

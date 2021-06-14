@@ -29,7 +29,9 @@
 		
     <!-- 장은 -->
     	<select id="getProductList" parameterType="ProductVO" resultType="ProductVO">
-    		select * from product
+    		SELECT p.*, b.brandName
+			FROM product p INNER JOIN brand b 
+			ON p.brandNum = b.brandNum ;
     	</select>
     	
     	
