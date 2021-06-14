@@ -27,13 +27,42 @@
 		</insert>
 		
 		<!-- brandHome -->
+		
 		<select id="getBrandHomeList" parameterType="java.lang.Long" resultType="ProductVO">
 			SELECT * FROM product WHERE brandNum=#{brandNum}  GROUP BY productNum DESC
 		</select>
+		
+		<!-- category클릭하면 product뜨는 메서드 -->
+		<select id="getProdFromCat" parameterType="java.util.Map" resultType="ProductVO">
+			SELECT p.* FROM  product_category PC
+			JOIN (SELECT c.* FROM category C,(SELECT * FROM category WHERE categoryID=#{categoryID})C2
+					WHERE c.groupID=c2.groupID
+					<if test="categoryID>14">
+						AND c2.category_detail_LEV=c.category_detail_parent
+					</if>
+				  ) C3
+			ON pc.categoryID=c3.categoryID
+			JOIN product P
+			ON p.productNum=PC.productNum
+			<if test="brandNum!=null">
+				WHERE p.brandNum=#{brandNum}
+			</if>
+			GROUP BY p.productNum DESC 
+		</select>	
+	
+		
+		
+		
+		
 		<select id="getPList" parameterType="BrandVO" resultType="ProductVO">
 			SELECT P.* FROM product P, (SELECT * FROM brand WHERE username=#{username} or brandNum=#{brandNum}) B 
 			WHERE P.brandNum=B.brandNum GROUP BY productNum DESC
 		</select>
+		
+		
+		
+		
+		
 		
     <!-- 장은 -->
     	<select id="getProductList" parameterType="ProductVO" resultType="ProductVO">

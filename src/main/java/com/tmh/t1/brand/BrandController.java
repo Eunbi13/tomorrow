@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.tmh.t1.category.CategoryMapper;
-import com.tmh.t1.category.CategoryService;
 import com.tmh.t1.category.CategoryVO;
 import com.tmh.t1.product.ProductVO;
 
@@ -46,6 +44,10 @@ public class BrandController {
 		
 		return "/brand/brandHome";
 	}
+	
+	
+	
+	
 	
 //판매자 등록
 	@GetMapping("signBrand")

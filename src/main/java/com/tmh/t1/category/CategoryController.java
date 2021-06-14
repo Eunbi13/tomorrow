@@ -21,4 +21,6 @@ public class CategoryController {
 		List<CategoryVO> ar = categoryService.getCategory(categoryVO);
 		model.addAttribute("vo", ar);
 	}
+	
+	
 }

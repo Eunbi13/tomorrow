@@ -44,33 +44,12 @@ public class BrandService {
 		map.put("brandNum", brandVO.getBrandNum()+"");
 		return categoryMapper.getCategoryOne(map);
 	}
-/*
-	public Map<String, List<CategoryVO>> getBrandHomeCategory(BrandVO brandVO)throws Exception{
-		List<Integer> categoryIDs = new ArrayList<Integer>();
-		
-		List<CategoryVO> three = categoryMapper.getCategoryID(brandVO.getBrandNum());
-		for(CategoryVO vo : three) { 
-			categoryIDs.add(vo.getCategoryID());
-		}
-		//System.out.println(three);
-		//System.out.println(categoryIDs.size());
-		List<CategoryVO> two = categoryMapper.getBrandCategory(categoryIDs);
-		//System.out.println(two);
-		categoryIDs = new ArrayList<Integer>();
-		for(CategoryVO vo : two) { 
-			categoryIDs.add(vo.getCategoryID());
-		}
-		List<CategoryVO> one = categoryMapper.getBrandCategory(categoryIDs);
-		//System.out.println(one);
-		
-		Map<String, List<CategoryVO>> map = new HashMap<String,List<CategoryVO>>(); 
-		map.put("one", one); 
-		map.put("two", two);
-		map.put("three", three); 
-		return map;
-		
-	}
-*/
+
+	
+	
+	
+	
+	
 	//에러설정(판매자번호)
 	public boolean brandError(Errors errors, BrandVO brandVO)throws Exception{
 		boolean check = errors.hasErrors();

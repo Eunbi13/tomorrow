@@ -1,6 +1,8 @@
 package com.tmh.t1.product;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,21 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+	
+	
+	@GetMapping("prodFromCat")//category클릭하면 product뜨는 메서드
+	public String getProdFromCat(String categoryID, String brandNum, Model model)throws Exception{
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("categoryID", categoryID);
+		map.put("brandNum", brandNum);
+		List<ProductVO> list=productService.getProdFromCat(map);
+		model.addAttribute("productList", list);
+		model.addAttribute("productListSize", list.size());
+		return "template/productList";
+	}
+	
+	
+	
 	@GetMapping("delete")
 	public String getList(ProductVO productVO)throws Exception{
 		
@@ -32,19 +49,13 @@ public class ProductController {
 	}
 	
 	
-	//임시로 productList 의논해볼것
-	@PostMapping("list")
-	public String getList(BrandVO brandVO,Model model)throws Exception{
-		List<ProductVO> list=productService.getPList(brandVO);
-		model.addAttribute("productList", list);
-		model.addAttribute("productListSize", list.size());
-		return "template/productList";
-	}
+	
 	//insert product 
 	@GetMapping("insert")
 	public String setProduct(Model model,Authentication auth)throws Exception{
 		List<CategoryVO> categoryOne =productService.getCategoryOne(auth);
 		model.addAttribute("categoryOne", categoryOne);
+		System.out.println("프로덕트 인서트 화면 열림");
 		return "product/insertProduct";
 	}
 	
@@ -52,24 +63,16 @@ public class ProductController {
 	public String getCategoryNext(Model model, int categoryID)throws Exception{
 		List<CategoryVO>categoryNext = productService.getNextCategory(categoryID);
 		model.addAttribute("category", categoryNext);
-		model.addAttribute("detail", "@@");
 		return "product/categoryForm";
 	}
 	
 	
 	@PostMapping("insert")
 	public String setProduct(Authentication auth,ProductVO productVO,String categoryID, OptionsVO optionsVO, MultipartFile [] files, MultipartFile rep)throws Exception{
-//		System.out.println(optionsVO.getOptionKinds());//1,1 이런식으로 들어옴 흠,,, 파싱해야겠는데?
-//		System.out.println(optionsVO.getOptionName());
-//		System.out.println(optionsVO.getOptionPrice());
-//		System.out.println(optionsVO.toString());
-		System.out.println("얘가 문제일듯 "+categoryID);
-//		System.out.println("step: "+optionsVO.getStep());
 		productService.setProduct(auth, productVO,categoryID, optionsVO, files, rep);
-		
-		System.out.println("성공");
+
+		System.out.println("프로덕트 인서트 성공");
 		return "redirect:/";
-		//return "/option/optionInsert.";
 	}
 	
 	@GetMapping("productlist")

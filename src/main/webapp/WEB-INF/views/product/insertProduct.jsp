@@ -24,7 +24,7 @@
 			<div class="col-sm-12"> 
 				<div class="form-group row"><!-- 클릭하면 ajax로 중부류, 소분류 불러오기 -->
 					<div class="col-sm-12">
-						<label class="col-sm-2 col-form-label">대분류</label>
+						<label class="col-sm-2 col-form-label">선택*</label>
 						<c:forEach items="${categoryOne}" var="vo">
 						<div class=" form-check form-check-inline ">
 							<input class="form-check-input ch" type="checkbox" name="one" value="${vo.categoryID}">

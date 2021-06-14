@@ -28,6 +28,9 @@ public interface ProductMapper {
 	public List<ProductVO> getBrandHomeList(Long brandNum)throws Exception;
 	public List<ProductVO> getPList(BrandVO brandVO)throws Exception;
 	 
+	//category클릭하면 product뜨는 메서드
+	public List<ProductVO> getProdFromCat(Map<String, String> map)throws Exception;
+	
 	
 	//select
 	public ProductVO getSelect(ProductVO productVO)throws Exception;

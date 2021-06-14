@@ -3,8 +3,17 @@
  */
 //category select
 $('li').click(function(){
-	let id = $(this).attr('title');
-	console.log(id)
+	let categoryID = $(this).attr('title');
+	let brandNum = $('#brandNum').attr('title');
+	$.ajax({
+		type:"GET",
+		url:"/product/prodFromCat",
+		data:{categoryID:categoryID, brandNum:brandNum},
+		success:function(data){
+			$('#productList').html(data);
+		}		
+		
+	});
 });
 
 

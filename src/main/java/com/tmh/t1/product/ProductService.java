@@ -34,9 +34,10 @@ public class ProductService {
 	@Value("${productInsert.filePath}")
 	private String filePath;
 	
-	public List<ProductVO> getPList(BrandVO brandVO)throws Exception{
-		return productMapper.getPList(brandVO);
-	};
+	//category클릭하면 product뜨는 메서드
+		public List<ProductVO> getProdFromCat(Map<String, String> map)throws Exception{
+			return productMapper.getProdFromCat(map);
+		}
 	
 	
 	//get insert //대분류 카테고리 카테고리 mapper에서 가져오기 
@@ -51,7 +52,7 @@ public class ProductService {
 		CategoryVO categoryVO = new CategoryVO();
 		categoryVO.setCategoryID(categoryID);
 		return categoryMapper.getNextCategory(categoryVO);
-	};
+	}
 	
 	
 	//post insert

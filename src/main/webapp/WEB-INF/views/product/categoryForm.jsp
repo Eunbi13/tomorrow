@@ -4,7 +4,7 @@
 <div class="col-sm-12"> 
 				<div class="form-group row"><!-- 클릭하면 ajax로 중부류, 소분류 불러오기 -->
 					<div class="col-sm-12">
-						<label class="col-sm-2 col-form-label">${detail}</label>
+						<label class="col-sm-2 col-form-label">선택*</label>
 						<c:forEach items="${category}" var="vo">
 						<div class=" form-check form-check-inline ">
 							<input class="form-check-input ch2" name="two" type="checkbox" value="${vo.categoryID}">
