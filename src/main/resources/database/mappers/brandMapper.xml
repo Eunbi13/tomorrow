@@ -22,14 +22,12 @@
 			INSERT INTO brand_category (brandNum, categoryID) VALUES (#{brandNum}, #{categoryID})
 		</insert>
 		
-		<select id="getBigCategory" resultType="CategoryVO">
-			SELECT categoryID, category_detail_NM FROM category 
-			WHERE category_detail_parent=0 AND category_parent=0
-		</select>
+		
 		
 		<select id="getBrandInfo" parameterType="BrandVO" resultType="BrandVO">
 			SELECT brandname FROM brand WHERE brandNum=#{brandNum}
 		</select>
+		
 		
 		
 	</mapper>

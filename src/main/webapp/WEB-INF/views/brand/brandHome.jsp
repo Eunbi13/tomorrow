@@ -16,25 +16,36 @@
 <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
 	<h1>${brandName.brandName }</h1>
 		<div class="카테고리">
-			<c:forEach items="${one}" var="one" varStatus="i">
-				<div><span>${one.groupID}</span>${one.category_detail_NM}</div>
-				
-				<c:forEach items="${two}" var="two" varStatus="i">
-					<c:if test="${one.groupID eq two.groupID}">
-						<div><span>-</span><span>${two.groupID}</span>${two.category_detail_NM}</div>
-						<c:forEach items="${three}" var="three" varStatus="i">
-							
-							<c:if test="${one.groupID eq three.groupID}">
-								<div><span>--</span><span>${three.groupID}</span>${three.category_detail_NM}</div>
+			<div class="categoryOne">
+			<ul>
+				<c:forEach items="${one}" var="one" varStatus="i">
+					<li><span>${one.groupID}</span><span>${one.category_detail_NM}</span></li>
+				</c:forEach>
+			</ul>
+				 <%--<c:forEach items="${one}" var="one" varStatus="i">
+					<div class="one">
+					<span>${one.groupID}</span><span>${one.category_detail_NM}</span>
+					
+					<div class="categoryTwo">
+						<c:forEach items="${two}" var="two" varStatus="i">
+							<c:if test="${one.groupID eq two.groupID && two.category_LEV==2}">
+								<div class="two"><span>-</span><span>${two.groupID}</span>${two.category_detail_NM}</div>
+								
+								<div class="categoryThree">
+									<c:forEach items="${three}" var="three" varStatus="i">
+										<c:if test="${one.groupID eq three.groupID &&three.category_LEV==3}">
+											<div class="three"><span>--</span><span>${three.groupID}</span>${three.category_detail_NM}</div>
+										</c:if>
+									</c:forEach>
+								</div>
+								
 							</c:if>
 						</c:forEach>
-						
-						
-					</c:if>
-				</c:forEach>
-				
-				
-			</c:forEach>
+					</div>
+					
+					</div>
+				</c:forEach> --%>
+			</div>
 		</div>
 
 		<div class="아이템리스트">

@@ -3,63 +3,74 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.tmh.t1.category.CategoryMapper">
-<select id="getCategory" parameterType="CategoryVO" resultType="CategoryVO">
-SELECT groupId, category_detail_NM FROM category WHERE category_detail_parent=#{category_detail_parent} AND category_parent=1
-</select>
-
-<select id="selectCategoryOne" parameterType="CategoryVO" resultType="CategoryVO">
-SELECT groupId, category_detail_NM FROM category WHERE category_detail_parent=#{category_detail_parent} AND category_parent=1
-</select>
-
-<select id="selectCategoryTwo" parameterType="CategoryVO" resultType="CategoryVO">
-SELECT * FROM category WHERE category_detail_parent=2 AND category_parent=2 AND groupid=
-(SELECT distinct groupId FROM category WHERE category_detail_parent=1 AND category_parent=1)
-</select>
-
-<select id="selectCategoryThree" parameterType="CategoryVO" resultType="CategoryVO">
-SELECT * FROM 
-(SELECT * FROM category WHERE category_detail_parent=2 AND category_parent=2 AND groupid=
-(SELECT distinct groupId FROM category WHERE category_detail_parent=1 AND category_parent=1)) C
- WHERE C.category_detail_lev=3
- </select>
- 
-<!-- 은비 productInsert에서 사용 -->
-<select id="getCategoryOne" parameterType="java.lang.String" resultType="CategoryVO">
-	SELECT categoryID, category_detail_NM FROM category WHERE categoryID IN 
-		(SELECT categoryID FROM brand_category WHERE brandNum = 
-			(SELECT brandNum FROM brand WHERE username =#{username}) )
-</select>
-<select id="getCategoryTwo" parameterType="CategoryVO" resultType="CategoryVO">
-	SELECT categoryID, category_detail_NM FROM category 
-	WHERE category_detail_parent= (SELECT category_detail_LEV FROM category WHERE categoryID=#{categoryID})
-		  AND groupId= (SELECT groupId FROM category WHERE categoryID=#{categoryID} )
-		  AND category_LEV=2
-</select>
-<select id="getCategoryThree" parameterType="CategoryVO" resultType="CategoryVO">
-	SELECT categoryID, category_detail_NM FROM category 
-	WHERE category_detail_parent= (SELECT category_detail_LEV FROM category WHERE categoryID=#{categoryID})
-		  AND groupID = (SELECT groupId FROM category WHERE categoryID=#{categoryID})
-		  AND category_LEV=3
-</select>
-<!-- brandHome -->
-<select id="getCategoryID" parameterType="java.lang.Long" resultType="CategoryVO">
-	SELECT distinct C.* 
-	FROM category C, 
-		 (SELECT categoryID 
-		  FROM product_category 
-		  WHERE productNum IN (SELECT productNum FROM product WHERE brandNum=#{brandNum})) PC 
-	WHERE C.categoryID=PC.categoryID
-</select>
-<select id="getBrandCategory" parameterType="java.util.List" resultType="CategoryVO">
-	SELECT distinct C.* FROM category C, (SELECT * FROM category where categoryID IN 
-	<foreach collection="categoryIDs" item="categoryID" index="idx" separator="," open="(" close=")">
-    	#{categoryID}
-    </foreach>) ID
-	WHERE C.category_detail_LEV=ID.category_detail_parent 
-	AND C.category_LEV=ID.category_parent
-	AND C.groupID=ID.groupID
+	<select id="getCategory" parameterType="CategoryVO" resultType="CategoryVO">
+	SELECT groupId, category_detail_NM FROM category WHERE category_detail_parent=#{category_detail_parent} AND category_parent=1
+	</select>
 	
-</select>
+	<select id="selectCategoryOne" parameterType="CategoryVO" resultType="CategoryVO">
+	SELECT groupId, category_detail_NM FROM category WHERE category_detail_parent=#{category_detail_parent} AND category_parent=1
+	</select>
+	
+	<select id="selectCategoryTwo" parameterType="CategoryVO" resultType="CategoryVO">
+	SELECT * FROM category WHERE category_detail_parent=2 AND category_parent=2 AND groupid=
+	(SELECT distinct groupId FROM category WHERE category_detail_parent=1 AND category_parent=1)
+	</select>
+	
+	<select id="selectCategoryThree" parameterType="CategoryVO" resultType="CategoryVO">
+	SELECT * FROM 
+	(SELECT * FROM category WHERE category_detail_parent=2 AND category_parent=2 AND groupid=
+	(SELECT distinct groupId FROM category WHERE category_detail_parent=1 AND category_parent=1)) C
+	 WHERE C.category_detail_lev=3
+	 </select>
+	 
+	<!--은비 brandInsert에서 사용 -->
+	<select id="getBigCategory" resultType="CategoryVO">
+			SELECT categoryID, category_detail_NM FROM category 
+			WHERE category_detail_parent=0 AND category_parent=0
+	</select>
+
+	<!-- 은비 productInsert에서 사용 -->
+	<!-- brandHome에서도 사용 -->
+	<select id="getCategoryOne" parameterType="java.util.Map" resultType="CategoryVO">
+		SELECT * FROM category WHERE categoryID IN 
+			(SELECT categoryID FROM brand_category WHERE brandNum = 
+				(SELECT brandNum FROM brand WHERE username =#{username} )or brandNum=#{brandNum} )
+	</select>
+	
+	<select id="getNextCategory" parameterType="CategoryVO" resultType="CategoryVO">
+		SELECT * FROM category C, (SELECT * FROM category WHERE categoryID=#{categoryID})C2
+		WHERE C.category_detail_parent=C2.category_detail_LEV 
+			AND C.groupID=C2.groupID
+			AND C.category_LEV=C2.category_LEV+1
+	</select>
+	
+	
+	
+	<!-- brandHome -->
+	
+	
+	
+	
+	
+	
+	<select id="getCategoryID" parameterType="java.lang.Long" resultType="CategoryVO">
+		SELECT distinct C.* 
+		FROM category C, 
+			 (SELECT categoryID 
+			  FROM product_category 
+			  WHERE productNum IN (SELECT productNum FROM product WHERE brandNum=#{brandNum})) PC 
+		WHERE C.categoryID=PC.categoryID
+	</select>
+	<select id="getBrandCategory" parameterType="java.util.List" resultType="CategoryVO">
+		SELECT distinct C.* FROM category C, (SELECT * FROM category where categoryID IN 
+		<foreach collection="categoryIDs" item="categoryID" index="idx" separator="," open="(" close=")">
+	    	#{categoryID}
+	    </foreach>) ID
+		WHERE C.category_detail_LEV=ID.category_detail_parent 
+		AND C.category_LEV=ID.category_parent
+		AND C.groupID=ID.groupID
+		
+	</select>
 
  
 </mapper>

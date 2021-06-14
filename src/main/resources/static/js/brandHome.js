@@ -17,5 +17,5 @@ $('.percent').each(function(k, per){
 	let percent=disPrice[k]/price[k]*100
 	$(per).text(parseInt(percent));
 //	console.log(parseInt(percent))
-	
 })
+

@@ -22,7 +22,7 @@ $('.ch').click(function(){
 		
 		$.ajax({
 			type:"GET",
-			url:"./getCategoryTwo",
+			url:"./getCategoryNext",
 			data:{categoryID: categoryID},
 			success:function(data){
 				$('#two').append(data);
@@ -44,7 +44,7 @@ $('#two').on('click', '.ch2', function(){
 	
 		$.ajax({
 			type:"GET",
-			url:"./getCategoryThree",
+			url:"./getCategoryNext",
 			data:{categoryID: categoryID},
 			success:function(data){
 				$('#three').append(data);

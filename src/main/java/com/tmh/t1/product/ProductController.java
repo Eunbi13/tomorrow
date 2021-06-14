@@ -33,23 +33,11 @@ public class ProductController {
 		return "product/insertProduct";
 	}
 	
-	@GetMapping("getCategoryTwo")
-	public String getCategoryTwo(Model model, int categoryID)throws Exception{
-		CategoryVO categoryVO = new CategoryVO();
-		categoryVO.setCategoryID(categoryID);
-		List<CategoryVO> categoryTwo = productService.getCategoryTwo(categoryVO);
-		model.addAttribute("category", categoryTwo);
-		model.addAttribute("detail", "중분류");
-		return "product/categoryForm";
-	}
-	
-	@GetMapping("getCategoryThree")
-	public String getCategoryThree(Model model, int categoryID)throws Exception{
-		CategoryVO categoryVO = new CategoryVO();
-		categoryVO.setCategoryID(categoryID);
-		List<CategoryVO> categoryThree = productService.getCategoryThree(categoryVO);
-		model.addAttribute("category", categoryThree);
-		model.addAttribute("detail", "소분류");
+	@GetMapping("getCategoryNext")
+	public String getCategoryNext(Model model, int categoryID)throws Exception{
+		List<CategoryVO>categoryNext = productService.getNextCategory(categoryID);
+		model.addAttribute("category", categoryNext);
+		model.addAttribute("detail", "@@");
 		return "product/categoryForm";
 	}
 	

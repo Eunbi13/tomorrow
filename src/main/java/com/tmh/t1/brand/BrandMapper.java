@@ -16,7 +16,7 @@ public interface BrandMapper {
 	public Long signBrand(BrandVO brandVO) throws Exception;
 	public Long setBrand_Category(Map<String, String> map)throws Exception;
 
-	public List<CategoryVO> getBigCategory() throws Exception;
+	
 	
 	public BrandVO getBrandInfo(BrandVO brandVO)throws Exception;
 	

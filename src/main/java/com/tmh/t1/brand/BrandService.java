@@ -39,7 +39,12 @@ public class BrandService {
 	public List<ProductVO> getBrandHomeList(BrandVO brandVO)throws Exception{
 		return productMapper.getBrandHomeList(brandVO.getBrandNum());
 	}
-
+	public List<CategoryVO> getBrandCategory(BrandVO brandVO)throws Exception{
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("brandNum", brandVO.getBrandNum()+"");
+		return categoryMapper.getCategoryOne(map);
+	}
+/*
 	public Map<String, List<CategoryVO>> getBrandHomeCategory(BrandVO brandVO)throws Exception{
 		List<Integer> categoryIDs = new ArrayList<Integer>();
 		
@@ -65,7 +70,7 @@ public class BrandService {
 		return map;
 		
 	}
-
+*/
 	//에러설정(판매자번호)
 	public boolean brandError(Errors errors, BrandVO brandVO)throws Exception{
 		boolean check = errors.hasErrors();
@@ -80,7 +85,7 @@ public class BrandService {
 	}
 //대분류 카테고리 카테고리 mapper에서 가져오기 
 	public List<CategoryVO> getBigCategory() throws Exception{
-		return brandMapper.getBigCategory();
+		return categoryMapper.getBigCategory();
 	}
 	
 	//post signBrand
