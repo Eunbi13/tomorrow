@@ -104,7 +104,7 @@ public class ProductController {
 		model.addAttribute("opsize", opsize);
 		String optionK = optionsar.get(2).getOptionKinds().toString();
 		model.addAttribute("optionK", optionK);
-		for(int i=0; i<opsize; i++) {
+		for(int i=0; i<opsize; i++) { //list?
 			String optionN = optionsar.get(3).getOptionName().toString();
 			model.addAttribute("optionN", optionN); 
 			};

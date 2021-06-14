@@ -103,13 +103,13 @@
 				tt
 				</c:otherwise>
 			</c:choose>	
-			---
+			---옵션 나오는 방식 :
 				${ optionsar}
 				---
-				ffkfk
+				옵션 사이즈:
 				${opsize }
-				fkfk
-				${ optionK} //
+				--옵션카인드
+				${ optionK} --옵션이름
 				${optionN }
 				<form>
 					<select name="options">
