@@ -33,7 +33,7 @@ public class CartController {
 	    }
     
 	@GetMapping("list")	
-	public ModelAndView getList(CartVO cartVO, HttpSession session)throws Exception{
+	public ModelAndView getList(CartVO cartVO)throws Exception{
 		ModelAndView mv= new ModelAndView();
 		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
@@ -74,9 +74,16 @@ public class CartController {
 //	}
 	
 	@GetMapping("insert")
-	public int setInsert(CartVO cartVO)throws Exception{
-		return cartService.setInsert(cartVO);
+	public void setInsert(CartVO cartVO)throws Exception{
+		
 	}
+	
+	@PostMapping("insert")
+	public int setInsert(CartVO [] cartVOs)throws Exception{
+		
+		return cartService.setInsert(cartVOs);
+	}
+	
 	@ResponseBody 
 	@GetMapping("optionDelete")
 	public ModelAndView setOptionDelete(Long cartNum)throws Exception{

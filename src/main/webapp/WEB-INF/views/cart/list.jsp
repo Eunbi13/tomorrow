@@ -132,8 +132,8 @@ img{
 					       <c:forEach items="${cartVO.optionList}" var="optionList">
 					   <!-- option -->
 					     <li id="carts${i.index}" title="${cartVO.brandNum}">
-					       <input type="hidden" class="cartNum " id="cartNum${i.index}" title="${cartVO.cartNum}">
-					       <input type="hidden" class="optionPrice" id="optionPrice${i.index}" name="optionPrice" title="${cartVO.optionPrice}" value="${cartVO.optionPrice}">
+					       <input type="hidden" class="cartNum " id="cartNum${cartVO.cartNum}" title="${cartVO.cartNum}">
+					       <input type="hidden" class="unitPrice" id="unitPrice${cartVO.cartNum}" name="unitPrice" title="${cartVO.unitPrice}" value="${cartVO.unitPrice}">
 						   <input type="hidden" class="freeShipping${b.index}" name="isFree" value=""/> 		     
 						   
 							  <div title="${cartVO.productNum}" style="width:100%; height:100%; padding-bottom:40px; word-break:break-all;word-wrap:break-word;" class="cartCheck${cartVO.productNum} alert alert-secondary alert-dismissible fade show" role="">
@@ -143,11 +143,11 @@ img{
 							  		   
 											
 										     <!-- 상단의 select box에 수량 10개이상 선택시 나타날 인풋박스/ 숫자만 입력할수 있도록 type number 지정 -->
-										     <input style="width:70px; height:20px; ime-mode:disabled;" type="number" min="1"  class="directInputBox"  title="${i.index}" id="directInputBox" name="amount" value="${cartVO.amount}"/>
+										     <input style="width:70px; height:20px; ime-mode:disabled;" type="number" min="1"  class="directInputBox" data-product-num="${productVO.productNum}" title="${cartVO.cartNum}" id="directInputBox" name="amount" value="${cartVO.amount}"/>
 										</div>
 										<div style="width:200px; height:23px; font-size:16px; padding-bottom:20px; font-weight: bold; float: right;">
 										      
-											       <input type="text" readonly="readonly" id="cartVOPrice${i.index}" class="cartPricePlus${productVO.productNum} cartPricePlus" title="${productVO.productNum}" name="cartPrice" value="${cartVO.cartPrice}" style=" width:180px; height:20px; background-color:transparent;border:0 solid black; text-align:right;" />
+											       <input type="text" readonly="readonly" id="cartVOPrice${cartVO.cartNum}" class="cartPricePlus${productVO.productNum} cartPricePlus" title="${productVO.productNum}" name="cartPrice" value="${cartVO.cartPrice}" style=" width:180px; height:20px; background-color:transparent;border:0 solid black; text-align:right;" />
 											  원
 					
 										</div> 
@@ -343,16 +343,15 @@ $("#payBtn").click(function(){
 //==============================첫 로딩 시 금액 세팅
 let total=0; //총 상품 금액
 $(".cartPricePlus").each(function(){ 
-	total=total+parseInt($(this).val());
+	total=total+parseInt($(this).val());//cartPrice를 반복해서 더해줌.
     
     let productNum = $(this).attr("title"); //productNum
     console.log("productNum:"+productNum);
      
     let price=0; //각 option들의 가격을 더한 product범위의 가격
 	
-	
 	$(".cartPricePlus"+productNum).each(function(){
-		price=price+parseInt($(this).val());
+		price=price+parseInt($(this).val());//cartPrice를 반복해서 더해줌.
      });
      
 	$("#productVOPrice"+productNum).val(price); // product당 가격(=option가격들의 합) 세팅
@@ -364,16 +363,15 @@ $(".cartPricePlus").each(function(){
 });
 $("#totalPrice").val(total); // 총 상품 금액 입력
 //무료배송여부 
+
 $(".productPrice").each(function(){ 
 	
-    
-    let b_index = $(this).attr("title"); 
+    let b_index = $(this).attr("title"); //brand index
     console.log("b_index:"+b_index);
      
-    let brandPrice=0; 
+    let brandPrice=0;
 	
-	
-	$(".productPrice"+b_index).each(function(){
+	$(".productPrice"+b_index).each(function(){ //같은 브랜드의 모든 Product의 값들 반복해서 더해줌 
 		brandPrice=brandPrice+parseInt($(this).val());
      });
      
@@ -594,226 +592,207 @@ $("input:number").on("focus", function() {
  */
 	
 //==============================수량을 변경하면 바뀌는 금액들
-$(".directInputBox").on({focus: function(){
-	
-	previous = $(this).val();
-	
-   
-    	
-    }, change:function(){ 
-    	
-     console.log($(this).val());
-    	
-    	if($(this).val()==0){
-    		
-    		alert("0보다 큰 정수를 입력해야 합니다. ")
-    		$(this).val(previous);
-    	} else{
-	let index = $(this).attr("title"); // cartVO의 index숫자
-	let don = $("#optionPrice"+index).val(); //단가
-	
-	let p= $(this).val()*don; // 변화된 option 가격
-	$("#cartVOPrice"+index).val(p); // 변화된 option 가격 표시
-//----------readonly input의 value가 변한 걸 감지하기 위한 함수 
-	
-	(function ($) {
-	    var originalVal = $.fn.val;
-	    $.fn.val = function (value) {
-	        var res = originalVal.apply(this, arguments);
-	 
-	        if (this.is('input') && arguments.length >= 1) {
-	            // this is input type=text setter
-	            this.trigger("input");
-	        }
-	 
-	        return res;
-	    };
-	})(jQuery);
-	//----------------option 가격이 변하면 실행되는 함수
-	let $input = $("#cartVOPrice"+index);
-	$("#cartVOPrice"+index).on('input', function() {
-		 console.log("option 가격이 변하면 실행되는 함수 입장");
-	    
-	    let productNum = $(this).attr("title"); 
-	   
-	    let price=0; //각 option들의 가격을 더한 product범위의 가격
-		
-		
-		$(".cartPricePlus"+productNum).each(function(){
-			price=price+parseInt($(this).val());
-			console.log("반복되는 cartPricePlus:"+price);
-	     });
-	     
-		$("#productVOPrice"+productNum).val(price); // product범위의 가격 입력
-		
-		//-----총 상품 금액 변경
-		totalAgain=0;
-		
-		$(".cartPricePlus").each(function(){
-			totalAgain=totalAgain+parseInt($(this).val());
-		});
-		
-		$("#totalPrice").val(totalAgain);
-		
-	});
-	
-	
-	//---------------------
-	
-	//배송비, 총 배송비 변경
-	let newBrandPrice =0;
-    const checkedNum = [];
-    $(".brandPrice").each(function(){  
-    	$(this).val(0);
-    	
-    });
-	//모든 checkbox를 검사해서 checked 된 것들만...계산해서 총 상품 가격, 총배송비, 총 결제금액 계산
-	$(".del").each(function(){
-		if($(this).prop('checked')==true){
-			
-		    console.log('체크된 상태:'+$(this).attr("title"));
-		    let productNum=$(this).attr("title");
-	
-		    checkedNum.push(productNum);
-		} else{
-		    console.log('체크 안 된 상태:'+$(this).attr("title"));
+let count = 0;
+$(".directInputBox").on({
+	focus: function(){
+		count=$(this).val();
 		}
-	});
-	console.log("checkedNum:"+checkedNum)
+	,change:function(){ 
 	
-	            //체크된 productNum 을 가진 것들.
-				for(let p in checkedNum){
-					 
-					let b_index =$("#productVOPrice"+checkedNum[p]).attr("title");
-					let productPrice = $("#productVOPrice"+checkedNum[p]).val();
-					
-					newBrandPrice = parseInt($(".brandPrice"+b_index).val()) + parseInt(productPrice);
-					
-					console.log("newBrandPrice:"+newBrandPrice);
-					$(".brandPrice"+b_index).val(newBrandPrice);
-					
-				}
-	
-	         //모든 brandPrice를 반복돌려서 처리
-	         $(".brandPrice").each(function(){
-	        	let b_index = $(this).attr("title");
-	        	let brandPrice= $(".brandPrice"+b_index).val();
-	        	 
-	        	console.log("brandPrice:"+brandPrice);
-			    
-			    if(brandPrice>=30000){//product당 가격의 반복 = brand당 총 가격이 3만원넘으면
-			    	console.log(b_index+" b_index is over 30000");
-			    
-			    	$("#shipping"+b_index).attr("title", 0);
-			    } else if(brandPrice==0){ // brand당 총 가격이 0원일때
-			    	console.log(b_index+" b_index is 0 zero~~~");
-			    	$("#shipping"+b_index).attr("title", 0);
-			    } else{  // brand당 총 가격이 3만원 미만 일때
-		
-			    	console.log(b_index+" b_index is not over 30000");
-			    	$("#shipping"+b_index).attr("title", 3000);
-			    	 
-			    }
-	         });
-	          
-	       //총 배송비
-				let totalShipping=0; 
-				
-				$(".shipping").each(function(){//
-					
-					let shipping =$(this).attr("title");
-					console.log("shipping:"+shipping);
-					
-					totalShipping= totalShipping+parseInt(shipping);	
-					
-				});
-				 
-				console.log(totalShipping);
-				
-				$("#totalShipping").val(totalShipping);// 총 배송비 입력 오케비
-				
-				//----------총 결제금액!!
-			//총 상품 가격 부터 다시 계산
-			let totalcheckedPrice= 0;
+		let amount = $(this).val();
+			if(amount==0){
+		    		
+		    		alert("0보다 큰 정수를 입력해야 합니다. ")
+		    		$(this).val(count);
+    	    } else{
+    	    	let amount = $(this).val();
+    	    	let cartNum =$(this).attr("title");
+                let don = $("#unitPrice"+cartNum).val(); //단가
+    	    	don = amount*don;
+    	
+    	    	$("#cartVOPrice"+cartNum).val(don); // 변화된 option 가격 표시
+    	    	
+    	    	
+    	    	let price=0; //각 option들의 가격을 더한 product범위의 가격
+    			
+    	    	let productNum = $(this).attr("data-product-num");
+    			
+    			$(".cartPricePlus"+productNum).each(function(){
+    				price=price+parseInt($(this).val());
+    				console.log("반복되는 cartPricePlus:"+price);
+    		     });
+    			
+    			$("#productVOPrice"+productNum).val(price);
+    			
+    			
+    			//-----총 상품 금액 변경
+    			totalAgain=0;
+    			
+    			$(".cartPricePlus").each(function(){
+    				totalAgain=totalAgain+parseInt($(this).val());
+    			});
+    			
+    			$("#totalPrice").val(totalAgain);
+    			
+    			
+    			
+    			
+    			//배송비, 총 배송비 변경
+    			let newBrandPrice =0;
+    		    const checkedNum = [];
+    		    
+    		    $(".brandPrice").each(function(){  //brand별 금액 초기
+    		    	$(this).val(0);    
+    		    });
+    		    
+    			//모든 checkbox를 검사해서 checked 된 것들만...계산해서 총 상품 가격, 총배송비, 총 결제금액 계산
+    			$(".del").each(function(){
+    				if($(this).prop('checked')==true){
+    					
+    				    console.log('체크된 상태:'+$(this).attr("title"));
+    				    let productNum=$(this).attr("title");
+    			
+    				    checkedNum.push(productNum);
+
+    				} else{
+    				    console.log('체크 안 된 상태:'+$(this).attr("title"));
+
+    				}
+    			});
+    			console.log("checkedNum:"+checkedNum)
+    			
+    			            //체크된 productNum 을 가진 것들.
+    						for(let p in checkedNum){
+    							 
+    							let b_index =$("#productVOPrice"+checkedNum[p]).attr("title"); //brand index
+    							let productPrice = $("#productVOPrice"+checkedNum[p]).val();
+
+    							
+    							newBrandPrice = parseInt($(".brandPrice"+b_index).val()) + parseInt(productPrice);
+    							
+    							console.log("newBrandPrice:"+newBrandPrice);
+    							$(".brandPrice"+b_index).val(newBrandPrice);
+    							
+    						}
+    			
+    			         //모든 brandPrice를 반복돌려서 처리
+    			         $(".brandPrice").each(function(){
+    			        	let b_index = $(this).attr("title");
+    			        	let brandPrice= $(".brandPrice"+b_index).val();
+    			        	 
+    			        	console.log("brandPrice:"+brandPrice);
+    					    
+    					    if(brandPrice>=30000){//product당 가격의 반복 = brand당 총 가격이 3만원넘으면
+    					    	console.log(b_index+" b_index is over 30000");
+    					    
+    					    	$("#shipping"+b_index).attr("title", 0);
+    					    	/////////////////////////////isFree 1 로 바꿔 넣고  ajax
+    					    	
+    					    } else if(brandPrice==0){ // brand당 총 가격이 0원일때
+    					    	console.log(b_index+" b_index is 0 zero~~~");
+    					    	$("#shipping"+b_index).attr("title", 0);
+    					    } else{  // brand당 총 가격이 3만원 미만 일때
+    					    	console.log(b_index+" b_index is not over 30000");
+    					    	$("#shipping"+b_index).attr("title", 3000);
+    					    	
+    					    	/////////////////////// 이 브랜드의 어떤 productVO의 shippingFee도 0이 아니라는게 성립했을때
+    	                        ////////////////////////isFree 0 로 바꿔 넣고  ajax
+    					    	///////////////////////이 브랜드 안에 모든 productVO shippingFee검사 -> 0이 하나라도 있으면 isFree 1 로 바꿔 넣고  ajax
+
+    					    }
+    			         });
+    			          
+    			       //총 배송비
+    						let totalShipping=0; 
+    						
+    						$(".shipping").each(function(){
+    							
+    							let shipping =$(this).attr("title"); //그 브랜드의 배송비: 0이나 3000
+    							console.log("shipping:"+shipping);
+    							
+    							totalShipping= totalShipping+parseInt(shipping);	
+    						});
+    						 
+    						console.log(totalShipping);
+    						
+    						$("#totalShipping").val(totalShipping);// 총 배송비 입력
+    						
+    						//----------총 결제금액!!
+    					//총 상품 가격 부터 다시 계산
+    					let totalcheckedPrice= 0;
+    					
+    					for(let c in checkedNum){
+    					       $(".productNum_productPrice"+checkedNum[c]).each(function(){ 
+    					           totalcheckedPrice=totalcheckedPrice+ parseInt($(this).val());
+    					           console.log("checked productPrice: "+parseInt($(this).val()));
+    					      });
+    					
+    					}
+    					
+    					   $("#totalPrice").val(totalcheckedPrice);
+    						
+    						let payment=totalShipping+parseInt($("#totalPrice").val());
+    						
+    						$("#payment").val(addCommas(payment));  //총 결제금액 입력
+    						
+    				//brand별 무료배송여부 표시 
+    						$(".productPrice").each(function(){ 
+    							
+    						    
+    						    let b_index = $(this).attr("title"); 
+    						    console.log("b_index:"+b_index);
+    						     
+    						    let brandPrice=0; 
+    							
+    							
+    							$(".productPrice"+b_index).each(function(){
+    								brandPrice=brandPrice+parseInt($(this).val());
+    						     });
+    						     
+    						
+    						    if(brandPrice>=30000){
+    						    	console.log(b_index+" is over30000");
+    						    	$(".freeShipping"+b_index).val(1);
+    						    	$("#shipping"+b_index).val("배송비 무료");
+    						
+    						    } else{
+    						    	$("#shipping"+b_index).val("배송비 3000원");
+    						    }
+    							
+
+    						});
+    			
+    			 //--------ajax DB Update (완성!!)
+    			amount = $(this).val();
+    			let cartPrice= $("#cartVOPrice"+index).val();
+    			console.log("ajax 전  cartNum"+cartNum);
+    			$.ajax({
+    				type: "post",
+    				url:"../cart/amountUpdate",
+    				data:{
+    					 amount:amount,
+    					 cartPrice:cartPrice,
+    					 cartNum:cartNum
+    				   
+    				},
+    				success:function(data){
+    					data = data.trim();
+    					if(data==1){
+    						alert('등록 성공');
+    					}else {
+    						alert('등록 실패');
+    					}
+    				}
+    			 }) //Ajax update 끝
+
+    	    } //if 문 끝
 			
-			for(let c in checkedNum){
-			       $(".productNum_productPrice"+checkedNum[c]).each(function(){ 
-			           totalcheckedPrice=totalcheckedPrice+parseInt($(this).val());
-			           console.log("checked productPrice: "+parseInt($(this).val()));
-			      });
-			
-			}
-			
-			   $("#totalPrice").val(totalcheckedPrice);
-				
-				let payment=totalShipping+parseInt($("#totalPrice").val());
-				
-				$("#payment").val(payment);  //총 결제금액 입력
-				
-		//brand별 무료배송여부 표시 
-				$(".productPrice").each(function(){ 
-					
-				    
-				    let b_index = $(this).attr("title"); 
-				    console.log("b_index:"+b_index);
-				     
-				    let brandPrice=0; 
-					
-					
-					$(".productPrice"+b_index).each(function(){
-						brandPrice=brandPrice+parseInt($(this).val());
-				     });
-				     
-				
-				    if(brandPrice>=30000){
-				    	console.log(b_index+" is over30000");
-				    	$(".freeShipping"+b_index).val(1);
-				    	$("#shipping"+b_index).val("배송비 무료");
-				
-				    } else{
-				    	$("#shipping"+b_index).val("배송비 3000원");
-				
-				    }
-					
-				});
-				
-	 
-	
-	 //--------ajax DB Update (완성!!)
-	let amount = $(this).val();
-	let cartPrice=$("#cartVOPrice"+index).val();
-	let cartNum=$("#cartNum"+index).attr("title");
-	$.ajax({
-		type: "post",
-		url:"../cart/amountUpdate",
-		data:{
-			 amount:amount,
-			 cartPrice:cartPrice,
-			 cartNum:cartNum
-		   
-		},
-		success:function(data){
-			data = data.trim();
-			if(data==1){
-				alert('등록 성공');
-			}else {
-				alert('등록 실패');
-			}
-		}
-	})
+		}//change 함수 
 	
 	
-    	}
-    //----------ajax DB Update   
-    	}
 	
-});
-
-
-
-
-
-
+	
+	}); //on event
 //==============================ajax Delete   (삭제후 배송료 변경하기)
 //==============================check box (product) 선택삭제 
 $("#carts").on("click", "#selectedDelete", function(){

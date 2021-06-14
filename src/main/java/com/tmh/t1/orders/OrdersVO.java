@@ -22,10 +22,12 @@ public class OrdersVO {
 	private Long payment;
 	private String shippingMemo;
 	private Date orderDay;
-	private String status;
-	private String productNum;
+	private Date updateDay;
+
 	private String name;
 	private String email;
 	private String phone;
 	
+	private Long status;
+	private Long before;
 }

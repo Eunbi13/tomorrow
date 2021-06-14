@@ -71,7 +71,7 @@
     
     
         <select id="getCartList" parameterType="CartVO" resultMap="cartListResult">
-    		select C.*, C.isFree, C.cartPrice, C.optionPrice, O.* from 
+    		select C.*, C.isFree, C.cartPrice, C.unitPrice, O.* from 
 			(select * from cart where username=#{username} and 
 			
 			<if test="valid =='zero'">
@@ -100,11 +100,12 @@
 	    	<result column="isBundled" property="isBundled" />
 	    	<result column="isFree" property="isFree" />
 	    	<result column="cartPrice" property="cartPrice" />
-	    	<result column="optionPrice" property="optionPrice" />
+	    	<result column="unitPrice" property="unitPrice" />
 	        <collection property="optionList" javaType="java.util.List" ofType="OptionsVO">
 	        	<id column="optionNum" property="optionNum" />
 	        	<result column="optionKinds" property="optionKinds" />
 	        	<result column="optionName" property="optionName" />
+	        	<result column="optionPrice" property="optionPrice" />
 	        </collection>
 
 	    
@@ -121,8 +122,8 @@
     	</select>
     	
     	<insert id="setInsert" parameterType="CartVO" useGeneratedKeys="true" keyProperty="cartNum"> 
-    		insert into cart(username, brandNum, productNum, optionNum, amount, validity, isBundled, isFree, cartPrice, optionPrice) 
-    		values(#{username}, #{brandNum}, #{productNum}, #{optionNum}, #{amount}, #{validity}, #{isBundled}, #{isFree},#{cartPrice},#{optionPrice})
+    		insert into cart(username, brandNum, productNum, optionNum, amount, validity, isFree, cartPrice, unitPrice) 
+    		values(#{username}, #{brandNum}, #{productNum}, #{optionNum} #{amount}, 0, #{isFree}, #{cartPrice},#{unitPrice})
     	</insert>
     	
     	

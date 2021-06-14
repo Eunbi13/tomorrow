@@ -29,13 +29,11 @@ public class CartVO {
 	
 	private Long validity;
 	
-	private boolean isBundled;
-	
 	private boolean isFree;
 	
 	private Long cartPrice;
 	
-	private Long optionPrice;
+	private Long unitPrice;
 	
 	
 

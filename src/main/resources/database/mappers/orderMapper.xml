@@ -10,9 +10,67 @@
     	</select>
     	
     	
-    	<select id="getList" parameterType="OrdersVO" resultType="OrdersVO">
-    		select * from orders where username=#{username}
+    	<select id="getCartList" parameterType="OrdersVO" resultType="cartVO">
+    		select * from cart 
+    		where validity > 1 
+    		and orderNum in 
+    		(SELECT orderNum FROM orders 
+    		WHERE orderDay BETWEEN DATE_ADD(NOW(),INTERVAL -1 MONTH ) AND NOW())
+
     	</select>
+    	
+    	<select id="getOrdersList" parameterType="OrdersVO" resultMap="cartListResult">
+    	   select C.*, O.* from 
+			(select * from orders where username=#{username} and 
+			
+			orderDay BETWEEN DATE_ADD(NOW(),INTERVAL -#{before} MONTH ) AND NOW()
+			
+			) O
+			inner join 
+			(select * from cart 
+    		where username=#{username} and 
+    		<if test="status == 1 ">
+			validity > 1
+			</if>
+			<if test="status > 1">
+			 validity=#{status}
+			</if>
+			
+    		) C
+			on C.orderNum = O.orderNum;
+    	
+    	</select>
+    	
+    	<resultMap type="OrdersVO" id="cartListResult">
+	    	<id column="orderNum" property="orderNum" />
+	    	<result column="shipNum" property="shipNum" />
+	    	<result column="username" property="username" />
+	        <result column="paymentType" property="paymentType" />
+	        <result column="itemsPrice" property="itemsPrice" />
+	    	<result column="shippingFee" property="shippingFee" />
+	        <result column="payment" property="payment" />
+	    	<result column="shippingMemo" property="shippingMemo" />
+	    	<result column="orderDay" property="orderDay" />
+	    	<result column="updateDay" property="updateDay" />
+	    	<result column="name" property="name" />
+	    	<result column="email" property="email" />
+	    	<result column="phone" property="phone" />
+	    	<result column="unitPrice" property="unitPrice" />
+	    	<result column="unitPrice" property="unitPrice" />
+	        <collection property="cartsList" javaType="java.util.List" ofType="cartVO">
+	        	<id column="cartNum" property="cartNum" />
+	        	<result column="brandNum" property="brandNum" />
+	        	<result column="productNum" property="productNum" />
+	        	<result column="optionNum" property="optionNum" />
+	        	<result column="amount" property="amount" />
+	        	<result column="validity" property="validity" />
+	        	<result column="isFree" property="isFree" />
+	        	<result column="cartPrice" property="cartPrice" />
+	        	<result column="unitPrice" property="unitPrice" />
+	        </collection>
+
+	    
+	    </resultMap>
     	
     	<insert id="setInsert" parameterType="OrdersVO" useGeneratedKeys="true" keyProperty="orderNum">
     		insert into orders(username, itemsPrice, shippingFee, payment) 

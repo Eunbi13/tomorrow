@@ -50,7 +50,7 @@ public class OrdersController {
 		
 		List<OrdersVO> ar=ordersService.getList(ordersVO);
 		
-		
+		// 해당 orderNum 을 가지고, validity가 2이상인  cartVO 를 리스트로 가져온다.
 		mv.addObject("orderList", ar);
 		return mv;
 

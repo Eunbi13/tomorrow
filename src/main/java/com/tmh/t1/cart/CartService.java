@@ -56,11 +56,23 @@ public class CartService {
 		return cartMapper.getList(cartVO);
 	}
 	
-	public int setInsert(CartVO cartVO)throws Exception{
-		long amount =cartVO.getAmount();
-		long optionPrice = cartVO.getOptionPrice();
-		cartVO.setCartPrice(amount*optionPrice);
-		return cartMapper.setInsert(cartVO);
+	public int setInsert(CartVO [] cartVOs)throws Exception{
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal; 
+		String username = userDetails.getUsername();
+	   
+	   	System.out.println("username:"+username);
+	   	int result =0;
+		
+		for(int i=0; i< cartVOs.length;i++) {
+			CartVO cartVO = new CartVO();
+			cartVO = cartVOs[i];
+			cartVO.setUsername(username);
+			
+			
+			result = cartMapper.setInsert(cartVO);
+		}
+		return result;
 	}
 	
 	public int setOptionDelete(Long cartNum)throws Exception{
@@ -88,6 +100,7 @@ public class CartService {
 			
 			result = cartMapper.setProductDelete(cartVO);
 		}
+		
 		return result;
 	}
 	
