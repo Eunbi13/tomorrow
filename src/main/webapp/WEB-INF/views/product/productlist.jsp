@@ -265,6 +265,7 @@ btn-secondary {
 					<div class="brand">
 						<c:if test="${brandVO.brandNum eq productVO.brandNum}">
 						${vo.brandNum }
+						${productVO.brandName }
 						${brandar } --값이없음 [ ]
 						</c:if>
 					</div>

@@ -28,12 +28,38 @@
 		
 		
     <!-- 장은 -->
-    	<select id="getProductList" parameterType="ProductVO" resultType="ProductVO">
+    	<select id="getProductList" parameterType="ProductVO" resultMap="ProductVO">
     		SELECT p.*, b.brandName
 			FROM product p INNER JOIN brand b 
 			ON p.brandNum = b.brandNum ;
     	</select>
     	
+    	<resultMap type="BrandVO" id="brandVO">
+    		<id column="brandNum" property="brandNum"/>
+    		<result column="username" property="username" />
+    		<result column="companyName" property="companyName"/>
+    		<result column="registrationNum" property="registrationNum"/>
+    		<result column="companyHomepage" property="companyHomepage"/>
+    		<result column="managerName" property="managerName"/>
+    		<result column="managerPhone" property="managerPhone"/>
+    		<result column="managerEmail" property="managerEmail"/>
+    		<result column="brandName" property="brandName"/>
+    		<result column="brandIntro" property="brandIntro"/>
+    		<result column="referenceFile" property="referenceFile"/>
+    		<result column="accept" property="accept"/>
+    	</resultMap>
+    	
+    	<resultMap type="ProductVO" id="ProductVO">
+			<id column="productNum" property="productNum"/>
+			<result column="brandNum" property="brandNum"/>
+			<result column="productName" property="productName"/>
+			<result column="productPrice" property="productPrice"/>
+			<result column="productPic" property="productPic"/>
+			<result column="contents" property="contents"/>
+			<result column="discountPrice" property="discountPrice"/>
+			<result column="shippingFee" property="shippingFee"/>
+			<collection property="brandVO" resultMap="brandVO"/>
+		</resultMap>
     	
     	<select id="getBrandList" parameterType="ProductVO" resultType="BrandVO">
     		select brandName from brand
