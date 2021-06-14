@@ -15,5 +15,4 @@ public class CategoryVO {
 	private int category_parent;
 	private int category_detail_parent;
 	
-	private List<CategoryVO> categorys;
 }

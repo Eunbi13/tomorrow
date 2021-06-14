@@ -41,6 +41,7 @@ public class BrandService {
 	}
 
 	public void/* Map<String, List<CategoryVO>>*/ getBrandHomeCategory(BrandVO brandVO)throws Exception{
+		List<Integer> categoryIDs = new ArrayList<Integer>();
 		
 		List<CategoryVO> three = categoryMapper.getCategoryID(brandVO.getBrandNum());
 		List<CategoryVO> two = new ArrayList<CategoryVO>();
@@ -48,8 +49,10 @@ public class BrandService {
 		
 		
 		for(CategoryVO vo : three) { 
-			two = categoryMapper.getBrandCategory(vo);
+			categoryIDs.add(vo.getCategoryID());
 		}
+		System.out.println(categoryIDs.size());
+		two = categoryMapper.getBrandCategory(categoryIDs);
 		System.out.println(two);
 //		List<CategoryVO> one = new ArrayList<CategoryVO>(); 
 //		for(CategoryVO vo :two) {
