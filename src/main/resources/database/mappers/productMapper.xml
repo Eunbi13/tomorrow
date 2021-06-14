@@ -68,7 +68,7 @@
     	
     	<select id="getOptionsList" parameterType="ProductVO" resultType="OptionsVO">
     		SELECT * from options
-			where productNum IN (SELECT productNum FROM product WHERE productNum=#{productNum})
+			where optionNum IN (SELECT optionNum FROM product_options WHERE productNum=#{productNum})
     	</select>
     	
     
