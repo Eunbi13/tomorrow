@@ -14,7 +14,6 @@ public class HwReplyVO {
 	private Long like;
 	private Long warning;
 	private Date regDate;
-	private Long ref;
 	private Long step;
 	private Long depth;
 	

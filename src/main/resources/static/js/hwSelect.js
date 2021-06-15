@@ -1,6 +1,6 @@
 /**
  * 
- */
+
 
 $("#like").on("click", function() {
 	let hwNum = $("#hwNum").val();
@@ -9,7 +9,7 @@ $("#like").on("click", function() {
 	$.ajax({
 		url:"./",
 		type: "GET",
-		data: {fileNum:fileNum},
+		data: {hwNum:hwNum},
 		success:function(result){
 			result=result.trim();
 			if(result>0){
@@ -24,4 +24,4 @@ $("#like").on("click", function() {
 		
 	});
 	
-})
+}) */

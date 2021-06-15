@@ -24,14 +24,14 @@ public class HwReplyController {
 	@Autowired
 	private HwReplyService hwReplyService;
 	
-	@GetMapping("list")
+	@GetMapping("hwReplyList")
 	public void getList(HwReplyVO hwReplyVO, Model model) throws Exception {
 		System.out.println(hwReplyVO.getHwNum());
 		List<HwReplyVO> ar = hwReplyService.getList(hwReplyVO);
 		model.addAttribute("list", ar);
 	}
 	
-	@PostMapping("insert")
+	@PostMapping("hwReplyInsert")
 	public ModelAndView setInsert(HwReplyVO hwReplyVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		int result = hwReplyService.setInsert(hwReplyVO);
@@ -40,7 +40,7 @@ public class HwReplyController {
 		return mv;
 	}
 
-	@PostMapping("delete")
+	@PostMapping("hwReplyDelete")
 	public void delete(int hwReplyNum) throws Exception {
 		System.out.println("Start");
 		

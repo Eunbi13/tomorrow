@@ -10,12 +10,12 @@
 	</select>
 	
 	<insert id="setInsert" parameterType="HwReplyVO">
-		insert into hwReply (hwNum, username, comment, ref, step, depth) 
-		values(#{hwNum}, #{username}, #{comment}, #{ref}, #{step}, #{depth})
+		insert into hwReply (hwNum, username, comment, step, depth) 
+		values(#{hwNum}, #{username}, #{comment}, 0, 0)
 	</insert>
 	
 	<update id="setUpdate" parameterType="HwReplyVO">
-		update hwReply set step=step+1 where ref=#{ref} and step>#{step}
+		update hwReply set step=step+1 where hwReplyNum=#{hwReplyNum} and step>#{step}
 	</update>
 	
 </mapper>

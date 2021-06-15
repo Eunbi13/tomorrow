@@ -17,7 +17,7 @@ $("#comments").on("click", "#remove", function(){
 	
 	$.ajax({
 		type: "POST",
-		url: "../hwReply/delete",
+		url: "../hwReply/hwReplyDelete",
 		traditional: true, //배열은 전송
 		data:{hwReplyNum:ar},
 		success:function(data){
@@ -26,8 +26,9 @@ $("#comments").on("click", "#remove", function(){
 	});
 });
 
+
 function getList(){
-	$.get("../hwReply/list?hwNum="+hwNum,function(data){
+	$.get("../hwReply/hwReplyList?hwNum="+hwNum,function(data){
 		console.log(data);
 		$("#comments").html(data.trim());
 	});
@@ -35,9 +36,11 @@ function getList(){
 
 $("#write").click(function(){
 	let username = $("#username").val();
+	console.log($("#username").val());
 	let comment = $("#comment").val();
+	console.log($("#comment").val());
 	
-	$.post("../hwReply/insert", 
+	$.post("../hwReply/hwReplyInsert", 
 	{
 		hwNum:hwNum,
 		username:username,

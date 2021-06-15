@@ -162,8 +162,8 @@
 		<div class="reply">
 			<h4>댓글</h4>
 			<div class="form-group">
-				<input type="text" class="form-control" id="writer" name="username" hidden="hidden">
-				<input type="text" class="form-control" placeholder="격려와 칭찬은 작성자에게 큰 힘이 됩니다 :)">
+				<input type="hidden" class="form-control" id="username" name="username" value="${pinfo.username}">
+				<input type="text" class="form-control" placeholder="격려와 칭찬은 작성자에게 큰 힘이 됩니다 :)" id="comment" name="comment">
 				<input type="button" class="btn" id="write" value="등록">
 			</div>
 			<div id="comments" title="${vo.hwNum}">
@@ -174,6 +174,7 @@
 
 	<c:import url="../template/footer.jsp"></c:import>
 	
-	<script type="text/javascript" src="../resources/js/hwReply.js"></script>
+	<script type="text/javascript" src="../js/hwReply.js"></script>
+	<script type="text/javascript" src="../js/hwSelect.js"></script>
 </body>
 </html>
