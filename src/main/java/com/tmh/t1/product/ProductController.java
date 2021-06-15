@@ -99,8 +99,7 @@ public class ProductController {
 		List<BrandVO> brandar = productService.getBrandList(productVO);
 		String brandN = brandar.get(0).getBrandName().toString();
 		model.addAttribute("brand", brandN);
-		String brandUrl = brandar.get(0).getBrandName().toString();
-		model.addAttribute("brandUrl", brandUrl);
+		
 
 		List<OptionsVO> optionsar = productService.getOptionsList(productVO);
 		model.addAttribute("optionsar", optionsar); 
@@ -121,24 +120,7 @@ public class ProductController {
 		model.addAttribute("op", op);
 		model.addAttribute("pp", pp);
 		
-		//optionP 출력시 제대로 데이터가 나오는데 optionP를 op로 변경한 것을 출력하면 원래 값에 상관없이 0이 떠서요 ㅠㅠ
-//		**************
-//		optionK :색상/사이즈
-//		optionN :베이지 M
-//		optionP :1000 = op
-//		priceP :12700 = pp
-//		price :12700 = op+ pp
-//		op :0 <<<
-//		pp :12700
-//		**************
-//		optionK :색상/사이즈
-//		optionN :베이지 S
-//		optionP :0
-//		priceP :12700
-//		price :12700
-//		op :0  <<<
-//		pp :12700
-//		**************
+//		List<Long> 
 		for(int i=0; i<opsize; i++) { //list?
 			OptionsVO optionsVO = optionsar.get(i);
 			System.out.println("optionK :"+optionsVO.getOptionKinds());
