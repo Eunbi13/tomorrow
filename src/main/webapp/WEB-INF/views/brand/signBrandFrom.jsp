@@ -21,9 +21,10 @@
 	</ul>
 	
 	<form:form action="./signBrand" modelAttribute="brandVO" method="post" enctype="multipart/form-data">
-
+		<fieldset>
+			<legend>회사 정보</legend>
 		<div>
-			<h3>회사 정보</h3>
+			
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">회사이름<span>*</span></label>
 				<div class="col-sm-10">
@@ -45,8 +46,10 @@
 				</div>
 			</div>
 		</div>
+		</fieldset>
+		<fieldset>
+			<legend>영업담당자 정보</legend>
 		<div>	
-			<h3>영업담당자 정보</h3>
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">이름<span>*</span></label>
 				<div class="col-sm-10">
@@ -69,8 +72,11 @@
 				</div>
 			</div>
 		</div>	
+		</fieldset>
+		<fieldset>
+			<legend>상품 정보</legend>
 		<div>
-			<h3>상품 정보</h3>
+			
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">대표브랜드 이름<span>*</span></label>
 				<div class="col-sm-10">
@@ -111,6 +117,7 @@
 				</div>
 			</div>
 		</div>
+		</fieldset>
 		<button class="btn btn-primary">button</button>
 	</form:form>
 
