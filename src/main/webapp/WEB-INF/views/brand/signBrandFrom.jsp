@@ -89,8 +89,8 @@
 				<div class="col-sm-10">
 				<c:forEach items="${categories }" var="vo">
 					<div class=" form-check form-check-inline ">
-						<input class="form-check-input" type="checkbox" name="categories" value="${vo.categoryID}">
-						<label class="form-check-label" for="inlineCheckbox1">${vo.category_detail_NM }</label>
+						<input class="form-check-input" type="checkbox" name="categories" id="customCheck1" value="${vo.categoryID}">
+						<label class="custom-control-label" for="customCheck1">${vo.category_detail_NM }</label>
 					</div>
 				</c:forEach>
 				</div>

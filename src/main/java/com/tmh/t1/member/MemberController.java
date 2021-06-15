@@ -22,6 +22,13 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 
+	//update
+	@GetMapping("update")
+	public String memberUpdate() throws Exception{
+		
+		return "member/memberUpdate";
+	}
+	
 //myPage
 	@GetMapping("myPage")
 	public String memberPage() throws Exception{
