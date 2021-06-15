@@ -82,6 +82,7 @@ $(".contents").on("click", function() {
 
 
 // 파일첨부에 이미지 파일만 선택 가능
+/*
 function fileCheck(obj) {
 	let pathPoint = obj.value.lastIndexOf('.');
 	let filePoint = obj.value.substring(pathPoint+1, obj.length);
@@ -103,6 +104,7 @@ function fileCheck(obj) {
 		}
 	}
 }
+*/
 
 
 

@@ -5,8 +5,9 @@
 <html>
 <head>
 <c:import url="../template/bootStrap.jsp"></c:import>
-<%-- <c:import url="../template/summernote.jsp"></c:import> --%>
-<meta charset="UTF-8">
+<!-- summernote -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <title>내일부터 하는 인테리어, 내일의 집</title>
 <style>
 .fakeimg {
@@ -302,9 +303,7 @@
 						<i class="note-icon-picture"></i>
 					</button>
 				</div> -->
-				<input class="form-control myCheck contents" id="summernote"
-					name="contents">
-				<!-- <textarea class="form-control myCheck" rows="5" id="contents" name="contents"></textarea> -->
+				<textarea class="form-control myCheck" rows="5" id="contents" name="contents"></textarea>
 			</div>
 
 			<div class="form-group" hidden="hidden">
@@ -327,6 +326,7 @@
 
 
 	<script type="text/javascript" src="/js/hwInsert.js"></script>
+	<script type="text/javascript" src="/js/summerFile.js"></script>
 
 </body>
 </html>

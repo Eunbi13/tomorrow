@@ -41,7 +41,7 @@ public class HwReplyController {
 	}
 
 	@PostMapping("hwReplyDelete")
-	public void delete(int hwReplyNum) throws Exception {
+	public void setDelete(int hwReplyNum) throws Exception {
 		System.out.println("Start");
 		
 		System.out.println("finish");
