@@ -58,13 +58,19 @@
 					</c:otherwise>
 				</c:choose>
 			</div> <!-- ship 클래스 끝 -->
+			
+			<div class="brand-url">
+				<c:if test="${brandVO.brandNum eq productVO.brandNum}">
+					<a href=""> ${brand }</a>
+				</c:if>
+			</div>
 
 			<div class="option">
 				<form action="test">
 					<select name="options">
 						<option value="optionKinds">${optionK}</option>
-						<c:forEach items="${optionsar}" var="vo">
-							<option>${vo.optionName}</option>
+						<c:forEach items="${optionsar}" var="OPvo" varStatus="status">
+							<option>${OPvo.optionName}, ${op + pp }, ${op }, ${pp }</option>
 						</c:forEach>
 					</select>
 					<div class="store-select-buttons">

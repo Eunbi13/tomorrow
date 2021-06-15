@@ -99,19 +99,56 @@ public class ProductController {
 		List<BrandVO> brandar = productService.getBrandList(productVO);
 		String brandN = brandar.get(0).getBrandName().toString();
 		model.addAttribute("brand", brandN);
+		String brandUrl = brandar.get(0).getBrandName().toString();
+		model.addAttribute("brandUrl", brandUrl);
 
 		List<OptionsVO> optionsar = productService.getOptionsList(productVO);
-		model.addAttribute("optionsar", optionsar);
+		model.addAttribute("optionsar", optionsar); 
 		int opsize = optionsar.size();
 		model.addAttribute("opsize", opsize);
-		String optionK = optionsar.get(2).getOptionKinds().toString();
-		model.addAttribute("optionK", optionK);
-		String optionN = optionsar.get(3).getOptionName().toString();
-		model.addAttribute("optionN", optionN); 
+		String optionK = optionsar.get(1).getOptionKinds().toString();
+		model.addAttribute("optionK", optionK); //option 종류 (색상, 사이즈...)
+		String optionN = optionsar.get(2).getOptionName().toString();
+		model.addAttribute("optionN", optionN); //각 option 항목 (xl, l, m , s, 검정)
+		String optionP = optionsar.get(3).getOptionPrice();
+		model.addAttribute("optionP", optionP); // option 추가금 (ex +1000, 0)
+		String priceP = productVO.getDiscountPrice().toString(); 
+		int op=Integer.parseInt(optionP); //option에 저장된 가격
+		int pp=Integer.parseInt(priceP); //product에 저장된 가격 
+		int price = op+pp; //product 가격 + option 가격
+		System.out.println("op+pp :"+ op+pp);
+		model.addAttribute("price", price); 
+		model.addAttribute("op", op);
+		model.addAttribute("pp", pp);
+		
+		//optionP 출력시 제대로 데이터가 나오는데 optionP를 op로 변경한 것을 출력하면 원래 값에 상관없이 0이 떠서요 ㅠㅠ
+//		**************
+//		optionK :색상/사이즈
+//		optionN :베이지 M
+//		optionP :1000 = op
+//		priceP :12700 = pp
+//		price :12700 = op+ pp
+//		op :0 <<<
+//		pp :12700
+//		**************
+//		optionK :색상/사이즈
+//		optionN :베이지 S
+//		optionP :0
+//		priceP :12700
+//		price :12700
+//		op :0  <<<
+//		pp :12700
+//		**************
 		for(int i=0; i<opsize; i++) { //list?
 			OptionsVO optionsVO = optionsar.get(i);
 			System.out.println("optionK :"+optionsVO.getOptionKinds());
 			System.out.println("optionN :"+optionsVO.getOptionName());
+			System.out.println("optionP :"+optionsVO.getOptionPrice());
+			System.out.println("priceP :"+priceP);
+			System.out.println("price :"+price);
+			System.out.println("op :"+op);
+			System.out.println("pp :"+pp);
+			System.out.println("**************");
 			};
 	}
 
