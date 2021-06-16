@@ -27,8 +27,8 @@
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label">별명<span>*</span></label>
 			<div class="col-sm-10">
-				<form:input type="text" class="form-control" placeholder="별명" path="username" ></form:input>
-				<form:errors path="username" cssStyle="font-size: 0.8em"></form:errors>
+				<%-- <form:input type="text" class="form-control" placeholder="별명" path="username" ></form:input>
+				<form:errors path="username" cssStyle="font-size: 0.8em"></form:errors> --%>
 			</div>
 		</div>
 		<div class="form-group row">
@@ -55,7 +55,7 @@
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label">나이</label>
 			<div class="col-sm-10">
-				<input class="form-control" type="date" name="birthday" <%-- value="<sec:authentication property="principal.birthday"/>" --%>>
+				<input class="form-control" type="date" name="birthDay"  value="<sec:authentication property="principal.birthDay"/>">
 			</div>
 		</div>
 		<div class="form-group row">

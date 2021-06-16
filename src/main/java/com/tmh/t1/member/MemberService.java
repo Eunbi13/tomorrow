@@ -40,9 +40,9 @@ public class MemberService implements UserDetailsService{
 	}
 	
 //errors	
-	public boolean usernameErrors(MemberVO memberVo, Errors errors)throws Error{
+	public boolean usernameErrors(MemberVO memberVO, Errors errors)throws Exception{
 		boolean check = errors.hasErrors();
-		if(memberMapper.usernameCheck(memberVO)>0) {
+		if(memberMapper.usernameCheck(memberVO)>0){
 			//userName check 0보다 클경우 중복데이터
 			errors.rejectValue("username", "memberVO.username.has");
 			check=true;

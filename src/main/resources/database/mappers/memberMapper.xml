@@ -44,9 +44,9 @@
 		<update id="memberUpdate" parameterType="MemberVO">
 			UPDATE member 
 			SET username = #{username}, 
-				homepage = #{homepage}, 
+				homePage = #{homePage}, 
 				gender = #{gender}, 
-				birthday = DATE_FORMAT(#{birthday}, '%Y-%m-%d'), 
+				birthDay = DATE(#{birthDay}), 
 				intro = #{intro}, 
 				profileImage = #{profileImage} 
 			WHERE email = #{email}
