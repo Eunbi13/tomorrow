@@ -20,52 +20,56 @@
     
 	    <select id="getProductList" parameterType="CartVO" resultType="ProductVO">
 	    
-		    select productNum, productName, productPrice, productPic, shippingFee, brandNum from product
-			where productNum 
-			in 
-			(select productNum from cart where username=#{username} and 
-			<if test="valid =='zero'">
-			(validity='0'or validity='1')
-			</if>
-			<if test="valid =='one'">
-			 validity='1'
-			</if>
-			<if test="valid =='two'">
-			validity='2'
-			</if>
-			and brandNum 
-			in 
-			(select brandNum from cart where username=#{username} and 
-			<if test="valid =='zero'">
-			(validity='0'or validity='1')
-			</if>
-			<if test="valid =='one'">
-			 validity='1'
-			</if>
-			<if test="valid =='two'">
-			validity='2'
-			</if>
-			group by brandNum) 
-			group by productNum)
+		    select productNum, productName, productPrice, productPic, shippingFee, brandNum 
+		    	from product
+					where productNum 
+					      in 
+							(select productNum 
+							    from cart 
+									where username=#{username} and 
+										<if test="valid =='zero'">
+										(validity='0'or validity='1')
+										</if>
+										<if test="valid =='one'">
+										 validity='1'
+										</if>
+										<if test="valid =='two'">
+										validity='2'
+										</if>
+									and brandNum 
+										  in 
+											(select brandNum from cart where username=#{username} and 
+											<if test="valid =='zero'">
+											(validity='0'or validity='1')
+											</if>
+											<if test="valid =='one'">
+											 validity='1'
+											</if>
+											<if test="valid =='two'">
+											validity='2'
+											</if>
+											group by brandNum) 
+							group by productNum)
 				    
 	    </select> 
 
 	    
 	     <select id="getBrandList" parameterType="CartVO" resultType="BrandVO">
-			select brandNum, brandName from brand
-			where brandNum in 
-			(select brandNum from cart where username=#{username} and 
-			<if test="valid =='zero'">
-			(validity='0'or validity='1')
-			</if>
-			<if test="valid =='one'">
-			 validity='1'
-			</if>
-			<if test="valid =='two'">
-			validity='2'
-			</if>
-			
-			group by brandNum)
+			select brandNum, brandName 
+				from brand
+					where brandNum in 
+							(select brandNum from cart where username=#{username} and 
+								<if test="valid =='zero'">
+								(validity='0'or validity='1')
+								</if>
+								<if test="valid =='one'">
+								 validity='1'
+								</if>
+								<if test="valid =='two'">
+								validity='2'
+								</if>
+						
+						    group by brandNum)
 	    </select> 
     
     

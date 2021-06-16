@@ -1,5 +1,6 @@
 package com.tmh.t1.orders;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import com.tmh.t1.brand.BrandVO;
 import com.tmh.t1.cart.CartVO;
 
 
@@ -16,14 +18,34 @@ public class OrdersService {
 	
 	 @Autowired
 	 private OrdersMapper ordersMapper;
+	 
+	public  List<BrandVO> getSelectBrandList(OrdersVO ordesVO)throws Exception{
+		return ordersMapper.getSelectBrandList(ordesVO);
+	}
+
 	
 	public OrdersVO getSelect(OrdersVO ordersVO)throws Exception{ 
 		
 		return ordersMapper.getSelect(ordersVO);
 	}
 	
-	public List<OrdersVO> getList(OrdersVO ordersVO)throws Exception{
-		return ordersMapper.getList(ordersVO);
+    public OrdersVO getPage(OrdersVO ordersVO)throws Exception{ 
+		
+		return ordersMapper.getPage(ordersVO);
+	}
+	
+	public  List<BrandVO> getBrandList(OrdersVO ordesVO)throws Exception{
+		return ordersMapper.getBrandList(ordesVO);
+	}
+	
+	public  List<OrdersVO> getList(OrdersVO ordesVO)throws Exception{
+		return ordersMapper.getList(ordesVO);
+	}
+
+	
+	public List<OrdersVO> getOrdersList(OrdersVO ordersVO)throws Exception{
+
+		return ordersMapper.getOrdersList(ordersVO);
 	}
 	
 	public int setInsert(OrdersVO ordersVO, List<CartVO> carts)throws Exception{

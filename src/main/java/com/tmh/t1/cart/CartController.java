@@ -47,17 +47,21 @@ public class CartController {
 	    
 	    List<ProductVO> productAr = cartService.getProductList(cartVO);
 	    
-	     	
-	   	
 	   	List<CartVO> cartAr = cartService.getCartList(cartVO);
+	   	
+	   	long a =cartAr.size();
+	   	if(a == 0) {
+	   		
+	   	  mv.setViewName("cart/empty");
+	   		
+	   	} else {
 
-	    
-	    
 	    mv.addObject("brandAr", brandAr);
 	    mv.addObject("productAr", productAr);
 	    mv.addObject("cartAr", cartAr);
 	   
 	    mv.setViewName("cart/list");
+	   	}
 	    
 	    return mv;
 		

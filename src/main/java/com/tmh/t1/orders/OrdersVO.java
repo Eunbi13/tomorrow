@@ -4,18 +4,26 @@ import java.sql.Date;
 import java.util.List;
 
 import com.tmh.t1.cart.CartVO;
+import com.tmh.t1.product.ProductVO;
+import com.tmh.t1.shipping.ShippingVO;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
-public class OrdersVO {
+@EqualsAndHashCode(callSuper = false)
+public class OrdersVO extends CartVO{
 	
-	private List<CartVO> cartsList;
+	private List<CartVO> cartList;
+	private List<Long> brandNums;
+	
+	private ShippingVO shippingVO;
+
 
 	private Long orderNum;
 	private Long shipNum;
 	private String username;
-	private List<Long> cartNum;  //나중에 List로 바꾸기..  아마 삭제?
+
 	private String paymentType;
 	private Long itemsPrice;
 	private Long shippingFee;
@@ -30,4 +38,8 @@ public class OrdersVO {
 	
 	private Long status;
 	private Long before;
+	
+	
+	
+	
 }

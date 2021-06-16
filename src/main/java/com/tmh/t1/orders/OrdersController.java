@@ -35,23 +35,60 @@ public class OrdersController {
 	@Autowired
 	private CartService cartService;
 	
-	@GetMapping("page")
+	@GetMapping("select")
 	public ModelAndView getSelect(OrdersVO ordersVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		ordersVO =ordersService.getSelect(ordersVO);
+		List<BrandVO> brandAr = ordersService.getSelectBrandList(ordersVO);
+		
+		mv.addObject("brandAr", brandAr);
+		mv.addObject("ordersVO", ordersVO);
+        return mv;
+	}
+	
+	@GetMapping("page")
+	public ModelAndView getPage(OrdersVO ordersVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		ordersVO =ordersService.getPage(ordersVO);
 		
 		mv.addObject("ordersVO", ordersVO);
         return mv;
 	}
 	
+	
 	@GetMapping("list")
-	public ModelAndView getList(OrdersVO ordersVO)throws Exception{
+	public ModelAndView getOrdersList(OrdersVO ordersVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		System.out.println("입장!!");
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal; 
+		String username = userDetails.getUsername();
+		ordersVO.setUsername(username);
 		
-		List<OrdersVO> ar=ordersService.getList(ordersVO);
+		
+		System.out.println("getBefore:"+ordersVO.getBefore());
+		
+		CartVO cartVO = new CartVO();
+		
+		cartVO.setUsername(username);
+		
+//		ordersVO.setOrderNum(null);
+		
+		List<OrdersVO> ar = ordersService.getList(ordersVO);
+		
+    	List<BrandVO> brandAr = ordersService.getBrandList(ordersVO);
+    	
+		System.out.println("brandAr 완성");
+		
+//		List<CartVO> cartAr = ordersService.getCartList(ordersVO);
+		
+		List<OrdersVO> OrderAr=ordersService.getOrdersList(ordersVO);
+		System.out.println("orderAr 완성");
 		
 		// 해당 orderNum 을 가지고, validity가 2이상인  cartVO 를 리스트로 가져온다.
-		mv.addObject("orderList", ar);
+		mv.addObject("ar", ar);
+		mv.addObject("brandAr", brandAr);
+		mv.addObject("orderAr", OrderAr);
 		return mv;
 
 	}

@@ -41,5 +41,7 @@ public class BrandVO {
 		return this.accept;
 	}
 	
+
+	private String orderNum;
 	
 }
