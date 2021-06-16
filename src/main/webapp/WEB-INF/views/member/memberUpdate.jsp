@@ -44,11 +44,11 @@
 				<div hidden="hidden"><sec:authentication property="principal.gender"/></div>
 				<div class="custom-control custom-radio custom-control-inline">
 					<input type="radio" id="F" name="gender" class="custom-control-input" value="F">
-					<label class="custom-control-label" for="customRadioInline1">여성</label>
+					<label class="custom-control-label" for="F">여성</label>
 				</div>
 				<div class="custom-control custom-radio custom-control-inline">
 					<input type="radio" id="M" name="gender" class="custom-control-input" value="M">
-					<label class="custom-control-label" for="customRadioInline1">남성</label>
+					<label class="custom-control-label" for="M">남성</label>
 				</div>
 			</div>
 		</div>
@@ -79,6 +79,7 @@
 <script type="text/javascript" >
 	let username = '<sec:authentication property="principal.username"/>';
 	$('#un').val(username);
+	
 	let gender = '<sec:authentication property="principal.gender"/>';
 //	let gender = $('#gender').text(); 
 	if(gender == 'F'){
