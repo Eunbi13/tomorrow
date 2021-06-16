@@ -109,7 +109,8 @@ public class ProductController {
 		int opsize = optionsar.size();
 		model.addAttribute("opsize", opsize);
 		String optionK = optionsar.get(1).getOptionKinds().toString();
-		model.addAttribute("optionK", optionK); //option 종류 (색상, 사이즈...)
+		model.addAttribute("optionK", optionK); 
+		
 	}
 
 }

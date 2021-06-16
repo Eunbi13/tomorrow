@@ -31,7 +31,7 @@
     	<select id="getProductList" parameterType="ProductVO" resultMap="ProductVO">
     		SELECT p.*, b.brandName
 			FROM product p INNER JOIN brand b 
-			ON p.brandNum = b.brandNum ;
+			ON p.brandNum = b.brandNum
     	</select>
     	
     	<resultMap type="BrandVO" id="brandVO">
@@ -48,15 +48,7 @@
     		<result column="referenceFile" property="referenceFile"/>
     		<result column="accept" property="accept"/>
     	</resultMap>
-    	
-    	<resultMap type="OptionsVO" id="optionsVO">
-			<id column="optionNum" property="optionNum"/>
-			<result column="optionKinds" property="optionKinds"/>
-			<result column="optionName" property="optionName"/>
-			<result column="optionPrice" property="optionPrice"/>
-			<result column="ref" property="ref"/>
-			<result column="step" property="step"/>
-		</resultMap>
+    
     	
     	<resultMap type="ProductVO" id="ProductVO">
 			<id column="productNum" property="productNum"/>
@@ -68,7 +60,7 @@
 			<result column="discountPrice" property="discountPrice"/>
 			<result column="shippingFee" property="shippingFee"/>
 			<collection property="brandVO" resultMap="brandVO"/>
-			<collection property="optionsVOs" resultMap="optionsVO"/>
+			
 		</resultMap>
 		
 	

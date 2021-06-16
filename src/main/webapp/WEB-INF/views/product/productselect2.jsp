@@ -67,10 +67,12 @@
 
 			<div class="option">
 				<form action="test">
+					<input type="hidden" name="brandNum" value="${vo.brandNum} ">
+					<input type="hidden" name="productNum" value="${vo.productNum} ">
 					<select name="options">
 						<option value="optionKinds">${optionK}</option>
 						<c:forEach items="${optionsar}" var="OPvo" varStatus="status">
-							<option>${OPvo.optionName}, ${vo.discountPrice + OPvo.optionPrice} </option>
+							<option value="${OPvo.optionNum }"> ${OPvo.optionName}, ${vo.discountPrice + OPvo.optionPrice} </option>
 						</c:forEach>
 					</select>
 					<div class="store-select-buttons">
@@ -80,6 +82,7 @@
 						<button type="button" class="store-select-button btn btn-primary"
 							style="background-color: #A63F82;">바로구매</button>
 					</div>
+					
 				</form>
 			</div>
 
