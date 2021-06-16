@@ -12,6 +12,7 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+
 	<form:form id="frm" action="./memberJoin" method="post" modelAttribute="memberVO">
 		<div class="form-group">
 			<form:input class="form-control" placeholder="이메일" path="email" ></form:input>

@@ -41,5 +41,14 @@
 				<result column="roleName" property="roleName"/>
 			</collection>
 		</resultMap>
-		
+		<update id="memberUpdate" parameterType="MemberVO">
+			UPDATE member 
+			SET username = #{username}, 
+				homepage = #{homepage}, 
+				gender = #{gender}, 
+				birthday = DATE_FORMAT(#{birthday}, '%Y-%m-%d'), 
+				intro = #{intro}, 
+				profileImage = #{profileImage} 
+			WHERE email = #{email}
+		</update>
 	</mapper>

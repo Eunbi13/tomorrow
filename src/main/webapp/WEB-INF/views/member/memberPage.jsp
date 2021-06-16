@@ -32,9 +32,9 @@
 		<div class="row">
 			<div class="profile col-3">
 				<div style="border:solid thin; width: 252px;">
-					<img alt="" src="<sec:authentication property="principal.profileImage"/>" style=" height: 150px"><br>
+					<img alt="" src="/upload/member/<sec:authentication property="principal.profileImage"/>" style=" height: 150px"><br>
 					<div id="username"><h3><sec:authentication property="principal.username"/></h3><br></div>
-					<a class="btn btn-link" href="#">설정</a>
+					<a class="btn btn-link" href="./update">설정</a>
 				</div>
 			</div>
 			<div class="col-1"></div>

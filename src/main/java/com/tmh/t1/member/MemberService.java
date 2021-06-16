@@ -19,6 +19,15 @@ public class MemberService implements UserDetailsService{
 	private MemberMapper memberMapper;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	//update
+	public Long memberUpdate(MemberVO memberVO)throws Exception{
+		return memberMapper.memberUpdate(memberVO);
+	}
+	
+	
+	
+	
+	
 //login	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -31,6 +40,15 @@ public class MemberService implements UserDetailsService{
 	}
 	
 //errors	
+	public boolean usernameErrors(MemberVO memberVo, Errors errors)throws Error{
+		boolean check = errors.hasErrors();
+		if(memberMapper.usernameCheck(memberVO)>0) {
+			//userName check 0보다 클경우 중복데이터
+			errors.rejectValue("username", "memberVO.username.has");
+			check=true;
+		}
+		return check;
+	}
 	public boolean memberErrors(MemberVO memberVO, Errors errors)throws Exception{
 		boolean check = errors.hasErrors();
 		

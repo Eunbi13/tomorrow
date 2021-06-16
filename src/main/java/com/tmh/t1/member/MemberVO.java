@@ -1,5 +1,6 @@
 package com.tmh.t1.member;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -31,7 +32,7 @@ public class MemberVO implements UserDetails{
 	@NotEmpty
 	private String passwordCheck;
 	private boolean enabled;
-	
+	private Date birthDay;
 	private String homePage;
 	private String gender;
 	private String intro;

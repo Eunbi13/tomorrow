@@ -24,9 +24,18 @@ public class MemberController {
 
 	//update
 	@GetMapping("update")
-	public String memberUpdate() throws Exception{
-		
+	public String memberUpdate(Model model) throws Exception{
+		model.addAttribute("memberVO",new MemberVO());
 		return "member/memberUpdate";
+	}
+	@PostMapping("update")
+	public String memberUpdate(Authentication auth, Model model, @Valid MemberVO memberVO, Errors errors)throws Exception{
+		if(auth.getName()!=memberVO.getUsername()) {
+			memberService.usernameErrors(memberVO, errors);
+		}
+		System.out.println(memberVO.getBirthDay());
+		
+		return "member/memberPage";
 	}
 	
 //myPage
@@ -48,7 +57,7 @@ public class MemberController {
 	}
 
 	@GetMapping("memberLoginResult")
-	public String memberLoginResult(HttpSession session, Authentication auth)throws Exception{
+	public String memberLoginResult(Authentication auth)throws Exception{
 		
 		System.out.println("email: "+auth.getName());
 		System.out.println("VO: "+auth.getPrincipal());

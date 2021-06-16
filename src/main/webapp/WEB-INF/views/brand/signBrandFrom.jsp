@@ -11,7 +11,7 @@
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-<div class="container">
+<div class="container" style="margin-top: 50px; margin-bottom: 50px;">
 	<h1>입점신청</h1>
 	<ul>
 		<li>작성해주신 정보를 바탕으로 카테고리별 담당 MD가 입점을 검토하여 이메일을 드립니다.</li>

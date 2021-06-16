@@ -14,5 +14,6 @@ public interface MemberMapper {
 	
 	public MemberVO memberLogin(MemberVO memberVO);
 	
+	public Long memberUpdate(MemberVO memberVO)throws Exception;
 	
 }
