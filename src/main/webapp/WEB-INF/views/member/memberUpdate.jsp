@@ -80,6 +80,7 @@
 	let username = '<sec:authentication property="principal.username"/>';
 	$('#un').val(username);
 	let gender = '<sec:authentication property="principal.gender"/>';
+//	let gender = $('#gender').text(); 
 	if(gender == 'F'){
 		$('#F').prop('checked', true);
 	}else if(gender=='M'){
