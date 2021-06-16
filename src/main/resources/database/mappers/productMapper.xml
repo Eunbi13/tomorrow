@@ -49,6 +49,15 @@
     		<result column="accept" property="accept"/>
     	</resultMap>
     	
+    	<resultMap type="OptionsVO" id="optionsVO">
+			<id column="optionNum" property="optionNum"/>
+			<result column="optionKinds" property="optionKinds"/>
+			<result column="optionName" property="optionName"/>
+			<result column="optionPrice" property="optionPrice"/>
+			<result column="ref" property="ref"/>
+			<result column="step" property="step"/>
+		</resultMap>
+    	
     	<resultMap type="ProductVO" id="ProductVO">
 			<id column="productNum" property="productNum"/>
 			<result column="brandNum" property="brandNum"/>
@@ -59,7 +68,10 @@
 			<result column="discountPrice" property="discountPrice"/>
 			<result column="shippingFee" property="shippingFee"/>
 			<collection property="brandVO" resultMap="brandVO"/>
+			<collection property="optionsVOs" resultMap="optionsVO"/>
 		</resultMap>
+		
+	
     	
     	<select id="getBrandList" parameterType="ProductVO" resultType="BrandVO">
     		select brandName from brand

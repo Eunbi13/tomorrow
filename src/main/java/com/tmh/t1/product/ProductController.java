@@ -90,7 +90,10 @@ public class ProductController {
 		model.addAttribute("vo", productVO);
 	}
 
-
+	//select -> cart로 넘어가야 하는 값
+//	brandNum - product
+//	productNum - product
+//	optionNum - options
 	@GetMapping("productselect2")
 	public void getSelect2(ProductVO productVO, Model model)throws Exception{
 		productVO = productService.getSelect(productVO);
@@ -107,30 +110,6 @@ public class ProductController {
 		model.addAttribute("opsize", opsize);
 		String optionK = optionsar.get(1).getOptionKinds().toString();
 		model.addAttribute("optionK", optionK); //option 종류 (색상, 사이즈...)
-		String optionN = optionsar.get(2).getOptionName().toString();
-		model.addAttribute("optionN", optionN); //각 option 항목 (xl, l, m , s, 검정)
-		String optionP = optionsar.get(3).getOptionPrice();
-		model.addAttribute("optionP", optionP); // option 추가금 (ex +1000, 0)
-		String priceP = productVO.getDiscountPrice().toString(); 
-		int op=Integer.parseInt(optionP); //option에 저장된 가격
-		int pp=Integer.parseInt(priceP); //product에 저장된 가격 
-		int price = op+pp; //product 가격 + option 가격
-		System.out.println("op+pp :"+ op+pp);
-		model.addAttribute("price", price); 
-		model.addAttribute("op", op);
-		model.addAttribute("pp", pp);
-		
-		for(int i=0; i<opsize; i++) { //list?
-			OptionsVO optionsVO = optionsar.get(i);
-			System.out.println("optionK :"+optionsVO.getOptionKinds());
-			System.out.println("optionN :"+optionsVO.getOptionName());
-			System.out.println("optionP :"+optionsVO.getOptionPrice());
-			System.out.println("priceP :"+priceP);
-			System.out.println("price :"+price);
-			System.out.println("op :"+op);
-			System.out.println("pp :"+pp);
-			System.out.println("**************");
-			};
 	}
 
 }

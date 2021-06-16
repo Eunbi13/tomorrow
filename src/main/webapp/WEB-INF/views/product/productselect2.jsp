@@ -70,7 +70,7 @@
 					<select name="options">
 						<option value="optionKinds">${optionK}</option>
 						<c:forEach items="${optionsar}" var="OPvo" varStatus="status">
-							<option>${OPvo.optionName}, ${op + pp }, ${op }, ${pp }</option>
+							<option>${OPvo.optionName}, ${vo.discountPrice + OPvo.optionPrice} </option>
 						</c:forEach>
 					</select>
 					<div class="store-select-buttons">
