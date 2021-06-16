@@ -76,9 +76,9 @@
 					<div class="store-select-buttons">
 						<button type="submit"
 							class="store-select-button btn btn-outline-primary"
-							style="color: #ad4fa1;">장바구니</button>
+							style="color: #A63F82;">장바구니</button>
 						<button type="button" class="store-select-button btn btn-primary"
-							style="background-color: #ad4fa1;">바로구매</button>
+							style="background-color: #A63F82;">바로구매</button>
 					</div>
 				</form>
 			</div>

@@ -120,7 +120,6 @@ public class ProductController {
 		model.addAttribute("op", op);
 		model.addAttribute("pp", pp);
 		
-//		List<Long> 
 		for(int i=0; i<opsize; i++) { //list?
 			OptionsVO optionsVO = optionsar.get(i);
 			System.out.println("optionK :"+optionsVO.getOptionKinds());

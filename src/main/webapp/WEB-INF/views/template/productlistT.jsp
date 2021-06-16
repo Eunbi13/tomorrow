@@ -31,7 +31,7 @@
 						<c:when test="${vo.discountPrice eq vo.productPrice}"></c:when>
 						<c:otherwise>
 							<div class="item-price discountpercent"
-								style="color: #ad4fa1; margin-right: 10px;">${(vo.productPrice - vo.discountPrice)/100}%</div>
+								style="color: #A63F82; margin-right: 10px;">${(vo.productPrice - vo.discountPrice)/100}%</div>
 						</c:otherwise>
 					</c:choose>
 
