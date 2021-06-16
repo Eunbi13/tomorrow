@@ -30,13 +30,17 @@ public class MemberController {
 	}
 	@PostMapping("update")
 	public String memberUpdate(Authentication auth, Model model, @Valid MemberVO memberVO, Errors errors)throws Exception{
-//		if(auth.getName()!=memberVO.getUsername()) {
-//			memberService.usernameErrors(memberVO, errors);
-//		}
-		memberService.memberUpdate(memberVO);
-		System.out.println(memberVO.getBirthDay());
 		
-		return "member/memberPage";
+		if(!auth.getName().equals(memberVO.getUsername())) {
+			if(memberService.usernameErrors(memberVO, errors)) {
+				return "member/memberUpdate";
+			}
+		}
+		
+		memberService.memberUpdate(memberVO);
+		System.out.println(memberVO.toString());
+		
+		return "redirect:/member/memberPage";
 	}
 	
 //myPage

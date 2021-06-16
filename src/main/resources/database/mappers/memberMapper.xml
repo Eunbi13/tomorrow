@@ -34,6 +34,7 @@
 			<result column="enabled" property="enabled"/>
 			<result column="homePage" property="homePage"/>
 			<result column="gender" property="gender"/>
+			<result column="birthDay" property="birthDay"/>
 			<result column="intro" property="intro"/>
 			<result column="profileImage" property="profileImage"/>
 			<collection property="roles" javaType="java.util.List" ofType="RoleVO">

@@ -20,15 +20,15 @@
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label">이메일<span>*</span></label>
 			<div class="col-sm-10">
-				<input class="form-control" readonly="readonly" placeholder="이메일" value="<sec:authentication property="principal.email"/>"></input> 
+				<input class="form-control" readonly="readonly" placeholder="이메일" name="email" value="<sec:authentication property="principal.email"/>"></input> 
 				<small>이메일을 변경하시려면 운영자에게 이메일을 보내주세요</small>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label">별명<span>*</span></label>
 			<div class="col-sm-10">
-				<%-- <form:input type="text" class="form-control" placeholder="별명" path="username" ></form:input>
-				<form:errors path="username" cssStyle="font-size: 0.8em"></form:errors> --%>
+				<form:input id="un" type="text" class="form-control" placeholder="별명" path="username" value=""></form:input>
+				<form:errors path="username" cssStyle="font-size: 0.8em"></form:errors>
 			</div>
 		</div>
 		<div class="form-group row">
@@ -43,11 +43,11 @@
 			<div class="col-sm-10">
 				<div hidden="hidden"><sec:authentication property="principal.gender"/></div>
 				<div class="custom-control custom-radio custom-control-inline">
-					<input type="radio" id="customRadioInline1" name="gender" class="custom-control-input" value="F">
+					<input type="radio" id="F" name="gender" class="custom-control-input" value="F">
 					<label class="custom-control-label" for="customRadioInline1">여성</label>
 				</div>
 				<div class="custom-control custom-radio custom-control-inline">
-					<input type="radio" id="customRadioInline1" name="gender" class="custom-control-input" value="M">
+					<input type="radio" id="M" name="gender" class="custom-control-input" value="M">
 					<label class="custom-control-label" for="customRadioInline1">남성</label>
 				</div>
 			</div>
@@ -76,5 +76,16 @@
 	</form:form>
 </div>
 <c:import url="../template/footer.jsp"></c:import>
+<script type="text/javascript" >
+	let username = '<sec:authentication property="principal.username"/>';
+	$('#un').val(username);
+	let gender = '<sec:authentication property="principal.gender"/>';
+	if(gender == 'F'){
+		$('#F').prop('checked', true);
+	}else if(gender=='M'){
+		$('#M').prop('checked', true);
+	}
+</script>
+<script type="text/javascript" src="/js/memberUpdate.js"></script>
 </body>
 </html>
