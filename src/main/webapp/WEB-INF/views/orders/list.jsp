@@ -9,7 +9,19 @@
 <title>Insert title here</title>
 <link href='https://css.gg/close-o.css' rel='stylesheet'>
 <style>
+.btn-close{
+    background-image: url(/images/oPic/icons-close.png); /* 16px x 16px */
+    background-color: transparent; /* make the button transparent */
+    background-repeat: no-repeat;  /* make the background image appear only once */
+    background-position: 99%;  /* equivalent to 'top left' */
+    border: none;           /* assuming we don't want any borders */
+    cursor: pointer;        /* make the cursor like hovering over an <a> element */
+    height: 16px;           /* make this the size of your image */
+    padding-left: 16px;     /* make text start to the right of the image */
+    vertical-align: middle; /* align the text vertically centered */
 
+
+}
 .detailSelect{
  color:gray; 
 
@@ -28,12 +40,17 @@
 clear:both;
 }
 .sm-btn{
+
+    text-align:left;
+    width: 100px;
+    height: 30px;
+    
 	background-color: #A63F82;
 	color:#FFF;
 	border-color: #A63F82;
 	border-radius:50px;
 	font-size: 15px;
-	padding:1px 0px 1px 10px;
+	padding:1px 0px 1px 13px;
 	
 }
 
@@ -248,12 +265,12 @@ webkit-box-flex: 1; */
 							    기간
 							  </button>
 							  <div class="dropdown-menu"  style="font-size:16px;">
-							    <a class="dropdown-item" href="list?before=1">1개월 전</a>
-							    <a class="dropdown-item" href="list?before=3">3개월 전</a>
-							    <a class="dropdown-item" href="list?before=6">6개월 전</a>
-							    <a class="dropdown-item" href="list?before=12">1년 전</a>
-							    <a class="dropdown-item" href="list?before=24">2년 전</a>
-							    <a class="dropdown-item" href="list?before=36">3년 전</a>
+							    <div class="dropdown-item before" title="1">1개월 전</div>
+							    <div class="dropdown-item before" title="3">3개월 전</div>
+							    <div class="dropdown-item before" title="6">6개월 전</div>
+							    <div class="dropdown-item before" title="12">1년 전</div>
+							    <div class="dropdown-item before" title="24">2년 전</div>
+							    <div class="dropdown-item before" title="36">3년 전</div>
 							  </div>
 							 </div>
 							  
@@ -262,53 +279,37 @@ webkit-box-flex: 1; */
 							    주문상태 
 							  </button>
 							  <div class="dropdown-menu" style="font-size:16px;"> 
-							    <a class="dropdown-item" href="list">입금대기</a>
-							    <a class="dropdown-item" href="list?status=2">결제완료</a>
-							    <a class="dropdown-item" href="list?status=3">배송준비</a>
-							    <a class="dropdown-item" href="list?status=4">배송중</a>
-							    <a class="dropdown-item" href="list?status=5">배송완료</a>
-							    <a class="dropdown-item" href="list?status=6">구매확정</a>
-							    <a class="dropdown-item" href="list?status=7">리뷰작성</a>
-							    <a class="dropdown-item" href="list?status=8">취소</a>
-							    <a class="dropdown-item" href="list?status=9">교환</a>
-							    <a class="dropdown-item" href="list?status=10">환불</a>
+							    <div class="dropdown-item status" title="list">입금대기</div>
+							    <div class="dropdown-item status" title="2">결제완료</div>
+							    <div class="dropdown-item status" title="3">배송준비</div>
+							    <div class="dropdown-item status" title="4">배송중</div>
+							    <div class="dropdown-item status" title="5">배송완료</div>
+							    <div class="dropdown-item status" title="6">구매확정</div>
+							    <div class="dropdown-item status" title="7">리뷰작성</div>
+							    <div class="dropdown-item status" title="8">취소</div>
+							    <div class="dropdown-item status" title="9">교환</div>
+							    <div class="dropdown-item status" title="10">환불</div>
 							  </div>
 							 </div>
 						  </li>
 						  <li class="filter-bar_tag-list_item filter-bar_control-list_item-icon" style="margin: 0px 10px 30px 0px; ">
-						  <button class="btn sm-btn">구매확정
-						   
-						    <svg
-							  width="24" height="24" viewBox="0 0 24 24" fill="none"
-							  xmlns="http://www.w3.org/2000/svg">
-							  <path
-							    d="M16.3394 9.32245C16.7434 8.94589 16.7657 8.31312 16.3891 7.90911C16.0126 7.50509 15.3798 7.48283 14.9758 7.85938L12.0497 10.5866L9.32245 7.66048C8.94589 7.25647 8.31312 7.23421 7.90911 7.61076C7.50509 7.98731 7.48283 8.62008 7.85938 9.0241L10.5866 11.9502L7.66048 14.6775C7.25647 15.054 7.23421 15.6868 7.61076 16.0908C7.98731 16.4948 8.62008 16.5171 9.0241 16.1405L11.9502 13.4133L14.6775 16.3394C15.054 16.7434 15.6868 16.7657 16.0908 16.3891C16.4948 16.0126 16.5171 15.3798 16.1405 14.9758L13.4133 12.0497L16.3394 9.32245Z"
-							    fill="currentColor" />
-							  <path
-							    fill-rule="evenodd"
-							    clip-rule="evenodd"
-							    d="M1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12ZM12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z"
-							    fill="currentColor" />
-							</svg>
-						  </button>
-						  <button class="btn sm-btn">1년 전
-						   
-						    <svg
-							  width="24" height="24" viewBox="0 0 24 24" fill="none"
-							  xmlns="http://www.w3.org/2000/svg">
-							  <path
-							    d="M16.3394 9.32245C16.7434 8.94589 16.7657 8.31312 16.3891 7.90911C16.0126 7.50509 15.3798 7.48283 14.9758 7.85938L12.0497 10.5866L9.32245 7.66048C8.94589 7.25647 8.31312 7.23421 7.90911 7.61076C7.50509 7.98731 7.48283 8.62008 7.85938 9.0241L10.5866 11.9502L7.66048 14.6775C7.25647 15.054 7.23421 15.6868 7.61076 16.0908C7.98731 16.4948 8.62008 16.5171 9.0241 16.1405L11.9502 13.4133L14.6775 16.3394C15.054 16.7434 15.6868 16.7657 16.0908 16.3891C16.4948 16.0126 16.5171 15.3798 16.1405 14.9758L13.4133 12.0497L16.3394 9.32245Z"
-							    fill="currentColor" />
-							  <path
-							    fill-rule="evenodd"
-							    clip-rule="evenodd"
-							    d="M1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12ZM12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z"
-							    fill="currentColor" />
-							</svg>
-						  </button>
+						     <form id="listFrm" action="../orders/list" method="get">
+							    <div id="before_search" class="search" style="float:left; margin-right:10px;">
+								  
+								    
+							
+								  
+								 </div>
+								  <div id="status_search"  class="search" style="float:left;">
+								  
+								    
+							
+								  
+								 </div>
+							</form>
 						  </li>
 						
-							  
+					   <div id="AjaxList">
  						   <c:forEach items="${orderAr}" var="ordersVO">
 	 						   <li style="clear:both;">
 		 							<div style="float:left; margin: 40px 0px 0px 20px; font-weight: bold; font-size:18px;">
@@ -391,6 +392,8 @@ webkit-box-flex: 1; */
  				                 </c:forEach>      
 		 						            
 	 				        </c:forEach>
+	 				        
+	 				   </div>
 	 			
  				   
  						
@@ -404,7 +407,217 @@ webkit-box-flex: 1; */
 
 </div>
 
+
+<script type="text/javascript">
+
+let before_num=0;
+$(".before").click(function(){
+
+	 let previous=  before_num;
+		console.log("previous:"+previous);
+	    
+		let content =$(this).text();
+		console.log($(this).attr("title"));
+		 before_num =$(this).attr("title");
+		console.log("status_num:"+ before_num);
+		
+		console.log('attr.name:'+$(".sm-btn").attr("name"));
+		
+		
+		if($(".sm-btn").attr("title")=="before"){
+			console.log("   before가 이ㅁ 존재 ");
+			console.log($(this).val());
+			$("#beforeBtn").each(function(){
+				if($(this).val()==previous){
+					console.log("삭제될 것의 밸류는?"+$(this).val());
+					$(this).remove();
+					$("#before").remove();
+				}
+				
+			});
+		
+			let text='<button type="button" id="beforeBtn" class="btn sm-btn btn-close" value="'+before_num +'" title="before" > '+content+'</button>   '
+			text +=  '<input type="hidden" id="before" name="before" value="'+ before_num +'">';
+			console.log(content);
+			$("#before_search").append(function(n){
+			      return text;
+			    });
+		} else{
+			
+
+			let text='<button type="button" id="beforeBtn" class="btn sm-btn btn-close" value="'+before_num +'" title="before" > '+content+'</button>   '
+			text +=  '<input type="hidden" id="before" name="before" value="'+ before_num +'">';
+			console.log(content);
+			$("#before_search").append(function(n){
+			      return text;
+			 });
+		}
+		
+		
+		let be =before_num;
+		 let st =$("#status").val();
+		 alert("be:"+be+"/st:"+st); 
+		 
+		$.ajax({
+			type: "get", 
+			url: "../orders/ajaxList", 
+		
+			data:{
+			   before:be,
+			   status:st
+				
+			}, 
+			success:function(data){
+				console.log(data);
+				$("#AjaxList").empty();
+				
+				$("#AjaxList").html(data);
+			}
+			
+		});
+
+
+		
+});
+
+
+
+
+let status_num=0;
+
+$(".status").click(function(){
+    let previous= status_num;
+	console.log("previous:"+previous);
+    
+	let content =$(this).text();
+	console.log($(this).attr("title"));
+	status_num =$(this).attr("title");
+	console.log("status_num:"+status_num);
+	
+	console.log('attr.name:'+$(".sm-btn").attr("name"));
+	
+	$(".sm-btn").each(function(){
+		if($(this).attr("title")=="status"){
+			console.log("  status가 이ㅁ 존재 ");
+			console.log($(this).val());
+			$("#statusBtn").each(function(){
+				if($(this).val()==previous){
+					console.log("삭제될 것의 타이는?"+$(this).val());
+					$(this).remove();
+					$("#status").remove();
+					
+				}
+				
+			});
+			
+		}
+		
+	});
+		
+	       
+	
+			let text='<button type="button" id="statusBtn" class="btn sm-btn btn-close" value="'+status_num +'" title="status" > '+content+'</button>   '
+			text +=  '<input type="hidden" id="status" name="status" value="'+status_num +'">';
+			console.log(content);
+			$("#status_search").append(function(n){
+				
+				
+				return text;
+			 });
+		
+		
+			 let be =$("#before").val();
+		     let st =status_num;
+			 alert("be:"+be+"/st:"+st); 
+			
+			 
+			$.ajax({
+				type: "get", 
+				url: "../orders/ajaxList", 
+			
+				data:{
+				   before:be,
+				   status:st
+					
+				}, 
+				success:function(data){
+					console.log(data);
+					$("#AjaxList").empty();
+					
+					$("#AjaxList").html(data);
+				}
+				
+			});
+		
+	
+		
+});
+
+$("#status_search").click(function(){
+	$(this).empty();
+	
+	 
+	 let be =$("#before").val();
+	 let st =$("#status").val();
+	 alert("be:"+be+"/st:"+st); 
+
+	
+	 
+	$.ajax({
+		type: "get", 
+		url: "../orders/ajaxList", 
+	
+		data:{
+		   before:be,
+		   status:st
+			
+		}, 
+		success:function(data){
+			console.log(data);
+			$("#AjaxList").empty();
+			
+			$("#AjaxList").html(data);
+		}
+		
+	});
+
+});
+
+$("#before_search").click(function(){
+	$(this).empty();
+	
+	let be =$("#before").val();
+	 let st =$("#status").val();
+	 alert("be:"+be+"/st:"+st); 
+
+	
+	 
+	$.ajax({
+		type: "get", 
+		url: "../orders/ajaxList", 
+	
+		data:{
+		   before:be,
+		   status:st
+			
+		}, 
+		success:function(data){
+			console.log(data);
+			$("#AjaxList").empty();
+			
+			$("#AjaxList").html(data);
+		}
+		
+	});
+});
+
+
+
+
+</script>
+
 <c:import url="../template/footer.jsp"></c:import>
+
 
 </body>
 </html>

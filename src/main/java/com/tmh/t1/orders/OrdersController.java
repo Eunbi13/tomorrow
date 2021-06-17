@@ -48,6 +48,7 @@ public class OrdersController {
 	
 	@GetMapping("page")
 	public ModelAndView getPage(OrdersVO ordersVO)throws Exception{
+		System.out.println("page입장!!");
 		ModelAndView mv = new ModelAndView();
 		ordersVO =ordersService.getPage(ordersVO);
 		
@@ -92,7 +93,41 @@ public class OrdersController {
 		return mv;
 
 	}
-//	
+	
+	@GetMapping("ajaxList")
+	public ModelAndView getAjaxList(OrdersVO ordersVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("입장!!");
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal; 
+		String username = userDetails.getUsername();
+		ordersVO.setUsername(username);
+		
+		
+		System.out.println("getBefore:"+ordersVO.getBefore());
+		System.out.println("getStatus:"+ordersVO.getStatus());
+		CartVO cartVO = new CartVO();
+		
+		cartVO.setUsername(username);
+
+		
+		List<OrdersVO> ar = ordersService.getList(ordersVO);
+		
+    	List<BrandVO> brandAr = ordersService.getBrandList(ordersVO);
+    	
+		System.out.println("brandAr 완성");
+
+		
+		List<OrdersVO> OrderAr=ordersService.getOrdersList(ordersVO);
+		System.out.println("orderAr 완성");
+		
+		// 해당 orderNum 을 가지고, validity가 2이상인  cartVO 를 리스트로 가져온다.
+		mv.addObject("ar", ar);
+		mv.addObject("brandAr", brandAr);
+		mv.addObject("orderAr", OrderAr);
+		return mv;
+	}
+
 //	@GetMapping("page")
 //	public ModelAndView getPage(OrderVO orderVO)throws Exception{
 //		
