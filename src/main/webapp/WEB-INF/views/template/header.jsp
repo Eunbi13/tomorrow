@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
+<link rel="stylesheet" type="text/css" href="/css/common.css">
+
 <div class="jumbotron text-center" style="margin-bottom:0">
   <h1>tmhouse index test</h1>
   <p>tmhouse index test tmhouse index test</p> 

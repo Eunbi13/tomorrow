@@ -1,7 +1,9 @@
 package com.tmh.t1.member;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,16 +21,22 @@ public class MemberService implements UserDetailsService{
 	private MemberMapper memberMapper;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	//update
+	
+	//eb_회원탈퇴
+	public Long memberDelete(MemberVO memberVO)throws Exception{
+		//로그인 인증권한 불가
+		memberVO.setEnabled(false);
+		
+		return memberMapper.memberDelete(memberVO);
+	}
+	
+	
+	//eb_회원정보 수정(설정)
 	public Long memberUpdate(MemberVO memberVO)throws Exception{
 		return memberMapper.memberUpdate(memberVO);
 	}
 	
-	
-	
-	
-	
-//login	
+	//eb_로그인
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		MemberVO memberVO = new MemberVO();
@@ -39,7 +47,7 @@ public class MemberService implements UserDetailsService{
 		return memberVO;
 	}
 	
-//errors	
+	//eb_errors username중복검사
 	public boolean usernameErrors(MemberVO memberVO, Errors errors)throws Exception{
 		boolean check = errors.hasErrors();
 		if(memberMapper.usernameCheck(memberVO)>0){
@@ -49,6 +57,7 @@ public class MemberService implements UserDetailsService{
 		}
 		return check;
 	}
+	//eb_errors password&eamil 검사
 	public boolean memberErrors(MemberVO memberVO, Errors errors)throws Exception{
 		boolean check = errors.hasErrors();
 		
@@ -64,27 +73,21 @@ public class MemberService implements UserDetailsService{
 			check=true;
 		}
 		
-		if(memberMapper.usernameCheck(memberVO)>0) {
-			//userName check 0보다 클경우 중복데이터
-			errors.rejectValue("username", "memberVO.username.has");
-			check=true;
-		}
-		
 		return check;
 	}
 	
-//join
+	//eb_회원가입
 	@Transactional(rollbackFor = Exception.class)
 	public Long memberJoin(MemberVO memberVO)throws Exception{
-	//password encryption
+		//password 암호화
 		memberVO.setPassword(passwordEncoder.encode(memberVO.getPassword()));
-	//insert data
+		//처음 생성시 프로필이미지 적용 
 		memberVO.setProfileImage("/images/none.jpg");
 		Long result = memberMapper.memberJoin(memberVO);
 		if(result<1) {
 			throw new Exception();
 		}
-	//insert auth
+		//role 인증
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("username", memberVO.getUsername());
 		map.put("roleName", "ROLE_U");

@@ -23,33 +23,26 @@
 	 WHERE C.category_detail_lev=3
 	 </select>
 	 
-	<!--은비 brandInsert에서 사용 -->
+	<!--eb brandInsert에서 사용, 대분류 카테고리 조회 -->
 	<select id="getBigCategory" resultType="CategoryVO">
 			SELECT categoryID, category_detail_NM FROM category 
 			WHERE category_detail_parent=0 AND category_parent=0
 	</select>
 
-	<!-- 은비 productInsert에서 사용 -->
-	<!-- brandHome에서도 사용 -->
+	<!--eb productInsert & brandHome 에서 사용 -->
+	<!-- brand가 가입시 선택한 대분류만 조회 -->
 	<select id="getCategoryOne" parameterType="java.util.Map" resultType="CategoryVO">
 		SELECT * FROM category WHERE categoryID IN 
 			(SELECT categoryID FROM brand_category WHERE brandNum = 
 				(SELECT brandNum FROM brand WHERE username =#{username} )or brandNum=#{brandNum} )
 	</select>
-	
+	<!--eb categoryID를 기반으로 다음단계(대->중->소) 카테고리 조회 -->
 	<select id="getNextCategory" parameterType="CategoryVO" resultType="CategoryVO">
 		SELECT * FROM category C, (SELECT * FROM category WHERE categoryID=#{categoryID})C2
 		WHERE C.category_detail_parent=C2.category_detail_LEV 
 			AND C.groupID=C2.groupID
 			AND C.category_LEV=C2.category_LEV+1
 	</select>
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	<select id="getCategoryID" parameterType="java.lang.Long" resultType="CategoryVO">
@@ -60,6 +53,7 @@
 			  WHERE productNum IN (SELECT productNum FROM product WHERE brandNum=#{brandNum})) PC 
 		WHERE C.categoryID=PC.categoryID
 	</select>
+	<!-- eb_ -->
 	<select id="getBrandCategory" parameterType="java.util.List" resultType="CategoryVO">
 		SELECT distinct C.* FROM category C, (SELECT * FROM category where categoryID IN 
 		<foreach collection="categoryIDs" item="categoryID" index="idx" separator="," open="(" close=")">

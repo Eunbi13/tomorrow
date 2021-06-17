@@ -31,12 +31,13 @@ public class MemberVO implements UserDetails{
 	private String password;
 	@NotEmpty
 	private String passwordCheck;
-	private boolean enabled;
-	private Date birthDay;
 	private String homePage;
 	private String gender;
+	private Date birthDay;
 	private String intro;
 	private String profileImage;
+	private boolean enabled;
+	private Date deleteDate;
 	
 	private List<RoleVO> roles;
 	

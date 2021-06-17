@@ -1,6 +1,8 @@
 package com.tmh.t1.member;
 
+import java.util.Calendar;
 import java.util.Enumeration;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -21,8 +23,19 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
-
-	//update
+	
+	//eb_회원 탈퇴
+	@GetMapping("delete")
+	public String memberDelete()throws Error{
+		return "member/memberDelete";
+	}
+	@PostMapping("delete")
+	public String memberPage(MemberVO memberVO) throws Exception{
+		Long result=memberService.memberDelete(memberVO);
+		System.out.println("성공: "+result);
+		return "redirect:/";
+	}
+	//eb_회원정보 수정(설정)
 	@GetMapping("update")
 	public String memberUpdate(Model model) throws Exception{
 		model.addAttribute("memberVO",new MemberVO());
@@ -30,7 +43,7 @@ public class MemberController {
 	}
 	@PostMapping("update")
 	public String memberUpdate(Authentication auth, Model model, @Valid MemberVO memberVO, Errors errors)throws Exception{
-		
+		//별명(username)이 변경되었을 경우
 		if(!auth.getName().equals(memberVO.getUsername())) {
 			if(memberService.usernameErrors(memberVO, errors)) {
 				return "member/memberUpdate";
@@ -38,19 +51,17 @@ public class MemberController {
 		}
 		
 		memberService.memberUpdate(memberVO);
-		System.out.println(memberVO.toString());
 		
 		return "redirect:/member/memberPage";
 	}
 	
-//myPage
+	//eb_마이페이지
 	@GetMapping("myPage")
 	public String memberPage() throws Exception{
 		return "member/memberPage";
 	}
 	
-	
-//login	
+	//eb_로그인
 	@GetMapping("login")
 	public String memberLogin() throws Exception{
 		return "member/memberLogin";
@@ -63,16 +74,11 @@ public class MemberController {
 
 	@GetMapping("memberLoginResult")
 	public String memberLoginResult(Authentication auth)throws Exception{
-		
-		System.out.println("email: "+auth.getName());
-		System.out.println("VO: "+auth.getPrincipal());
-		System.out.println("auth: "+auth.getAuthorities());
-
-		System.out.println("login성공");
+		//eb_로그인 성공시 홈으로
 		return "redirect:/";
 	}	
 	
-//join	
+	//eb_회원가입
 	@GetMapping("memberJoin")
 	public String memberJoin(Model model) throws Exception{
 		model.addAttribute("memberVO",new MemberVO());
@@ -81,11 +87,14 @@ public class MemberController {
 
 	@PostMapping("memberJoin")
 	public String memberJoin(Model model, @Valid MemberVO memberVO, Errors errors) throws Exception{
-
+		//valid 이메일, 패스워드 에러
 		if(memberService.memberErrors(memberVO, errors)) {
 			return "member/memberJoin";
 		}
-
+		//valid별명(username) 에러
+		if(memberService.usernameErrors(memberVO, errors)) {
+			return "member/memberUpdate";
+		}
 		Long result = memberService.memberJoin(memberVO);
 		System.out.println("회원가입 성공: "+result);
 
