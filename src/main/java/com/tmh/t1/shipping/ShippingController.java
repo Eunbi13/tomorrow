@@ -27,16 +27,30 @@ public class ShippingController {
 	private ShippingService shippingService;
 	
 	//셀렉트
-	    @ResponseBody
-		@GetMapping("shippingSelect")
-		public ModelAndView getSelect(ShippingVO shippingVO)throws Exception{
-			ModelAndView mv = new ModelAndView();
-		    shippingVO = shippingService.getSelect(shippingVO);
-		    mv.addObject("shippingVO", shippingVO);
-		
-			return mv;
-		}
 	
+	@ResponseBody
+	@GetMapping("minNum")
+	public Long getMinNum(ShippingVO shippingVO)throws Exception{
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal; 
+		String username = userDetails.getUsername();
+		shippingVO.setUsername(username);
+		return shippingService.getMinNum(shippingVO);
+	}
+
+    @ResponseBody
+	@GetMapping("shippingSelect")
+	public ModelAndView getSelect(ShippingVO shippingVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+	    shippingVO = shippingService.getSelect(shippingVO);
+	    System.out.println("뭘까 shippingVO.getShipNum()"+shippingVO.getShipNum());
+	    
+	    mv.addObject("shippingVO", shippingVO);
+	
+		return mv;
+	}
+
 	//리스트
     @ResponseBody
 	@GetMapping("shippingList")
@@ -73,6 +87,7 @@ public class ShippingController {
 			System.out.println(shippingVO.getShipName());
 		
 			int result = shippingService.setInsert(shippingVO);
+			
 			System.out.println("입력성공");
 			return result;
 		}

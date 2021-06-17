@@ -1355,5 +1355,183 @@ $.ajax({
 
 
 }); //on event
+
+
+//-----------
+
+// shipping Insert!
+	let shipTitle= $("#shipTitle").val();
+	let shipName= $("#shipName").val();
+	let shipPhone= $("#shipPhone").val();
+	let shipAddress= $("#sample7_address").val();
+	let shipDetailAddress= $("#sample7_detailAddress").val();
+	let postcode= $("#sample7_postcode").val();
+	
+	let username= $("#ordersUsername").attr("title");
+
+	//checkbox 체크여부 받아오기
+	let isDefault= $("#isDefault").prop("checked");
+     console.log(isDefault);
+     console.log("username:"+username);
+   
+   
+   $.ajax({
+   	type: "post",
+   	url: "../shipping/shippingInsert",
+   	data:{
+   		shipTitle: shipTitle,
+        shipName: shipName,
+        shipPhone: shipPhone, 
+        shipAddress: shipAddress,
+        shipDetailAddress:shipDetailAddress,
+        postcode: postcode,
+        isDefault: isDefault,
+        username:username
+   	},
+   	success:function(data){
+   		
+			console.log("시도!!");
+			
+			data= $.trim(data);
+			console.log(data);
+			
+			if(data=='1'){
+				console.log("배송지 입력 성공했습니다.");
+				
+				// shipping list 갱신하기 
+			    username= $("#ordersUsername").attr("title");
+			     
+				 $.get("../shipping/shippingList?username="+username,function(data){
+						console.log(data);
+						$("#shippingList2").html(data.trim());
+					});
+		    	
+			}else{
+				alert("등록 실패했습니다.");
+			}
+   		
+      	}
+   	
+    })
+    
+    //-------  완성된  결제순서
+    
+    function iamport(){
+	//가맹점 식별코드
+	IMP.init('imp63068221');
+	IMP.request_pay({
+	    pg : 'html5_inicis',
+	    pay_method : 'card',
+	    merchant_uid : 'merchant_' + new Date().getTime(),
+	    name : '내일의집', //결제창에서 보여질 이름
+	    amount : 100, //실제 결제되는 가격
+	    buyer_email : email,
+	    buyer_name : name,
+	    buyer_tel : phone,
+	    buyer_addr : '서울 강남구 도곡동',
+	    buyer_postcode : '12345'
+	}, function(rsp) {
+		console.log(rsp);
+	    if ( rsp.success ) {
+	    	var msg = '결제가 완료되었습니다.';
+	        msg += '고유ID : ' + rsp.imp_uid;
+	        msg += '상점 거래ID : ' + rsp.merchant_uid;
+	        msg += '결제 금액 : ' + rsp.paid_amount;
+	        msg += '카드 승인번호 : ' + rsp.apply_num;
+	        //결제 완료!
+	        //이제 결제한 cartVO에  orderNum을 넣고  validity를 '결제완료'를 뜻하는 '2' 로 바꾼다. 성공!!!
+	         //--------ajax DB Update 
+					let orderNum = $("#orderNum").val();
+					console.log("orderNum:"+orderNum);
+					$.ajax({
+						type: "post",
+						url:"../cart/orderUpdate",
+						data:{
+							orderNum:orderNum
+						},
+						success:function(data){
+							
+							data = data.trim();
+							console.log("../cart/orderUpdate 후 data"+data);
+							if(data>0){
+								alert('주문 성공');
+								
+    
+								
+								//orderVO update: shipNum, paymentType, shippingMemo,name,email, phone 
+						        //넘어온 cartVO의 orderNum에도 이 order넘버를 넣어준다!
+						        
+							                orderNum = $("#orderNum").val();
+										  
+											let paymentType = rsp.card_name;
+											alert("입력될shipNum"+shipNum);
+											//shippingMemo는 선택된 selected된 값을 가져오고 그것이 5일 경우에는, 또 따로 받아온다.
+											
+											let shippingMemo=$("#shippingMemo option:selected").val();
+											console.log("shippingMemo value :"+shippingMemo);
+											if(shippingMemo==5){
+												console.log("입장. 쉽핑 수정을 위한,,")
+												shippingMemo= $("#directInputBox").val();	
+											}
+											console.log("shippingMemo:"+shippingMemo);
+											console.log("paymentType:"+paymentType);
+											console.log("shipNum:"+shipNum);
+											console.log("orderNum:"+orderNum);
+											
+											$.ajax({
+												type: "post",
+										        async: false,
+												url:"../orders/ajaxUpdate",
+												data:{
+													 shipNum:shipNum, 
+													 paymentType:paymentType, 
+													 shippingMemo:shippingMemo,
+													 orderNum:orderNum
+												},
+												success:function(data){
+													
+													data= $.trim(data);
+													console.log("trim 이후 data"+data);
+													if(data>0){
+													alert('업데이트 성공');
+													
+													
+													    $("#updateFrm").submit();
+													}else{
+														
+													alert('업데이트 실패');
+													}
+													
+												}
+											})
+											
+										
+							}else {
+								alert('주문 실패');
+							}
+						}
+					})
+	
+	     
+	        //그 이후로는 판매자가 validity를 바꿀수있다.배송완료, 취소등 상태에 따라  validity를 바꿔줘야한다.
+	        //validity가 '2'로 바꾸는 순간, cartVO의 brandNum 대로,브랜드의 관리페이지에서 결제가 들어온 것을 확인가능하다.
+	  
+	        
+	    } else {
+	    	 var msg = '결제에 실패하였습니다.';
+	         msg += '에러내용 : ' + rsp.error_msg;
+	    }
+	    alert(msg);
+	});
+}
+		
+
+
+    
+
+	
+
+	
+	
     
     

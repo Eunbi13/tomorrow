@@ -511,28 +511,28 @@ margin-top: 20px;
 					<div class="checkout-container ">
 		<!-- 가지고 있는 배송지가 없는 경우 입력창을 띄우고, 결제하기를 누를 때 ajax 를 이용해서 저장된다 -->
 		<c:if test="${empty shippingAr}">
-		       <form id="frm" action="./shippingInsert" method="post">
+		       <form id="shipFrm3" action="./shippingInsert" method="post">
 			      <div class="modal-body shipInsertBody">
-			     	 
+			         
 			     	 
 			     	 <div class="form-group">
 					</div>
 			     	 	  <div class="form-group row shipInsert">
-						    <label for="shipTitle" class="col-sm-3 col-form-label">배송지명</label>
+						    <label for="shipTitle7" class="col-sm-3 col-form-label">배송지명</label>
 						    <div class="col-sm-9">
-						      <input type="text" name="shipTitle" class="form-control" id="shipTitle" >
+						      <input type="text" name="shipTitle" class="form-control" id="shipTitle7" >
 						    </div>
 						  </div>
 						  <div class="form-group row shipInsert">
-						    <label for="shipName" class="col-sm-3 col-form-label">받는 사람</label>
+						    <label for="shipName7" class="col-sm-3 col-form-label">받는 사람</label>
 						    <div class="col-sm-9">
-						      <input type="text" name="shipName" class="form-control" id="shipName">
+						      <input type="text" name="shipName" class="form-control" id="shipName7">
 						    </div>
 						  </div>
 						  <div class="form-group row shipInsert">
-						    <label for="inputPassword" class="col-sm-3 col-form-label">연락처</label>
+						    <label for="shipPhone7" class="col-sm-3 col-form-label">연락처</label>
 						    <div class="col-sm-9">
-						      <input type="text" name="shipPhone" class="form-control" id="shipPhone">
+						      <input type="text" name="shipPhone" class="form-control" id="shipPhone7">
 						    </div>
 						  </div>
 						  <div class="form-group row shipInsert">
@@ -541,23 +541,23 @@ margin-top: 20px;
 						    
 						    
 			                      <div class="col-sm-6">
-						    	<input type="text" id="sample7_postcode" placeholder="우편번호" name="shipAddress" class="sample6_postcode form-control" style="font-size:16px; display:inline-block; margin-bottom:10px;" >
+						    	<input type="text" id="sample7_postcode" placeholder="우편번호" name="postcode" class="sample6_postcode form-control" style="font-size:16px; display:inline-block; margin-bottom:10px;" >
 						    	  </div>
 						    	  <div class="col-sm-6">
 						    	  
-								<input type="button" onclick="sample7_execDaumPostcode()" value="우편번호 찾기" name="shipAddress" class="form-control btn btn-outline-secondary" style="font-size:16px; display:inline-block; margin-bottom:10px;">
+								<input type="button" onclick="sample7_execDaumPostcode()" value="우편번호 찾기" class="form-control btn btn-outline-secondary" style="font-size:16px; display:inline-block; margin-bottom:10px;">
 						            </div>
 						    </div>
 						    <label for="inputPassword" class="col-sm-3 col-form-label"> </label>
 						    <div class="col-sm-9">
 						  
 								<input type="text" id="sample7_address" placeholder="주소" name="shipAddress" class="sample6_address form-control" style="font-size:16px; margin-bottom:10px;">
-								<input type="text" id="sample7_detailAddress" placeholder="상세주소" name="shipAddress" class="sample6_detailAddress form-control" style="font-size:16px; margin-bottom:10px;">
+								<input type="text" id="sample7_detailAddress" placeholder="상세주소" name="shipDetailAddress" class="sample6_detailAddress form-control" style="font-size:16px; margin-bottom:10px;">
 							
 								
 								<div class="form-check">
 									<label class="form-check-label"> 
-									<input type="checkbox" class="form-check-input" name="isDefault" value="1" style="margin-bottom: 100px">기본 배송지로 등록
+									<input type="checkbox" class="form-check-input" name="isDefault" id="isDefault7" value="1" style="margin-bottom: 100px">기본 배송지로 등록
 									</label>
 								</div>
 								
@@ -565,7 +565,9 @@ margin-top: 20px;
 						    </div>
 						  </div>
 			            
+					 <div id="shippingList2">
 					 
+					 </div>
 			           
 						
 			        
@@ -577,7 +579,7 @@ margin-top: 20px;
 		
 				<div id="shippingSel">
 								<div class="_2s2Nq">
-								  <input type="hidden" id="shipNum" value="${shippingVO.shipNum}">
+								  <input type="hidden" id="shipNum" title="${shippingVO.shipNum}" value="${shippingVO.shipNum}">
 								   <div id="shipTitle" class="shippingTitle${shippingVO.shipNum}" style="float:left; font-size:20px; font-weight: bold;"> ${shippingVO.shipTitle} </div>
 									
 									<c:if test="${shippingVO.isDefault == true}">
@@ -843,7 +845,7 @@ margin-top: 20px;
             </div>
             
             
-                <div>    <input type="button" onclick="iamport()" value="${ordersVO.payment}원 결제하기" class="btn btn-default btn-block pay"> </div>
+                <div>    <input type="button" id="finalBtn"  value="${ordersVO.payment}원 결제하기" class="btn btn-default btn-block pay"> </div>
        
         </div>
     </div>
@@ -1257,111 +1259,311 @@ console.log(address);
 let postcode=$("#shipPostcode").val();
 
 
-function iamport(){
-	//가맹점 식별코드
-	IMP.init('imp63068221');
-	IMP.request_pay({
-	    pg : 'html5_inicis',
-	    pay_method : 'card',
-	    merchant_uid : 'merchant_' + new Date().getTime(),
-	    name : '내일의집', //결제창에서 보여질 이름
-	    amount : 100, //실제 결제되는 가격
-	    buyer_email : email,
-	    buyer_name : name,
-	    buyer_tel : phone,
-	    buyer_addr : '서울 강남구 도곡동',
-	    buyer_postcode : '12345'
-	}, function(rsp) {
-		console.log(rsp);
-	    if ( rsp.success ) {
-	    	var msg = '결제가 완료되었습니다.';
-	        msg += '고유ID : ' + rsp.imp_uid;
-	        msg += '상점 거래ID : ' + rsp.merchant_uid;
-	        msg += '결제 금액 : ' + rsp.paid_amount;
-	        msg += '카드 승인번호 : ' + rsp.apply_num;
-	        //결제 완료!
-	        //이제 결제한 cartVO에  orderNum을 넣고  validity를 '결제완료'를 뜻하는 '2' 로 바꾼다. 성공!!!
-	         //--------ajax DB Update 
-					let orderNum = $("#orderNum").val();
-					console.log("orderNum:"+orderNum);
-					$.ajax({
-						type: "post",
-						url:"../cart/orderUpdate",
-						data:{
-							orderNum:orderNum
-						},
-						success:function(data){
-							
-							data = data.trim();
-							console.log("../cart/orderUpdate 후 data"+data);
-							if(data>0){
-								alert('주문 성공');
-								//orderVO update: shipNum, paymentType, shippingMemo,name,email, phone /  삭제예정: cartNum,status
-						        //넘어온 cartVO의 orderNum에도 이 order넘버를 넣어준다!
-						        
-							                orderNum = $("#orderNum").val();
-										  
-											let paymentType = rsp.card_name;
-											let shipNum=$("#shipNum").val();
-											//shippingMemo는 선택된 selected된 값을 가져오고 그것이 5일 경우에는, 또 따로 받아온다.
-											
-											let shippingMemo=$("#shippingMemo option:selected").val();
-											console.log("shippingMemo value :"+shippingMemo);
-											if(shippingMemo==5){
-												console.log("입장. 쉽핑 수정을 위한,,")
-												shippingMemo= $("#directInputBox").val();	
-											}
-											console.log("shippingMemo:"+shippingMemo);
-											console.log("paymentType:"+paymentType);
-											console.log("shipNum:"+shipNum);
-											console.log("orderNum:"+orderNum);
-											
-											$.ajax({
-												type: "post",
-												url:"../orders/ajaxUpdate",
-												data:{
-													 shipNum:shipNum, 
-													 paymentType:paymentType, 
-													 shippingMemo:shippingMemo,
-													 orderNum:orderNum
-												},
-												success:function(data){
-													
-													data= $.trim(data);
-													console.log("trim 이후 data"+data);
-													if(data>0){
-													alert('업데이트 성공');
-													
-													
-													    $("#updateFrm").submit();
-													}else{
-														
-													alert('업데이트 실패');
-													}
-													
-												}
-											})
-											
-										
-							}else {
-								alert('주문 실패');
-							}
-						}
-					})
+$("#finalBtn").click(function(){
 	
-	     
-	        //그 이후로는 판매자가 validity를 바꿀수있다.배송완료, 취소등 상태에 따라  validity를 바꿔줘야한다.
-	        //validity가 '2'로 바꾸는 순간, cartVO의 brandNum 대로,브랜드의 관리페이지에서 결제가 들어온 것을 확인가능하다.
-	  
-	        
-	    } else {
-	    	 var msg = '결제에 실패하였습니다.';
-	         msg += '에러내용 : ' + rsp.error_msg;
-	    }
-	    alert(msg);
-	});
-}
+	
+	 if($("#shipFrm3").length>0){
+		 
+		 console.log("shipFrm3  enter!!");
+	//shippingVO가 아예없었을 경우, form에 입력한 배송지 정보부터 shipping DB에 입력해 준다.
+	// shipping Insert!
+		let shipTitle= $("#shipTitle7").val();
+		let shipName= $("#shipName7").val();
+		let shipPhone= $("#shipPhone7").val();
+		let shipAddress= $("#sample7_address").val();
+		let shipDetailAddress= $("#sample7_detailAddress").val();
+		let postcode= $("#sample7_postcode").val();
+		let shipNum;
+		let username= $("#ordersUsername").attr("title");
+		
+		//checkbox 체크여부 받아오기
+		let isDefault= $("#isDefault7").prop("checked");
+		console.log(isDefault);
+		console.log("username:"+username);
+		
+		
+		$.ajax({
+			type: "post",
+			async: false,
+			url: "../shipping/shippingInsert",
+			data:{
+			shipTitle: shipTitle,
+			shipName: shipName,
+			shipPhone: shipPhone, 
+			shipAddress: shipAddress,
+			shipDetailAddress:shipDetailAddress,
+			postcode: postcode,
+			isDefault: isDefault,
+			username:username
+			},
+			success:function(data){
+			console.log("시도!!");
+			data= $.trim(data);
+			console.log(data);
+			
+			if(data=='1'){
+			console.log("배송지 입력 성공했습니다.");
+			
+			// shipping list 갱신하기 
+		
+			
+				$.ajax({
+				type: "GET", 
+				async: false,
+				url: "../shipping/minNum", 
+				success:function(data){
+				
+				console.log("minNum 에서찾아온 shipNum:"+data);
 
+				
+				let shipNum=data;
+				alert("등록 shipNum"+shipNum);
+		//------ 본격 결제 시작
+				//가맹점 식별코드
+				IMP.init('imp63068221');
+				IMP.request_pay({
+				    pg : 'html5_inicis',
+				    pay_method : 'card',
+				    merchant_uid : 'merchant_' + new Date().getTime(),
+				    name : '내일의집', //결제창에서 보여질 이름
+				    amount : 100, //실제 결제되는 가격
+				    buyer_email : email,
+				    buyer_name : name,
+				    buyer_tel : phone,
+				    buyer_addr : '서울 강남구 도곡동',
+				    buyer_postcode : '12345'
+				}, function(rsp) {
+					console.log(rsp);
+				    if ( rsp.success ) {
+				    	var msg = '결제가 완료되었습니다.';
+				        msg += '고유ID : ' + rsp.imp_uid;
+				        msg += '상점 거래ID : ' + rsp.merchant_uid;
+				        msg += '결제 금액 : ' + rsp.paid_amount;
+				        msg += '카드 승인번호 : ' + rsp.apply_num;
+				        //결제 완료!
+				        //이제 결제한 cartVO에  orderNum을 넣고  validity를 '결제완료'를 뜻하는 '2' 로 바꾼다. 성공!!!
+				         //--------ajax DB Update 
+								let orderNum = $("#orderNum").val();
+								console.log("orderNum:"+orderNum);
+								$.ajax({
+									type: "post",
+									url:"../cart/orderUpdate",
+									data:{
+										orderNum:orderNum
+									},
+									success:function(data){
+										
+										data = data.trim();
+										console.log("../cart/orderUpdate 후 data"+data);
+										if(data>0){
+											alert('주문 성공');
+											
+			    
+											
+											//orderVO update: shipNum, paymentType, shippingMemo,name,email, phone 
+									        //넘어온 cartVO의 orderNum에도 이 order넘버를 넣어준다!
+									        
+										                orderNum = $("#orderNum").val();
+													  
+														let paymentType = rsp.card_name;
+														alert("입력될shipNum"+shipNum);
+														//shippingMemo는 선택된 selected된 값을 가져오고 그것이 5일 경우에는, 또 따로 받아온다.
+														
+														let shippingMemo=$("#shippingMemo option:selected").val();
+														console.log("shippingMemo value :"+shippingMemo);
+														if(shippingMemo==5){
+															console.log("입장. 쉽핑 수정을 위한,,")
+															shippingMemo= $("#directInputBox").val();	
+														}
+														console.log("shippingMemo:"+shippingMemo);
+														console.log("paymentType:"+paymentType);
+														console.log("shipNum:"+shipNum);
+														console.log("orderNum:"+orderNum);
+														
+														$.ajax({
+															type: "post",
+													        async: false,
+															url:"../orders/ajaxUpdate",
+															data:{
+																 shipNum:shipNum, 
+																 paymentType:paymentType, 
+																 shippingMemo:shippingMemo,
+																 orderNum:orderNum
+															},
+															success:function(data){
+																
+																data= $.trim(data);
+																console.log("trim 이후 data"+data);
+																if(data>0){
+																alert('업데이트 성공');
+																
+																
+																    $("#updateFrm").submit();
+																}else{
+																	
+																alert('업데이트 실패');
+																}
+																
+															}
+														})
+														
+													
+										}else {
+											alert('주문 실패');
+										}
+									}
+								})
+				
+				     
+				        //그 이후로는 판매자가 validity를 바꿀수있다.배송완료, 취소등 상태에 따라  validity를 바꿔줘야한다.
+				        //validity가 '2'로 바꾸는 순간, cartVO의 brandNum 대로,브랜드의 관리페이지에서 결제가 들어온 것을 확인가능하다.
+				  
+				        
+				    } else {
+				    	 var msg = '결제에 실패하였습니다.';
+				         msg += '에러내용 : ' + rsp.error_msg;
+				    }
+				    alert(msg);
+				});
+				 
+				}
+				
+				})
+			
+			
+			}else{
+			alert("등록 실패했습니다.");
+			}
+			
+			}
+			
+			
+			
+			
+		})
+	 }else{
+		 
+	
+	  //------ 본격 결제 시작
+		//가맹점 식별코드
+			IMP.init('imp63068221');
+			IMP.request_pay({
+			    pg : 'html5_inicis',
+			    pay_method : 'card',
+			    merchant_uid : 'merchant_' + new Date().getTime(),
+			    name : '내일의집', //결제창에서 보여질 이름
+			    amount : 100, //실제 결제되는 가격
+			    buyer_email : email,
+			    buyer_name : name,
+			    buyer_tel : phone,
+			    buyer_addr : '서울 강남구 도곡동',
+			    buyer_postcode : '12345'
+			}, function(rsp) {
+				console.log(rsp);
+			    if ( rsp.success ) {
+			    	var msg = '결제가 완료되었습니다.';
+			        msg += '고유ID : ' + rsp.imp_uid;
+			        msg += '상점 거래ID : ' + rsp.merchant_uid;
+			        msg += '결제 금액 : ' + rsp.paid_amount;
+			        msg += '카드 승인번호 : ' + rsp.apply_num;
+			        //결제 완료!
+			        //이제 결제한 cartVO에  orderNum을 넣고  validity를 '결제완료'를 뜻하는 '2' 로 바꾼다. 성공!!!
+			         //--------ajax DB Update 
+							let orderNum = $("#orderNum").val();
+							console.log("orderNum:"+orderNum);
+							$.ajax({
+								type: "post",
+								url:"../cart/orderUpdate",
+								data:{
+									orderNum:orderNum
+								},
+								success:function(data){
+									
+									data = data.trim();
+									console.log("../cart/orderUpdate 후 data"+data);
+									if(data>0){
+										alert('주문 성공');
+										
+		    
+										
+										//orderVO update: shipNum, paymentType, shippingMemo,name,email, phone 
+								        //넘어온 cartVO의 orderNum에도 이 order넘버를 넣어준다!
+								        
+									                orderNum = $("#orderNum").val();
+												  
+													let paymentType = rsp.card_name;
+													let shipNum=$("#shipNum").val();
+													alert("입력될shipNum"+shipNum);
+													//shippingMemo는 선택된 selected된 값을 가져오고 그것이 5일 경우에는, 또 따로 받아온다.
+													
+													let shippingMemo=$("#shippingMemo option:selected").val();
+													console.log("shippingMemo value :"+shippingMemo);
+													if(shippingMemo==5){
+														console.log("입장. 쉽핑 수정을 위한,,")
+														shippingMemo= $("#directInputBox").val();	
+													}
+													console.log("shippingMemo:"+shippingMemo);
+													console.log("paymentType:"+paymentType);
+													console.log("shipNum:"+shipNum);
+													console.log("orderNum:"+orderNum);
+													
+													$.ajax({
+														type: "post",
+												        async: false,
+														url:"../orders/ajaxUpdate",
+														data:{
+															 shipNum:shipNum, 
+															 paymentType:paymentType, 
+															 shippingMemo:shippingMemo,
+															 orderNum:orderNum
+														},
+														success:function(data){
+															
+															data= $.trim(data);
+															console.log("trim 이후 data"+data);
+															if(data>0){
+															alert('업데이트 성공');
+															
+															
+															    $("#updateFrm").submit();
+															}else{
+																
+															alert('업데이트 실패');
+															}
+															
+														}
+													})
+													
+												
+									}else {
+										alert('주문 실패');
+									}
+								}
+							})
+			
+			     
+			        //그 이후로는 판매자가 validity를 바꿀수있다.배송완료, 취소등 상태에 따라  validity를 바꿔줘야한다.
+			        //validity가 '2'로 바꾸는 순간, cartVO의 brandNum 대로,브랜드의 관리페이지에서 결제가 들어온 것을 확인가능하다.
+			  
+			        
+			    } else {
+			    	 var msg = '결제에 실패하였습니다.';
+			         msg += '에러내용 : ' + rsp.error_msg;
+			    }
+			    alert(msg);
+			});
+			
+	 }//if end
+		
+		
+		
+		
+});// click event end
+
+
+
+
+	 
 
 
 </script>

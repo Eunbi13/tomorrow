@@ -10,6 +10,8 @@
     	<!-- shipping select -->
        <div class="card" style="width: 100%; height:200px; margin-bottom: 10px; border: 1px solid LightGray; border-radius:10px;">
   <div class="card-body ">
+       <input type="hidden" id="shipNum" value="${shippingVO.shipNum}">
+      
         
   
       <div class="card-title" style="float:left; font-weight: bold; font-size: 18px;">${shipping.shipTitle}</div>
