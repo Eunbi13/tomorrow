@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="com.tmh.t1.orders.OrdersMapper">
+    
+    	<select id="getSelect" parameterType="OrdersVO" resultType="OrdersVO">
+    		select * from orders where orderNum=#{orderNum}
+    	</select>
+    	
+    	
+    	<select id="getList" parameterType="OrdersVO" resultType="OrdersVO">
+    		select * from orders where username=#{username}
+    	</select>
+    	
+    	<insert id="setInsert" parameterType="OrdersVO" useGeneratedKeys="true" keyProperty="orderNum">
+    		insert into orders(username, itemsPrice, shippingFee, payment) 
+    		values (#{username}, #{itemsPrice}, #{shippingFee}, #{payment})
+    	</insert>
+    	
+    	
+    	
+    	 
+    	
+    	<delete id="setDelete" parameterType="OrdersVO">
+    		delete orders where orderNum=#{orderNum}
+    	</delete>
+    	
+    	
+    
+    
+    
+        
+    
+    	
+    
+    </mapper>

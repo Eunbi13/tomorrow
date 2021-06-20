@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="com.tmh.t1.housewarming.HousewarmingMapper">
+    	
+    	<select id="getList" resultType="HousewarmingVO">
+			select * from housewarming
+			order by hwNum desc
+   		</select>
+   		
+   		<select id="getSelect" resultMap="selectResult" parameterType="HousewarmingVO">
+			SELECT H.*, HF.* from
+			housewarming H left join hwFile HF
+			on H.hwNum = HF.hwNum
+			WHERE H.hwNum=#{hwNum}
+   		</select>
+   		
+   		<resultMap type="HousewarmingVO" id="selectResult">
+   			<id column="hwNum" property="hwNum"/>
+   			<result column="space" property="space"/>
+   			<result column="spaceSize" property="spaceSize"/>
+   			<result column="work" property="work"/>
+   			<result column="field" property="field"/>
+   			<result column="familyType" property="familyType"/>
+   			<result column="area" property="area"/>
+   			<result column="style" property="style"/>
+   			<result column="period" property="period"/>
+   			<result column="budget" property="budget"/>
+   			<result column="totalTone" property="totalTone"/>
+   			<result column="wallColor" property="wallColor"/>
+   			<result column="bottomColor" property="bottomColor"/>
+   			<result column="detail" property="detail"/>
+   			<result column="link" property="link"/>
+   			<result column="copyright" property="copyright"/>
+   			<result column="title" property="title"/>
+   			<result column="username" property="username"/>
+   			<result column="contents" property="contents"/>
+   			<result column="hit" property="hit"/>
+   			<result column="like" property="like"/>
+   			<result column="scrap" property="scrap"/>
+   			<collection property="hwfile" javaType="HwFileVO">
+   				<id column="fileNum" property="fileNum"/>
+   				<result column="fileName" property="fileName"/>
+   				<result column="originName" property="originName"/>
+   			</collection>
+   		</resultMap>
+   		
+   		<insert id="setInsert" parameterType="HousewarmingVO" useGeneratedKeys="true" keyProperty="hwNum">
+   			insert into housewarming (space, spaceSize, work, field, familyType, area, style, period, budget, totalTone, wallColor, bottomColor, detail, link, copyright, coverImg, title, username, contents)
+   			values(#{space}, #{spaceSize}, #{work}, #{field}, #{familyType}, #{area}, #{style}, #{period}, #{budget}, #{totalTone}, #{wallColor}, #{bottomColor}, #{detail}, #{link}, #{copyright}, 1, #{title}, #{username}, #{contents})
+   		</insert>
+   		
+   		<insert id="setFileInsert" parameterType="HwFileVO">
+   			insert into hwFile (hwNum, fileName, originName)
+   			values (#{hwNum}, #{fileName}, #{originName})
+   		</insert>
+    	
+   		<update id="setHitUpdate" parameterType="HousewarmingVO">
+   			update housewarming set hit=hit+1 where hwNum=#{hwNum}
+   		</update>
+   		
+   		<update id="setUpdate" parameterType="HousewarmingVO">
+   			update housewarming 
+   			set space=#{space}, spaceSize=#{spaceSize}, work=#{work}, field=#{field}, familyType=#{familyType}, area=#{area}, style=#{style}, period=#{period}, budget=#{budget}, 
+   			totalTone=#{totalTone}, wallColor=#{wallColor}, bottomColor=#{bottomColor}, detail=#{detail}, link=#{link}, copyright=#{copyright}, title=#{title}, contents=#{contents}, like=#{like}, scrap=#{scrap} 
+   			where hwNum=#{hwNum}
+   		</update>
+   		
+   		<!-- <update id="setLikeInsert" parameterType="HousewarmingVO">
+   			insert into hwLike values(#{hwNum}, #{username})
+   		</update>
+   		
+   		<update id="setScrapInsert" parameterType="HousewarmingVO">
+   			insert into hwScrap values(#{hwNum}, #{username})
+   		</update> -->
+   		
+   		<delete id="setDelete" parameterType="HousewarmingVO">
+   			delete from housewarming where hwNum=#{hwNum}
+   		</delete>
+   		
+    </mapper>

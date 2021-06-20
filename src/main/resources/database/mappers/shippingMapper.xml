@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="com.tmh.t1.shipping.ShippingMapper">
+        <select id="getDefaultSelect" parameterType="ShippingVO" resultType="ShippingVO">
+    		select * from shipping where username=#{username} and isDefault=#{isDefault}
+    	</select>
+    	
+    	<select id="getSelect" parameterType="ShippingVO" resultType="ShippingVO">
+    		select * from shipping where shipNum=#{shipNum}
+    	</select>
+
+    
+    	<select id="getMinNum" parameterType="ShippingVO" resultType="java.lang.Long">
+    		select min(shipNum) from shipping where username=#{username}
+    	</select>
+    	
+    	<select id="getList" parameterType="ShippingVO" resultType="ShippingVO">
+    		select * from shipping where username=#{username}
+    	</select>
+    	
+    	<insert id="setInsert" parameterType="ShippingVO">
+    		insert into shipping(shipTitle, shipName, shipPhone, shipAddress, shipDefault, userName) 
+    		values(#{shipTitle}, #{shipName}, #{shipPhone}, #{shipAddress}, #{shipDefault}, #{userName})
+    	</insert>
+    	
+    	<delete id="setDelete" parameterType="ShippingVO">
+    		delete shipping where shipNum=#{shipNum}
+    	</delete>
+    	
+    	<update id="setUpdate" parameterType="ShippingVO">
+    		update shipping set shipTitle=#{shipTitle}, shipName=#{shipName}, shipPhone=#{shipPhone}, shipAddress=#{shipAddress}, shipDefault=#{shipDefault}
+    		where shipNum=#{shipNum}
+    	</update>
+    
+    </mapper>

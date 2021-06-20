@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="com.tmh.t1.member.MemberMapper">
+	<!-- eb_회원탈퇴 -->
+		<update id="memberDelete" parameterType="MemberVO">
+			UPDATE member 
+			SET email=null, enabled=#{enabled}, deleteDate=DATE(NOW()) 
+			WHERE email=#{email}
+		</update>
+	<!-- eb_회원정보 수정 -->
+		<update id="memberUpdate" parameterType="MemberVO">
+			UPDATE member 
+			SET username = #{username}, 
+				homePage = #{homePage}, 
+				gender = #{gender}, 
+				birthDay = DATE(#{birthDay}), 
+				intro = #{intro}, 
+				profileImage = #{profileImage} 
+			WHERE email = #{email}
+		</update>
+	<!-- eb_로그인 -->
+		<select id="memberLogin" parameterType="MemberVO" resultMap="LoginResult">
+			SELECT M.*, MR.*, R.*
+			FROM member M LEFT JOIN member_role MR
+			ON M.username=MR.username
+			INNER JOIN role R
+			ON MR.id=R.id
+			WHERE email=#{email}
+		</select>
+		<resultMap type="MemberVO" id="LoginResult">
+			<id column="email" property="email"/>
+			<result column="username" property="username"/>
+			<result column="password" property="password"/>
+			<result column="enabled" property="enabled"/>
+			<result column="homePage" property="homePage"/>
+			<result column="gender" property="gender"/>
+			<result column="birthDay" property="birthDay"/>
+			<result column="intro" property="intro"/>
+			<result column="profileImage" property="profileImage"/>
+			<collection property="roles" javaType="java.util.List" ofType="RoleVO">
+				<result column="id" property="id"/>
+				<result column="roleName" property="roleName"/>
+			</collection>
+		</resultMap>
+	<!-- eb_회원가입 -->
+		<insert id="memberJoin" parameterType="MemberVO">
+			INSERT INTO member (email, PASSWORD, username, enabled, profileImage ) 
+			VALUES (#{email}, #{password}, #{username}, true, #{profileImage})
+		</insert>
+	<!-- eb_error검증 -->
+		<select id="emailCheck" parameterType="MemberVO" resultType="java.lang.Long">
+			SELECT COUNT(*) FROM member WHERE email=#{email}
+		</select>
+		<select id="usernameCheck" parameterType="MemberVO" resultType="java.lang.Long">
+			SELECT COUNT(*) FROM member WHERE username=#{username} 
+		</select>
+	<!-- eb_권한 삽입 -->
+		<insert id="setRole" parameterType="java.util.Map">
+			INSERT INTO member_role (username, id) 
+			VALUES(#{username}, (SELECT id FROM role WHERE rolename=#{roleName}))
+		</insert>
+		
+		
+	</mapper>

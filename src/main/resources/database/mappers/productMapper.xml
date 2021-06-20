@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="com.tmh.t1.product.ProductMapper">
+    	
+    <!-- 김은비 -->
+    	<select id="getBrandNum" parameterType="java.lang.String" resultType="java.lang.Long">
+    		SELECT brandNum FROM brand WHERE username=#{username}
+    	</select> 
+    	<insert id="setProduct" parameterType="ProductVO" useGeneratedKeys="true" keyProperty="productNum">
+			INSERT INTO product (brandNum, productPic, contents, 
+								 productName, productPrice, discountPrice, shippingFee) 
+			VALUES (#{brandNum},#{productPic},#{contents},
+					#{productName},#{productPrice},#{discountPrice},#{shippingFee})
+    	</insert>
+    	<insert id="setImages" parameterType="ProductImagesVO">
+			INSERT INTO productimages (productNum, fileName) VALUES (#{productNum}, #{fileName})
+		</insert>
+		
+		<insert id="setProduct_category" parameterType="java.util.Map">
+			INSERT INTO product_category VALUES (#{productNum}, #{categoryID})
+		</insert>
+
+		<insert id="setProduct_Options" parameterType="java.util.Map">
+			INSERT INTO product_options VALUES (#{productNum}, #{optionNum})
+		</insert>
+		
+		<!-- brandHome -->
+		
+		<select id="getBrandHomeList" parameterType="java.lang.Long" resultType="ProductVO">
+			SELECT * FROM product WHERE brandNum=#{brandNum}  GROUP BY productNum DESC
+		</select>
+		
+		<!-- category클릭하면 product뜨는 메서드 -->
+		<select id="getProdFromCat" parameterType="java.util.Map" resultType="ProductVO">
+			SELECT p.* FROM  product_category PC
+			JOIN (SELECT c.* FROM category C,(SELECT * FROM category WHERE categoryID=#{categoryID})C2
+					WHERE c.groupID=c2.groupID
+					<if test="categoryID>14">
+						AND c2.category_detail_LEV=c.category_detail_parent
+					</if>
+				  ) C3
+			ON pc.categoryID=c3.categoryID
+			JOIN product P
+			ON p.productNum=PC.productNum
+			<if test="brandNum!=null">
+				WHERE p.brandNum=#{brandNum}
+			</if>
+			GROUP BY p.productNum DESC 
+		</select>	
+	
+		
+		
+		
+		
+		<select id="getPList" parameterType="BrandVO" resultType="ProductVO">
+			SELECT P.* FROM product P, (SELECT * FROM brand WHERE username=#{username} or brandNum=#{brandNum}) B 
+			WHERE P.brandNum=B.brandNum GROUP BY productNum DESC
+		</select>
+		
+		
+		
+		
+		
+		
+    <!-- 장은 -->
+    	<select id="getProductList" parameterType="ProductVO" resultType="ProductVO">
+    		select * from product
+    	</select>
+    	
+    	<select id="getBrandList" parameterType="ProductVO" resultType="BrandVO">
+    		select brandName from brand
+			where brandNum IN (SELECT brandNum FROM product WHERE productNum=#{productNum})
+    	</select>
+    	
+    	<select id="getOptionsList" parameterType="ProductVO" resultType="OptionsVO">
+    		SELECT * from options
+			where productNum IN (SELECT productNum FROM product WHERE productNum=#{productNum})
+    	</select>
+    	
+    
+    	<select id="getSelect" parameterType="ProductVO" resultType="ProductVO">
+    		select * from product where productNum=#{productNum}
+    	</select>
+    
+    
+    </mapper>
