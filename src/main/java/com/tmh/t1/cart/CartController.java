@@ -33,7 +33,7 @@ public class CartController {
 	    }
     
 	@GetMapping("list")	
-	public ModelAndView getList(CartVO cartVO, HttpSession session)throws Exception{
+	public ModelAndView getList(CartVO cartVO)throws Exception{
 		ModelAndView mv= new ModelAndView();
 		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
@@ -47,31 +47,21 @@ public class CartController {
 	    
 	    List<ProductVO> productAr = cartService.getProductList(cartVO);
 	    
-	     	
-	   	
 	   	List<CartVO> cartAr = cartService.getCartList(cartVO);
+	   	
+	   	long a =cartAr.size();
+	   	if(a == 0) {
+	   		
+	   	  mv.setViewName("cart/empty");
+	   		
+	   	} else {
 
-	    List<CartVO> ar =cartService.getList(cartVO);
-	    
-//	    ProductVO productVO = new ProductVO();
-//	    
-//	    Long pricePerProduct = cartService.getPricePerProduct(cartVO);
-//	    
-//
-//	    
-//	    Long priceTotalProduct = cartService.getPriceTotalProduct(cartVO);
-//	    
-//	    
-	   
-	    
-	  //  System.out.println("brandAr"+brandAr);
-	   // System.out.println("productAr"+productAr);
-	    
 	    mv.addObject("brandAr", brandAr);
 	    mv.addObject("productAr", productAr);
 	    mv.addObject("cartAr", cartAr);
-	    mv.addObject("ar", ar);
+	   
 	    mv.setViewName("cart/list");
+	   	}
 	    
 	    return mv;
 		
@@ -88,10 +78,17 @@ public class CartController {
 //	}
 	
 	@GetMapping("insert")
-	public int setInsert(CartVO cartVO)throws Exception{
-		return cartService.setInsert(cartVO);
+	public void setInsert(CartVO cartVO)throws Exception{
+		
 	}
 	
+	@PostMapping("insert")
+	public int setInsert(CartVO [] cartVOs)throws Exception{
+		
+		return cartService.setInsert(cartVOs);
+	}
+	
+	@ResponseBody 
 	@GetMapping("optionDelete")
 	public ModelAndView setOptionDelete(Long cartNum)throws Exception{
 		System.out.println("start!!!");
@@ -102,7 +99,7 @@ public class CartController {
 		mv.setViewName("common/ajaxResult");
 		return mv;
 	}
-	
+	@ResponseBody 
 	@GetMapping("productDelete")
 	public ModelAndView setProductDelete(long [] productNum)throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -112,24 +109,51 @@ public class CartController {
 		return mv;
 	}
 	
-	
+	@ResponseBody 
 	@PostMapping("validityUpdate")
-	public ModelAndView setValidityUpdate(long [] productNum, long [] unProductNum)throws Exception{
+	public ModelAndView setValidityUpdate(long [] cartNum, long [] unCartNum)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = cartService.setValidityUpdate(productNum, unProductNum);
+		int result = cartService.setValidityUpdate(cartNum, unCartNum);
+		System.out.println("validityUpdate콘트롤러 완성! result:" +result);
 		
 		mv.addObject("result", result);
 		mv.setViewName("common/ajaxResult");
 		return mv;
 	}
 	
+	@ResponseBody 
+	@PostMapping("brandShipUpdate")
+	public int setBrandShipUpdate(CartVO cartVO)throws Exception{
+		System.out.println("setBrandShip Update입장");
+		int result= cartService.setBrandShipUpdate(cartVO);
+		
+		return result;
+	}
+
 	
 	
 	
+	@ResponseBody 
 	@PostMapping("amountUpdate")
 	public ModelAndView setAmountUpdate(CartVO cartVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		int result = cartService.setAmountUpdate(cartVO);
+		mv.addObject("result", result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
+	
+	@ResponseBody 
+	@PostMapping("orderUpdate")
+	public ModelAndView setOrderUpdate(CartVO cartVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal; 
+		String username = userDetails.getUsername();
+	   	cartVO.setUsername(username);
+	   	System.out.println("OrderNum"+cartVO.getOrderNum());
+	   
+		int result = cartService.setOrderUpdate(cartVO);
 		mv.addObject("result", result);
 		mv.setViewName("common/ajaxResult");
 		return mv;

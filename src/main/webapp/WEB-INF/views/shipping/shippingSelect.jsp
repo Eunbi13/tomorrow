@@ -3,8 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<div id="shippingSel">
+
 						<div class="_2s2Nq">
+						  <input type="hidden" id="shipNum" title="${shippingVO.shipNum}" value="${shippingVO.shipNum}">
+						
 						   <div id="shipTitle" class="shippingTitle${shippingVO.shipNum}" style="float:left; font-size:20px; font-weight: bold;"> ${shippingVO.shipTitle} </div>
 							
 							<c:if test="${shippingVO.isDefault == true}">
@@ -18,5 +20,5 @@
 				<div class="">
 					<div id="shipNameNPhone" class="" style="font-size:15px; color:gray; padding-bottom:15px;">${shippingVO.shipName}  ${shippingVO.shipPhone}</div>
 				</div>
-		</div>		
+		
 

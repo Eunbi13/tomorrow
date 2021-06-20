@@ -3,6 +3,7 @@ package com.tmh.t1.cart;
 import java.util.List;
 
 import com.tmh.t1.option.OptionsVO;
+import com.tmh.t1.product.ProductVO;
 
 import lombok.Data;
 
@@ -29,13 +30,21 @@ public class CartVO {
 	
 	private Long validity;
 	
-	private boolean isBundled;
-	
-	private boolean isFree;
+	private Long brandShipping;
 	
 	private Long cartPrice;
 	
-	private Long optionPrice;
+	private Long unitPrice;
+	
+	private String unitName;
+	
+	private ProductVO productVO;
+	
+	private String carrierId;
+	
+	private Long trackId;
+	
+	
 	
 	
 

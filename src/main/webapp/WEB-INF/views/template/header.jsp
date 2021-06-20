@@ -76,6 +76,9 @@
         <a class="nav-link" href="/cart/list">Cart</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="/orders/list">OrderList</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="/product/productlist">list1</a>
       </li>
     </ul>
