@@ -27,5 +27,5 @@ public class ProductVO {
 //	private CategoryVO categoryVO;
 	
 	private BrandVO brandVO;
-//	private OptionsVO optionsVO;
+	private OptionsVO optionsVO;
 }

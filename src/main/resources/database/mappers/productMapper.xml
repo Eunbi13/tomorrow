@@ -48,8 +48,18 @@
     		<result column="referenceFile" property="referenceFile"/>
     		<result column="accept" property="accept"/>
     	</resultMap>
-    
     	
+  		<resultMap type="OptionsVO" id="optionsVO">
+  			<result column="productNum" property="productNum"/>
+  			<result column="optionNum" property="optionNum"/>
+  			<result column="optionKinds" property="optionKinds"/>
+  			<result column="optionName" property="optionName"/>
+  			<result column="optionPrice" property="optionPrice"/>
+  			<result column="ref" property="ref"/>
+  			<result column="step" property="step"/>
+  		</resultMap>
+    	
+
     	<resultMap type="ProductVO" id="ProductVO">
 			<id column="productNum" property="productNum"/>
 			<result column="brandNum" property="brandNum"/>
@@ -60,7 +70,7 @@
 			<result column="discountPrice" property="discountPrice"/>
 			<result column="shippingFee" property="shippingFee"/>
 			<collection property="brandVO" resultMap="brandVO"/>
-			
+			<collection property="optionsVO" resultMap="optionsVO"/>
 		</resultMap>
 		
 	
@@ -76,8 +86,14 @@
     	</select>
     	
     
-    	<select id="getSelect" parameterType="ProductVO" resultType="ProductVO">
-    		select * from product where productNum=#{productNum}
+    	<select id="getSelect" parameterType="ProductVO" resultMap="ProductVO">
+    		SELECT p.*, o.*, po.productNum
+			FROM 
+			options o INNER JOIN product_options po
+			ON o.optionNum = po.optionNum
+			INNER JOIN product p
+			ON po.productNum = p.productNum
+			WHERE p.productNum=#{productNum}
     	</select>
     
     
