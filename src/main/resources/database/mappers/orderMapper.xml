@@ -11,39 +11,6 @@
     	
     	
     	
-    	<select id="getProductList" parameterType="CartVO" resultType="ProductVO">
-	    
-		    select productNum, productName, productPrice, productPic, shippingFee, brandNum from product
-			where productNum 
-			in 
-			(select productNum from cart where username=#{username} and 
-			<if test="valid =='zero'">
-			(validity='0'or validity='1')
-			</if>
-			<if test="valid =='one'">
-			 validity='1'
-			</if>
-			<if test="valid =='two'">
-			validity='2'
-			</if>
-			and brandNum 
-			in 
-			(select brandNum from cart where username=#{username} and 
-			<if test="valid =='zero'">
-			(validity='0'or validity='1')
-			</if>
-			<if test="valid =='one'">
-			 validity='1'
-			</if>
-			<if test="valid =='two'">
-			validity='2'
-			</if>
-			group by brandNum) 
-			group by productNum)
-				    
-	    </select> 
-
-	    
 	     <select id="getBrandList" parameterType="OrdersVO" resultType="BrandVO">
 			select  A.brandNum, A.brandName,A.companyName, A.managerPhone, B.orderNum
 			from
@@ -167,6 +134,7 @@
 					    		) C
 								on C.orderNum = O.orderNum)
 				            group by C.orderNum)
+				             order by orderNum desc
     	
     	</select>
     	
@@ -205,7 +173,7 @@
     	</select>
     	
     	<select id="getList" parameterType="OrdersVO" resultMap="cartListResult">
-    	   select C.*, O.*, P.* from 
+    	   select C.*, O.*, P.*, C.carrierId, C.trackId from 
 				(select * from orders 
 					where username=#{username} and 
 					
@@ -220,7 +188,7 @@
 					
 					MONTH ) AND NOW()
 					
-					) O
+				   ) O
 					inner join 
 						(select * from cart 
 			    		where username=#{username} and 
@@ -236,6 +204,7 @@
 					on C.orderNum = O.orderNum
 						left join (select productPic, productName, productNum, shippingFee from product) P 
 			            on P.productNum = C.productNum
+			             order by O.orderNum desc
 	    	
     	</select>
     	
@@ -253,7 +222,6 @@
 	    	<result column="name" property="name" />
 	    	<result column="email" property="email" />
 	    	<result column="phone" property="phone" />
-	    	<result column="unitPrice" property="unitPrice" />
 	    	
 	    	<association property="shippingVO"  javaType="ShippingVO">
 	        	<id column="shipNum" property="shipNum" />
@@ -272,11 +240,13 @@
 	        	<result column="productNum" property="productNum" />
 	        	<result column="optionNum" property="optionNum" />
 	        	<result column="amount" property="amount" />
-	        	<result column="validity" property="validity" />
-	        	<result column="isFree" property="isFree" />
-	        	<result column="cartPrice" property="cartPrice" />
-	        	<result column="unitPrice" property="unitPrice" />
-	        	<result column="unitName" property="unitName" />
+		        <result column="validity" property="validity" />
+		        <result column="brandShipping" property="brandShipping" />
+		    	<result column="cartPrice" property="cartPrice" />
+		    	<result column="unitPrice" property="unitPrice" />
+		    	<result column="unitName" property="unitName" />
+		    	<result column="carrierId" property="carrierId" />
+		    	<result column="trackId" property="trackId" />
 	        	
 	           <association property="productVO"  javaType="ProductVO">
 	        	<id column="productNum" property="productNum" />

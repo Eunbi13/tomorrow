@@ -206,7 +206,9 @@ border-radius: 10px;
 															    </td>
 															    
 															     <td style="width: 30%; text-align: center;">
-															     <button class="btn btn-default"> 배송추적 </button>
+															    <input type="hidden" id="brandShipping${cartVO.brandNum}" value="${cartVO.brandShipping}">
+															     
+															     <button class="btn btn-default" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
 															     </td>
 														   </tr>
 												   	    
@@ -217,7 +219,7 @@ border-radius: 10px;
 		 						          </c:forEach>
 		 						           </table>
 	 				                         		<div class="card1">
-	 				                         		       <div> 선배송비 3000원</div>
+	 				                         		        <div id="shipping${brandVO.brandNum}" class="shipping" title="${brandVO.brandNum}"> 선배송비 3000원 </div>
 				 						                   <div class="cart-in" style="font-weight:600; ;" >${brandVO.companyName}</div> 
 				 						                   <div class="cart-in" style="color:#A63F82;">${brandVO.managerPhone} </div>
 				 						            </div>  
@@ -287,14 +289,44 @@ border-radius: 10px;
  					 	</tr>
  					 	<tr>
  					 		<td class="subTitle">배송메모</td>
- 					 		<td style="width: 90%;">${ordersVO.shippingMemo} </td>
+ 					 		<td style="width: 90%;">
+ 					 		<c:if test="${ordersVO.shippingMemo==1}">
+ 					 		부재시 문앞에 놓아주세요
+ 					 		</c:if>
+ 					 		<c:if test="${ordersVO.shippingMemo==2}">
+ 					 		배송전에 미리 연락주세요
+ 					 		</c:if>
+ 					 		<c:if test="${ordersVO.shippingMemo==3}">
+ 					 		부재시 경비실에 맡겨 주세요
+ 					 		</c:if>
+ 					 		<c:if test="${ordersVO.shippingMemo==4}">
+ 					 		부재시 전화주시거나 문자 남겨 주세요
+ 					 		</c:if>
+ 					 		<c:if test="${ordersVO.shippingMemo==5}">
+ 					 		${ordersVO.shippingMemo} 
+ 					 		</c:if>
+ 					 		
+ 					 		</td>
  					 	</tr>
  					 </table>
  			
  			</div>
- 	
+ 			
 
+<script type="text/javascript">
 
+  //브랜드별 배송비 표
+	$(".shipping").each(function(){
+		
+		let brandNum = $(this).attr("title");
+		let brandShipping =$("#brandShipping"+brandNum).val();
+		brandShipping = parseInt(brandShipping);
+		let brandShippingShow= "선배송비"+brandShipping+"원";
+		$("#shipping"+brandNum).text(brandShippingShow);
+		
+	});
+</script>
 <c:import url="../template/footer.jsp"></c:import>
+
 </body>
 </html>

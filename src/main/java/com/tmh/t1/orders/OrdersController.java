@@ -128,33 +128,6 @@ public class OrdersController {
 		return mv;
 	}
 
-//	@GetMapping("page")
-//	public ModelAndView getPage(OrderVO orderVO)throws Exception{
-//		
-//		//디폴트 배송지 가져오기
-//				ShippingVO shippingVO= new ShippingVO();
-////				shippingVO.setUsername(username);
-//				shippingVO.setDefault(true);
-//				shippingVO=shippingService.getDefaultSelect(shippingVO);
-//				//만약 디폴트 배송지가 없으면? 회원의 배송지넘버중 가장 작은수를 선택해서 띄운다.
-//
-//				//만약 배송지가 아예없으면? 입력창 띄우
-//				if(shippingVO == null) {
-//					
-//				}
-//			    orderVO.setShipNum(shippingVO.getShipNum()); 
-//		
-//		
-////		 List<BrandVO> brandAr = cartService.getBrandList(orderVO);
-////		    
-////		 List<ProductVO> productAr = cartService.getProductList(orderVO);
-////		    
-////		     
-////        List<CartVO> cartAr = cartService.getCartList(orderVO);
-//		
-//        	orderVO = orderService.getSelect(orderVO);
-//	}
-//	
 	
 	@GetMapping("insert")
 	public void setInsert(OrdersVO ordersVO)throws Exception{
@@ -163,9 +136,7 @@ public class OrdersController {
 //		// 1.장바구니에서 결제 -> cartVO validity=true 인 것만 가져오기..
 //		 
 //		// 2.바로결제 -> 상품번호 가져오기 
-//		
-//		
-//
+
 	}
 	@ResponseBody 
 	@PostMapping("insert")

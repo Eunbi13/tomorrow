@@ -211,38 +211,31 @@ webkit-box-flex: 1; */
  		<a class="order_list_menu_list" href="/orders/list">
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">입금대기</div>
- 				<div class="order_list_menu_list_value"> 0 </div>
- 				
- 			</div>
+ 				</div>
  		</a>
  		<a class="order_list_menu_list" href="/orders/list?status=2">
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">결제완료</div>
- 				<div class="order_list_menu_list_value"> 0 </div>
  			</div>
  		</a>
  		<a class="order_list_menu_list" href="/orders/list?status=3">
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">배송준비</div>
- 				<div class="order_list_menu_list_value"> 0 </div>
  			</div>
  		</a>
  		<a class="order_list_menu_list" href="/orders/list?status=4">
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">배송중</div>
- 				<div class="order_list_menu_list_value"> 0 </div>
  			</div>
  		</a>
  		<a class="order_list_menu_list" href="/orders/list?status=5">
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">배송완료</div>
- 				<div class="order_list_menu_list_value"> 0 </div>
  			</div>
  		</a>
  		<a class="order_list_menu_list" href="/orders/list?status=6">
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">구매확정</div>
- 				<div class="order_list_menu_list_value"> 0 </div>
  			</div>
  		</a>
  	</div>
@@ -310,6 +303,8 @@ webkit-box-flex: 1; */
 						  </li>
 						
 					   <div id="AjaxList">
+					   
+					       <!-- order -->
  						   <c:forEach items="${orderAr}" var="ordersVO">
 	 						   <li style="clear:both;">
 		 							<div style="float:left; margin: 40px 0px 0px 20px; font-weight: bold; font-size:18px;">
@@ -321,8 +316,10 @@ webkit-box-flex: 1; */
 	 					       </li>  
 	 					       
 	 					   <hr style="margin-top:80px;">
+	 					         <!-- brand -->
 	 						     <c:forEach items="${brandAr}" var="brandVO">
 	 						    	 <c:if test="${brandVO.orderNum eq ordersVO.orderNum}">
+	 						    	    <!-- order -- cart, product, shipping -->
 	 						    		 <c:forEach items="${ar}" var="VO">
 	 						            	 <c:if test="${ordersVO.orderNum eq VO.orderNum}">
 	 						            		 <c:forEach items="${VO.cartList}" var="cartVO">
@@ -373,7 +370,11 @@ webkit-box-flex: 1; */
 															    </td>
 															    
 															     <td style="width: 15%">
-															     <button class="btn btn-default"> 배송추적 </button>
+															     
+															     <input type="hidden" id="brandShipping${cartVO.brandNum}" value="${cartVO.brandShipping}">
+															   
+															     <button class="btn btn-default" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
+															     
 															     </td>
 														   </tr>
 												   	     </table>
@@ -384,14 +385,16 @@ webkit-box-flex: 1; */
 		 						              </c:if>
 		 						          </c:forEach>
 	 				                         		<div class="card1">
-	 				                         		       <div> 선배송비 3000원</div>
+	 				                         		        <div id="shipping${brandVO.brandNum}" class="shipping" title="${brandVO.brandNum}"> 선배송비 3000원 </div>
 				 						                   <div class="cart-in" style="font-weight:600;" >${brandVO.companyName}</div> 
 				 						                   <div class="cart-in" style="color:#A63F82; font-weight:600;">${brandVO.managerPhone} </div>
 				 						            </div>  
 	 				                 </c:if>  
  				                 </c:forEach>      
-		 						            
+		 						      <!-- brand end -->       
 	 				        </c:forEach>
+	 				        <!-- order end -->
+	  
 	 				        
 	 				   </div>
 	 			
@@ -402,61 +405,181 @@ webkit-box-flex: 1; */
  			</div>
  		</div>
  	</div>
- 
-
-
-</div>
+ </div>
 
 
 <script type="text/javascript">
 
-let before_num=0;
-$(".before").click(function(){
+  //브랜드별 배송비 표
+	$(".shipping").each(function(){
+		
+		let brandNum = $(this).attr("title");
+		let brandShipping =$("#brandShipping"+brandNum).val();
+		brandShipping = parseInt(brandShipping);
+		let brandShippingShow= "선배송비"+brandShipping+"원";
+		$("#shipping"+brandNum).text(brandShippingShow);
+		
+	});
 
-	 let previous=  before_num;
+	//delivery_tracking pop up 띄우기
+
+	function delivery_tracking(link01){
+		
+		window.open(link01,"_blank","width=500, height=740;");
+	}
+
+	let before_num=0;
+	$(".before").click(function(){
+
+		 let previous=  before_num;
+			console.log("previous:"+previous);
+		    
+			let content =$(this).text();
+			console.log($(this).attr("title"));
+			 before_num =$(this).attr("title");
+			console.log("status_num:"+ before_num);
+			
+			console.log('attr.name:'+$(".sm-btn").attr("name"));
+			
+			
+			if($(".sm-btn").attr("title")=="before"){
+				console.log("   before가 이ㅁ 존재 ");
+				console.log($(this).val());
+				$("#beforeBtn").each(function(){
+					if($(this).val()==previous){
+						console.log("삭제될 것의 밸류는?"+$(this).val());
+						$(this).remove();
+						$("#before").remove();
+					}
+					
+				});
+			
+				let text='<button type="button" id="beforeBtn" class="btn sm-btn btn-close" value="'+before_num +'" title="before" > '+content+'</button>   '
+				text +=  '<input type="hidden" id="before" name="before" value="'+ before_num +'">';
+				console.log(content);
+				$("#before_search").append(function(n){
+				      return text;
+				    });
+			} else{
+				
+
+				let text='<button type="button" id="beforeBtn" class="btn sm-btn btn-close" value="'+before_num +'" title="before" > '+content+'</button>   '
+				text +=  '<input type="hidden" id="before" name="before" value="'+ before_num +'">';
+				console.log(content);
+				$("#before_search").append(function(n){
+				      return text;
+				 });
+			}
+			
+			
+			let be =before_num;
+			 let st =$("#status").val();
+			 alert("be:"+be+"/st:"+st); 
+			 
+			$.ajax({
+				type: "get", 
+				url: "../orders/ajaxList", 
+			
+				data:{
+				   before:be,
+				   status:st
+					
+				}, 
+				success:function(data){
+					console.log(data);
+					$("#AjaxList").empty();
+					
+					$("#AjaxList").html(data);
+				}
+				
+			});
+
+
+			
+	});
+
+
+
+
+	let status_num=0;
+
+	$(".status").click(function(){
+	    let previous= status_num;
 		console.log("previous:"+previous);
 	    
 		let content =$(this).text();
 		console.log($(this).attr("title"));
-		 before_num =$(this).attr("title");
-		console.log("status_num:"+ before_num);
+		status_num =$(this).attr("title");
+		console.log("status_num:"+status_num);
 		
 		console.log('attr.name:'+$(".sm-btn").attr("name"));
 		
-		
-		if($(".sm-btn").attr("title")=="before"){
-			console.log("   before가 이ㅁ 존재 ");
-			console.log($(this).val());
-			$("#beforeBtn").each(function(){
-				if($(this).val()==previous){
-					console.log("삭제될 것의 밸류는?"+$(this).val());
-					$(this).remove();
-					$("#before").remove();
-				}
+		$(".sm-btn").each(function(){
+			if($(this).attr("title")=="status"){
+				console.log("  status가 이ㅁ 존재 ");
+				console.log($(this).val());
+				$("#statusBtn").each(function(){
+					if($(this).val()==previous){
+						console.log("삭제될 것의 타이는?"+$(this).val());
+						$(this).remove();
+						$("#status").remove();
+						
+					}
+					
+				});
 				
-			});
-		
-			let text='<button type="button" id="beforeBtn" class="btn sm-btn btn-close" value="'+before_num +'" title="before" > '+content+'</button>   '
-			text +=  '<input type="hidden" id="before" name="before" value="'+ before_num +'">';
-			console.log(content);
-			$("#before_search").append(function(n){
-			      return text;
-			    });
-		} else{
+			}
 			
+		});
+			
+		       
+		
+				let text='<button type="button" id="statusBtn" class="btn sm-btn btn-close" value="'+status_num +'" title="status" > '+content+'</button>   '
+				text +=  '<input type="hidden" id="status" name="status" value="'+status_num +'">';
+				console.log(content);
+				$("#status_search").append(function(n){
+					
+					
+					return text;
+				 });
+			
+			
+				 let be =$("#before").val();
+			     let st =status_num;
+				 alert("be:"+be+"/st:"+st); 
+				
+				 
+				$.ajax({
+					type: "get", 
+					url: "../orders/ajaxList", 
+				
+					data:{
+					   before:be,
+					   status:st
+						
+					}, 
+					success:function(data){
+						console.log(data);
+						$("#AjaxList").empty();
+						
+						$("#AjaxList").html(data);
+					}
+					
+				});
+			
+		
+			
+	});
 
-			let text='<button type="button" id="beforeBtn" class="btn sm-btn btn-close" value="'+before_num +'" title="before" > '+content+'</button>   '
-			text +=  '<input type="hidden" id="before" name="before" value="'+ before_num +'">';
-			console.log(content);
-			$("#before_search").append(function(n){
-			      return text;
-			 });
-		}
+	$("#status_search").click(function(){
+		$(this).empty();
 		
-		
-		let be =before_num;
+		 
+		 let be =$("#before").val();
 		 let st =$("#status").val();
 		 alert("be:"+be+"/st:"+st); 
+
+		
 		 
 		$.ajax({
 			type: "get", 
@@ -476,148 +599,44 @@ $(".before").click(function(){
 			
 		});
 
-
-		
-});
-
-
-
-
-let status_num=0;
-
-$(".status").click(function(){
-    let previous= status_num;
-	console.log("previous:"+previous);
-    
-	let content =$(this).text();
-	console.log($(this).attr("title"));
-	status_num =$(this).attr("title");
-	console.log("status_num:"+status_num);
-	
-	console.log('attr.name:'+$(".sm-btn").attr("name"));
-	
-	$(".sm-btn").each(function(){
-		if($(this).attr("title")=="status"){
-			console.log("  status가 이ㅁ 존재 ");
-			console.log($(this).val());
-			$("#statusBtn").each(function(){
-				if($(this).val()==previous){
-					console.log("삭제될 것의 타이는?"+$(this).val());
-					$(this).remove();
-					$("#status").remove();
-					
-				}
-				
-			});
-			
-		}
-		
-	});
-		
-	       
-	
-			let text='<button type="button" id="statusBtn" class="btn sm-btn btn-close" value="'+status_num +'" title="status" > '+content+'</button>   '
-			text +=  '<input type="hidden" id="status" name="status" value="'+status_num +'">';
-			console.log(content);
-			$("#status_search").append(function(n){
-				
-				
-				return text;
-			 });
-		
-		
-			 let be =$("#before").val();
-		     let st =status_num;
-			 alert("be:"+be+"/st:"+st); 
-			
-			 
-			$.ajax({
-				type: "get", 
-				url: "../orders/ajaxList", 
-			
-				data:{
-				   before:be,
-				   status:st
-					
-				}, 
-				success:function(data){
-					console.log(data);
-					$("#AjaxList").empty();
-					
-					$("#AjaxList").html(data);
-				}
-				
-			});
-		
-	
-		
-});
-
-$("#status_search").click(function(){
-	$(this).empty();
-	
-	 
-	 let be =$("#before").val();
-	 let st =$("#status").val();
-	 alert("be:"+be+"/st:"+st); 
-
-	
-	 
-	$.ajax({
-		type: "get", 
-		url: "../orders/ajaxList", 
-	
-		data:{
-		   before:be,
-		   status:st
-			
-		}, 
-		success:function(data){
-			console.log(data);
-			$("#AjaxList").empty();
-			
-			$("#AjaxList").html(data);
-		}
-		
 	});
 
-});
-
-$("#before_search").click(function(){
-	$(this).empty();
-	
-	let be =$("#before").val();
-	 let st =$("#status").val();
-	 alert("be:"+be+"/st:"+st); 
-
-	
-	 
-	$.ajax({
-		type: "get", 
-		url: "../orders/ajaxList", 
-	
-		data:{
-		   before:be,
-		   status:st
-			
-		}, 
-		success:function(data){
-			console.log(data);
-			$("#AjaxList").empty();
-			
-			$("#AjaxList").html(data);
-		}
+	$("#before_search").click(function(){
+		$(this).empty();
 		
+		let be =$("#before").val();
+		 let st =$("#status").val();
+		 alert("be:"+be+"/st:"+st); 
+
+		
+		 
+		$.ajax({
+			type: "get", 
+			url: "../orders/ajaxList", 
+		
+			data:{
+			   before:be,
+			   status:st
+				
+			}, 
+			success:function(data){
+				console.log(data);
+				$("#AjaxList").empty();
+				
+				$("#AjaxList").html(data);
+			}
+			
+		});
 	});
-});
 
 
 
 
-</script>
+	</script>
 
-<c:import url="../template/footer.jsp"></c:import>
+	<c:import url="../template/footer.jsp"></c:import>
 
 
-</body>
-</html>
+	</body>
+ </html>
+				 				

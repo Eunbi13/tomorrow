@@ -5,22 +5,11 @@
     
     <mapper namespace="com.tmh.t1.cart.CartMapper">
    
-	<!-- <select id="getPriceTotalProduct" parameterType="CartVO" resultType="java.lang.Long">
-       		select sum(cartPrice) from cart 
-            where username=#{username} and productNum in 
-            (select productNum from cart where username=#{username} group by productNum)
-        </select> 
-    		
-    
-       <select id="getPricePerProduct" parameterType="CartVO" resultType="java.lang.Long">
-       		select sum(cartPrice) from cart 
-            where username=#{username} and productNum=#{productNum};
-       </select>  -->
 
     
 	    <select id="getProductList" parameterType="CartVO" resultType="ProductVO">
 	    
-		    select productNum, productName, productPrice, productPic, shippingFee, brandNum 
+		    select productNum, productName, productPrice, discountPrice, productPic, shippingFee, brandNum 
 		    	from product
 					where productNum 
 					      in 
@@ -75,7 +64,7 @@
     
     
         <select id="getCartList" parameterType="CartVO" resultMap="cartListResult">
-    		select C.*, C.isFree, C.cartPrice, C.unitPrice, O.* from 
+    		select C.*, C.cartPrice, C.unitPrice, O.* from 
 			(select * from cart where username=#{username} and 
 			
 			<if test="valid =='zero'">
@@ -101,10 +90,12 @@
 	        <result column="optionNum" property="optionNum" />
 	    	<result column="amount" property="amount" />
 	        <result column="validity" property="validity" />
-	    	<result column="isBundled" property="isBundled" />
-	    	<result column="isFree" property="isFree" />
+	        <result column="brandShipping" property="brandShipping" />
 	    	<result column="cartPrice" property="cartPrice" />
 	    	<result column="unitPrice" property="unitPrice" />
+	    	<result column="unitName" property="unitName" />
+	    	<result column="carrierId" property="carrierId" />
+	    	<result column="trackId" property="trackId" />
 	        <collection property="optionList" javaType="java.util.List" ofType="OptionsVO">
 	        	<id column="optionNum" property="optionNum" />
 	        	<result column="optionKinds" property="optionKinds" />
@@ -126,8 +117,8 @@
     	</select>
     	
     	<insert id="setInsert" parameterType="CartVO" useGeneratedKeys="true" keyProperty="cartNum"> 
-    		insert into cart(username, brandNum, productNum, optionNum, amount, validity, isFree, cartPrice, unitPrice) 
-    		values(#{username}, #{brandNum}, #{productNum}, #{optionNum} #{amount}, 0, #{isFree}, #{cartPrice},#{unitPrice})
+    		insert into cart(username, brandNum, productNum, optionNum, amount, validity, cartPrice, unitPrice, unitName) 
+    		values(#{username}, #{brandNum}, #{productNum}, #{optionNum} #{amount}, 0, #{cartPrice},#{unitPrice}, #{unitName})
     	</insert>
     	
     	
@@ -153,7 +144,12 @@
 			validity='2'
 			</if>
 			
-    		where productNum=#{productNum} and username=#{username}
+    		where cartNum=#{cartNum} and username=#{username}
+    	</update>
+    	
+    	<update id="setBrandShipUpdate">
+    	   update cart set brandShipping=#{brandShipping}
+    		 where cartNum=#{cartNum}
     	</update>
     	
     	<update id="setAmountUpdate" parameterType="CartVO">

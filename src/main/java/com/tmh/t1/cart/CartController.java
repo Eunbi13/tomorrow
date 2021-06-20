@@ -111,15 +111,25 @@ public class CartController {
 	
 	@ResponseBody 
 	@PostMapping("validityUpdate")
-	public ModelAndView setValidityUpdate(long [] productNum, long [] unProductNum)throws Exception{
+	public ModelAndView setValidityUpdate(long [] cartNum, long [] unCartNum)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = cartService.setValidityUpdate(productNum, unProductNum);
+		int result = cartService.setValidityUpdate(cartNum, unCartNum);
 		System.out.println("validityUpdate콘트롤러 완성! result:" +result);
 		
 		mv.addObject("result", result);
 		mv.setViewName("common/ajaxResult");
 		return mv;
 	}
+	
+	@ResponseBody 
+	@PostMapping("brandShipUpdate")
+	public int setBrandShipUpdate(CartVO cartVO)throws Exception{
+		System.out.println("setBrandShip Update입장");
+		int result= cartService.setBrandShipUpdate(cartVO);
+		
+		return result;
+	}
+
 	
 	
 	

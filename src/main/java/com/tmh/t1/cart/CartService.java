@@ -104,7 +104,7 @@ public class CartService {
 		return result;
 	}
 	
-	public int setValidityUpdate(long [] productNum, long [] unProductNum)throws Exception{
+	public int setValidityUpdate(long [] cartNum, long [] unCartNum)throws Exception{
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
 		UserDetails userDetails = (UserDetails)principal; 
 		String username = userDetails.getUsername();
@@ -112,13 +112,13 @@ public class CartService {
 		
 		int result=0;
 		
-		if(productNum !=null) {  //null 처리
+		if(cartNum !=null) {  //null 처리
 		
-			for(int i=0; i<productNum.length;i++) {
+			for(int i=0; i<cartNum.length;i++) {
 				CartVO cartVO = new CartVO();
-				long num = productNum[i];
-				cartVO.setProductNum(num);
-				System.out.println("1로 변한 productNum"+num);
+				long num = cartNum[i];
+				cartVO.setCartNum(num);
+				System.out.println("1로 변한 cartNum"+num);
 				cartVO.setUsername(username);
 				cartVO.setValid("one");
 				
@@ -128,12 +128,12 @@ public class CartService {
 		}
 		
 		
-		if(unProductNum != null) {
+		if(unCartNum != null) {
 		 
-			for(int i=0; i<unProductNum.length;i++) {
+			for(int i=0; i<unCartNum.length;i++) {
 				CartVO cartVO = new CartVO();
-				long num = unProductNum[i];
-				cartVO.setProductNum(num);
+				long num = unCartNum[i];
+				cartVO.setCartNum(num);
 				System.out.println("0 으로 변한 productNum"+num);
 				cartVO.setUsername(username);
 				cartVO.setValid("zero");
@@ -148,6 +148,12 @@ public class CartService {
 		
 		return result;
 	}
+	
+	public int setBrandShipUpdate(CartVO cartVO)throws Exception{
+		
+		return cartMapper.setBrandShipUpdate(cartVO);
+	}
+
 	
 	
 	public int setAmountUpdate(CartVO cartVO)throws Exception{

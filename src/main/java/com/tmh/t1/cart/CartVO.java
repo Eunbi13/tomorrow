@@ -30,7 +30,7 @@ public class CartVO {
 	
 	private Long validity;
 	
-	private boolean isFree;
+	private Long brandShipping;
 	
 	private Long cartPrice;
 	
@@ -39,6 +39,12 @@ public class CartVO {
 	private String unitName;
 	
 	private ProductVO productVO;
+	
+	private String carrierId;
+	
+	private Long trackId;
+	
+	
 	
 	
 
