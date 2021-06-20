@@ -269,8 +269,11 @@
     	</insert>
     	
     	<delete id="setDelete" parameterType="OrdersVO">
-    		delete orders where orderNum=#{orderNum}
+    		delete from orders where orderNum=#{orderNum}
     	</delete>
+    	
+    	
+    	
     	
     	<update id="setAjaxUpdate" parameterType="OrdersVO">
     	    update orders set  

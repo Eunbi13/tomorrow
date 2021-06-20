@@ -207,8 +207,33 @@ border-radius: 10px;
 															    
 															     <td style="width: 30%; text-align: center;">
 															    <input type="hidden" id="brandShipping${cartVO.brandNum}" value="${cartVO.brandShipping}">
-															     
-															     <button class="btn btn-default" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
+															    <!-- 결제완료 단계에선 취소요청시, 바로 취소가능 -->
+															     <c:if test="${cartVO.validity==2}">
+								 					               <button class="btn btn-default" onclick="location.href='./cancel?cartNum=${cartVO.cartNum}&orderNum=${ordersVO.orderNum}'"> 주문취소 </button>       
+								 						         </c:if> 
+								 						          <!-- 배송준비 단계에서 부턴 취소요청시, 판매자의 확인이 있어야 가능 -->
+								 						          <c:if test="${cartVO.validity==3}">
+								 					               <button class="btn btn-default" onclick="location.href='./cancel'"> 취소요청 </button>     
+								 					               <button class="btn btn-default"> 구매확정 </button>   
+								 						         </c:if> 
+								 						          <c:if test="${cartVO.validity==4}">
+								 					               <button class="btn btn-default"> 환불 </button>   
+								 					               <button class="btn btn-default"> 교환 </button>  
+								 					               <button class="btn btn-default"> 구매확정 </button>  
+								 					               <button class="btn btn-default" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
+     
+								 						         </c:if> 
+								 						          <c:if test="${cartVO.validity==5}">
+								 					                 <button class="btn btn-default"> 환불 </button>   
+								 					                 <button class="btn btn-default"> 교환 </button>  
+								 					                 <button class="btn btn-default"> 구매확정 </button>  
+								 					                 <button class="btn btn-default" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적 </button>
+          
+								 						         </c:if> 
+								 						          <c:if test="${cartVO.validity==6}">
+								 					               <button class="btn btn-default"> 리뷰작성 </button>   
+								 					       		   <button class="btn btn-default" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
+								 						         </c:if> 
 															     </td>
 														   </tr>
 												   	    

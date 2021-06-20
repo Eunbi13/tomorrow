@@ -259,6 +259,26 @@ public class OrdersController {
 		
 	}
 	
+ 
+	@GetMapping("cancel")
+	public ModelAndView setCancelUpdate(CartVO cartVO, OrdersVO ordersVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		cartVO=cartService.getSelect(cartVO);
+	
+		ordersVO =ordersService.getSelect(ordersVO);
+		List<BrandVO> brandAr = ordersService.getSelectBrandList(ordersVO);
+		
+		mv.addObject("brandAr", brandAr);
+		mv.addObject("ordersVO", ordersVO);
+		mv.addObject("cartVO", cartVO);
+        return mv;
+
+		
+	}
+	
+	
+	
 	
 	
 	@ResponseBody 
