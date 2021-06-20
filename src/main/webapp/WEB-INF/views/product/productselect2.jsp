@@ -28,7 +28,7 @@
 		<div class="main-contents">
 			<div class="brand">
 				<c:if test="${brandVO.brandNum eq productVO.brandNum}">
-				${brand}
+					${vo.brandVO.brandName }
 				</c:if>
 			</div>
 
