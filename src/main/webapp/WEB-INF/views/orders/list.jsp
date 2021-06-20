@@ -61,6 +61,29 @@ clear:both;
 	border-color: #732944;
 }
 
+.two-btn{
+  
+    width:125px;
+    max-width:100%;
+	padding:11px 22px;
+	font-weight: bold;
+	font-size: 18px;
+	border-radius:0;
+	background-color: #A63F82;
+	color: #FFF;
+	border-color: #A63F82;
+	border:1px solid;
+	border-radius:6px;
+ margin-bottom:10px;
+}
+
+.two-btn:hover, .two-btn:focus, .two-btn:active, .two-btn.active, .open .dropdown-toggle.two-btn {
+ 
+	background-color: #e5b8d7;
+	color:#A63F82;
+	border-color: #A63F82;;
+}
+
 .btn-default{
     
     width:125px;
@@ -199,6 +222,7 @@ webkit-box-flex: 1; */
     padding: 30px;
     padding-bottom:60px;
 }
+
 </style>
 </head>
 <body>
@@ -373,8 +397,31 @@ webkit-box-flex: 1; */
 															     
 															     <input type="hidden" id="brandShipping${cartVO.brandNum}" value="${cartVO.brandShipping}">
 															   
-															     <button class="btn btn-default" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
-															     
+															     <!-- 결제완료 단계에선 취소요청시, 바로 취소가능 -->
+															     <c:if test="${cartVO.validity==2}">
+								 					               <button class="btn btn-default" onclick="location.href='./cancel?cartNum=${cartVO.cartNum}&kind=1'"> 주문취소 </button>       
+								 						         </c:if> 
+								 						          <!-- 배송준비 단계에서 부턴 취소,환불,교환은 상세페이지에서만 확인 가능 -->
+								 						          <c:if test="${cartVO.validity==3}">
+								 					                
+								 					               <button class="btn btn-default" onclick="location.href='./confirm?cartNum=${cartVO.cartNum}'"> 구매확정 </button>   
+								 						         </c:if> 
+								 						          <c:if test="${cartVO.validity==4}">
+								 					             
+								 					               <button class="btn  two-btn" onclick="location.href='./confirm?cartNum=${cartVO.cartNum}'"> 구매확정 </button>  
+								 					               <button class="btn btn-default" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
+     
+								 						         </c:if> 
+								 						          <c:if test="${cartVO.validity==5}">
+								 					                 
+								 					                 <button class="btn  two-btn" onclick="location.href='./confirm?cartNum=${cartVO.cartNum}'"> 구매확정 </button>  
+								 					                 <button class="btn btn-default" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적 </button>
+          
+								 						         </c:if> 
+								 						          <c:if test="${cartVO.validity==6}">
+								 					               <button class="btn two-btn"> 리뷰작성 </button>   
+								 					       		   <button class="btn btn-default" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
+								 						         </c:if> 						     
 															     </td>
 														   </tr>
 												   	     </table>

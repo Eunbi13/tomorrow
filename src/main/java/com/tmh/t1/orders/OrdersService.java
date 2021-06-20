@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.tmh.t1.brand.BrandVO;
+import com.tmh.t1.cart.CartMapper;
 import com.tmh.t1.cart.CartVO;
 
 
@@ -18,6 +20,9 @@ public class OrdersService {
 	
 	 @Autowired
 	 private OrdersMapper ordersMapper;
+	 
+	 @Autowired
+		private CartMapper cartMapper;
 	 
 	public  List<BrandVO> getSelectBrandList(OrdersVO ordesVO)throws Exception{
 		return ordersMapper.getSelectBrandList(ordesVO);
@@ -70,9 +75,7 @@ public class OrdersService {
 		   }
 		
 		
-		
-	   
-		
+
 		
 		
 		System.out.println("result:"+result);
@@ -81,6 +84,14 @@ public class OrdersService {
 	
 	public int setDelete(OrdersVO ordersVO)throws Exception{
 		return ordersMapper.setDelete(ordersVO);
+	}
+	
+	
+	public int setConfirmUpdate(CartVO cartVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = cartMapper.setValidityUpdate(cartVO);
+		
+		return result;
 	}
 	public int setUpdate(OrdersVO ordersVO)throws Exception{
 		return ordersMapper.setUpdate(ordersVO);

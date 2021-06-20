@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tmh.t1.brand.BrandVO;
+import com.tmh.t1.cart.CartMapper;
 import com.tmh.t1.cart.CartService;
 import com.tmh.t1.cart.CartVO;
 import com.tmh.t1.product.ProductVO;
@@ -34,6 +35,8 @@ public class OrdersController {
 	
 	@Autowired
 	private CartService cartService;
+	
+	
 	
 	@GetMapping("select")
 	public ModelAndView getSelect(OrdersVO ordersVO)throws Exception{
@@ -261,20 +264,45 @@ public class OrdersController {
 	
  
 	@GetMapping("cancel")
-	public ModelAndView setCancelUpdate(CartVO cartVO, OrdersVO ordersVO)throws Exception{
+	public ModelAndView setCancelUpdate(CartVO cartVO, int kind)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		
+		String sel="취소";
+		
+		if(kind==2) {
+			sel="환불";
+		} else if(kind==3) {
+			sel="교환";
+		}
 		
 		cartVO=cartService.getSelect(cartVO);
 	
-		ordersVO =ordersService.getSelect(ordersVO);
-		List<BrandVO> brandAr = ordersService.getSelectBrandList(ordersVO);
-		
-		mv.addObject("brandAr", brandAr);
-		mv.addObject("ordersVO", ordersVO);
+		mv.addObject("sel", sel);
 		mv.addObject("cartVO", cartVO);
         return mv;
-
+	}
+	
+	
+	// orders/select 나  orders/list에서 구매 확정 클릭시
+	@GetMapping("confirm")
+	public ModelAndView setConfirmUpdate(CartVO cartVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		cartVO.setValid("confirm");
+		int result = ordersService.setConfirmUpdate(cartVO);
+		String message="구매확정 실패";
+		String path="./";
 		
+		if(result>0) {
+			message="구매확정 성공";
+			path="./list";
+		}
+		
+		mv.addObject("msg", message);
+		mv.addObject("path", path);
+		
+		mv.setViewName("common/commonResult");
+
+        return mv;
 	}
 	
 	

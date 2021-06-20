@@ -48,6 +48,58 @@ ul.no-bullets {
   padding: 0; /* Remove padding */
   margin: 0; /* Remove margins */
   }
+  
+ .two-btn{
+  
+    width:125px;
+    max-width:100%;
+	padding:11px 22px;
+	font-weight: bold;
+	font-size: 18px;
+	border-radius:0;
+	background-color: #A63F82;
+	color: #FFF;
+	border-color: #A63F82;
+	border:1px solid;
+	border-radius:6px;
+ margin-bottom:10px;
+}
+
+.two-btn:hover, .two-btn:focus, .two-btn:active, .two-btn.active, .open .dropdown-toggle.two-btn {
+ 
+	background-color: #e5b8d7;
+	color:#A63F82;
+	border-color: #A63F82;;
+}
+
+.four-btns{
+}
+
+.four-btn{
+
+    width:100px;
+    max-width:100%;
+	padding:11px 22px;
+	font-weight: bold;
+	font-size: 12px;
+	border-radius:0;
+	background-color: #FFF;
+	color:#A63F82;
+	border-color: #A63F82;
+	border:1px solid;
+	border-radius:6px;
+	margin-left: 5px;
+	margin-bottom:5px;
+
+}
+
+.four-btn:hover, .four-btn:focus, .four-btnt:active, .four-btn.active, .open .dropdown-toggle.four-btn {
+ 
+	background-color: #e5b8d7;
+	color:#A63F82;
+	border-color: #A63F82;;
+}
+
 .btn-default{
     
     width:125px;
@@ -72,12 +124,11 @@ ul.no-bullets {
 .order {
   border-collapse: collapse;
   margin: 0 auto;
-
-  max-width:1200px;
+  witdh:1200px;
   padding:0;
 }
 .order td {
-witdh:100%;
+ 
   border: 1px solid #e6e6e6; 
   padding-bottom:20px;
 }
@@ -99,7 +150,7 @@ max-width:1200px;
 }
 
 .order tr{
-witdh:100%;
+witdh:1200px;
 border-left: none; 
 border-right: none; 
 }
@@ -130,6 +181,13 @@ border-radius: 10px;
  
 
 }
+.bigTitle{
+
+font-size:26px; 
+font-weight:bold; 
+margin-top:40px;
+
+}
 
 
 
@@ -139,7 +197,7 @@ border-radius: 10px;
 <c:import url="../template/header.jsp"></c:import>
 
        <div class="container-fluid">
-         <div style="font-size:24px; font-weight:bold; margin-top:40px;">주문상세정보</div> 
+         <div class="bigTitle">주문상세정보</div> 
          
            
        
@@ -152,7 +210,7 @@ border-radius: 10px;
 	 						       	    
 	 					       </li>  
 	 					       
-	 					   <hr style="margin-top:50px;">
+	 					   <hr style="margin-top:50px;" tyle="width:1200px;">
 	 						     <c:forEach items="${brandAr}" var="brandVO">
 	 						        <table class="order">
 	 						    	  <c:forEach items="${ordersVO.cartList}" var="cartVO">
@@ -164,11 +222,11 @@ border-radius: 10px;
 	 						                        	 
 	 						                        	
 	 						          
-														    <tr>
+														    <tr style="width:1200px;">
 															    <td style="width: 10%; border-right:none; max-width:100px;">
 															    <img src="../resources/images/glove.webp" class="mr-3" alt="...">
 															  </td>
-															    <td style="width: 66%; border-left:none; font-size: 16px;">
+															    <td style="width: 66%; border-left:none; font-size: 16px; ">
 															   
 															      <div style="font-weight: bold; margin-top:10px;"> [${brandVO.brandName}]  ${cartVO.productVO.productName} </div>
 															    
@@ -205,33 +263,41 @@ border-radius: 10px;
 							 						                         </div>
 															    </td>
 															    
-															     <td style="width: 30%; text-align: center;">
+															     <td style="width: 30%; text-align: center; text-align:center; vertical-align: center;">
 															    <input type="hidden" id="brandShipping${cartVO.brandNum}" value="${cartVO.brandShipping}">
 															    <!-- 결제완료 단계에선 취소요청시, 바로 취소가능 -->
 															     <c:if test="${cartVO.validity==2}">
-								 					               <button class="btn btn-default" onclick="location.href='./cancel?cartNum=${cartVO.cartNum}&orderNum=${ordersVO.orderNum}'"> 주문취소 </button>       
+								 					               <button class="btn btn-default" onclick="location.href='./cancel?cartNum=${cartVO.cartNum}&kind=1'"> 주문취소 </button>       
 								 						         </c:if> 
 								 						          <!-- 배송준비 단계에서 부턴 취소요청시, 판매자의 확인이 있어야 가능 -->
 								 						          <c:if test="${cartVO.validity==3}">
-								 					               <button class="btn btn-default" onclick="location.href='./cancel'"> 취소요청 </button>     
-								 					               <button class="btn btn-default"> 구매확정 </button>   
+								 					               <button class="btn two-btn" onclick="location.href='./cancel?cartNum=${cartVO.cartNum}&kind=1'"> 취소요청 </button>     
+								 					               <button class="btn btn-default" onclick="location.href='./confirm?cartNum=${cartVO.cartNum}'"> 구매확정 </button>   
 								 						         </c:if> 
+								 						           <!-- 배송중 -->
 								 						          <c:if test="${cartVO.validity==4}">
-								 					               <button class="btn btn-default"> 환불 </button>   
-								 					               <button class="btn btn-default"> 교환 </button>  
-								 					               <button class="btn btn-default"> 구매확정 </button>  
-								 					               <button class="btn btn-default" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
-     
+									 						          <div class="four-btns" style="text-align:center;">
+										 					               <button class="btn four-btn" onclick="location.href='./cancel?cartNum=${cartVO.cartNum}&kind=2'"> 환불 </button>   
+										 					               <button class="btn four-btn" onclick="location.href='./cancel?cartNum=${cartVO.cartNum}&kind=3'"> 교환 </button>  
+										 					               <button class="btn four-btn" onclick="location.href='./confirm?cartNum=${cartVO.cartNum}'"> 구매확정 </button>  
+										 					               <button class="btn four-btn" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
+	        														  </div>
 								 						         </c:if> 
+								 						         <!-- 배송완료 -->
 								 						          <c:if test="${cartVO.validity==5}">
-								 					                 <button class="btn btn-default"> 환불 </button>   
-								 					                 <button class="btn btn-default"> 교환 </button>  
-								 					                 <button class="btn btn-default"> 구매확정 </button>  
-								 					                 <button class="btn btn-default" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적 </button>
+								 						              <div class="four-btns" style="text-align:center;">
+										 					               <button class="btn four-btn" onclick="location.href='./cancel?cartNum=${cartVO.cartNum}&kind=2'"> 환불 </button>   
+										 					               <button class="btn four-btn" onclick="location.href='./cancel?cartNum=${cartVO.cartNum}&kind=3'"> 교환 </button>  
+										 					               <button class="btn four-btn" onclick="location.href='./confirm?cartNum=${cartVO.cartNum}'"> 구매확정 </button>  
+										 					               <button class="btn four-btn" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
+	        														  </div>
+								 					              
+								 					                 
           
 								 						         </c:if> 
+								 						          <!-- 구매확정 -->
 								 						          <c:if test="${cartVO.validity==6}">
-								 					               <button class="btn btn-default"> 리뷰작성 </button>   
+								 					               <button class="btn two-btn"> 리뷰작성 </button>   
 								 					       		   <button class="btn btn-default" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
 								 						         </c:if> 
 															     </td>

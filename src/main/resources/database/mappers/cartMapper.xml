@@ -76,7 +76,6 @@
 			<if test="valid =='two'">
 			validity='2'
 			</if>
-			
 			) C 
 			inner join options O
 			on C.optionNum = O.optionNum;
@@ -96,18 +95,18 @@
 	    	<result column="unitName" property="unitName" />
 	    	<result column="carrierId" property="carrierId" />
 	    	<result column="trackId" property="trackId" />
-	    	<association property="BrandVO"  javaType="ProductVO">
+	    	
+	    	<association property="productVO"  javaType="ProductVO">
 	        	<id column="productNum" property="productNum" />
 	        	<result column="productPic" property="productPic" />
 	        	<result column="productName" property="productName" />
 	        	<result column="shippingFee" property="shippingFee" />
 	        </association>
-	        <association property="BrandVO"  javaType="BrandVO">
-	        	<id column="productNum" property="productNum" />
-	        	<result column="productPic" property="productPic" />
-	        	<result column="productName" property="productName" />
-	        	<result column="shippingFee" property="shippingFee" />
-	           </association>
+	        
+	        <association property="brandVO"  javaType="BrandVO">
+	        	<id column="brandNum" property="brandNum" />
+	        	<result column="brandName" property="brandName" />
+             </association>
 	           
 	        <collection property="optionList" javaType="java.util.List" ofType="OptionsVO">
 	        	<id column="optionNum" property="optionNum" />
@@ -121,8 +120,14 @@
     
     
 	   
-        <select id="getSelect" parameterType="CartVO" resultType="CartVO">
-    		select * from cart where cartNum=#{cartNum} 
+        <select id="getSelect" parameterType="CartVO" resultMap="cartListResult">
+    		select C.*, P.*, B.* from cart C
+    			left join (select productPic, productName, productNum, shippingFee from product) P 
+					on P.productNum = C.productNum
+				left join (select brandName, brandNum from brand) B 
+					on C.brandNum = B.brandNum
+    		where cartNum=#{cartNum} 
+    		
     	</select>
     	
     	<select id="getList" parameterType="CartVO" resultType="CartVO">
@@ -183,7 +188,7 @@
 			<if test="valid =='refund_ing'">
 			validity='11'
 			</if>
-    		where cartNum=#{cartNum} and username=#{username}
+    		where cartNum=#{cartNum} 
     	</update>
     	
     	<update id="setBrandShipUpdate">
