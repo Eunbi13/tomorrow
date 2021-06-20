@@ -25,18 +25,22 @@ public class BrandController {
 	@Autowired
 	private BrandService brandService;
 	
+	//eb_brandOrder
+	@GetMapping("order")
+	public String brandOrder()throws Exception{
+		return "/brand/brandOrder";
+	}
 	
+	//eb_brandHome
 	@GetMapping("home")
 	public String brandHome(BrandVO brandVO, Model model)throws Exception{
 		 brandVO = brandService.getBrandInfo(brandVO);
 		 
-		//PRODUCT LIST
+		//product LIST
 		List<ProductVO> productList = brandService.getBrandHomeList(brandVO);
 		//category List
-
 		List<CategoryVO> one = brandService.getBrandCategory(brandVO);
 
-		
 		model.addAttribute("brandVO", brandVO);
 		model.addAttribute("productList", productList);
 		model.addAttribute("productListSize", productList.size());
@@ -45,20 +49,12 @@ public class BrandController {
 		return "/brand/brandHome";
 	}
 	
-	
-	
-	
-	
-//판매자 등록
+	//eb_일반 맴버에서 판매자 신청
 	@GetMapping("signBrand")
 	public String signBrand(Model model)throws Exception{
 		model.addAttribute("brandVO", new BrandVO());
-		
+		//카테고리 대분류 불러오기
 		List<CategoryVO> category = brandService.getBigCategory();
-//		for(CategoryVO ar : category) {
-//			System.out.println("컨트롤러 카테고리 이름: "+ar.getCategory_detail_NM());
-//			System.out.println("컨트롤러 카테고리 아이디: "+ar.getCategoryID());
-//		}
 		model.addAttribute("categories", category);
 		
 		return "/brand/signBrandFrom";
@@ -66,13 +62,12 @@ public class BrandController {
 	
 	@PostMapping("signBrand")
 	public String signBrand(@Valid BrandVO brandVO, Errors errors, Authentication auth, MultipartFile files, Model model)throws Exception{
-	
+		//판매자 번호 중복여부 
 		if(brandService.brandError(errors, brandVO)) {
 			System.out.println("에러발생");
 			return "/brand/signBrandFrom";
 		}
-		
-		
+
 		Long result=brandService.signBrand(brandVO, auth, files);
 		System.out.println("브랜드 신청: "+result);
 		if(result>0) {

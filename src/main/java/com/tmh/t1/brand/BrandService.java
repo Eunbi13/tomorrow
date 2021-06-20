@@ -32,13 +32,15 @@ public class BrandService {
 	@Value("${brandInsert.filePath}")
 	private String filePath;
 	
-	//brandHome
+	//eb_brandHome brand정보 불러오기
 	public BrandVO getBrandInfo(BrandVO brandVO) throws Exception{
 		return brandMapper.getBrandInfo(brandVO);
 	}
+	//eb_brandHome brand product리스트 불러오기
 	public List<ProductVO> getBrandHomeList(BrandVO brandVO)throws Exception{
 		return productMapper.getBrandHomeList(brandVO.getBrandNum());
 	}
+	//eb_brandHome brand category대분류 불러오기
 	public List<CategoryVO> getBrandCategory(BrandVO brandVO)throws Exception{
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("brandNum", brandVO.getBrandNum()+"");
@@ -50,7 +52,7 @@ public class BrandService {
 	
 	
 	
-	//에러설정(판매자번호)
+	//eb_brandInsert 판매자번후 중복 에러
 	public boolean brandError(Errors errors, BrandVO brandVO)throws Exception{
 		boolean check = errors.hasErrors();
 		
@@ -62,29 +64,31 @@ public class BrandService {
 		
 		return check;
 	}
-//대분류 카테고리 카테고리 mapper에서 가져오기 
+	
+	//eb_brandInsert 대분류 카테고리 카테고리 mapper에서 가져오기 
 	public List<CategoryVO> getBigCategory() throws Exception{
 		return categoryMapper.getBigCategory();
 	}
 	
-	//post signBrand
-	public Long signBrand(BrandVO brandVO,Authentication auth, MultipartFile files) throws Exception{
+	//eb_brandInsert
+	public Long signBrand(BrandVO brandVO, Authentication auth, MultipartFile files) throws Exception{
 		brandVO.setUsername(auth.getName());
 		
+		//brandVO에 첨부파일 넣기
+		if(files.getSize()>0) {
+			String fileName=fileManager.save(files, filePath);
+			brandVO.setReferenceFile(fileName);
+		}
+		
+		//brandInsert
 		Long result = brandMapper.signBrand(brandVO);
 		
+		//신청할때 선택한 대분류 카테고리 brand_cateogy테이블에 삽입 
 		for(String c : brandVO.getCategories()) {
 			Map<String , String> map = new HashMap<String, String>();
 			map.put("categoryID", c);
 			map.put("brandNum", brandVO.getBrandNum()+"");
 			result =brandMapper.setBrand_Category(map);
-		}
-		
-		if(files.getSize()>0) {
-			String fileName=fileManager.save(files, filePath);
-			System.out.println(files.getOriginalFilename());
-			System.out.println(fileName);
-			brandVO.setReferenceFile(fileName);
 		}
 		
 		return result;
