@@ -28,8 +28,8 @@ public class ProductController {
 	private ProductService productService;
 	
 	
-	
-	@GetMapping("prodFromCat")//category클릭하면 product뜨는 메서드
+	//eb_category클릭하면 productList뜨는 메서드
+	@GetMapping("prodFromCat")
 	public String getProdFromCat(String categoryID, String brandNum, Model model)throws Exception{
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("categoryID", categoryID);
@@ -41,7 +41,7 @@ public class ProductController {
 	}
 	
 	
-	
+	//eb_프로덕트 판매중지
 	@GetMapping("delete")
 	public String getList(ProductVO productVO)throws Exception{
 		
@@ -50,22 +50,23 @@ public class ProductController {
 	
 	
 	
-	//insert product 
+	//eb_insert product 
 	@GetMapping("insert")
 	public String setProduct(Model model,Authentication auth)throws Exception{
+		//brand가 가지고 있는 카테고리(대분류)를 가져욤
 		List<CategoryVO> categoryOne =productService.getCategoryOne(auth);
 		model.addAttribute("categoryOne", categoryOne);
 		System.out.println("프로덕트 인서트 화면 열림");
 		return "product/insertProduct";
 	}
-	
+	//eb_insert product category
+	//대분류 선택하면 중분류, 중분류 선택하면 소분류 카테고리를 가져오는 메서드(ajax호출)
 	@GetMapping("getCategoryNext")
 	public String getCategoryNext(Model model, int categoryID)throws Exception{
 		List<CategoryVO>categoryNext = productService.getNextCategory(categoryID);
 		model.addAttribute("category", categoryNext);
 		return "product/categoryForm";
 	}
-	
 	
 	@PostMapping("insert")
 	public String setProduct(Authentication auth,ProductVO productVO,String categoryID, OptionsVO optionsVO, MultipartFile [] files, MultipartFile rep)throws Exception{

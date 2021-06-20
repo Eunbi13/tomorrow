@@ -1,11 +1,9 @@
 package com.tmh.t1.brand;
 
-import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.tmh.t1.category.CategoryVO;
 
 
 @Mapper

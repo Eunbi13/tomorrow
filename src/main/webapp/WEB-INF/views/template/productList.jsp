@@ -12,14 +12,14 @@
 		<div class="">
 			<div>
 				<div hidden="hidden">${vo.productNum}</div>
-				<a href="./productselect?productNum=${vo.productNum}">
+				<a href="/product/productselect?productNum=${vo.productNum}">
 					<img alt="" src="/upload/productImages/${vo.productPic }" style="width: 250px; height: 250px">
 				</a>
 			</div>
 			<small>${brandName.brandName }</small>
 			<small>${i.index }</small>
 			<div>
-				<a href="./productselect?productNum=${vo.productNum}">${vo.productName }</a>
+				<a href="/product/productselect?productNum=${vo.productNum}">${vo.productName }</a>
 			</div>
 			<span hidden="hidden" class="price">${vo.productPrice}</span>
 			<div>
