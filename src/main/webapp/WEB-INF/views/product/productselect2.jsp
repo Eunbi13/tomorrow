@@ -71,7 +71,7 @@
 				<form action="test">
 					<input type="hidden" name="brandNum" value="${vo.brandNum} ">
 					<input type="hidden" name="productNum" value="${vo.productNum} ">
-					<select id="selectop" name="options" onclick='addList()'>
+					<select id="selectop" name="options" >
 						<option value="optionKinds" >${vo.optionsVO.optionKinds}</option>
 						<c:forEach items="${optionsar}" var="OPvo" varStatus="status">
 							<option value="${vo.optionsVO.optionNum }">

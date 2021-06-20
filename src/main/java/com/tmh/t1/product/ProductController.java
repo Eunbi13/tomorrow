@@ -100,7 +100,6 @@ public class ProductController {
 		model.addAttribute("vo", productVO);
 
 		List<BrandVO> brandar = productService.getBrandList(productVO);
-//		String brandN = brandar.get(0).getBrandName().toString();
 		model.addAttribute("brandar", brandar);
 		
 
@@ -108,8 +107,7 @@ public class ProductController {
 		model.addAttribute("optionsar", optionsar); 
 		int opsize = optionsar.size();
 		model.addAttribute("opsize", opsize);
-//		String optionK = optionsar.get(1).getOptionKinds().toString();
-//		model.addAttribute("optionK", optionK); 
+
 		
 	}
 
