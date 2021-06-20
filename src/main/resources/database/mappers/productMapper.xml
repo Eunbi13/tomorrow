@@ -76,7 +76,7 @@
     	</select>
     	
     
-    	<select id="getSelect" parameterType="ProductVO" resultType="ProductVO">
+    	<select id="getSelect" parameterType="ProductVO" resultMap="ProductVO">
     		SELECT p.*, b.*
 			FROM product p INNER JOIN brand b 
 			ON p.brandNum = b.brandNum
