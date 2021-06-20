@@ -1,3 +1,4 @@
+
 //eb_imageAdd
 $('#imageAdd').click(function(){
 	let imageInput = $('#filesSample').html();
@@ -8,12 +9,17 @@ $('#files').on('click', '.deleteImage', function(){
 	$(this).parent().remove();
 });
 
-//eb_카테고리 대분류에서 선택시
+
+
+//eb_타케고리(대분류) 선택시
 $('.ch').click(function(){
 	let check = $('.ch').prop('checked');
-	//중복방지
+	//체크박스중복제거 
+	//만약 선택되어있던 카테고리가 있다면 비우겠다
+
 	$('#two').empty();
 	$('#three').empty();
+	//대분류(name="one")를 전부 false로 바꾸고 내가 클릭한 체크박스만 true로 만들겠다
 	$('.ch[name="one"]').prop('checked', false);
 	$(this).prop('checked', true);
 	
@@ -31,10 +37,10 @@ $('.ch').click(function(){
 	}//if check
 });
 
-//eb_카테고리 중분류에서 선택시
+//eb_타케고리(중분류)  선택시
 $('#two').on('click', '.ch2', function(){
 	let check = $(this).prop('checked');
-	//중복방지
+	//체크박스중복제거 
 	$('#three').empty();
 	$('.ch2[name="two"]').prop('checked', false);
 	$(this).prop('checked', true);
@@ -48,6 +54,7 @@ $('#two').on('click', '.ch2', function(){
 			data:{categoryID: categoryID},
 			success:function(data){
 				$('#three').append(data);
+				//선택된 체크박스에 name속성을 추가함으로 input태그 완성
 				$('#three').on('click', '.ch2', function(){
 					$(this).prop("title", "three");
 					$(this).prop("name", "categoryID");
@@ -78,6 +85,7 @@ $('#use').change(function(){
 	$('#table').empty();
 	tcount=0;
 })
+
 //eb_modal내부에 +버튼(optionTable추가버튼)
 $('#add').click(function(){
 	$('.addForm').append($('.optionForm').html());
