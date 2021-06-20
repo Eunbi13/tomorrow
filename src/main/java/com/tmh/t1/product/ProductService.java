@@ -34,20 +34,32 @@ public class ProductService {
 	@Value("${productInsert.filePath}")
 	private String filePath;
 	
-	//category클릭하면 product뜨는 메서드
+	//eb_productUpdate 상품과 관련된 정보 불러오기
+	public Map<String, Object> getProductInfo(ProductVO productVO)throws Exception{
+		Long productNum = productVO.getProductNum();
+		productVO = productMapper.getProdInfo(productVO);
+		CategoryVO categoryVO=categoryMapper.getProdCategory(productNum);
+		List<OptionsVO> options = optionsMapper.getProdOptions(productNum);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("productVO", productVO);
+		map.put("categoryVO", categoryVO);
+		map.put("options", options);
+		return map;
+	}
+	
+	//eb_productList category클릭하면 해당상품뜨는 메서드
 		public List<ProductVO> getProdFromCat(Map<String, String> map)throws Exception{
 			return productMapper.getProdFromCat(map);
 		}
-	
-	
-	//get insert //대분류 카테고리 카테고리 mapper에서 가져오기 
+		
+	//eb_ ProductInsert brand가 가입시 선택한 대분류만 조회
 	public List<CategoryVO> getCategoryOne(Authentication auth) throws Exception{
 		String username=auth.getName();
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("username", username);
 		return categoryMapper.getCategoryOne(map);
 	}
-
+	//eb_BrandHome 브랜드홈에서 카테고리이름 클릭시 해당 상품조회
 	public List<CategoryVO> getNextCategory(int categoryID)throws Exception{
 		CategoryVO categoryVO = new CategoryVO();
 		categoryVO.setCategoryID(categoryID);
@@ -55,7 +67,7 @@ public class ProductService {
 	}
 	
 	
-	//post insert
+	//eb_ProductInsert
 	@Transactional(rollbackFor = Exception.class)
 	public Long setProduct(Authentication auth, ProductVO productVO,String categoryID, OptionsVO optionsVO , MultipartFile [] files, MultipartFile rep)throws Exception{
 		ProductImagesVO imagesVO = new ProductImagesVO();
@@ -84,12 +96,15 @@ public class ProductService {
 		}
 		
 		//옵션 저장
+		//if(optionVO!=null) {
 		String [] k= optionsVO.getOptionKinds().split(",");
 		String [] n = optionsVO.getOptionName().split(",");
 		String [] p = optionsVO.getOptionPrice().split(",");
 		String [] s = optionsVO.getStep().split(",");
+		
+		//product_options 테이블에 optionNum넣기 위해 리스트 생성
 		List<Long> optionNums = new ArrayList<Long>();
-
+		
 		for(int i =0; i<k.length; i++) {
 			optionsVO = new OptionsVO();
 			optionsVO.setOptionKinds(k[i]);
@@ -100,9 +115,13 @@ public class ProductService {
 			optionsMapper.setOption(optionsVO);
 			Long optionsNum=optionsVO.getOptionNum();
 			System.out.println(optionsNum);
+			//options테이블에 ref 업데이트
 			optionsMapper.updateOption(optionsVO);
+			
+			//생성된 optionsNum 리스트에 추가
 			optionNums.add(optionsNum);
 		}
+		
 
 		Map<String, Long> map = new HashMap<String, Long>();
 		map.put("productNum", productVO.getProductNum());

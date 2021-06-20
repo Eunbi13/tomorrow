@@ -23,6 +23,13 @@
 	 WHERE C.category_detail_lev=3
 	 </select>
 	 
+	 
+	<!-- eb_productUpdate 상품의 카테고리 불러오기 -->
+	<select id="getProdCategory" parameterType="java.lang.Long" resultType="CategoryVO">
+		SELECT * FROM category 
+		WHERE categoryID = (SELECT categoryID FROM product_category WHERE productNum=${productNum})
+	</select>
+	
 	<!--eb brandInsert에서 사용, 대분류 카테고리 조회 -->
 	<select id="getBigCategory" resultType="CategoryVO">
 			SELECT categoryID, category_detail_NM FROM category 

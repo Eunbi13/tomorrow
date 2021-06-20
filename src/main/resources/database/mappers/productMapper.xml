@@ -5,34 +5,44 @@
     <mapper namespace="com.tmh.t1.product.ProductMapper">
     	
     <!-- 김은비 -->
+    	<!-- eb_productUpdate 상품정보 불러오기 -->
+    	<select id="getProdInfo" parameterType="ProductVO" resultType="ProductVO">
+    		SELECT * FROM product WHERE productNum=${productNum}
+    	</select>
+    
+		<!-- eb_productInsert 유저네임에서 브랜드번호 찾기-->
     	<select id="getBrandNum" parameterType="java.lang.String" resultType="java.lang.Long">
     		SELECT brandNum FROM brand WHERE username=#{username}
     	</select> 
+    	
+    	<!-- eb_ProductInsert -->
     	<insert id="setProduct" parameterType="ProductVO" useGeneratedKeys="true" keyProperty="productNum">
 			INSERT INTO product (brandNum, productPic, contents, 
 								 productName, productPrice, discountPrice, shippingFee) 
 			VALUES (#{brandNum},#{productPic},#{contents},
 					#{productName},#{productPrice},#{discountPrice},#{shippingFee})
     	</insert>
+    	<!-- eb_ProductInsert 추가이미지 넣기 -->
     	<insert id="setImages" parameterType="ProductImagesVO">
 			INSERT INTO productimages (productNum, fileName) VALUES (#{productNum}, #{fileName})
 		</insert>
-		
+		<!-- eb_ProductInsert 상품의 카테고리 중간 테이블(product_category)에 삽입 -->
 		<insert id="setProduct_category" parameterType="java.util.Map">
 			INSERT INTO product_category VALUES (#{productNum}, #{categoryID})
 		</insert>
-
+		<!-- eb_ProductInsert 상품의 옵션 중간 테이블(product_options)에 삽입 -->
 		<insert id="setProduct_Options" parameterType="java.util.Map">
 			INSERT INTO product_options VALUES (#{productNum}, #{optionNum})
 		</insert>
 		
-		<!-- brandHome -->
-		
+		<!-- eb_brandHome 브랜드상품리스트 시간순으로 출력-->
 		<select id="getBrandHomeList" parameterType="java.lang.Long" resultType="ProductVO">
 			SELECT * FROM product WHERE brandNum=#{brandNum}  GROUP BY productNum DESC
 		</select>
 		
-		<!-- category클릭하면 product뜨는 메서드 -->
+		<!-- eb category클릭하면 해당상품뜨는 메서드 -->
+		<!-- 카테고리ID를 기준으로 함. 대분류 카테고리ID가 14번까지 있음 고려해서 if문 사용 -->
+		<!-- brandNum은 brnadHome에서 카테고리 선택할 경우를 위해 if문 추가 -->
 		<select id="getProdFromCat" parameterType="java.util.Map" resultType="ProductVO">
 			SELECT p.* FROM  product_category PC
 			JOIN (SELECT c.* FROM category C,(SELECT * FROM category WHERE categoryID=#{categoryID})C2
@@ -50,9 +60,6 @@
 			GROUP BY p.productNum DESC 
 		</select>	
 	
-		
-		
-		
 		
 		<select id="getPList" parameterType="BrandVO" resultType="ProductVO">
 			SELECT P.* FROM product P, (SELECT * FROM brand WHERE username=#{username} or brandNum=#{brandNum}) B 

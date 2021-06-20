@@ -16,11 +16,15 @@ public interface CategoryMapper {
 	
 	public CategoryVO selectCategoryThree(CategoryVO categoryVO)throws Exception;
 	
-	//<!--은비 brandInsert에서 사용 -->
+	// eb_productUpdate에서 사용 프로덕트 번호를 파라미터로 카테고리 정보 반환 
+	public CategoryVO getProdCategory(Long productNum)throws Exception;
+	
+	// eb brandInsert에서 사용, 대분류 카테고리 조회
 	public List<CategoryVO> getBigCategory() throws Exception;
-	//<!-- 은비 productInsert에서 사용 -->
-	//brandHome에서도 사용
+	//eb productInsert & brandHome 에서 사용
+	//brand가 가입시 선택한 대분류만 조회
 	public List<CategoryVO> getCategoryOne(Map<String, String> map) throws Exception;
+	//eb categoryID를 기반으로 다음단계(대->중->소) 카테고리 조회
 	public List<CategoryVO> getNextCategory(CategoryVO categoryVO)throws Exception;
 	
 	//수정할지도 모름

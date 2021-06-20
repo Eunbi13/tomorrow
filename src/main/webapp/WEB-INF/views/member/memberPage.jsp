@@ -31,7 +31,7 @@
 				<li class="nav-item"><a class="nav-link" href="#">집들이</a></li>
 			<sec:authorize access="hasRole('ROLE_B')">
 				<li class="nav-item"><a id="brandHome" class="nav-link" href="/brand/Home?username=<sec:authentication property="principal.username"/>">브랜드홈</a></li>
-				<li class="nav-item"><a class="nav-link" href="/brand/order">주문조회</a></li>
+				<li class="nav-item"><a class="nav-link" href="/brand/cart?username=<sec:authentication property="principal.username"/>">주문조회</a></li>
 			</sec:authorize>
 			<sec:authorize access="hasRole('ROLE_M')">
 				<li class="nav-item"><a class="nav-link" href="#">브랜드수락</a></li>

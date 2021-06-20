@@ -12,7 +12,10 @@ import com.tmh.t1.option.OptionsVO;
 @Mapper
 public interface ProductMapper {
 	
-	//insert
+	//eb_productUpdate 
+	public ProductVO getProdInfo(ProductVO productVO)throws Exception;
+	
+	//eb_productInsert
 	public Long getBrandNum(String username)throws Exception;
 	public Long setProduct(ProductVO productVO)throws Exception;
 	public Long setImages(ProductImagesVO imagesVO)throws Exception;
