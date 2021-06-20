@@ -74,8 +74,10 @@
 					<select id="selectop" name="options" onchange="optionprint(this)" multiple="multiple">
 						<option value="optionKinds" >${optionK}</option>
 						<c:forEach items="${optionsar}" var="OPvo" varStatus="status">
-							<option value="${OPvo.optionNum }">${OPvo.optionName},
-								${vo.discountPrice + OPvo.optionPrice}</option>
+							<option value="${OPvo.optionNum }">
+								<div>${OPvo.optionName}</div>,
+								<div>${vo.discountPrice + OPvo.optionPrice}</div>	
+							</option>
 						</c:forEach>
 					</select>
 					
