@@ -108,7 +108,6 @@ public class ProductController {
 		model.addAttribute("optionsar", optionsar); 
 		int opsize = optionsar.size();
 		model.addAttribute("opsize", opsize);
-		
 	}
 
 }

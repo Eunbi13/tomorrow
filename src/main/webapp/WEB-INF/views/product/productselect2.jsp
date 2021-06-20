@@ -71,8 +71,8 @@
 				<form action="test">
 					<input type="hidden" name="brandNum" value="${vo.brandNum} ">
 					<input type="hidden" name="productNum" value="${vo.productNum} ">
-					<select id="selectop" name="options" onchange="optionprint(this)" multiple="multiple">
-						<option value="optionKinds" >${optionK}</option>
+					<select id="selectop" name="options" onchange='addList()'>
+						<option value="optionKinds" >${optionKinds} </option> <!-- 수정 -->
 						<c:forEach items="${optionsar}" var="OPvo" varStatus="status">
 							<option value="${OPvo.optionNum }">
 								<div>${OPvo.optionName}</div>,
@@ -80,6 +80,9 @@
 							</option>
 						</c:forEach>
 					</select>
+					
+					<ul id='opPrint'></ul>
+					
 					
 						<li id="carts${i.index}" title="${cartVO.brandNum}">
 							<div title="${cartVO.productNum}"
