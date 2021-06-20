@@ -87,12 +87,14 @@
     	
     
     	<select id="getSelect" parameterType="ProductVO" resultMap="ProductVO">
-    		SELECT p.*, o.*, po.productNum
+    		SELECT p.*, o.*, po.productNum, b.brandName
 			FROM 
 			options o INNER JOIN product_options po
 			ON o.optionNum = po.optionNum
 			INNER JOIN product p
 			ON po.productNum = p.productNum
+			INNER JOIN brand b
+			ON p.brandNum = b.brandNum
 			WHERE p.productNum=#{productNum}
     	</select>
     
