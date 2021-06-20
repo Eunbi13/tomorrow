@@ -33,14 +33,20 @@ public class ProductController {
 	}
 	
 	//eb_ProductUpdate 파라미터: 상품번호
-	@GetMapping("Update")
+	@GetMapping("update")
 	public String setProductUpdate(ProductVO productVO, Model model)throws Exception{
 		Map<String, Object> map = productService.getProductInfo(productVO);
-	
+		
 		model.addAttribute("productVO", (ProductVO)map.get("productVO"));
 		model.addAttribute("categoryVO", (CategoryVO)map.get("categoryVO"));
 		model.addAttribute("options", (List<OptionsVO>)map.get("options"));
 		return "product/productUpdate";
+	}
+	
+	@PostMapping("update")
+	public String setProductUpdate(ProductVO productVO,String categoryID, OptionsVO optionsVO, MultipartFile [] files, MultipartFile rep)throws Exception{
+		
+		return "redirect:/";
 	}
 	
 	

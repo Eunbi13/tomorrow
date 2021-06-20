@@ -28,6 +28,6 @@
 			</div>
 			<c:if test="${vo.shippingFee eq 0}"><div>무료배송</div></c:if>
 		</div>
-		<a href="./update?productNum=${vo.productNum}">편집</a>
+		<a href="/product/update?productNum=${vo.productNum}">편집</a>
 	</c:forEach>
 </div>

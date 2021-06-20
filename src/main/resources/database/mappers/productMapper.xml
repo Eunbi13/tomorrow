@@ -6,9 +6,27 @@
     	
     <!-- 김은비 -->
     	<!-- eb_productUpdate 상품정보 불러오기 -->
-    	<select id="getProdInfo" parameterType="ProductVO" resultType="ProductVO">
-    		SELECT * FROM product WHERE productNum=${productNum}
+    	<select id="getProdInfo" parameterType="ProductVO" resultMap="result">
+    		SELECT P.*, Pimg.* FROM product P 
+    		left JOIN productimages pimg 
+    		ON p.productNum=Pimg.productNum 
+    		WHERE p.productNum=${productNum}
     	</select>
+    	<resultMap type="ProductVO" id="result">
+    		<id column="productNum" property="productNum"/>
+    		<result column="brandNum" property="brandNum"/>
+    		<result column="productName" property="productName"/>
+    		<result column="productPrice" property="productPrice"/>
+    		<result column="productPic" property="productPic"/>
+    		<result column="contents" property="contents"/>
+    		<result column="discountPrice" property="discountPrice"/>
+    		<result column="shippingFee" property="shippingFee"/>
+    		<collection property="images" javaType="java.util.List" ofType="ProductImagesVO">
+    			<id column="num" property="num"/>
+    			<result column="productNum" property="productNum"/>
+    			<result column="fileName" property="fileName"/>
+    		</collection>
+    	</resultMap>
     
 		<!-- eb_productInsert 유저네임에서 브랜드번호 찾기-->
     	<select id="getBrandNum" parameterType="java.lang.String" resultType="java.lang.Long">

@@ -1,14 +1,14 @@
-//imageAdd
+//eb_imageAdd
 $('#imageAdd').click(function(){
 	let imageInput = $('#filesSample').html();
 	$('#files').append(imageInput);
 });
-//imageDelete
+//eb_imageDelete
 $('#files').on('click', '.deleteImage', function(){
 	$(this).parent().remove();
 });
 
-//대분류에서 선택시
+//eb_카테고리 대분류에서 선택시
 $('.ch').click(function(){
 	let check = $('.ch').prop('checked');
 	//중복방지
@@ -31,7 +31,7 @@ $('.ch').click(function(){
 	}//if check
 });
 
-//중분류에서 선택시
+//eb_카테고리 중분류에서 선택시
 $('#two').on('click', '.ch2', function(){
 	let check = $(this).prop('checked');
 	//중복방지
@@ -63,12 +63,11 @@ $('#three').on('click', '.ch2', function(){
 	$(this).prop('checked', true);
 })
 /*
-modal controller
+eb_modal controller
 일체형일경우 false, 조합형일 경우 true
 옵션 구성 타입의 값이 달라지면 table초기화
 */
 let check =false;
-
 $('#notUse').change(function(){
 	check=$('#use').prop('checked');
 	$('#table').empty();
@@ -79,11 +78,13 @@ $('#use').change(function(){
 	$('#table').empty();
 	tcount=0;
 })
-//modal내부에 +버튼
+//eb_modal내부에 +버튼(optionTable추가버튼)
 $('#add').click(function(){
 	$('.addForm').append($('.optionForm').html());
 });
-//modal close
+//eb_modal close(optionTable생성)
+let count =0;
+let tcount=0;
 $('#modal').click(function(){
 	//count: 만들어진 테이블이 있을 경우, i값이 같아서 중복으로 tr태그가 들어가는 것을 방지
 	let count=$('table').length;
@@ -93,7 +94,6 @@ $('#modal').click(function(){
 	let step="";
 	
 	$('.kinds').each(function(i, k){
-		//countI = count+i;
 		countI=tcount++;
 		kind = $(k).val();
 		//makeThead
@@ -110,7 +110,7 @@ $('#modal').click(function(){
 							step='0';
 						}
 						//makeTbody
-						$('tbody.t'+countI).append(makeTbody(kind, nm, step));
+						$('tbody.t'+countI).append(makeTbody(kind, nm, 0,step));
 						
 					}
 				}//if i==j
@@ -125,8 +125,7 @@ $('#modal').click(function(){
 });
 
 
-let count =0;
-let tcount=0;
+
 $('#table').on('click','td.add', function(){
 	//테이블에 행 추가
 	//$('td.add').click(function(){
@@ -136,6 +135,7 @@ $('#table').on('click','td.add', function(){
 		//table 찾기 위한 title 값
 		let a = $(this).attr('title');
 		//makeTbody할때 내가 클릭한 총 횟수만큼 이벤트가 일어남,, 왜지?
+		//이유는 이벤트위임 잘못해서 ㅇㅇ count변수 필요없어짐 
 		//그걸 방지하기 위한 count와 stop 변수
 		count = $('tbody.'+a+'>tr').length;
 		
@@ -150,7 +150,7 @@ $('#table').on('click','td.add', function(){
 			}
 		})
 		
-		$('tbody.'+a).append(makeTbody(kind, name, step));
+		$('tbody.'+a).append(makeTbody(kind, name, 0,step));
 		let stop = $('tbody.'+a+'>tr').length;
 		//if(count+1==stop){
 		//	return false;
@@ -215,7 +215,6 @@ $('#table').on('click','table',function(){
 
 //make Table code
 function makeThead(kind, i){
-	//tcount++;
 	return	'<table class="table">'+
 				'<thead>'+	 	
 					'<tr class="thead">'+				
@@ -237,11 +236,11 @@ function makeThead(kind, i){
 			
 };
 
-function makeTbody(kind, name, step){
+function makeTbody(kind, name, price, step){
 	return 	'<tr class="tbody">'+
 				'<td><input name="optionKinds" hidden="hidden"	value="'+kind+'" class="tdKind"></td>'+
 				'<td><input name="optionName"  type="text"		value="'+name+'" class="tdName form-control" ></td>'+
-				'<td><input name="optionPrice" type="number"	value="0" 		 class="tdPrice form-control" ></td>'+
+				'<td><input name="optionPrice" type="number"	value="'+price+'"class="tdPrice form-control" ></td>'+
 				'<td><input name="step"		   hidden="hidden"	value="'+step+'" class="tdStep"></td>'+
 				'<td class="rowDelete" >x</td>'+
 			'</tr>';

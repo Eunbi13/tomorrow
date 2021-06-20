@@ -24,6 +24,15 @@
 			<div class="col-sm-12"> 
 				<div class="form-group row"><!-- 클릭하면 ajax로 중부류, 소분류 불러오기 -->
 					<div class="col-sm-12">
+					<div id="category" hidden="hidden">
+						<input class="form-control" name="categoryID" value="${categoryVO.categoryID}">
+						<label class="">${categoryVO.category_detail_NM}</label>
+					</div>	
+						<div>카테고리(소분류) 이름: ${categoryVO.category_detail_NM}</div>
+						<div>카테고리 아이디: ${categoryVO.categoryID}</div>
+						<div>변경하기</div>
+					</div>
+					<div class="col-sm-12" style="display: none;">
 						<label class="col-sm-2 col-form-label">선택*</label>
 						<c:forEach items="${categoryOne}" var="vo">
 						<div class=" form-check form-check-inline ">
@@ -44,8 +53,8 @@
 			<legend>제품 정보<span>*</span></legend>
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">상품명</label>
-				<input class="form-control col-sm-10" name="productName" value="${vo.productName }"
-				type="text" placeholder="Please ProductName">
+				<input name="productName" value="${productVO.productName }"
+				class="form-control col-sm-10" type="text" placeholder="Please ProductName">
 			</div>
 		</fieldset>
 <br>
@@ -53,10 +62,11 @@
 			<legend>이미지</legend>
 			<div>
 				<label class="col-sm-2 col-form-label">대표 이미지<span>*</span></label>
-				<img alt="" src="/upload/productImages/${vo.productPic}">
+				<img alt="" src="/upload/productImages/${productVO.productPic}">
+				<div>대표 이미지 교체하기</div>
 				<div style="font-weight: bold">추가 이미지</div>
-				<c:forEach items="${ProductImages }" var="img">
-					<img alt="" src="/upload/productImages/${img.filename}">
+				<c:forEach items="${productVO.images }" var="img">
+					<img alt="" src="/upload/productImages/${img.fileName}">
 				</c:forEach>
 			</div>
 			<div class="form-group row">
@@ -84,7 +94,7 @@
 			<legend>상세 페이지 작성</legend>
 		<div class="form-group">
 			<textarea id="summernote" name="contents" class="form-control" id="exampleFormControlTextarea1" placeholder="Please contents">
-				${vo.contents}
+				${productVO.contents}
 			</textarea>
 		</div> 
 			
@@ -96,7 +106,7 @@
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">가격</label>
 				<div class="col-sm-10">
-					<input class="form-control" name="productPrice" value="${vo.productPrice }"
+					<input class="form-control" name="productPrice" value="${productVO.productPrice }"
 					type="number" placeholder="Please number">
 				</div>
 			</div>
@@ -104,7 +114,7 @@
 			<div class="form-group row">
 				<label class="col-sm-2  col-form-label">판매가격</label>
 				<div class="col-sm-10">
-					<input class="form-control" name="discountPrice" value="${vo.discountPrice }"
+					<input class="form-control" name="discountPrice" value="${productVO.discountPrice }"
 					type="number" placeholder="Please number">
 				</div>
 			</div>
@@ -112,7 +122,7 @@
 			<div class="form-group row">
 				<label class="col-sm-2  col-form-label">배송비 설정</label>
 				<div class="col-sm-10">
-					<input class="form-control" name="shippingFee" value="${vo.shippingFee }"
+					<input class="form-control" name="shippingFee" value="${productVO.shippingFee }"
 					type="number" placeholder="Please number">
 				</div>
 			</div>
@@ -136,10 +146,17 @@
 			<div class="container-sml" id="table">
 				
 			</div>
-			
+			<div id="options">
+				<c:forEach items="${options }" var="op">
+					<div class="optionKinds">${op.optionKinds }</div>
+					<div class="optionName">${op.optionName }</div>
+					<div class="optionPrice">${op.optionPrice }</div>
+					<div class="step">${op.step }</div>
+				</c:forEach>
+				</div>
 		</fieldset>
 
-		<button>저장하기</button>
+		<button>수정하기</button>
 	</form>
 	
 		
@@ -147,6 +164,6 @@
 
 <c:import url="../template/footer.jsp"></c:import>
 <script type="text/javascript" src="/js/productInsert.js"></script>
-
+<script type="text/javascript" src="/js/productUpdate.js"></script>
 </body>
 </html>
