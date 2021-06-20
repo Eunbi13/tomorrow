@@ -46,6 +46,11 @@ public class ProductController {
 	@PostMapping("update")
 	public String setProductUpdate(ProductVO productVO,String categoryID, OptionsVO optionsVO, MultipartFile [] files, MultipartFile rep)throws Exception{
 		
+		Long result = productService.setUpdateProduct(productVO, categoryID, optionsVO, files, rep);
+		
+		if(result<1) {
+			
+		}
 		return "redirect:/";
 	}
 	

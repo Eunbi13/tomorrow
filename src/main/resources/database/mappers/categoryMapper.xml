@@ -51,7 +51,7 @@
 			AND C.category_LEV=C2.category_LEV+1
 	</select>
 	
-	
+	<!-- 수정할듯 -->
 	<select id="getCategoryID" parameterType="java.lang.Long" resultType="CategoryVO">
 		SELECT distinct C.* 
 		FROM category C, 

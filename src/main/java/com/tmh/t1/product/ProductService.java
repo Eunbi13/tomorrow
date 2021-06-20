@@ -34,6 +34,15 @@ public class ProductService {
 	@Value("${productInsert.filePath}")
 	private String filePath;
 	
+	//eb_productUpdate 
+	public Long setUpdateProduct(ProductVO productVO,String categoryID, OptionsVO optionsVO, MultipartFile [] files, MultipartFile rep)throws Exception{
+		Long result = productMapper.setUpdateProduct(productVO);
+		
+		
+		
+		return result;
+	}
+	
 	//eb_productUpdate 상품과 관련된 정보 불러오기
 	public Map<String, Object> getProductInfo(ProductVO productVO)throws Exception{
 		Long productNum = productVO.getProductNum();

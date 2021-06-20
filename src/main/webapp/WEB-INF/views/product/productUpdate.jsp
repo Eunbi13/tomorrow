@@ -19,6 +19,7 @@
 
 
 	<form id="productFrm" action="./update" method="post" enctype="multipart/form-data">
+		<input hidden="hidden" name="productNum" value="${productVO.productNum }">
 		<fieldset>
 			<legend>카테고리<span>*</span></legend>	
 			<div class="col-sm-12"> 
