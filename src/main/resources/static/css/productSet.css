@@ -1,0 +1,32 @@
+@charset "UTF-8";
+/* productInsert & productUpdate 에서 사용 */
+
+.preview{
+	width: 60px;
+	z-index: 1;
+	position: absolute;
+}
+
+
+p{
+	height: 60px;
+	width: 60px;
+	display: flex;
+}
+
+.rep{
+	flex:100%;
+	width: 60px;
+	height: 60px;
+	line-height: 1.9em;
+	border-style: dashed;
+	border-color: #DCDCDC;
+	color:#DCDCDC;
+	font-size: x-large;
+	position: absolute;
+	z-index: 2;
+}
+
+img{
+	border-radius:0.25em;
+}

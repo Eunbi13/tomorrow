@@ -10,9 +10,7 @@
 <c:import url="../template/summernote.jsp"></c:import>
 <title>내일부터 하는 인테리어, 내일의 집</title>
 
-<style type="text/css">
-
-</style>
+<link rel="stylesheet" type="text/css" href="/css/productSet.css">
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
@@ -69,11 +67,11 @@
 			<legend>이미지</legend>
 			<div>
 				<label class="col-sm-2 col-form-label">대표 이미지<span>*</span></label>
-				<img alt="" src="/upload/productImages/${productVO.productPic}">
+				<img class="preview" alt="" src="/upload/productImages/${productVO.productPic}">
 				<div>대표 이미지 교체하기</div>
 				<div style="font-weight: bold">추가 이미지</div>
 				<c:forEach items="${productVO.images }" var="img">
-					<img alt="" src="/upload/productImages/${img.fileName}">
+					<img class="preview" alt="" src="/upload/productImages/${img.fileName}">
 				</c:forEach>
 			</div>
 			<div class="form-group row">
