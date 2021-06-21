@@ -293,13 +293,20 @@ img{
     </div>
 </div>
      
-	
+     
+     
+     
+     
+     
+  	<script type="text/javascript" src="/js/cartList.js" ></script>  
+     
+ 
 <script type="text/javascript">
 
-//상품구매하기 버튼 누를시.
-$("#payBtn").click(function(){
-	//각 cartVO의 validity 검사-> ajax를 이용해 DB에 업데이트 
-	// Ajax 끝마치고 submit 하기
+	//<!-- 상품구매하기 버튼 누를시 -->
+	$("#payBtn").click(function(){
+		// <!-- ////각 cartVO의 validity 검사-> ajax를 이용해 DB에 업데이트 
+		// Ajax 끝마치고 submit 하기 -->
 	 const validity_ar=[];
 	 const un_validity_ar=[];
 	$(".del").each(function(){

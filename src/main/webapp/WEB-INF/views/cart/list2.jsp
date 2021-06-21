@@ -1820,6 +1820,8 @@ $(".amountSelect").change(function() {
 
 
 
+	
+
 
 	</script>
 
@@ -1831,7 +1833,7 @@ $(".amountSelect").change(function() {
 				
 </script>
 
-
+	<script type="text/javascript" src="/js/cartList.js" ></script>  
 <c:import url="../template/footer.jsp"></c:import>
 </body>
 
