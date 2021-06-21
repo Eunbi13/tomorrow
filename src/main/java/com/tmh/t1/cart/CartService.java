@@ -28,20 +28,10 @@ public class CartService {
 	
 	public List<CartVO> getCartList(CartVO cartVO)throws Exception{
 	  
-       List<CartVO> optionList= cartMapper.getCartList(cartVO);
-       for(CartVO vo: optionList) {
-    	  System.out.println("vo.getCartNum():"+vo.getCartNum()); 
-    	  System.out.println("vo.getProductNum():"+vo.getProductNum());
-    	  System.out.println("vo.getCartPrice():"+vo.getCartPrice()); 
-    	  
-    	  List<OptionsVO> optList = vo.getOptionList();
-    	  for(OptionsVO optVO: optList) {
-    		  System.out.println("optVO.getOptionNum()"+optVO.getOptionNum());
-    	  }
-    	   
-       }
+       List<CartVO> cartList= cartMapper.getCartList(cartVO);
+      
        
-       return optionList;
+       return cartList;
 	}
 	
 	public List<BrandVO> getBrandList(CartVO cartVO)throws Exception{

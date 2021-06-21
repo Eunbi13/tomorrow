@@ -74,7 +74,7 @@ clear:both;
 	border-color: #A63F82;
 	border:1px solid;
 	border-radius:6px;
- margin-bottom:10px;
+    margin-bottom:10px;
 }
 
 .two-btn:hover, .two-btn:focus, .two-btn:active, .two-btn.active, .open .dropdown-toggle.two-btn {
@@ -337,9 +337,11 @@ webkit-box-flex: 1; */
 	 						       	    <div class="detailSelect" style="float:right; margin: 45px 20px 0px 0px;">
 	 						        		<a class="detailSelect" href="select?orderNum=${ordersVO.orderNum}" >상세보기 ></a>
 	 						        	</div>
+	 						        	
+	 						        	 <hr style="margin-top:50px;">
 	 					       </li>  
 	 					       
-	 					   <hr style="margin-top:80px;">
+	 					  
 	 					         <!-- brand -->
 	 						     <c:forEach items="${brandAr}" var="brandVO">
 	 						    	 <c:if test="${brandVO.orderNum eq ordersVO.orderNum}">

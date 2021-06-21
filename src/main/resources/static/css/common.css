@@ -4,3 +4,24 @@
 	font-weight:bold;
 	color: red;
 }
+
+.btn-default{
+ 
+background-color: #A63F82;
+ 
+color:#FFF;
+ 
+border-color: #A63F82;
+ 
+}
+ 
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+ 
+ 
+background-color: #732944;
+ 
+color:#FFF;
+ 
+border-color: #732944;
+ 
+}

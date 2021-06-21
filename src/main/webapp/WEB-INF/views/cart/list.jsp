@@ -5,6 +5,28 @@
 <html>
 <head>
 <style type="text/css">
+
+
+.opdi{
+
+
+    width: 90px;
+    height: 30px;
+	background-color: #FFF;
+	color:#black;
+	border: #FFF solid 3px;
+	font-size: 13px;
+	
+
+}
+
+.opdi:hover, opdi:focus, .opdi:active, .opdi.active, .open .dropdown-toggle.opdi {
+ 
+	background-color: #FFF;
+	color:#cccccc;
+	border: #FFF solid 3px;
+	
+}
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -57,6 +79,10 @@ img{
    font-size: 12px;
     padding-bottom: 20px;
 }
+
+.num{
+ font-weight: bold;
+}
 </style>
 
 <c:import url="../template/bootStrap.jsp"></c:import>
@@ -82,7 +108,7 @@ img{
 								</div>
 				    </div>
 				   
-				    <div class="p-2"><button type="button" class="btn" id="selectedDelete" style="font-size:18px;">선택삭제</button></div>
+				    <div class="p-2"><button type="button" class="btn opdi" id="selectedDelete" style="font-size:18px; width: 120px;">선택삭제</button></div>
 				  </div>      
             
             
@@ -98,7 +124,7 @@ img{
          <div id="card${brandVO.brandNum}" class="card">
 			  <div class="card-header">
 				 
-	                <div class="p-1" style="text-align: center; font-size:16px;"> <c:out value="${brandVO.brandName}"/> 배송</div>
+	                <div class="p-1" style="text-align: center; font-size:16px;"> <c:out value="${brandVO.companyName}"/> 배송</div>
 			
 			  </div>
 			  
@@ -121,7 +147,7 @@ img{
 					<!-- Checked checkbox  end -->
 				    <img src="../resources/images/glove.webp" class="mr-3" alt="...">
 				    <div class="media-body">
-				      <div class="mt-0 mb-1 productName">${productVO.productName}</div>
+				      <div class="mt-0 mb-1 productName">[${brandVO.brandName}] ${productVO.productName}</div>
 				         <div class="shippingType">무료배송 | 일반택배</div>
 				    </div>
 				   
@@ -129,7 +155,7 @@ img{
 					  <c:forEach items="${cartAr}" var="cartVO" varStatus="i">
 					  <c:if test="${productVO.productNum eq cartVO.productNum}">
 					     
-					       <c:forEach items="${cartVO.optionList}" var="optionList">
+					    
 					   <!-- option -->
 					     <li id="carts${i.index}" title="${cartVO.brandNum}">
 					       <input type="hidden" class="cartNum cartNum${productVO.productNum}" id="cartNum${cartVO.cartNum}" title="${cartVO.cartNum}">
@@ -140,14 +166,12 @@ img{
 							  		<div class="option">   ${cartVO.unitName}  </div>
 							  		   <div style="width:70px; height:20px; font-size:12px; float: left;">
 							  		     
-							  		   
-											
-										     <!-- 상단의 select box에 수량 10개이상 선택시 나타날 인풋박스/ 숫자만 입력할수 있도록 type number 지정 -->
+										     <!--  숫자만 입력할수 있도록 type number 지정 -->
 										     <input style="width:70px; height:20px; ime-mode:disabled;" type="number" min="1"  class="directInputBox directInputBox${productVO.productNum}" data-product-num="${productVO.productNum}" title="${cartVO.cartNum}" id="directInputBox" name="amount" value="${cartVO.amount}"/>
 										</div>
-										<div style="width:200px; height:23px; font-size:16px; padding-bottom:20px; font-weight: bold; float: right;">
+										<div class="num" style="width:200px; height:23px; font-size:16px; padding-bottom:20px; font-weight: bold; float: right;">
 										      
-											       <input type="text" readonly="readonly" id="cartVOPrice${cartVO.cartNum}" class="cartPricePlus${productVO.productNum} cartPricePlus" title="${productVO.productNum}" name="cartPrice" value="${cartVO.cartPrice}" style=" width:180px; height:20px; background-color:transparent;border:0 solid black; text-align:right;" />
+											       <input type="text" readonly="readonly" id="cartVOPrice${cartVO.cartNum}" class="cartPricePlus${productVO.productNum} cartPricePlus num" title="${productVO.productNum}" name="cartPrice" value="${cartVO.cartPrice}" style=" width:180px; height:20px; background-color:transparent;border:0 solid black; text-align:right;" />
 											  원
 					
 										</div> 
@@ -159,14 +183,14 @@ img{
 					       </li>
 				       
 				      <!-- option end-->
-				           </c:forEach>
+				      
 				      </c:if>
 				      </c:forEach>
 				      
 				      
 				      	<div class="d-flex justify-content-between product-bottom">
 				    		<div class="p-2" style="font-size:14px;" >
-				    			옵션변경  |  바로결제
+				    			<button class="opdi"> 옵션변경 </button> | <button id="directPay${productVO.productNum}" class="opdi directPay" title="${productVO.productNum}"> 바로결제</button>
 				    		</div>
 				    		
 				    		   <!-- fixed shippingFee per Product -->
@@ -177,8 +201,8 @@ img{
 						  	    <input type="hidden" class="amount${productVO.productNum}"  value=""/> 	     
 				    		    <input type="hidden" id="discount${productVO.productNum}" class="discount" value=""/> 	
 				    		<!-- productPrice -->
-				    		<div class="p-2" style=" font-size:18px;  font-weight: bold;" title="${productVO.productNum}">
-				    				<input  readonly="readonly" value="" id="productVOPrice${productVO.productNum}" class=" productPrice${b.index}  productNum_productPrice${productVO.productNum} productPrice" title="${b.index}" style=" width:200px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
+				    		<div class="p-2 num" style=" font-size:18px;  font-weight: bold;" title="${productVO.productNum}">
+				    				<input  readonly="readonly" value="" id="productVOPrice${productVO.productNum}" class="productPrice${b.index}  productNum_productPrice${productVO.productNum} productPrice num" title="${b.index}" style=" width:200px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
 				    			
 				    		</div>
 				    	</div>
@@ -230,21 +254,23 @@ img{
                 </div>
                 <div class="p-2 d-flex">
                     <div class="col-6">총 상품 금액</div>
-                    <div class="ml-auto">  				    			
-						<input readonly="readonly" id="totalPrice" class="totalPrice" style=" width:100px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
-                      <input type="hidden" readonly="readonly" name="itemsPrice" id="itemsPrice"  style=" width:100px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">
+                    <div class="ml-auto num">  		
+                         <!-- 정가의 합  -->		    			
+						<input readonly="readonly" id="totalPrice" class="totalPrice num" style=" width:100px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
+                         <!-- 할인된 가격의 합  -->	
+                        <input type="hidden" readonly="readonly" name="itemsPrice" id="itemsPrice"  style=" width:100px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">
                      </div>
                 </div>
                 <div class="p-2 d-flex">
                     <div class="col-6">총 배송비</div>
-                    <div class="ml-auto">
-                      <input readonly="readonly" name="shippingFee" id="totalShipping" class="totalShipping" style=" width:100px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
+                    <div class="ml-auto num">
+                      <input readonly="readonly" name="shippingFee" id="totalShipping" class="totalShipping num" style=" width:100px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
                     </div>
                 </div>
                       <div class="p-2 d-flex">
                     <div class="col-6">총 할인금액</div>
-                    <div class="ml-auto">
-                       - <input readonly="readonly" name="totalDiscount" id="totalDiscount" class="totalDiscount" style=" width:60px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
+                    <div class="ml-auto num">
+                       - <input readonly="readonly" name="totalDiscount" id="totalDiscount" class="totalDiscount num" style=" width:60px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
                     </div>
                 </div>
              
@@ -255,9 +281,9 @@ img{
                 
                 <div class="p-2 d-flex pt-3">
                     <div class="col-6"><b>결제 금액</b></div>
-                    <div class="ml-auto">
+                    <div class="ml-auto num">
                    	 <b class="green">
-                   	   <input readonly="readonly" name="payment" id="payment" class="payment" style=" width:100px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
+                   	   <input readonly="readonly" name="payment" id="payment" class="payment num" style=" width:100px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
                    	 </b>
                     </div>
                 </div>
@@ -662,8 +688,8 @@ $(".del, #allCheck").change(function(){
 			    		
 					    	$(".shippingFee"+b_index).each(function(){ //+ checked 된 애들중..
 					    		 let productNum= $(this).attr("data-productNum");
-					    		 for(let p in checkedNum){
-					    			  if(checkedNum[p] == productNum){
+					    		 for(let p in checkedNum){ 
+					    			  if(checkedNum[p] == productNum){ 
 					    				   console.log("checkedNum[p] == productNum입장");
 					    				  if($("#shippingFee"+productNum).val()==0){//3. 그 브랜드에서 구매한 product shippingFee 중 0이 하나라도 있음
 					    					  console.log("checkedNum[p] == productNum 그 이후 입장");
@@ -688,17 +714,25 @@ $(".del, #allCheck").change(function(){
 			    	} else{
 			    		
 			    		let shipFee=100000; //shipFee에 가장 작은 배송비를 넣을 것 
-			    		$(".shippingFee"+b_index).each(function(){
-			    			 let productNum= $(this).attr("data-productNum");
+			    		$(".shippingFee"+b_index).each(function(){ //fixed shippingFee per Product 
+			    			 let productNum= $(this).attr("data-productNum"); // 그 브랜드안의 상품 넘버 반복
 				    		 	for(let p in checkedNum){
-				    			  	if(checkedNum[p] == productNum){
-			    							let shipFee2=$(this).val();
-			    								if(shipFee2 <= shipFee){
-			    									shipFee=shipFee2;
-			    									}
+				    		 		   console.log("checkedNum[p]:"+checkedNum[p]+"productNum:"+productNum);
+					    			  	if(checkedNum[p] == productNum){ // checked productNum과 이 넘버가 같으면  //근데 하나도 같은 넘버가 없다면??
+				    							let shipFee2=$(this).val(); //fixed shippingFee per Product  
+				    							
+				    								if(shipFee2 <= shipFee){
+				    									shipFee=shipFee2;
+				    									}
 				    			  	}
 				    		 	}
+			    			 
 			    		});
+			    		
+			    	   if(shipFee==100000){//근데 하나도 같은 넘버가 없어서 if안에 한번도 못들어 갔으면 0 을 넣어줘
+			    		   
+			    		   shipFee=0;
+			    	   }
 			    		
 			    		
 			    		console.log("b_index/shipFee"+b_index+"/"+shipFee)
@@ -769,13 +803,13 @@ $(".del, #allCheck").change(function(){
 
 			$("#totalDiscount").val(totalDiscount); //  총 할인금액 입력
 
-			totalcheckedPrice = totalcheckedPrice + totalDiscount;	// total 에서 총 할인금액을  더하면  정가들의 합!
+			totalPrice = totalcheckedPrice + totalDiscount;	// total 에서 총 할인금액을  더하면  정가들의 합!
 
 
-			$("#totalPrice").val(totalcheckedPrice); // 총 상품 금액 입력
+			$("#totalPrice").val(totalPrice); // 총 상품 금액 입력
 
 		
-				let payment=totalShipping+parseInt($("#totalPrice").val());
+				let payment=totalShipping+parseInt(totalcheckedPrice);
 				
 				$("#payment").val(payment);  //총 결제금액 입력
 		

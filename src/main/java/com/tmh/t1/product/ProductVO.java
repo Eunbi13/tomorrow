@@ -14,12 +14,13 @@ import lombok.Data;
 public class ProductVO {
 	private Long productNum;
 	private Long brandNum;
-	private String productName;
+
 	private Long productPrice;
 	private String productPic;
 	private String contents;
 	private Long discountPrice;
 	private Long shippingFee;
+	private String title;
 	
 	private ProductImagesVO productImagesVO;
 	private List<ProductImagesVO> images;

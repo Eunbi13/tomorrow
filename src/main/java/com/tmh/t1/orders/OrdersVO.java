@@ -21,7 +21,6 @@ public class OrdersVO extends CartVO{
 
 
 	private Long orderNum;
-	private Long shipNum;
 	private String username;
 
 	private String paymentType;
@@ -38,6 +37,11 @@ public class OrdersVO extends CartVO{
 	
 	private Long status;
 	private Long before;
+	
+	private String shipName;
+	private String shipPhone;
+	private String postcode;
+	private String shipAddress;
 	
 	
 	

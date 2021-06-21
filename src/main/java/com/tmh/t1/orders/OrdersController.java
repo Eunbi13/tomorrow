@@ -187,9 +187,7 @@ public class OrdersController {
 		}
 		System.out.println("shippingVO:"+shippingVO);
 		
-		if(shippingVO != null) {
-	    ordersVO.setShipNum(shippingVO.getShipNum());  
-		}
+		
 
         List<BrandVO> brandAr = cartService.getBrandList(cartVO);
     
@@ -240,7 +238,6 @@ public class OrdersController {
 	@PostMapping("ajaxUpdate")
 	public int setAjaxUpdate(OrdersVO ordersVO, ModelAndView mv)throws Exception{
 		System.out.println("orders/ajaxUpdate mapping enter!!");
-		System.out.println("ordersVO.getShipNum():"+ordersVO.getShipNum());
 		System.out.println("ordersVO.getPaymentType():"+ordersVO.getPaymentType());
 		System.out.println("ordersVO.getShippingMemo():"+ordersVO.getShippingMemo());
 		System.out.println("ordersV.getOrderNum()():"+ordersVO.getOrderNum());

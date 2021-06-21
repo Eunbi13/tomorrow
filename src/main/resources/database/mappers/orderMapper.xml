@@ -277,7 +277,8 @@
     	
     	<update id="setAjaxUpdate" parameterType="OrdersVO">
     	    update orders set  
-    	    shipNum=#{shipNum}, shippingMemo=#{shippingMemo}, paymentType=#{paymentType}
+    	     shippingMemo=#{shippingMemo}, paymentType=#{paymentType}, shipName=#{shipName},
+    	     shipPhone=#{shipPhone},  shipAddress=#{shipAddress},  postcode=#{postcode}									
     	    where orderNum=#{orderNum}
     	</update>
     	

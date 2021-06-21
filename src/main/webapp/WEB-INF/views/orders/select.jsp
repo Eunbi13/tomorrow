@@ -62,7 +62,7 @@ ul.no-bullets {
 	border-color: #A63F82;
 	border:1px solid;
 	border-radius:6px;
- margin-bottom:10px;
+    margin-bottom:10px;
 }
 
 .two-btn:hover, .two-btn:focus, .two-btn:active, .two-btn.active, .open .dropdown-toggle.two-btn {
@@ -196,7 +196,7 @@ margin-top:40px;
 <body>
 <c:import url="../template/header.jsp"></c:import>
 
-       <div class="container-fluid">
+       <div class="container">
          <div class="bigTitle">주문상세정보</div> 
          
            
@@ -271,7 +271,7 @@ margin-top:40px;
 								 						         </c:if> 
 								 						          <!-- 배송준비 단계에서 부턴 취소요청시, 판매자의 확인이 있어야 가능 -->
 								 						          <c:if test="${cartVO.validity==3}">
-								 					               <button class="btn two-btn" onclick="location.href='./cancel?cartNum=${cartVO.cartNum}&kind=1'"> 취소요청 </button>     
+								 					               <div><button class="btn two-btn" onclick="location.href='./cancel?cartNum=${cartVO.cartNum}&kind=1'"> 취소요청 </button> </div>  
 								 					               <button class="btn btn-default" onclick="location.href='./confirm?cartNum=${cartVO.cartNum}'"> 구매확정 </button>   
 								 						         </c:if> 
 								 						           <!-- 배송중 -->
@@ -297,7 +297,7 @@ margin-top:40px;
 								 						         </c:if> 
 								 						          <!-- 구매확정 -->
 								 						          <c:if test="${cartVO.validity==6}">
-								 					               <button class="btn two-btn"> 리뷰작성 </button>   
+								 					               <div> <button class="btn two-btn"> 리뷰작성 </button> </div>
 								 					       		   <button class="btn btn-default" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
 								 						         </c:if> 
 															     </td>

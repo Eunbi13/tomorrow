@@ -57,11 +57,7 @@ weight: 100%;
  line-height:10px; */
  
 }
-/* .row2{
- font-size:16px;
- line-height:1;
 
-} */
 .middle{
  /*  display: block; */
   
@@ -223,6 +219,25 @@ section{
     border-image: initial;
     border-radius: 4px;
     transition: border-color 0.1s ease 0s, background-color 0.1s ease 0s;
+}
+
+.shipNP{
+float:left;
+font-size:15px; 
+color:gray; 
+padding-bottom:15px;
+
+margin-top:5px;
+padding-top:5px;
+
+
+
+height:25px; 
+background-color:transparent;
+border:0 solid black; 
+
+
+
 }
 
 
@@ -510,6 +525,7 @@ margin-top: 20px;
 	            <div class="bbqwt">
 					<div class="checkout-container ">
 		<!-- 가지고 있는 배송지가 없는 경우 입력창을 띄우고, 결제하기를 누를 때 ajax 를 이용해서 저장된다 -->
+	
 		<c:if test="${empty shippingAr}">
 		       <form id="shipFrm3" action="./shippingInsert" method="post">
 			      <div class="modal-body shipInsertBody">
@@ -591,13 +607,15 @@ margin-top: 20px;
 							  <input type="hidden" id="shipPostcode" value="${shippingVO.postcode}">
 							<div id="shipAddress" class="shippingAddress${shippingVO.shipNum}" title="${shippingVO.shipAddress}" style="clear:both; font-size:18px;">${shippingVO.shipAddress}, ${shippingVO.shipDetailAddress}</div>
 						<div class="">
-							<div id="shipNameNPhone" class="" style="font-size:15px; color:gray; padding-bottom:15px;">${shippingVO.shipName}  ${shippingVO.shipPhone}</div>
+							<div readonly="readonly" id="shipName" class="shipNP" value="${shippingVO.shipName}" style="width:50px; max-width:70px; " > ${shippingVO.shipName}</div>
+						    <div readonly="readonly" id="shipPhone" class="shipNP" value="${shippingVO.shipPhone}" >  ${shippingVO.shipPhone}</div>
+						    
 						</div>
 				</div>		
 		</c:if>	
 	 
 		
-				
+			
 				<div class="css-nj6fnr-DeliveryRequestInput e84q8kd0">
 					<div class="_3Bt8k">
 						<select id="shippingMemo" class="_3ASDR _1qwAY _3K8Q8 shippingMemo" name="shippingMemo">
@@ -619,7 +637,7 @@ margin-top: 20px;
 				
 			</section>
 				
-				
+			 <form id="updateFrm" action="./update" method="post">		
             <section>
             <div class="d-flex">
                 <div class="ordersSub">주문자</div>
@@ -627,7 +645,7 @@ margin-top: 20px;
             </div>
             <hr>
             
-		  <form id="updateFrm" action="./update" method="post">
+		
 		       <input type="hidden" name="orderNum" value="${ordersVO.orderNum}">
 		                                          
 		      <div class="form-group row">
@@ -661,15 +679,11 @@ margin-top: 20px;
 			      <button type="submit" class="btn btn-default">Submit</button>
 			    </div>
 			  </div> -->
-			</form>
+		
 			
-			
-			
-            
-            
             
             </section>
-            
+            	</form>
             
             
             
@@ -680,6 +694,7 @@ margin-top: 20px;
             </div>
             <hr>
             <c:forEach items="${brandAr}" var="brandVO">
+       
 	            <div class="card">
 				  <div class="card-header">
 				  <div class="d-flex">
@@ -692,17 +707,18 @@ margin-top: 20px;
 						 
 						  
 						  	  <c:forEach items="${productAr}" var="productVO" varStatus="p">
-			  	                 <c:if test="${brandVO.brandNum eq productVO.brandNum}">  
+			  	                 <c:if test="${brandVO.brandNum eq productVO.brandNum}"> 
+			  	                     
 			  	                     <c:forEach items="${cartAr}" var="cartVO" varStatus="i">
 					                   <c:if test="${productVO.productNum eq cartVO.productNum}"> 
-					                       <c:forEach items="${cartVO.optionList}" var="optionList">
+					                   
 								               <div id="products${productVO.productNum}">
 													  <li class="list-group-item">
 													    <div class="media">
 													      <img src="../resources/images/glove.webp" class="mr-3 product-img" alt="...">
 													      <div class="media-body">
 													          <div class="mt-0 mb-0 productName">${productVO.productName}</div>
-													           <div class="gray"> ${optionList.optionName}</div>
+													           <div class="gray"> ${cartVO.unitName}</div>
 													           <div style="float:left; font-size:14px; font-weight:bold;"> ${cartVO.cartPrice}원 &nbsp; </div> <div class="gray" style="float:left;">| &nbsp; ${cartVO.amount}개</div>
 													      </div>
 													     </div>
@@ -712,7 +728,7 @@ margin-top: 20px;
 														   
 													  <!-- product end -->
 											
-								          </c:forEach>
+								       
 							            </c:if>
 							          </c:forEach>
 							        </c:if>
@@ -776,40 +792,8 @@ margin-top: 20px;
 				
             </section>
           
-             <!--부트스트랩  -->
-            <!-- <div class="pt-2">
-                <div class="d-flex">
-                    <div>
-                        <p><b>Patient Balance.</b><span class="green">$13.24</span></p>
-                    </div>
-                    <div class="ml-auto p-2">
-                        <p class="text-primary"><i class="fa fa-plus-circle text-primary"></i>Add payment card</p>
-                    </div>
-                </div>
-                <p> This is an estimate for the portion of your order (not covered by insurance) due today . once insurance finalizes their review refunds and/or balances will reconcile automatically. </p>
-                <form class="pb-3">
-                    <div class="d-flex flex-row align-content-center">
-                        <div class="pt-2 pr-2"><input type="radio" name="radio1" id="r1" checked></div>
-                        <div class="rounded border d-flex w-100 px-2">
-                            <div class="pt-2">
-                                <p><i class="fa fa-cc-visa text-primary pr-2"></i>Visa Debit Card</p>
-                            </div>
-                            <div class="ml-auto pt-2">************3456</div>
-                        </div>
-                    </div>
-                </form>
-                <form class="pb-3">
-                    <div class="d-flex flex-row w-100">
-                        <div class="pt-2 pr-2"><input type="radio" name="radio2" id="r2"></div>
-                        <div class="rounded d-flex w-100 px-2">
-                            <div class="pt-2">
-                                <p><i class="fa fa-cc-mastercard pr-2"></i>Mastercard Office</p>
-                            </div>
-                            <div class="ml-auto pt-2">************1038</div>
-                        </div>
-                    </div>
-                </form>
-            </div> -->
+             
+           
         </div>
         
         
@@ -1246,327 +1230,8 @@ function getSelect(){
 
 </script>
 
+<script type="text/javascript" src="/js/ordersPage.js" ></script>  
 
-<script type="text/javascript">
-
-let payment = $("#payment").attr("title");
-let email= $("#email").val();
-let name=$("#name").val();
-let phone=$("#phone").val();
-
-let address=$("#shipAddress").html();
-console.log(address);
-let postcode=$("#shipPostcode").val();
-
-
-$("#finalBtn").click(function(){
-	
-	
-	 if($("#shipFrm3").length>0){
-		 
-		 console.log("shipFrm3  enter!!");
-	//shippingVO가 아예없었을 경우, form에 입력한 배송지 정보부터 shipping DB에 입력해 준다.
-	// shipping Insert!
-		let shipTitle= $("#shipTitle7").val();
-		let shipName= $("#shipName7").val();
-		let shipPhone= $("#shipPhone7").val();
-		let shipAddress= $("#sample7_address").val();
-		let shipDetailAddress= $("#sample7_detailAddress").val();
-		let postcode= $("#sample7_postcode").val();
-		let shipNum;
-		let username= $("#ordersUsername").attr("title");
-		
-		//checkbox 체크여부 받아오기
-		let isDefault= $("#isDefault7").prop("checked");
-		console.log(isDefault);
-		console.log("username:"+username);
-		
-		
-		$.ajax({
-			type: "post",
-			async: false,
-			url: "../shipping/shippingInsert",
-			data:{
-			shipTitle: shipTitle,
-			shipName: shipName,
-			shipPhone: shipPhone, 
-			shipAddress: shipAddress,
-			shipDetailAddress:shipDetailAddress,
-			postcode: postcode,
-			isDefault: isDefault,
-			username:username
-			},
-			success:function(data){
-			console.log("시도!!");
-			data= $.trim(data);
-			console.log(data);
-			
-			if(data=='1'){
-			console.log("배송지 입력 성공했습니다.");
-			
-			// shipping list 갱신하기 
-		
-			
-				$.ajax({
-				type: "GET", 
-				async: false,
-				url: "../shipping/minNum", 
-				success:function(data){
-				
-				console.log("minNum 에서찾아온 shipNum:"+data);
-
-				
-				let shipNum=data;
-				alert("등록 shipNum"+shipNum);
-		//------ 본격 결제 시작
-				//가맹점 식별코드
-				IMP.init('imp63068221');
-				IMP.request_pay({
-				    pg : 'html5_inicis',
-				    pay_method : 'card',
-				    merchant_uid : 'merchant_' + new Date().getTime(),
-				    name : '내일의집', //결제창에서 보여질 이름
-				    amount : 100, //실제 결제되는 가격
-				    buyer_email : email,
-				    buyer_name : name,
-				    buyer_tel : phone,
-				    buyer_addr : '서울 강남구 도곡동',
-				    buyer_postcode : '12345'
-				}, function(rsp) {
-					console.log(rsp);
-				    if ( rsp.success ) {
-				    	var msg = '결제가 완료되었습니다.';
-				        msg += '고유ID : ' + rsp.imp_uid;
-				        msg += '상점 거래ID : ' + rsp.merchant_uid;
-				        msg += '결제 금액 : ' + rsp.paid_amount;
-				        msg += '카드 승인번호 : ' + rsp.apply_num;
-				        //결제 완료!
-				        //이제 결제한 cartVO에  orderNum을 넣고  validity를 '결제완료'를 뜻하는 '2' 로 바꾼다. 성공!!!
-				         //--------ajax DB Update 
-								let orderNum = $("#orderNum").val();
-								console.log("orderNum:"+orderNum);
-								$.ajax({
-									type: "post",
-									url:"../cart/orderUpdate",
-									data:{
-										orderNum:orderNum
-									},
-									success:function(data){
-										
-										data = data.trim();
-										console.log("../cart/orderUpdate 후 data"+data);
-										if(data>0){
-											alert('주문 성공');
-											
-			    
-											
-											//orderVO update: shipNum, paymentType, shippingMemo,name,email, phone 
-									        //넘어온 cartVO의 orderNum에도 이 order넘버를 넣어준다!
-									        
-										                orderNum = $("#orderNum").val();
-													  
-														let paymentType = rsp.card_name;
-														alert("입력될shipNum"+shipNum);
-														//shippingMemo는 선택된 selected된 값을 가져오고 그것이 5일 경우에는, 또 따로 받아온다.
-														
-														let shippingMemo=$("#shippingMemo option:selected").val();
-														console.log("shippingMemo value :"+shippingMemo);
-														if(shippingMemo==5){
-															console.log("입장. 쉽핑 수정을 위한,,")
-															shippingMemo= $("#directInputBox").val();	
-														}
-														console.log("shippingMemo:"+shippingMemo);
-														console.log("paymentType:"+paymentType);
-														console.log("shipNum:"+shipNum);
-														console.log("orderNum:"+orderNum);
-														
-														$.ajax({
-															type: "post",
-													        async: false,
-															url:"../orders/ajaxUpdate",
-															data:{
-																 shipNum:shipNum, 
-																 paymentType:paymentType, 
-																 shippingMemo:shippingMemo,
-																 orderNum:orderNum
-															},
-															success:function(data){
-																
-																data= $.trim(data);
-																console.log("trim 이후 data"+data);
-																if(data>0){
-																alert('업데이트 성공');
-																
-																
-																    $("#updateFrm").submit();
-																}else{
-																	
-																alert('업데이트 실패');
-																}
-																
-															}
-														})
-														
-													
-										}else {
-											alert('주문 실패');
-										}
-									}
-								})
-				
-				     
-				        //그 이후로는 판매자가 validity를 바꿀수있다.배송완료, 취소등 상태에 따라  validity를 바꿔줘야한다.
-				        //validity가 '2'로 바꾸는 순간, cartVO의 brandNum 대로,브랜드의 관리페이지에서 결제가 들어온 것을 확인가능하다.
-				  
-				        
-				    } else {
-				    	 var msg = '결제에 실패하였습니다.';
-				         msg += '에러내용 : ' + rsp.error_msg;
-				    }
-				    alert(msg);
-				});
-				 
-				}
-				
-				})
-			
-			
-			}else{
-			alert("등록 실패했습니다.");
-			}
-			
-			}
-			
-			
-			
-			
-		})
-	 }else{
-		 
-	
-	  //------ 본격 결제 시작
-		//가맹점 식별코드
-			IMP.init('imp63068221');
-			IMP.request_pay({
-			    pg : 'html5_inicis',
-			    pay_method : 'card',
-			    merchant_uid : 'merchant_' + new Date().getTime(),
-			    name : '내일의집', //결제창에서 보여질 이름
-			    amount : 100, //실제 결제되는 가격
-			    buyer_email : email,
-			    buyer_name : name,
-			    buyer_tel : phone,
-			    buyer_addr : '서울 강남구 도곡동',
-			    buyer_postcode : '12345'
-			}, function(rsp) {
-				console.log(rsp);
-			    if ( rsp.success ) {
-			    	var msg = '결제가 완료되었습니다.';
-			        msg += '고유ID : ' + rsp.imp_uid;
-			        msg += '상점 거래ID : ' + rsp.merchant_uid;
-			        msg += '결제 금액 : ' + rsp.paid_amount;
-			        msg += '카드 승인번호 : ' + rsp.apply_num;
-			        //결제 완료!
-			        //이제 결제한 cartVO에  orderNum을 넣고  validity를 '결제완료'를 뜻하는 '2' 로 바꾼다. 성공!!!
-			         //--------ajax DB Update 
-							let orderNum = $("#orderNum").val();
-							console.log("orderNum:"+orderNum);
-							$.ajax({
-								type: "post",
-								url:"../cart/orderUpdate",
-								data:{
-									orderNum:orderNum
-								},
-								success:function(data){
-									
-									data = data.trim();
-									console.log("../cart/orderUpdate 후 data"+data);
-									if(data>0){
-										alert('주문 성공');
-										
-		    
-										
-										//orderVO update: shipNum, paymentType, shippingMemo,name,email, phone 
-								        //넘어온 cartVO의 orderNum에도 이 order넘버를 넣어준다!
-								        
-									                orderNum = $("#orderNum").val();
-												  
-													let paymentType = rsp.card_name;
-													let shipNum=$("#shipNum").val();
-													alert("입력될shipNum"+shipNum);
-													//shippingMemo는 선택된 selected된 값을 가져오고 그것이 5일 경우에는, 또 따로 받아온다.
-													
-													let shippingMemo=$("#shippingMemo option:selected").val();
-													console.log("shippingMemo value :"+shippingMemo);
-													if(shippingMemo==5){
-														console.log("입장. 쉽핑 수정을 위한,,")
-														shippingMemo= $("#directInputBox").val();	
-													}
-													console.log("shippingMemo:"+shippingMemo);
-													console.log("paymentType:"+paymentType);
-													console.log("shipNum:"+shipNum);
-													console.log("orderNum:"+orderNum);
-													
-													$.ajax({
-														type: "post",
-												        async: false,
-														url:"../orders/ajaxUpdate",
-														data:{
-															 shipNum:shipNum, 
-															 paymentType:paymentType, 
-															 shippingMemo:shippingMemo,
-															 orderNum:orderNum
-														},
-														success:function(data){
-															
-															data= $.trim(data);
-															console.log("trim 이후 data"+data);
-															if(data>0){
-															alert('업데이트 성공');
-															
-															
-															    $("#updateFrm").submit();
-															}else{
-																
-															alert('업데이트 실패');
-															}
-															
-														}
-													})
-													
-												
-									}else {
-										alert('주문 실패');
-									}
-								}
-							})
-			
-			     
-			        //그 이후로는 판매자가 validity를 바꿀수있다.배송완료, 취소등 상태에 따라  validity를 바꿔줘야한다.
-			        //validity가 '2'로 바꾸는 순간, cartVO의 brandNum 대로,브랜드의 관리페이지에서 결제가 들어온 것을 확인가능하다.
-			  
-			        
-			    } else {
-			    	 var msg = '결제에 실패하였습니다.';
-			         msg += '에러내용 : ' + rsp.error_msg;
-			    }
-			    alert(msg);
-			});
-			
-	 }//if end
-		
-		
-		
-		
-});// click event end
-
-
-
-
-	 
-
-
-</script>
 
 
 </body>

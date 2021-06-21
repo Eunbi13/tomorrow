@@ -44,7 +44,7 @@
 
 	    
 	     <select id="getBrandList" parameterType="CartVO" resultType="BrandVO">
-			select brandNum, brandName 
+			select brandNum, brandName, companyName
 				from brand
 					where brandNum in 
 							(select brandNum from cart where username=#{username} and 
@@ -63,9 +63,8 @@
     
     
     
-        <select id="getCartList" parameterType="CartVO" resultMap="cartListResult">
-    		select C.*, C.cartPrice, C.unitPrice, O.* from 
-			(select * from cart where username=#{username} and 
+        <select id="getCartList" parameterType="CartVO" resultType="CartVO">
+    	    select * from cart where username=#{username} and 
 			
 			<if test="valid =='zero'">
 			(validity='0'or validity='1')
@@ -76,9 +75,7 @@
 			<if test="valid =='two'">
 			validity='2'
 			</if>
-			) C 
-			inner join options O
-			on C.optionNum = O.optionNum;
+			
 	    </select>
 	    
 	    <resultMap type="CartVO" id="cartListResult">
@@ -108,12 +105,6 @@
 	        	<result column="brandName" property="brandName" />
              </association>
 	           
-	        <collection property="optionList" javaType="java.util.List" ofType="OptionsVO">
-	        	<id column="optionNum" property="optionNum" />
-	        	<result column="optionKinds" property="optionKinds" />
-	        	<result column="optionName" property="optionName" />
-	        	<result column="optionPrice" property="optionPrice" />
-	        </collection>
 
 	    
 	    </resultMap>
@@ -135,8 +126,8 @@
     	</select>
     	
     	<insert id="setInsert" parameterType="CartVO" useGeneratedKeys="true" keyProperty="cartNum"> 
-    		insert into cart(username, brandNum, productNum, optionNum, amount, validity, cartPrice, unitPrice, unitName) 
-    		values(#{username}, #{brandNum}, #{productNum}, #{optionNum} #{amount}, 0, #{cartPrice},#{unitPrice}, #{unitName})
+    		insert into cart(username, brandNum, productNum, amount, validity, cartPrice, unitPrice, unitName) 
+    		values(#{username}, #{brandNum}, #{productNum}, #{amount}, 0, #{cartPrice}, #{unitPrice}, #{unitName})
     	</insert>
     	
     	

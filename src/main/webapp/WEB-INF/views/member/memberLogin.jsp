@@ -17,10 +17,10 @@
 <br>
 	<form action="./login" method="post">
 		<div class="form-group">
-			<input type="email" name="email" class="form-control" placeholder="이메일" value="b@b">
+			<input type="email" name="email" class="form-control" placeholder="이메일" value="id3@naver.com">
 		</div>
 		<div class="form-group">
-			<input type="password" name="password" class="form-control" placeholder="비밀번호" value="bbbb">
+			<input type="password" name="password" class="form-control" placeholder="비밀번호" value="id3id3">
 		</div>
 		<button class="btn btn-primary">button</button>
 		

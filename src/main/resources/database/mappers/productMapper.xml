@@ -55,10 +55,10 @@
     	
     	<!-- eb_ProductInsert -->
     	<insert id="setProduct" parameterType="ProductVO" useGeneratedKeys="true" keyProperty="productNum">
-			INSERT INTO product (brandNum, productPic, contents, 
-								 productName, productPrice, discountPrice, shippingFee) 
-			VALUES (#{brandNum},#{productPic},#{contents},
-					#{productName},#{productPrice},#{discountPrice},#{shippingFee})
+			INSERT INTO product (brandNum, productPic, contents, title
+								 , productPrice, discountPrice, shippingFee) 
+			VALUES (#{brandNum},#{productPic},#{contents},#{title},
+					#{productPrice},#{discountPrice},#{shippingFee})
     	</insert>
     	<!-- eb_ProductInsert 추가이미지 넣기 -->
     	<insert id="setImages" parameterType="ProductImagesVO">
