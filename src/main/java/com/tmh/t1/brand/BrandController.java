@@ -26,7 +26,7 @@ public class BrandController {
 	private BrandService brandService;
 	
 	//eb_brandOrder
-	@GetMapping("cart")
+	@GetMapping("cart") // 여기
 	public String brandOrder()throws Exception{
 		return "/brand/brandOrder";
 	}

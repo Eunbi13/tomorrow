@@ -117,7 +117,7 @@ public class ProductService {
 		String [] n = optionsVO.getOptionName().split(",");
 		String [] p = optionsVO.getOptionPrice().split(",");
 		String [] s = optionsVO.getStep().split(",");
-		
+		System.out.println("hi266666");
 		//product_options 테이블에 optionNum넣기 위해 리스트 생성
 		List<Long> optionNums = new ArrayList<Long>();
 		
@@ -127,8 +127,9 @@ public class ProductService {
 			optionsVO.setOptionName(n[i]);
 			optionsVO.setOptionPrice(p[i]);
 			optionsVO.setStep(s[i]);
-			
+			System.out.println("--"+i);
 			optionsMapper.setOption(optionsVO);
+			System.out.println("==");
 			Long optionsNum=optionsVO.getOptionNum();
 			System.out.println(optionsNum);
 			//options테이블에 ref 업데이트
@@ -137,8 +138,8 @@ public class ProductService {
 			//생성된 optionsNum 리스트에 추가
 			optionNums.add(optionsNum);
 		}
-		
-		
+		System.out.println("hi2222");
+		System.out.println("hi:"+productVO.getProductNum());
 		Map<String, Long> map = new HashMap<String, Long>();
 		map.put("productNum", productVO.getProductNum());
 		map.put("categoryID", Long.parseLong(categoryID));

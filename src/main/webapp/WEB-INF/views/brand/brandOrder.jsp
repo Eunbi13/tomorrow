@@ -12,7 +12,7 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 <div class="container">
- 주문배송내역 조회
+ 주문배송내역 조회 여기
  	<div class="order_list_menu rounded">
  		<a class="order_list_menu_list" href="/order/list?before=24&status=0">
  			<div class="order_list_menu_list_wrap">
