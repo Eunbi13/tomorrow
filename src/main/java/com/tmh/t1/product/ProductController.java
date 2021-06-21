@@ -28,7 +28,7 @@ public class ProductController {
 	//eb_프로덕트 판매중지
 	@GetMapping("delete")
 	public String getList(ProductVO productVO)throws Exception{
-		
+		System.out.println("dddd");
 		return "redirect:./";
 	}
 	
