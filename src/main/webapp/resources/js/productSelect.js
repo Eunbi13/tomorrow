@@ -66,7 +66,7 @@ function removeItem()  {
   // 2. <li> 목록 선택
   const items = ul.getElementsByTagName('li');
   
-  // 3. <li> 목록 중 첫번째 item 삭제
+  // 3. <li> 목록 중 첫번째 op 삭제
   if(items.length > 0)  {
     items[0].remove();
   }
