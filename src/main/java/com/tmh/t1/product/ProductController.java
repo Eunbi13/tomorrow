@@ -120,6 +120,12 @@ public class ProductController {
 	public void getSelect2(ProductVO productVO, Model model)throws Exception{
 		productVO = productService.getSelect(productVO);
 		model.addAttribute("vo", productVO);
+		
+		System.out.println("vo : " +productVO.getProductName());
+		System.out.println("op : " +productVO.getOptionsVOs());
+		System.out.println("name : "+productVO.getOptionsVOs().get(2).getOptionName());
+		System.out.println("price : "+productVO.getDiscountPrice());
+		
 
 		List<BrandVO> brandar = productService.getBrandList(productVO);
 //		String brandN = brandar.get(0).getBrandName().toString();
