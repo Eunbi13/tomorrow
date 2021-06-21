@@ -135,7 +135,7 @@ public class ProductService {
 			optionNums.add(optionsNum);
 		}
 		
-
+		
 		Map<String, Long> map = new HashMap<String, Long>();
 		map.put("productNum", productVO.getProductNum());
 		map.put("categoryID", Long.parseLong(categoryID));
