@@ -244,7 +244,7 @@ img{
                       <div class="p-2 d-flex">
                     <div class="col-6">총 할인금액</div>
                     <div class="ml-auto">
-                       - <input readonly="readonly" name="totalDiscount" id="totalDiscount" class="totalDiscount" style=" width:100px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
+                       - <input readonly="readonly" name="totalDiscount" id="totalDiscount" class="totalDiscount" style=" width:60px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
                     </div>
                 </div>
              
