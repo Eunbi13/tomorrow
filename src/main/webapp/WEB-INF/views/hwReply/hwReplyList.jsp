@@ -24,5 +24,5 @@
 </ul> -->
 
 
-<!-- <button type="button" class="btn btn-danger" id="remove">Delete</button> -->
+ 
 
