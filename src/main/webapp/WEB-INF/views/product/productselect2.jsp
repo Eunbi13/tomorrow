@@ -76,8 +76,8 @@
 						<option value="optionKinds" >${vo.optionsVOs.get(0).optionKinds} </option> <!-- 수정 -->
 						<c:forEach items="${optionsar}" var="OPvo" varStatus="status">
 							<option value="${OPvo.optionNum }">
-								<div>${OPvo.optionName}</div>,
-								<div>${vo.discountPrice + OPvo.optionPrice}</div>	
+								<div id="OPname">${OPvo.optionName}</div>,
+								<div id="OPprice">${vo.discountPrice + OPvo.optionPrice}</div>	
 							</option>
 						</c:forEach>
 					</select>

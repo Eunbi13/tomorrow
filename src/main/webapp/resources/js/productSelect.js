@@ -45,14 +45,16 @@ function addList(){
   li.setAttribute('value',addValue);
   li.setAttribute('id', i)
   
+  
   // 2-3. li에 text node 추가 
   const textNode = document.createTextNode(addValue);
   li.appendChild(textNode);
-  
+  div.appendChild(textNode);
   // 3. 생성된 li를 ul에 추가
   document
     .getElementById('opPrint')
-    .appendChild(li);
+    .appendChild(li)
+	.appendChild(div);
 	i++;
 }
 
