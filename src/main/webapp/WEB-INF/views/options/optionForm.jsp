@@ -10,6 +10,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title" id="exampleModalLabel">옵션</h3>
+        <h3 id="EX">?</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -21,6 +22,7 @@
 			<li>옵션 값: 옵션의 값을 정합니다. '/'을 기준으로 입력해주세요</li>
 			<li>옵션 가격: 옵션별로 가격을 책정합니다. 아무것도 입력하지 않을 경우 +0원으로 입력됩니다.</li>
 		</ul>
+		<img id="optionEX" alt="" src="/images/optionEX.PNG">
         <fieldset>
 	        <div class="optionForm">
 				<div class="col-sm-11 row">

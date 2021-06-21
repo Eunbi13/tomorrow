@@ -21,8 +21,7 @@ public class ProductVO {
 	private Long discountPrice;
 	private Long shippingFee;
 	
-	
-	
+
 	private ProductImagesVO productImagesVO;
 	private List<ProductImagesVO> images;
 //	private List<OptionsVO> optionsVOs;

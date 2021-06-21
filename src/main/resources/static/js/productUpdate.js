@@ -33,6 +33,13 @@ $(optionKinds).each(function(i){
 	$('tbody.t'+countI).append(makeTbody(optionKinds[i],optionNmae[i],optionPrice[i], step[i] ));
 		
 });
-
-
-
+let category ='';
+$('#changeCategoryNM').click(function(){
+	category=$('#category').html();
+	$('#category').empty();
+	$('#categoryCheckBox').removeAttr('hidden');
+});
+$('#categoryCancel').click(function(){
+	$('#category').append(category);
+	$('#categoryCheckBox').attr('hidden', 'hidden')
+})

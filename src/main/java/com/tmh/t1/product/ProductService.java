@@ -43,19 +43,22 @@ public class ProductService {
 		return result;
 	}
 	
-	//eb_productUpdate 상품과 관련된 정보 불러오기
+	//eb_productUpdate 수정하기 위한 상품과 관련된 정보 불러오기
 	public Map<String, Object> getProductInfo(ProductVO productVO)throws Exception{
 		Long productNum = productVO.getProductNum();
 		//product 정보 productImages(추가 이미지) 포함
 		productVO = productMapper.getProdInfo(productVO);
 		//product_category 정보
 		CategoryVO categoryVO=categoryMapper.getProdCategory(productNum);
+		//상품이 속한 카테고리(대분류>중분류>소분류)
+		String categoryNM = categoryMapper.getCategoryNM(categoryVO);
 		//product_options 정보
 		List<OptionsVO> options = optionsMapper.getProdOptions(productNum);
 	
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("productVO", productVO);
 		map.put("categoryVO", categoryVO);
+		map.put("categoryNM", categoryNM);
 		map.put("options", options);
 		return map;
 	}

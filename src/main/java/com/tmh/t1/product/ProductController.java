@@ -34,12 +34,17 @@ public class ProductController {
 	
 	//eb_ProductUpdate 파라미터: 상품번호
 	@GetMapping("update")
-	public String setProductUpdate(ProductVO productVO, Model model)throws Exception{
+	public String setProductUpdate(Authentication auth,ProductVO productVO, Model model)throws Exception{
 		Map<String, Object> map = productService.getProductInfo(productVO);
 		
 		model.addAttribute("productVO", (ProductVO)map.get("productVO"));
 		model.addAttribute("categoryVO", (CategoryVO)map.get("categoryVO"));
+		model.addAttribute("categoryNM", (String)map.get("categoryNM"));
 		model.addAttribute("options", (List<OptionsVO>)map.get("options"));
+		//카테고리 바꾸는 경우 필요한 대분류카테고리(브랜드기준)
+		List<CategoryVO> categoryOne =productService.getCategoryOne(auth);
+		model.addAttribute("categoryOne", categoryOne);
+		
 		return "product/productUpdate";
 	}
 	

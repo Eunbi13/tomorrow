@@ -10,7 +10,7 @@
 <c:import url="../template/summernote.jsp"></c:import>
 <title>내일부터 하는 인테리어, 내일의 집</title>
 
-
+<link rel="stylesheet" type="text/css" href="/css/productSet.css">
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
@@ -51,8 +51,10 @@
 		<fieldset >
 			<legend>이미지</legend>
 			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">대표 이미지<span>*</span></label>
-				<input type="file" name="rep" class="form-control col-sm-10" >
+				<label class="col-sm-2 col-form-label" >대표 이미지<span>*</span></label>
+				<p><img class="preview" alt="" src=""></p>
+				<p><label class="rep text-center" for="rep">+</label></p>
+				<input hidden="hidden" id="rep" type="file" name="rep" class="form-control col-sm-10" >
 			</div>
 			<div class="imageAdd">
 				<div id="files">
@@ -106,6 +108,7 @@
 	<br>
 				<fieldset>
 			<legend>옵션</legend>
+			<small>옵션은 한 개 이상 넣어주세요.</small>
 			<label class="col-sm-2 col-form-label">옵션 구성 타입 </label>
 				조합 일체선택형<input type="radio" id="notUse" name="o1" checked>
 				조합 분리선택형<input type="radio" id="use" name="o1">
