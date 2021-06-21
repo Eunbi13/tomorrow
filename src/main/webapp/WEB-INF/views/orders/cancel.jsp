@@ -96,7 +96,7 @@ border-color:lightgray;
 <c:import url="../template/header.jsp"></c:import>
 
  <div class="container">
-<c:if test="${sel =='취소'}">
+<c:if test="${sel == '취소'}">
   <div class="bigTitle">주문취소요청</div> 
   	<div class="title">주문 취소 및 환불 안내</div>
   		<div class="normal"> 주문 상품 옵션 단위로 환불이 가능합니다. <br>
@@ -143,7 +143,7 @@ border-color:lightgray;
      	   <hr class="line">
      	  <div class="normal"> ${cartVO.amount}개 </div>
      	 
-      <c:if test="${sel =='환불' || ${sel =='취소'}">	 
+      <c:if test="${sel =='환불'} || ${sel =='취소'}">	 
      	
      	<div class="title"> ${sel} 금액 확인</div>
      	   <hr class="line">

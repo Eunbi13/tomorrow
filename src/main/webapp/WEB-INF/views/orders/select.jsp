@@ -48,7 +48,9 @@ ul.no-bullets {
   padding: 0; /* Remove padding */
   margin: 0; /* Remove margins */
   }
-  
+ .two-btns{
+ margin-top: 20px;
+ }
  .two-btn{
   
     width:125px;
@@ -62,7 +64,7 @@ ul.no-bullets {
 	border-color: #A63F82;
 	border:1px solid;
 	border-radius:6px;
-    margin-bottom:10px;
+    margin: 0px 0px 10px 0px;
 }
 
 .two-btn:hover, .two-btn:focus, .two-btn:active, .two-btn.active, .open .dropdown-toggle.two-btn {
@@ -73,6 +75,9 @@ ul.no-bullets {
 }
 
 .four-btns{
+margin: 20px 0px 0px 0px;
+
+
 }
 
 .four-btn{
@@ -272,8 +277,10 @@ margin-top:40px;
 								 						         </c:if> 
 								 						          <!-- 배송준비 단계에서 부턴 취소요청시, 판매자의 확인이 있어야 가능 -->
 								 						          <c:if test="${cartVO.validity==3}">
-								 					               <div><button class="btn two-btn" onclick="location.href='./cancel?cartNum=${cartVO.cartNum}&kind=1'"> 취소요청 </button> </div>  
-								 					               <button class="btn btn-orders" onclick="location.href='./confirm?cartNum=${cartVO.cartNum}'"> 구매확정 </button>   
+									 						          <div class="two-btns">
+										 					               <div><button class="btn two-btn" onclick="location.href='./cancel?cartNum=${cartVO.cartNum}&kind=1'"> 취소요청 </button> </div>  
+										 					                    <button class="btn btn-orders" onclick="location.href='./confirm?cartNum=${cartVO.cartNum}'"> 구매확정 </button>   
+									 						          </div>
 								 						         </c:if> 
 								 						           <!-- 배송중 -->
 								 						          <c:if test="${cartVO.validity==4}">
@@ -298,8 +305,10 @@ margin-top:40px;
 								 						         </c:if> 
 								 						          <!-- 구매확정 -->
 								 						          <c:if test="${cartVO.validity==6}">
-								 					               <div> <button class="btn two-btn"> 리뷰작성 </button> </div>
-								 					       		   <button class="btn btn-orders" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
+								 						           	<div class="two-btns">
+									 					               <div> <button class="btn two-btn"> 리뷰작성 </button> </div>
+									 					       		   <button class="btn btn-orders" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
+								 						           </div>
 								 						         </c:if> 
 															     </td>
 														   </tr>
