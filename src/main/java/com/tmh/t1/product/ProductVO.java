@@ -4,6 +4,7 @@ package com.tmh.t1.product;
 
 import java.util.List;
 
+import com.tmh.t1.brand.BrandVO;
 import com.tmh.t1.category.CategoryVO;
 import com.tmh.t1.option.OptionsVO;
 
@@ -21,7 +22,10 @@ public class ProductVO {
 	private Long shippingFee;
 	
 	private ProductImagesVO productImagesVO;
-	private List<ProductImagesVO> images;
-	//private List<OptionsVO> optionsVOs;
-	//private CategoryVO categoryVO;
+	
+//	private List<OptionsVO> optionsVOs;
+//	private CategoryVO categoryVO;
+	
+	private BrandVO brandVO;
+//	private OptionsVO optionsVO;
 }

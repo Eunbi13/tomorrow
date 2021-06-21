@@ -152,10 +152,10 @@ to {
 	float: left;
 }
 
-. btn-secondary{
+.
+btn-secondary {
 	float: left;
 }
-
 </style>
 <c:import url="../template/bootStrap.jsp"></c:import>
 <meta charset="UTF-8">
@@ -194,98 +194,12 @@ to {
 
 	<br>
 
-
-	<!-- 카테고리 리스트 -->
-	<h1 class="store-category-list-head">카테고리</h1>
-	<div class="store-category-flex-container">
-		<div>
-			<img class="category-item image"
-				src="../resources/images/categoryPic/A1.webp">
-			<div class="cateogry-list-name">가구</div>
-		</div>
-		<div>
-			<img class="category-item image"
-				src="../resources/images/categoryPic/B2.webp">
-			<div class="cateogry-list-name">패브릭</div>
-		</div>
-		<div>
-			<img class="category-item image"
-				src="../resources/images/categoryPic/C3.webp">
-			<div class="cateogry-list-name">홈데코/조명</div>
-		</div>
-		<div>
-			<img class="category-item image"
-				src="../resources/images/categoryPic/D4.webp">
-			<div class="cateogry-list-name">가전</div>
-		</div>
-		<div>
-			<img class="category-item image"
-				src="../resources/images/categoryPic/E5.webp">
-			<div class="cateogry-list-name">수납/정리</div>
-		</div>
-		<div>
-			<img class="category-item image"
-				src="../resources/images/categoryPic/F6.webp">
-			<div class="cateogry-list-name">생활용품</div>
-		</div>
-		<div>
-			<img class="category-item image"
-				src="../resources/images/categoryPic/G7.webp">
-			<div class="cateogry-list-name">주방</div>
-		</div>
-		<div>
-			<img class="category-item image"
-				src="../resources/images/categoryPic/H8.webp">
-			<div class="cateogry-list-name">생필품</div>
-		</div>
-		<div>
-			<img class="category-item image"
-				src="../resources/images/categoryPic/I9.webp">
-			<div class="cateogry-list-name">DIY/공구</div>
-		</div>
-		<div>
-			<img class="category-item image"
-				src="../resources/images/categoryPic/J10.webp">
-			<div class="cateogry-list-name">반려동물</div>
-		</div>
-		<div>
-			<img class="category-item image"
-				src="../resources/images/categoryPic/K11.webp">
-			<div class="cateogry-list-name">홈트레이닝</div>
-		</div>
-	</div>
+	<!-- 카테고리 슬라이드 -->
+	<c:import url="../template/categorySlideT.jsp"></c:import>
 
 	<!-- 상품 리스트 -->
-	<div class="store-list-item">
-		<c:forEach items="${productlist}" var="vo">
-			<div class="store-list-item-card">
-				<a href="./productselect?productNum=${vo.productNum}"> <img
-					class="item-img" src="../resources/images/storeEX/glove.webp"
-					alt="item pic">
-					<div class="brand">${vo.brandNum } ${brand }</div>
-					<div class="item-title" style="color: black;">${vo.productName}</div>
-					<div class="card-price">
-						<c:choose>
-							<c:when test="${vo.discountPrice eq 0}"></c:when>
-							<c:otherwise>
-								<div class="item-price discount" style="color: #75bdff; margin-right: 10px;">${vo.discountPrice}%</div>
-							</c:otherwise>
-						</c:choose>
-
-						<div class="item-price won"
-							style="color: black; ">${vo.productPrice}</div>
-					</div>
-					<br>
-					<div class="item-ship">
-						<c:if test="${vo.shippingFee eq 0 }">
-							무료배송
-						</c:if>
-					</div>
-				</a>
-			</div>
-		</c:forEach>
-
-	</div>
+	<c:import url="../template/productlistT.jsp"></c:import>
+	
 
 	<script type="text/javascript" src="../resources/js/productList.js"></script>
 

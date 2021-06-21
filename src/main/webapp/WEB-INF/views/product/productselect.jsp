@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!-- PRODUCT SELECT //// STORE -->
 <!-- class 이름 정리 -->
 <!DOCTYPE html>
@@ -10,84 +11,147 @@
 <c:import url="../template/bootStrap.jsp"></c:import>
 <meta charset="UTF-8">
 <title>store select</title>
+<style type="text/css">
+.store-select {
+	margin: 30px;
+}
+
+.store-select-wrap {
+	float: left;
+	margin: 15px;
+	width: 45%;
+}
+
+.store-select-content-name {
+	font-size: 22px;
+	line-height: 33px;
+	min-height: 43px;
+}
+
+.store-select-content-image {
+	width: 100%;
+}
+
+.store-select-content-price {
+	font-size: 30px;
+	line-height: 33px;
+	min-height: 43px;
+	float: left;
+	font-weight: bold;
+}
+
+.store-select-content-price-won {
+	margin-left: 10px;
+}
+
+.store-select-content-ship {
+	float: left;
+}
+</style>
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
-	<div class="product-selling">
-		<div class="product-selling-container">
-			<div>
-				<ol>
-					category 대>중>소
-					<!-- icon > 각 카테고리 링크 -->
-					<!-- 		<li>대카테고리</li>
-					<li>중카테고리</li>
-					<li>소카테고리</li> -->
-				</ol>
+
+	<!-- 카테고리 불러오기 -->
+
+	<div class="store-select">
+		<div class="store-select-category">대>중>소</div>
+		<div class="store-select-wrap image">
+			<img class="store-select-content-image" alt="상품이미지"
+				src="../resources/images/storeEX/glove.webp">
+		</div>
+		<div class="store-select-wrap content">
+			<div class="store-select-content-brand">
+				<c:if test="${brandVO.brandNum eq productVO.brandNum}">
+				${brand}
+				</c:if>
 			</div>
-
-			<div class="product-selling-container-row">
-				<div class="product-selling-container-image">pic</div>
-				<div class="product-selling-container-content">
-					<div class="product-selling-header">
-						<h1 class="product-selling-header__title">
-							<p>브랜드</p>
-							<div>
-								<span>제습제 515ml x 24입</span> ${vo.productName}
-							</div>
-						</h1>
-						<div class="product-selling-header__content">
-							<div class="product-selling-heder__price">
-								<span class="product-selling-header__price__pricewrap"> <span
-									class="product-selling-header__price__discount"> <span
-										class="num">${vo.discount}</span> <span class="percent">%</span>
-								</span> <span class="product-selling-header__price__origin"> <span
-										class="num">${vo.productPrice}</span> <span class="won">원</span>
-								</span>
-								</span>
-							</div>
-						</div>
-						<div class="product-selling-header__info">
-							<div class="product-selling-header-delivery">
-								<div class="product-selling-header-delivery__titlewrap">
-									<span>배송</span>
-								</div>
-								<div class="product-selling-header-delivery__contentwrap">
-									<span class="product-selling-header-delivery__fee">
-										<b>무료배송</b>
-									</span>
-								</div>
-							</div>
-						</div>
-						<a> 브랜드 홈페이지로 이동</a>
-					</div>
-					<div class="product-selling-option">
-						<section>
-							<div>
-								<div>
-									<select>
-										<option value disabled> 사이즈 </option>
-										<option vlaue="0">S</option>
-										<option value="1">M</option>
-									</select>
-								</div>
-							</div>
-						</section>
-					</div>
-
+			<div class="store-select-content-name">${vo.productName}</div>
+			
+			<div class="store-select-content-price">
+				<div class="store-select-content-price-discount"
+					style="color: #gray;">
+					<!-- 할인율 / 0퍼 이상일 때만 표시 -->
+					<c:if test="${((vo.productPrice - vo.discountPrice)/100) != 0}"> 
+					${(vo.productPrice - vo.discountPrice)/100}%
+					</c:if>
+					<div class="productprice" style="font-weight: lighter;">${vo.productPrice}원</div>
 				</div>
 			</div>
+			<div class="store-select-content-price">
+				<div class="store-select-content-price-won" style="color: #ad4fa1;">${vo.discountPrice}원</div>
+			</div>
+			<br> <br>
+			<div class="store-select-content-ship">배송</div>
+			<div class="store-select-content-ship"
+				style="margin-left: 10px; font-weight: bold;">
+				<c:choose>
+					<c:when test="${vo.shippingFee eq 0}">
+					무료배송
+					</c:when>
+					<c:otherwise>
+					${vo.shippingFee}원
+					<div style="font-weight: lighter;">(30,000원 이상 구매시 무료배송)</div>
+					</c:otherwise>
+				</c:choose>
+			</div>
+			<br>
+			<div class="store-select-content-options">
+			<c:choose>
+				<c:when test="${fn:length(optionsar) > '1'} ">
+				 ---왜안나오지
+				</c:when> 
+				<c:otherwise>
+				tt
+				</c:otherwise>
+			</c:choose>	
+			---옵션 나오는 방식 :
+				${ optionsar}
+				---
+				옵션 사이즈:
+				${opsize }
+				--옵션카인드
+				${ optionK} --옵션이름
+				${optionN }
+				<form action="test">
+					<select name="options">
+						<option value="optionKinds" >${optionK}</option>
+						<c:forEach items="${optionsar}" var="vo">
+						<option>${vo.optionName}</option>
+						</c:forEach>
+					</select>
+			<div class="store-select-buttons">
+				<button type="submit"
+					class="store-select-button btn btn-outline-primary"
+					style="color: #75bdff;">장바구니</button>
+				<button type="button" class="store-select-button btn btn-primary"
+					style="background-color: #75bdff;">바로구매</button>
+				optionNum > 넘어가게 ?
+			</div>
+				</form>
+			</div>
+
+
 		</div>
-		<div class="product-selling-card-gallery-wrap-container"></div>
-		
-		<div class="store-select-content">
-			<div>브랜드</div>
-			<div>${vo.productName}</div>
-			<div>${vo.productPrice}</div>
-			<div>${vo.discount}%</div>
-			<div></div>
-			
-			<div></div>
-		</div>
+
+
+
 	</div>
+
+	<div>
+		<nav class="navbar navbar-expand-sm bg-light justify-content-center">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="#">상품정보</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">배송/환불</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">추천</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<script>
+		
+	</script>
+
+
 </body>
 </html>

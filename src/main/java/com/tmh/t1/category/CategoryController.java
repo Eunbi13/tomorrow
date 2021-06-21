@@ -18,8 +18,7 @@ public class CategoryController {
 	
 	@GetMapping("category")
 	public void getCategory(CategoryVO categoryVO, Model model)throws Exception{
-		List<CategoryVO> ar = categoryService.getCategory(categoryVO);
-		model.addAttribute("vo", ar);
+		// 
 	}
 	
 	
