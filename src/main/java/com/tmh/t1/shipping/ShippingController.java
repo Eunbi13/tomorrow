@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -26,33 +27,51 @@ public class ShippingController {
 	private ShippingService shippingService;
 	
 	//셀렉트
-		@GetMapping("shippingSelect")
-		public ModelAndView getSelect(ShippingVO shippingVO)throws Exception{
-			ModelAndView mv = new ModelAndView();
-		    shippingVO = shippingService.getSelect(shippingVO);
-		    mv.addObject("shippingVO", shippingVO);
-		
-			return mv;
-		}
 	
+	@ResponseBody
+	@GetMapping("minNum")
+	public Long getMinNum(ShippingVO shippingVO)throws Exception{
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal; 
+		String username = userDetails.getUsername();
+		shippingVO.setUsername(username);
+		return shippingService.getMinNum(shippingVO);
+	}
+
+    @ResponseBody
+	@GetMapping("shippingSelect")
+	public ModelAndView getSelect(ShippingVO shippingVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+	    shippingVO = shippingService.getSelect(shippingVO);
+	    System.out.println("뭘까 shippingVO.getShipNum()"+shippingVO.getShipNum());
+	    
+	    mv.addObject("shippingVO", shippingVO);
+	
+		return mv;
+	}
+
 	//리스트
+    @ResponseBody
 	@GetMapping("shippingList")
-	public ModelAndView getList(ShippingVO shippingVO, HttpSession session, ModelAndView mv)throws Exception{
+	public ModelAndView getList(ShippingVO shippingVO,  ModelAndView mv)throws Exception{
+		System.out.println("리스트 입장!");
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
 		UserDetails userDetails = (UserDetails)principal; 
 		String username = userDetails.getUsername();
 		shippingVO.setUsername(username);
 		
 		List<ShippingVO> ar = shippingService.getList(shippingVO);
+	    System.out.println("리스트 성공!");
 		
-		
-		mv.addObject("shippingList", ar);
+		mv.addObject("shippingAr", ar);
 		mv.addObject("vo", shippingVO);
-		mv.setViewName("order/page");
+	
 		return mv;
 	}
 	
 	//삽입
+	
 		@GetMapping("shippingInsert")
 		public void setInsert(ShippingVO shippingVO)throws Exception{
 			ModelAndView mv = new ModelAndView();
@@ -60,12 +79,17 @@ public class ShippingController {
 			mv.setViewName("shipping/shippingInsert");
 		}
 		
+		@ResponseBody
 		@PostMapping("shippingInsert")
-		public String setInsert(ShippingVO shippingVO, Model model)throws Exception{
+		public int setInsert(ShippingVO shippingVO, Model model)throws Exception{
+			System.out.println("shippingInsert 입장성공");
+			System.out.println(shippingVO.getIsDefault());
+			System.out.println(shippingVO.getShipName());
+		
 			int result = shippingService.setInsert(shippingVO);
-			System.out.println("입력성공");
-			return "redirect:./";
 			
+			System.out.println("입력성공");
+			return result;
 		}
 		
 		//삭제
@@ -90,13 +114,25 @@ public class ShippingController {
 		@GetMapping("shippingUpdate")
 		public void setUpdate(ShippingVO shippingVO, Model model)throws Exception{
 			shippingVO = shippingService.getSelect(shippingVO);
-			model.addAttribute("vo", shippingVO);
+			model.addAttribute("shipVO", shippingVO);
+		}
+		@ResponseBody
+		@PostMapping("shippingUpdate")
+		public int setUpdate(ShippingVO shippingVO)throws Exception{
+			System.out.println("shippingupdate 입장성공");
+			int result = shippingService.setUpdate(shippingVO);
+			System.out.println("shippingupdate 입력 성공");
+	     return result;
 		}
 		
-		@PostMapping("shippingUpdate")
-		public String setUpdate(ShippingVO shippingVO)throws Exception{
-			int result = shippingService.setUpdate(shippingVO);
-			return "redirect:./shippingList";
+		
+		//배송지 입력, 수정시 기본배송지 지정할 경우, 원래 기본배송지이던 배송지의 default를 false로 바꾼다. 
+		@ResponseBody
+		@PostMapping("shippingDefaultUpdate")
+		public int setDefaultUpdate(ShippingVO shippingVO)throws Exception{
+			int result = shippingService.setDefaultUpdate(shippingVO);
+			System.out.println("default update 입력 성공");
+			return result;
 		}
 		
 		

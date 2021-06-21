@@ -5,27 +5,287 @@
     
     <mapper namespace="com.tmh.t1.orders.OrdersMapper">
     
-    	<select id="getSelect" parameterType="OrdersVO" resultType="OrdersVO">
+    	<select id="getPage" parameterType="OrdersVO" resultType="OrdersVO">
     		select * from orders where orderNum=#{orderNum}
     	</select>
     	
     	
-    	<select id="getList" parameterType="OrdersVO" resultType="OrdersVO">
-    		select * from orders where username=#{username}
+    	
+	     <select id="getBrandList" parameterType="OrdersVO" resultType="BrandVO">
+			select  A.brandNum, A.brandName,A.companyName, A.managerPhone, B.orderNum
+			from
+			(select brandNum, brandName,companyName, managerPhone from brand
+			where brandNum in 
+				(
+				select brandNum from cart
+				
+				where 
+				
+				orderNum in
+						(select C.orderNum from 
+					    		((select * from orders where username=#{username} and 
+								
+								orderDay BETWEEN DATE_ADD(NOW(),INTERVAL 
+								-
+								<if test="before == null ">
+								3
+								</if>
+								<if test="before != null ">
+								#{before}
+								</if>
+										
+								MONTH ) AND NOW()
+								
+								) O
+								inner join 
+								(select * from cart 
+					    		where username=#{username} and 
+					    		
+					    		
+					    		
+					    		<if test="status == null ">
+								validity > 1
+								</if>
+								<if test="status != null">
+								 validity=#{status}
+								</if>
+								
+					    		) C
+								on C.orderNum = O.orderNum)
+				            group by C.orderNum)
+				    group by brandNum)
+			) A left join  (select  O.orderNum, C.brandNum from 
+					    ((select * from orders where username=#{username} and 
+								orderDay BETWEEN DATE_ADD(NOW(),INTERVAL 
+								-
+								<if test="before == null ">
+								3
+								</if>
+								<if test="before != null ">
+								#{before}
+								</if>
+								 MONTH ) AND NOW()
+								
+								) O
+								inner join 
+								(select * from cart 
+					    		where username=#{username} and 
+					    		
+								<if test="status == null ">
+								validity > 1
+								</if>
+								<if test="status != null">
+								 validity=#{status}
+								</if>
+					    		) C
+								on C.orderNum = O.orderNum)
+                                 ) B
+			on A.brandNum =B.brandNum
+			group by orderNum, brandNum
+	    </select> 
+    	
+    	
+    	<select id="getCartList" parameterType="OrdersVO" resultType="cartVO">
+    		select * from cart 
+    		where validity > 1 
+    		and orderNum in 
+    		(SELECT orderNum FROM orders 
+    		WHERE orderDay BETWEEN DATE_ADD(NOW(),INTERVAL -1 MONTH ) AND NOW())
+
     	</select>
+    	
+    	<select id="getOrdersList" parameterType="OrdersVO" resultMap="cartListResult">
+    	   select orderNum, orderDay from orders
+				
+				where 
+				
+				orderNum in
+				
+				
+						(select C.orderNum from 
+					    		((select * from orders where username=#{username} and 
+								
+								orderDay BETWEEN DATE_ADD(NOW(),INTERVAL 
+								-
+								<if test="before == null ">
+								3
+								</if>
+								<if test="before != null ">
+								#{before}
+								</if>
+								
+								
+								MONTH ) AND NOW()
+								
+								) O
+								inner join 
+								(select * from cart 
+					    		where username=#{username} and 
+					    		
+					    		
+					    		
+					    		<if test="status == null ">
+								validity > 1
+								</if>
+								<if test="status != null">
+								 validity=#{status}
+								</if>
+								
+					    		) C
+								on C.orderNum = O.orderNum)
+				            group by C.orderNum)
+				             order by orderNum desc
+    	
+    	</select>
+    	
+    	
+    	<select id="getSelectBrandList" parameterType="OrdersVO" resultType="BrandVO">
+			select brandNum, brandName,companyName, managerPhone from brand
+				where brandNum in 
+					(select  C.brandNum from
+						(select * from orders 
+						where orderNum=#{orderNum})O
+						    		inner join 
+											(select * from cart 
+								    		where orderNum=#{orderNum}
+								    		) C 
+							    		on C.orderNum = O.orderNum
+				                        group by brandNum)
+			
+	    </select> 
+    	
+    	
+    	
+    	<select id="getSelect" parameterType="OrdersVO" resultMap="cartListResult">
+    		select O.*, C.*, P.*, S.* from
+    			(select * from orders 
+    			where orderNum=#{orderNum}
+    			)O
+    			inner join 
+						(select * from cart 
+			    		where orderNum=#{orderNum} 
+			    		) C
+			    		on C.orderNum = O.orderNum
+			    		left join (select productPic, productName, productNum, shippingFee from product) P 
+			            on P.productNum = C.productNum
+			            left join (select shipName, shipPhone, shipAddress, shipDetailAddress, postcode, shipNum from shipping) S
+			            on S.shipNum = O.shipNum
+    	</select>
+    	
+    	<select id="getList" parameterType="OrdersVO" resultMap="cartListResult">
+    	   select C.*, O.*, P.*, C.carrierId, C.trackId from 
+				(select * from orders 
+					where username=#{username} and 
+					
+					orderDay BETWEEN DATE_ADD(NOW(),INTERVAL 
+					-
+						<if test="before == null ">
+						3
+						</if>
+						<if test="before != null ">
+						#{before}
+						</if>
+					
+					MONTH ) AND NOW()
+					
+				   ) O
+					inner join 
+						(select * from cart 
+			    		where username=#{username} and 
+			    		
+				    		<if test="status == null ">
+							validity > 1
+							</if>
+							<if test="status != null">
+							 validity=#{status}
+							</if>
+						
+			    		) C
+					on C.orderNum = O.orderNum
+						left join (select productPic, productName, productNum, shippingFee from product) P 
+			            on P.productNum = C.productNum
+			             order by O.orderNum desc
+	    	
+    	</select>
+    	
+    	<resultMap type="OrdersVO" id="cartListResult">
+	    	<id column="orderNum" property="orderNum" />
+	    	<result column="shipNum" property="shipNum" />
+	    	<result column="username" property="username" />
+	        <result column="paymentType" property="paymentType" />
+	        <result column="itemsPrice" property="itemsPrice" />
+	    	<result column="shippingFee" property="shippingFee" />
+	        <result column="payment" property="payment" />
+	    	<result column="shippingMemo" property="shippingMemo" />
+	    	<result column="orderDay" property="orderDay" />
+	    	<result column="updateDay" property="updateDay" />
+	    	<result column="name" property="name" />
+	    	<result column="email" property="email" />
+	    	<result column="phone" property="phone" />
+	    	
+	    	<association property="shippingVO"  javaType="ShippingVO">
+	        	<id column="shipNum" property="shipNum" />
+	        	<result column="shipName" property="shipName" />
+	        	<result column="shipPhone" property="shipPhone" />
+	        	<result column="shipAddress" property="shipAddress" />
+	        	<result column="shipDetailAddress" property="shipDetailAddress" />
+	        	<result column="postcode" property="postcode" />
+	        </association>
+	           
+	    	
+	    	
+	        <collection property="cartList" javaType="java.util.List" ofType="CartVO">
+	        	<id column="cartNum" property="cartNum" />
+	        	<result column="brandNum" property="brandNum" />
+	        	<result column="productNum" property="productNum" />
+	        	<result column="optionNum" property="optionNum" />
+	        	<result column="amount" property="amount" />
+		        <result column="validity" property="validity" />
+		        <result column="brandShipping" property="brandShipping" />
+		    	<result column="cartPrice" property="cartPrice" />
+		    	<result column="unitPrice" property="unitPrice" />
+		    	<result column="unitName" property="unitName" />
+		    	<result column="carrierId" property="carrierId" />
+		    	<result column="trackId" property="trackId" />
+	        	
+	           <association property="productVO"  javaType="ProductVO">
+	        	<id column="productNum" property="productNum" />
+	        	<result column="productPic" property="productPic" />
+	        	<result column="productName" property="productName" />
+	        	<result column="shippingFee" property="shippingFee" />
+	           </association>
+	          
+	           
+	        </collection>
+	        
+	    </resultMap>
+	    
+	    
+	   
     	
     	<insert id="setInsert" parameterType="OrdersVO" useGeneratedKeys="true" keyProperty="orderNum">
     		insert into orders(username, itemsPrice, shippingFee, payment) 
     		values (#{username}, #{itemsPrice}, #{shippingFee}, #{payment})
     	</insert>
     	
-    	
-    	
-    	 
-    	
     	<delete id="setDelete" parameterType="OrdersVO">
-    		delete orders where orderNum=#{orderNum}
+    		delete from orders where orderNum=#{orderNum}
     	</delete>
+    	
+    	
+    	
+    	
+    	<update id="setAjaxUpdate" parameterType="OrdersVO">
+    	    update orders set  
+    	    shipNum=#{shipNum}, shippingMemo=#{shippingMemo}, paymentType=#{paymentType}
+    	    where orderNum=#{orderNum}
+    	</update>
+    	
+    	<update id="setUpdate" parameterType="OrdersVO">
+    	    update orders set  
+    	    name=#{name},email=#{email}, phone=#{phone}
+    	    where orderNum=#{orderNum}
+    	</update>
     	
     	
     
