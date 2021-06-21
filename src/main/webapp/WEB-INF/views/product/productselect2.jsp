@@ -82,7 +82,12 @@
 					</select>
 					
 					<ul id='opPrint'></ul>
-					
+					<div id="opWrap">
+  						<p class="original">
+   						 original
+  						</p>
+					</div>
+					<input type='button' value='삭제' onclick='removeItem()' />
 					
 						<li id="carts${i.index}" title="${cartVO.brandNum}">
 							<div title="${cartVO.productNum}"

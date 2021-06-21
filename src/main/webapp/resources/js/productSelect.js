@@ -29,18 +29,21 @@ function priceResult(){
 	
 }
 
-function addList()  {
-  
-  // 1. 추가할 값을 input창에서 읽어온다
+ var i = 1;
+function addList(){
+
+ 
+  // 1. 추가할 값을 option 창에서 읽어온다
   const addValue 
     = $("#selectop option:selected").text();
   
   // 2. 추가할 li element 생성
   // 2-1. 추가할 li element 생성
   const li = document.createElement("li");
-  
+  const div = document.createElement("div");
   // 2-2. li에 id 속성 추가 
-  li.setAttribute('id',addValue);
+  li.setAttribute('value',addValue);
+  li.setAttribute('id', i)
   
   // 2-3. li에 text node 추가 
   const textNode = document.createTextNode(addValue);
@@ -50,4 +53,32 @@ function addList()  {
   document
     .getElementById('opPrint')
     .appendChild(li);
+	i++;
 }
+
+
+function removeItem()  {
+  
+  // 1. <ul> element 선택
+  const ul = document
+    .getElementById('opPrint');
+  
+  // 2. <li> 목록 선택
+  const items = ul.getElementsByTagName('li');
+  
+  // 3. <li> 목록 중 첫번째 item 삭제
+  if(items.length > 0)  {
+    items[0].remove();
+  }
+  
+}
+
+
+
+$(document).ready(function() {
+	var i=1; // 변수설정은 함수의 바깥에 설정!
+  $("selectop").onchange(function() {
+    $("#opWrap").append("<p class='original'>옵션"+i+"</p>");
+    i++; // 함수 내 하단에 증가문 설정
+  });
+});
