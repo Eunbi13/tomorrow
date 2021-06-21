@@ -72,6 +72,7 @@
 					<input type="hidden" name="brandNum" value="${vo.brandNum} ">
 					<input type="hidden" name="productNum" value="${vo.productNum} ">
 					<select id="selectop" name="options" onchange='addList()'>
+									<!-- 0 쓰지마라 ... -->
 						<option value="optionKinds" >${vo.optionsVOs.get(0).optionKinds} </option> <!-- 수정 -->
 						<c:forEach items="${optionsar}" var="OPvo" varStatus="status">
 							<option value="${OPvo.optionNum }">
