@@ -92,6 +92,7 @@
 	    	<result column="unitName" property="unitName" />
 	    	<result column="carrierId" property="carrierId" />
 	    	<result column="trackId" property="trackId" />
+	    	<result column="cancelMemo" property="cancelMemo" />
 	    	
 	    	<association property="productVO"  javaType="ProductVO">
 	        	<id column="productNum" property="productNum" />

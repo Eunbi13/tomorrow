@@ -2,6 +2,7 @@
  * 
  */
 
+//----결제하기 누를때 시행되는 이벤트
 
 let payment = $("#payment").attr("title");
 let email= $("#email").val();
@@ -17,9 +18,9 @@ $("#finalBtn").click(function(){
 	
 	
 	 if($("#shipFrm3").length>0){
-		 
+		//shippingVO가 아예없었을 경우, form에 입력한 배송지 정보부터 shipping DB에 입력해 준다.
 		 console.log("shipFrm3  enter!!");
-	//shippingVO가 아예없었을 경우, form에 입력한 배송지 정보부터 shipping DB에 입력해 준다.
+	
 	// shipping Insert!
 		let shipTitle= $("#shipTitle7").val();
 		let shipName= $("#shipName7").val();
@@ -62,7 +63,7 @@ $("#finalBtn").click(function(){
 		
 			
 			
-		//------ 본격 결제 시작
+		//------ 배송지 입력 성공하면, 본격 결제 시작
 				//가맹점 식별코드
 				IMP.init('imp63068221');
 				IMP.request_pay({
@@ -85,7 +86,7 @@ $("#finalBtn").click(function(){
 				        msg += '결제 금액 : ' + rsp.paid_amount;
 				        msg += '카드 승인번호 : ' + rsp.apply_num;
 				        //결제 완료!
-				        //이제 결제한 cartVO에  orderNum을 넣고  validity를 '결제완료'를 뜻하는 '2' 로 바꾼다.
+				        //cart/orderUpdate: 이제 결제한 cartVO에  orderNum을 넣고  validity를 '결제완료'를 뜻하는 '2' 로 바꾼다.
 				         //--------ajax DB Update 
 								let orderNum = $("#orderNum").val();
 								console.log("orderNum:"+orderNum);
@@ -105,7 +106,7 @@ $("#finalBtn").click(function(){
 			    
 											
 											
-										// cartVO 업데이트 성공했으면 ordersVO 업데이트 시작
+										// cartVO 업데이트 성공했으면, ordersVO 업데이트 시작
 										// orderVO update: paymentType, shippingMemo,name,email, phone , shipName, shipPhone, shipAddress, postcode
 								        //넘어온 cartVO의 orderNum에도 이 order넘버를 넣어준다!
 
@@ -156,7 +157,7 @@ $("#finalBtn").click(function(){
 															if(data>0){
 															alert('업데이트 성공');
 															
-															
+															    //  ordersVO 업데이트  성공하면, 주문자 정보 업데이트 하면서 결제완료 페이지로 넘겨준다.
 															    $("#updateFrm").submit();
 															}else{
 																
@@ -202,7 +203,7 @@ $("#finalBtn").click(function(){
 	 }else{
 		//shippingVO(배송지)가 하나라도 있는 경우, 바로 결제 시작 
 	
-	  //------ 본격 결제 시작
+	  //------  결제 시작
 		//가맹점 식별코드
 			IMP.init('imp63068221');
 			IMP.request_pay({
@@ -249,8 +250,8 @@ $("#finalBtn").click(function(){
 								          
 									                orderNum = $("#orderNum").val();
 													let paymentType = rsp.card_name;
-													let shipName=$("#shipName").val();
-													let shipPhone = $("#shipPhone").val();
+													let shipName=$("#shipName5").val(); 
+													let shipPhone = $("#shipPhone5").val();
 													let shipAddress =$("#shipAddress").text();
 													let postcode=$("#shipPostcode").val();
 													
@@ -305,9 +306,9 @@ $("#finalBtn").click(function(){
 												
 									}else {
 										alert('주문 실패');
-									}
-								}
-							})
+									} //if end
+								} //success end
+							}) //cart/orderUpdate 끝
 			
 			     
 			        //그 이후로는 판매자가 validity를 바꿀수있다.배송완료, 취소등 상태에 따라  validity를 바꿔줘야한다.
@@ -317,16 +318,35 @@ $("#finalBtn").click(function(){
 			    } else {
 			    	 var msg = '결제에 실패하였습니다.';
 			         msg += '에러내용 : ' + rsp.error_msg;
-			    }
+			    }  //결제 성공 if end
 			    alert(msg);
-			});
+			});  //function(rsp)  end
 			
-	 }//if end
+	 }//(shippingVO있을때 )if end
 		
 		
 		
 		
 });// click event end
+
+
+// 주문상품의 brand Shipping 표시하기 
+
+$(".cartVOShipping").each(function(){
+	let brandNum =$(this).attr("data-brandNum");
+	let brandShipping =$(this).val();
+	
+	let shippingInput="무료배송";
+	if(brandShipping!=0){
+		  shippingInput ="배송비 "+brandShipping+"원";
+	}
+	
+	 console.log("shippingInput: "+shippingInput);
+	$("#brandShipping"+brandNum).text(shippingInput);
+	
+});
+
+
 
 
 

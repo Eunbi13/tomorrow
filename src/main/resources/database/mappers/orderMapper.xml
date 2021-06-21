@@ -157,7 +157,7 @@
     	
     	
     	<select id="getSelect" parameterType="OrdersVO" resultMap="cartListResult">
-    		select O.*, C.*, P.*, S.* from
+    		select O.*, C.*, P.* from
     			(select * from orders 
     			where orderNum=#{orderNum}
     			)O
@@ -168,8 +168,7 @@
 			    		on C.orderNum = O.orderNum
 			    		left join (select productPic, productName, productNum, shippingFee from product) P 
 			            on P.productNum = C.productNum
-			            left join (select shipName, shipPhone, shipAddress, shipDetailAddress, postcode, shipNum from shipping) S
-			            on S.shipNum = O.shipNum
+			           
     	</select>
     	
     	<select id="getList" parameterType="OrdersVO" resultMap="cartListResult">
@@ -210,7 +209,6 @@
     	
     	<resultMap type="OrdersVO" id="cartListResult">
 	    	<id column="orderNum" property="orderNum" />
-	    	<result column="shipNum" property="shipNum" />
 	    	<result column="username" property="username" />
 	        <result column="paymentType" property="paymentType" />
 	        <result column="itemsPrice" property="itemsPrice" />
@@ -222,17 +220,10 @@
 	    	<result column="name" property="name" />
 	    	<result column="email" property="email" />
 	    	<result column="phone" property="phone" />
-	    	
-	    	<association property="shippingVO"  javaType="ShippingVO">
-	        	<id column="shipNum" property="shipNum" />
-	        	<result column="shipName" property="shipName" />
-	        	<result column="shipPhone" property="shipPhone" />
-	        	<result column="shipAddress" property="shipAddress" />
-	        	<result column="shipDetailAddress" property="shipDetailAddress" />
-	        	<result column="postcode" property="postcode" />
-	        </association>
-	           
-	    	
+	    	<result column="shipName" property="shipName" />
+	    	<result column="shipPhone" property="shipPhone" />
+	    	<result column="postcode" property="postcode" />
+	    	<result column="shipAddress" property="shipAddress" />
 	    	
 	        <collection property="cartList" javaType="java.util.List" ofType="CartVO">
 	        	<id column="cartNum" property="cartNum" />
@@ -247,6 +238,7 @@
 		    	<result column="unitName" property="unitName" />
 		    	<result column="carrierId" property="carrierId" />
 		    	<result column="trackId" property="trackId" />
+		    	<result column="cancelMemo" property="cancelMemo" />
 	        	
 	           <association property="productVO"  javaType="ProductVO">
 	        	<id column="productNum" property="productNum" />

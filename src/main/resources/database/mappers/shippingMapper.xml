@@ -26,8 +26,8 @@
     	</select>
     	
     	<insert id="setInsert" parameterType="ShippingVO">
-    		insert into shipping(shipTitle, shipName, shipPhone, shipAddress, postcode, isDefault, username) 
-    		values(#{shipTitle}, #{shipName}, #{shipPhone}, #{shipAddress}, #{postcode}, #{isDefault}, #{username})
+    		insert into shipping(shipTitle, shipName, shipPhone, shipAddress, shipDetailAddress, postcode, isDefault, username) 
+    		values(#{shipTitle}, #{shipName}, #{shipPhone}, #{shipAddress},#{shipDetailAddress}, #{postcode}, #{isDefault}, #{username})
     	</insert>
     	
     	<delete id="setDelete" parameterType="ShippingVO">

@@ -100,7 +100,7 @@ ul.no-bullets {
 	border-color: #A63F82;;
 }
 
-.btn-default{
+.btn-orders{
     
     width:125px;
     max-width:100%;
@@ -115,12 +115,13 @@ ul.no-bullets {
 	border-radius:6px;
 
 }
-.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+.btn-orders:hover, .btn-orders:focus, .bbtn-orders:active, .btn-orders.active, .open .dropdown-toggle.btn-orders {
  
 	background-color: #e5b8d7;
 	color:#A63F82;
 	border-color: #A63F82;;
 }
+
 .order {
   border-collapse: collapse;
   margin: 0 auto;
@@ -267,12 +268,12 @@ margin-top:40px;
 															    <input type="hidden" id="brandShipping${cartVO.brandNum}" value="${cartVO.brandShipping}">
 															    <!-- 결제완료 단계에선 취소요청시, 바로 취소가능 -->
 															     <c:if test="${cartVO.validity==2}">
-								 					               <button class="btn btn-default" onclick="location.href='./cancel?cartNum=${cartVO.cartNum}&kind=1'"> 주문취소 </button>       
+								 					               <button class="btn btn-orders" onclick="location.href='./cancel?cartNum=${cartVO.cartNum}&kind=1'"> 주문취소 </button>       
 								 						         </c:if> 
 								 						          <!-- 배송준비 단계에서 부턴 취소요청시, 판매자의 확인이 있어야 가능 -->
 								 						          <c:if test="${cartVO.validity==3}">
 								 					               <div><button class="btn two-btn" onclick="location.href='./cancel?cartNum=${cartVO.cartNum}&kind=1'"> 취소요청 </button> </div>  
-								 					               <button class="btn btn-default" onclick="location.href='./confirm?cartNum=${cartVO.cartNum}'"> 구매확정 </button>   
+								 					               <button class="btn btn-orders" onclick="location.href='./confirm?cartNum=${cartVO.cartNum}'"> 구매확정 </button>   
 								 						         </c:if> 
 								 						           <!-- 배송중 -->
 								 						          <c:if test="${cartVO.validity==4}">
@@ -298,7 +299,7 @@ margin-top:40px;
 								 						          <!-- 구매확정 -->
 								 						          <c:if test="${cartVO.validity==6}">
 								 					               <div> <button class="btn two-btn"> 리뷰작성 </button> </div>
-								 					       		   <button class="btn btn-default" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
+								 					       		   <button class="btn btn-orders" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
 								 						         </c:if> 
 															     </td>
 														   </tr>
@@ -368,15 +369,15 @@ margin-top:40px;
  					 <table class="info" style="margin-bottom:70px;">
  					 	<tr>
  					 		<td class="subTitle">받는 사람</td>
- 					 		<td style="width: 90%;">${ordersVO.shippingVO.shipName} </td>
+ 					 		<td style="width: 90%;">${ordersVO.shipName} </td>
  					 	</tr>
  					 	<tr>
  					 		<td class="subTitle">연락처</td>
- 					 		<td style="width: 90%;">${ordersVO.shippingVO.shipPhone} </td>
+ 					 		<td style="width: 90%;">${ordersVO.shipPhone} </td>
  					 	</tr>
  					 	<tr>
  					 		<td class="subTitle">주소</td>
- 					 		<td style="width: 90%;">(${ordersVO.shippingVO.postcode})${ordersVO.shippingVO.shipAddress} ${ordersVO.shippingVO.shipDetailAddress} </td>
+ 					 		<td style="width: 90%;">(${ordersVO.postcode})${ordersVO.shipAddress}  </td>
  					 	</tr>
  					 	<tr>
  					 		<td class="subTitle">배송메모</td>
@@ -406,13 +407,17 @@ margin-top:40px;
 
 <script type="text/javascript">
 
-  //브랜드별 배송비 표
+  //브랜드별 배송비 
 	$(".shipping").each(function(){
 		
 		let brandNum = $(this).attr("title");
 		let brandShipping =$("#brandShipping"+brandNum).val();
 		brandShipping = parseInt(brandShipping);
-		let brandShippingShow= "선배송비"+brandShipping+"원";
+		let brandShippingShow="무료배송";
+		if(brandShipping!=0){
+		     brandShippingShow= "선배송비 "+ brandShipping +"원";
+		}
+		
 		$("#shipping"+brandNum).text(brandShippingShow);
 		
 	});
