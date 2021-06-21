@@ -1,3 +1,12 @@
+$('#optionEX').hide();
+
+$('#EX').click(function(){
+	$('#optionEX').show();
+	
+});
+
+
+
 //eb_imageAdd
 $('#imageAdd').click(function(){
 	let imageInput = $('#filesSample').html();

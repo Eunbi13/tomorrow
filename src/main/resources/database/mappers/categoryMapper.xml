@@ -21,9 +21,20 @@
 	(SELECT * FROM category WHERE category_detail_parent=2 AND category_parent=2 AND groupid=
 	(SELECT distinct groupId FROM category WHERE category_detail_parent=1 AND category_parent=1)) C
 	 WHERE C.category_detail_lev=3
-	 </select>
-	 
-	 
+	</select>
+	
+	
+	<!-- eb_productUpdate 카테고리 아이디를 파라미터로 받아서 대분류>중분류>소분류(문자열)로 출력 -->
+	<!-- 단, 카테고리 아이디가 소분류일때만 사용 가능 -->
+	<select id="getCategoryNM" parameterType="CategoryVO" resultType="java.lang.String">
+		SELECT CONCAT(c1.category_detail_NM,'>',cs.st) 
+		FROM category c1 , (SELECT CONCAT(c2.category_detail_NM ,'>', c3.category_detail_NM) st, c2.groupID, c2.category_detail_parent, c2.category_parent
+							FROM category c2, (SELECT * FROM category WHERE categoryID=#{categoryID}) c3 
+							WHERE c2.groupID=c3.groupID AND c2.category_detail_LEV=c3.category_detail_parent AND c3.category_parent = c2.category_LEV)cs
+		WHERE c1.groupID=cs.groupID AND c1.category_detail_LEV=cs.category_detail_parent AND cs.category_parent = c1.category_LEV
+	</select>
+	
+	
 	<!-- eb_productUpdate 상품의 카테고리 불러오기 -->
 	<select id="getProdCategory" parameterType="java.lang.Long" resultType="CategoryVO">
 		SELECT * FROM category 

@@ -10,7 +10,9 @@
 <c:import url="../template/summernote.jsp"></c:import>
 <title>내일부터 하는 인테리어, 내일의 집</title>
 
+<style type="text/css">
 
+</style>
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
@@ -25,27 +27,31 @@
 			<div class="col-sm-12"> 
 				<div class="form-group row"><!-- 클릭하면 ajax로 중부류, 소분류 불러오기 -->
 					<div class="col-sm-12">
-					<div id="category" hidden="hidden">
-						<input class="form-control" name="categoryID" value="${categoryVO.categoryID}">
-						<label class="">${categoryVO.category_detail_NM}</label>
-					</div>	
-						<div>카테고리(소분류) 이름: ${categoryVO.category_detail_NM}</div>
-						<div>카테고리 아이디: ${categoryVO.categoryID}</div>
-						<div>변경하기</div>
-					</div>
-					<div class="col-sm-12" style="display: none;">
-						<label class="col-sm-2 col-form-label">선택*</label>
-						<c:forEach items="${categoryOne}" var="vo">
-						<div class=" form-check form-check-inline ">
-							<input class="form-check-input ch" type="checkbox" name="one" value="${vo.categoryID}">
-							<label class="form-check-label" for="inlineCheckbox1">${vo.category_detail_NM }</label>
+						<div id="category">
+							<div hidden="hidden">
+								<input class="form-control" name="categoryID" value="${categoryVO.categoryID}">
+								<label class="">${categoryVO.category_detail_NM}</label>
+							</div>	
+							<div>${categoryNM}</div>
+							<div id="changeCategoryNM">변경하기</div>
 						</div>
-						</c:forEach>
+					</div>
+					<div id="categoryCheckBox" class="col-sm-12" hidden="hidden">
+						<div class="col-sm-12">
+							<label class="col-sm-2 col-form-label">선택*</label>
+							<c:forEach items="${categoryOne}" var="vo">
+							<div class=" form-check form-check-inline ">
+								<input class="form-check-input ch" type="checkbox" name="one" value="${vo.categoryID}">
+								<label class="form-check-label" for="inlineCheckbox1">${vo.category_detail_NM }</label>
+							</div>
+							</c:forEach>
+						</div>
+						<div id="two"></div>
+						<div id="three"></div>
+						<div id="categoryCancel">취소하기</div>
 					</div>
 				</div>
 			</div>
-			<div id="two"></div>
-			<div id="three"></div>
 		</fieldset>
 <br>
 	
@@ -147,14 +153,14 @@
 			<div class="container-sml" id="table">
 				
 			</div>
-			<div id="options">
+			<div id="options" hidden="hidden">
 				<c:forEach items="${options }" var="op">
 					<div class="optionKinds">${op.optionKinds }</div>
 					<div class="optionName">${op.optionName }</div>
 					<div class="optionPrice">${op.optionPrice }</div>
 					<div class="step">${op.step }</div>
 				</c:forEach>
-				</div>
+			</div>
 		</fieldset>
 
 		<button>수정하기</button>

@@ -106,6 +106,7 @@
 	<br>
 				<fieldset>
 			<legend>옵션</legend>
+			<small>옵션은 한 개 이상 넣어주세요.</small>
 			<label class="col-sm-2 col-form-label">옵션 구성 타입 </label>
 				조합 일체선택형<input type="radio" id="notUse" name="o1" checked>
 				조합 분리선택형<input type="radio" id="use" name="o1">

@@ -16,6 +16,10 @@ public interface CategoryMapper {
 	
 	public CategoryVO selectCategoryThree(CategoryVO categoryVO)throws Exception;
 	
+	//eb_productUpdate 카테고리 아이디를 파라미터로 받아서 대분류>중분류>소분류(문자열)로 출력 
+	//소분류만 가능
+	public String getCategoryNM(CategoryVO categoryVO)throws Exception;
+	
 	// eb_productUpdate에서 사용 프로덕트 번호를 파라미터로 카테고리 정보 반환 
 	public CategoryVO getProdCategory(Long productNum)throws Exception;
 	
