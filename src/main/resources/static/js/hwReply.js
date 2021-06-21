@@ -7,27 +7,22 @@ getList();
 
 
 $("#comments").on("click", "#remove", function(){
-	const ar = []; //빈 배열
-	$(".del").each(function(){
-		let ch = $(this).prop("checked");
-		if(ch){
-			ar.push($(this).val());
-		}
-	});
+	hwReplyNum = $(this).val();
 	
 	$.ajax({
 		type: "POST",
-		url: "../hwReply/delete",
-		traditional: true, //배열은 전송
-		data:{hwReplyNum:ar},
+		url: "../hwReply/hwReplyDelete",
+		traditional: true, 					//배열은 전송
+		data:{hwReplyNum:hwReplyNum},
 		success:function(data){
 			alert(data);
 		}
 	});
 });
 
+
 function getList(){
-	$.get("../hwReply/list?hwNum="+hwNum,function(data){
+	$.get("../hwReply/hwReplyList?hwNum="+hwNum,function(data){
 		console.log(data);
 		$("#comments").html(data.trim());
 	});
@@ -35,9 +30,11 @@ function getList(){
 
 $("#write").click(function(){
 	let username = $("#username").val();
+	console.log($("#username").val());
 	let comment = $("#comment").val();
+	console.log($("#comment").val());
 	
-	$.post("../hwReply/insert", 
+	$.post("../hwReply/hwReplyInsert", 
 	{
 		hwNum:hwNum,
 		username:username,
@@ -46,7 +43,7 @@ $("#write").click(function(){
 	function(data){
 		data = data.trim();
 		if(data==1){
-			alert('등록 성공');
+			//alert('등록 성공');
 			$("#username").val('');
 			$("#comment").val('');
 			getList();

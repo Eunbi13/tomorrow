@@ -11,7 +11,12 @@
 				<td>${reply.username}</td>
 				<td>${reply.comment}</td>
 				<td>${reply.regDate}</td>
-				<td><input type="checkbox" class="del" value="${reply.commentNum}"></td>
+				
+				<td>
+					<c:if test="${pinfo.username eq vo.username}">
+						<button type="button" class="btn btn-danger" id="remove" value="${reply.hwReplyNum}">Delete</button>
+					</c:if>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -19,5 +24,5 @@
 </ul> -->
 
 
-<button type="button" class="btn btn-danger" id="remove">Delete</button>
+ 
 
