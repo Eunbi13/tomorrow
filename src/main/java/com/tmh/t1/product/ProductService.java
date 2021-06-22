@@ -35,7 +35,7 @@ public class ProductService {
 	private String filePath;
 	
 	//eb_productUpdate 
-	public Long setUpdateProduct(ProductVO productVO,String categoryID, OptionsVO optionsVO, MultipartFile [] files, MultipartFile rep)throws Exception{
+	public Long setUpdateProduct(ProductVO productVO,String categoryID, MultipartFile [] files, MultipartFile rep)throws Exception{
 		Long result = productMapper.setUpdateProduct(productVO);
 		
 		

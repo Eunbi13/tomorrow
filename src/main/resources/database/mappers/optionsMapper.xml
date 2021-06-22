@@ -3,6 +3,13 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.tmh.t1.option.OptionsMapper">
+	<!-- eb_productUpdate 상품의 옵션 중간 테이블(product_options)에 업데이트 -->
+<!-- <update id="setUpdateProduct_Options" parameterType="java.util.Map">
+		
+	</update> -->
+<!-- eb_productUpdate image삭제 -->		
+
+
 	<!-- eb_productUpdate 상품의 옵션들 정보 불러오기 -->
 	<select id="getProdOptions" parameterType="java.lang.Long" resultType="OptionsVO">
 		SELECT * FROM options 

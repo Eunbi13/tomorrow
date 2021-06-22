@@ -48,10 +48,11 @@ public class ProductController {
 		return "product/productUpdate";
 	}
 	
+	//eb_productUpdate 상품과 카테고리만 수정, 옵션은 옵션 컨트롤러에서 동작
 	@PostMapping("update")
-	public String setProductUpdate(ProductVO productVO,String categoryID, OptionsVO optionsVO, MultipartFile [] files, MultipartFile rep)throws Exception{
-		
-		Long result = productService.setUpdateProduct(productVO, categoryID, optionsVO, files, rep);
+	public String setProductUpdate(ProductVO productVO,String categoryID,MultipartFile [] files, MultipartFile rep)throws Exception{
+		//
+		Long result = productService.setUpdateProduct(productVO, categoryID, files, rep);
 		
 		if(result<1) {
 			
