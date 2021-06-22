@@ -290,13 +290,34 @@ img{
 				}
             </style>
                 <div> <input type="button"  value="개 상품 구매하기" id="payBtn" class="btn-default btn-block btn" > </div>
-         
+         b@rand
         </div>
+        b@rand
         
+        b@rand
+        
+        insert into cart(username, brandNum, productNum, amount, validity, cartPrice, unitPrice, unitName)
+values('id4', 6, 15, 1, 0, 58000, 58000, '컬러:내추럴');
+
+ insert into cart(username, brandNum, productNum, amount, validity, cartPrice, unitPrice, unitName)
+values('id4', 6, 16, 1, 0, 18000, 18000, '컬러:실버');
+
+ insert into cart(username, brandNum, productNum, amount, validity, cartPrice, unitPrice, unitName)
+values('id4', 6, 17, 1, 0, 35000, 35000,'색상:살구/사이즈:Q');
+
+insert into cart(username, brandNum, productNum, amount, validity, cartPrice, unitPrice, unitName)
+values('id4', 6, 17, 1, 0, 25000, 25000,'색상:그레이/사이즈:SS');
+
+ insert into cart(username, brandNum, productNum, amount, validity, cartPrice, unitPrice, unitName)
+values('id4', 6, 18, 1, 0, 19900, 19900,'색상:니트브라운/사이즈:45x45');
+
+insert into cart(username, brandNum, productNum, amount, validity, cartPrice, unitPrice, unitName)
+values('id4', 6, 18, 1, 0, 10900, 10900,'색상:버터옐로우/사이즈:35x35');
         	
-    </div>
-</div>
-     
+        	
+        	
+        	
+   
 	
 <script type="text/javascript">
 

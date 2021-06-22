@@ -7,6 +7,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -14,8 +16,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.tmh.t1.cart.CartVO;
 import com.tmh.t1.category.CategoryVO;
+import com.tmh.t1.orders.OrdersVO;
 import com.tmh.t1.product.ProductVO;
 
 @Controller
@@ -26,9 +31,23 @@ public class BrandController {
 	private BrandService brandService;
 	
 	//eb_brandOrder
-	@GetMapping("cart") // 여기
-	public String brandOrder()throws Exception{
-		return "/brand/brandOrder";
+	@GetMapping("brandOrder") // 여기
+	public ModelAndView brandOrder(BrandVO brandVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println(brandVO.getUsername() + "님 입장!!");
+		
+	    
+	    brandVO	=brandService.getBrandInfo(brandVO);
+	    
+	    List<OrdersVO> ar = brandService.getCartList(brandVO);
+	    List<OrdersVO> orderAr = brandService.getOrderList(brandVO);
+		
+		
+	    mv.addObject("brandVO", brandVO);
+    	mv.addObject("ar", ar);
+
+    	mv.addObject("orderAr", orderAr);
+		return mv;
 	}
 	
 	//eb_brandHome

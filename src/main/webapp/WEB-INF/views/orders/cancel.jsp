@@ -24,10 +24,11 @@ margin-top:20px;
 
 }
 
-img{
+.productPic{
 width:80px;
 max-width: 100px;
 border-radius: 10px;
+margin-right:15px;
 }
 
 .subTitle{
@@ -124,7 +125,7 @@ border-color:lightgray;
      	   		
 			    <tr>
 				    <td style="width: 10%; border-right:none; max-width:100px;">
-				    <img src="../resources/images/glove.webp" class="mr-3" alt="...">
+					<img class="productPic" src="/upload/productImages/${cartVO.productVO.productPic}">
 				  </td>
 				    <td style="width: 90%; border-left:none; font-size: 16px;">
 				      <div class="gray">상품 옵션번호: ${cartVO.cartNum}</div>
@@ -176,26 +177,30 @@ border-color:lightgray;
  		
      	<div class="title"> ${sel} 사유 입력</div>
      	   <hr class="line">
+     	   <form id="cancelFrm" action="./cancel" method="post">
      	      <div>
-	     	       <select class="select">
-	     	       		<option>취소 사유를 선택해주세요</option>
-	     	       		<option>상품이 필요 없어짐</option>
-	     	       		<option>다른 상품 구매함</option>
-	     	       		<option>타 쇼핑몰에서 구매함</option>
-	     	       		<option>상품 품절됨(판매자 요청 취소)</option>
-	     	       		<option>상품 배송 지연됨(출고 지연)</option>
-	     	       	    <option>재주문</option>
+	     	       <select name="cancel" class="select">
+	     	       		<option disabled>취소 사유를 선택해주세요</option>
+	     	       		<option value="상품이 필요 없어짐">상품이 필요 없어짐</option>
+	     	       		<option value="다른 상품 구매함">다른 상품 구매함</option>
+	     	       		<option value="타 쇼핑몰에서 구매함">타 쇼핑몰에서 구매함</option>
+	     	       		<option value="상품 품절됨(판매자 요청 취소)">상품 품절됨(판매자 요청 취소)</option>
+	     	       		<option value="상품 배송 지연됨(출고 지연)">상품 배송 지연됨(출고 지연)</option>
+	     	       	    <option value="재주문">재주문</option>
 	     	       </select>
      	      </div>
      	       
      	       <div>
-     	    	 <textarea cols="50" rows="5" class="nosize" style="resize: none; border-color:lightgray;"> </textarea>
+     	    	 <textarea name="cancelMemo" cols="50" rows="5" class="nosize" style="resize: none; border-color:lightgray;"> </textarea>
      	      </div>
+     	       <input type="hidden" name="cartNum" value="${cartVO.cartNum}">
+     	      <input type="hidden" name="kind" value="${sel}">
      	      
      	      <div>
-     	      <button type="button" class="btn-default"> ${sel} 요청하기 </button>
+     	      <button type="submit" class="btn-default" > ${sel} 요청하기 </button>
      	      
              </div>
+         </form>
 
 
 

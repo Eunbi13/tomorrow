@@ -229,7 +229,7 @@
 	        	<id column="cartNum" property="cartNum" />
 	        	<result column="brandNum" property="brandNum" />
 	        	<result column="productNum" property="productNum" />
-	        	<result column="optionNum" property="optionNum" />
+	        	<result column="orderNum" property="orderNum" />
 	        	<result column="amount" property="amount" />
 		        <result column="validity" property="validity" />
 		        <result column="brandShipping" property="brandShipping" />
@@ -238,6 +238,7 @@
 		    	<result column="unitName" property="unitName" />
 		    	<result column="carrierId" property="carrierId" />
 		    	<result column="trackId" property="trackId" />
+		    	<result column="cancel" property="cancel" />
 		    	<result column="cancelMemo" property="cancelMemo" />
 	        	
 	           <association property="productVO"  javaType="ProductVO">

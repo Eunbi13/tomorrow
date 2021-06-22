@@ -29,4 +29,6 @@ public class ProductVO {
 	
 	private BrandVO brandVO;
 //	private OptionsVO optionsVO;
+	
+	
 }

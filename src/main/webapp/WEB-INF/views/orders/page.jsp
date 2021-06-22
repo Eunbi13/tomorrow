@@ -18,6 +18,12 @@ shipping  -->
 
 <title>Insert title here</title>
 <style type="text/css">
+
+.productPic{
+	width: 64px;
+	height: 64px;
+	margin-right:15px;
+}
 .card-header{
 padding-left: 15px;
 padding-top: 7px;
@@ -717,7 +723,7 @@ margin-top: 20px;
 								               <div id="products${productVO.productNum}">
 													  <li class="list-group-item">
 													    <div class="media">
-													      <img src="../resources/images/glove.webp" class="mr-3 product-img" alt="...">
+													      <img class="productPic" alt="" src="/upload/productImages/${productVO.productPic}">
 													      <div class="media-body">
 													          <div class="mt-0 mb-0 productName">${productVO.productName}</div>
 													           <div class="gray"> ${cartVO.unitName}</div>

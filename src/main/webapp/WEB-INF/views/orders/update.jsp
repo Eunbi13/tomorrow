@@ -20,14 +20,24 @@
 	line-height:200px;
 
 }
-img{
+
+.bal{
+	text-align: center;
+
+}
+
+.cancel{
+	width:100%; 
+	vertical-align:middle;
+}
+.compelete{
 	max-width:80%; 
 	max-height:80%;
 	vertical-align:middle;
 }
 
 
-.btn-default{
+.btn-update{
 	padding:11px 22px;
 	font-weight: bold;
 	font-size: 18px;
@@ -39,7 +49,7 @@ img{
 	margin-bottom:130px;
 }
 
-.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+.btn-update:hover, .btn-update:focus, .btn-updatet:active, .btn-update.active, .open .dropdown-toggle.btn-update {
  
 	background-color: #A63F82;
 	color:#FFF;
@@ -52,10 +62,20 @@ img{
 
 <div class="container">
 
-<img src="/images/oPic/orderComplete.png"><br>
-<button type="button" class="btn btn-default" onclick="location.href='./list?username=${ordersVO.username}'"> 주문현황보기 </button>
+<c:if test="${ordersVO.status eq null}">
 
-<%-- ?username=${ordersVO.username} --%>
+<img class="compelete" src="/images/oPic/orderComplete.png"><br>
+<button type="button" class="btn btn-update " onclick="location.href='./list?username=${ordersVO.username}'"> 주문현황보기 </button>
+</c:if>
+
+
+<c:if test="${ordersVO.status ne null}">
+<div class="bal"> 
+<img class="cancel" src="/images/oPic/cancel.png"><br>
+<button type="button" class="btn btn-update " onclick="location.href='./list?username=${ordersVO.username}'"> 확인 </button>
+
+</div>
+</c:if>
 
 </div>
 

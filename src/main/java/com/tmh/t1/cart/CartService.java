@@ -163,6 +163,10 @@ public class CartService {
 		
 		return cartMapper.setOrderUpdate(cartVO);
 	}
+	
+	public int setCancelUpdate(CartVO cartVO)throws Exception{
+		return cartMapper.setCancelUpdate(cartVO);
+	}
 
 
 }

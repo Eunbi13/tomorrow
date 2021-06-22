@@ -106,11 +106,15 @@ clear:both;
 	border-color: #A63F82;;
 }
 
-img{
-width:74px;
-max-width: 100px;
-border-radius: 10px;
+.productPic{
+	
+	margin-right:15px;
+	width:84px;
+    max-width: 100px;
+    border-radius: 10px;
 }
+
+
 table {
 font-size:18px;
 width:100%;
@@ -354,7 +358,8 @@ webkit-box-flex: 1; */
 	 						                        	 <table>
 														    <tr>
 															    <td style="width: 10%; max-width:100px;">
-															    <img src="../resources/images/glove.webp" class="mr-3" alt="...">
+															      <img class="productPic" alt="" src="/upload/productImages/${cartVO.productVO.productPic}">
+
 															  </td>
 															    <td style="width: 38%; font-size: 16px;">
 															      ${brandVO.brandName}
@@ -384,14 +389,31 @@ webkit-box-flex: 1; */
 								 					                             	리뷰작성 | 일반택배배송
 								 						                         </c:if> 
 								 						                         <c:if test="${cartVO.validity==8}">
-								 					                             	취소 | 일반택배배송
+								 					                             	환불요청 | 일반택배배송
 								 						                         </c:if> 
 								 						                         <c:if test="${cartVO.validity==9}">
-								 					                             	교환 | 일반택배배송
+								 					                             	환불진행중 | 일반택배배송
 								 						                         </c:if> 
 								 						                         <c:if test="${cartVO.validity==10}">
-								 					                             	환불 | 일반택배배송
+								 					                             	환불완료 | 일반택배배송
 								 						                         </c:if> 
+								 						                         <c:if test="${cartVO.validity==11}">
+								 					                             	취소요청 | 일반택배배송
+								 						                         </c:if> 
+								 						                          <c:if test="${cartVO.validity==12}">
+								 					                             	취소완료 | 일반택배배송
+								 						                         </c:if> 
+								 						                         <c:if test="${cartVO.validity==13}">
+								 					                             	교환요청 | 일반택배배송
+								 						                         </c:if> 
+								 						                          <c:if test="${cartVO.validity==14}">
+								 					                             	교환진행중 | 일반택배배송
+								 						                         </c:if> 
+								 						                          <c:if test="${cartVO.validity==15}">
+								 					                             	교환완료 | 일반택배배송
+								 						                         </c:if> 
+								 						                        
+								 						                         
 							 						                         </div>
 															    </td>
 															    

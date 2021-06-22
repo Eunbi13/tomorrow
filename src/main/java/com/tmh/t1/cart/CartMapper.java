@@ -39,5 +39,8 @@ public interface CartMapper {
 	public int setAmountUpdate(CartVO cartVO)throws Exception;
 	
 	public int setOrderUpdate(CartVO cartVO)throws Exception;
+	
+	public int setCancelUpdate(CartVO cartVO)throws Exception;
 
+	
 }

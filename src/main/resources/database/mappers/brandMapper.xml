@@ -30,6 +30,198 @@
 		</insert>
 		
 		
+		<!-- minkyung brandOrder -->
+		
+		<select id="getOrderList" parameterType="BrandVO" resultMap="orderListResult">
+    	   select orderNum, orderDay, updateDay, paymentType, name from orders
+				
+				where 
+				
+				orderNum in
+				
+
+						(select C.orderNum from 
+					    		((select * from orders where 
+								
+								orderDay BETWEEN DATE_ADD(NOW(),INTERVAL 
+								-
+								<if test="before == null ">
+								1
+								</if>
+								<if test="before != null ">
+								#{before}
+								</if>
+								
+								MONTH ) AND NOW()
+								
+								) O
+								inner join 
+								(select * from cart 
+					    		where brandNum=#{brandNum} and 
+					    	
+					    		
+					    		<if test="status == null ">
+								validity > 1
+								</if>
+								<if test="status != null">
+								 validity=#{status}
+								</if>
+								
+					    		) C
+								on C.orderNum = O.orderNum)
+				            group by C.orderNum)
+				             order by orderNum desc
+    	
+    	</select>
+    	
+    	<!--  나중에 고치기 -->
+    	<select id="getCartSelect" parameterType="BrandVO" resultMap="orderListResult">
+    		select O.*, C.*, P.* from
+    			(select * from orders)O
+    			inner join 
+						(select * from cart 
+			    		where brandNum=#{brandNum} 
+			    		) C
+			    		on C.orderNum = O.orderNum
+			    		left join (select productPic, productName, productNum, shippingFee from product) P 
+			            on P.productNum = C.productNum
+			           
+    	</select>
+    	
+    	<select id="getCartList" parameterType="BrandVO" resultMap="cartListResult">
+    	   select C.*, O.*, P.* from 
+				(
+				select * from cart 
+	    		where brandNum=#{brandNum} and 
+	    		
+		    		<if test="status == null ">
+					validity > 1
+					</if>
+					<if test="status != null">
+					 validity=#{status}
+					</if>
+		
+				   ) C
+					inner join 
+						(select * from orders 
+							where
+							
+							orderDay BETWEEN DATE_ADD(NOW(),INTERVAL 
+							-
+								<if test="before == null ">
+								1
+								</if>
+								<if test="before != null ">
+								#{before}
+								</if>
+							
+							MONTH ) AND NOW()
+						
+			    		) O
+					on C.orderNum = O.orderNum
+						left join (select productPic, productName, productNum, shippingFee from product) P 
+			            on P.productNum = C.productNum
+			             order by C.cartNum desc
+	    	
+    	</select>
+    	
+    	<resultMap type="CartVO" id="cartListResult">
+    	        <id column="cartNum" property="cartNum" />
+	        	<result column="brandNum" property="brandNum" />
+	        	<result column="productNum" property="productNum" />
+	        	<result column="optionNum" property="optionNum" />
+	        	<result column="amount" property="amount" />
+		        <result column="validity" property="validity" />
+		        <result column="brandShipping" property="brandShipping" />
+		    	<result column="cartPrice" property="cartPrice" />
+		    	<result column="unitPrice" property="unitPrice" />
+		    	<result column="unitName" property="unitName" />
+		    	<result column="carrierId" property="carrierId" />
+		    	<result column="trackId" property="trackId" />
+		    	<result column="cancel" property="cancel" />
+		    	<result column="cancelMemo" property="cancelMemo" />
+		    	
+		    	<association property="ordersVO"  javaType="OrdersVO">
+			    	<id column="orderNum" property="orderNum" />
+			    	<result column="username" property="username" />
+			        <result column="paymentType" property="paymentType" />
+			        <result column="itemsPrice" property="itemsPrice" />
+			    	<result column="shippingFee" property="shippingFee" />
+			        <result column="payment" property="payment" />
+			    	<result column="shippingMemo" property="shippingMemo" />
+			    	<result column="orderDay" property="orderDay" />
+			    	<result column="updateDay" property="updateDay" />
+			    	<result column="name" property="name" />
+			    	<result column="email" property="email" />
+			    	<result column="phone" property="phone" />
+			    	<result column="shipName" property="shipName" />
+			    	<result column="shipPhone" property="shipPhone" />
+			    	<result column="postcode" property="postcode" />
+			    	<result column="shipAddress" property="shipAddress" />
+			    </association>
+	    	
+	        
+	           <association property="productVO"  javaType="ProductVO">
+		        	<id column="productNum" property="productNum" />
+		        	<result column="productPic" property="productPic" />
+		        	<result column="productName" property="productName" />
+		        	<result column="shippingFee" property="shippingFee" />
+	           </association>
+	          
+	           
+	       
+	        
+	    </resultMap>
+    	
+    	<resultMap type="OrdersVO" id="orderListResult">
+	    	<id column="orderNum" property="orderNum" />
+	    	<result column="username" property="username" />
+	        <result column="paymentType" property="paymentType" />
+	        <result column="itemsPrice" property="itemsPrice" />
+	    	<result column="shippingFee" property="shippingFee" />
+	        <result column="payment" property="payment" />
+	    	<result column="shippingMemo" property="shippingMemo" />
+	    	<result column="orderDay" property="orderDay" />
+	    	<result column="updateDay" property="updateDay" />
+	    	<result column="name" property="name" />
+	    	<result column="email" property="email" />
+	    	<result column="phone" property="phone" />
+	    	<result column="shipName" property="shipName" />
+	    	<result column="shipPhone" property="shipPhone" />
+	    	<result column="postcode" property="postcode" />
+	    	<result column="shipAddress" property="shipAddress" />
+	    	
+	        <collection property="cartList" javaType="java.util.List" ofType="CartVO">
+	        	<id column="cartNum" property="cartNum" />
+	        	<result column="brandNum" property="brandNum" />
+	        	<result column="productNum" property="productNum" />
+	        	<result column="optionNum" property="optionNum" />
+	        	<result column="amount" property="amount" />
+		        <result column="validity" property="validity" />
+		        <result column="brandShipping" property="brandShipping" />
+		    	<result column="cartPrice" property="cartPrice" />
+		    	<result column="unitPrice" property="unitPrice" />
+		    	<result column="unitName" property="unitName" />
+		    	<result column="carrierId" property="carrierId" />
+		    	<result column="trackId" property="trackId" />
+		    	<result column="cancel" property="cancel" />
+		    	<result column="cancelMemo" property="cancelMemo" />
+	        	
+	           <association property="productVO"  javaType="ProductVO">
+	        	<id column="productNum" property="productNum" />
+	        	<result column="productPic" property="productPic" />
+	        	<result column="productName" property="productName" />
+	        	<result column="shippingFee" property="shippingFee" />
+	           </association>
+	          
+	           
+	        </collection>
+	        
+	    </resultMap>
+	    
+	    <!-- minkyung end -->
+		
+		
 		
 		
 		

@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.tmh.t1.category.CategoryMapper;
 import com.tmh.t1.category.CategoryVO;
+import com.tmh.t1.orders.OrdersVO;
 import com.tmh.t1.product.ProductMapper;
 import com.tmh.t1.product.ProductVO;
 import com.tmh.t1.util.FileManager;
@@ -31,6 +32,19 @@ public class BrandService {
 	private FileManager fileManager;
 	@Value("${brandInsert.filePath}")
 	private String filePath;
+	
+	// minkyung
+    public List<OrdersVO> getCartList (BrandVO brandVO)throws Exception{
+    	
+    	return brandMapper.getCartList(brandVO);
+    }
+    
+    // minkyung
+	public List<OrdersVO> getOrderList (BrandVO brandVO)throws Exception{
+		
+		return brandMapper.getOrderList(brandVO);
+	}
+	
 	
 	//eb_brandHome brand정보 불러오기
 	public BrandVO getBrandInfo(BrandVO brandVO) throws Exception{
