@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	
 	<c:forEach items="${productlist}" var="vo">
 		<div class="store-list-item-card">
 			<a href="./productselect2?productNum=${vo.productNum}">

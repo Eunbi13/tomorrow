@@ -21,15 +21,17 @@ public class OptionsController {
 		//product_options 정보
 		List<OptionsVO> options = optionsService.getProdOptions(productNum);
 		model.addAttribute("options", options);
-		
+		model.addAttribute("productNum", productNum);
 		return "options/optionUpdate";
 	}
 	
 	@PostMapping("update")
-	public void setOption(OptionsVO optionsVO)throws Exception{
-		System.out.println(optionsVO.getOptionKinds());
-		System.out.println(optionsVO.getOptionName());
-		System.out.println(optionsVO.getOptionPrice());
+	public String setOption(OptionsVO optionsVO, Long productNum)throws Exception{
+		Long result = optionsService.setOptions(optionsVO,productNum);
+		if(result<1) {
+			return "options/optionUpdate";
+		}
+		return "redirect:/product/productselect2?productNum="+productNum;
 	}
 
 	

@@ -3,12 +3,6 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.tmh.t1.option.OptionsMapper">
-	<!-- eb_productUpdate 상품의 옵션 중간 테이블(product_options)에 업데이트 -->
-<!-- <update id="setUpdateProduct_Options" parameterType="java.util.Map">
-		
-	</update> -->
-<!-- eb_productUpdate image삭제 -->		
-
 
 	<!-- eb_productUpdate 상품의 옵션들 정보 불러오기 -->
 	<select id="getProdOptions" parameterType="java.lang.Long" resultType="OptionsVO">
@@ -16,15 +10,19 @@
 		WHERE optionNum IN (SELECT optionNum FROM product_options WHERE productNum=${productNum})
 	</select>
 
-
+	<!-- eb_OptionsManager 옵션 insert -->
 	<insert id="setOption" parameterType="OptionsVO" useGeneratedKeys="true" keyProperty="optionNum">
 		INSERT into Options (optionKinds, optionName, optionPrice, step) 
 		VALUES (#{optionKinds},#{optionName},#{optionPrice},#{step})
 	</insert>
-	<update id="updateOption" parameterType="OptionsVO">
-		UPDATE options SET ref=#{optionNum} WHERE optionNum=#{optionNum}
-	</update>
-
+	<!-- eb_OptionsManager 상품의 옵션 중간 테이블(product_options)에 삽입 -->
+	<insert id="setProduct_Options" parameterType="java.util.Map">
+		INSERT INTO product_options VALUES (#{productNum}, #{optionNum})
+	</insert>
+	<!-- eb_setOption optionUpdate에서 사용 -->
+	<delete id="deleteOptinos" parameterType="java.lang.Long">
+		DELETE FROM options WHERE optionNum IN (SELECT optionNum from product_options WHERE productNum=#{productNum})
+	</delete>
 	
 </mapper>
 

@@ -27,7 +27,7 @@
 				
 			</div>
 		</div>
-
+ 
 		<div id="productList">
 			<c:import url="../template/productList.jsp"></c:import>
 		</div>

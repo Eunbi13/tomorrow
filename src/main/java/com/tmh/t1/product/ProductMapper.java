@@ -20,7 +20,6 @@ public interface ProductMapper {
 	public Long getProductImages(ProductImagesVO productImagesVO)throws Exception;
 	//eb_productUpdate 상품의 카테고리 중간 테이블(product_category)에 업데이트
 	public Long setUpdateProduct_category(Map<String, Long> map)throws Exception;
-	//eb_productUpdate 상품의 옵션 중간 테이블(product_options)에 업데이트
 	
 	//eb_productUpdate 상품정보 불러오기
 	public ProductVO getProdInfo(ProductVO productVO)throws Exception;
@@ -33,8 +32,6 @@ public interface ProductMapper {
 	public Long setImages(ProductImagesVO imagesVO)throws Exception;
 	//eb_ProductInsert 상품의 카테고리 중간 테이블(product_category)에 삽입
 	public Long setProduct_category(Map<String, Long> map)throws Exception;
-	//eb_ProductInsert 상품의 옵션 중간 테이블(product_options)에 삽입
-	public Long setProduct_Options(Map<String, Long> map)throws Exception;
 	
 	//eb_brandHome 브랜드상품리스트 시간순으로 출력
 	public List<ProductVO> getProductList(ProductVO productVO)throws Exception;

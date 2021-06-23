@@ -72,10 +72,7 @@
 		<insert id="setProduct_category" parameterType="java.util.Map">
 			INSERT INTO product_category VALUES (#{productNum}, #{categoryID})
 		</insert>
-		<!-- eb_ProductInsert 상품의 옵션 중간 테이블(product_options)에 삽입 -->
-		<insert id="setProduct_Options" parameterType="java.util.Map">
-			INSERT INTO product_options VALUES (#{productNum}, #{optionNum})
-		</insert>
+		
 		
 		<!-- eb_brandHome 브랜드상품리스트 시간순으로 출력-->
 		<select id="getBrandHomeList" parameterType="java.lang.Long" resultType="ProductVO">

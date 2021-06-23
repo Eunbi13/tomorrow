@@ -153,9 +153,9 @@ $('#modal').click(function(){
 	$('.addForm').empty();
 	$('.optionForm').html(optionForm);
 });
-
-
-
+//이벤트 활성화
+optionONEvent();
+function optionONEvent(){
 $('#table').on('click','td.add', function(){
 	//테이블에 행 추가
 	//$('td.add').click(function(){
@@ -182,10 +182,6 @@ $('#table').on('click','td.add', function(){
 		
 		$('tbody.'+a).append(makeTbody(kind, name, 0,step));
 		let stop = $('tbody.'+a+'>tr').length;
-		//if(count+1==stop){
-		//	return false;
-		//}
-	//});
 	
 });
 $('#table').on('click','table',function(){
@@ -200,49 +196,10 @@ $('#table').on('click','table',function(){
 	//테이블 삭제
 	$('.tableDelete').click(function(){
 		$(this).parents('table').remove();
-		
-		/*//중복 방지를 위해 테이블에 있는 값들을 수정해야함
-		let tNum =$('table').length;
-		console.log(tNum)
-		$('table').each(function(i, t){
-			console.log('i: '+i)
-			let table = $(t).html();
-			console.log(table);//table 부터 시작,, 
-			//여기까지 thead랑 뜸>>t에서 해결을 봐야함.
-			let thead = $(t).find('thead').html();//이래도 tr이 뜸,, thead
-			//thead x tbody class, step &tfoot title
-			/*$(table).each(function(i,j){
-				console.log($(j).html())
-				//여기서부터 tr이 뜸
-			})
-			//let thead = $(t+':has(thead)').html();
-			thead=$(t).children('thead').html();
-			console.log('THEAD:: '+thead);
-			let tbody = $(table).nextAll('tbody').html();
-			console.log('TBODY:: '+tbody);
-			let tfoot = $(table).nextAll('tfoot').html();
-			console.log('TFOOT:: '+tfoot);
-			console.log('==================');
-			$($(tbody).parent().html()).removeClass();
-			console.log($(tbody).parent())//undifined
-			$($(tbody).parent().html()).addClass('t'+i)
-			/*let thead = $(t).find('thead>tr').html();
-			//thead = $(thead+'.tH').html();
-			console.log(thead);
-			;
-			console.log($(thead).find('.tH').html())
-			
-			$(tbody).addClass('')
-			//tbody = $(tbody).find('input[name="step"]').html();
-			console.log(tbody);
-			let tfoot = $(t).find('tfoot>tr').html();
-			//tfoot = $(tfoot).find(td.tF).html();
-			console.log(tfoot);
-		});*/
 	});
 
 });
-
+}
 //make Table code
 function makeThead(kind, i){
 	return	'<table class="table">'+
