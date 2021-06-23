@@ -23,22 +23,25 @@
 	<div>${vo.brandName }</div>
 	<div>${vo.brandIntro}</div>
 	<div>${vo.referenceFile}</div>
-	<div>${vo.accept}</div>
+	<!-- 왜이래?  -->
+	<c:if test="${vo.accept} eq false">
+		<div>수락상태</div>
+	</c:if>
 
 	<div id="accept">수락</div>
 
 </div>
 <c:import url="../template/footer.jsp"></c:import>
 <script type="text/javascript">
-//eb_수락할 경우
+//eb_수락할 경우 //정상 작동
 let brandNum = $('#brandNum').text();
 $('#accept').click(function(){
 	$.ajax({
 		type:"POST",
-		url:"./accept"
+		url:"./accept",
 		data:{brandNum: brandNum},
 		success:function(data){
-			
+			//엘럿창해서 list로 가야함
 		}
 	})
 });

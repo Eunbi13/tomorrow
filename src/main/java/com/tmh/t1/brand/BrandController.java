@@ -38,7 +38,7 @@ public class BrandController {
 		if(result<1) {
 			return "/brand/brandSelect";
 		}
-		return "redirect:./brandList";
+		return "redirect:./list";
 	}
 	
 	//eb_brandSelect 브랜드 리스트에서 a태그로 접속(brandAccept용)
