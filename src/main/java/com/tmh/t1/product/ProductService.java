@@ -36,9 +36,26 @@ public class ProductService {
 	
 	//eb_productUpdate 
 	public Long setUpdateProduct(ProductVO productVO,String categoryID, MultipartFile [] files, MultipartFile rep)throws Exception{
+		ProductImagesVO imagesVO = new ProductImagesVO();
+		String fileName="";
+
+		//update
 		Long result = productMapper.setUpdateProduct(productVO);
-		
-		
+		//대표이미지(productPic)를 변경하는 경우 업데이트
+		if(rep.getSize()>0) {
+			fileName = fileManager.save(rep, filePath);
+			productVO.setProductPic(fileName);
+			result = productMapper.setUpdateProductPic(productVO);
+		}
+		//추가 이미지 변경하는 경우 (delete&insert)사용
+		imagesVO.setProductNum(productVO.getProductNum());
+		for(MultipartFile f: files) {
+			if(f.getSize()>0) {
+				fileName =fileManager.save(f, filePath);
+				imagesVO.setFileName(fileName);
+				result = productMapper.setImages(imagesVO);
+			}
+		}
 		
 		return result;
 	}
@@ -52,14 +69,12 @@ public class ProductService {
 		CategoryVO categoryVO=categoryMapper.getProdCategory(productNum);
 		//상품이 속한 카테고리(대분류>중분류>소분류)
 		String categoryNM = categoryMapper.getCategoryNM(categoryVO);
-		//product_options 정보
-		List<OptionsVO> options = optionsMapper.getProdOptions(productNum);
+		
 	
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("productVO", productVO);
 		map.put("categoryVO", categoryVO);
 		map.put("categoryNM", categoryNM);
-		map.put("options", options);
 		return map;
 	}
 	

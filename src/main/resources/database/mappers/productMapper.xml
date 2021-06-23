@@ -8,12 +8,20 @@
     		UPDATE product 
     		SET productName=#{productName},
     			productPrice=#{productPrice},
-    			productPic=#{productPic},
     			contents=#{contents},
     			discountPrice=#{discountPrice},
     			shippingFee=#{shippingFee}
     			WHERE productNum=#{productNum}
     	</update>
+    	<!-- eb_productUpdate 상품 대표이미지 업데이트 -->
+    	<update id="setUpdateProductPic" parameterType="ProductVO">
+    		UPDATE product SET productPic=#{productPic} WHERE productNum=#{productNum}
+    	</update>
+    	<!-- eb_productUpdate 추가이미지 중복 검사 -->
+    	<select id="getProductImages" parameterType="ProductImagesVO" resultType="java.lang.Long">
+    		SELECT COUNT(*) FROM productimages WHERE fileName=#{fileName}
+    	</select>
+    	
     	<!-- eb_productUpdate 상품의 카테고리 중간 테이블(product_category)에 업데이트 -->
 		<update id="setUpdateProduct_category" parameterType="java.util.Map">
 			UPDATE product_category SET categoryID=#{categoryID} WHERE productNum=#{productNum}

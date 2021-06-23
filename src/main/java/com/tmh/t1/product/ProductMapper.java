@@ -13,6 +13,11 @@ public interface ProductMapper {
 	
 	//eb_productUpdate
 	public Long setUpdateProduct(ProductVO productVO)throws Exception;
+	//eb_productUpdate 대표이미지 업데이트
+	public Long setUpdateProductPic(ProductVO productVO)throws Exception;
+	
+	//eb_productUpdate 추가이미지 중복 검사
+	public Long getProductImages(ProductImagesVO productImagesVO)throws Exception;
 	//eb_productUpdate 상품의 카테고리 중간 테이블(product_category)에 업데이트
 	public Long setUpdateProduct_category(Map<String, Long> map)throws Exception;
 	//eb_productUpdate 상품의 옵션 중간 테이블(product_options)에 업데이트
@@ -24,7 +29,7 @@ public interface ProductMapper {
 	public Long getBrandNum(String username)throws Exception;
 	//eb_productInsert
 	public Long setProduct(ProductVO productVO)throws Exception;
-	//eb_productInsert productImages에 추가이미지 넣기
+	//eb_productInsert,productUpdate 테이블productImages에 추가이미지 넣기
 	public Long setImages(ProductImagesVO imagesVO)throws Exception;
 	//eb_ProductInsert 상품의 카테고리 중간 테이블(product_category)에 삽입
 	public Long setProduct_category(Map<String, Long> map)throws Exception;
