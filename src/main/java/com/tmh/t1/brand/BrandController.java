@@ -31,6 +31,37 @@ public class BrandController {
 		return "/brand/brandOrder";
 	}
 	
+	//eb_brandAccept(brandAccept용)
+	@PostMapping("accept")
+	public String setBrandAccept(BrandVO brandVO)throws Exception{
+		Long result = brandService.setBrandAccept(brandVO);
+		if(result<1) {
+			return "/brand/brandSelect";
+		}
+		return "redirect:./brandList";
+	}
+	
+	//eb_brandSelect 브랜드 리스트에서 a태그로 접속(brandAccept용)
+	//accept 수락&미수락 처리 페이지
+	@GetMapping("select")
+	public String brandSelect(Model model, BrandVO brandVO)throws Exception{
+		brandVO = brandService.selectBrand(brandVO);
+		model.addAttribute("vo", brandVO);
+		return "/brand/brandSelect";
+	}
+	
+	//eb_brandList 브랜드 리스트(brandAccept용)
+	@GetMapping("list")
+	public String getBrandList(Model model)throws Exception{
+		//brandList전체 불러오기
+		List<BrandVO> list = brandService.getBrandList();
+		System.out.println(list.toString());
+		model.addAttribute("list", list);
+		return "/brand/brandList";
+	}
+	
+	
+	
 	//eb_brandHome
 	@GetMapping("home")
 	public String brandHome(BrandVO brandVO, Model model)throws Exception{
@@ -49,7 +80,7 @@ public class BrandController {
 		return "/brand/brandHome";
 	}
 	
-	//eb_일반 맴버에서 판매자 신청
+	//eb_signBrand 일반 맴버에서 판매자 신청
 	@GetMapping("signBrand")
 	public String signBrand(Model model)throws Exception{
 		model.addAttribute("brandVO", new BrandVO());

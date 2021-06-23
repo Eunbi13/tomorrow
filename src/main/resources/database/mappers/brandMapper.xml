@@ -4,6 +4,24 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 	<mapper namespace="com.tmh.t1.brand.BrandMapper">
+	
+	
+		<!-- eb_brandAccept(brandAccept용) -->
+		<update id="setBrandAccept" parameterType="BrandVO" >
+			update brand set accept=true where brandNum=#{brandNum}
+		</update>
+		<!-- eb_brandSelect(brandAccept용) -->
+		<select id="selectBrand" parameterType="BrandVO" resultType="BrandVO">
+			select * from brand where brandNum=#{brandNum}
+		</select>
+	
+		<!-- eb_brandList전체 불러오기(brandAccept용) -->
+		<select id="getBrandList" resultType="BrandVO">
+			select * from brand ORDER BY brandNum desc
+		</select>
+	
+		
+	
 		<!-- eb_brandHome -->
 		<select id="getBrandInfo" parameterType="BrandVO" resultType="BrandVO">
 			SELECT * FROM brand WHERE brandNum=#{brandNum} OR username=#{username}
