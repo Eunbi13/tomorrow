@@ -81,7 +81,7 @@
 							</option>
 						</c:forEach>
 					</select>
-					
+					<br>*** <br>
 					<ul id='opPrint'></ul>
 					<div id="opWrap">
   						<p class="original">
