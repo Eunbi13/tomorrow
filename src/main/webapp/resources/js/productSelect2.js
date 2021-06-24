@@ -34,61 +34,45 @@ function addList(){
   // 1. 추가할 값을 option 창에서 읽어온다 (옵션명, 가격)
   const addValue 
     = $("#selectop option:selected").text();
+ const optionNum
+    = $("#selectop option:selected").val();
+  const optionName 
+    = $("#selectop option:selected").attr("data-OPname");
+  const unitPriceNumber
+    = $("#selectop option:selected").attr("data-OPprice");
+
+
   
   
+//바뀌면 optionAdd 안의 html를 따와서  opPrint에 넣는다.
+  
+  let optionAdd=document.getElementById('optionAdd');
+  let optionAddHtml=optionAdd.innerHTML
+  let opPrint=document.getElementById('opPrint');
+   opPrint.innerHTML+=optionAddHtml;
+
+
   
   // 2. 추가할 element 생성
   // 2-1. 추가할 element 생성
-  const li = document.createElement("li");
-  const div = document.createElement("div");
-  const priceDiv = document.createElement("div");
-  const inputA = document.createElement("input"); //=amount
-  const p = document.createElement("p"); //<p> price
-  const inputP = document.createElement("input");
 
-  // 2-2. 속성 추가
-  div.setAttribute('value',addValue);
-  div.setAttribute('id','option');
-  priceDiv.setAttribute('id', 'priceDiv');
-  inputA.setAttribute('id', 'amount');
-  inputA.setAttribute('name', 'amount');
-  inputA.setAttribute('value','1');	
-  inputA.setAttribute('onkeyup','printAmount()');
-  p.setAttribute('name','price');
-  inputP.setAttribute('name','price');
-  inputP.setAttribute('type','hidden');
-
-
-  // 2-3. li, div에 text node 추가 
-  const textNode = document.createTextNode(addValue);
-  li.appendChild(textNode);
-  div.appendChild(textNode);
-
-  //3-1. 옵션 , 기준으로 잘라넣기 = p
-  const opPrice = addValue.split(','); //배열
-  const price = opPrice[opPrice.length - 1];
-
-  //3-2. 잘라넣은 값 p에 text node 추가
-  const pricenode = document.createTextNode(price);
-  p.appendChild(pricenode);
-
-  //3-3. input p hidden 으로 가격 넘기기
-  const amount = document.getElementById('amount');
-  const totalP = pricenode*amount ;
-  inputP.setAttribute('value',totalP);
-
-  // 4. 생성된 li를 ul에 추가
-  // li > div > inputA(amount)
-  document 
-    .getElementById('opPrint')
-    .appendChild(li)
-	.appendChild(div)
-	.appendChild(priceDiv)
-	.appendChild(inputA)
-	.appendChild(p)	
-	.appendChild(inputP) //nan ?
-	;
+  
+   //unitName 넣기
+	let unitName=document.getElementById("unitName");
+	 unitName.setAttribute('id',"unitName"+optionNum);
+     unitName.setAttribute('value', optionName);
+	
+   //unitPrice 넣기
+   let unitPrice= document.getElementById("unitPrice");
+      unitPrice.setAttribute('id',"unitPrice"+optionNum);
+	  unitPrice.setAttribute('value', unitPriceNumber);
+   //cartPrice 넣기
+	let cartPrice=document.getElementById("cartPrice");
+	 cartPrice.setAttribute('id',"cartPrice"+optionNum);
+     cartPrice.setAttribute('value', unitPriceNumber);
 }
+
+
 
 //수량 * 옵션가격 //수정중
 function printAmount(){
@@ -100,11 +84,28 @@ function printAmount(){
 	console.log(orP);
 	var opTotal = amount * orP;
 	document.getElementByName('price').innerText = opTotal;
-
 	
 }
 
-function inputOp() {
+//장바구니 버튼 누를 때
+
+	
+
+function goCart() {
+      
+	//배열만들어서 Ajax로 insert
+	//만들어진 회색 박스의 갯수 =	i 
+	
+	let carts = document.getElementsByClassName("carts");
+     alert(carts.length-1)
+	for(i=0; i < carts.length-1 ;i++){
+	    alert(carts[i].title);	
+          carts[i] 
+	}
+
+
+
+	
 	const element = doucument.getElementById('option');
 	const option = element.innerText;
 	const input = document.createElement("input");
@@ -135,11 +136,11 @@ function removeItem()  {
 }
 
 
-
+/*
 $(document).ready(function() {
 	var i=1; // 변수설정은 함수의 바깥에 설정!
-  $("selectop").onchange(function() {
-    $("#opWrap").append("<p class='original'>옵션"+i+"</p>");
-    i++; // 함수 내 하단에 증가문 설정
-  });
-});
+    $("selectop").onchange(function() {
+       $("#opWrap").append("<p class='original'>옵션"+i+"</p>");
+      i++; // 함수 내 하단에 증가문 설정
+     });
+}); */
