@@ -72,64 +72,34 @@
 					<input type="hidden" name="brandNum" value="${vo.brandNum} ">
 					<input type="hidden" name="productNum" value="${vo.productNum} ">
 					<select id="selectop" name="options" onchange='addList()'>
-						<option value="optionKinds" >${optionKinds} </option> <!-- 수정 -->
+									<!-- 0 쓰지마라 ... -->
+						<option value="optionKinds" selected disabled>${vo.optionsVOs.get(0).optionKinds} </option> <!-- 수정 -->
 						<c:forEach items="${optionsar}" var="OPvo" varStatus="status">
 							<option value="${OPvo.optionNum }">
-								<div>${OPvo.optionName}</div>,
-								<div>${vo.discountPrice + OPvo.optionPrice}</div>	
+								<div id="OPname">${OPvo.optionName}</div>,
+								<div id="OPprice">${vo.discountPrice + OPvo.optionPrice}</div>	
 							</option>
 						</c:forEach>
 					</select>
+					<br>*** <br>
 					
-					<ul id='opPrint'></ul>
-					<div id="opWrap">
-  						<p class="original">
-   						 original
-  						</p>
-					</div>
-					<input type='button' value='삭제' onclick='removeItem()' />
+					<!-- option 값 출력되는 곳 -->
+					<ul id='opPrint'>
+		
+					</ul>
+					<div id='optionResult'></div>
 					
-						<li id="carts${i.index}" title="${cartVO.brandNum}">
-							<div title="${cartVO.productNum}"
-								style="width: 100%; height: 100%; padding-bottom: 40px; word-break: break-all; word-wrap: break-word;"
-								class="cartCheck${cartVO.productNum} alert alert-secondary alert-dismissible fade show"
-								role="">
-								<div class="option">
-									<div id="result"></div>
-								</div>
-								<div style="width: 70px; height: 20px; font-size: 12px; float: left;">
-									<!-- 상단의 select box에 수량 10개이상 선택시 나타날 인풋박스/ 숫자만 입력할수 있도록 type number 지정 -->
-									<!-- 수량 -->
-									<input style="width: 70px; height: 20px; ime-mode: disabled;"
-										type="number" min="1" class="directInputBox"
-										data-product-num="${productVO.productNum}"
-										title="${cartVO.cartNum}" id="directInputBox" name="amount"
-										value="${cartVO.amount}" onkeyup='priceResult()'/>
-								</div>
-								<div
-									style="width: 200px; height: 23px; font-size: 16px; padding-bottom: 20px; font-weight: bold; float: right;">
-
-									<input type="text" readonly="readonly"
-										id="cartVOPrice${cartVO.cartNum}"
-										class="cartPricePlus${productVO.productNum} cartPricePlus"
-										title="${productVO.productNum}" name="cartPrice"
-										value="${cartVO.cartPrice}"
-										style="width: 180px; height: 20px; background-color: transparent; border: 0 solid black; text-align: right;" />
-									<div id="priceresult"></div>원
-
-								</div>
-								<button type="button" class="close delete" title="${i.index}"
-									data-dismiss="" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div></li>
+					<!-- 옵션 삭제 버튼 -->
+					<input type='button' value='X' onclick='removeItem()' />
+					
+						
 
 					
 
 					<div class="store-select-buttons">
 						<button type="submit"
 							class="store-select-button btn btn-outline-primary"
-							style="color: #A63F82;">장바구니</button>
+							style="color: #A63F82;" onclick="inputOp">장바구니</button>
 						<button type="button" class="store-select-button btn btn-primary"
 							style="background-color: #A63F82;">바로구매</button>
 					</div>
@@ -143,7 +113,7 @@
 	</div>
 	<!-- main 클래스 끝 -->
 
-	<script type="text/javascript" src="../resources/js/productSelect.js"></script>
-
+	<!-- <script type="text/javascript" src="../resources/js/productSelect.js"></script> -->
+	<script type="text/javascript" src="../resources/js/productSelect2.js"></script>
 </body>
 </html>

@@ -29,30 +29,35 @@ function priceResult(){
 	
 }
 
+//지금 돌아가고 있는 건 이거
  var i = 1;
 function addList(){
 
  
-  // 1. 추가할 값을 option 창에서 읽어온다
+  // 1. 추가할 값을 option 창에서 읽어온다 (옵션명, 가격)
   const addValue 
     = $("#selectop option:selected").text();
   
-  // 2. 추가할 li element 생성
-  // 2-1. 추가할 li element 생성
+  
+  
+  // 2. 추가할 element 생성
+  // 2-1. 추가할 element 생성
   const li = document.createElement("li");
   const div = document.createElement("div");
   // 2-2. li에 id 속성 추가 
-  li.setAttribute('value',addValue);
-  li.setAttribute('id', i)
+  div.setAttribute('value',addValue);
+  
+  
   
   // 2-3. li에 text node 추가 
   const textNode = document.createTextNode(addValue);
   li.appendChild(textNode);
-  
+  div.appendChild(textNode);
   // 3. 생성된 li를 ul에 추가
   document
     .getElementById('opPrint')
-    .appendChild(li);
+    .appendChild(li)
+	.appendChild(div);
 	i++;
 }
 

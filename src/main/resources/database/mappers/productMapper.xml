@@ -142,7 +142,14 @@
 			<result column="discountPrice" property="discountPrice"/>
 			<result column="shippingFee" property="shippingFee"/>
 			<collection property="brandVO" resultMap="brandVO"/>
-			
+			<collection property="optionsVOs" javaType="java.util.List" ofType="OptionsVO">
+				<id column="optionNum" property="optionNum"/>
+				<result column="productNum" property="productNum"/>
+				<result column="optionKinds" property="optionKinds"/>
+				<result column="optionName" property="optionName"/>
+				<result column="optionPrice" property="optionPrice"/>
+				<result column="step" property="step"/>
+			</collection>
 		</resultMap>
 		
 	
@@ -157,12 +164,18 @@
 			where optionNum IN (SELECT optionNum FROM product_options WHERE productNum=#{productNum})
     	</select>
     	
+    	  	
     
     	<select id="getSelect" parameterType="ProductVO" resultMap="ProductVO">
-    		SELECT p.*, b.*
-			FROM product p INNER JOIN brand b 
+    		SELECT p.*, o.*, po.productNum, b.brandName
+			FROM 
+			options o INNER JOIN product_options po
+			ON o.optionNum = po.optionNum
+			INNER JOIN product p
+			ON po.productNum = p.productNum
+			INNER JOIN brand b
 			ON p.brandNum = b.brandNum
-			 WHERE p.productNum=#{productNum}
+			WHERE p.productNum=#{productNum}
     	</select>
     
     
