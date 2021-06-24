@@ -26,6 +26,8 @@
 						<a class="nav-link" href="/member/memberJoin">회원가입</a></li>
 				</sec:authorize>
 				<sec:authorize access="isAuthenticated()">
+				  <li class="nav-item">
+						<a class="nav-link" href="/cart/list">장바구니</a></li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -33,11 +35,12 @@
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="/member/myPage">마이페이지</a>
-							<a class="dropdown-item" href="#">나의 쇼핑</a>
+							<a class="dropdown-item" href="/orders/list">나의 쇼핑</a>
 							<sec:authorize access="hasRole('ROLE_U')">
 								<a class="dropdown-item" href="/brand/signBrand">판매자 신청</a>
 							</sec:authorize>
 							<a class="dropdown-item" href="/member/logout">로그아웃</a>
+							
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#">a</a>
 						</div>
