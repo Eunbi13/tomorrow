@@ -24,7 +24,7 @@ public class ProductVO {
 
 	private ProductImagesVO productImagesVO;
 	private List<ProductImagesVO> images;
-//	private List<OptionsVO> optionsVOs;
+	private List<OptionsVO> optionsVOs;
 //	private CategoryVO categoryVO;
 	
 	private BrandVO brandVO;
