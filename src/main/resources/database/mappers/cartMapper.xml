@@ -127,6 +127,7 @@
     		select * from cart where username=#{username}
     	</select>
     	
+    	<!-- 상세페이지에서 장바구니 버튼을 눌릴때 cartVO 생성 -->
     	<insert id="setInsert" parameterType="CartVO" useGeneratedKeys="true" keyProperty="cartNum"> 
     		insert into cart(username, brandNum, productNum, amount, validity, cartPrice, unitPrice, unitName) 
     		values(#{username}, #{brandNum}, #{productNum}, #{amount}, 0, #{cartPrice}, #{unitPrice}, #{unitName})
