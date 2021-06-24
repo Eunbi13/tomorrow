@@ -28,8 +28,8 @@ public class OrdersVO extends CartVO{
 	private Long shippingFee;
 	private Long payment;
 	private String shippingMemo;
-	private Date orderDay;
-	private Date updateDay;
+	private String orderDay;
+	private String updateDay;
 
 	private String name;
 	private String email;

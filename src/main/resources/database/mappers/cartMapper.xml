@@ -93,7 +93,7 @@
 		    	<result column="trackId" property="trackId" />
 		    	<result column="cancel" property="cancel" />
 		    	<result column="cancelMemo" property="cancelMemo" />
-	        	
+	        	 
 	    	
 	    	<association property="productVO"  javaType="ProductVO">
 	        	<id column="productNum" property="productNum" />
@@ -181,30 +181,18 @@
 			<if test="valid =='one'">
 			 validity='1'
 			</if>
-			<if test="valid =='prepare'">
-			 validity='3'
+			<if test="validity > 2">
+			 validity=#{validity}
 			</if>
-			<if test="valid =='shipping'">
-			 validity='4'
+			
+			
+			<if test="carrierId != null">
+			,carrierId=#{carrierId}
 			</if>
-			<if test="valid =='complete'">
-			 validity='5'
+			<if test="trackId != null">
+			,trackId=#{trackId}
 			</if>
-			<if test="valid =='confirm'">
-			 validity='6'
-			</if>
-			<if test="valid =='cancel'">
-			validity='11'
-			</if>
-			<if test="valid =='exchnage'">
-			validity='13'
-			</if>
-			<if test="valid =='refund'">
-			validity='8'
-			</if>
-			<if test="valid =='refund_ing'">
-			validity='9'
-			</if>
+			
     		where cartNum=#{cartNum} 
     	</update>
     	

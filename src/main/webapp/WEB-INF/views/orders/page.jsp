@@ -531,6 +531,7 @@ margin-top: 20px;
 	            <div class="d-flex pt-1">
 	            <div class="bbqwt">
 					<div class="checkout-container ">
+					
 		<!-- 가지고 있는 배송지가 없는 경우 입력창을 띄우고, 결제하기를 누를 때 ajax 를 이용해서 저장된다 -->
 	
 		<c:if test="${empty shippingAr}">

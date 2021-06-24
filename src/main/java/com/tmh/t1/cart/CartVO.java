@@ -65,6 +65,8 @@ public class CartVO {
 	// 취소인지 환불인지 구분
 	private String kind;
 	
+	private String updateDay;
+	
 	
 	
 	

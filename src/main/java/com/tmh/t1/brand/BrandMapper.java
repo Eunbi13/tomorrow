@@ -28,4 +28,7 @@ public interface BrandMapper {
 	
 	public List<OrdersVO> getOrderList (BrandVO brandVO)throws Exception;
 	
+	public CartVO getCartSelect (CartVO cartVO)throws Exception;
+	
+	
 }

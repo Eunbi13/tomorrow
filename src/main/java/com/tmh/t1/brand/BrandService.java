@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.tmh.t1.cart.CartMapper;
+import com.tmh.t1.cart.CartVO;
 import com.tmh.t1.category.CategoryMapper;
 import com.tmh.t1.category.CategoryVO;
 import com.tmh.t1.orders.OrdersVO;
@@ -23,6 +25,8 @@ import com.tmh.t1.util.FileManager;
 public class BrandService {
 	
 	@Autowired
+	private CartMapper cartMapper;
+	@Autowired
 	private BrandMapper brandMapper;
 	@Autowired
 	private CategoryMapper categoryMapper;
@@ -32,6 +36,16 @@ public class BrandService {
 	private FileManager fileManager;
 	@Value("${brandInsert.filePath}")
 	private String filePath;
+	
+	public int setValidShipUpdate (CartVO cartVO)throws Exception{
+		return cartMapper.setValidityUpdate(cartVO);
+	}
+	
+	// minkyung
+	public CartVO getCartSelect (CartVO cartVO)throws Exception{
+		
+		return brandMapper.getCartSelect(cartVO);
+	}
 	
 	// minkyung
     public List<OrdersVO> getCartList (BrandVO brandVO)throws Exception{

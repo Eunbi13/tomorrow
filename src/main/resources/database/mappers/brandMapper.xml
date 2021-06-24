@@ -75,21 +75,23 @@
     	</select>
     	
     	<!--  나중에 고치기 -->
-    	<select id="getCartSelect" parameterType="BrandVO" resultMap="orderListResult">
-    		select O.*, C.*, P.* from
-    			(select * from orders)O
-    			inner join 
-						(select * from cart 
-			    		where brandNum=#{brandNum} 
-			    		) C
-			    		on C.orderNum = O.orderNum
-			    		left join (select productPic, productName, productNum, shippingFee from product) P 
+    	<select id="getCartSelect" parameterType="cartVO" resultMap="cartListResult">
+    		select C.*, O.*, P.* from 
+				(
+				select * from cart 
+	    		where cartNum = #{cartNum}
+				   ) C
+					inner join 
+						(select * from orders 
+			    		) O
+					on C.orderNum = O.orderNum
+						left join (select productPic, productName, productNum, shippingFee from product) P 
 			            on P.productNum = C.productNum
 			           
     	</select>
     	
     	<select id="getCartList" parameterType="BrandVO" resultMap="cartListResult">
-    	   select C.*, O.*, P.* from 
+    	   select C.*, O.*, P.*, C.updateDate from 
 				(
 				select * from cart 
 	    		where brandNum=#{brandNum} and 
@@ -140,6 +142,8 @@
 		    	<result column="trackId" property="trackId" />
 		    	<result column="cancel" property="cancel" />
 		    	<result column="cancelMemo" property="cancelMemo" />
+		    	<result column="updateDate" property="updateDay" />
+		    	
 		    	
 		    	<association property="ordersVO"  javaType="OrdersVO">
 			    	<id column="orderNum" property="orderNum" />

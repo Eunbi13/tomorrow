@@ -30,13 +30,54 @@ public class BrandController {
 	@Autowired
 	private BrandService brandService;
 	
-	//eb_brandOrder
-	@GetMapping("brandOrder") // 여기
+	@GetMapping("validShipUpdate") 
+	public void setValidShipUpdate (CartVO cartVO)throws Exception{
+		 
+	}
+	
+	
+	//minkyung_brandOrder_상태 변경
+	@PostMapping("validShipUpdate") 
+	public ModelAndView setValidShipUpdate (CartVO cartVO, ModelAndView mv)throws Exception{
+		System.out.println("validShipUpdate enter");
+		 int result=brandService.setValidShipUpdate(cartVO);
+		    Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+			UserDetails userDetails = (UserDetails)principal; 
+			String username = userDetails.getUsername();
+		 
+		 
+		   String message="주문상태 변경 실패했습니다.";
+		   String path="./";
+			
+			if(result>0) {
+				message="주문상태가 변경되었습니다.";
+				path="./brandOrder?username="+username;
+			}
+			
+			mv.addObject("msg", message);
+			mv.addObject("path", path);
+	
+			
+			mv.setViewName("common/commonResult");
+		 return mv;
+	} 
+	
+	//minkyung_brandOrder_orderDtail_modal
+	@GetMapping("cartSelect") 
+    public ModelAndView getCartSelect (CartVO cartVO)throws Exception{
+		 ModelAndView mv = new ModelAndView();
+		 System.out.println("cartSelect입장");
+		 cartVO=brandService.getCartSelect(cartVO);
+		  mv.addObject("cartVO", cartVO);
+		 return mv;
+	}
+	
+	//minkyung_brandOrder
+	@GetMapping("brandOrder") 
 	public ModelAndView brandOrder(BrandVO brandVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		System.out.println(brandVO.getUsername() + "님 입장!!");
 		
-	    
 	    brandVO	=brandService.getBrandInfo(brandVO);
 	    
 	    List<OrdersVO> ar = brandService.getCartList(brandVO);
