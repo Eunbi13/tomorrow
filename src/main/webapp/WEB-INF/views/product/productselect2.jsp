@@ -146,5 +146,6 @@
 
 	<!-- <script type="text/javascript" src="../resources/js/productSelect.js"></script> -->
 	<script type="text/javascript" src="../resources/js/productSelect2.js"></script>
+	<script type="text/javascript" src="../resources/js/productSelect3.js"></script>
 </body>
 </html>
