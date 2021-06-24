@@ -1,4 +1,51 @@
 @charset "UTF-8";
+/* eb_header */
+.container{
+	margin-bottom: 1em;
+}
+
+
+#logo{height:50px; margin-right: 20px;flex: none;}
+
+
+.primaryKeyMenu{
+	padding-top: 20px;
+	padding-bottom:0px;
+	display:inline-block;
+	color:#424242;
+	font-weight:bold;
+	font-size: 0.9m;
+	margin-bottom: 0px;
+}
+
+.memberMenu{
+	position: relative;
+	padding-top: 20px;
+	padding-bottom:0px;
+	padding-right:0px;
+	display:inline-block;
+	color: #757575;
+	font-weight:bold;
+	font-size: 0.8em;
+}
+
+.memberMenu img{
+	padding-top: 0px;
+	margin:0px
+}
+
+.loginMenu::after{
+	content: "|";
+	float: right;
+	margin-left: 20px;
+	
+}
+
+
+/* body{
+	font-family: "Noto Sans KR", "Apple SD Gothic Neo", "맑은 고딕", "Malgun Gothic", sans-serif;
+	letter-spacing: -0.4px;
+}
 
 .container{
 	margin-top: 50px; margin-bottom: 50px;
@@ -7,13 +54,47 @@
 nav{
 	margin-top:-40px; margin-bottom: 0px;
 }
-#subNav{
+
+.subNav{
 	margin-top:-10px; margin-bottom: 0px;
 }
 
 #logo{
 	width:80px; height:50px;
 }
+
+#headNav{
+	position: relative;
+	vertical-align: bottom;
+	
+}
+
+
+
+li a{
+	color:#424242;
+	text-decoration:none;
+	font-weight:bold;
+	font-size: 0.9m;
+}
+
+li a:hover{
+	color:#A63F82;
+}
+
+a.nav-link{
+	padding-bottom: 0
+}
+
+.member{
+	float:right;
+	color: #757575;
+	font-weight:bold;
+	font-size: 1em;
+}
+ */
+
+/*  */
 
 .red{
 	font-weight:bold;

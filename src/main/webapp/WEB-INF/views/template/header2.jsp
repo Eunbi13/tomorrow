@@ -7,32 +7,37 @@
 <!-- 상단 카테고리 -->
 <div class="container">
 <div id="headNav">
-	<nav class="headNav">
-		<div class="row">
-			<a href="/">
-				<img id="logo" src="/images/logo.PNG"  alt="내일의집 로고">
-			</a>
-			<!-- https://noonnu.cc/font_page/497 폰트 -->
+	<nav class="navbar navbar-expand-sm">
+		<a class="navbar-brand" href="/">
+			<img id="logo" src="/images/logo.PNG"  alt="">
+		</a>
+		<!-- https://noonnu.cc/font_page/497 폰트 -->
 
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<!-- 스토어&커뮤니티 부분 -->
-			<a class="nav-link primaryKeyMenu " href="/housewarming/list">커뮤니티</a>
-			<a class="nav-link primaryKeyMenu " href="/product/productlist">스토어</a>
-			
-			<!-- 정렬위한 div -->
-			<div class="col"></div>
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link primaryKey" href="/housewarming/list">커뮤니티</a></li>
+				<li class="nav-item"><a class="nav-link primaryKey" href="/product/productlist">스토어</a></li>
+
+			</ul>
 			<!-- member부분 -->
-			
-			<a class="memberMenu" href="/cart/list">
-				<img src="/images/cartIcon.png" style="width:20px; height:20px;" alt="장바구니">
-			</a>
-			
+			<ul class="navbar-nav">
 				<sec:authorize access="!isAuthenticated()">
-					<a class="nav-link loginMenu memberMenu" href="/member/login">로그인</a>
-					<a class="nav-link memberMenu" href="/member/memberJoin">회원가입</a>
+					<li class="nav-item">
+						<a class="nav-link" href="/member/login">로그인</a></li>
+					<li><p>|</p></li>
+					<li class="nav-item">
+						<a class="nav-link" href="/member/memberJoin">회원가입</a></li>
 				</sec:authorize>
 				<sec:authorize access="isAuthenticated()">
-					<div class="dropdown ">
-						<a class="nav-link dropdown-toggle memberMenu" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<li class="nav-item">
+						<a class="nav-link" href="/cart/list">
+							<img src="/images/cartIcon.png" style="width:40px; height:40px;" alt="장바구니">
+						</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<img src="/images/none.jpg" style="width:40px; height:40px;" alt="">
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -43,23 +48,23 @@
 							</sec:authorize>
 							<a class="dropdown-item" href="/member/logout">로그아웃</a>
 							
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">a</a>
 						</div>
-					</div>
+					</li>
 				</sec:authorize>
 				
-				<div class="dropdown">
-					<a class="nav-link dropdown-toggle memberMenu" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						글쓰기
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						 글쓰기
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="/housewarming/insert">집들이 글쓰기</a>
 						<a class="dropdown-item" href="#">고객센터</a>
-					</div>
-				</div>
-				
-			</div>	
-		
-		
+					</div></li>
+			</ul>
+		</div>
 	</nav>	
 </div>
 	<!-- 하단 카테고리 스토어홈-->
