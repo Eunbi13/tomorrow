@@ -13,7 +13,7 @@
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-<div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+<div class="container">
 	<h1>${brandVO.brandName }</h1>
 	<h1>${brandVO.brandNum }</h1>
 	<div id="brandNum" title="${brandVO.brandNum }"></div>
