@@ -12,4 +12,9 @@ public class OptionsVO {
 	private Long ref;
 	private String step;
 	
+	
+	private Long productNum;
+	
+	
+	
 }
