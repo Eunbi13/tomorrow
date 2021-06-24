@@ -17,7 +17,7 @@
 <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
 <h1>상품 등록 페이지 </h1>
 
-
+<div id="change">
 	<form id="productFrm" action="./update" method="post" enctype="multipart/form-data">
 		<input hidden="hidden" name="productNum" value="${productVO.productNum }">
 		<fieldset>
@@ -68,13 +68,13 @@
 			<div>
 				<label class="col-sm-2 col-form-label">대표 이미지<span>*</span></label>
 				<img class="preview" alt="" src="/upload/productImages/${productVO.productPic}">
-				<div>대표 이미지 교체하기</div>
+				<div class="btn" id="productPicButton">대표 이미지 교체하기</div>
 				<div style="font-weight: bold">추가 이미지</div>
 				<c:forEach items="${productVO.images }" var="img">
 					<img class="preview" alt="" src="/upload/productImages/${img.fileName}">
 				</c:forEach>
 			</div>
-			<div class="form-group row">
+			<div class="form-group row" id="productPicChange" style="display: none">
 				<label class="col-sm-2 col-form-label">대표 이미지<span>*</span></label>
 				<input type="file" name="rep" class="form-control col-sm-10" >
 			</div>
@@ -133,38 +133,13 @@
 			</div>
 		</fieldset>
 	<br>
-				<fieldset>
-			<legend>옵션</legend>
-			<label class="col-sm-2 col-form-label">옵션 구성 타입 </label>
-				조합 일체선택형<input type="radio" id="notUse" name="o1" checked>
-				조합 분리선택형<input type="radio" id="use" name="o1">
-			<!-- Button trigger modal -->
-			<button id="optionButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-			  옵션추가하기
-			</button>
+			
 
-			<div>
-				<div id="importForm">
-					<c:import url="../options/optionForm.jsp"></c:import>
-				</div>
-			</div>
-			<div class="container-sml" id="table">
-				
-			</div>
-			<div id="options" hidden="hidden">
-				<c:forEach items="${options }" var="op">
-					<div class="optionKinds">${op.optionKinds }</div>
-					<div class="optionName">${op.optionName }</div>
-					<div class="optionPrice">${op.optionPrice }</div>
-					<div class="step">${op.step }</div>
-				</c:forEach>
-			</div>
-		</fieldset>
-
-		<button>수정하기</button>
+		<button>저장하기</button>
+		<small>옵션설정페이지로 넘어갑니다.</small>
 	</form>
 	
-		
+</div>		
 </div>
 
 <c:import url="../template/footer.jsp"></c:import>

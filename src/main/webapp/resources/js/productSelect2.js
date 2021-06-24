@@ -84,8 +84,8 @@ function addList(){
     .appendChild(li)
 	.appendChild(div)
 	.appendChild(priceDiv)
-	.appendChild(p)
 	.appendChild(inputA)
+	.appendChild(p)	
 	.appendChild(inputP) //nan ?
 	;
 }

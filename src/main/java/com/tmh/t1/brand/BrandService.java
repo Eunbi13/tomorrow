@@ -37,6 +37,7 @@ public class BrandService {
 	@Value("${brandInsert.filePath}")
 	private String filePath;
 	
+
 	public int setValidShipUpdate (CartVO cartVO)throws Exception{
 		return cartMapper.setValidityUpdate(cartVO);
 	}
@@ -60,6 +61,22 @@ public class BrandService {
 	}
 	
 	
+
+	//eb_brandAccept(brandAccept용)
+	public Long setBrandAccept(BrandVO brandVO) throws Exception{
+		return brandMapper.setBrandAccept(brandVO);
+	}
+	//eb_brandSelect(brandAccept용)
+	public BrandVO selectBrand(BrandVO brandVO) throws Exception{
+		return brandMapper.selectBrand(brandVO);
+	}
+	
+	//eb_brandList전체 불러오기(brandAccept용)
+	public List<BrandVO> getBrandList()throws Exception{
+		return brandMapper.getBrandList();
+	}
+	
+
 	//eb_brandHome brand정보 불러오기
 	public BrandVO getBrandInfo(BrandVO brandVO) throws Exception{
 		return brandMapper.getBrandInfo(brandVO);
