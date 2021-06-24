@@ -76,9 +76,13 @@ public class CartController {
 	}
 	
 	@PostMapping("insert")
-	public int setInsert(CartVO [] cartVOs)throws Exception{
-		
-		return cartService.setInsert(cartVOs);
+	public int setInsert(Long [] unitPrice, Long [] cartPrice, Long [] amount)throws Exception{
+		 
+		 System.out.println(unitPrice[0]);
+		 System.out.println(unitPrice[1]);
+		 
+		 return 0;
+		//return cartService.setInsert(cartVOs);
 	}
 	
 	@ResponseBody 
