@@ -108,7 +108,7 @@ function inputOp() {
 	const element = doucument.getElementById('option');
 	const option = element.innerText;
 	const input = document.createElement("input");
-  input.setAttribute('name','totlaOp');
+  input.setAttribute('name','totalOp');
   input.setAttribute('type','hidden');	
 	document 
 		.getElementById('optionResult')
@@ -143,3 +143,5 @@ $(document).ready(function() {
     i++; // 함수 내 하단에 증가문 설정
   });
 });
+
+

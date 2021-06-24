@@ -12,17 +12,111 @@
 <meta charset="UTF-8">
 <title>store select</title>
 <style type="text/css">
+.main {
+display: flex;
+flex-direction: column;
+margin-top: 20px;
+margin-bottom: 40px;
+flew-wrap: wrap;
+box-sizing: border-box; 
+margin-right: auto;
+margin-left: auto;
+max-width: 100%;
+min-height: 1px;
+}
+
+/* 사진 div */
+.main-pic{ 
+float: left;
+display: flex;
+position: relative;
+box-sizing: border-box;
+flex-grow: 0;
+flex-shrink: 0;
+align-items: flex-start;
+flex-basis: 40em;
+flex-direction: row;
+}
+.main-pic-wrap{
+flex-wrap: nowrap;
+align-items: stretch;
+min-height: 100%;
+}
+
+
+/* select 좌측 작은 사진 */
+.main-pic-small{
+list-style: none; 
+float: left; 
+margin-right: 10px;
+display: block;
+}
+
+/* select 좌측 작은 사진- 버튼 */
+.main-pic-small-bt{
+margin: 2px;
+border: 0;
+outline: 0; 
+border-radius: 12px;
+}
+
+/* select 메인 우측 사진 */
+.main-pic-big{
+float: left;
+border-radius: 12px;
+box-sizing: border-box;
+max-width: 40%;
+
+}
+
+.main-contents{
+float: left;
+display: flex;
+position: relative;
+box-sizing: border-box;
+flex-grow: 0;
+flex-shrink: 0;
+display: block;
+flex-basis: 40em;
+flex-direction: row;
+}
+
 </style>
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
 
 	<div class="main">
+		<div class="main-pic" >
+		<div class="main-pic-wrap"> 
+		<!-- select 좌측 작은 사진 -->
+		<ul class="main-pic-small" >
+			<li >	
+			<button class="main-pic-small-bt">
+				<img alt="상품이미지"
+				src="../resources/images/categoryPic/A1.webp">
+			</button>
+			</li>
+			<li >	
+			<button class="main-pic-small-bt">
+				<img alt="상품이미지"
+				src="../resources/images/categoryPic/A1.webp">
+			</button>
+			</li>
+			<li >	
+			<button class="main-pic-small-bt">
+				<img alt="상품이미지"
+				src="../resources/images/categoryPic/A1.webp">
+			</button>
+			</li>
+		</ul>
 		<!-- select 메인 우측 사진 -->
-		<div class="main-pic">
-			<img class="store-select-content-image" alt="상품이미지"
-				src="../resources/images/storeEX/glove.webp">
+		<div class="main-pic-big">
+			<img alt="상품이미지" style="width:600px;"
+			src="../resources/images/storeEX/glove.webp">
 		</div>
+		</div>
+		</div> <!--div class="main-pic"-->
 
 		<!-- select 메인 좌측 -->
 		<div class="main-contents">
@@ -95,6 +189,7 @@
 					
 					
 					 <!-- option -->
+					 <div>
 					     <li id="carts${i.index}" title="${cartVO.brandNum}">
 					         <!--  unitPrice  -->
 					       <input type="hidden" class="unitPrice" id="unitPrice${cartVO.cartNum}" name="unitPrice" title="${cartVO.unitPrice}" value="${cartVO.unitPrice}">
@@ -119,7 +214,7 @@
 							 </div>
 							 
 					       </li>
-				       
+				       </div>
 				      <!-- option end-->
 				      
 					
@@ -141,6 +236,7 @@
 
 		</div>
 		<!-- main contents 클래스 끝 -->
+		
 	</div>
 	<!-- main 클래스 끝 -->
 
