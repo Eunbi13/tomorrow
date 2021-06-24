@@ -14,10 +14,10 @@
 <style type="text/css">
 .main {
 display: flex;
-flex-direction: column;
+flex-direction: row;
 margin-top: 20px;
 margin-bottom: 40px;
-flew-wrap: wrap;
+flex-wrap: wrap;
 box-sizing: border-box; 
 margin-right: auto;
 margin-left: auto;
@@ -28,20 +28,16 @@ min-height: 1px;
 /* 사진 div */
 .main-pic{ 
 float: left;
-display: flex;
+flex:1;
 position: relative;
 box-sizing: border-box;
 flex-grow: 0;
 flex-shrink: 0;
 align-items: flex-start;
-flex-basis: 40em;
-flex-direction: row;
+flex-basis: 55em;
+
 }
-.main-pic-wrap{
-flex-wrap: nowrap;
-align-items: stretch;
-min-height: 100%;
-}
+
 
 
 /* select 좌측 작은 사진 */
@@ -50,6 +46,7 @@ list-style: none;
 float: left; 
 margin-right: 10px;
 display: block;
+flex:1;
 }
 
 /* select 좌측 작은 사진- 버튼 */
@@ -66,18 +63,18 @@ float: left;
 border-radius: 12px;
 box-sizing: border-box;
 max-width: 40%;
-
+flex:5;
 }
 
 .main-contents{
 float: left;
-display: flex;
 position: relative;
 box-sizing: border-box;
-flex-grow: 0;
-flex-shrink: 0;
 display: block;
-flex-basis: 40em;
+
+}
+.price-div{
+display: flex;
 flex-direction: row;
 }
 
@@ -120,25 +117,27 @@ flex-direction: row;
 
 		<!-- select 메인 좌측 -->
 		<div class="main-contents">
-			<div class="brand">
+			<div class="brand" style="font-size: 14px; color: gray;">
 				<c:if test="${brandVO.brandNum eq productVO.brandNum}">
 					${vo.brandVO.brandName }
 				</c:if>
 			</div>
 
-			<div class="title">${vo.productName}</div>
+			<div class="title" style="font-size: 23px;">${vo.productName}</div>
 
 			<div class="price">
+				<div class="price-div">
 				<!-- 할인율 계산 후 표시 -->
 				<c:if test="${((vo.productPrice - vo.discountPrice)/100) != 0}">
-					<div class="price-percent">${(vo.productPrice - vo.discountPrice)/100}%
+					<div class="price-percent" style="font-size: 17px; margin-right: 10px;">${(vo.productPrice - vo.discountPrice)/100}%
 					</div>
 				</c:if>
 				<!-- 원가 -->
-				<div class="price-origin" style="font-weight: lighter;">
+				<div class="price-origin" style="color:gray; text-decoration:line-through; font-size:17px; ">
 					${vo.productPrice}원</div>
+				</div>	
 				<!-- 할인가 -->
-				<div class="price-final">${vo.discountPrice}원</div>
+				<div class="price-final" style="font-weight: bold; font-size:25px; ">${vo.discountPrice}원</div>
 			</div>
 			<!-- price 클래스 끝 -->
 
