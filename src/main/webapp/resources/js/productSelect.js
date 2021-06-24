@@ -39,12 +39,13 @@ function addList(){
     = $("#selectop option:selected").text();
   
   
-  // 2. 추가할 li element 생성
-  // 2-1. 추가할 li element 생성
+  
+  // 2. 추가할 element 생성
+  // 2-1. 추가할 element 생성
   const li = document.createElement("li");
   const div = document.createElement("div");
   // 2-2. li에 id 속성 추가 
-  li.setAttribute('value',addValue);
+  div.setAttribute('value',addValue);
   
   
   
