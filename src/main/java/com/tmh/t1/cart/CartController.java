@@ -68,14 +68,7 @@ public class CartController {
 	}
 	
 	
-	
-//	@GetMapping("doPlusJson")
-//	@ResponseBody
-//	public Map<String, Long> plusJson(long num1, long num2) {
-//		
-//		long rs = num1+num2;
-//		return rs;
-//	}
+
 	
 	@GetMapping("insert")
 	public void setInsert(CartVO cartVO)throws Exception{

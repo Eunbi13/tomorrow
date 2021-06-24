@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.tmh.t1.brand.BrandVO;
 import com.tmh.t1.option.OptionsVO;
+import com.tmh.t1.orders.OrdersVO;
 import com.tmh.t1.product.ProductVO;
 
 import lombok.Data;
@@ -39,6 +40,10 @@ public class CartVO {
 	
 	private String unitName;
 	
+	private String cancel;
+	
+	private String cancelMemo;
+	
 	public ProductVO getProductVO() {
 		return productVO;
 	}
@@ -49,6 +54,8 @@ public class CartVO {
 
 	private ProductVO productVO;
 	
+	private OrdersVO ordersVO;
+	
 	private String carrierId;
 	
 	private Long trackId;
@@ -57,6 +64,8 @@ public class CartVO {
 	
 	// 취소인지 환불인지 구분
 	private String kind;
+	
+	private String updateDay;
 	
 	
 	

@@ -80,18 +80,20 @@
 	    
 	    <resultMap type="CartVO" id="cartListResult">
 	    	<id column="cartNum" property="cartNum" />
-	    	<result column="username" property="username" />
 	    	<result column="brandNum" property="brandNum" />
-	        <result column="productNum" property="productNum" />
-	        <result column="optionNum" property="optionNum" />
-	    	<result column="amount" property="amount" />
-	        <result column="validity" property="validity" />
-	        <result column="brandShipping" property="brandShipping" />
-	    	<result column="cartPrice" property="cartPrice" />
-	    	<result column="unitPrice" property="unitPrice" />
-	    	<result column="unitName" property="unitName" />
-	    	<result column="carrierId" property="carrierId" />
-	    	<result column="trackId" property="trackId" />
+	        	<result column="productNum" property="productNum" />
+	        	<result column="orderNum" property="orderNum" />
+	        	<result column="amount" property="amount" />
+		        <result column="validity" property="validity" />
+		        <result column="brandShipping" property="brandShipping" />
+		    	<result column="cartPrice" property="cartPrice" />
+		    	<result column="unitPrice" property="unitPrice" />
+		    	<result column="unitName" property="unitName" />
+		    	<result column="carrierId" property="carrierId" />
+		    	<result column="trackId" property="trackId" />
+		    	<result column="cancel" property="cancel" />
+		    	<result column="cancelMemo" property="cancelMemo" />
+	        	 
 	    	
 	    	<association property="productVO"  javaType="ProductVO">
 	        	<id column="productNum" property="productNum" />
@@ -140,11 +142,35 @@
     		delete from cart where productNum=#{productNum} and username=#{username}
     	</delete>
     	
-    	
-    	<update id="setOrderCancel" parameterType="CartVO">
-    		update cart set validity='8'
-    		where orderNum=#{orderNum} 
+    	<!-- minkyung_부분 취소/교환/반품시 업데이트 -->
+    	<update id="setCancelUpdate" parameterType="CartVO">
+    		update cart set cancel=#{cancel}, cancelMemo=#{cancelMemo},
+    		<if test="kind =='취소'">
+			validity='11'
+			</if>
+			<if test="kind =='교환'">
+			validity='13'
+			</if>
+			<if test="kind =='환불'">
+			validity='8'
+			</if>
+    		where cartNum=#{cartNum}
     	</update>
+    	
+    	<!-- minkyung_전체 취소/교환/반품시 업데이트 -->
+    <!-- 	<update id="setOrderCancel" parameterType="CartVO">
+    		update cart set cancel=#{cancel}, cancelMemo=#{cancelMemo},
+    		<if test="valid =='cancel'">
+			validity='11'
+			</if>
+			<if test="valid =='exchnage'">
+			validity='13'
+			</if>
+			<if test="valid =='refund'">
+			validity='8'
+			</if>
+    		where cartNum=#{cartVO}
+    	</update> -->
     	
     	<update id="setValidityUpdate" parameterType="CartVO">
     	    update cart set 
@@ -155,30 +181,18 @@
 			<if test="valid =='one'">
 			 validity='1'
 			</if>
-			<if test="valid =='prepare'">
-			 validity='3'
+			<if test="validity > 2">
+			 validity=#{validity}
 			</if>
-			<if test="valid =='shipping'">
-			 validity='4'
+			
+			
+			<if test="carrierId != null">
+			,carrierId=#{carrierId}
 			</if>
-			<if test="valid =='complete'">
-			 validity='5'
+			<if test="trackId != null">
+			,trackId=#{trackId}
 			</if>
-			<if test="valid =='confirm'">
-			 validity='6'
-			</if>
-			<if test="valid =='cancel'">
-			validity='8'
-			</if>
-			<if test="valid =='exchnage'">
-			validity='9'
-			</if>
-			<if test="valid =='refund'">
-			validity='10'
-			</if>
-			<if test="valid =='refund_ing'">
-			validity='11'
-			</if>
+			
     		where cartNum=#{cartNum} 
     	</update>
     	

@@ -207,9 +207,18 @@ public class OrdersController {
 		return mv;
 	}
 	
-//	@GetMapping("update")
-//    public void setUpdate(OrdersVO ordersVO)throws Exception{
-//	}
+	@GetMapping("update")
+	public ModelAndView setUpdate(OrdersVO ordersVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal; 
+		String username = userDetails.getUsername();
+		
+		ordersVO.setUsername(username);
+		mv.addObject("ordersVO", ordersVO);
+		mv.setViewName("orders/update");
+		return mv;
+	}
 	
 	@ResponseBody 
 	@PostMapping("update")
@@ -264,6 +273,7 @@ public class OrdersController {
 	public ModelAndView setCancelUpdate(CartVO cartVO, int kind)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
+		
 		String sel="취소";
 		
 		if(kind==2) {
@@ -279,6 +289,32 @@ public class OrdersController {
         return mv;
 	}
 	
+	// 취소, 반품, 교환
+	@PostMapping("cancel")
+	public ModelAndView setCancelUpdate(CartVO cartVO, ModelAndView mv)throws Exception{
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal; 
+		String username = userDetails.getUsername();
+		
+		cartVO.setUsername(username);
+		int result =cartService.setCancelUpdate(cartVO);
+		String message="신청 실패";
+		String path="./";
+		
+		if(result>0) {
+			message="신청 성공";
+			path="./update?status=11";
+		}
+		
+		mv.addObject("msg", message);
+		mv.addObject("path", path);
+		mv.addObject("cartVO", cartVO);
+		
+		mv.setViewName("common/commonResult");
+
+		
+        return mv;
+	}
 	
 	// orders/select 나  orders/list에서 구매 확정 클릭시
 	@GetMapping("confirm")

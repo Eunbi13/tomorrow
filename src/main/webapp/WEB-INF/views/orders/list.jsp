@@ -84,7 +84,7 @@ clear:both;
 	border-color: #A63F82;;
 }
 
-.btn-default{
+.btn-orders{
     
     width:125px;
     max-width:100%;
@@ -99,18 +99,22 @@ clear:both;
 	border-radius:6px;
 
 }
-.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+.btn-orders:hover, .btn-orders:focus, .bbtn-orders:active, .btn-orders.active, .open .dropdown-toggle.btn-orders {
  
 	background-color: #e5b8d7;
 	color:#A63F82;
 	border-color: #A63F82;;
 }
 
-img{
-width:74px;
-max-width: 100px;
-border-radius: 10px;
+.productPic{
+	
+	margin-right:15px;
+	width:84px;
+    max-width: 100px;
+    border-radius: 10px;
 }
+
+
 table {
 font-size:18px;
 width:100%;
@@ -330,17 +334,17 @@ webkit-box-flex: 1; */
 					   
 					       <!-- order -->
  						   <c:forEach items="${orderAr}" var="ordersVO">
-	 						   <li style="clear:both;">
-		 							<div style="float:left; margin: 40px 0px 0px 20px; font-weight: bold; font-size:18px;">
+	 						    <div style="margin-bottom:0px; border: 1px solid #FFF;">
+		 							<div style="float:left; margin: 40px 0px 40px 20px; font-weight: bold; font-size:18px;">
 		 						       	 ${ordersVO.orderNum} | ${ordersVO.orderDay}
 		 						    </div>
-	 						       	    <div class="detailSelect" style="float:right; margin: 45px 20px 0px 0px;">
+	 						       	 <div class="detailSelect" style="float:right; margin: 45px 20px 40px 0px;">
 	 						        		<a class="detailSelect" href="select?orderNum=${ordersVO.orderNum}" >상세보기 ></a>
-	 						        	</div>
-	 						        	
-	 						        	 <hr style="margin-top:50px;">
-	 					       </li>  
-	 					       
+	 						         </div>
+	 						     </div>
+	 						        	    	 
+	 					        <hr style="margin-top:75px;">
+	 						    
 	 					  
 	 					         <!-- brand -->
 	 						     <c:forEach items="${brandAr}" var="brandVO">
@@ -354,7 +358,8 @@ webkit-box-flex: 1; */
 	 						                        	 <table>
 														    <tr>
 															    <td style="width: 10%; max-width:100px;">
-															    <img src="../resources/images/glove.webp" class="mr-3" alt="...">
+															      <img class="productPic" alt="" src="/upload/productImages/${cartVO.productVO.productPic}">
+
 															  </td>
 															    <td style="width: 38%; font-size: 16px;">
 															      ${brandVO.brandName}
@@ -384,14 +389,31 @@ webkit-box-flex: 1; */
 								 					                             	리뷰작성 | 일반택배배송
 								 						                         </c:if> 
 								 						                         <c:if test="${cartVO.validity==8}">
-								 					                             	취소 | 일반택배배송
+								 					                             	환불요청 | 일반택배배송
 								 						                         </c:if> 
 								 						                         <c:if test="${cartVO.validity==9}">
-								 					                             	교환 | 일반택배배송
+								 					                             	환불진행중 | 일반택배배송
 								 						                         </c:if> 
 								 						                         <c:if test="${cartVO.validity==10}">
-								 					                             	환불 | 일반택배배송
+								 					                             	환불완료 | 일반택배배송
 								 						                         </c:if> 
+								 						                         <c:if test="${cartVO.validity==11}">
+								 					                             	취소요청 | 일반택배배송
+								 						                         </c:if> 
+								 						                          <c:if test="${cartVO.validity==12}">
+								 					                             	취소완료 | 일반택배배송
+								 						                         </c:if> 
+								 						                         <c:if test="${cartVO.validity==13}">
+								 					                             	교환요청 | 일반택배배송
+								 						                         </c:if> 
+								 						                          <c:if test="${cartVO.validity==14}">
+								 					                             	교환진행중 | 일반택배배송
+								 						                         </c:if> 
+								 						                          <c:if test="${cartVO.validity==15}">
+								 					                             	교환완료 | 일반택배배송
+								 						                         </c:if> 
+								 						                        
+								 						                         
 							 						                         </div>
 															    </td>
 															    
@@ -401,28 +423,28 @@ webkit-box-flex: 1; */
 															   
 															     <!-- 결제완료 단계에선 취소요청시, 바로 취소가능 -->
 															     <c:if test="${cartVO.validity==2}">
-								 					               <button class="btn btn-default" onclick="location.href='./cancel?cartNum=${cartVO.cartNum}&kind=1'"> 주문취소 </button>       
+								 					               <button class="btn btn-orders" onclick="location.href='./cancel?cartNum=${cartVO.cartNum}&kind=1'"> 주문취소 </button>       
 								 						         </c:if> 
 								 						          <!-- 배송준비 단계에서 부턴 취소,환불,교환은 상세페이지에서만 확인 가능 -->
 								 						          <c:if test="${cartVO.validity==3}">
 								 					                
-								 					               <button class="btn btn-default" onclick="location.href='./confirm?cartNum=${cartVO.cartNum}'"> 구매확정 </button>   
+								 					               <button class="btn btn-orders" onclick="location.href='./confirm?cartNum=${cartVO.cartNum}'"> 구매확정 </button>   
 								 						         </c:if> 
 								 						          <c:if test="${cartVO.validity==4}">
 								 					             
 								 					               <button class="btn  two-btn" onclick="location.href='./confirm?cartNum=${cartVO.cartNum}'"> 구매확정 </button>  
-								 					               <button class="btn btn-default" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
+								 					               <button class="btn btn-orders" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
      
 								 						         </c:if> 
 								 						          <c:if test="${cartVO.validity==5}">
 								 					                 
 								 					                 <button class="btn  two-btn" onclick="location.href='./confirm?cartNum=${cartVO.cartNum}'"> 구매확정 </button>  
-								 					                 <button class="btn btn-default" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적 </button>
+								 					                 <button class="btn btn-orders" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적 </button>
           
 								 						         </c:if> 
 								 						          <c:if test="${cartVO.validity==6}">
 								 					               <button class="btn two-btn"> 리뷰작성 </button>   
-								 					       		   <button class="btn btn-default" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
+								 					       		   <button class="btn btn-orders" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
 								 						         </c:if> 						     
 															     </td>
 														   </tr>
@@ -457,18 +479,22 @@ webkit-box-flex: 1; */
  </div>
 
 
-<script type="text/javascript">
 
-  //브랜드별 배송비 표
-	$(".shipping").each(function(){
-		
-		let brandNum = $(this).attr("title");
-		let brandShipping =$("#brandShipping"+brandNum).val();
-		brandShipping = parseInt(brandShipping);
-		let brandShippingShow= "선배송비"+brandShipping+"원";
-		$("#shipping"+brandNum).text(brandShippingShow);
-		
-	});
+<script type="text/javascript">
+     //브랜드별 배송비 
+    $(".shipping").each(function(){
+	
+	let brandNum = $(this).attr("title");
+	let brandShipping =$("#brandShipping"+brandNum).val();
+	brandShipping = parseInt(brandShipping);
+	let brandShippingShow="무료배송";
+	if(brandShipping!=0){
+	     brandShippingShow= "선배송비 "+brandShipping+"원";
+	}
+	
+	$("#shipping"+brandNum).text(brandShippingShow);
+	
+    });
 
 	//delivery_tracking pop up 띄우기
 
@@ -678,10 +704,10 @@ webkit-box-flex: 1; */
 		});
 	});
 
-
-
-
 	</script>
+
+
+
 
 	<c:import url="../template/footer.jsp"></c:import>
 

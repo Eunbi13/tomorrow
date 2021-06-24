@@ -7,6 +7,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -14,8 +16,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.tmh.t1.cart.CartVO;
 import com.tmh.t1.category.CategoryVO;
+import com.tmh.t1.orders.OrdersVO;
 import com.tmh.t1.product.ProductVO;
 
 @Controller
@@ -25,10 +30,65 @@ public class BrandController {
 	@Autowired
 	private BrandService brandService;
 	
-	//eb_brandOrder
-	@GetMapping("cart") // 여기
-	public String brandOrder()throws Exception{
-		return "/brand/brandOrder";
+	@GetMapping("validShipUpdate") 
+	public void setValidShipUpdate (CartVO cartVO)throws Exception{
+		 
+	}
+	
+	
+	//minkyung_brandOrder_상태 변경
+	@PostMapping("validShipUpdate") 
+	public ModelAndView setValidShipUpdate (CartVO cartVO, ModelAndView mv)throws Exception{
+		System.out.println("validShipUpdate enter");
+		 int result=brandService.setValidShipUpdate(cartVO);
+		    Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+			UserDetails userDetails = (UserDetails)principal; 
+			String username = userDetails.getUsername();
+		 
+		 
+		   String message="주문상태 변경 실패했습니다.";
+		   String path="./";
+			
+			if(result>0) {
+				message="주문상태가 변경되었습니다.";
+				path="./brandOrder?username="+username;
+			}
+			
+			mv.addObject("msg", message);
+			mv.addObject("path", path);
+	
+			
+			mv.setViewName("common/commonResult");
+		 return mv;
+	} 
+	
+	//minkyung_brandOrder_orderDtail_modal
+	@GetMapping("cartSelect") 
+    public ModelAndView getCartSelect (CartVO cartVO)throws Exception{
+		 ModelAndView mv = new ModelAndView();
+		 System.out.println("cartSelect입장");
+		 cartVO=brandService.getCartSelect(cartVO);
+		  mv.addObject("cartVO", cartVO);
+		 return mv;
+	}
+	
+	//minkyung_brandOrder
+	@GetMapping("brandOrder") 
+	public ModelAndView brandOrder(BrandVO brandVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println(brandVO.getUsername() + "님 입장!!");
+		
+	    brandVO	=brandService.getBrandInfo(brandVO);
+	    
+	    List<OrdersVO> ar = brandService.getCartList(brandVO);
+	    List<OrdersVO> orderAr = brandService.getOrderList(brandVO);
+		
+		
+	    mv.addObject("brandVO", brandVO);
+    	mv.addObject("ar", ar);
+
+    	mv.addObject("orderAr", orderAr);
+		return mv;
 	}
 	
 	//eb_brandHome

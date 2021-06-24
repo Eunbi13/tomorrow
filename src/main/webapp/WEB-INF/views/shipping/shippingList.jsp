@@ -21,7 +21,7 @@
 			</div>
 			</c:if>
      
-          <div style="font-size: 16px;  clear:both; "> ${shipping.shipAddress}</div>
+          <div style="font-size: 16px;  clear:both; "> ${shipping.shipAddress} ${shipping.shipDetailAddress}</div>
     	  <div  style="font-size: 14px; font-weight: lighter; padding-bottom:10px;"> ${shipping.shipName} ${shipping.shipPhone} </div>
     	
 		

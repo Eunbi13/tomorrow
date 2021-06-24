@@ -92,6 +92,37 @@
 					<!-- 옵션 삭제 버튼 -->
 					<input type='button' value='X' onclick='removeItem()' />
 					
+					
+					
+					 <!-- option -->
+					     <li id="carts${i.index}" title="${cartVO.brandNum}">
+					         <!--  unitPrice  -->
+					       <input type="hidden" class="unitPrice" id="unitPrice${cartVO.cartNum}" name="unitPrice" title="${cartVO.unitPrice}" value="${cartVO.unitPrice}">
+						      <!-- productNum  -->
+							  <div title="${cartVO.productNum}" style="width:100%; height:100%; padding-bottom:40px; word-break:break-all;word-wrap:break-word;" class="cartCheck${cartVO.productNum} alert alert-secondary alert-dismissible fade show" role="">
+							  		 <!-- unitName  -->
+							  		<div class="option">   ${cartVO.unitName}  </div>
+							  		    <div style="width:70px; height:20px; font-size:12px; float: left;">
+							  		     
+										     <!--  amount/ 숫자만 입력할수 있도록 type number 지정 -->
+										     <input style="width:70px; height:20px; ime-mode:disabled;" type="number" min="1"  class="directInputBox directInputBox${productVO.productNum}" data-product-num="${productVO.productNum}" title="${cartVO.cartNum}" id="directInputBox" name="amount" value="${cartVO.amount}"/>
+										</div>
+										<div class="num" style="width:200px; height:23px; font-size:16px; padding-bottom:20px; font-weight: bold; float: right;">
+										       <!-- unitName  cartPrice-->
+											       <input type="text" readonly="readonly" id="cartVOPrice${cartVO.cartNum}" class="cartPricePlus${productVO.productNum} cartPricePlus num" title="${productVO.productNum}" name="cartPrice" value="${cartVO.cartPrice}" style=" width:180px; height:20px; background-color:transparent;border:0 solid black; text-align:right;" />
+											  원
+					
+										</div> 
+							    <button type="button" class="close delete"  title="${cartVO.cartNum}" data-productNum="${cartVO.productNum}"  data-brandNum="${cartVO.brandNum}" aria-label="Close">
+							    <span aria-hidden="true">&times;</span>
+							  </button>
+							 </div>
+							 
+					       </li>
+				       
+				      <!-- option end-->
+				      
+					
 						
 
 					

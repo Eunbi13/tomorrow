@@ -13,6 +13,9 @@ import lombok.Data;
 @Data
 public class BrandVO {
 	
+	
+
+
 	private Long brandNum;
 	private String username;
 	@NotEmpty
@@ -43,5 +46,9 @@ public class BrandVO {
 	
 
 	private String orderNum;
+	
+	
+	private Long status;
+	private Long before;
 	
 }

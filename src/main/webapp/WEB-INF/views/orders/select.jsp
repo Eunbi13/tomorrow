@@ -48,7 +48,9 @@ ul.no-bullets {
   padding: 0; /* Remove padding */
   margin: 0; /* Remove margins */
   }
-  
+ .two-btns{
+ margin-top: 20px;
+ }
  .two-btn{
   
     width:125px;
@@ -62,7 +64,7 @@ ul.no-bullets {
 	border-color: #A63F82;
 	border:1px solid;
 	border-radius:6px;
-    margin-bottom:10px;
+    margin: 0px 0px 10px 0px;
 }
 
 .two-btn:hover, .two-btn:focus, .two-btn:active, .two-btn.active, .open .dropdown-toggle.two-btn {
@@ -73,6 +75,9 @@ ul.no-bullets {
 }
 
 .four-btns{
+margin: 20px 0px 0px 0px;
+
+
 }
 
 .four-btn{
@@ -100,7 +105,7 @@ ul.no-bullets {
 	border-color: #A63F82;;
 }
 
-.btn-default{
+.btn-orders{
     
     width:125px;
     max-width:100%;
@@ -115,12 +120,13 @@ ul.no-bullets {
 	border-radius:6px;
 
 }
-.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+.btn-orders:hover, .btn-orders:focus, .bbtn-orders:active, .btn-orders.active, .open .dropdown-toggle.btn-orders {
  
 	background-color: #e5b8d7;
 	color:#A63F82;
 	border-color: #A63F82;;
 }
+
 .order {
   border-collapse: collapse;
   margin: 0 auto;
@@ -155,10 +161,11 @@ border-left: none;
 border-right: none; 
 }
 
-img{
-width:80px;
-max-width: 100px;
-border-radius: 10px;
+.productPic{
+	margin-right:15px;
+	width:84px;
+    max-width: 100px;
+    border-radius: 10px;
 }
 .cart-in{ 
 
@@ -224,7 +231,7 @@ margin-top:40px;
 	 						          
 														    <tr style="width:1200px;">
 															    <td style="width: 10%; border-right:none; max-width:100px;">
-															    <img src="../resources/images/glove.webp" class="mr-3" alt="...">
+															      <img class="productPic" alt="" src="/upload/productImages/${cartVO.productVO.productPic}">
 															  </td>
 															    <td style="width: 66%; border-left:none; font-size: 16px; ">
 															   
@@ -233,7 +240,7 @@ margin-top:40px;
 																     <div style="margin:10px 0px">${cartVO.unitName}</div> 
 																    <div> <div style="float:left; font-weight:bold;">${cartVO.cartPrice}원 &#160; </div> <div style="float:left; color:gray;">| ${cartVO.amount}개</div></div>
 							 						                         <div style="clear:both;"> 
-								 						                         <c:if test="${cartVO.validity==2}">
+							 						                             <c:if test="${cartVO.validity==2}">
 								 					                             	결제완료 | 일반택배배송
 								 						                         </c:if> 
 								 						                         <c:if test="${cartVO.validity==3}">
@@ -252,13 +259,28 @@ margin-top:40px;
 								 					                             	리뷰작성 | 일반택배배송
 								 						                         </c:if> 
 								 						                         <c:if test="${cartVO.validity==8}">
-								 					                             	취소 | 일반택배배송
+								 					                             	환불요청 | 일반택배배송
 								 						                         </c:if> 
 								 						                         <c:if test="${cartVO.validity==9}">
-								 					                             	교환 | 일반택배배송
+								 					                             	환불진행중 | 일반택배배송
 								 						                         </c:if> 
 								 						                         <c:if test="${cartVO.validity==10}">
-								 					                             	환불 | 일반택배배송
+								 					                             	환불완료 | 일반택배배송
+								 						                         </c:if> 
+								 						                         <c:if test="${cartVO.validity==11}">
+								 					                             	취소요청 | 일반택배배송
+								 						                         </c:if> 
+								 						                          <c:if test="${cartVO.validity==12}">
+								 					                             	취소완료 | 일반택배배송
+								 						                         </c:if> 
+								 						                         <c:if test="${cartVO.validity==13}">
+								 					                             	교환요청 | 일반택배배송
+								 						                         </c:if> 
+								 						                          <c:if test="${cartVO.validity==14}">
+								 					                             	교환진행중 | 일반택배배송
+								 						                         </c:if> 
+								 						                          <c:if test="${cartVO.validity==15}">
+								 					                             	교환완료 | 일반택배배송
 								 						                         </c:if> 
 							 						                         </div>
 															    </td>
@@ -267,12 +289,14 @@ margin-top:40px;
 															    <input type="hidden" id="brandShipping${cartVO.brandNum}" value="${cartVO.brandShipping}">
 															    <!-- 결제완료 단계에선 취소요청시, 바로 취소가능 -->
 															     <c:if test="${cartVO.validity==2}">
-								 					               <button class="btn btn-default" onclick="location.href='./cancel?cartNum=${cartVO.cartNum}&kind=1'"> 주문취소 </button>       
+								 					               <button class="btn btn-orders" onclick="location.href='./cancel?cartNum=${cartVO.cartNum}&kind=1'"> 주문취소 </button>       
 								 						         </c:if> 
 								 						          <!-- 배송준비 단계에서 부턴 취소요청시, 판매자의 확인이 있어야 가능 -->
 								 						          <c:if test="${cartVO.validity==3}">
-								 					               <div><button class="btn two-btn" onclick="location.href='./cancel?cartNum=${cartVO.cartNum}&kind=1'"> 취소요청 </button> </div>  
-								 					               <button class="btn btn-default" onclick="location.href='./confirm?cartNum=${cartVO.cartNum}'"> 구매확정 </button>   
+									 						          <div class="two-btns">
+										 					               <div><button class="btn two-btn" onclick="location.href='./cancel?cartNum=${cartVO.cartNum}&kind=1'"> 취소요청 </button> </div>  
+										 					                    <button class="btn btn-orders" onclick="location.href='./confirm?cartNum=${cartVO.cartNum}'"> 구매확정 </button>   
+									 						          </div>
 								 						         </c:if> 
 								 						           <!-- 배송중 -->
 								 						          <c:if test="${cartVO.validity==4}">
@@ -297,8 +321,10 @@ margin-top:40px;
 								 						         </c:if> 
 								 						          <!-- 구매확정 -->
 								 						          <c:if test="${cartVO.validity==6}">
-								 					               <div> <button class="btn two-btn"> 리뷰작성 </button> </div>
-								 					       		   <button class="btn btn-default" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
+								 						           	<div class="two-btns">
+									 					               <div> <button class="btn two-btn"> 리뷰작성 </button> </div>
+									 					       		   <button class="btn btn-orders" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
+								 						           </div>
 								 						         </c:if> 
 															     </td>
 														   </tr>
@@ -368,15 +394,15 @@ margin-top:40px;
  					 <table class="info" style="margin-bottom:70px;">
  					 	<tr>
  					 		<td class="subTitle">받는 사람</td>
- 					 		<td style="width: 90%;">${ordersVO.shippingVO.shipName} </td>
+ 					 		<td style="width: 90%;">${ordersVO.shipName} </td>
  					 	</tr>
  					 	<tr>
  					 		<td class="subTitle">연락처</td>
- 					 		<td style="width: 90%;">${ordersVO.shippingVO.shipPhone} </td>
+ 					 		<td style="width: 90%;">${ordersVO.shipPhone} </td>
  					 	</tr>
  					 	<tr>
  					 		<td class="subTitle">주소</td>
- 					 		<td style="width: 90%;">(${ordersVO.shippingVO.postcode})${ordersVO.shippingVO.shipAddress} ${ordersVO.shippingVO.shipDetailAddress} </td>
+ 					 		<td style="width: 90%;">(${ordersVO.postcode})${ordersVO.shipAddress}  </td>
  					 	</tr>
  					 	<tr>
  					 		<td class="subTitle">배송메모</td>
@@ -393,7 +419,7 @@ margin-top:40px;
  					 		<c:if test="${ordersVO.shippingMemo==4}">
  					 		부재시 전화주시거나 문자 남겨 주세요
  					 		</c:if>
- 					 		<c:if test="${ordersVO.shippingMemo==5}">
+ 					 		<c:if test="${ordersVO.shippingMemo!=1||2||3||4}">
  					 		${ordersVO.shippingMemo} 
  					 		</c:if>
  					 		
@@ -406,13 +432,17 @@ margin-top:40px;
 
 <script type="text/javascript">
 
-  //브랜드별 배송비 표
+  //브랜드별 배송비 
 	$(".shipping").each(function(){
 		
 		let brandNum = $(this).attr("title");
 		let brandShipping =$("#brandShipping"+brandNum).val();
 		brandShipping = parseInt(brandShipping);
-		let brandShippingShow= "선배송비"+brandShipping+"원";
+		let brandShippingShow="무료배송";
+		if(brandShipping!=0){
+		     brandShippingShow= "선배송비 "+ brandShipping +"원";
+		}
+		
 		$("#shipping"+brandNum).text(brandShippingShow);
 		
 	});

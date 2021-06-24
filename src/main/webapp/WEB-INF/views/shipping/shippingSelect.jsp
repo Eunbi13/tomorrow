@@ -18,9 +18,7 @@
 							  <input type="hidden" id="shipPostcode" value="${shippingVO.postcode}">
 							<div id="shipAddress" class="shippingAddress${shippingVO.shipNum}" title="${shippingVO.shipAddress}" style="clear:both; font-size:18px;">${shippingVO.shipAddress}, ${shippingVO.shipDetailAddress}</div>
 						<div class="">
-							<input id="shipName" class="shipNP" value="${shippingVO.shipName}">
-						    <input id="shipPhone" class="shipNP" value="${shippingVO.shipPhone}">
+							<input readonly="readonly" id="shipName5" class="shipNP" value="${shippingVO.shipName}" style="width:50px; max-width:70px; " > 
+						    <input readonly="readonly" id="shipPhone5" class="shipNP" value="${shippingVO.shipPhone}" > 
 						    
 						</div>
-	
-
