@@ -4,27 +4,71 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <link rel="stylesheet" type="text/css" href="/css/common.css">
+<!-- 상단 카테고리 -->
+<div class="container">
+	<nav id="headNav" class="navbar navbar-expand-sm">
+		<a class="navbar-brand" href="/">
+			<img id="logo" src="/images/none.jpg"  alt="">
+		</a>
 
-<div class="jumbotron text-center" style="margin-bottom:0">
-  <h1>tmhouse index test</h1>
-  <p>tmhouse index test tmhouse index test</p> 
-</div>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" href="#">커뮤니티</a></li>
+				<li class="nav-item"><a class="nav-link" href="/product/productlist">스토어</a></li>
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="#">내일의집</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
+			</ul>
+			<ul class="navbar-nav">
+				<sec:authorize access="!isAuthenticated()">
+					<li class="nav-item">
+						<a class="nav-link" href="/member/login">로그인</a></li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="/member/memberJoin">회원가입</a></li>
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<img src="/images/none.jpg" style="width:40px; height:40px;" alt="">
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="/member/myPage">마이페이지</a>
+							<a class="dropdown-item" href="#">나의 쇼핑</a>
+							<sec:authorize access="hasRole('ROLE_U')">
+								<a class="dropdown-item" href="/brand/signBrand">판매자 신청</a>
+							</sec:authorize>
+							<a class="dropdown-item" href="/member/logout">로그아웃</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">a</a>
+						</div>
+					</li>
+				</sec:authorize>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<img src="/images/none.jpg" style="width:40px; height:40px;" alt="">
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="#">집들이 글쓰기</a>
+						<a class="dropdown-item" href="#">고객센터</a>
+					</div></li>
+			</ul>
+		</div>
+	</nav>	
+<!-- 하단 카테고리 -->
+<nav id="subNav"class="navbar navbar-expand-sm">
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link" href="/product/productlist">스토어홈</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">카테고리</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+	<%-- 		<li class="nav-item">
         <a class="nav-link" href="/brand/home?brandNum=2">임시브랜드홈</a>
       </li>
       <li class="nav-item">
@@ -43,34 +87,9 @@
         	</sec:authorize>
         </div>
       </li>
-
+ --%>
       
-      <sec:authorize access="!isAuthenticated()">
-	      <li class="nav-item">
-	        <a class="nav-link" href="/member/memberJoin">Join</a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="/member/login">Login</a>
-	      </li>
-      </sec:authorize>
-      <sec:authorize access="isAuthenticated()">
-	      <li class="nav-item dropdown">
-	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	          profileImage
-	        </a>
-	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-	          <a class="dropdown-item" href="/member/myPage">Mypage</a>
-	       	 <sec:authorize access="hasRole('ROLE_U')">
-	          <a class="dropdown-item" href="/brand/signBrand">판매자 신청</a>
-	          </sec:authorize>
-	          <div class="dropdown-divider"></div>
-	          <a class="dropdown-item" href="#">a</a>
-	        </div>
-	      </li>
-	       <li class="nav-item">
-	        <a class="nav-link" href="/member/logout">Logout</a>
-	      </li>
-      </sec:authorize>
+    <!--  
       
       <li class="nav-item">
         <a class="nav-link" href="/cart/list">Cart</a>
@@ -87,4 +106,5 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
-</nav>
+</nav> -->
+</div>

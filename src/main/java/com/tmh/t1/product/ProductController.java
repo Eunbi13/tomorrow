@@ -40,7 +40,7 @@ public class ProductController {
 		model.addAttribute("productVO", (ProductVO)map.get("productVO"));
 		model.addAttribute("categoryVO", (CategoryVO)map.get("categoryVO"));
 		model.addAttribute("categoryNM", (String)map.get("categoryNM"));
-		model.addAttribute("options", (List<OptionsVO>)map.get("options"));
+		
 		//카테고리 바꾸는 경우 필요한 대분류카테고리(브랜드기준)
 		List<CategoryVO> categoryOne =productService.getCategoryOne(auth);
 		model.addAttribute("categoryOne", categoryOne);
@@ -48,15 +48,18 @@ public class ProductController {
 		return "product/productUpdate";
 	}
 	
+	//eb_productUpdate 상품과 카테고리만 수정, 옵션은 옵션 컨트롤러에서 동작
 	@PostMapping("update")
-	public String setProductUpdate(ProductVO productVO,String categoryID, OptionsVO optionsVO, MultipartFile [] files, MultipartFile rep)throws Exception{
+	public String setProductUpdate(ProductVO productVO,String categoryID,MultipartFile [] files, MultipartFile rep)throws Exception{
+		//
 		
-		Long result = productService.setUpdateProduct(productVO, categoryID, optionsVO, files, rep);
-		
+		Long result = productService.setUpdateProduct(productVO, categoryID, files, rep);
+		Long productNum=productVO.getProductNum();
 		if(result<1) {
-			
+			return "product/productUpdate";
 		}
-		return "redirect:/";
+		//저장하고 optionUpdate로 이동
+		return "redirect:/options/update?productNum="+productNum;
 	}
 	
 	

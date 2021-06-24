@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.tmh.t1.brand.BrandVO;
 import com.tmh.t1.category.CategoryMapper;
 import com.tmh.t1.category.CategoryVO;
+import com.tmh.t1.option.OptionsManager;
 import com.tmh.t1.option.OptionsMapper;
 import com.tmh.t1.option.OptionsVO;
 import com.tmh.t1.util.FileManager;
@@ -25,20 +26,37 @@ public class ProductService {
 	
 	@Autowired
 	private ProductMapper productMapper;
-	@Autowired
-	private OptionsMapper optionsMapper;
 	@Autowired 
 	private CategoryMapper categoryMapper;
 	@Autowired
 	private FileManager fileManager;
+	@Autowired
+	private OptionsManager optionsManager;
 	@Value("${productInsert.filePath}")
 	private String filePath;
 	
 	//eb_productUpdate 
-	public Long setUpdateProduct(ProductVO productVO,String categoryID, OptionsVO optionsVO, MultipartFile [] files, MultipartFile rep)throws Exception{
+	public Long setUpdateProduct(ProductVO productVO,String categoryID, MultipartFile [] files, MultipartFile rep)throws Exception{
+		ProductImagesVO imagesVO = new ProductImagesVO();
+		String fileName="";
+
+		//update
 		Long result = productMapper.setUpdateProduct(productVO);
-		
-		
+		//대표이미지(productPic)를 변경하는 경우 업데이트
+		if(rep.getSize()>0) {
+			fileName = fileManager.save(rep, filePath);
+			productVO.setProductPic(fileName);
+			result = productMapper.setUpdateProductPic(productVO);
+		}
+		//추가 이미지 변경하는 경우 (delete&insert)사용
+		imagesVO.setProductNum(productVO.getProductNum());
+		for(MultipartFile f: files) {
+			if(f.getSize()>0) {
+				fileName =fileManager.save(f, filePath);
+				imagesVO.setFileName(fileName);
+				result = productMapper.setImages(imagesVO);
+			}
+		}
 		
 		return result;
 	}
@@ -52,14 +70,12 @@ public class ProductService {
 		CategoryVO categoryVO=categoryMapper.getProdCategory(productNum);
 		//상품이 속한 카테고리(대분류>중분류>소분류)
 		String categoryNM = categoryMapper.getCategoryNM(categoryVO);
-		//product_options 정보
-		List<OptionsVO> options = optionsMapper.getProdOptions(productNum);
+		
 	
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("productVO", productVO);
 		map.put("categoryVO", categoryVO);
 		map.put("categoryNM", categoryNM);
-		map.put("options", options);
 		return map;
 	}
 	
@@ -111,49 +127,18 @@ public class ProductService {
 			}
 		}
 		
-		//옵션 저장
-		//if(optionVO!=null) {
-		String [] k= optionsVO.getOptionKinds().split(",");
-		String [] n = optionsVO.getOptionName().split(",");
-		String [] p = optionsVO.getOptionPrice().split(",");
-		String [] s = optionsVO.getStep().split(",");
-		System.out.println("hi266666");
-		//product_options 테이블에 optionNum넣기 위해 리스트 생성
-		List<Long> optionNums = new ArrayList<Long>();
-		
-		for(int i =0; i<k.length; i++) {
-			optionsVO = new OptionsVO();
-			optionsVO.setOptionKinds(k[i]);
-			optionsVO.setOptionName(n[i]);
-			optionsVO.setOptionPrice(p[i]);
-			optionsVO.setStep(s[i]);
-			System.out.println("--"+i);
-			optionsMapper.setOption(optionsVO);
-			System.out.println("==");
-			Long optionsNum=optionsVO.getOptionNum();
-			System.out.println(optionsNum);
-			//options테이블에 ref 업데이트
-			optionsMapper.updateOption(optionsVO);
-			
-			//생성된 optionsNum 리스트에 추가
-			optionNums.add(optionsNum);
-		}
-		System.out.println("hi2222");
-		System.out.println("hi:"+productVO.getProductNum());
+
+		//product_category insert
 		Map<String, Long> map = new HashMap<String, Long>();
 		map.put("productNum", productVO.getProductNum());
 		map.put("categoryID", Long.parseLong(categoryID));
 		productMapper.setProduct_category(map);
-		for(Long e : optionNums) {
-			System.out.println(e);
-			map.put("optionNum", e);
-			result = productMapper.setProduct_Options(map);
-			System.out.println("프로덕트_옵션 성공");
-			if(result==0) {
-				System.out.println("result가 0이다 ");
-				break;
-			}
-		}
+		
+		//옵션 저장
+		//product_options 테이블에 optionNum넣기 위해 리스트 생성
+		result = optionsManager.optionSave(optionsVO, map);
+		//product_options insert
+		
 
 		if(result<1) {
 			throw new Exception();
