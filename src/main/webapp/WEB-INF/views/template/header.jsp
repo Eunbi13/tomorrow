@@ -5,10 +5,25 @@
 
 <link rel="stylesheet" type="text/css" href="/css/common.css">
 <!-- 상단 카테고리 -->
-<div class="container">
-
-
-<ul>
+<div class="header">
+	<div class="mainNav">
+		<div class="mainNav-item">로고</div>
+		<nav class="mainNav-item">
+			<a>커뮤니티</a>
+			<a>스토어</a>
+		</nav>
+		<div class="mainNav-item">
+			<!-- 빈공간 포함 -->
+			<a class="mainNav-item-one">장바구니</a>
+			<div class="mainNav-item-one member">
+				<a>로그인</a>
+				<a>회원가입</a>
+			</div>
+			<div class="mainNav-item-one">글쓰기</div>
+		</div>
+	</div>
+	<nav class="subNav"></nav>
+<%-- <ul>
 <li>
 	<a href="/">
 		<img class="logo" src="/images/logo.PNG"  alt="내일의집 로고">
@@ -38,7 +53,7 @@
 </sec:authorize>
 <li>5</li>
 </ul>
-
+ --%>
 <%-- <div id="headNav">
 	<nav class="headNav">
 		<div class="row">
