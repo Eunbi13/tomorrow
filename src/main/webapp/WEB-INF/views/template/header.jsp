@@ -6,7 +6,40 @@
 <link rel="stylesheet" type="text/css" href="/css/common.css">
 <!-- 상단 카테고리 -->
 <div class="container">
-<div id="headNav">
+
+
+<ul>
+<li>
+	<a href="/">
+		<img class="logo" src="/images/logo.PNG"  alt="내일의집 로고">
+	</a>
+</li>
+<li>
+	<a class="nav-link primaryKeyMenu " href="/housewarming/list">커뮤니티</a>
+</li>
+<li>
+	<a class="nav-link primaryKeyMenu " href="/product/productlist">스토어</a>
+</li>
+<li>
+	<a class="memberMenu" href="/cart/list">
+		<img src="/images/cartIcon.png" style="width:20px; height:20px;" alt="장바구니">
+	</a>
+</li>
+<sec:authorize access="!isAuthenticated()">
+<li>
+	<a class="nav-link loginMenu memberMenu" href="/member/login">로그인</a>
+</li>
+<li>
+	<a class="nav-link memberMenu" href="/member/memberJoin">회원가입</a>
+</li>
+</sec:authorize>
+<sec:authorize access="isAuthenticated()">
+<li>5</li>
+</sec:authorize>
+<li>5</li>
+</ul>
+
+<%-- <div id="headNav">
 	<nav class="headNav">
 		<div class="row">
 			<a href="/">
@@ -89,45 +122,5 @@
 			</ul>
 		</div>
 	</nav>
-	
-	
-	<%-- 		<li class="nav-item">
-        <a class="nav-link" href="/brand/home?brandNum=2">임시브랜드홈</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/housewarming/list">Housewarming</a>
-      </li>
-      <li class="nav-item dropdown">
-		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		  Write
-		</a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        	<sec:authorize access="!isAuthenticated()">
-        		<a class="dropdown-item" href="/member/login">Housewarming</a>
-        	</sec:authorize>
-        	<sec:authorize access="isAuthenticated()">
-        		<a class="dropdown-item" href="/housewarming/insert">Housewarming</a>
-        	</sec:authorize>
-        </div>
-      </li>
- --%>
-      
-    <!--  
-      
-      <li class="nav-item">
-        <a class="nav-link" href="/cart/list">Cart</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/orders/list">OrderList</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/product/productlist">list1</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav> -->
+	 --%>
 </div>

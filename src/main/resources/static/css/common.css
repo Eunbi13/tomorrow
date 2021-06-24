@@ -4,6 +4,24 @@
 	margin-bottom: 1em;
 }
 
+ul{
+	display: flex;/* li들이 가로로 나열되게 함 */
+	border: 2px solid green;
+	list-style-type: none;
+}
+li {
+	border: 2px solid black;
+}
+
+.logo{
+	height:50px; margin-right: 20px;
+}
+
+li a:active{/* 링크를 활성화 할 때 */
+  color: black;
+}
+
+/* 
 
 #logo{height:50px; margin-right: 20px;flex: none;}
 
@@ -41,7 +59,7 @@
 	
 }
 
-
+ */
 /* body{
 	font-family: "Noto Sans KR", "Apple SD Gothic Neo", "맑은 고딕", "Malgun Gothic", sans-serif;
 	letter-spacing: -0.4px;
@@ -95,7 +113,6 @@ a.nav-link{
  */
 
 /*  */
-
 .red{
 	font-weight:bold;
 	color: red;
