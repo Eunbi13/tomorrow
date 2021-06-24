@@ -322,4 +322,3 @@ $(".directInputBox").on({
 	
 	}); //on event
 
-</script>
