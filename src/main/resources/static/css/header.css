@@ -33,7 +33,9 @@ a:hover{ color: #A63F82; }
 	flex-shrink: 1;
 }
 /* 커뮤니티나 스토어 클릭하면 active설정 */
-
+.mainNav-item:nth-child(2) a.on{
+	color:#A63F82;
+}
 /* 장바구니~글쓰기까지 */
 .mainNav-item:nth-child(3){
 	flex-grow: 4;
