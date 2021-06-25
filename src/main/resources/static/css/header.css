@@ -1,0 +1,109 @@
+@charset "UTF-8";
+
+/* eb_header설정 */
+header{ padding: 20px 0px; }
+/* a태그 설정 */
+a{
+	color:#424242;
+	text-decoration: none !important;
+}
+a:hover{ color: #A63F82; }
+
+/* eb_네비게이션 flex사용 */
+/* container */
+.mainNav{
+	display:flex;
+	align-items: flex-end;
+}
+/* item */
+.mainNav-item{
+	display:flex;
+	flex-grow: 1;
+	flex-shrink: 0;
+}
+/* 내일의집 logo */
+.mainNav-item:nth-child(1){
+	flex-basis: 0.5rem;
+}
+.logo{ height: 2rem;}
+
+/* 커뮤니티 스토어 nav*/
+.mainNav-item:nth-child(2){
+	flex-grow: 2;
+	flex-shrink: 1;
+}
+
+/* 장바구니~글쓰기까지 */
+.mainNav-item:nth-child(3){
+	flex-grow: 4;
+	justify-content: flex-end;
+	flex-shrink: 2;
+}
+
+/* 로그인/회원가입(member) flex(내부 container) */
+.mainNav-item-one{
+	display:flex;
+	align-items: flex-end;
+}
+/* item들끼리 여백필요 */
+.mainNav-item a{
+	margin: 0 1.5rem;
+}
+.mainNav-item-one a{
+	margin: 0 1rem;
+}
+/* 장바구니 여백 따로 조정*/
+a[title="cartIcon"]{ margin:0; }
+
+
+/* member item 로그인/회원가입 */
+.member-item:nth-child(1){
+	position: relative;
+}
+/* 로그인/회원가입 사이에 있는 | */
+.member-item:nth-child(1)::after{
+	content: "";
+	position: absolute;
+	margin-left: 1rem;
+	top: 6px;
+	bottom:3px;
+	border-right: 1px solid #757575;
+	border-width: medium;
+}
+/* 폰트 설정 */
+.mainNav-item{
+	font-size: 1.1rem;
+	font-weight: bold;
+	color: #424242;
+	letter-spacing: -0.1rem;
+}
+.member-item{
+	font-size:1rem;
+	color: #757575;
+}
+/* 장바구니&프사 이미지 설정 */
+.mainNav-item-one img{
+	width: 1.8rem;
+	border-radius: 1rem;
+}
+
+/* 글쓰기 드랍버튼 설정 */
+a[title=write]{
+	margin-left:0;
+	padding: 0.6rem 1rem;
+	border-radius: 0.25rem;
+	background-color: #A63F82;
+	color:#FFF;
+	font-size: 1rem;
+}
+a[title=write]:hover{
+	background-color: #732944;
+	color:#FFF;
+}
+/* dropdown 글자간 넓이 조정 */
+.dropdown-item{
+	padding: 0.5rem 1rem;
+}
+
+
+/* subNav */

@@ -1,32 +1,26 @@
 @charset "UTF-8";
-/* eb_header */
-
-
-.mainNav{
-	display:flex;
+/* eb_html, body설정 */
+html, body{color: #424242;}
+html, body{
+	width: 100%;
+	margin: 0 auto;
 }
-
-.mainNav-item{
-	display:flex;
-	flex-grow: 1;
+@media(min-width: 576px){
+	html, body{max-width: 73rem;}
 }
-.mainNav-item:nth-child(2){
-	flex-grow: 2;
+@media(min-width: 768px){
+	html, body{max-width: 73rem;}
 }
-.mainNav-item:nth-child(3){
-	flex-grow: 4;
-	justify-content: flex-end;
+@media(min-width: 992px){
+	html, body{max-width: 73rem;}
 }
-
-.mainNav-item-one{
-	display:flex;
+@media(min-width: 1200px){
+	html, body{max-width: 73rem;}
 }
-
-div{
-	border: 1px solid gray;
-}
-
 /*common  */
+
+
+
 .red{
 	font-weight:bold;
 	color: red;
@@ -35,11 +29,8 @@ div{
 .btn-default{
  
 background-color: #A63F82;
- 
 color:#FFF;
- 
 border-color: #A63F82;
- 
 }
  
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
