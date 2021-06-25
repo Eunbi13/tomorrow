@@ -119,7 +119,7 @@ $("#opPrint").append(source);
 
 
 
-///장바구니에 이미 같은 옵션이 있는 경우, cartVO의 amount만 업 시키기
+///장바구니에 이미 같은 옵션이 있는 경우, cartVO의 amount만 업력 시키기
  
 }  // if end
 

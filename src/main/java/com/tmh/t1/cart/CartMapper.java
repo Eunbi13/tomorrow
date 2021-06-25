@@ -41,6 +41,9 @@ public interface CartMapper {
 	public int setOrderUpdate(CartVO cartVO)throws Exception;
 	
 	public int setCancelUpdate(CartVO cartVO)throws Exception;
+	
+	public CartVO getSameOption(CartVO cartVO)throws Exception;
+	
 
 	
 }

@@ -90,6 +90,8 @@ public class CartController {
 		
 	    for(int i=0; i<brandNum.length; i++) {
 	    	//새로운 cartVO 생성
+	    	
+	    	
 			CartVO cartVO = new CartVO(); 
 			cartVO.setBrandNum(brandNum[i]);
 			cartVO.setProductNum(productNum[i]);
@@ -99,22 +101,38 @@ public class CartController {
 			cartVO.setAmount(amount[i]);
 			cartVO.setUsername(username);
 			
-			//새로 세팅된 cartVO를 List에 넣기
-			ar.add(cartVO);
+			//동일한 옵션이름을 가진 cartVO가 있는지 검사
+			CartVO cartVO2 = cartService.getSameOption(cartVO);
+			
+			if(cartVO2 == null) {
+				//동일한 옵션이 없다면 새로 세팅된 cartVO를 List에 넣기
+				ar.add(cartVO);
+			}else {
+				//동일한 옵션이 있다면 그 옵션의 amount와 cartPrice를 업데이트
+				Long amount2=cartVO2.getAmount();
+				amount2=amount2+amount[i];
+				Long unitPrice2 = cartVO2.getUnitPrice();
+				Long cartPrice2 = unitPrice2 * amount2;
+				
+				cartVO2.setAmount(amount2);
+				cartVO2.setCartPrice(cartPrice2);
+				
+				int result =cartService.setAmountUpdate(cartVO2);
+				
+			}
+			
+			
 		}
-	    ModelAndView mv = new ModelAndView();
-	       //List를 service로 보내기
 	    
+	    ModelAndView mv = new ModelAndView();
+	    
+	       //동일한 옵션이 없는 List를 service로 보내 insert 하기
 	    int result = cartService.setInsert(ar);
 	    
 	    
-	       String message="장바구니 이동 실패했습니다.";
-		   String path="./";
+	       String message="장바구니로 이동합니다.";
+		   String path="./list";
 			
-			if(result>0) {
-				message="장바구니로 이동합니다.";
-				path="./list";
-			}
 			
 			mv.addObject("msg", message);
 			mv.addObject("path", path);
@@ -124,6 +142,7 @@ public class CartController {
 			
 		 return mv;
 	}
+	
 	
 	@ResponseBody 
 	@GetMapping("optionDelete")

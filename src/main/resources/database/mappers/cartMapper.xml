@@ -4,6 +4,12 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
     <mapper namespace="com.tmh.t1.cart.CartMapper">
+    
+    
+    <!-- DB안에 cartVO의 옵션이 같은게 있는지 검사   -->
+       <select id="getSameOption" parameterType="CartVO" resultType="CartVO">
+           select * from cart where unitName=#{unitName} and username=#{username} and validity &lt; 2
+	    </select> 
    
 
     
@@ -204,7 +210,7 @@
     	
     	<update id="setAmountUpdate" parameterType="CartVO">
     		update cart set amount=#{amount}, cartPrice=#{cartPrice}
-    		where cartNum=#{cartNum} and username=#{username}
+    		where cartNum=#{cartNum} 
     	</update>
     	
     	<update id="setOrderUpdate" parameterType="CartVO">

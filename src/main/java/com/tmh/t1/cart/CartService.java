@@ -166,5 +166,10 @@ public class CartService {
 		return cartMapper.setCancelUpdate(cartVO);
 	}
 
+	
+	public CartVO getSameOption(CartVO cartVO)throws Exception{
+		
+		return cartMapper.getSameOption(cartVO);
+	}
 
 }
