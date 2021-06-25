@@ -5,10 +5,9 @@
 
 <link rel="stylesheet" type="text/css" href="/css/common.css">
 <link rel="stylesheet" type="text/css" href="/css/header.css">
-<script type="text/javascript" src="/js/header.js">
-</script>
+<script type="text/javascript" src="/js/header.js"></script>
 <!-- 상단 카테고리 -->
-<header >
+<header>
 	<div class="mainNav">
 		<div class="mainNav-item">
 			<a href="/">
@@ -16,8 +15,8 @@
 			</a>
 		</div>
 		<nav class="mainNav-item">
-			<a class="" href="#">커뮤니티</a>
-			<a class="on" href="#">스토어</a>
+			<a class="na" href="#">커뮤니티</a>
+			<a class="na on" href="#">스토어</a>
 		</nav>
 		<div class="mainNav-item">
 			<!-- 빈공간 포함 -->
@@ -59,11 +58,20 @@
 			</div>
 		</div>
 	</div>
-	
+		
 	<div class="subNav">
-		<div class="subNav-item">홈</div>
-		<div class="subNav-item">집들이</div>
+			<div class="subNav-item">홈</div>
+			<div class="subNav-item">집들이</div>
+		
 	</div>
+
+	<!-- <div class="subNav">
+			<div class="subNav-item">스토어홈</div>
+			<div class="subNav-item">카테고리</div>
+		
+	</div> -->
+	
+		
 	
 </header>
 
