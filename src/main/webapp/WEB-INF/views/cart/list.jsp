@@ -66,7 +66,7 @@ margin-top:20px;
    font-size: 16px;
    padding-bottom: 20px;
 }
-img{
+.productImg{
 	width: 64px;
 	height: 64px;
 	margin-right:15px;
@@ -146,7 +146,7 @@ img{
 					  <label class="custom-control-label" for="check${productVO.productNum}"></label>
 					</div>
 					<!-- Checked checkbox  end -->
-					<img alt="" src="/upload/productImages/${productVO.productPic}">
+					<img class="productImg" alt="" src="/upload/productImages/${productVO.productPic}">
 				    <div class="media-body">
 				      <div class="mt-0 mb-1 productName">[${brandVO.brandName}] ${productVO.productName}</div>
 				         <div class="shippingType">일반택배</div>

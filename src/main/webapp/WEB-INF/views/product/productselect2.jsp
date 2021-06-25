@@ -18,6 +18,11 @@
 <meta charset="UTF-8">
 <title>store select</title>
 <style type="text/css">
+
+ul{
+   list-style:none;
+   }
+
 .main {
 display: flex;
 flex-direction: row;
@@ -216,8 +221,6 @@ text-align:center;
 					 
 					<div id='optionResult'></div>
 					
-					<!-- 옵션 삭제 버튼 -->
-					<input type='button' value='X' onclick='removeItem()' />
 					
 					<!-- product안에 선택된 모든 옵션들의 가격 -->
 					<div class="price-product">
@@ -244,7 +247,7 @@ text-align:center;
 			<!-- option -->
 					 <div id="optionAdd" class="optionAdd">
 					  
-					     <li class="carts" title="${vo.brandNum}">
+					     <li id="carts" title="${vo.brandNum}">
 					       <input type="hidden" name="brandNum" value="${vo.brandNum}">
 					       <input type="hidden" name="productNum" id="productNum" value="${vo.productNum}">
 
@@ -256,14 +259,14 @@ text-align:center;
 							  		<div id=""> <input name="unitName" id="unitName" value=""  style=" width:180px; height:20px; background-color:transparent;border:0 solid black; text-align:;">   </div>
 							  		    <div style="width:70px; height:20px; font-size:12px; float: left;">
 										     <!--  amount/ 숫자만 입력할수 있도록 type number 지정 -->
-										     <input style="width:70px; height:20px; ime-mode:disabled;" type="number" min="1"  class="directInputBox" data-product-num="${vo.productNum}" title="" id="directInputBox" name="amount" value="1"/>
+										     <input style="width:70px; height:20px; ime-mode:disabled;" onfocus='amountSave.call(this)' onchange='go.call(this)' type="number" min="1"  class="box" data-product-num="${vo.productNum}" title="" id="directInputBox" name="amount" value="1"/>
 										</div>
 										<div class="num" style="width:200px; height:23px; font-size:16px; padding-bottom:20px; font-weight: bold; float: right;">
 										       <!--  cartPrice-->
 											       <input type="text" readonly name="cartPrice" id="cartPrice" class="cartPricePlus"  value="" style=" width:180px; height:20px; background-color:transparent;border:0 solid black; text-align:right;" />
 											  원
 										</div> 
-							    <button type="button" class="close delete"  title="${cartVO.cartNum}" data-productNum="${vo.productNum}"  data-brandNum="${vo.brandNum}" aria-label="Close">
+							    <button type="button" class="close delete" onclick='opClose.call(this)'  id="opDelete" title="" data-productNum="${vo.productNum}"  data-brandNum="${vo.brandNum}" aria-label="Close">
 							    <span aria-hidden="true">&times;</span>
 							  </button>
 							 </div>

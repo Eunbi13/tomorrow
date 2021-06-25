@@ -29,6 +29,8 @@ function priceResult(){
 
 
 function addList(){
+	
+	
 
  
   // 1. 추가할 값을 option 창에서 읽어온다 (옵션명, 가격)
@@ -42,14 +44,21 @@ function addList(){
     = $("#selectop option:selected").attr("data-OPprice");
 
 
+/// 같은 옵션 선택할 경우 '이미 선택한 옵션입니다.'띄우기  
+if($("#carts"+optionNum).length != 0){
+	
+	alert("이미 선택한 옵션입니다.");
+	
+} else{
+
+
   
   
 //바뀌면 optionAdd 안의 html를 따와서  opPrint에 넣는다.
   
-  let optionAdd=document.getElementById('optionAdd');
-  let optionAddHtml=optionAdd.innerHTML
-  let opPrint=document.getElementById('opPrint');
-   opPrint.innerHTML+=optionAddHtml;
+
+ let source=$("#optionAdd").html();
+$("#opPrint").append(source);
 
 
   
@@ -83,9 +92,18 @@ function addList(){
 
    
 
-   //optionNum 구분을 위해 넣기
+   // 수량 인풋 박스의 구분을 위해 optionNum 넣기 / 아이디 바꾸기 
         let directInputBox= document.getElementById("directInputBox");
+      directInputBox.setAttribute('id',"directInputBox"+optionNum);
       directInputBox.setAttribute('title',optionNum);
+   // x 표시 구분을 위해 optionNum 넣기 / 아이디 바꾸기 
+       let opDelete = document.getElementById("opDelete");
+      opDelete.setAttribute('id',"opDelete"+optionNum);
+      opDelete.setAttribute('title',optionNum);
+   // 회색박스 전체에도 구분을 위해 optionNum 넣기 / 아이디 바꾸기 
+  let carts = document.getElementById("carts");
+      carts.setAttribute('id',"carts"+optionNum);
+      carts.setAttribute('title',optionNum);
 
 
 //// 총 product별 가격 변경 하기
@@ -97,46 +115,21 @@ function addList(){
     	    });
 			
 			$("#productVOPrice").val(price);//product범위의 가격 입력
+			
+
+
+
+///장바구니에 이미 같은 옵션이 있는 경우, cartVO의 amount만 업 시키기
  
+}  // if end
 
-}  // select change 될때 함수 끝 
-
-
-
-//수량 * 옵션가격 //수정중
-function printAmount(){
-	
-	const amount = document.getElementById('amount').value;
-	console.log(amount);
-	
-	const orP = document.getElementsByName('price').value;
-	console.log(orP);
-	var opTotal = amount * orP;
-	document.getElementByName('price').innerText = opTotal;
-	
-}
+};  // select change 될때 함수 끝 
 
 
 
 
 
 
-//위에서부터 차례로 삭제
-function removeItem()  {
-  
-  // 1. <ul> element 선택
-  const ul = document
-    .getElementById('opPrint');
-  
-  // 2. <li> 목록 선택
-  const items = ul.getElementsByTagName('li');
-  
-  // 3. <li> 목록 중 첫번째 op 삭제
-  if(items.length > 0)  {
-    items[0].remove();
-  }
-  
-}
 
 
 
