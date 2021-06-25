@@ -56,6 +56,13 @@ function addList(){
   // 2. 추가할 element 생성
   // 2-1. 추가할 element 생성
 
+   //productNum 구분을 위해 넣기
+      let productNum =document.getElementById("productNum");
+           productNum =productNum.getAttribute("value");
+	      console.log("productNum:"+productNum);
+
+    
+
   
    //unitName 넣기
 	let unitName=document.getElementById("unitName");
@@ -69,8 +76,30 @@ function addList(){
    //cartPrice 넣기
 	let cartPrice=document.getElementById("cartPrice");
 	 cartPrice.setAttribute('id',"cartPrice"+optionNum);
+    
      cartPrice.setAttribute('value', unitPriceNumber);
-}
+     cartPrice.setAttribute('class', "cartPricePlus"+productNum);
+
+
+   
+
+   //optionNum 구분을 위해 넣기
+        let directInputBox= document.getElementById("directInputBox");
+      directInputBox.setAttribute('title',optionNum);
+
+
+//// 총 product별 가격 변경 하기
+           let price=0; //각 option들의 가격을 더한 product범위의 가격
+
+           $(".cartPricePlus"+productNum).each(function(){
+    				price=price+parseInt($(this).val());
+    			     console.log("반복되는 cartPricePlus:"+price);
+    	    });
+			
+			$("#productVOPrice").val(price);//product범위의 가격 입력
+ 
+
+}  // select change 될때 함수 끝 
 
 
 
@@ -87,35 +116,9 @@ function printAmount(){
 	
 }
 
-//장바구니 버튼 누를 때
-
-	
-
-function goCart() {
-      
-	//배열만들어서 Ajax로 insert
-	//만들어진 회색 박스의 갯수 =	i 
-	
-	let carts = document.getElementsByClassName("carts");
-     alert(carts.length-1)
-	for(i=0; i < carts.length-1 ;i++){
-	    alert(carts[i].title);	
-          carts[i] 
-	}
 
 
 
-	
-	const element = doucument.getElementById('option');
-	const option = element.innerText;
-	const input = document.createElement("input");
-  input.setAttribute('name','totalOp');
-  input.setAttribute('type','hidden');	
-	document 
-		.getElementById('optionResult')
-		.appendChild(input)
-		;
-}
 
 
 //위에서부터 차례로 삭제

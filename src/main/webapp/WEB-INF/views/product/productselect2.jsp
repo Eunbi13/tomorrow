@@ -84,6 +84,30 @@ display: flex;
 flex-direction: row;
 }
 
+.price-product{
+padding: 20px 10px 20px 10px;
+margin-bottom: 25px;
+}
+
+.price-left{
+float:left;
+font-size: 16px;
+font-weight: bold;
+
+}
+
+.price-right{
+float:right;
+font-size: 22px;
+font-weight: bold;
+}
+
+.store-select-buttons{
+clear: both;
+width:100%;
+text-align:center;
+}
+
 </style>
 </head>
 <body>
@@ -195,47 +219,51 @@ flex-direction: row;
 					<!-- 옵션 삭제 버튼 -->
 					<input type='button' value='X' onclick='removeItem()' />
 					
-					
-					
-	
+					<!-- product안에 선택된 모든 옵션들의 가격 -->
+					<div class="price-product">
+					<div class="price-left">주문금액</div>
+					<div class="price-right">
+						<input  readonly="readonly" value="0" id="productVOPrice" class="productPrice num"  style=" width:200px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
 						
-
+					</div>
+					</div>
+					
+					
 					
 
 					<div class="store-select-buttons">
 						<button type="submit"
 							class="store-select-button btn btn-outline-primary"
-							style="color: #A63F82;"  >장바구니</button>
+							style="color: #A63F82; width:48%;"  >장바구니</button>
 							
-						<button type="button" class="store-select-button btn btn-primary"
-							style="background-color: #A63F82;">바로구매</button>
+						<button type="button" class="store-select-button btn btn-default"
+							style="background-color: #A63F82; #A63F82; width:48%;">바로구매</button>
 					</div>
 			</form>
+			
 			<!-- option -->
 					 <div id="optionAdd" class="optionAdd">
 					  
 					     <li class="carts" title="${vo.brandNum}">
 					       <input type="hidden" name="brandNum" value="${vo.brandNum}">
-					       <input type="hidden" name="productNum" value="${vo.productNum}">
+					       <input type="hidden" name="productNum" id="productNum" value="${vo.productNum}">
 
 					         <!--  unitPrice  -->
-					       <input type="hidden" class="unitPrice" id="unitPrice" name="unitPrice" title="${cartVO.unitPrice}" value="${cartVO.unitPrice}">
+					       <input type="hidden" class="unitPrice" id="unitPrice" name="unitPrice"  value="">
 						      <!-- productNum  -->
-							  <div title="${cartVO.productNum}" style="width:100%; height:100%; padding-bottom:40px; word-break:break-all;word-wrap:break-word;" class="cartCheck${cartVO.productNum} alert alert-secondary alert-dismissible fade show" role="">
+							  <div title="${vo.productNum}" class="cartCheck alert alert-secondary alert-dismissible fade show" style="width:100%; height:100%; padding-bottom:40px; word-break:break-all; word-wrap:break-word;" >
 							  		 <!-- unitName  -->
 							  		<div id=""> <input name="unitName" id="unitName" value=""  style=" width:180px; height:20px; background-color:transparent;border:0 solid black; text-align:;">   </div>
 							  		    <div style="width:70px; height:20px; font-size:12px; float: left;">
-							  		     
 										     <!--  amount/ 숫자만 입력할수 있도록 type number 지정 -->
-										     <input style="width:70px; height:20px; ime-mode:disabled;" type="number" min="1"  class="directInputBox directInputBox${productVO.productNum}" data-product-num="${productVO.productNum}" title="${cartVO.cartNum}" id="directInputBox" name="amount" value="1"/>
+										     <input style="width:70px; height:20px; ime-mode:disabled;" type="number" min="1"  class="directInputBox" data-product-num="${vo.productNum}" title="" id="directInputBox" name="amount" value="1"/>
 										</div>
 										<div class="num" style="width:200px; height:23px; font-size:16px; padding-bottom:20px; font-weight: bold; float: right;">
-										       <!-- unitName  cartPrice-->
-											       <input type="text" readonly="readonly" id="cartPrice" class="cartPricePlus${productVO.productNum} cartPricePlus num" title="${productVO.productNum}" name="cartPrice" value="${cartVO.cartPrice}" style=" width:180px; height:20px; background-color:transparent;border:0 solid black; text-align:right;" />
+										       <!--  cartPrice-->
+											       <input type="text" readonly name="cartPrice" id="cartPrice" class="cartPricePlus"  value="" style=" width:180px; height:20px; background-color:transparent;border:0 solid black; text-align:right;" />
 											  원
-					
 										</div> 
-							    <button type="button" class="close delete"  title="${cartVO.cartNum}" data-productNum="${cartVO.productNum}"  data-brandNum="${cartVO.brandNum}" aria-label="Close">
+							    <button type="button" class="close delete"  title="${cartVO.cartNum}" data-productNum="${vo.productNum}"  data-brandNum="${vo.brandNum}" aria-label="Close">
 							    <span aria-hidden="true">&times;</span>
 							  </button>
 							 </div>
