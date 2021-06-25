@@ -15,8 +15,8 @@
 			</a>
 		</div>
 		<nav class="mainNav-item">
-			<a href="/housewarming/list">커뮤니티</a>
-			<a href="/product/productlist">스토어</a>
+			<a href="#">커뮤니티</a>
+			<a href="#">스토어</a>
 		</nav>
 		<div class="mainNav-item">
 			<!-- 빈공간 포함 -->
@@ -58,64 +58,15 @@
 			</div>
 		</div>
 	</div>
-	<div class="subNav">
 	
+	<div class="subNav">
+		<div class="subNav-item"></div>
 	</div>
 	
 </header>
 
 <%-- <div id="headNav">
-	<nav class="headNav">
-		<div class="row">
-			<a href="/">
-				<img id="logo" src="/images/logo.PNG"  alt="내일의집 로고">
-			</a>
-			<!-- https://noonnu.cc/font_page/497 폰트 -->
-
-			<!-- 스토어&커뮤니티 부분 -->
-			<a class="nav-link primaryKeyMenu " href="/housewarming/list">커뮤니티</a>
-			<a class="nav-link primaryKeyMenu " href="/product/productlist">스토어</a>
-			
-			<!-- 정렬위한 div -->
-			<div class="col"></div>
-			<!-- member부분 -->
-			
-			<a class="memberMenu" href="/cart/list">
-				<img src="/images/cartIcon.png" style="width:20px; height:20px;" alt="장바구니">
-			</a>
-			
-				<sec:authorize access="!isAuthenticated()">
-					<a class="nav-link loginMenu memberMenu" href="/member/login">로그인</a>
-					<a class="nav-link memberMenu" href="/member/memberJoin">회원가입</a>
-				</sec:authorize>
-				<sec:authorize access="isAuthenticated()">
-					<div class="dropdown ">
-						<a class="nav-link dropdown-toggle memberMenu" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<img src="/images/none.jpg" style="width:40px; height:40px;" alt="">
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="/member/myPage">마이페이지</a>
-							<a class="dropdown-item" href="/orders/list">나의 쇼핑</a>
-							<sec:authorize access="hasRole('ROLE_U')">
-								<a class="dropdown-item" href="/brand/signBrand">판매자 신청</a>
-							</sec:authorize>
-							<a class="dropdown-item" href="/member/logout">로그아웃</a>
-							
-						</div>
-					</div>
-				</sec:authorize>
-				
-				<div class="dropdown">
-					<a class="nav-link dropdown-toggle memberMenu" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						글쓰기
-					</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="/housewarming/insert">집들이 글쓰기</a>
-						<a class="dropdown-item" href="#">고객센터</a>
-					</div>
-				</div>
-				
-			</div>	
+	
 		
 		
 	</nav>	
