@@ -8,13 +8,22 @@
 <meta charset="UTF-8">
 <c:import url="../template/bootStrap.jsp"></c:import>
 <title>내일부터 하는 인테리어, 내일의 집</title>
+
+<link rel="stylesheet" type="text/css" href="/css/common.css">
+<link rel="stylesheet" type="text/css" href="/css/member.css">
 </head>
 <body>
-<c:import url="../template/header.jsp"></c:import>
-<div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+<header>
+	<img class="logo" alt="" src="/images/logoName.png">
+</header>
 
+<main>
+	<div class="joinFrm">
+		<strong>회원가입</strong>
+		<hr>
 	<form:form id="frm" action="./memberJoin" method="post" modelAttribute="memberVO">
 		<div class="form-group">
+			<label>이메일</label>
 			<form:input class="form-control" placeholder="이메일" path="email" ></form:input>
 			<form:errors path="email" cssStyle="font-size: 0.8em"></form:errors> 
 		</div>
@@ -65,8 +74,7 @@
 	</form:form>
 
 </div>
-<c:import url="../template/footer.jsp"></c:import>
-
+</main>
 <script type="text/javascript" src="/js/memberJoin.js"></script> 
 </body>
 </html>

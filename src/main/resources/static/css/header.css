@@ -1,7 +1,12 @@
 @charset "UTF-8";
 
 /* eb_header설정 */
-header{ padding: 20px 0px; }
+header{ 
+	position: sticky;
+	top:0;
+	z-index: 500;
+	background-color: #fff;
+}
 /* a태그 설정 */
 a{
 	color:#424242;
@@ -14,6 +19,8 @@ a:hover{ color: #A63F82; }
 .mainNav{
 	display:flex;
 	align-items: flex-end;
+	padding-bottom: 2rem;
+	border-bottom: 1px solid #ededed;
 }
 /* item */
 .mainNav-item{
@@ -32,7 +39,6 @@ a:hover{ color: #A63F82; }
 	flex-grow: 2;
 	flex-shrink: 1;
 }
-/* 커뮤니티나 스토어 클릭하면 active설정 */
 
 /* 장바구니~글쓰기까지 */
 .mainNav-item:nth-child(3){
@@ -106,5 +112,25 @@ a[title=write]:hover{
 	padding: 0.5rem 1rem;
 }
 
-
+/* 커뮤니티나 스토어 클릭하면 active설정 */
+.mainNav-item:nth-child(2) a.on{
+	color:#A63F82;
+}
 /* subNav */
+
+ .subNav{
+	position: relative;
+	border-bottom: 1px solid #ededed;
+}
+
+.subNav-item{
+	display:flex;
+	position: absolute;
+	
+}
+
+.subNav-item-one{
+	padding:1rem 0.8rem;
+	padding: 0 1rem;
+	font-weight: bold;
+} 

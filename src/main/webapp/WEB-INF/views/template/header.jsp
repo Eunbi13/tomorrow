@@ -5,9 +5,9 @@
 
 <link rel="stylesheet" type="text/css" href="/css/common.css">
 <link rel="stylesheet" type="text/css" href="/css/header.css">
-
+<script type="text/javascript" src="/js/header.js"></script>
 <!-- 상단 카테고리 -->
-<header >
+<header>
 	<div class="mainNav">
 		<div class="mainNav-item">
 			<a href="/">
@@ -15,12 +15,14 @@
 			</a>
 		</div>
 		<nav class="mainNav-item">
-			<a href="#">커뮤니티</a>
-			<a href="/product/productlist">스토어</a>
+
+			<a class="" title="item-community" href="#">커뮤니티</a>
+			<a class="on" title="item-store" href="/product/productlis">스토어</a>
+
 		</nav>
 		<div class="mainNav-item">
 			<!-- 빈공간 포함 -->
-			<a  title="cartIcon" class="mainNav-item-one" href="/cart/list">
+			<a title="cartIcon" class="mainNav-item-one" href="/cart/list">
 				<img src="/images/cartIcon.png" >
 			</a>
 			<div class="mainNav-item-one member">
@@ -58,44 +60,17 @@
 			</div>
 		</div>
 	</div>
-	
-	<div class="subNav">
-		<div class="subNav-item"></div>
+</header>	
+<div class="subNav ">	
+	<div class="subNav-item item-community">
+			<div class="subNav-item-one">홈</div>
+			<div class="subNav-item-one">집들이</div>
 	</div>
-	
-</header>
+		<div class="subNav-item item-store">
+			<div class="subNav-item-one">스토어홈</div>
+			<div class="subNav-item-one">카테고리</div>
+		</div>
 
-<%-- <div id="headNav">
 	
-		
-		
-	</nav>	
-</div>
-	<!-- 하단 카테고리 스토어홈-->
-	<nav id="store" class="subNav navbar navbar-expand-sm">
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item">
-					<a class="nav-link" href="/product/productlist">스토어홈</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">카테고리</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
 	
-	<!-- 하단 커뮤니티 커뮤니티 -->
-	<nav id="community" class="subNav navbar navbar-expand-sm">
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item">
-					<a class="nav-link" href="#">홈</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/product/productlist">집들이</a><!-- 로그인 유무는 마지막에 시큐리티에서 작업할 예정 -->
-				</li>
-			</ul>
-		</div>
-	</nav>
-	 --%>
+</div>		

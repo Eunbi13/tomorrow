@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+.logo{
+	height: 1.9rem;
+	margin: 1.2rem 0.5rem;
+}
+
+main{
+	display: flex;
+	justify-content : center;
+	
+}
+
+.joinFrm{
+	flex-basis: 31%;
+	flex-shrink: 0;
+	margin-top: 2.5rem;
+}
+
+strong{
+	font-size: 1.15rem;
+	font-weight: bold;
+}
+label{
+	font-weight: bold;
+}
