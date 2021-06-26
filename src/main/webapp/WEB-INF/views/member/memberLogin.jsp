@@ -16,7 +16,9 @@
 <script type="text/javascript" src="/js/memberLogin.js"></script>
 	<main class="flex-center column">
 		
-		<img class="loginLogo" alt="" src="/images/logoName.png">
+		<a href="/">	
+			<img class="loginLogo" alt="" src="/images/logoName.png">
+		</a>
 		<div class="message" hidden="hidden">
 			<spring:message code="${message}" ></spring:message>
 		</div>
