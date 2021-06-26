@@ -1,25 +1,27 @@
 @charset "UTF-8";
 /* eb_html, body설정 */
 html, body{color: #424242;}
-html, body{
+header, main{
 	width: 100%;
 	margin: 0 auto;
 }
 @media(min-width: 576px){
-	html, body{max-width: 73rem;}
+	header, main{max-width: 73rem;}
 }
 @media(min-width: 768px){
-	html, body{max-width: 73rem;}
+	header, main{max-width: 73rem;}
 }
 @media(min-width: 992px){
-	html, body{max-width: 73rem;}
+	header, main{max-width: 73rem;}
 }
 @media(min-width: 1200px){
-	html, body{max-width: 73rem;}
+	header, main{max-width: 73rem;}
 }
 /*common  */
 
-
+header{ 
+	padding-top: 20px; 
+}
 
 .red{
 	font-weight:bold;
