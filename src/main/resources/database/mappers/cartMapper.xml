@@ -164,20 +164,7 @@
     		where cartNum=#{cartNum}
     	</update>
     	
-    	<!-- minkyung_전체 취소/교환/반품시 업데이트 -->
-    <!-- 	<update id="setOrderCancel" parameterType="CartVO">
-    		update cart set cancel=#{cancel}, cancelMemo=#{cancelMemo},
-    		<if test="valid =='cancel'">
-			validity='11'
-			</if>
-			<if test="valid =='exchnage'">
-			validity='13'
-			</if>
-			<if test="valid =='refund'">
-			validity='8'
-			</if>
-    		where cartNum=#{cartVO}
-    	</update> -->
+    
     	
     	<update id="setValidityUpdate" parameterType="CartVO">
     	    update cart set 

@@ -239,7 +239,7 @@ text-align:center;
 							class="store-select-button btn btn-outline-primary"
 							style="color: #A63F82; width:48%;"  >장바구니</button>
 							
-						<button type="button" class="store-select-button btn btn-default"
+						<button type="button" onclick="directPay()" class="store-select-button btn btn-default"
 							style="background-color: #A63F82; #A63F82; width:48%;">바로구매</button>
 					</div>
 			</form>
