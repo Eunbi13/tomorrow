@@ -25,7 +25,11 @@ function priceResult(){
   	document.getElementById("priceresult").innerText = amount;}	
 */
 
-
+function percent(){
+	const val = document.getElementById('price-percent');
+	const percent = Math.floor(val);
+	val.innerText = percent;
+}
 
 
 function addList(){

@@ -16,7 +16,7 @@
 		</div>
 		<nav class="mainNav-item">
 			<a href="#">커뮤니티</a>
-			<a href="#">스토어</a>
+			<a href="/product/productlist">스토어</a>
 		</nav>
 		<div class="mainNav-item">
 			<!-- 빈공간 포함 -->
