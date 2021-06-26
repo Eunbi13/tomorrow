@@ -65,8 +65,8 @@
 	
 				<div class="accept">
 					<div class="custom-control custom-checkbox">
-			
-						<input type="checkbox" id="all">  <label>전체 동의</label> 
+						<input type="checkbox" class="all">  
+						<label>전체 동의</label> 
 					</div>
 					<hr>
 					<div class="custom-control custom-checkbox">
@@ -90,7 +90,7 @@
 		
 		
 				<div id="error" style="font-size: 0.8em; color: red; margin: 0.8rem 0;"></div>
-				<div id="btn" class="btn btn-primary">button</div>
+				<div id="btn" class="btn btn-default join-btn">회원가입 완료</div>
 			</form:form>
 	
 		</div>
