@@ -1,26 +1,56 @@
 @charset "UTF-8";
-
+/* eb_memberJoin */
 .logo{
 	height: 1.9rem;
 	margin: 1.2rem 0.5rem;
 }
-
+/* 가운데 정렬 되도록 설정 */
 main{
 	display: flex;
-	justify-content : center;
-	
+	justify-content : center;	
 }
-
+/* 화면이 768px보다 작으면 화면을 꽉채우고 크면 적정크기로 보이도록 설정 */
 .joinFrm{
-	flex-basis: 31%;
-	flex-shrink: 0;
-	margin-top: 2.5rem;
+	width: 100%;
+	padding: 2.5rem 0.1rem;
+}
+@media(min-width: 768px){
+	.joinFrm{
+		width: 368px;
+	}
+}
+/* input창 */
+.form-group{
+	margin: 2rem 0;
+}
+/* input item창 */
+.form-control{
+	margin: 0.5rem 0;
+}
+/* input item설명 */
+.bold{
+	font-weight: bold;
+	font-size: 0.9rem;
+	margin: 0.8rem 0;
+}
+/* email input item 설정 */
+.email{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
-strong{
-	font-size: 1.15rem;
-	font-weight: bold;
+.email div{
+	padding: 0 0.2rem;
 }
-label{
-	font-weight: bold;
+
+/* 약관동의*/
+.accept{
+	border: 1px solid #dbdbdb;
+	padding: 1.5rem 0;
 }
+/* 약관동의 글씨 간격 조정
+.accept label{
+	margin: 0.6rem 0;
+}
+*/
