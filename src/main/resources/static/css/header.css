@@ -120,18 +120,18 @@ a[title=write]:hover{
 /* subNav */
 
  .subNav{
+	position: relative;
+	border-bottom: 1px solid #ededed;
+}
+
+.subNav-item div{
 	display:flex;
+	position: absolute;
 	
 }
 
-.subNav-item{
-	border-bottom: 1px solid #ededed;
-	padding:1rem 0.8rem;
-	z-index: 500;
-	font-weight: bold;
-	
-}
-/*
 .subNav-item-one{
+	padding:1rem 0.8rem;
 	padding: 0 1rem;
-} */
+	font-weight: bold;
+} 
