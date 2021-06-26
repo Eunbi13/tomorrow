@@ -1,5 +1,6 @@
 package com.tmh.t1.cart;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -75,15 +77,72 @@ public class CartController {
 		
 	}
 	
+	//상세페이지에서 장바구니 버튼을 눌릴때 cartVO Insert
 	@PostMapping("insert")
-	public int setInsert(Long [] unitPrice, Long [] cartPrice, Long [] amount)throws Exception{
-		 
-		 System.out.println(unitPrice[0]);
-		 System.out.println(unitPrice[1]);
-		 
-		 return 0;
-		//return cartService.setInsert(cartVOs);
+	public ModelAndView setInsert(Long [] brandNum, Long [] productNum, Long [] unitPrice, String [] unitName, Long [] cartPrice, Long [] amount)throws Exception{
+		 // 만들어지는 cartVO를 담을 List 선언
+	    List<CartVO> ar= new ArrayList<CartVO>();
+	    
+	    //현재 로그인 돼있는 username 가져오기
+	    Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal; 
+		String username = userDetails.getUsername();
+		
+	    for(int i=0; i<brandNum.length; i++) {
+	    	//새로운 cartVO 생성
+	    	
+	    	
+			CartVO cartVO = new CartVO(); 
+			cartVO.setBrandNum(brandNum[i]);
+			cartVO.setProductNum(productNum[i]);
+			cartVO.setUnitPrice(unitPrice[i]);
+			cartVO.setUnitName(unitName[i]);
+			cartVO.setCartPrice(cartPrice[i]);
+			cartVO.setAmount(amount[i]);
+			cartVO.setUsername(username);
+			
+			//동일한 옵션이름을 가진 cartVO가 있는지 검사
+			CartVO cartVO2 = cartService.getSameOption(cartVO);
+			
+			if(cartVO2 == null) {
+				//동일한 옵션이 없다면 새로 세팅된 cartVO를 List에 넣기
+				ar.add(cartVO);
+			}else {
+				//동일한 옵션이 있다면 그 옵션의 amount와 cartPrice를 업데이트
+				Long amount2=cartVO2.getAmount();
+				amount2=amount2+amount[i];
+				Long unitPrice2 = cartVO2.getUnitPrice();
+				Long cartPrice2 = unitPrice2 * amount2;
+				
+				cartVO2.setAmount(amount2);
+				cartVO2.setCartPrice(cartPrice2);
+				
+				int result =cartService.setAmountUpdate(cartVO2);
+				
+			}
+			
+			
+		}
+	    
+	    ModelAndView mv = new ModelAndView();
+	    
+	       //동일한 옵션이 없는 List를 service로 보내 insert 하기
+	    int result = cartService.setInsert(ar);
+	    
+	    
+	       String message="장바구니로 이동합니다.";
+		   String path="./list";
+			
+			
+			mv.addObject("msg", message);
+			mv.addObject("path", path);
+	
+			
+			mv.setViewName("common/commonResult");
+			
+		 return mv;
 	}
+	
 	
 	@ResponseBody 
 	@GetMapping("optionDelete")

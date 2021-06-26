@@ -4,6 +4,12 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
     <mapper namespace="com.tmh.t1.cart.CartMapper">
+    
+    
+    <!-- DB안에 cartVO의 옵션이 같은게 있는지 검사   -->
+       <select id="getSameOption" parameterType="CartVO" resultType="CartVO">
+           select * from cart where unitName=#{unitName} and username=#{username} and validity &lt; 2
+	    </select> 
    
 
     
@@ -127,6 +133,7 @@
     		select * from cart where username=#{username}
     	</select>
     	
+    	<!-- 상세페이지에서 장바구니 버튼을 눌릴때 cartVO 생성 -->
     	<insert id="setInsert" parameterType="CartVO" useGeneratedKeys="true" keyProperty="cartNum"> 
     		insert into cart(username, brandNum, productNum, amount, validity, cartPrice, unitPrice, unitName) 
     		values(#{username}, #{brandNum}, #{productNum}, #{amount}, 0, #{cartPrice}, #{unitPrice}, #{unitName})
@@ -157,20 +164,7 @@
     		where cartNum=#{cartNum}
     	</update>
     	
-    	<!-- minkyung_전체 취소/교환/반품시 업데이트 -->
-    <!-- 	<update id="setOrderCancel" parameterType="CartVO">
-    		update cart set cancel=#{cancel}, cancelMemo=#{cancelMemo},
-    		<if test="valid =='cancel'">
-			validity='11'
-			</if>
-			<if test="valid =='exchnage'">
-			validity='13'
-			</if>
-			<if test="valid =='refund'">
-			validity='8'
-			</if>
-    		where cartNum=#{cartVO}
-    	</update> -->
+    
     	
     	<update id="setValidityUpdate" parameterType="CartVO">
     	    update cart set 
@@ -203,7 +197,7 @@
     	
     	<update id="setAmountUpdate" parameterType="CartVO">
     		update cart set amount=#{amount}, cartPrice=#{cartPrice}
-    		where cartNum=#{cartNum} and username=#{username}
+    		where cartNum=#{cartNum} 
     	</update>
     	
     	<update id="setOrderUpdate" parameterType="CartVO">

@@ -223,6 +223,7 @@
 		success:function(data){
 			data = data.trim();
             if(data>0){
+	           alert("통과")
 				
 				 $("#orderFrm").submit();
 				
