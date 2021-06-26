@@ -13,15 +13,17 @@
 <link rel="stylesheet" type="text/css" href="/css/member.css">
 </head>
 <body>
-<c:import url="../template/header.jsp"></c:import>
 <header>
 	<img class="logo" alt="" src="/images/logoName.png">
 </header>
-<main>
-	<div >
 
+<main>
+	<div class="joinFrm">
+		<strong>회원가입</strong>
+		<hr>
 	<form:form id="frm" action="./memberJoin" method="post" modelAttribute="memberVO">
 		<div class="form-group">
+			<label>이메일</label>
 			<form:input class="form-control" placeholder="이메일" path="email" ></form:input>
 			<form:errors path="email" cssStyle="font-size: 0.8em"></form:errors> 
 		</div>

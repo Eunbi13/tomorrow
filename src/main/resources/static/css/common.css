@@ -1,6 +1,11 @@
 @charset "UTF-8";
 /* eb_html, body설정 */
-html, body{color: #424242;}
+html, body{
+	color: #424242;
+	font-family: "Noto Sans KR", "Apple SD Gothic Neo", "맑은 고딕", "Malgun Gothic", sans-serif;
+	letter-spacing: -0.4px;
+	line-height: 1;
+	}
 header, main{
 	width: 100%;
 	margin: 0 auto;
