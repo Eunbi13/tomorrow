@@ -16,8 +16,29 @@ $(document).ready(function(){
 		$(this).addClass('on');
 		open();
 	})
+	/*
+		프로필 드랍박스 보더 설정
+		홀수면 프로필 드랍박스 클릭한 것임으로 css 설정
+		짝수면 프로필 드랍박스 벗어난 것임으로 css 초기화
+	*/
+	let count=0;
+	$('img[alt="profile"]').click(function(){
+		$(this).css('border', '1px solid #A63F82');
+		count++;
+		console.log(count)
+		if(count%2==0){
+			$('img[alt="profile"]').css('border','');
+		}
+	})
 	
+	/*if($('a').attr('aria-expanded')){
+		$('img[alt="profile"]').css('border', '1px solid #A63F82');
+	}else{
+		$('img[alt="profile"]').css('border');
+	}*///true면 열린거 아니면 닫힌거
+	function mouseLeave(){
 		
+	}
 		//$(this).css({'z-index':'500'})
 
 })

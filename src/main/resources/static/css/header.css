@@ -92,7 +92,12 @@ a[title="cartIcon"]{ margin:0; }
 .mainNav-item-one img{
 	width: 1.8rem;
 	border-radius: 1rem;
+	
 }
+img[alt="profile"]:hover{
+	border: 1px solid #A63F82;
+}
+
 
 /* 글쓰기 드랍버튼 설정 */
 a[title=write]{
