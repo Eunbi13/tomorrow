@@ -6,7 +6,7 @@ $(document).ready(function(){
 	open();
 	function open(){
 		//class="on"인 메뉴의 서브네비 보여주기
-		$('.subNav-item>div').hide();
+		$('.subNav-item').hide();
 		let title =$('.on').attr('title');
 		$('.'+title).show();
 	}

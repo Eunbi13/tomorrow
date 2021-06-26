@@ -124,7 +124,7 @@ a[title=write]:hover{
 	border-bottom: 1px solid #ededed;
 }
 
-.subNav-item div{
+.subNav-item{
 	display:flex;
 	position: absolute;
 	
