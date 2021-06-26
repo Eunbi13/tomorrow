@@ -90,7 +90,4 @@ function email(){
 	$('#email').val(emailF);
 }
 
-//input창을 커서가 떠났을 때 비어있다면 붉은 글씨로 표시
-$('input').blur(function(){
-	
-})
+=

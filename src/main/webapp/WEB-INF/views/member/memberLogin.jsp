@@ -8,28 +8,33 @@
 <meta charset="UTF-8">
 <c:import url="../template/bootStrap.jsp"></c:import>
 <title>내일부터 하는 인테리어, 내일의 집</title>
+<link rel="stylesheet" type="text/css" href="/css/common.css">
+<link rel="stylesheet" type="text/css" href="/css/member.css">
+
 </head>
 <body>
-<c:import url="../template/header.jsp"></c:import>
-<div class="container" style="margin-top: 50px; margin-bottom: 50px;">
-<h1>login form</h1>
-<spring:message code="${message}" ></spring:message>
-<br>
-	<form action="./login" method="post">
-		<div class="form-group">
-			<input type="email" name="email" class="form-control" placeholder="이메일" value="b@rand">
-		</div>
-		<div class="form-group">
-			<input type="password" name="password" class="form-control" placeholder="비밀번호" value="brand">
-		</div>
-		<button class="btn btn-primary">button</button>
+<script type="text/javascript" src="/js/memberLogin.js"></script>
+	<main class="flex-center column">
 		
-	</form>
+		<img class="loginLogo" alt="" src="/images/logoName.png">
+		<div class="message" hidden="hidden">
+			<spring:message code="${message}" ></spring:message>
+		</div>
+		<form class="loginFrm" action="./login" method="post">
+			<div class="form-group">
+				<input type="email" name="email" class="form-control loginInput-email" placeholder="이메일" >
+			</div>
+			<div class="form-group">
+				<input type="password" name="password" class="form-control loginInput-pw" placeholder="비밀번호" >
+			</div>
+			
+			<button class="btn btn-default">button</button>
+			
+		</form>
+		
 	
-
-
-
-</div>
-<c:import url="../template/footer.jsp"></c:import>
+	
+	
+	</main>
 </body>
 </html>

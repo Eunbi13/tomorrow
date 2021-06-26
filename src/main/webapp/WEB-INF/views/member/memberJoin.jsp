@@ -14,10 +14,10 @@
 </head>
 <body>
 	<header>
-		<img class="logo" alt="" src="/images/logoName.png">
+		<img class="joinLogo" alt="" src="/images/logoName.png">
 	</header>
 	
-	<main>
+	<main class="flex-center">
 		<div class="joinFrm">
 			<h5><strong>회원가입</strong></h5>
 			<hr>
@@ -90,7 +90,7 @@
 		
 		
 				<div id="error" style="font-size: 0.8em; color: red; margin: 0.8rem 0;"></div>
-				<div id="btn" class="btn btn-default join-btn">회원가입 완료</div>
+				<div id="btn" class="btn btn-default">회원가입 완료</div>
 			</form:form>
 	
 		</div>
