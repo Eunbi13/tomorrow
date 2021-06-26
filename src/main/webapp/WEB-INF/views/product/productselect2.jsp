@@ -9,7 +9,6 @@
 #optionAdd{
   display:none;
 }
-
 </style>
 <html>
 <head>
@@ -19,42 +18,29 @@
 <title>store select</title>
 <style type="text/css">
 .main {
-display: flex;
-flex-direction: row;
 margin-top: 20px;
 margin-bottom: 40px;
-flex-wrap: wrap;
+
 box-sizing: border-box; 
 margin-right: auto;
 margin-left: auto;
 max-width: 100%;
 min-height: 1px;
 }
-
 /* 사진 div */
 .main-pic{ 
 float: left;
-flex:1;
 position: relative;
 box-sizing: border-box;
-flex-grow: 0;
-flex-shrink: 0;
 align-items: flex-start;
-flex-basis: 55em;
-
 }
-
-
-
 /* select 좌측 작은 사진 */
 .main-pic-small{
 list-style: none; 
 float: left; 
 margin-right: 10px;
 display: block;
-flex:1;
 }
-
 /* select 좌측 작은 사진- 버튼 */
 .main-pic-small-bt{
 margin: 2px;
@@ -62,16 +48,13 @@ border: 0;
 outline: 0; 
 border-radius: 12px;
 }
-
 /* select 메인 우측 사진 */
 .main-pic-big{
 float: left;
 border-radius: 12px;
 box-sizing: border-box;
 max-width: 40%;
-flex:5;
 }
-
 .main-contents{
 float: left;
 position: relative;
@@ -83,7 +66,6 @@ display: block;
 display: flex;
 flex-direction: row;
 }
-
 </style>
 </head>
 <body>

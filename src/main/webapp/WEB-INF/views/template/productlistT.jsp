@@ -25,12 +25,12 @@
 				<!-- 제품 이름 title -->
 				<div class="item-title" style="color: black;">
 					${vo.productName}</div> <!-- 가격 -->
-				<div class="card-price">
+				<div class="card-price" >
 					<!-- 할인 x 거르기 / 할인 %-->
 					<c:choose>
 						<c:when test="${vo.discountPrice eq vo.productPrice}"></c:when>
 						<c:otherwise>
-							<div class="item-price discountpercent"
+							<div class="item-price discountpercent" 
 								style="color: #A63F82; margin-right: 10px;">${(vo.productPrice - vo.discountPrice)/100}%</div>
 						</c:otherwise>
 					</c:choose>
