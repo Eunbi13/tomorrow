@@ -39,7 +39,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			.cors().and()
 			.csrf().disable()
 			.authorizeRequests()
-				.antMatchers("/**").permitAll()
+				.antMatchers("/").permitAll()
+				.antMatchers("/member/join").permitAll()
+				.antMatchers("/member/**").hasRole("U")
+				.anyRequest().authenticated()//현재 유저가 누구인지 확인
 				.and()
 			.formLogin()
 				.usernameParameter("email")

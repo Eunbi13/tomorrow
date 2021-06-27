@@ -31,7 +31,7 @@
 				<sec:authorize access="isAuthenticated()">
 					<div class="dropdown ">
 						<a class="dropdown-toggle profile" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<img src="upload/member/<sec:authentication property="principal.profileImage"/>" alt="profile">
+							<img src="/upload/member/<sec:authentication property="principal.profileImage"/>" alt="profile">
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="/member/myPage">마이페이지</a>

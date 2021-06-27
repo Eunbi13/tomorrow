@@ -8,59 +8,67 @@
 <meta charset="UTF-8">
 <c:import url="../template/bootStrap.jsp"></c:import>
 <title>내일부터 하는 인테리어, 내일의 집</title>
+<link rel="stylesheet" type="text/css" href="/css/member.css">
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-<div style="margin-top: 50px; margin-bottom: 50px;">
-	<nav>
-		<ul class="nav justify-content-center nav-pills">
-				<li class="nav-item"><a class="nav-link active" href="/member/myPage">프로필</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">나의 쇼핑</a></li>
-				<li class="nav-item"><a class="nav-link" href="/member/update">설정</a></li>
+	<main>
+	
+		<ul class="mpNav">
+				<li class="mpNav-item ">
+					<a class="on " href="/member/myPage">프로필</a></li>
+				<li class="mpNav-item ">
+					<a class=" " href="#">나의 쇼핑</a></li>
+				<li class="mpNav-item ">
+					<a class="memberUpdate" href="/member/update">설정</a></li>
 			<sec:authorize access="hasRole('ROLE_B')">
-				<li class="nav-item"><a id="brandHome" class="nav-link" href="#">브랜드 설정</a></li>
+				<li class="mpNav-item ">
+					<a id="brandHome" class=" " href="#">브랜드 설정</a></li>
 			</sec:authorize>
 			<sec:authorize access="hasRole('ROLE_M')">
-				<li class="nav-item"><a class="nav-link" href="#">관리자 페이지</a></li>
+				<li class="mpNav-item ">
+					<a class=" " href="#">관리자 페이지</a></li>
 			</sec:authorize>
 		</ul>
-	</nav>
-	<nav>
-		<ul class="nav justify-content-center nav-pills">
-				<li class="nav-item"><a class="nav-link active" href="#">모두보기</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">집들이</a></li>
-			<sec:authorize access="hasRole('ROLE_B')">
-				<li class="nav-item"><a id="brandHome" class="nav-link" href="/brand/home?username=<sec:authentication property="principal.username"/>">브랜드홈</a></li>
-				<li class="nav-item"><a class="nav-link" href="/brand/brandOrder?username=<sec:authentication property="principal.username"/>">주문조회</a></li>
-			</sec:authorize>
-			<sec:authorize access="hasRole('ROLE_M')">
-				<li class="nav-item"><a class="nav-link" href="#">브랜드수락</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">집들이수락</a></li>
-			</sec:authorize>
-		</ul>
-	</nav>
-</div>
-
-	<div class="container">
-		<div class="row">
-			<div class="profile col-3">
-				<div style="border:solid thin; width: 252px;">
-					<img alt="" src="/upload/member/<sec:authentication property="principal.profileImage"/>" style=" height: 150px"><br>
-					<div id="username"><h3><sec:authentication property="principal.username"/></h3><br></div>
-					<a class="btn btn-link" href="./update">설정</a>
+		<hr>
+		<div id="ajaxDIV">
+			<ul class="mpSubNav ">
+					<li class="mpSubNav-item "><a class="on" href="#">모두보기</a></li>
+					<li class="mpSubNav-item "><a class=" " href="#">집들이</a></li>
+				<sec:authorize access="hasRole('ROLE_B')">
+					<li class="mpSubNav-item "><a id="brandHome" class=" " href="/brand/home?username=<sec:authentication property="principal.username"/>">브랜드홈</a></li>
+					<li class="mpSubNav-item "><a class=" " href="/brand/brandOrder?username=<sec:authentication property="principal.username"/>">주문조회</a></li>
+				</sec:authorize>
+				<sec:authorize access="hasRole('ROLE_M')">
+					<li class="mpSubNav-item "><a class=" " href="#">브랜드수락</a></li>
+					<li class="mpSubNav-item "><a class=" " href="#">집들이수락</a></li>
+				</sec:authorize>
+			</ul>
+			<hr>
+	
+	
+			<div class="flex-center">
+			
+				<div class="profileBox">
+					<img alt="" src="/upload/member/<sec:authentication property="principal.profileImage"/>"><br>
+					<div id="username">
+						<h4><sec:authentication property="principal.username"/></h4>
+					</div>
+					<a class="memberUpdate" href="/member/update">설정</a>
 				</div>
-			</div>
-			
-			<div class="col-1"></div>
-			
-			<div class="col-8">
-				
-				
-				<div id="contents"></div>	
+	
+	
+	
+	
+				<div id="contents">
+					<strong>집들이</strong>
+					<div class="contentsBox"></div>
+				</div>
+	
 			</div>
 		</div>
-	</div>
-<br><br>
+		
+</main>
 	
 	
 

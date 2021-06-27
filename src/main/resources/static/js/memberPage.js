@@ -4,6 +4,7 @@
 
 $('#brandHome').click(function(){
 	let username = $('#username').text();
+	console.log(username)
 	$.ajax({
 		type:"POST",
 		url:"/product/list",
@@ -13,3 +14,4 @@ $('#brandHome').click(function(){
 		}
 	});
 });
+
