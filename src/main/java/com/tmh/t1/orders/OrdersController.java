@@ -141,6 +141,7 @@ public class OrdersController {
 //		// 2.바로결제 -> 상품번호 가져오기 
 
 	}
+	
 	@ResponseBody 
 	@PostMapping("insert")
 	public ModelAndView setInsert(OrdersVO ordersVO, ModelAndView mv)throws Exception{
@@ -159,7 +160,7 @@ public class OrdersController {
 
 	    System.out.println(cartAr);
 	
-		int result = ordersService.setInsert(ordersVO, cartAr);
+		int result = ordersService.setInsert(ordersVO);
 		
 		System.out.println("controller: "+ordersVO.getOrderNum());
 		

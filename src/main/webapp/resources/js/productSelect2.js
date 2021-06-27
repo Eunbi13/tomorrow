@@ -32,6 +32,8 @@ function percent(){
 }
 
 
+
+//select box 선택시 실행
 function addList(){
 	
 	
@@ -135,79 +137,29 @@ $("#opPrint").append(source);
 // ->선택 product범위의 cartVO들을 validity=1로 그 외 것들을 다 validity=0으로 업뎃해준다.
 
 function directPay(){
+	
 	 alert("directPay!");
-   $("#frm").submit();
-  //cartInsert를  ajax로 먼저 하고 바로 다시 결제페이지로 넘기기.
+//바로결제를 누를 때는 validity 20 넣기
 
-  // <!-- ////각 cartVO의 validity 검사-> ajax를 이용해 DB에 업데이트 
-		// Ajax 끝마치고 submit 하기 -->
-		 alert("과연.. !");
-		 let checkedCartNum;
-	     let checkedProductNum =$(this).attr("title");; //바로 결제 선택한 productNum
-		
-     let productNum= $(this).attr("title");
-	 const validity_ar=[];
-	 const un_validity_ar=[];
-
-	$(".directPay").each(function(){
-		if( productNum == $(this).attr("title")){
-			
-			checkedProductNum =$(this).attr("title");
-			alert("checked productNum!"+$(this).attr('title'));
-			
-			// 그 상품의 옵션범위의 cartVO.cartNum을 찾아 배열에 넣어준다
-			$(".cartNum"+productNum).each(function(){
-				
-				// 배송료는 한 브랜드에서만 결제되는 것이기 때문에..선택된 옵션의 배송료만 계산한다. 
-				
-			   alert("checked cartNum!"+$(this).attr('title'));
-               checkedCartNum =$(this).attr('title');
-				validity_ar.push(checkedCartNum);
-			});
-			
-			
-		} else{
-			let productNum=$(this).attr("title");
-			alert("XXXXchecked productNum!"+$(this).attr('title'));
-			
-			// 그 외 상품들의 옵션범위의 모든 cartVO.cartNum을 찾아 배열에 넣어준다
-			$(".cartNum"+productNum).each(function(){
-				
-				alert("XXXXchecked cartNum!"+$(this).attr('title'));
-				 un_validity_ar.push($(this).attr("title"));
-			});
-			
-		}
+	$(".valid").each(function(){
+		$(this).val(20);
 		
 	});
-	
-	$.ajax({
-		type: "post",
-		url:"../cart/validityUpdate",
-		traditional: true,
-		async:false,
-		data:{
-			cartNum:validity_ar,
-			unCartNum:un_validity_ar
-		},
-		success:function(data){
-			data = data.trim();
-            if(data>0){
-	           alert("통과")
-				
-				 $("#orderFrm").submit();
-				
+  //DB에 있는 validity가 20(바로결제 상태)인 cartVO를 싹 지워준다.
+   $.ajax({
+	type:"get",
+	url:"../cart/directPayDelete",
+	data:{},
+	success:function(data){
+		alert(data+'의 정보를 삭제하였습니다');
+		 $("#frm").submit();
+	}
+});
+   
 
-			 }else {
-				alert('주문페이지로 이동이 실패했습니다.');
-			}
-		}
-	})
-		
-
-
+  
 }
-	
+
 	
 	
 	  

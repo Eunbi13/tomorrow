@@ -92,6 +92,15 @@ public class CartService {
 		return result;
 	}
 	
+	public int setDirectPayDelete(CartVO cartVO)throws Exception{
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal; 
+		String username = userDetails.getUsername();
+	    cartVO.setUsername(username);
+		
+		return cartMapper.setDirectPayDelete(cartVO);
+	}
+	
 	public int setValidityUpdate(long [] cartNum, long [] unCartNum)throws Exception{
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
 		UserDetails userDetails = (UserDetails)principal; 

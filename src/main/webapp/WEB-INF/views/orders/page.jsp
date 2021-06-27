@@ -18,6 +18,16 @@ shipping  -->
 
 <title>Insert title here</title>
 <style type="text/css">
+.brandN{
+ font-weight:700;
+ font-size: 16px;
+}
+.shipN{
+ font-size: 16px;
+}
+.productN{
+ font-size: 16px;
+}
 
 .productPic{
 	width: 64px;
@@ -46,10 +56,22 @@ border-bottom: 0px;
 weight: 100%;
 }
 
+.grayN{
+   color:gray;
+   font-size: 14px;
+}
+
 .gray{ 
    color:gray;
    font-size: 14px;
+   margin: 10px 0px;
   /*   padding-bottom: 20px; */
+
+}
+
+.grayMobile{
+
+position:sticky;
 
 }
 
@@ -66,10 +88,7 @@ weight: 100%;
 }
 
 .middle{
- /*  display: block; */
-  
-/*   vertical-align:  middle; */
-
+ font-size: 16px;
 }
 
 .form-cus{
@@ -80,10 +99,26 @@ height: 40px;
 .ordersSub{
   font-size:20px;
   font-weight: bold;
+  margin-top:40px;
 }
-body{
-   font-size:16px;
+
+.ordersSub2{
+  font-size:20px;
+  font-weight: bold;
 }
+
+.ordersSub3{
+font-size:20px;
+  font-weight: bold;
+ margin-top:25px;
+}
+
+.ordersSub4{
+font-size:18px;
+ font-weight: bold;
+margin-bottom:25px;
+}
+
 
 .ship-change{
 color: #A63F82;
@@ -197,6 +232,7 @@ section{
     line-height: 14px;
     color: #A63F82; 
     margin-left: 8px;
+    margin-bottom:10px;
     user-select: none;
 }
 
@@ -262,10 +298,18 @@ margin-top: 20px;
         padding-top: 40px
     }
 }
+
+#shipTitle{
+margin-bottom:10px;
+}
+#shipAddress{
+margin-bottom:6px;
+}
 </style>
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
+<main>
 
 <input type="hidden" id="ordersUsername" title="${ordersVO.username}">
 
@@ -512,7 +556,7 @@ margin-top: 20px;
             
         <section class="_3oseG">
            <div class="d-flex">
-                <div class="ordersSub">배송지</div>
+                <div class="ordersSub2">배송지</div>
                 
          
                <c:if test="${!empty shippingAr}">
@@ -645,7 +689,7 @@ margin-top: 20px;
 				
 			</section>
 				
-			 <form id="updateFrm" action="./update" method="post">		
+			 <form id="updateFrm" action="/orders/update" method="post">		
             <section>
             <div class="d-flex">
                 <div class="ordersSub">주문자</div>
@@ -706,8 +750,8 @@ margin-top: 20px;
 	            <div class="card">
 				  <div class="card-header">
 				  <div class="d-flex">
-	                <div class="p-1" style=" font-weight:600;">${brandVO.brandName}</div>
-				  <div class="ml-auto p-1" id="brandShipping${brandVO.brandNum}"> 무료배송 </div>
+	                <div class="p-1 brandN">${brandVO.brandName}</div>
+				  <div class="ml-auto p-1 shipN" id="brandShipping${brandVO.brandNum}"> 무료배송 </div>
 				 
 				  </div>
 				  </div>
@@ -720,15 +764,15 @@ margin-top: 20px;
 			  	                     <c:forEach items="${cartAr}" var="cartVO" varStatus="i">
 					                   <c:if test="${productVO.productNum eq cartVO.productNum}"> 
 					                        <input type="hidden" class="cartVOShipping" data-brandNum="${cartVO.brandNum}" value="${cartVO.brandShipping}">
-					                   
+					                        <input type="hidden" id="validity" class="validity" value="${cartVO.validity}">
 								               <div id="products${productVO.productNum}">
 													  <li class="list-group-item">
 													    <div class="media">
 													      <img class="productPic" alt="" src="/upload/productImages/${productVO.productPic}">
 													      <div class="media-body">
-													          <div class="mt-0 mb-0 productName">${productVO.productName}</div>
+													          <div class="mt-0 mb-0 productN">${productVO.productName}</div>
 													           <div class="gray"> ${cartVO.unitName}</div>
-													           <div style="float:left; font-size:14px; font-weight:bold;"> ${cartVO.cartPrice}원 &nbsp; </div> <div class="gray" style="float:left;">| &nbsp; ${cartVO.amount}개</div>
+													           <div style="float:left; font-size:14px; font-weight:bold;"> ${cartVO.cartPrice}원 &nbsp; </div> <div class="grayN" style="float:left;">| &nbsp; ${cartVO.amount}개</div>
 													      </div>
 													     </div>
 														</li>
@@ -804,24 +848,23 @@ margin-top: 20px;
              
            
         </div>
-        
-        
-        <div class="col-sm-3 col-md-4 offset-md-1 mobile">
+          
+          <div class="col-sm-3 col-md-4 offset-md-1 mobile grayMobile">
             <div class="py-4 d-flex justify-content-end">
               
             </div>
            
             <div class="bg-light rounded d-flex flex-column">
                 <div class="p-2 ml-3">
-                    <h6>결제금액</h6>
+                    <div class="ordersSub3">결제금액</div>
                 </div>
                 <div class="p-2 d-flex">
-                    <div class="col-8">총 상품 금액</div>
-                    <div class="ml-auto">${ordersVO.itemsPrice}원</div>
+                    <div class="col-8 middle">총 상품 금액</div>
+                    <div class="ml-auto money">${ordersVO.itemsPrice}원</div>
                 </div>
                 <div class="p-2 d-flex">
-                    <div class="col-8">배송비</div>
-                    <div class="ml-auto">${ordersVO.shippingFee}원</div>
+                    <div class="col-8 middle">배송비</div>
+                    <div class="ml-auto money">${ordersVO.shippingFee}원</div>
                 </div>
              
                 <div class="border-top px-4 mx-3"> </div>
@@ -830,10 +873,10 @@ margin-top: 20px;
                 <div class="border-top px-4 mx-3"></div>
                 
                 <div class="p-2 d-flex pt-3">
-                    <div class="col-8"><b>최종 결제 금액</b></div>
+                    <div class="col-8 ordersSub4"><b>최종 결제 금액</b></div>
                      <input type="hidden" id="orderNum" value="${ordersVO.orderNum}">
                     
-                    <div class="ml-auto" id="payment" title="${ordersVO.payment}"><b class="green"> ${ordersVO.payment}원</b></div>
+                    <div class="ml-auto" id="payment" title="${ordersVO.payment}"><b class="green money2"> ${ordersVO.payment}원</b></div>
                 </div>
             </div>
             
@@ -841,8 +884,14 @@ margin-top: 20px;
                 <div>    <input type="button" id="finalBtn"  value="${ordersVO.payment}원 결제하기" class="btn btn-default btn-block pay"> </div>
        
         </div>
-    </div>
+        
+        
+    </div> <!--  -->
+    
+    
 </div>
+
+</main>
 <c:import url="../template/footer.jsp"></c:import>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="/js/shippingInsert.js"></script> 

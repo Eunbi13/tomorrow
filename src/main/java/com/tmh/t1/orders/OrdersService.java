@@ -53,7 +53,7 @@ public class OrdersService {
 		return ordersMapper.getOrdersList(ordersVO);
 	}
 	
-	public int setInsert(OrdersVO ordersVO, List<CartVO> carts)throws Exception{
+	public int setInsert(OrdersVO ordersVO)throws Exception{
 		System.out.println("service");
 		
 		System.out.println(	"orderVO.getItemsPrice();"+ordersVO.getItemsPrice());
@@ -64,20 +64,7 @@ public class OrdersService {
 			
 		
 		int result = ordersMapper.setInsert(ordersVO);
-		
-		
-		System.out.println("service: "+ordersVO.getOrderNum());
-
-		for(CartVO cartVO: carts) {
-			   //DB 에 넣어보자!!
-			   cartVO.setOrderNum(ordersVO.getOrderNum());
-			   System.out.println("cartVO.getOrderNum()"+cartVO.getOrderNum());
-		   }
-		
-		
-
-		
-		
+	
 		System.out.println("result:"+result);
 		return result;
 	}

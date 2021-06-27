@@ -92,6 +92,7 @@ margin-top:20px;
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
+<main>
 
 <div class="container-fluid rounded bg-white" id="carts">
     <div class="row d-flex justify-content-center pb-5">
@@ -1150,7 +1151,7 @@ $(".directInputBox").on({
 </script>
 
 
-
+</main>
 <c:import url="../template/footer.jsp"></c:import>
 </body>
 </html>

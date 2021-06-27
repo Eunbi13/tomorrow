@@ -38,7 +38,7 @@ ul{
    }
 
 .main {
-margin-top: 20px;
+margin-top: 40px;
 margin-bottom: 40px;
 
 box-sizing: border-box; 
@@ -53,6 +53,7 @@ float: left;
 position: relative;
 box-sizing: border-box;
 align-items: flex-start;
+margin-bottom:40px;
 }
 /* select 좌측 작은 사진 */
 .main-pic-small{
@@ -236,21 +237,121 @@ select.classic {
 
 
 
-#navbar {
-  /*overflow: hidden;*/
-  background-color: hsl(0, 0%, 97%);
-  height:52px;
-  width:100%;
-  position: sticky;
-  top: 117px;
-  z-index: 100;
-  border: 1px #e6e6e6 solid;
 
-  
+
+.subTitle{
+   font-size: 22px;
+   font-weight:bold;
+   margin: 70px 0px 40px 0px;
 }
 
-#navbar a {
-  float: left;
+.subSubTitle{
+   font-size: 18px;
+   font-weight:bold;
+   margin: 30px 0px 10px 0px;
+}
+
+.grayInfo{
+    font-size: 14px;
+    color:#a6a6a6;
+    margin-bottom:15px;
+}
+.grayDetail{
+    font-size: 12px;
+    color:#a6a6a6;
+}
+ol li{
+   font-size: 14px;
+   margin: 7px 0px;
+}
+
+table{
+width:100%;
+margin-bottom:30px;
+}
+.td_title{
+	width:20%;
+	font-size: 15px;
+	color:#a6a6a6;
+}
+table td{
+ width:65%;
+ font-size: 15px;
+ padding: 15px 0px;
+
+}
+tr{
+border-bottom: 1px solid  hsl(0, 0%, 93%);
+}
+.tableAdd{
+margin-bottom:40px;
+}
+
+ol { 
+    counter-reset: item;
+    list-style-type: none;
+}
+ol li { display: block; }
+ol li:before { 
+    content: counter(item) "  "; 
+    counter-increment: item 
+}
+
+ .tableAdd{
+  margin-bottom:70px;
+ }
+ 
+
+
+  
+ * {
+    margin: 0;
+    padding: 0;
+}
+
+#section {
+    width: 100%;
+}
+
+#section div.target {
+   
+	
+}
+
+
+
+#nav {
+    width: 100%;
+    position: relative;
+    
+    position: sticky;
+	top: 117px;
+	z-index: 100;
+	  
+    background-color: hsl(0, 0%, 97%);
+    height:52px;
+	 border: 1px #e6e6e6 solid;
+}
+
+#nav nav {
+    position: fixed;
+    width: 100%;
+    position: sticky;
+    height:52px;
+}
+
+#nav a {
+    /* border-bottom: 1px solid #666;
+    color: #333;
+	background:white;
+    padding: 10px 0;
+    text-align: center;
+    text-decoration: none;
+	display:inline-block;
+	float:left;
+	width:25%; */
+	
+   float: left;
   display: block;
   color:#333333;
   text-align: center;
@@ -258,23 +359,17 @@ select.classic {
   text-decoration: none;
   font-size: 17px;
   font-weight: bold;
- 
 }
 
-#navbar a:hover {
-  background-color: #f2f2f2;
-  color: #A63F82;
-}
-
-#navbar a.active {
+#nav a:hover, #nav a.active {
+   /*  background: #2492fb;
+    color: #fff;
+     */
   padding: 18px 50px 12px 50px;
   background-color: #f2f2f2;
   border-bottom: 3px #A63F82 solid;
   color: #A63F82;
 }
-
-
-
 
 </style>
 </head>
@@ -282,36 +377,36 @@ select.classic {
 	<c:import url="../template/header.jsp"></c:import>
 <main>
 
-	<div class="main">
+	<div id="home" class="main">
 		<div class="main-pic" >
-		<div class="main-pic-wrap"> 
-		<!-- select 좌측 작은 사진 -->
-		<ul class="main-pic-small" >
-			<li >	
-			<button class="main-pic-small-bt">
-				<img alt="상품이미지" class="pic-small"
-				src="../resources/images/categoryPic/A1.webp">
-			</button>
-			</li>
-			<li >	
-			<button class="main-pic-small-bt">
-				<img alt="상품이미지" class="pic-small"
-				src="../resources/images/categoryPic/A1.webp">
-			</button>
-			</li>
-			<li >	
-			<button class="main-pic-small-bt">
-				<img alt="상품이미지" class="pic-small"
-				src="../resources/images/categoryPic/A1.webp">
-			</button>
-			</li>
-		</ul>
-		<!-- select 메인 우측 사진 -->
-		<div class="main-pic-big">
-			<img alt="상품이미지" style="max-width:560px; height:auto; border-radius: 15px;"
-			src="../resources/images/storeEX/glove.webp">
-		</div>
-		</div>
+			<div class="main-pic-wrap"> 
+			<!-- select 좌측 작은 사진 -->
+			<ul class="main-pic-small" >
+				<li >	
+				<button class="main-pic-small-bt">
+					<img alt="상품이미지" class="pic-small"
+					src="../resources/images/categoryPic/A1.webp">
+				</button>
+				</li>
+				<li >	
+				<button class="main-pic-small-bt">
+					<img alt="상품이미지" class="pic-small"
+					src="../resources/images/categoryPic/A1.webp">
+				</button>
+				</li>
+				<li >	
+				<button class="main-pic-small-bt">
+					<img alt="상품이미지" class="pic-small"
+					src="../resources/images/categoryPic/A1.webp">
+				</button>
+				</li>
+			</ul>
+				<!-- select 메인 우측 사진 -->
+				<div class="main-pic-big">
+					<img alt="상품이미지" style="width:560px; height:auto; border-radius: 15px;"
+					src="/upload/productImages/${vo.productPic}">
+				</div>
+			</div>
 		</div> <!--div class="main-pic"-->
 
 		<!-- select 메인 좌측 -->
@@ -443,6 +538,7 @@ select.classic {
 					 <div id="optionAdd" class="optionAdd">
 					  
 					     <li id="carts" title="${vo.brandNum}">
+					       <input type="hidden" name="validity"  class="valid" value="0">
 					       <input type="hidden" name="brandNum" value="${vo.brandNum}">
 					       <input type="hidden" name="productNum" id="productNum" value="${vo.productNum}">
 
@@ -486,75 +582,183 @@ select.classic {
    
 	<!-- main 클래스 끝 -->
 	
-	      <!-- 아래쪽 상세 정보 시작 -->
-	   <!--  상품정포 nav/부모요소가 main이게 할-->
+ <!-- 아래쪽 상세 정보 시작 -->
+	   <!--  상품정포 nav/부모요소가 main이게  해야함-->
+	   <aside id="nav" style="clear:both;">
+		   <nav id="navbar" >
+					  <a id="ahome" class="active" href="#home">Home</a>
+					  <a id="afirstMove" href="#firstMove">상품정보</a>
+					  <a id="asecondMove" href="#secondMove">배송/환불</a>
+		   </nav> 
+	   </aside>
 	   
-	   <div id="navbar" style="clear:both;">
-				  <a class="active" href="javascript:void(0)">Home</a>
-				  <a href="#firstMove">상품정보</a>
-				  <a href="#secondMove">배송/환불</a>
-	   </div> 
-	   
+   <div class="container product_content">  
+    <section id="section">
      
-     
-     <p>The navbar will stick to the top when you reach its scroll position.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <div id="firstMove">first </div>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-    <div> 상품정보</div>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. I
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. I
- <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. I
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. I
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-   <div id="secondMove">배송 </div>
-   <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. I
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
- <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. I
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. I
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. I
+			  <div id="firstMove" class="target"> 
+			  
+				    <div class="subTitle"> 상품정보</div>
+				    <div>${vo.contents}</div>
+			  </div>
+				  
+		      <div id="secondMove" class="target"> 
+				   
+				   
+				   <div class="subTitle">배송</div>
+				   <div class="tableAdd">
+					   	<table>
+					   		<tr>
+					   			<td class="td_title">배송</td>
+					   			<td>일반택배</td>
+					   		</tr>
+					   		<tr>
+					   			<td class="td_title">배송비</td>
+					   			<td>
+					   				<c:choose>
+											<c:when test="${vo.shippingFee eq 0}">
+											무료배송
+											</c:when>
+											<c:otherwise>
+											<div>
+											    ${vo.shippingFee}원  
+												<font style="font-weight:lighter; margin-top:5px;">(30,000원 이상 구매시 무료배송)</font>
+											</div>
+											</c:otherwise>
+									  </c:choose>
+					   			
+					   			</td>
+					   		</tr>
+					   		<tr>
+					   			<td class="td_title">도서산간 추가 배송비</td>
+					   			<td>위와 동일</td>
+					   		</tr>
+					   		<tr>
+					   			<td class="td_title">배송불가 지역</td>
+					   			<td>배송불가 지역이 없습니다.</td>
+					   		</tr>
+					   	
+					   	</table>
+					   
+				   </div>
+			
+			   
+			   <div class="subTitle"> 교환/환불 </div>
+				    <div class="tableAdd">
+					   	<table>
+					   		<tr>
+					   			<td class="td_title">반품배송비</td>
+					   			<td>
+					   				
+											${vo.shippingFee}원 (최초 배송비가 무료인 경우 6000원부과)
+											
+					   			</td>
+					   		</tr>
+					   		<tr>
+					   			<td class="td_title">교환배송비</td>
+					   			<td>
+					   				${vo.shippingFee}*2원
+					   			
+					   			</td>
+					   		</tr>
+					   		<tr>
+					   			<td class="td_title">보내실 곳</td>
+					   			<td>${vo.brandVO.brandName}-주소는 브랜드홈에서 확인하세요</td>
+					   		</tr>
+					   	</table>
+					   
+				   </div>
+			
+			
+			<div class="exchangeInfo">	   
+				<div class="subSubTitle">반품/교환 사유에 따른 요청 가능 기간</div>
+                <div class="grayInfo">반품 시 먼저 판매자와 연락하셔서 반품사유, 택배사, 배송비, 반품지 주소 등을 협의하신 후 반품상품을 발송해 주시기 바랍니다.</div>
+                 <ol>
+                 	<li>구매자 단순 변심은 상품 수령 후 7일 이내 <font class="grayDetail">(구매자 반품배송비 부담)</font></li>
+                 	<li>표시/광고와 상이, 상품하자의 경우 상품 수령 후 3개월 이내 혹은 표시/광고와 다른 사실을 안 날로부터 30일 이내.
+					둘 중 하나 경과 시 반품/교환 불가 <font class="grayDetail">(판매자 반품배송비 부담)</font></li>
+                 </ol>
+					
+				<div class="subSubTitle">반품/교환 불가능 사유</div>
+				<div class="grayInfo">아래와 같은 경우 반품/교환이 불가능합니다.</div>
+				   <ol>
+                 	<li>반품요청기간이 지난 경우</li>
+                 	<li>구매자의 책임 있는 사유로 상품 등이 멸실 또는 훼손된 경우 <font class="grayDetail">(단, 상품의 내용을 확인하기 위하여 포장 등을 훼손한 경우는 제외)</font></li>
+                    <li>포장을 개봉하였으나 포장이 훼손되어 상품가치가 현저히 상실된 경우 <font class="grayDetail">(예: 식품, 화장품)</font></li>
+                 	<li>구매자의 사용 또는 일부 소비에 의하여 상품의 가치가 현저히 감소한 경우 <font class="grayDetail">(라벨이 떨어진 의류 또는 태그가 떨어진 명품관 상품인 경우)</font></li>
+                 	<li>시간의 경과에 의하여 재판매가 곤란할 정도로 상품 등의 가치가 현저히 감소한 경우 <font class="grayDetail">(예: 식품, 화장품)</font></li>
+                 	<li>고객주문 확인 후 상품제작에 들어가는 주문제작상품</li>
+                 	<li>복제가 가능한 상품 등의 포장을 훼손한 경우 <font class="grayDetail">(CD/DVD/GAME/도서의 경우 포장 개봉 시)</font></li>
+                 </ol>
+					
+			</div>
+			
+			         <div class="subTitle"> 판매자 정보 </div>
+				
+						    <div class="tableAdd">
+							   	<table>
+							   		<tr>
+							   			<td class="td_title">상호</td>
+							   			<td>
+											${vo.brandVO.brandName}	
+							   			</td>
+							   		</tr>
+							   		<tr>
+							   			<td class="td_title">대표자</td>
+							   			<td>
+							   				${vo.brandVO.managerName}	
+							   			
+							   			</td>
+							   		</tr>
+							   		<tr>
+							   			<td class="td_title">사업장소재지</td>
+							   			<td>${vo.brandVO.brandName}-주소는 브랜드홈에서 확인하세요</td>
+							   		</tr>
+							   		<tr>
+							   			<td class="td_title">고객센테 전화번호</td>
+							   			<td>${vo.brandVO.managerPhone}</td>
+							   		</tr>
+							   		<tr>
+							   			<td class="td_title">E-mail</td>
+							   			<td>${vo.brandVO.managerEmail}</td>
+							   		</tr>
+							   		<tr>
+							   			<td class="td_title">사업장 등록번호</td>
+							   			<td>${vo.brandVO.registrationNum}</td>
+							   		</tr>
+							   	</table>
+							   
+						   </div>
+						   
+				   
+				  
+				   
+				   
+				 </div> <!-- secondmove end -->
+			
+     </section>
+ </div> <!-- container end -->
+ 
+ 
+ 
  </main>
   <script>
-/* window.onscroll = function() {myFunction()};
+  //스크롤 위치에 따른 메뉴활성화 효과
+  $('#nav nav a').on('click', function(event) {
+	    $(this).parent().find('a').removeClass('active');
+	    $(this).addClass('active');
+	});
 
-var navbar = document.getElementById("navbar");
-var sticky = navbar.offsetTop;
-
-function myFunction() {
-  if (window.pageYOffset >= sticky) {
-    navbar.classList.add("sticky")
-  } else {
-    navbar.classList.remove("sticky");
-  }
-} */
+	$(window).on('scroll', function() {
+	    $('.target').each(function() {
+	        if($(window).scrollTop() >= $(this).offset().top) {
+	            var id = $(this).attr('id');
+	            
+	            
+	            $('#nav nav a').removeClass('active');
+	            $('#a'+ id).addClass('active');
+	        }
+	    });
+	});
 </script>
 
 	<!-- <script type="text/javascript" src="../resources/js/productSelect.js"></script> -->

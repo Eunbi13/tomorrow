@@ -89,12 +89,19 @@ $("#finalBtn").click(function(){
 				        //cart/orderUpdate: 이제 결제한 cartVO에  orderNum을 넣고  validity를 '결제완료'를 뜻하는 '2' 로 바꾼다.
 				         //--------ajax DB Update 
 								let orderNum = $("#orderNum").val();
+								let validity;
+								$(".validity").each(function(){
+									validity=$(this).val();
+								});
+								
+								console.log("validity:"+validity);
 								console.log("orderNum:"+orderNum);
 								$.ajax({
 									type: "post",
 									url:"../cart/orderUpdate",
 									data:{
-										orderNum:orderNum
+										orderNum:orderNum,
+									    validity: validity
 									},
 									success:function(data){
 										
@@ -227,23 +234,29 @@ $("#finalBtn").click(function(){
 			        msg += '카드 승인번호 : ' + rsp.apply_num;
 			        //결제 완료!
 			        //이제 결제한 cartVO에  orderNum을 넣고  validity를 '결제완료'를 뜻하는 '2' 로 바꾼다. 
-			         //--------ajax DB Update 
-							let orderNum = $("#orderNum").val();
-							console.log("orderNum:"+orderNum);
-							$.ajax({
-								type: "post",
-								url:"../cart/orderUpdate",
-								data:{
-									orderNum:orderNum
-								},
-								success:function(data){
-									
-									data = data.trim();
-									console.log("../cart/orderUpdate 후 data"+data);
-									if(data>0){
-										alert('주문 성공');
+			          //--------ajax DB Update 
+								let orderNum = $("#orderNum").val();
+								let validity;
+								$(".validity").each(function(){
+									validity=$(this).val();
+								});
+								
+								console.log("validity:"+validity);
+								console.log("orderNum:"+orderNum);
+								$.ajax({
+									type: "post",
+									url:"../cart/orderUpdate",
+									data:{
+										orderNum:orderNum,
+									    validity: validity
+									},
+									success:function(data){
 										
-		    
+										data = data.trim();
+										console.log("../cart/orderUpdate 후 data"+data);
+										if(data>0){
+											alert('주문 성공');
+											
 										// cartVO 업데이트 성공했으면 ordersVO 업데이트 시작
 										// orderVO update: paymentType, shippingMemo,name,email, phone , shipName, shipPhone, shipAddress, postcode
 								        //넘어온 cartVO의 orderNum에도 이 order넘버를 넣어준다!
