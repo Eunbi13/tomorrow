@@ -77,20 +77,50 @@ public class BrandController {
 	@GetMapping("brandOrder") 
 	public ModelAndView brandOrder(BrandVO brandVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		System.out.println(brandVO.getUsername() + "님 입장!!");
-		
-	    brandVO	=brandService.getBrandInfo(brandVO);
+		//접속되어있는 username을 가져와서 brandVO에 넣어준다.
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal; 
+		String username = userDetails.getUsername();
+	    brandVO.setUsername(username); 
+	    //brandVO의 username을 이용해 brandNum을 알아내서 다시 brandVO에 brandNum을 넣는다. 
+	    BrandVO brandVO2=brandService.getBrandInfo(brandVO);
+	    brandVO.setBrandNum(brandVO2.getBrandNum());
 	    
 	    List<OrdersVO> ar = brandService.getCartList(brandVO);
 	    List<OrdersVO> orderAr = brandService.getOrderList(brandVO);
-		
+	
+	    brandVO	=brandService.getBrandInfo(brandVO);
+	
 		
 	    mv.addObject("brandVO", brandVO);
     	mv.addObject("ar", ar);
 
     	mv.addObject("orderAr", orderAr);
+    	
+    	// 각 주문상태 갯수 구하기
+    	brandVO.setStatus((long)2);
+    	List<OrdersVO> ar2 = brandService.getCartList(brandVO);
+    	brandVO.setStatus((long)3);
+    	List<OrdersVO> ar3 = brandService.getCartList(brandVO);
+    	brandVO.setStatus((long)4);
+    	List<OrdersVO> ar4 = brandService.getCartList(brandVO);
+    	brandVO.setStatus((long)6);
+    	List<OrdersVO> ar6 = brandService.getCartList(brandVO);
+    	brandVO.setStatus((long)8);
+    	List<OrdersVO> ar8 = brandService.getCartList(brandVO);
+    	brandVO.setStatus((long)9);
+    	List<OrdersVO> ar9 = brandService.getCartList(brandVO);
+    	brandVO.setStatus((long)10);
+    	List<OrdersVO> ar10 = brandService.getCartList(brandVO);
+    	mv.addObject("ar2", ar2);
+    	mv.addObject("ar3", ar3);
+    	mv.addObject("ar4", ar4);
+    	mv.addObject("ar6", ar6);
+    	mv.addObject("ar8", ar8);
+    	mv.addObject("ar9", ar9);
+    	mv.addObject("ar10", ar10);
+    	
 		return mv;
-		
 	}
 	
 	//minkyung_brandOrder

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -210,6 +211,9 @@ a{
     margin-bottom: 15px;
 
 }
+.order_list_menu_list_value{
+  font-weight:bold;
+}
 
 .order_list_menu_list:not(:last-of-type):after {
     position: absolute;
@@ -333,70 +337,72 @@ webkit-box-flex: 1; */
   	   <div class="middelTi"><li>발송전</li></div> 
  	<div class="order_list_menu rounded">
 
- 		<a class="order_list_menu_list" href="/order/list?before=24&status=0">
+ 		<a class="order_list_menu_list" href="/brand/brandOrder?status=2&brandNum=${brandVO.brandNum}">
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">
 	 				<div>주문관리</div>
 	 				<div class="bold">신규주문</div>
  				</div>
- 				
+ 				<div class="order_list_menu_list_value"> ${fn:length(ar2)} </div>
  				
  			</div>
  		</a>
- 		<a class="order_list_menu_list" href="/order/list?before=24&status=1">
+ 		<a class="order_list_menu_list" href="/brand/brandOrder?status=3&brandNum=${brandVO.brandNum}">
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">
  					<div>발송관리</div>
 	 				<div class="bold">발송대상</div>
  				</div>
- 				
+ 				<div class="order_list_menu_list_value"> ${fn:length(ar3)} </div>
  			</div>
  		</a>
- 		<a class="order_list_menu_list" href="/order/list?before=24&status=2">
+ 		<a class="order_list_menu_list" href="/brand/brandOrder?status=8&brandNum=${brandVO.brandNum}">
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">
  					<div>취소관리</div>
 	 				<div class="bold">취소요청</div>
  				</div>
- 				
+ 				<div class="order_list_menu_list_value"> ${fn:length(ar8)} </div>
  			</div>
  		</a>
 
  	</div> <div class="middelTi"><li>발송후</li></div> 
  	<div class="order_list_menu rounded">
 
- 		<a class="order_list_menu_list" href="/order/list?before=24&status=0">
+ 		<a class="order_list_menu_list" href="/brand/brandOrder?status=4&brandNum=${brandVO.brandNum}">
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">
 	 				<div>배송관리</div>
 	 				<div class="bold">배송중</div>
  				</div>
- 				
+ 				<div class="order_list_menu_list_value"> ${fn:length(ar4)} </div>
  			</div>
  		</a>
- 		<a class="order_list_menu_list" href="/order/list?before=24&status=1">
+ 		<a class="order_list_menu_list" href="/brand/brandOrder?status=10&brandNum=${brandVO.brandNum}">
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">
  					<div>클레임관리</div>
 	 				<div class="bold">반품접수</div>
  				</div>
- 				
+ 				<div class="order_list_menu_list_value"> ${fn:length(ar10)} </div>
  			</div>
  		</a>
- 		<a class="order_list_menu_list" href="/order/list?before=24&status=2">
+ 		<a class="order_list_menu_list" href="/brand/brandOrder?status=9&brandNum=${brandVO.brandNum}">
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">
  					<div>클레임관리</div>
 	 				<div class="bold">교환접수</div>
  				</div>
+ 				<div class="order_list_menu_list_value"> ${fn:length(ar9)} </div>
  			</div>
  		</a>
- 		<a class="order_list_menu_list" href="/order/list?before=24&status=2">
+ 		<a class="order_list_menu_list" href="/brand/brandOrder?status=6&brandNum=${brandVO.brandNum}">
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">
  					<div>정산관리</div>
 	 				<div class="bold">정산확정금액</div>
  				</div>
+ 				<div class="order_list_menu_list_value"> ${fn:length(ar6)} </div>
  			</div>
  		</a>
 
@@ -488,24 +494,28 @@ webkit-box-flex: 1; */
 		 					    
 		 					</tr>
 		 			   		  <c:forEach items="${ar}" var="cartVO">
-		 					<tr>
-		 						<td>${cartVO.validity}</td>
-		 						<td>
-		 						  <!-- Button trigger modal -->
-										<button type="button" class="btn-orderDetail orderDetail" title="${cartVO.cartNum}" data-toggle="modal" data-target="#orderDetail">
-										  ${cartVO.ordersVO.orderNum} / ${cartVO.cartNum}
-										</button>
-		 						</td>
-		 						<td>${cartVO.ordersVO.name}</td>
-		 						<td> <img class="productPic" alt="" src="/upload/productImages/${cartVO.productVO.productPic}">
-		 						</td> 
-		 						<td>${cartVO.productVO.productName}</td>
-		 					    <td>${cartVO.amount}</td>
-		 					    <td>${cartVO.ordersVO.paymentType}</td>
-		 					    <td>${cartVO.cartPrice}</td>
-		 		
-		 					    
-		 					</tr>
+		 			   		  
+		 			   		  		<c:if test="${cartVO.validity==2 || cartVO.validity==3|| cartVO.validity==4 || cartVO.validity==5 || cartVO.validity==6|| cartVO.validity==7}" >
+												 			          
+					 					<tr>
+					 						<td>${cartVO.validity}</td>
+					 						<td>
+					 						  <!-- Button trigger modal -->
+													<button type="button" class="btn-orderDetail orderDetail" title="${cartVO.cartNum}" data-toggle="modal" data-target="#orderDetail">
+													  ${cartVO.ordersVO.orderNum} / ${cartVO.cartNum}
+													</button>
+					 						</td>
+					 						<td>${cartVO.ordersVO.name}</td>
+					 						<td> <img class="productPic" alt="" src="/upload/productImages/${cartVO.productVO.productPic}">
+					 						</td> 
+					 						<td>${cartVO.productVO.productName}</td>
+					 					    <td>${cartVO.amount}</td>
+					 					    <td>${cartVO.ordersVO.paymentType}</td>
+					 					    <td>${cartVO.cartPrice}</td>
+					 		
+					 					    
+		 								</tr>
+		 							</c:if>
 		 			        </c:forEach>
 		 				
 		 				</table>
@@ -529,13 +539,14 @@ webkit-box-flex: 1; */
 		 					    <th>결제수단</th>
 		 					</tr>
 		 				 <c:forEach items="${ar}" var="cartVO">
-			 					<c:if test="${cartVO.validity==11 || cartVO.validity==12}">
-									 						                  
+		 		
+			 					<c:if test="${cartVO.validity==11 || cartVO.validity==12}" >
+									 			          
 				 					<tr>
-				 						<td>${cartVO.validity}</td>
+				 						<td>${cartVO.validity} </td>
 				 					    <td>
 				 					    	  <!-- Button trigger modal -->
-										<button type="button" class="btn-orderDetail orderDetail" title="${cartVO.cartNum}" data-toggle="modal" data-target="#orderDetail">
+										<button type="button" class="btn-orderDetail orderDetail candelDetail" title="${cartVO.cartNum}" data-toggle="modal" data-target="#orderDetail">
 										  ${cartVO.ordersVO.orderNum} / ${cartVO.cartNum}
 										</button>
 				 					    </td>
