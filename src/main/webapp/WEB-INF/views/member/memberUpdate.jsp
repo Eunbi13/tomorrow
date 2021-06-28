@@ -54,8 +54,9 @@
 						<input class="id form-control" type="text" readonly="readonly">
 						<div>@</div>
 						<input class="domain form-control" type="text" readonly="readonly">
-						
+						<input hidden="hidden" type="text" name="email" value="<sec:authentication property="principal.email"/>"> 
 					</div>
+							
 				<small>이메일을 변경하시려면 운영자에게 이메일을 보내주세요</small>
 		
 			</div>
@@ -71,12 +72,8 @@
 			<label class="form-label">홈페이지</label>
 			<div class="col-sm-10">
 				<input class="form-control" type="text" placeholder="홈페이지" name="homePage" value="<sec:authentication property="principal.homePage"/>"></input> 
-				<small>이메일을 변경하시려면 운영자에게 이메일을 보내주세요</small>
 			</div>
-			<div  hidden="hidden">
-				<form:input class="form-control" placeholder="이메일" path="email" ></form:input>
-			</div>
-			<form:errors path="email" cssStyle="font-size: 0.8em; color: red;"></form:errors> 	
+			
 		</div>
 		<div class="updateFrm-group">
 			<label class="form-label">성별</label>
@@ -121,6 +118,7 @@
 <script type="text/javascript" >
 	//email보이기
 	let getE = '<sec:authentication property="principal.email"/>';
+	
 	console.log(getE)
 	let es = getE.split('&#64;');
 	$('.id').val(es[0]);

@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,6 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.tmh.t1.util.FileManager;
 
 @Service
 public class MemberService implements UserDetailsService{
@@ -21,6 +25,10 @@ public class MemberService implements UserDetailsService{
 	private MemberMapper memberMapper;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private FileManager fileManager;
+	@Value("${member.filePath}")
+	private String filePath;
 	
 	//eb_회원탈퇴
 	public Long memberDelete(MemberVO memberVO)throws Exception{
@@ -32,8 +40,11 @@ public class MemberService implements UserDetailsService{
 	
 	
 	//eb_회원정보 수정(설정)
-	public Long memberUpdate(MemberVO memberVO)throws Exception{
-		return memberMapper.memberUpdate(memberVO);
+	public String memberUpdate(MemberVO memberVO,MultipartFile profileImage)throws Exception{
+		String filename=fileManager.save(profileImage, filePath);
+		memberVO.setProfileImage(filename);
+		memberMapper.memberUpdate(memberVO);
+		return filename;
 	}
 	
 	//eb_로그인
