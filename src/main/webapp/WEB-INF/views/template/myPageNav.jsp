@@ -29,12 +29,11 @@
 		color:#A63F82;
 	}
 </style>
-    
 		<ul class="mpNav">
 				<li class="mpNav-item ">
-					<a class="on " href="/member/myPage">프로필</a></li>
+					<a class="" href="/member/myPage">프로필</a></li>
 				<li class="mpNav-item ">
-					<a class=" " href="/orders/list">나의 쇼핑</a></li>
+					<a class="" href="/orders/list">나의 쇼핑</a></li>
 				<li class="mpNav-item ">
 					<a class="memberUpdate" href="/member/update">설정</a></li>
 			<sec:authorize access="hasRole('ROLE_B')">
@@ -46,3 +45,17 @@
 					<a class=" " href="#">관리자 페이지</a></li>
 			</sec:authorize>
 		</ul>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	
+		//요청하는 주소 찾는 코드 = location.href //http://localhost/member/myPage
+		//location.href('@@@')는 a 태그와 동일 
+		let url = location.href;
+		let urlNum = url.lastIndexOf('localhost')+('localhost').length;
+			$('.mpNav-item a').removeClass('on');
+			$('a[href="'+url.substring(urlNum)+'"]').addClass('on');
+		
+	
+})
+</script>

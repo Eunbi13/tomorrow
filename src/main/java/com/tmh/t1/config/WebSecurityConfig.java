@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			.csrf().disable()
 			.authorizeRequests()
 				.antMatchers("/").permitAll()
-				.antMatchers("/member/join").permitAll()
+				.antMatchers("/member/memberJoin").permitAll()
 				.antMatchers("/member/**").hasRole("U")
 				.anyRequest().authenticated()//현재 유저가 누구인지 확인
 				.and()

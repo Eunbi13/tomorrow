@@ -17,7 +17,8 @@
 		<img class="joinLogo" alt="" src="/images/logoName.png">
 	</header>
 	
-	<main class="flex-center">
+	<main >
+	<div class="flex-center">
 		<div class="joinFrm">
 			<h5><strong>회원가입</strong></h5>
 			<hr>
@@ -94,6 +95,7 @@
 			</form:form>
 	
 		</div>
+	</div>
 </main>
 <script type="text/javascript" src="/js/memberJoin.js"></script> 
 </body>
