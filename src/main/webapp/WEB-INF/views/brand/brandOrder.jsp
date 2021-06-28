@@ -877,11 +877,11 @@ webkit-box-flex: 1; */
 	 if(radioVal=='4'){ // 배송중(출고완료)  선택시
 
 		 let trackId= $("#trackId").val();
-		 alert("trackId:"+trackId);
+	
 		 let carrierId= $("#carrierId").val();
-		 alert("carrierId:"+carrierId);
+		
 		 if(trackId != null && trackId !="" && carrierId != null && carrierId !="" ){
-			 alert("4입장");
+			
 			 $("#updateFrm").submit();
 		 }else{
 			 alert("택배사와 운송장 번호를 입력하셔야 상태를 바꿀 수 있습니다. ");
@@ -898,7 +898,7 @@ webkit-box-flex: 1; */
 		 let carrierId= $("#carrierId").val();
 		 alert("carrierId:"+carrierId);
 		 if(trackId != null && trackId !="" && carrierId != null && carrierId !="" ){
-			 alert("4입장");
+		
 			 $("#updateFrm").submit();
 		 }else{
 			 alert("택배사와 운송장 번호를 입력하셔야 상태를 바꿀 수 있습니다. ");
@@ -908,7 +908,7 @@ webkit-box-flex: 1; */
 	 }
 	 
 	 if(radioVal=='3'||radioVal=='9'||radioVal=='10'||radioVal=='12'||radioVal=='14'||radioVal=='15'){ //  배송준비(접수완료)/환불진행중/환불완료/취소완료 /교환진행중/교환완료 선택시
-         alert("3910121415입장");
+         
 		 
 		 $("#updateFrm").submit();
 	 
