@@ -114,6 +114,8 @@ public class ProductController {
 		model.addAttribute("options", optionsar);
 		
 		
+		
+		
 	}
 	
 	@GetMapping("productselect")
