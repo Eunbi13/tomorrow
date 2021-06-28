@@ -18,7 +18,7 @@
 				<li class="mpNav-item ">
 					<a class="on " href="/member/myPage">프로필</a></li>
 				<li class="mpNav-item ">
-					<a class=" " href="#">나의 쇼핑</a></li>
+					<a class=" " href="/orders/list">나의 쇼핑</a></li>
 				<li class="mpNav-item ">
 					<a class="memberUpdate" href="/member/update">설정</a></li>
 			<sec:authorize access="hasRole('ROLE_B')">
