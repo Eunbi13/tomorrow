@@ -14,7 +14,7 @@
 				<img class="logo" src="/images/logo.PNG"  alt="내일의집 로고">
 			</a>
 		</div>
-		<nav class="mainNav-item">
+		<nav class="mainNav-item mainNav-item-a">
 
 			<a class="" title="item-community" href="#">커뮤니티</a>
 			<a class="on" title="item-store" href="/product/productlist">스토어</a>
@@ -61,21 +61,20 @@
 		</div>
 	</div>
 </header>	
+<div class="sticky-chlid">
+	<div class="subNav ">	
+		<div class="subNav-item  aa" id="item-community" hidden="hidden">
+				<div class="subNav-item-one">홈</div>
+				<div class="subNav-item-one">집들이</div>
+		</div>
 
-<div class="subNav ">	
-	<div class="item-community">
-		<div class="subNav-item ">
-			<div class="subNav-item-one">홈</div>
-			<div class="subNav-item-one">집들이</div>
-		</div>
+		
+	<div class="subNav-item  aa" id="item-store"  hidden="hidden">
+		<div class="subNav-item-one">스토어홈</div>
+		<div class="subNav-item-one">카테고리</div>
 	</div>
-	<div class="item-store">
-		<div class="subNav-item ">
-			<div class="subNav-item-one">스토어홈</div>
-			<div class="subNav-item-one">카테고리</div>
-		</div>
 	</div>
+</div>
 
 	
 	
-</div>		

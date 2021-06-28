@@ -6,30 +6,30 @@ html, body{
 	letter-spacing: -1px;
 	line-height: 1;
 }
-header, main{
+main, div.mainNav{
 	width: 100%;
 	margin: 0 auto;
 }
 @media(min-width: 375px){
-	header, main{
+	main, div.mainNav{
 		width: calc(100% - 120px);
 		max-width: 100%;
 	}
 }
 @media(min-width: 768px){
-	header, main{
+	main, div.mainNav{
 		width: calc(100% - 120px);
 		max-width: 100%;
 	}
 }
 @media(min-width: 1024px){
-	header, main{
+	main, div.mainNav{
 		width: calc(100% - 120px);
 		max-width: 100%;
 	}
 }
 @media(min-width: 1256px){
-	header, main{
+	main, div.mainNav{
 		width: 1136px;
 		max-width: 100%;
 	}
@@ -38,6 +38,7 @@ header, main{
 
 header{ 
 	padding-top: 20px; 
+	background-color: white;
 }
 
 .red{

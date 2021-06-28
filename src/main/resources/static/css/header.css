@@ -20,6 +20,8 @@ a:hover{ color: #A63F82; }
 	display:flex;
 	align-items: flex-end;
 	padding-bottom: 2rem;
+	margin: 0 auto;
+	width: 100%;
 	/* border-bottom: 1px solid #ededed; */
 }
 /* item */
@@ -126,20 +128,25 @@ a[title=write]:hover{
 }
 /* subNav */
 
+.sticky-chlid{
+	position: absolute;
+	top: 100px;
+	background-color: yellow;
+	width: 100%;
+	z-index: 0;
+}
+/* 
  .subNav{
  	border-top:1px solid #ededed;
-	
+	position: relative;
 	height: 2rem;
 	border-bottom: 1px solid #ededed;
-}
-
-.subNav>div[class*="item"]{
-	position: relative;
 }
 
 .subNav-item{
 	display:flex;
 	position: absolute;
+	
 }
 
 .subNav-item-one{
@@ -148,4 +155,4 @@ a[title=write]:hover{
 	font-weight: bold;
 } 
 
-
+ */
