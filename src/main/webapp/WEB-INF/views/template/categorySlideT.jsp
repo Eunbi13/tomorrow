@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<!-- 카테고리 리스트 -->
+	<!-- 카테고리 리스트 -->
 	<h1 class="store-category-list-head">카테고리</h1>
 	<div class="store-category-flex-container">
 		<div>
