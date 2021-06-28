@@ -63,17 +63,13 @@
 </header>	
 
 <div class="subNav ">	
-	<div class="item-community">
-		<div class="subNav-item ">
+	<div class="subNav-item item-community">
 			<div class="subNav-item-one">홈</div>
 			<div class="subNav-item-one">집들이</div>
-		</div>
 	</div>
-	<div class="item-store">
-		<div class="subNav-item ">
-			<div class="subNav-item-one">스토어홈</div>
-			<div class="subNav-item-one">카테고리</div>
-		</div>
+	<div class="subNav-item item-store">
+		<div class="subNav-item-one">스토어홈</div>
+		<div class="subNav-item-one">카테고리</div>
 	</div>
 
 	

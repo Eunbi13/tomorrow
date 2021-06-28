@@ -128,18 +128,15 @@ a[title=write]:hover{
 
  .subNav{
  	border-top:1px solid #ededed;
-	
+	position: relative;
 	height: 2rem;
 	border-bottom: 1px solid #ededed;
-}
-
-.subNav>div[class*="item"]{
-	position: relative;
 }
 
 .subNav-item{
 	display:flex;
 	position: absolute;
+	
 }
 
 .subNav-item-one{
