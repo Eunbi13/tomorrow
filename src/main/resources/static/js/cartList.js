@@ -27,7 +27,7 @@
 				
 				// 배송료는 한 브랜드에서만 결제되는 것이기 때문에..선택된 옵션의 배송료만 계산한다. 
 				
-			   alert("checked cartNum!"+$(this).attr('title'));
+			  
                checkedCartNum =$(this).attr('title');
 				validity_ar.push(checkedCartNum);
 			});
@@ -35,7 +35,7 @@
 			
 		} else{
 			let productNum=$(this).attr("title");
-			alert("XXXXchecked productNum!"+$(this).attr('title'));
+			
 			
 			// 그 외 상품들의 옵션범위의 모든 cartVO.cartNum을 찾아 배열에 넣어준다
 			$(".cartNum"+productNum).each(function(){
