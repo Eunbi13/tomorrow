@@ -3,24 +3,36 @@
 html, body{
 	color: #424242;
 	font-family: "Noto Sans KR", "Apple SD Gothic Neo", "맑은 고딕", "Malgun Gothic", sans-serif;
-	letter-spacing: -0.4px;
+	letter-spacing: -1px;
 	line-height: 1;
-	}
+}
 header, main{
 	width: 100%;
 	margin: 0 auto;
 }
-@media(min-width: 576px){
-	header, main{max-width: 73rem;}
+@media(min-width: 375px){
+	header, main{
+		width: calc(100% - 120px);
+		max-width: 100%;
+	}
 }
 @media(min-width: 768px){
-	header, main{max-width: 73rem;}
+	header, main{
+		width: calc(100% - 120px);
+		max-width: 100%;
+	}
 }
-@media(min-width: 992px){
-	header, main{max-width: 73rem;}
+@media(min-width: 1024px){
+	header, main{
+		width: calc(100% - 120px);
+		max-width: 100%;
+	}
 }
-@media(min-width: 1200px){
-	header, main{max-width: 73rem;}
+@media(min-width: 1256px){
+	header, main{
+		width: 1136px;
+		max-width: 100%;
+	}
 }
 /*common  */
 
@@ -30,23 +42,48 @@ header{
 
 .red{
 	font-weight:bold;
-	color: red;
+	color:#ff7777;
 }
 
 .btn-default{
- 
-background-color: #A63F82;
-color:#FFF;
-border-color: #A63F82;
+	width:125px;
+    max-width:100%;
+	padding:11px 22px;
+	font-weight: bold;
+	font-size: 18px;
+	text-align: center;
+	color:#FFF;
+	background-color: #A63F82;
+	border:1px solid #A63F82;
+	border-radius:6px;
 }
  
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
- 
- 
-background-color: #732944;
- 
-color:#FFF;
- 
-border-color: #732944;
- 
+	background-color: #732944;
+	color:#FFF;
+	border-color: #732944;
 }
+
+.btn-outline{
+    
+    width:125px;
+    max-width:100%;
+	padding:11px 22px;
+	font-weight: bold;
+	font-size: 18px;
+	text-align: center;
+	border-radius:0;
+	background-color: #FFF;
+	color:#A63F82;
+	border-color: #A63F82;
+	border:1px solid;
+	border-radius:6px;
+
+}
+.btn-outline:hover, .btn-outline:focus, .bbtn-outline:active, .btn-outline.active, .open .dropdown-toggle.btn-outline {
+	background-color: #e5b8d7;
+	color:#A63F82;
+	border-color: #A63F82;;
+}
+
+

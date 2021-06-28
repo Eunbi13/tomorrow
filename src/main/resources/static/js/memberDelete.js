@@ -11,7 +11,7 @@ $('#running').click(function(){
 	let check = false;
 	check=$('.accept').prop('checked');
 	if(check){
-		$('.frm').submit();
+		$('.deleteFrm').submit();
 	}else{
 		$('span').addClass('red');
 	}

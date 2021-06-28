@@ -15,22 +15,22 @@
 <c:import url="../template/header.jsp"></c:import>
 	<main>
 	
-	<!-- eb_mypage상단네비주소 -->
-	<c:import url="../template/myPageNav.jsp"></c:import>
-		
-		<hr>
-			<ul class="mpSubNav ">
-					<li class="mpSubNav-item "><a class="on memberUpdate" href="#">회원정보수정</a></li>
-					<li class="mpSubNav-item "><a class=" " href="#">비밀번호 변경</a></li>
-				<sec:authorize access="hasRole('ROLE_B')">
-					<li class="mpSubNav-item "><a id="brandHome" class=" " href="/brand/home?username=<sec:authentication property="principal.username"/>">브랜드설정</a></li>
-				</sec:authorize>
-			</ul>
-			<hr>
-			<div class="updateBox">
+		<!-- eb_mypage상단네비주소 -->
+		<c:import url="../template/myPageNav.jsp"></c:import>
 			
-<div class="big-bold">회원정보수정</div>
-<p class="text-right font-weight-light"><a href="./delete" class="text-reset">탈퇴하기</a></p>
+		<hr>
+		<ul class="mpSubNav ">
+			<li class="mpSubNav-item "><a class="on memberUpdate" href="#">회원정보수정</a></li>
+			<li class="mpSubNav-item "><a class=" " href="#">비밀번호 변경</a></li>
+			<sec:authorize access="hasRole('ROLE_B')">
+				<li class="mpSubNav-item "><a id="brandHome" class=" " href="/brand/home?username=<sec:authentication property="principal.username"/>">브랜드설정</a></li>
+			</sec:authorize>
+		</ul>
+		<hr>
+		<div class="updateBox">
+			
+			<div class="big-bold">회원정보수정</div>
+			<a href="./delete" class="text-left">탈퇴하기</a>
 	
 	<form:form class="updateFrm" action="./update" modelAttribute="memberVO" method="post" enctype="multipart/form-data">
 		<div class="updateFrm-group">

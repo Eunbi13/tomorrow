@@ -42,24 +42,24 @@
 					<div  hidden="hidden">
 						<form:input class="form-control" placeholder="이메일" path="email" ></form:input>
 					</div>
-					<form:errors path="email" cssStyle="font-size: 0.8em; color: red;"></form:errors> 
+					<form:errors path="email" cssStyle="font-size: 0.7em; color: red;"></form:errors> 
 				</div>
 				<div class="form-group">
 					<div class="bold">비밀번호</div>
-					<div><small>4자 이상 입력해주세요.</small></div>
+					<div class="font-small">4자 이상 입력해주세요.</div>
 					<form:password class="form-control" placeholder="비밀번호" path="password"></form:password>
-					<form:errors path="password" cssStyle="font-size: 0.8em; color: red;"></form:errors> 
+					<form:errors path="password" cssStyle="font-size: 0.7em; color: red;"></form:errors> 
 				</div>
 				<div class="form-group">
 					<div class="bold">비밀번호 확인</div>
 					<form:password class="form-control" placeholder="비밀번호 확인" path="passwordCheck"></form:password>
-					<form:errors path="passwordCheck" cssStyle="font-size: 0.8em; color: red;"></form:errors> 
+					<form:errors path="passwordCheck" cssStyle="font-size: 0.7em; color: red;"></form:errors> 
 				</div>
 				<div class="form-group">
 					<div class="bold">별명</div>
-					<div><small>다른 유저와 겹치지 않는 별명을 입력해주세요. (2~15자)</small></div>
+					<div class="font-small">다른 유저와 겹치지 않는 별명을 입력해주세요. (2~15자)</div>
 					<form:input type="text" class="form-control" placeholder="별명 (2~15자)" path="username"></form:input>
-					<form:errors path="username" cssStyle="font-size: 0.8em; color: red;"></form:errors> 
+					<form:errors path="username" cssStyle="font-size: 0.7em; color: red;"></form:errors> 
 				</div>
 				
 			<div class="bold">약관동의</div>
