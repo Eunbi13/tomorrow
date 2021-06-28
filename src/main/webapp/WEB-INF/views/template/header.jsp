@@ -63,13 +63,13 @@
 </header>	
 <div class="sticky-chlid">
 	<div class="subNav ">	
-		<div class="subNav-item  aa" id="item-community" hidden="hidden">
+		<div class="subNav-item  aa" id="item-community" >
 				<div class="subNav-item-one">홈</div>
 				<div class="subNav-item-one">집들이</div>
 		</div>
 
 		
-	<div class="subNav-item  aa" id="item-store"  hidden="hidden">
+	<div class="subNav-item  aa" id="item-store"  >
 		<div class="subNav-item-one">스토어홈</div>
 		<div class="subNav-item-one">카테고리</div>
 	</div>
