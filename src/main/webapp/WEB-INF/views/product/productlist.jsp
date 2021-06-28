@@ -205,7 +205,7 @@ btn-secondary {
 	
 	<!-- 카테고리 슬라이드 -->
 	<div class="cat-slide">
-	<c:import url="../template/categorySlideT2.jsp"></c:import>
+	<c:import url="../template/categorySlideT.jsp"></c:import>
 	</div>
 	
 	

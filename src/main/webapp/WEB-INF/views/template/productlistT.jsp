@@ -30,7 +30,10 @@
 </style>
 </head>
 <body>
+	
+	<h1 style="margin: 20px; margin-top: 70px;">오늘의 딜</h1> 
 	<div class="item-container">
+	
 	<c:forEach items="${productlist}" var="vo">
 		<div class="store-list-item-card">
 			<a href="./productselect2?productNum=${vo.productNum}">
