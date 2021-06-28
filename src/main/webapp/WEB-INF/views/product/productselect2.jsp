@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- PRODUCT SELECT //// STORE -->
 <!-- class 이름 정리 -->
 <!DOCTYPE html>
@@ -100,6 +101,7 @@ text-align:center;
 </style>
 </head>
 <body>
+<main>
 	<c:import url="../template/header.jsp"></c:import>
 
 	<div class="main">
@@ -120,6 +122,15 @@ text-align:center;
 			</button>
 			</li>
 			<li >	
+			<div id="test" title="${project.mediaFiles}">
+				<c:forEach items="${project.mediaFiles}" var="media">
+					<c:if test="${media.division eq 'photo'}">
+						<img
+							src="../resources/images/project/f/${project.num}/${media.fileName}">
+					</c:if>
+
+				</c:forEach>
+			</div>
 			<button class="main-pic-small-bt">
 				<img alt="상품이미지"
 				src="../resources/images/categoryPic/A1.webp">
@@ -148,7 +159,8 @@ text-align:center;
 				<div class="price-div">
 				<!-- 할인율 계산 후 표시 -->
 				<c:if test="${((vo.productPrice - vo.discountPrice)/100) != 0}">
-					<div class="price-percent" style="font-size: 17px; margin-right: 10px;">${(vo.productPrice - vo.discountPrice)/100}%
+					<div class="price-percent" style="font-size: 17px; margin-right: 10px;">
+					<fmt:parseNumber value="${(vo.productPrice - vo.discountPrice)/100}" integerOnly="true" />%
 					</div>
 				</c:if>
 				<!-- 원가 -->
@@ -278,5 +290,6 @@ text-align:center;
 	<!-- <script type="text/javascript" src="../resources/js/productSelect.js"></script> -->
 	<script type="text/javascript" src="../resources/js/productSelect2.js"></script>
 	<script type="text/javascript" src="../resources/js/productSelect3.js"></script>
+</main>
 </body>
 </html>
