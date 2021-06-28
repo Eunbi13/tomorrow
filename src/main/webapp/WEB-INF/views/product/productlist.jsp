@@ -11,13 +11,12 @@ h5 {
 }
 
 * {
-	box-sizing: border-box
+	box-sizing: border-box;
 }
 
 .bannerslideshow-container {
 	width: 100%;
 	height: 15%;
-	position: static;
 	margin: auto;
 }
 
@@ -156,12 +155,20 @@ to {
 btn-secondary {
 	float: left;
 }
+/* productlist 불러오는 부분에 flex 설정 (flex-container) */
+.productList-T{ 
+	width: 100%;
+} 
+.cat-slide{
+	width: 100%;
+}
 </style>
 <c:import url="../template/bootStrap.jsp"></c:import>
 <meta charset="UTF-8">
 <title>store list</title>
 </head>
 <body>
+<main>
 	<c:import url="../template/header.jsp"></c:import>
 
 	<div class="bannerslideshow-container">
@@ -195,13 +202,17 @@ btn-secondary {
 	<br>
 
 	<!-- 카테고리 슬라이드 -->
+	<div class="cat-slide">
 	<c:import url="../template/categorySlideT.jsp"></c:import>
-
-	<!-- 상품 리스트 -->
-	<c:import url="../template/productlistT.jsp"></c:import>
+	</div>
 	
+	
+	<!-- 상품 리스트 -->
+	<div class="productList-T">
+	<c:import url="../template/productlistT.jsp"></c:import>
+	</div>
 
 	<script type="text/javascript" src="../resources/js/productList.js"></script>
-
+</main>
 </body>
 </html>

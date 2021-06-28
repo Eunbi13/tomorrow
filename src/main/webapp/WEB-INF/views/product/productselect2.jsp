@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- PRODUCT SELECT //// STORE -->
 <!-- class 이름 정리 -->
 <!DOCTYPE html>
@@ -389,24 +390,22 @@ textarea:focus {
 			<div class="main-pic-wrap"> 
 			<!-- select 좌측 작은 사진 -->
 			<ul class="main-pic-small" >
-				<li >	
-				<button class="main-pic-small-bt">
-					<img alt="상품이미지" class="pic-small"
-					src="../resources/images/categoryPic/A1.webp">
-				</button>
-				</li>
-				<li >	
-				<button class="main-pic-small-bt">
-					<img alt="상품이미지" class="pic-small"
-					src="../resources/images/categoryPic/A1.webp">
-				</button>
-				</li>
-				<li >	
-				<button class="main-pic-small-bt">
-					<img alt="상품이미지" class="pic-small"
-					src="../resources/images/categoryPic/A1.webp">
-				</button>
-				</li>
+				<c:choose>
+				<c:when test="">
+					<c:forEach items="${productlist}" var="vo">
+						<li >	
+						<button class="main-pic-small-bt">
+							<img alt="상품이미지" class="pic-small"
+							src="../resources/images/categoryPic/A1.webp">
+						</button>
+						</li>
+					</c:forEach>	
+				</c:when>
+				</c:choose>
+				
+				
+				
+				
 			</ul>
 				<!-- select 메인 우측 사진 -->
 				<div class="main-pic-big">
@@ -430,7 +429,8 @@ textarea:focus {
 				<div class="price-div" style=" margin-bottom:0px; ">
 				<!-- 할인율 계산 후 표시 -->
 				<c:if test="${((vo.productPrice - vo.discountPrice)/100) != 0}">
-					<div class="price-percent" style="font-size: 17px; margin-right: 10px;">${(vo.productPrice - vo.discountPrice)/100}%
+					<div class="price-percent" style="font-size: 17px; margin-right: 10px;">
+					<fmt:parseNumber value="${(vo.productPrice - vo.discountPrice)/100}" integerOnly="true" />%
 					</div>
 				</c:if>
 				<!-- 원가 -->
