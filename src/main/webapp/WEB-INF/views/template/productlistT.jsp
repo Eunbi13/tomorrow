@@ -75,13 +75,13 @@
 					
 					<div class="minbanner-ship" style="float:left; font-size:15px; color:#A63F82; text-align:left; margin-right: 3px;" >
 						<c:if test="${vo.shippingFee eq 0 }">
-							<div>무료배송   </div>
+							<div> <button disabled="disabled">무료배송</button>    </div>
 						</c:if>
 					</div>
 					
-					<div class="minbanner-price" style="float:left; font-size:15px; color:#A63F82; text-align:left;">
+					<div class="minbanner-price" style="float:left; font-size:15px; color:#A63F82; text-align:left; ">
 						<c:if test="${((vo.productPrice - vo.discountPrice)/100) >=20}">
-							<div>특가</div>
+							<div><button disabled="disabled" style="b">특가</button></div>
 						</c:if>
 					</div>
 					

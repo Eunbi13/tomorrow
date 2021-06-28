@@ -44,7 +44,7 @@ h5 {
 }
 
 .next {
-	right: 0;
+	right: 200px;
 	border-radius: 3px 0 0 3px;
 }
 
