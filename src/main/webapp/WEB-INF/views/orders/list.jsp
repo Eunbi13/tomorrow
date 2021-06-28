@@ -316,7 +316,6 @@ webkit-box-flex: 1; */
 							    주문상태 
 							  </button>
 							  <div class="dropdown-menu" style="font-size:16px;"> 
-							    <div class="dropdown-item status" title="list">입금대기</div>
 							    <div class="dropdown-item status" title="2">결제완료</div>
 							    <div class="dropdown-item status" title="3">배송준비</div>
 							    <div class="dropdown-item status" title="4">배송중</div>

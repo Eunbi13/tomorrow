@@ -57,7 +57,6 @@
 				
 				orderNum in
 				
-
 						(select C.orderNum from 
 					    		((select * from orders where 
 								

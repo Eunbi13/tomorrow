@@ -435,7 +435,6 @@ webkit-box-flex: 1; */
 							    주문상태 
 							  </button>
 							  <div class="dropdown-menu" style="font-size:16px;"> 
-							    <div class="dropdown-item status" title="list">입금대기</div>
 							    <div class="dropdown-item status" title="2">결제완료</div>
 							    <div class="dropdown-item status" title="3">배송준비</div>
 							    <div class="dropdown-item status" title="4">배송중</div>
@@ -662,11 +661,10 @@ webkit-box-flex: 1; */
 			console.log("previous:"+previous);
 		    
 			let content =$(this).text();
-			console.log($(this).attr("title"));
 			 before_num =$(this).attr("title");
 			console.log("status_num:"+ before_num);
 			
-			console.log('attr.name:'+$(".sm-btn").attr("name"));
+			console.log('attr.title:'+$(".sm-btn").attr("title"));
 			
 			
 			if($(".sm-btn").attr("title")=="before"){
@@ -700,7 +698,8 @@ webkit-box-flex: 1; */
 			
 			
 			let be =before_num;
-			 let st =$("#status").val();
+		    let st =$("#status").val();
+		    console.log("st:"+st);
 		
 			$.ajax({
 				type: "get", 
@@ -734,25 +733,26 @@ webkit-box-flex: 1; */
 		console.log("previous:"+previous);
 	    
 		let content =$(this).text();
-		console.log($(this).attr("title"));
+		console.log("content:"+content);
+		
 		status_num =$(this).attr("title");
 		console.log("status_num:"+status_num);
 		
-		console.log('attr.name:'+$(".sm-btn").attr("name"));
+		console.log('attr.title:'+$(".sm-btn").attr("title"));
 		
-			$(".sm-btn").each(function(){
-				if($(this).attr("title")=="status"){
-					console.log("  status가 이ㅁ 존재 ");
+			$(".sm-btn").each(function(){ //이미 선택되어 생성된 보라색 버튼을 반복검사해 주문상태 버튼이 있는지 알아내기
+				if($(this).attr("title")=="status"){ 
+					console.log("  status가 이미 존재 ");
 					console.log($(this).val());
-					$("#statusBtn").each(function(){
-						if($(this).val()==previous){
-							console.log("삭제될 것의 타이는?"+$(this).val());
-							$(this).remove();
-							$("#status").remove();
+						$("#statusBtn").each(function(){ //주문상태 버튼이 있다면 경우, 삭제
+							if($(this).val()==previous){ 
+								console.log("삭제될 것의 숫자는?"+$(this).val());
+								$(this).remove();
+								$("#status").remove();
+								
+							}
 							
-						}
-						
-					});
+						});
 					
 				}
 				
@@ -773,7 +773,8 @@ webkit-box-flex: 1; */
 				 let be =$("#before").val();
 			     let st =status_num;
 				
-				
+			     console.log("be:"+be);
+			     console.log("st"+st);
 				 
 				$.ajax({
 					type: "get", 

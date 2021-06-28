@@ -98,13 +98,20 @@ public class BrandController {
 	@GetMapping("ajaxBrandOrder") 
 	public ModelAndView ajaxBrandOrder(BrandVO brandVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		System.out.println(brandVO.getUsername() + "님 입장!!");
-		
-	    brandVO	=brandService.getBrandInfo(brandVO);
+		//접속되어있는 username을 가져와서 brandVO에 넣어준다.
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal; 
+		String username = userDetails.getUsername();
+	    brandVO.setUsername(username); 
+	    //brandVO의 username을 이용해 brandNum을 알아내서 다시 brandVO에 brandNum을 넣는다. 
+	    BrandVO brandVO2=brandService.getBrandInfo(brandVO);
+	    brandVO.setBrandNum(brandVO2.getBrandNum());
 	    
 	    List<OrdersVO> ar = brandService.getCartList(brandVO);
 	    List<OrdersVO> orderAr = brandService.getOrderList(brandVO);
-		
+	
+	    brandVO	=brandService.getBrandInfo(brandVO);
+	
 		
 	    mv.addObject("brandVO", brandVO);
     	mv.addObject("ar", ar);
