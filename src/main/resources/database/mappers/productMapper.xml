@@ -178,6 +178,13 @@
 			ON p.brandNum = b.brandNum
 			WHERE p.productNum=#{productNum}
     	</select>
+    	
+    	<select id="getImageList" parameterType="ProductVO" resultMap="result">
+    		SELECT img.* FROM product P 
+    		left JOIN productimages img 
+    		ON p.productNum=img.productNum 
+    		WHERE p.productNum=#{productNum}
+    	</select>
     
     
     </mapper>

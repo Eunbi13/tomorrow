@@ -1,18 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+/* flex-item / 4개씩 정렬 */
+.item-container{
+	display: flex;
+	justify-content: space-around;
+	flex-flow: wrap;
+}
+.store-list-item-card{
+	margin-right: 5px;
+	flex-basis: 25%
+	display: flex;
+ 	flex-direction: column;
+}
+.item-img{
+	max-width:100%;
+	max-height:100%;
+	flex: auto;
+}
+
+</style>
 </head>
 <body>
-	
+	<div class="item-container">
 	<c:forEach items="${productlist}" var="vo">
 		<div class="store-list-item-card">
 			<a href="./productselect2?productNum=${vo.productNum}">
-			<img class="item-img" src="../resources/images/storeEX/glove.webp"
+			<img class="item-img" src="../resources/images/storeEX/plate.webp"
 				alt="item pic">
 				
 				<!-- 브랜드 이름 -->
@@ -30,8 +51,11 @@
 					<c:choose>
 						<c:when test="${vo.discountPrice eq vo.productPrice}"></c:when>
 						<c:otherwise>
-							<div class="item-price discountpercent" 
-								style="color: #A63F82; margin-right: 10px;">${(vo.productPrice - vo.discountPrice)/100}%</div>
+							<div class="item-price discountpercent" id="item-price-discount"
+								style="color: #A63F82; margin-right: 10px;">
+								<fmt:parseNumber value="${(vo.productPrice - vo.discountPrice)/100}" integerOnly="true" />%
+							</div>
+						
 						</c:otherwise>
 					</c:choose>
 
@@ -39,10 +63,10 @@
 					<div class="item-price won" style="color: black;">
 						${vo.discountPrice}원</div>
 				</div>
-	
+				
 				<!-- 무배 특가 미니배너 -->
 				<div class="minbanner">
-					<div class="minbanner-ship">
+					<div class="minbanner-ship" >
 						<c:if test="${vo.shippingFee eq 0 }">
 							<div>무료배송</div>
 						</c:if>
@@ -58,6 +82,8 @@
 			</a>
 		</div>
 	</c:forEach>
+	</div>
+
 
 
 </body>
