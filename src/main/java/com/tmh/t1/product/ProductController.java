@@ -124,10 +124,7 @@ public class ProductController {
 		model.addAttribute("vo", productVO);
 	}
 
-	//select -> cart로 넘어가야 하는 값
-//	brandNum - product
-//	productNum - product
-//	optionNum - options
+
 	@GetMapping("productselect2")
 	public void getSelect2(ProductVO productVO, Model model)throws Exception{
 		productVO = productService.getSelect(productVO);
