@@ -307,8 +307,91 @@ margin-bottom:6px;
 }
 
 .agree{
- background-color: gray;
+ background-color: 	hsl(0, 0%, 93%);
+ border-bottom-left-radius: 5px;
+border-bottom-right-radius: 5px;
 }
+.agree1{
+  font-size: 16px;
+  padding:2px 5px;
+  width:100%;
+}
+.agree2{
+font-size: 14px;
+color:#999999;
+ padding:0px 5px 5px 5px;
+}
+
+.agree4{
+font-weight:lighter;
+font-size: 14px;
+color:#999999;
+
+}
+.agree5{
+font-size: 12px;
+font-weight:bold;
+color:#999999;
+padding-right:10px;
+
+}
+
+.agreeBtn{
+
+border:0;
+ouling:0;
+
+}
+.flex-column{
+border: #d9d9d9 1px solid;
+
+ background-color: 	hsl(0, 0%, 97%);
+
+
+}
+
+ul{
+font-size:10px;
+color:#999999;
+padding-left:20px;
+}
+
+.agree-header{
+ text-align:center;
+ font-size:16px;
+}
+.agree-footer{
+ text-align:center;
+}
+
+.agree-modal-dialog{
+  width: 600px;
+  height: 500px;
+}
+.agreeTd{
+	backgroun-color:#d9d9d9;
+	font-weight:bold;
+	color:#808080;
+	text-align: center;
+}
+
+.agree-add{
+font-size:14px;
+}
+
+.modal-dialog.modal-fullsize {
+  width: 600px;
+  height: 500px;
+  margin: 0;
+  padding: 0;
+}
+.modal-content.modal-fullsize {
+  height: auto;
+  min-height: 100%;
+  border-radius: 0; 
+}
+
+
 </style>
 </head>
 <body>
@@ -848,6 +931,55 @@ margin-bottom:6px;
 	       
 				
             </section>
+            
+       <!--  약관동의 The Modal -->
+  <div class="modal fade" id="agreeModal">
+    <div class="modal-dialog  modal-lg " >
+      <div class="modal-content ">
+      
+        <!-- Modal Header -->
+        <div class="modal-header agree-header" style="text-align:center;">
+          <h4 class="agree-modal-title" style="text-align:center; font-size:20px;">개인정보 제 3자 제공</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          	<table>
+          	 	<tr>
+          	 		<td class="agreeTd">제공 받는자</td>
+          	 		<td class="agreeTd">제공목적</td>
+          	 		<td class="agreeTd">항목</td>
+          	 		<td class="agreeTd">보유 및 이용기간</td>
+          	 	</tr>
+          	 	<tr>
+          	 		<td>주식회사 홈니즈</td>
+          	 		<td>상품 및 경품(서비스) 배송(전송), 제품 설치, 반품, 환불, 고객상담 등 정보통신서비스제공계약 및 전자상거래(통신판매)계약의 이행을 위해 필요한 업무의 처리</td>
+          	 		<td>1) 구매자정보(닉네임, 이름, 휴대폰번호, 이메일주소)
+						2) 수령인정보(이름, 휴대폰번호, 주소)
+						3) 상품 구매, 취소, 반품, 교환정보
+						4) 송장정보
+						5) 개인통관고유부호 (해외배송상품 구매시)
+					</td>
+          	 		<td>서비스 제공 목적 달성시 까지
+
+					단, 관계 법령이 정한 시점까지 보존
+					</td>
+          	 	</tr>
+          	</table>
+          	
+          	<div class="agree-add">개인정보 제공에 동의하지 않으실 수 있으며, 동의하지 않으실 경우 서비스 이용이 제한될 수 있습니다.</div>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer agree-footer" style="text-align:center;">
+          <button type="button" class="btn agree-btn btn-secondary" data-dismiss="modal" style="text-align:center; font-size:18px;">확인</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
           
              
            
@@ -874,7 +1006,7 @@ margin-bottom:6px;
                 <div class="border-top px-4 mx-3"> </div>
                 
              
-                <div class="border-top px-4 mx-3"> </div>
+               
                 
                 <div class="p-2 d-flex pt-3">
                     <div class="col-8 ordersSub4"><b>최종 결제 금액</b></div>
@@ -883,7 +1015,29 @@ margin-bottom:6px;
                     <div class="ml-auto" id="payment" title="${ordersVO.payment}"><b class="green money2"> ${ordersVO.payment}원</b></div>
                 </div>
                 <div class="p-2 d-flex pt-3 agree">
-                   <div class="middle">  <input type="checkbox"> 아래 내용에 모두 동의합니다. (필수) </div>
+                   <div class="agree1">  <input type="checkbox">&nbsp;&nbsp; 아래 내용에 모두 동의합니다. (필수)
+                       <hr style="border: solid 1px #d9d9d9;">
+                    <div class="agree3"> 
+                      <ul>
+	                       <li>
+		                        <div class="agree4" style="float:left;"> 개인정보 제 3자 제공 </div>
+		                       <div class="agree5" style="float:right;"> 
+		                         <!-- Button to Open the Modal -->
+								  <button type="button" class="agreeBtn" data-toggle="modal" data-target="#agreeModal">
+								    약관보기 >
+								  </button>
+		                       
+		                       </div> 
+	                       </li>
+                       </ul>
+                    </div>
+                   <div class="agree2"> 본인은 만 14세 이상이고, 위 내용을 확인하였습니다. </div>
+                   
+                    </div>
+
+                   
+                    
+                   
                 </div>
                 
             </div>
