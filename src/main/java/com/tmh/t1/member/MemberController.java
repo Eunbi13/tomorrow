@@ -6,6 +6,7 @@ import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -16,6 +17,9 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.tmh.t1.util.FileManager;
 
 @Controller
 @RequestMapping("/member/**")
@@ -23,6 +27,8 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	
+	
 	
 	//eb_회원 탈퇴
 	@GetMapping("delete")
@@ -42,15 +48,27 @@ public class MemberController {
 		return "member/memberUpdate";
 	}
 	@PostMapping("update")
-	public String memberUpdate(Authentication auth, Model model, @Valid MemberVO memberVO, Errors errors)throws Exception{
+	public String memberUpdate(Authentication auth,MultipartFile profileImage, Model model, @Valid MemberVO memberVO, Errors errors)throws Exception{
+		
 		//별명(username)이 변경되었을 경우
 		if(!auth.getName().equals(memberVO.getUsername())) {
-			if(memberService.usernameErrors(memberVO, errors)) {
+			System.out.println("username change");
+			if(!memberService.usernameErrors(memberVO, errors)) {
+				System.out.println("이미 있는 이름");
 				return "member/memberUpdate";
+				
 			}
 		}
 		
-		memberService.memberUpdate(memberVO);
+		String filename =memberService.memberUpdate(memberVO,  profileImage);
+		//session에 담기는 정보 수정
+		MemberVO mem=(MemberVO)auth.getPrincipal();
+		mem.setUsername(memberVO.getUsername());
+		mem.setHomePage(memberVO.getHomePage());
+		mem.setGender(memberVO.getGender());
+		mem.setBirthDay(memberVO.getBirthDay());
+		mem.setIntro(memberVO.getIntro());
+		mem.setProfileImage(filename);
 		
 		return "redirect:/member/myPage";
 	}
