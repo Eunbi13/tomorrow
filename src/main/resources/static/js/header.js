@@ -6,9 +6,11 @@ $(document).ready(function(){
 	open();
 	function open(){
 		//class="on"인 메뉴의 서브네비 보여주기
-		$('.subNav-item').hide();
 		let title =$('.on').attr('title');
-		$('.'+title).show();
+		console.log(title)
+		//let subNavItem=$('.'+title).html();
+		//$('.subNav').html(subNavItem);
+		$('#'+title).show();
 	}
 	//nav클릭할경우
 	$('nav a').click(function(){
@@ -16,6 +18,28 @@ $(document).ready(function(){
 		$(this).addClass('on');
 		open();
 	})
+	
+	$('.mainNav-item a').mouseenter(function(){
+		//let subNavItem=$('.item-community').html();
+		//$('.subNav').html(subNavItem);
+		let title =$(this).attr('title');
+		$('.subNav-item').hide();
+		$('#'+title).show();
+	})
+	
+	$('a[title="item-community"]').mouseleave(function(){
+		open();
+	})
+	
+	$('a[title="item-store"]').mouseenter(function(){
+		let subNavItem=$('.item-store').html();
+		$('.subNav').html(subNavItem);
+	})
+	
+	$('a[title="item-store"]').mouseleave(function(){
+		open();
+	})
+	
 	/*
 		프로필 드랍박스 보더 설정
 		홀수면 프로필 드랍박스 클릭한 것임으로 css 설정
