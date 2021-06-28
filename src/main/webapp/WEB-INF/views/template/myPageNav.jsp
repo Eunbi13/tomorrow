@@ -8,6 +8,10 @@
  	margin:0.5rem 0;
  }
 	/* 상단네비 */
+	ul, li{
+		list-style: none;
+		margin: 0.5rem 0;
+	}
 	.mpNav{
 		display: flex;
 		justify-content : center;
