@@ -3,6 +3,10 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
  <style>
+ ul, li{
+ 	list-style:none;
+ 	margin:0.5rem 0;
+ }
 	/* 상단네비 */
 	.mpNav{
 		display: flex;

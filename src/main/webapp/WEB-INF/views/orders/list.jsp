@@ -245,6 +245,7 @@ webkit-box-flex: 1; */
 <body>
 <c:import url="../template/header.jsp"></c:import>
 <main>
+<c:import url="../template/myPageNav.jsp"></c:import>
 
 <div class="container">
  <div style="font-size:24px; font-weight:bold; margin-top:40px;"> 주문배송내역 조회</div> 
