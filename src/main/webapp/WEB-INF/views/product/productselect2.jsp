@@ -462,7 +462,7 @@ ol li:before {
             
 			<div class="brand-url">
 				<c:if test="${brandVO.brandNum eq productVO.brandNum}">
-					    <a href="./">
+					    <a href="../brand/home?brandNum=${vo.brandVO.brandNum}">
 						<div style="border: blue 0px solid; height:30px">
 						 
 							<span style="float:left;">

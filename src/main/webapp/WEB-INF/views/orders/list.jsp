@@ -9,6 +9,9 @@
 <title>Insert title here</title>
 <link href='https://css.gg/close-o.css' rel='stylesheet'>
 <style>
+.shipping{
+color: gray;
+}
 .btn-close{
     background-image: url(/images/oPic/icons-close.png); /* 16px x 16px */
     background-color: transparent; /* make the button transparent */
@@ -30,7 +33,7 @@
 	background-color: #e5b8d7;
 	color:#A63F82;
 	border-color: #e5b8d7;
-	padding:2px 5px 2px 10px;
+	padding:9px 5px 5px 10px;
 	border-radius: 5px;
 	border: 0;
 	outlin:0;
@@ -227,6 +230,16 @@ webkit-box-flex: 1; */
     padding-bottom:60px;
 }
 
+.opDetail{
+ margin: 10px 0px;
+}
+
+.prName{
+   font-weight: bold; 
+   margin-top:10px;
+   font-size:18px;
+   }
+
 </style>
 </head>
 <body>
@@ -364,13 +377,13 @@ webkit-box-flex: 1; */
 															  </td>
 															    <td style="width: 38%; font-size: 16px;">
 															      ${brandVO.brandName}
-															      <div style="font-weight: bold; margin-top:10px;"> ${cartVO.productVO.productName} </div>
+															      <div class="prName" style="font-weight: bold; margin-top:10px;"> ${cartVO.productVO.productName} </div>
 															     </td>
 															     
-															    <td style="width: 37%; font-size:18px;">
-																    ${cartVO.unitName}
-																    <div> ${cartVO.cartPrice}원 | ${cartVO.amount}개</div>
-							 						                         <div style="color:#A63F82;"> 
+															    <td style="width: 37%; font-size:18px; ">
+																    <div class="opDetail"> ${cartVO.unitName} </div>
+																    <div class="opDetail"> ${cartVO.cartPrice}원 | ${cartVO.amount}개</div>
+							 						                         <div class="opDetail" style="color:#A63F82;"> 
 								 						                         <c:if test="${cartVO.validity==2}">
 								 					                             	결제완료 | 일반택배배송
 								 						                         </c:if> 
