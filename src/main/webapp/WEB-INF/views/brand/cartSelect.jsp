@@ -60,7 +60,7 @@
 			           		 <c:if test="${cartVO.validity>7}">
                                <li>
 				           		 취소/교환/반품 사유:
-				           		( ${cartVO.cancel} ) ${cartVO.cancelMemo}
+				           		( ${cartVO.cancel}) ${cartVO.cancelMemo}
 			           		   </li>
 			           		 </c:if>
 			           		
@@ -156,19 +156,19 @@
 									<div class="form-check form-check-inline btn-sel">
 									  <input class="form-check-input" type="radio" name="validity" id="validity4" value="4">
 									  <label class="form-check-label" for="inlineRadio2">
-									  		 배송중(출고완료)    <!-- 누르면 택배사, 운송장번호를 입력해야하고 완료하면 validity=4 에서 4로 변함! -->
+									  	 배송중(출고완료)    <!-- 누르면 택배사, 운송장번호를 입력해야하고 완료하면 validity=4 에서 4로 변함! -->
 									  </label>
 									</div>
 									<div class="form-check form-check-inline btn-sel">
 									  <input class="form-check-input" type="radio" name="validity" id="validity5" value="5">
 									  <label class="form-check-label" for="inlineRadio3">
-									   배송완료  <!-- 보통 배송api를 통새 주문상태가 변경, 직접 변경가능 -->
+									    배송완료  <!-- 보통 배송api를 통새 주문상태가 변경, 직접 변경가능 -->
 									  </label>
 									</div>
 									<div class="form-check form-check-inline btn-sel">
 									  <input class="form-check-input" type="radio" name="validity" id="validity6" value="6">
 									  <label class="form-check-label" for="inlineRadio4">
-									  		 구매확정  <!-- 보통 회원이 변경, 직접 변경가능, 배송완료 후 일주일 후 자동 변경기능 만들 예정 ->정산확정금액에 포함됨 -->
+									    구매확정  <!-- 보통 회원이 변경, 직접 변경가능, 배송완료 후 일주일 후 자동 변경기능 만들 예정 ->정산확정금액에 포함됨 -->
 									  </label>
 									</div>
 				           		
@@ -191,7 +191,7 @@
 				           			<div class="form-check form-check-inline btn-sel">
 									  <input class="form-check-input" type="radio" name="validity" id="validity12" value="12">
 									  <label class="form-check-label" for="inlineRadio12">
-									       취소완료<!-- 누르면 validity=2 에서 3으로 변함! -->
+									       취소완료<!-- 누르면 validity=11 에서 12으로 변함! -->
 									   </label>
 									</div>
 									
@@ -268,7 +268,6 @@
 			      
 			        
 			        
-			        <c:if test="${cartVO.carrierId eq null}">
 					        <div style="margin-bottom:0px; border: 1px solid #FFF;">
 									<div style="float:left; margin: 40px 0px 40px 20px;">
 								       	   <div class="modalTitle"> 배송 정보 </div>
@@ -290,7 +289,7 @@
 					           <tr class="tr-bottom"> 
 					           		<td class="subTitle">택배사</td>
 					           		<td class="subContent"> 
-					           			<select name="carrierId" id="carrierId">
+					           			<select name="carrierId" id="carrierId" class="carrierId" title="${cartVO.carrierId}">
 					           			       <option selected disabled>선택하세요</option>
 					           			       <option value="kr.epost">우체국 택배</option>
 						           			   <option value="kr.cjlogistics">CJ대한통운</option>
@@ -308,59 +307,29 @@
 					           </tr>
 					           <tr class="tr-bottom"> 
 					           		<td class="subTitle">운송장 번호</td>
-					           		<td class="subContent"> <input type="text" name="trackId" id="trackId"> </td>
+					           		<td class="subContent"> <input type="text" value="${cartVO.trackId}" name="trackId" id="trackId"> </td>
 					           </tr>
 					            
 					           
 					        </table>
-			        </c:if>	
-			        <c:if test="${cartVO.carrierId ne null && cartVO.trackId ne null &&  cartVO.trackId ne'' &&  carrierId ne''}">
-			        		<div style="margin-bottom:0px; border: 1px solid #FFF;">
-							<div style="float:left; margin: 40px 0px 40px 20px;">
-						       	   <div class="modalTitle"> 배송 정보 </div>
-						    </div>
-					       	 <div class="detailSelect" style="float:right; margin: 45px 20px 40px 0px;">
-					        		<a class="detailSelect" > 실배송비는 주문자에게 노출되지 않습니다.  </a>
-					         </div>
-					     </div>
-					             <hr style="margin-top:75px;">
-			        <table class=""> 
-			           <tr class="tr-bottom tr-first"> 
-			           		<td class="subTitle">배송 수단</td>
-			           		<td class="subContent">택배 조건부 무료(선불) </td>
-			           </tr>
-			            <tr class="tr-bottom"> 
-			           		<td class="subTitle">배송비 결제</td>
-			           		<td class="subContent">${cartVO.brandShipping}원</td>
-			           </tr>
-			           <tr class="tr-bottom"> 
-			           		<td class="subTitle">택배사</td>
-			           		<td class="subContent"> 
-			           			<input readonly type="text"  value="${cartVO.carrierId}" id="trackId">
-			           		</td>
-			           </tr>
-			           <tr class="tr-bottom"> 
-			           		<td class="subTitle">운송장 번호</td>
-			           		<td class="subContent"> <input readonly type="text" value="${cartVO.trackId}" id="trackId"> </td>
-			           </tr>
-			           
-			 
-			           <tr class="tr-bottom"> 
-			           		<td class="subTitle">배송추적</td>
-			           		<td class="subContent">	  <button  type="button" class="btn btn-orders" id="delivery" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적</button></td>
-			           </tr>
-			            
-			           
-			        </table>
 			        
-			        </c:if>
-			                      </form>	
+			     </form>	
 			    	      
 			        
 			        
   
 <script type="text/javascript">
 
+ //carrierID 가 있다면 selectBox에 표시 하기
+ 
+ let carrierId =$("#carrierId").attr("title");
+if(carrierId != null){
+	
+	$('#carrierId').val(carrierId).prop("selected",true);
+	
+	 //$('select.carrierId option[value=' + carrierId + ']').attr('selected', 'selected');
+	
+}
 
  //delivery_tracking pop up 띄우기
 

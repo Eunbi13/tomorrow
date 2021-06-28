@@ -89,6 +89,7 @@ public class BrandController {
 
     	mv.addObject("orderAr", orderAr);
 		return mv;
+		
 	}
 	
 	//eb_brandAccept(brandAccept용)

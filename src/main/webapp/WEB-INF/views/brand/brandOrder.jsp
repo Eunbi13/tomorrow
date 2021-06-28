@@ -9,10 +9,49 @@
 <c:import url="../template/bootStrap.jsp"></c:import>
 <title>내일부터 하는 인테리어, 내일의 집</title>
 <style>
+
+.btn-close{
+    background-image: url(/images/oPic/icons-close.png); /* 16px x 16px */
+    background-color: transparent; /* make the button transparent */
+    background-repeat: no-repeat;  /* make the background image appear only once */
+    background-position: 99%;  /* equivalent to 'top left' */
+    border: none;           /* assuming we don't want any borders */
+    cursor: pointer;        /* make the cursor like hovering over an <a> element */
+    height: 16px;           /* make this the size of your image */
+    padding-left: 16px;     /* make text start to the right of the image */
+    vertical-align: middle; /* align the text vertically centered */
+
+}
+
+.sm-btn{
+
+    text-align:left;
+    width: 100px;
+    height: 30px;
+    
+	background-color: #A63F82;
+	color:#FFF;
+	border-color: #A63F82;
+	border-radius:50px;
+	font-size: 15px;
+	padding:1px 0px 1px 13px;
+	
+}
+
+.sm-btn:hover, .sm-btnt:focus, .sm-btn:active, .sm-btn.active, .open .dropdown-toggle.sm-btn {
+ 
+	background-color: #732944;
+	color:#FFF;
+	border-color: #732944;
+}
+
 .title2{
 	clear:both;
 	 font-size: 20px;
+	 font-weight: bold;
 	 padding:10px;
+	 margin: 40px 0px 10px 0px;
+	 
 	
 }
 
@@ -39,7 +78,7 @@
 	background-color: #e5b8d7;
 	color:#A63F82;
 	border-color: #e5b8d7;
-	padding:2px 10px 4px 10px;
+	padding:8px 10px 6px 10px;
 	border-radius: 5px;
 	border: 0;
 	outlin:0;
@@ -145,8 +184,12 @@ width:54px;
 .tab{
 border: gray 1px solid;
 }
+
+
+
+
 .tab th{
-  font-size: 14px;
+  font-size: 13px;
   background-color:#F5F5F5;
   border-top: black 2px solid;
   border-bottom: lightgray 2px solid;
@@ -156,6 +199,7 @@ border: gray 1px solid;
 .tab td{
 text-align: center;
 border: lightgray 1px solid;
+padding: 3px 0px;
 }
 
 a{
@@ -230,7 +274,7 @@ webkit-box-flex: 1; */
     padding-bottom:60px;
 }
 .bigTitle{
-    margin-top:40px; 
+    margin:50px 0px 30px 0px; 
  	font-weight: bold;
  	font-size: 24px;
 }
@@ -238,7 +282,11 @@ webkit-box-flex: 1; */
     margin-top:20px; 
  	font-weight: 400;
  	font-size: 20px;
- 	color:#cccccc;
+ 	color:gray;
+}
+
+.bold{
+ font-weight: bold;
 }
 
 </style>
@@ -246,7 +294,7 @@ webkit-box-flex: 1; */
 <body>
 <c:import url="../template/header.jsp"></c:import>
 
-
+<main>
 
 <!-- 주문서 orderDetail Modal -->
 <div class="modal fade orderModal" id="orderDetail" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -289,9 +337,9 @@ webkit-box-flex: 1; */
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">
 	 				<div>주문관리</div>
-	 				<div>신규주문</div>
+	 				<div class="bold">신규주문</div>
  				</div>
- 				<div class="order_list_menu_list_value"> 0 </div>
+ 				
  				
  			</div>
  		</a>
@@ -299,18 +347,18 @@ webkit-box-flex: 1; */
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">
  					<div>발송관리</div>
-	 				<div>발송대상</div>
+	 				<div class="bold">발송대상</div>
  				</div>
- 				<div class="order_list_menu_list_value"> 0 </div>
+ 				
  			</div>
  		</a>
  		<a class="order_list_menu_list" href="/order/list?before=24&status=2">
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">
  					<div>취소관리</div>
-	 				<div>취소요청</div>
+	 				<div class="bold">취소요청</div>
  				</div>
- 				<div class="order_list_menu_list_value"> 0 </div>
+ 				
  			</div>
  		</a>
 
@@ -321,9 +369,8 @@ webkit-box-flex: 1; */
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">
 	 				<div>배송관리</div>
-	 				<div>배송중</div>
+	 				<div class="bold">배송중</div>
  				</div>
- 				<div class="order_list_menu_list_value"> 0 </div>
  				
  			</div>
  		</a>
@@ -331,27 +378,25 @@ webkit-box-flex: 1; */
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">
  					<div>클레임관리</div>
-	 				<div>반품접수</div>
+	 				<div class="bold">반품접수</div>
  				</div>
- 				<div class="order_list_menu_list_value"> 0 </div>
+ 				
  			</div>
  		</a>
  		<a class="order_list_menu_list" href="/order/list?before=24&status=2">
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">
  					<div>클레임관리</div>
-	 				<div>교환접수</div>
+	 				<div class="bold">교환접수</div>
  				</div>
- 				<div class="order_list_menu_list_value"> 0 </div>
  			</div>
  		</a>
  		<a class="order_list_menu_list" href="/order/list?before=24&status=2">
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">
  					<div>정산관리</div>
-	 				<div>정산확정금액</div>
+	 				<div class="bold">정산확정금액</div>
  				</div>
- 				<div class="order_list_menu_list_value"> 0 </div>
  			</div>
  		</a>
 
@@ -403,7 +448,7 @@ webkit-box-flex: 1; */
 							  </div>
 							 </div>
 						  </li>
-						  <li class="filter-bar_tag-list_item filter-bar_control-list_item-icon" style="margin: 0px 10px 30px 0px; ">
+						  <li class="filter-bar_tag-list_item filter-bar_control-list_item-icon" style="margin: 0px 10px 30px 0px; clear:both; ">
 						     <form id="listFrm" action="../orders/list" method="get">
 							    <div id="before_search" class="search" style="float:left; margin-right:10px;">
 								  
@@ -601,10 +646,207 @@ webkit-box-flex: 1; */
 
  </div>
  
- 
+ </main>
  <c:import url="../template/footer.jsp"></c:import>
  
  <script type="text/javascript">
+ 
+	// before 기간 선택해서 검색
+	let before_num=0;
+	$(".before").click(function(){
+
+		 let previous=  before_num;
+			console.log("previous:"+previous);
+		    
+			let content =$(this).text();
+			console.log($(this).attr("title"));
+			 before_num =$(this).attr("title");
+			console.log("status_num:"+ before_num);
+			
+			console.log('attr.name:'+$(".sm-btn").attr("name"));
+			
+			
+			if($(".sm-btn").attr("title")=="before"){
+				console.log("   before가 이ㅁ 존재 ");
+				console.log($(this).val());
+				$("#beforeBtn").each(function(){
+					if($(this).val()==previous){
+						console.log("삭제될 것의 밸류는?"+$(this).val());
+						$(this).remove();
+						$("#before").remove();
+					}
+					
+				});
+			
+				let text='<button type="button" id="beforeBtn" class="btn sm-btn btn-close" value="'+before_num +'" title="before" > '+content+'</button>   '
+				text +=  '<input type="hidden" id="before" name="before" value="'+ before_num +'">';
+				console.log(content);
+				$("#before_search").append(function(n){
+				      return text;
+				    });
+			} else{
+				
+
+				let text='<button type="button" id="beforeBtn" class="btn sm-btn btn-close" value="'+before_num +'" title="before" > '+content+'</button>   '
+				text +=  '<input type="hidden" id="before" name="before" value="'+ before_num +'">';
+				console.log(content);
+				$("#before_search").append(function(n){
+				      return text;
+				 });
+			}
+			
+			
+			let be =before_num;
+			 let st =$("#status").val();
+		
+			$.ajax({
+				type: "get", 
+				url: "../orders/ajaxList", 
+			
+				data:{
+				   before:be,
+				   status:st
+					
+				}, 
+				success:function(data){
+					console.log(data);
+					$("#AjaxList").empty();
+					
+					$("#AjaxList").html(data);
+				}
+				
+			});
+
+
+			
+	});
+
+
+
+	// status  주문상태 선택해서 검색
+	let status_num=0;
+
+	$(".status").click(function(){
+	    let previous= status_num;
+		console.log("previous:"+previous);
+	    
+		let content =$(this).text();
+		console.log($(this).attr("title"));
+		status_num =$(this).attr("title");
+		console.log("status_num:"+status_num);
+		
+		console.log('attr.name:'+$(".sm-btn").attr("name"));
+		
+			$(".sm-btn").each(function(){
+				if($(this).attr("title")=="status"){
+					console.log("  status가 이ㅁ 존재 ");
+					console.log($(this).val());
+					$("#statusBtn").each(function(){
+						if($(this).val()==previous){
+							console.log("삭제될 것의 타이는?"+$(this).val());
+							$(this).remove();
+							$("#status").remove();
+							
+						}
+						
+					});
+					
+				}
+				
+			});
+				
+		       
+		
+				let text='<button type="button" id="statusBtn" class="btn sm-btn btn-close" value="'+status_num +'" title="status" > '+content+'</button>   '
+				text +=  '<input type="hidden" id="status" name="status" value="'+status_num +'">';
+				console.log(content);
+				$("#status_search").append(function(n){
+					
+					
+					return text;
+				 });
+			
+			
+				 let be =$("#before").val();
+			     let st =status_num;
+				
+				
+				 
+				$.ajax({
+					type: "get", 
+					url: "../orders/ajaxList", 
+				
+					data:{
+					   before:be,
+					   status:st
+						
+					}, 
+					success:function(data){
+						console.log(data);
+						$("#AjaxList").empty();
+						
+						$("#AjaxList").html(data);
+					}
+					
+				});
+			
+		
+			
+	});
+
+	$("#status_search").click(function(){
+		$(this).empty();
+		
+		 
+		 let be =$("#before").val();
+		 let st =$("#status").val();
+		
+		 
+		$.ajax({
+			type: "get", 
+			url: "../orders/ajaxList", 
+		
+			data:{
+			   before:be,
+			   status:st
+				
+			}, 
+			success:function(data){
+				console.log(data);
+				$("#AjaxList").empty();
+				
+				$("#AjaxList").html(data);
+			}
+			
+		});
+
+	});
+
+	$("#before_search").click(function(){
+		$(this).empty();
+		
+		let be =$("#before").val();
+		 let st =$("#status").val();
+		
+		$.ajax({
+			type: "get", 
+			url: "../orders/ajaxList", 
+		
+			data:{
+			   before:be,
+			   status:st
+				
+			}, 
+			success:function(data){
+				console.log(data);
+				$("#AjaxList").empty();
+				
+				$("#AjaxList").html(data);
+			}
+			
+		});
+	});
+
  
 
 	
@@ -614,7 +856,7 @@ webkit-box-flex: 1; */
 	 let radioVal = $('input[name="validity"]:checked').val();
 	 alert("radioVal:"+radioVal);
 	 
-	 if(radioVal=='4'){
+	 if(radioVal=='4'){ // 배송중(출고완료)  선택시
 
 		 let trackId= $("#trackId").val();
 		 alert("trackId:"+trackId);
@@ -629,11 +871,29 @@ webkit-box-flex: 1; */
 		 }
 	 }
 	 
-	 if(radioVal=='3'||radioVal=='5'||radioVal=='6'){
+	 //배송회사 와 운송장이 없을 시 배송완료, 구매확정 선택불가
+	 
+	 if(radioVal=='5'||radioVal=='6'){  /// 배송완료/ 구매확정 선택
 		 
-		 alert("356입장");
+		 let trackId= $("#trackId").val();
+		 alert("trackId:"+trackId);
+		 let carrierId= $("#carrierId").val();
+		 alert("carrierId:"+carrierId);
+		 if(trackId != null && trackId !="" && carrierId != null && carrierId !="" ){
+			 alert("4입장");
+			 $("#updateFrm").submit();
+		 }else{
+			 alert("택배사와 운송장 번호를 입력하셔야 상태를 바꿀 수 있습니다. ");
+			 
+		 }
+
+	 }
+	 
+	 if(radioVal=='3'||radioVal=='9'||radioVal=='10'||radioVal=='12'||radioVal=='14'||radioVal=='15'){ //  배송준비(접수완료)/환불진행중/환불완료/취소완료 /교환진행중/교환완료 선택시
+         alert("3910121415입장");
 		 
 		 $("#updateFrm").submit();
+	 
 	 }
 	 
  })
