@@ -305,6 +305,10 @@ margin-bottom:10px;
 #shipAddress{
 margin-bottom:6px;
 }
+
+.agree{
+ background-color: gray;
+}
 </style>
 </head>
 <body>
@@ -870,7 +874,7 @@ margin-bottom:6px;
                 <div class="border-top px-4 mx-3"> </div>
                 
              
-                <div class="border-top px-4 mx-3"></div>
+                <div class="border-top px-4 mx-3"> </div>
                 
                 <div class="p-2 d-flex pt-3">
                     <div class="col-8 ordersSub4"><b>최종 결제 금액</b></div>
@@ -878,6 +882,10 @@ margin-bottom:6px;
                     
                     <div class="ml-auto" id="payment" title="${ordersVO.payment}"><b class="green money2"> ${ordersVO.payment}원</b></div>
                 </div>
+                <div class="p-2 d-flex pt-3 agree">
+                   <div class="middle">  <input type="checkbox"> 아래 내용에 모두 동의합니다. (필수) </div>
+                </div>
+                
             </div>
             
             

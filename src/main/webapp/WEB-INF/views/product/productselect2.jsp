@@ -371,6 +371,13 @@ ol li:before {
   color: #A63F82;
 }
 
+input:focus {
+    outline: none;
+}
+textarea:focus {
+    outline: none;
+}
+
 </style>
 </head>
 <body>
@@ -548,15 +555,17 @@ ol li:before {
 							  <div title="${vo.productNum}" class="cartCheck alert alert-secondary alert-dismissible fade show" style="width:100%; height:100%; padding-bottom:40px; word-break:break-all; word-wrap:break-word;" >
 							  		 <!-- unitName  -->
 							  		<div id=""> <input name="unitName" id="unitName" value=""  style=" width:180px; height:20px; background-color:transparent;border:0 solid black; text-align:;">   </div>
-							  		    <div style="width:70px; height:20px; font-size:12px; float: left;">
-										     <!--  amount/ 숫자만 입력할수 있도록 type number 지정 -->
-										     <input style="width:70px; height:20px; ime-mode:disabled;" onfocus='amountSave.call(this)' onchange='go.call(this)' type="number" min="1"  class="box" data-product-num="${vo.productNum}" title="" id="directInputBox" name="amount" value="1"/>
-										</div>
-										<div class="num" style="width:200px; height:23px; font-size:16px; padding-bottom:20px; font-weight: bold; float: right;">
-										       <!--  cartPrice-->
-											       <input type="text" readonly name="cartPrice" id="cartPrice" class="cartPricePlus"  value="" style=" height:20px; background-color:transparent; font-weight:800; border:0 solid black; text-align:right;" />
-											  원
-										</div> 
+							  		   <div>
+								  		    <div style="width:70px; height:20px; font-size:12px; float: left;">
+											     <!--  amount/ 숫자만 입력할수 있도록 type number 지정 -->
+											     <input style="width:70px; height:20px; ime-mode:disabled;" onfocus='amountSave.call(this)' onchange='go.call(this)' type="number" min="1"  class="box" data-product-num="${vo.productNum}" title="" id="directInputBox" name="amount" value="1"/>
+											</div>
+											<div class="num" style="min-width:70px; height:23px; font-size:16px; padding-bottom:20px; font-weight: bold; float: right;">
+											       <!--  cartPrice-->
+												       <input type="text" readonly name="cartPrice" id="cartPrice" class="cartPricePlus"  value="" style=" height:20px; background-color:transparent; font-weight:800; border:0 solid black; text-align:right;" />
+												  원
+											</div> 
+									</div>
 							    <button type="button" class="close delete" onclick='opClose.call(this)'  id="opDelete" title="" data-productNum="${vo.productNum}"  data-brandNum="${vo.brandNum}" aria-label="Close">
 							    <span aria-hidden="true">&times;</span>
 							  </button>

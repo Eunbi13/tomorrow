@@ -171,7 +171,7 @@ margin-top:20px;
 										     <!--  숫자만 입력할수 있도록 type number 지정 -->
 										     <input style="width:70px; height:20px; ime-mode:disabled;" type="number" min="1"  class="directInputBox directInputBox${productVO.productNum}" data-product-num="${productVO.productNum}" title="${cartVO.cartNum}" id="directInputBox" name="amount" value="${cartVO.amount}"/>
 										</div>
-										<div class="num" style="width:200px; height:23px; font-size:16px; padding-bottom:20px; font-weight: bold; float: right;">
+										<div class="num" style=" height:23px; font-size:16px; padding-bottom:20px; font-weight: bold; float: right;">
 										      
 											       <input type="text" readonly="readonly" id="cartVOPrice${cartVO.cartNum}" class="cartPricePlus${productVO.productNum} cartPricePlus num" title="${productVO.productNum}" name="cartPrice" value="${cartVO.cartPrice}" style=" width:180px; height:20px; background-color:transparent;border:0 solid black; text-align:right;" />
 											  원
@@ -203,8 +203,8 @@ margin-top:20px;
 						  	    <input type="hidden" class="amount${productVO.productNum}"  value=""/> 	     
 				    		    <input type="hidden" id="discount${productVO.productNum}" class="discount" value=""/> 	
 				    		<!-- productPrice -->
-				    		<div class="p-2 num" style=" font-size:18px;  font-weight: bold;" title="${productVO.productNum}">
-				    				<input  readonly="readonly" value="" id="productVOPrice${productVO.productNum}" class="productPrice${b.index}  productNum_productPrice${productVO.productNum} productPrice num" title="${b.index}" style=" width:200px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
+				    		<div class="p-2 num" style="font-size:18px;  font-weight: bold;" title="${productVO.productNum}">
+				    				<input  readonly="readonly" value="" id="productVOPrice${productVO.productNum}" class="productPrice${b.index}  productNum_productPrice${productVO.productNum} productPrice num" title="${b.index}" style=" height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
 				    			
 				    		</div>
 				    	</div>
