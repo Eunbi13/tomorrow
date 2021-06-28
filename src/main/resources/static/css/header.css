@@ -72,20 +72,19 @@ a[title="cartIcon"]{ margin:0; }
 	content: "";
 	position: absolute;
 	margin-left: 1rem;
-	top: 6px;
-	bottom:3px;
-	border-right: 1px solid #757575;
-	border-width: medium;
+	top: 0;
+	bottom:0;
+	border-right: 2px solid #757575;
 }
 /* 폰트 설정 */
 .mainNav-item{
-	font-size: 1.1rem;
+	font-size: 18px;
 	font-weight: bold;
 	color: #424242;
 	letter-spacing: -0.1rem;
 }
 .member-item{
-	font-size:1rem;
+	font-size:15px;
 	color: #757575;
 }
 /* 장바구니&프사 이미지 설정 */
@@ -129,15 +128,18 @@ a[title=write]:hover{
 
  .subNav{
  	border-top:1px solid #ededed;
-	position: relative;
+	
 	height: 2rem;
 	border-bottom: 1px solid #ededed;
+}
+
+.subNav>div[class*="item"]{
+	position: relative;
 }
 
 .subNav-item{
 	display:flex;
 	position: absolute;
-	
 }
 
 .subNav-item-one{
@@ -145,3 +147,5 @@ a[title=write]:hover{
 	padding: 0 1rem;
 	font-weight: bold;
 } 
+
+

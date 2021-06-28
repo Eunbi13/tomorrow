@@ -47,9 +47,10 @@
 		</div>
 		<div class="center">고객센터 1670-0000</div>
 	</form>
+	<div class="row">
 		<div class="btn-outline" id="running">탈퇴신청</div>
-		<div class="btn-default" id="cancel">최소하기</div>
-
+		<div class="btn-default" id="cancel">취소하기</div>
+	</div>
 
 
 </div>

@@ -30,15 +30,11 @@ $(document).ready(function(){
 			$('img[alt="profile"]').css('border','');
 		}
 	})
-	
-	/*if($('a').attr('aria-expanded')){
-		$('img[alt="profile"]').css('border', '1px solid #A63F82');
-	}else{
-		$('img[alt="profile"]').css('border');
-	}*///true면 열린거 아니면 닫힌거
-	function mouseLeave(){
-		
-	}
-		//$(this).css({'z-index':'500'})
+
+	//마우스 위치에 따라 서브 네비 보이기
+	$('a[title="item-community"]').mouseenter(function(){
+		$('.subNav').css('position', 'inherit')
+	})
+	$('a[title="item-store"]')
 
 })
