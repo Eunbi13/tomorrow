@@ -32,6 +32,8 @@ public interface CartMapper {
 	
 	public int setProductDelete(CartVO cartVO)throws Exception;
 	
+	public int setDirectPayDelete(CartVO cartVO)throws Exception;
+	
 	public int setValidityUpdate(CartVO cartVO)throws Exception;
 	
 	public int setBrandShipUpdate(CartVO cartVO)throws Exception;
@@ -41,6 +43,9 @@ public interface CartMapper {
 	public int setOrderUpdate(CartVO cartVO)throws Exception;
 	
 	public int setCancelUpdate(CartVO cartVO)throws Exception;
+	
+	public CartVO getSameOption(CartVO cartVO)throws Exception;
+	
 
 	
 }

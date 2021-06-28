@@ -112,6 +112,8 @@ public class ProductController {
 		
 		List<OptionsVO> optionsar = productService.getOptionsList(productVO);
 		model.addAttribute("options", optionsar);
+		
+		
 	}
 	
 	@GetMapping("productselect")

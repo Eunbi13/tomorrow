@@ -46,23 +46,21 @@ public class CartService {
 		return cartMapper.getList(cartVO);
 	}
 	
-	public int setInsert(CartVO [] cartVOs)throws Exception{
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
-		UserDetails userDetails = (UserDetails)principal; 
-		String username = userDetails.getUsername();
-	   
-	   	System.out.println("username:"+username);
+	public int setInsert(List<CartVO> ar)throws Exception{
+		 
+	    // insert 성공여부
 	   	int result =0;
+	   	// insert 성공 횟수
+	   	int i =0;
 		
-		for(int i=0; i< cartVOs.length;i++) {
-			CartVO cartVO = new CartVO();
-			cartVO = cartVOs[i];
-			cartVO.setUsername(username);
-			
+		for(CartVO cartVO : ar) {
 			
 			result = cartMapper.setInsert(cartVO);
+			
+			i += result;
 		}
-		return result;
+		
+		return i;
 	}
 	
 	public int setOptionDelete(Long cartNum)throws Exception{
@@ -92,6 +90,15 @@ public class CartService {
 		}
 		
 		return result;
+	}
+	
+	public int setDirectPayDelete(CartVO cartVO)throws Exception{
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal; 
+		String username = userDetails.getUsername();
+	    cartVO.setUsername(username);
+		
+		return cartMapper.setDirectPayDelete(cartVO);
 	}
 	
 	public int setValidityUpdate(long [] cartNum, long [] unCartNum)throws Exception{
@@ -168,5 +175,10 @@ public class CartService {
 		return cartMapper.setCancelUpdate(cartVO);
 	}
 
+	
+	public CartVO getSameOption(CartVO cartVO)throws Exception{
+		
+		return cartMapper.getSameOption(cartVO);
+	}
 
 }

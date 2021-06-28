@@ -15,8 +15,10 @@
 			</a>
 		</div>
 		<nav class="mainNav-item">
+
 			<a class="" title="item-community" href="#">커뮤니티</a>
-			<a class="on" title="item-store" href="#">스토어</a>
+			<a class="on" title="item-store" href="/product/productlist">스토어</a>
+
 		</nav>
 		<div class="mainNav-item">
 			<!-- 빈공간 포함 -->

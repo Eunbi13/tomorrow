@@ -95,6 +95,7 @@ border-color:lightgray;
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
+<main>
 
  <div class="container">
 <c:if test="${sel == '취소'}">
@@ -207,7 +208,7 @@ border-color:lightgray;
 
 </div>
 
-
+</main>
 <c:import url="../template/footer.jsp"></c:import>
 </body>
 </html>

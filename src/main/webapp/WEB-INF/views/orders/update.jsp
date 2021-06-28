@@ -59,7 +59,7 @@
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-
+<main>
 <div class="container">
 
 <c:if test="${ordersVO.status eq null}">
@@ -78,7 +78,7 @@
 </c:if>
 
 </div>
-
+</main>
 <c:import url="../template/footer.jsp"></c:import>
 </body>
 </html>

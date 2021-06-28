@@ -25,121 +25,152 @@ function priceResult(){
   	document.getElementById("priceresult").innerText = amount;}	
 */
 
+function percent(){
+	const val = document.getElementById('price-percent');
+	const percent = Math.floor(val);
+	val.innerText = percent;
+}
 
 
 
+//select box 선택시 실행
 function addList(){
+	
+	
 
  
   // 1. 추가할 값을 option 창에서 읽어온다 (옵션명, 가격)
   const addValue 
     = $("#selectop option:selected").text();
+ const optionNum
+    = $("#selectop option:selected").val();
+  const optionName 
+    = $("#selectop option:selected").attr("data-OPname");
+  const unitPriceNumber
+    = $("#selectop option:selected").attr("data-OPprice");
+
+
+/// 같은 옵션 선택할 경우 '이미 선택한 옵션입니다.'띄우기  
+if($("#carts"+optionNum).length != 0){
+	
+	alert("이미 선택한 옵션입니다.");
+	
+} else{
+
+
   
   
+//바뀌면 optionAdd 안의 html를 따와서  opPrint에 넣는다.
+  
+
+ let source=$("#optionAdd").html();
+$("#opPrint").append(source);
+
+
   
   // 2. 추가할 element 생성
   // 2-1. 추가할 element 생성
-  const li = document.createElement("li");
-  const div = document.createElement("div");
-  const priceDiv = document.createElement("div");
-  const inputA = document.createElement("input"); //=amount
-  const p = document.createElement("p"); //<p> price
-  const inputP = document.createElement("input");
 
-  // 2-2. 속성 추가
-  div.setAttribute('value',addValue);
-  div.setAttribute('id','option');
-  priceDiv.setAttribute('id', 'priceDiv');
-  inputA.setAttribute('id', 'amount');
-  inputA.setAttribute('name', 'amount');
-  inputA.setAttribute('value','1');	
-  inputA.setAttribute('onkeyup','printAmount()');
-  p.setAttribute('name','price');
-  inputP.setAttribute('name','price');
-  inputP.setAttribute('type','hidden');
+   //productNum 구분을 위해 넣기
+      let productNum =document.getElementById("productNum");
+           productNum =productNum.getAttribute("value");
+	      console.log("productNum:"+productNum);
 
+    
 
-  // 2-3. li, div에 text node 추가 
-  const textNode = document.createTextNode(addValue);
-  li.appendChild(textNode);
-  div.appendChild(textNode);
-
-  //3-1. 옵션 , 기준으로 잘라넣기 = p
-  const opPrice = addValue.split(','); //배열
-  const price = opPrice[opPrice.length - 1];
-
-  //3-2. 잘라넣은 값 p에 text node 추가
-  const pricenode = document.createTextNode(price);
-  p.appendChild(pricenode);
-
-  //3-3. input p hidden 으로 가격 넘기기
-  const amount = document.getElementById('amount');
-  const totalP = pricenode*amount ;
-  inputP.setAttribute('value',totalP);
-
-  // 4. 생성된 li를 ul에 추가
-  // li > div > inputA(amount)
-  document 
-    .getElementById('opPrint')
-    .appendChild(li)
-	.appendChild(div)
-	.appendChild(priceDiv)
-	.appendChild(inputA)
-	.appendChild(p)	
-	.appendChild(inputP) //nan ?
-	;
-}
-
-//수량 * 옵션가격 //수정중
-function printAmount(){
+  
+   //unitName 넣기
+	let unitName=document.getElementById("unitName");
+	 unitName.setAttribute('id',"unitName"+optionNum);
+     unitName.setAttribute('value', optionName);
 	
-	const amount = document.getElementById('amount').value;
-	console.log(amount);
+   //unitPrice 넣기
+   let unitPrice= document.getElementById("unitPrice");
+      unitPrice.setAttribute('id',"unitPrice"+optionNum);
+	  unitPrice.setAttribute('value', unitPriceNumber);
+   //cartPrice 넣기
+	let cartPrice=document.getElementById("cartPrice");
+	 cartPrice.setAttribute('id',"cartPrice"+optionNum);
+    
+     cartPrice.setAttribute('value', unitPriceNumber);
+     cartPrice.setAttribute('class', "cartPricePlus"+productNum);
+
+
+   
+
+   // 수량 인풋 박스의 구분을 위해 optionNum 넣기 / 아이디 바꾸기 
+        let directInputBox= document.getElementById("directInputBox");
+      directInputBox.setAttribute('id',"directInputBox"+optionNum);
+      directInputBox.setAttribute('title',optionNum);
+   // x 표시 구분을 위해 optionNum 넣기 / 아이디 바꾸기 
+       let opDelete = document.getElementById("opDelete");
+      opDelete.setAttribute('id',"opDelete"+optionNum);
+      opDelete.setAttribute('title',optionNum);
+   // 회색박스 전체에도 구분을 위해 optionNum 넣기 / 아이디 바꾸기 
+  let carts = document.getElementById("carts");
+      carts.setAttribute('id',"carts"+optionNum);
+      carts.setAttribute('title',optionNum);
+
+
+//// 총 product별 가격 변경 하기
+           let price=0; //각 option들의 가격을 더한 product범위의 가격
+
+           $(".cartPricePlus"+productNum).each(function(){
+    				price=price+parseInt($(this).val());
+    			     console.log("반복되는 cartPricePlus:"+price);
+    	    });
+			
+			$("#productVOPrice").val(price);//product범위의 가격 입력
+			
+
+
+
+///장바구니에 이미 같은 옵션이 있는 경우, cartVO의 amount만 업력 시키기
+ 
+}  // if end
+
+};  // select change 될때 함수 끝 
+
+
+// 바로결제 버튼 누를시 
+//cart insert 먼저 해주기
+// ->선택 product범위의 cartVO들을 validity=1로 그 외 것들을 다 validity=0으로 업뎃해준다.
+
+function directPay(){
 	
-	const orP = document.getElementsByName('price').value;
-	console.log(orP);
-	var opTotal = amount * orP;
-	document.getElementByName('price').innerText = opTotal;
+	 alert("directPay!");
+//바로결제를 누를 때는 validity 20 넣기
 
-	
-}
-
-function inputOp() {
-	const element = doucument.getElementById('option');
-	const option = element.innerText;
-	const input = document.createElement("input");
-  input.setAttribute('name','totlaOp');
-  input.setAttribute('type','hidden');	
-	document 
-		.getElementById('optionResult')
-		.appendChild(input)
-		;
-}
-
-
-//위에서부터 차례로 삭제
-function removeItem()  {
-  
-  // 1. <ul> element 선택
-  const ul = document
-    .getElementById('opPrint');
-  
-  // 2. <li> 목록 선택
-  const items = ul.getElementsByTagName('li');
-  
-  // 3. <li> 목록 중 첫번째 op 삭제
-  if(items.length > 0)  {
-    items[0].remove();
-  }
-  
-}
-
-
-
-$(document).ready(function() {
-	var i=1; // 변수설정은 함수의 바깥에 설정!
-  $("selectop").onchange(function() {
-    $("#opWrap").append("<p class='original'>옵션"+i+"</p>");
-    i++; // 함수 내 하단에 증가문 설정
-  });
+	$(".valid").each(function(){
+		$(this).val(20);
+		
+	});
+  //DB에 있는 validity가 20(바로결제 상태)인 cartVO를 싹 지워준다.
+   $.ajax({
+	type:"get",
+	url:"../cart/directPayDelete",
+	data:{},
+	success:function(data){
+		alert(data+'의 정보를 삭제하였습니다');
+		 $("#frm").submit();
+	}
 });
+   
+
+  
+}
+
+	
+	
+	  
+
+
+
+
+
+
+
+
+
+
+

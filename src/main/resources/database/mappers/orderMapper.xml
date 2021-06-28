@@ -44,7 +44,7 @@
 					    		
 					    		
 					    		<if test="status == null ">
-								validity > 1
+								(validity > 1 and  20 > validity)
 								</if>
 								<if test="status != null">
 								 validity=#{status}
@@ -72,7 +72,7 @@
 					    		where username=#{username} and 
 					    		
 								<if test="status == null ">
-								validity > 1
+								(validity > 1 and  20 > validity)
 								</if>
 								<if test="status != null">
 								 validity=#{status}
@@ -125,7 +125,7 @@
 					    		
 					    		
 					    		<if test="status == null ">
-								validity > 1
+							(validity > 1 and  20 > validity)
 								</if>
 								<if test="status != null">
 								 validity=#{status}
@@ -193,7 +193,7 @@
 			    		where username=#{username} and 
 			    		
 				    		<if test="status == null ">
-							validity > 1
+							(validity > 1 and  20 > validity)
 							</if>
 							<if test="status != null">
 							 validity=#{status}

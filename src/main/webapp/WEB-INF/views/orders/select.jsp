@@ -202,7 +202,7 @@ margin-top:40px;
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-
+<main>
        <div class="container">
          <div class="bigTitle">주문상세정보</div> 
          
@@ -407,21 +407,25 @@ margin-top:40px;
  					 	<tr>
  					 		<td class="subTitle">배송메모</td>
  					 		<td style="width: 90%;">
- 					 		<c:if test="${ordersVO.shippingMemo==1}">
- 					 		부재시 문앞에 놓아주세요
- 					 		</c:if>
- 					 		<c:if test="${ordersVO.shippingMemo==2}">
- 					 		배송전에 미리 연락주세요
- 					 		</c:if>
- 					 		<c:if test="${ordersVO.shippingMemo==3}">
- 					 		부재시 경비실에 맡겨 주세요
- 					 		</c:if>
- 					 		<c:if test="${ordersVO.shippingMemo==4}">
- 					 		부재시 전화주시거나 문자 남겨 주세요
- 					 		</c:if>
- 					 		<c:if test="${ordersVO.shippingMemo!=1||2||3||4}">
- 					 		${ordersVO.shippingMemo} 
- 					 		</c:if>
+ 					 		<c:choose>
+ 					 			<c:when test="${ordersVO.shippingMemo==1}">
+ 					 		     부재시 문앞에 놓아주세요
+	 					 		</c:when>
+	 					 		<c:when test="${ordersVO.shippingMemo==2}">
+	 					 		배송전에 미리 연락주세요
+	 					 		</c:when>
+	 					 		<c:when test="${ordersVO.shippingMemo==3}">
+	 					 		부재시 경비실에 맡겨 주세요
+	 					 		</c:when>
+	 					 		<c:when test="${ordersVO.shippingMemo==4}">
+	 					 		부재시 전화주시거나 문자 남겨 주세요
+	 					 		</c:when>
+	 					 		
+	 					 		<c:otherwise>
+	 					 		  ${ordersVO.shippingMemo} 
+	 					 		</c:otherwise>
+ 					 			
+ 					 		</c:choose>
  					 		
  					 		</td>
  					 	</tr>
@@ -447,6 +451,7 @@ margin-top:40px;
 		
 	});
 </script>
+</main>
 <c:import url="../template/footer.jsp"></c:import>
 
 </body>

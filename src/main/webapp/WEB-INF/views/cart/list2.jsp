@@ -57,6 +57,19 @@ img{
    font-size: 12px;
     padding-bottom: 20px;
 }
+
+
+@media (min-width: 768px)
+.production-selling-navigation {
+    background-color: #fafafa;
+    border-top: 1px solid #ededed;
+    border-bottom: 1px solid #ededed;
+}
+.production-selling-navigation {
+    background-color: #fff;
+    z-index: 100;
+    transition: top .1s;
+    }
 </style>
 
 <c:import url="../template/bootStrap.jsp"></c:import>
@@ -71,6 +84,26 @@ img{
         <div class="col-sm-5 col-md-6 ml-1">
         
          
+         
+       
+     <div class="sticky-child production-selling-navigation" style="position: relative;">
+	     <nav class="production-selling-navigation__content">
+		     <ol class="production-selling-navigation__list">
+			     <li>
+			     <a class="production-selling-navigation__item production-selling-navigation__item--active" href="#production-selling-information">상품정보</a>
+			     </li>
+			     
+			     <li>
+			     <a class="production-selling-navigation__item" href="#production-selling-delivery">배송/환불</a>
+			     </li>
+		     </ol>
+	     </nav>
+     </div>
+     
+         
+         
+         
+         ///
          
             <!-- d-flex -->
     

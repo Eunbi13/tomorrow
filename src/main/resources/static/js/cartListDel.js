@@ -3,7 +3,7 @@
  */
 
 //==============================ajax Delete   (삭제후 배송료 변경하기)
-//==============================check box (product) 선택삭제 
+//==============================check box (product 범위의 모든 옵션 삭제) 선택삭제 
 $("#carts").on("click", "#selectedDelete", function(){
 	const ar = []; //빈 배열
 	const brand_ar=[];
@@ -27,7 +27,21 @@ $("#carts").on("click", "#selectedDelete", function(){
 			alert('삭제하였습니다');
 			for(var a in ar){
 				$("#products"+ar[a]).remove();
-				console.log(ar[a]+"가 삭제됨");
+				console.log(ar[a]+"productNum 가 삭제됨");
+							  
+			}
+			
+			
+			for(let b in brand_ar){
+				
+				//같은 brand에 가지고 있는 다른 상품이 있는지 찾아 보고 없으면 brand 카드까지 삭제
+							  
+							    	if($(".productCheck"+brand_ar[b]).length < 1){
+										$("#card"+brand_ar[b]).remove();
+										console.log(brand_ar[b]+"brandNum가 삭제됨");
+							    	}
+				
+				
 			}
 			 // 삭제 성공 후, 총 상품 가격 다시 계산
 				 totalAgain=0;
@@ -39,18 +53,9 @@ $("#carts").on("click", "#selectedDelete", function(){
 			   //주문결제 페이지의 총 상품 금액 = 장바구니의 최종결제 금액 이기때문에 먼저 저장
 					$("#itemsPrice").val(totalAgain);
 				
-					 //같은 상품안에 가지고 있는 다른 옵션이 있는지 찾아오고 없으면 상품까지 삭제
-					 if($(".cartCheck"+productNum).length < 1){
-						 $("#products"+productNum).remove();
-						 console.log(productNum+"productNum 가 삭제됨");
-					
-					           //같은 brand에 가지고 있는 다른 상품이 있는지 찾아 보고 없으면 brand 카드까지 삭제
-						  
-						    	if($(".productCheck"+brandNum).length < 1){
-									$("#card"+brandNum).remove();
-									console.log(brandNum+"brandNum가 삭제됨");
-						    	}
-					 }
+				
+				
+					 
 				
 				 
 						 
@@ -76,7 +81,7 @@ $("#carts").on("click", "#selectedDelete", function(){
 			    	});
 			    	console.log("checkedNum:"+checkedNum)
 			    	
-			    	            //체크된 productNum 을 가진 것들.
+			    	            //체크된 productNum 을 가진 것들 돌려서 brand별 금액 알아내고 brandPrice+b_index 에 넣어둔다.
 			    				for(let p in checkedNum){
 			    					 
 			    					let b_index =$("#productVOPrice"+checkedNum[p]).attr("title");
@@ -265,7 +270,8 @@ $("#carts").on("click", "#selectedDelete", function(){
 								    	//1+2 의 조건이면  그 중 가장 적은 shippingFee 한번만 적용
 								    	$(".shippingFee"+b_index).each(function(){ //+ checked 된 애들중..
 								    		
-								    				  if($("#shippingFee"+productNum).val()==0){//3. 그 브랜드에서 구매한 product shippingFee 중 0이 하나라도 있음
+								    				  if($(this).val()==0){
+									                       //3. 그 브랜드에서 구매한 product shippingFee 중 0이 하나라도 있음
 								    					 
 								    					  shipCheck=true;
 											    		  }
@@ -305,7 +311,8 @@ $("#carts").on("click", "#selectedDelete", function(){
 		}
 	})
 });
-//==============================X눌러 option 삭제  
+//==============================X눌러 option 삭제 시, 시행되는 이벤트 
+
  $(".delete").click(function () {
 	 
 	 let cartNum = $(this).attr("title");    //cartNum
@@ -324,6 +331,7 @@ $("#carts").on("click", "#selectedDelete", function(){
 		 },
 		 success:function(data){
 				alert('삭제하였습니다');
+				//회색박스 삭제
 				$("#carts"+cartNum).remove();
 				console.log(cartNum+"가 삭제됨");
 				
@@ -336,20 +344,34 @@ $("#carts").on("click", "#selectedDelete", function(){
 			
 			   //주문결제 페이지의 총 상품 금액 = 장바구니의 최종결제 금액 이기때문에 먼저 저장
 					$("#itemsPrice").val(totalAgain);
-				
-					 //같은 상품안에 가지고 있는 다른 옵션이 있는지 찾아오고 없으면 상품까지 삭제
-					 if($(".cartCheck"+productNum).length < 1){
-						 $("#products"+productNum).remove();
-						 console.log(productNum+"productNum 가 삭제됨");
 					
-					           //같은 brand에 가지고 있는 다른 상품이 있는지 찾아 보고 없으면 brand 카드까지 삭제
-						  
-						    	if($(".productCheck"+brandNum).length < 1){
-									$("#card"+brandNum).remove();
-									console.log(brandNum+"brandNum가 삭제됨");
-						    	}
-					 }
+					//Product 별 금액 다시 계산 
+					let newProductPrice=0;
+					
+					//Product안의 cartPrice반복해서 더하기
+					$(".cartPricePlus"+productNum).each(function(){
+						let cartPrice =$(this).val();
+						newProductPrice += parseInt(cartPrice);
+					});
+					
+					  alert(newProductPrice);
+					//Product 별 금액 입력
+					$("#productVOPrice"+productNum).val(newProductPrice);
+					
 				
+						 //같은 상품안에 가지고 있는 다른 옵션이 있는지 찾아오고 없으면 상품까지 삭제
+						 if($(".cartCheck"+productNum).length < 1){
+							 $("#products"+productNum).remove();
+							 console.log(productNum+"productNum 가 삭제됨");
+						
+						           //같은 brand에 가지고 있는 다른 상품이 있는지 찾아 보고 없으면 brand 카드까지 삭제
+							  
+							    	if($(".productCheck"+brandNum).length < 1){
+										$("#card"+brandNum).remove();
+										console.log(brandNum+"brandNum가 삭제됨");
+							    	}
+						 }
+					
 				 
 						 
 				
@@ -374,7 +396,7 @@ $("#carts").on("click", "#selectedDelete", function(){
 			    	});
 			    	console.log("checkedNum:"+checkedNum)
 			    	
-			    	            //체크된 productNum 을 가진 것들.
+			    	            //체크된 productNum 을 가진 것들 돌려서 brand별 금액 알아내고 brandPrice+b_index 에 넣어둔다.
 			    				for(let p in checkedNum){
 			    					 
 			    					let b_index =$("#productVOPrice"+checkedNum[p]).attr("title");
@@ -387,7 +409,8 @@ $("#carts").on("click", "#selectedDelete", function(){
 			    					
 			    				}
 			    	
-			    	//모든 brandPrice를 반복돌려서 처리
+			    	//모든 brandPrice를 반복돌려서 각 브랜드별 배송료 처리
+                     
 						         $(".brandPrice").each(function(){
 						        	let b_index = $(this).attr("title");
 						        	let brandPrice= $(".brandPrice"+b_index).val();
@@ -539,6 +562,7 @@ $("#carts").on("click", "#selectedDelete", function(){
 			    				
 			    				
 			    				//brand별 무료배송여부 표시 
+			                      //모든 product별 Price을 모두 반복 처리
 	    						$(".productPrice").each(function(){ 
 	    							
 	    						    
@@ -547,23 +571,23 @@ $("#carts").on("click", "#selectedDelete", function(){
 	    						     
 	    						    let brandPrice=0; 
 	    							
-	    							
+	    							  //같은 브랜드별 모든 product Price을 모두 반복해 더해준다. 
 	    							$(".productPrice"+b_index).each(function(){
 	    								brandPrice=brandPrice+parseInt($(this).val());
 	    						     });
 	    						     
 	    						
-	    							 ///
+	    							 
 								    if(brandPrice>=30000){//한 브랜드에서 구매한게 3만원 이상
 								    	console.log(b_index+" is over30000");
 								    	$("#shipping"+b_index).val("배송비 무료");
 								    } else{//1.한 브랜드에서 구매한게 3만원 이하 
 								    	 let shipCheck=false;
 								    	//2.그 브랜드의 어떤 productVO shippingFee도 0이 아님  
-								    	//1+2 의 조건이면  그 중 가장 적은 shippingFee 한번만 적용
-								    	$(".shippingFee"+b_index).each(function(){ //+ checked 된 애들중..
+								    	
+								    	$(".shippingFee"+b_index).each(function(){ 
 								    		
-								    				  if($("#shippingFee"+productNum).val()==0){//3. 그 브랜드에서 구매한 product shippingFee 중 0이 하나라도 있음
+								    				  if($(this).val()==0){//3. 그 브랜드에서 구매한 product shippingFee 중 0이 하나라도 있음->true로 변경
 								    					 
 								    					  shipCheck=true;
 											    		  }
@@ -573,11 +597,12 @@ $("#carts").on("click", "#selectedDelete", function(){
 								    		
 								    	
 								    	if(shipCheck==true){
-									    	//1+3 의 조건이면 그 브랜드 안 모든  cartVO is free의 true, 브랜드 배송비 무료
+									    	//1+3 의 조건이면 그 브랜드 배송비 무료
 										
 											$("#shipping"+b_index).val("배송비 무료");
 								    		
 								    	} else{
+									      //1+2 의 조건이면  그 중 가장 적은 shippingFee 한번만 적용
 								    		let shipFee=100000; //shipFee에 가장 작은 배송비를 넣을 것 
 								    		$(".shippingFee"+b_index).each(function(){
 								    							let shipFee2=$(this).val();
@@ -606,4 +631,3 @@ $("#carts").on("click", "#selectedDelete", function(){
 	 })
 	
  });
- 

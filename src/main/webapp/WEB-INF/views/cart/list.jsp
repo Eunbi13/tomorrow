@@ -66,7 +66,7 @@ margin-top:20px;
    font-size: 16px;
    padding-bottom: 20px;
 }
-img{
+.productImg{
 	width: 64px;
 	height: 64px;
 	margin-right:15px;
@@ -92,6 +92,7 @@ img{
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
+<main>
 
 <div class="container-fluid rounded bg-white" id="carts">
     <div class="row d-flex justify-content-center pb-5">
@@ -146,10 +147,10 @@ img{
 					  <label class="custom-control-label" for="check${productVO.productNum}"></label>
 					</div>
 					<!-- Checked checkbox  end -->
-					<img alt="" src="/upload/productImages/${productVO.productPic}">
+					<img class="productImg" alt="" src="/upload/productImages/${productVO.productPic}">
 				    <div class="media-body">
 				      <div class="mt-0 mb-1 productName">[${brandVO.brandName}] ${productVO.productName}</div>
-				         <div class="shippingType">무료배송 | 일반택배</div>
+				         <div class="shippingType">일반택배</div>
 				    </div>
 				   
 					  
@@ -158,7 +159,7 @@ img{
 					     
 					    
 					   <!-- option -->
-					     <li id="carts${i.index}" title="${cartVO.brandNum}">
+					     <li id="carts${cartVO.cartNum}" title="${cartVO.brandNum}">
 					       <input type="hidden" class="cartNum cartNum${productVO.productNum}" id="cartNum${cartVO.cartNum}" title="${cartVO.cartNum}">
 					       <input type="hidden" class="unitPrice" id="unitPrice${cartVO.cartNum}" name="unitPrice" title="${cartVO.unitPrice}" value="${cartVO.unitPrice}">
 						   <input type="hidden" id="brandShipping${b.index}" class="brandShipping${b.index} brandShipping" data-cartNum="${cartVO.cartNum}" name="brandShipping" value=""/> 		     
@@ -271,7 +272,7 @@ img{
                       <div class="p-2 d-flex">
                     <div class="col-6">총 할인금액</div>
                     <div class="ml-auto num">
-                       - <input readonly="readonly" name="totalDiscount" id="totalDiscount" class="totalDiscount num" style=" width:60px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
+                       - <input readonly="readonly" name="totalDiscount" id="totalDiscount" class="totalDiscount num" style=" width:70px; height:30px; background-color:transparent;border:0 solid black; text-align:right;">원
                     </div>
                 </div>
              
@@ -1150,7 +1151,7 @@ $(".directInputBox").on({
 </script>
 
 
-
+</main>
 <c:import url="../template/footer.jsp"></c:import>
 </body>
 </html>

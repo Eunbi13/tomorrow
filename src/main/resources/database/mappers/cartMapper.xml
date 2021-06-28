@@ -4,9 +4,15 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
     <mapper namespace="com.tmh.t1.cart.CartMapper">
+    
+    
+    <!-- DB안에 cartVO의 옵션이 같은게 있는지 검사   -->
+       <select id="getSameOption" parameterType="CartVO" resultType="CartVO">
+           select * from cart where unitName=#{unitName} and username=#{username} and validity &lt; 2
+	    </select> 
    
 
-    
+     <!-- minkyung_ 결제페이지에 넘어갈 product List구하기 -->
 	    <select id="getProductList" parameterType="CartVO" resultType="ProductVO">
 	    
 		    select productNum, productName, productPrice, discountPrice, productPic, shippingFee, brandNum 
@@ -25,6 +31,9 @@
 										<if test="valid =='two'">
 										validity='2'
 										</if>
+										<if test="valid =='directPay'">
+										validity='20'
+										</if>
 									and brandNum 
 										  in 
 											(select brandNum from cart where username=#{username} and 
@@ -37,12 +46,15 @@
 											<if test="valid =='two'">
 											validity='2'
 											</if>
+											<if test="valid =='directPay'">
+											validity='20'
+											</if>
 											group by brandNum) 
 							group by productNum)
 				    
 	    </select> 
 
-	    
+	    <!-- minkyung_ 결제페이지에 넘어갈 brand List구하기 -->
 	     <select id="getBrandList" parameterType="CartVO" resultType="BrandVO">
 			select brandNum, brandName, companyName
 				from brand
@@ -57,12 +69,15 @@
 								<if test="valid =='two'">
 								validity='2'
 								</if>
+								<if test="valid =='directPay'">
+								validity='20'
+								</if>
 						
 						    group by brandNum)
 	    </select> 
     
     
-    
+        <!-- minkyung_ 결제페이지에 넘어갈 CartVO List구하기 -->
         <select id="getCartList" parameterType="CartVO" resultType="CartVO">
     	    select * from cart where username=#{username} and 
 			
@@ -74,6 +89,9 @@
 			</if>
 			<if test="valid =='two'">
 			validity='2'
+			</if>
+			<if test="valid =='directPay'">
+			validity='20'
 			</if>
 			
 	    </select>
@@ -127,9 +145,10 @@
     		select * from cart where username=#{username}
     	</select>
     	
+    	<!-- minkyung_ 상세페이지에서 장바구니 버튼을 눌릴때 cartVO 생성 -->
     	<insert id="setInsert" parameterType="CartVO" useGeneratedKeys="true" keyProperty="cartNum"> 
     		insert into cart(username, brandNum, productNum, amount, validity, cartPrice, unitPrice, unitName) 
-    		values(#{username}, #{brandNum}, #{productNum}, #{amount}, 0, #{cartPrice}, #{unitPrice}, #{unitName})
+    		values(#{username}, #{brandNum}, #{productNum}, #{amount}, #{validity} ,#{cartPrice}, #{unitPrice}, #{unitName})
     	</insert>
     	
     	
@@ -140,6 +159,11 @@
     	
     	<delete id="setProductDelete" parameterType="CartVO">
     		delete from cart where productNum=#{productNum} and username=#{username}
+    	</delete>
+    	
+    	<!-- minkyung_ 상세페이지에서 바로결제 클릭시 이전 바로결제 목록을 지워주는 역할 -->
+    	<delete id="setDirectPayDelete" parameterType="CartVO">
+    		delete from cart where validity='20'and username=#{username}
     	</delete>
     	
     	<!-- minkyung_부분 취소/교환/반품시 업데이트 -->
@@ -157,20 +181,7 @@
     		where cartNum=#{cartNum}
     	</update>
     	
-    	<!-- minkyung_전체 취소/교환/반품시 업데이트 -->
-    <!-- 	<update id="setOrderCancel" parameterType="CartVO">
-    		update cart set cancel=#{cancel}, cancelMemo=#{cancelMemo},
-    		<if test="valid =='cancel'">
-			validity='11'
-			</if>
-			<if test="valid =='exchnage'">
-			validity='13'
-			</if>
-			<if test="valid =='refund'">
-			validity='8'
-			</if>
-    		where cartNum=#{cartVO}
-    	</update> -->
+    
     	
     	<update id="setValidityUpdate" parameterType="CartVO">
     	    update cart set 
@@ -203,12 +214,20 @@
     	
     	<update id="setAmountUpdate" parameterType="CartVO">
     		update cart set amount=#{amount}, cartPrice=#{cartPrice}
-    		where cartNum=#{cartNum} and username=#{username}
+    		where cartNum=#{cartNum} 
     	</update>
     	
+    	<!-- 결제완료한 후 cartVO 업데이트 -->
     	<update id="setOrderUpdate" parameterType="CartVO">
     		update cart set orderNum=#{orderNum}, validity='2'
-    		where validity='1' and username=#{username}
+    		where 
+    		<if test="validity == 1">
+    		validity='1' 
+    		</if>
+    		<if test="validity == 20">
+    		validity='20' 
+    		</if>
+    		and username=#{username}
     	</update>
     
     
