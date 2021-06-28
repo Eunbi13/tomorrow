@@ -69,22 +69,17 @@ public class OrdersController {
 		String username = userDetails.getUsername();
 		ordersVO.setUsername(username);
 		
-		
 		System.out.println("getBefore:"+ordersVO.getBefore());
 		
 		CartVO cartVO = new CartVO();
 		
 		cartVO.setUsername(username);
-		
-//		ordersVO.setOrderNum(null);
+
 		
 		List<OrdersVO> ar = ordersService.getList(ordersVO);
 		
     	List<BrandVO> brandAr = ordersService.getBrandList(ordersVO);
-    	
 		System.out.println("brandAr 완성");
-		
-//		List<CartVO> cartAr = ordersService.getCartList(ordersVO);
 		
 		List<OrdersVO> OrderAr=ordersService.getOrdersList(ordersVO);
 		System.out.println("orderAr 완성");
@@ -94,9 +89,9 @@ public class OrdersController {
 		mv.addObject("brandAr", brandAr);
 		mv.addObject("orderAr", OrderAr);
 		return mv;
-
 	}
 	
+	// orders/list.jsp에서 기간,주문상태별 검색 시 리스트 갱신
 	@GetMapping("ajaxList")
 	public ModelAndView getAjaxList(OrdersVO ordersVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -117,7 +112,6 @@ public class OrdersController {
 		List<OrdersVO> ar = ordersService.getList(ordersVO);
 		
     	List<BrandVO> brandAr = ordersService.getBrandList(ordersVO);
-    	
 		System.out.println("brandAr 완성");
 
 		

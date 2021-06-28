@@ -663,7 +663,8 @@ webkit-box-flex: 1; */
 		
 			
 	});
-
+	
+	//선택된 주문상태 클릭시, 사라지면서 리스트 갱신. 
 	$("#status_search").click(function(){
 		$(this).empty();
 		
@@ -692,6 +693,8 @@ webkit-box-flex: 1; */
 
 	});
 
+	
+	//선택된 기간 클릭시, 사라지면서 리스트 갱신. 
 	$("#before_search").click(function(){
 		$(this).empty();
 		

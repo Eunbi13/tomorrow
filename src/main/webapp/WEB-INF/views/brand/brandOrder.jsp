@@ -468,7 +468,9 @@ webkit-box-flex: 1; */
 				     </ul>
  			   	</div>
  			</div>
+ 		
  	
+ 	  <div id="AjaxList">
  			<div class="filter-table">
 		 			   <div class="title2">
 		 			    주문접수내역(주문관리 + 결제내역, 배송관리, 구매확정)
@@ -638,7 +640,8 @@ webkit-box-flex: 1; */
  			
  			
  			
- 			</div>
+ 				</div> <!-- filter-table end -->
+ 			</div>  <!-- ajaxList  -->
  		</div> <!-- filer end -->
  	
  	</div>
@@ -701,7 +704,7 @@ webkit-box-flex: 1; */
 		
 			$.ajax({
 				type: "get", 
-				url: "../orders/ajaxList", 
+				url: "../brand/ajaxBrandOrder", 
 			
 				data:{
 				   before:be,
@@ -774,7 +777,7 @@ webkit-box-flex: 1; */
 				 
 				$.ajax({
 					type: "get", 
-					url: "../orders/ajaxList", 
+					url: "../brand/ajaxBrandOrder", 
 				
 					data:{
 					   before:be,
@@ -794,6 +797,8 @@ webkit-box-flex: 1; */
 			
 	});
 
+	
+	//선택된 주문상태 클릭시, 사라지면서 리스트 갱신. 
 	$("#status_search").click(function(){
 		$(this).empty();
 		
@@ -804,7 +809,7 @@ webkit-box-flex: 1; */
 		 
 		$.ajax({
 			type: "get", 
-			url: "../orders/ajaxList", 
+			url: "../brand/ajaxBrandOrder", 
 		
 			data:{
 			   before:be,
@@ -821,7 +826,8 @@ webkit-box-flex: 1; */
 		});
 
 	});
-
+	
+	//선택된 기간 클릭시, 사라지면서 리스트 갱신. 
 	$("#before_search").click(function(){
 		$(this).empty();
 		
@@ -830,7 +836,7 @@ webkit-box-flex: 1; */
 		
 		$.ajax({
 			type: "get", 
-			url: "../orders/ajaxList", 
+			url:"../brand/ajaxBrandOrder", 
 		
 			data:{
 			   before:be,
@@ -851,7 +857,7 @@ webkit-box-flex: 1; */
 
 	
  
- // 주문상태 변경 
+ //------------------ 주문상태 변경 
  $("#statusUpdate").click(function(){
 	 let radioVal = $('input[name="validity"]:checked').val();
 	 alert("radioVal:"+radioVal);
@@ -898,7 +904,7 @@ webkit-box-flex: 1; */
 	 
  })
  
-//주문접수내역에서 주문번호/옵션번호 누를시, 그 옵션번호의 주문서가 뜬다.
+//------------modal창 띄우기-주문접수내역에서 주문번호/옵션번호 누를시, 그 옵션번호의 주문서가 뜬다.
  $(document).on('click', '.orderDetail', function(){
  	let cartNum =$(this).attr("title");
  	
@@ -912,11 +918,6 @@ webkit-box-flex: 1; */
  	});
      
  });
- 
- 
-	 	
- 	
- 
  
  
  

@@ -73,8 +73,30 @@ public class BrandController {
 	}
 	
 	//minkyung_brandOrder
+	//브랜드 주문조회 처리 페이지
 	@GetMapping("brandOrder") 
 	public ModelAndView brandOrder(BrandVO brandVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println(brandVO.getUsername() + "님 입장!!");
+		
+	    brandVO	=brandService.getBrandInfo(brandVO);
+	    
+	    List<OrdersVO> ar = brandService.getCartList(brandVO);
+	    List<OrdersVO> orderAr = brandService.getOrderList(brandVO);
+		
+		
+	    mv.addObject("brandVO", brandVO);
+    	mv.addObject("ar", ar);
+
+    	mv.addObject("orderAr", orderAr);
+		return mv;
+		
+	}
+	
+	//minkyung_brandOrder
+	//브랜드 주문조회 처리 페이지 ajax로 갱신
+	@GetMapping("ajaxBrandOrder") 
+	public ModelAndView ajaxBrandOrder(BrandVO brandVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		System.out.println(brandVO.getUsername() + "님 입장!!");
 		
