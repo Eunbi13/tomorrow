@@ -20,7 +20,7 @@ a:hover{ color: #A63F82; }
 	display:flex;
 	align-items: flex-end;
 	padding-bottom: 2rem;
-	border-bottom: 1px solid #ededed;
+	/* border-bottom: 1px solid #ededed; */
 }
 /* item */
 .mainNav-item{
@@ -116,6 +116,9 @@ a[title=write]:hover{
 .dropdown-item{
 	padding: 0.5rem 1rem;
 }
+.dropdown-item{
+	width: inherit;
+}
 
 /* 커뮤니티나 스토어 클릭하면 active설정 */
 .mainNav-item:nth-child(2) a.on{
@@ -124,7 +127,9 @@ a[title=write]:hover{
 /* subNav */
 
  .subNav{
+ 	border-top:1px solid #ededed;
 	position: relative;
+	height: 2rem;
 	border-bottom: 1px solid #ededed;
 }
 

@@ -59,6 +59,7 @@
 		</div>
 	</div>
 </header>	
+
 <div class="subNav ">	
 	<div class="subNav-item item-community">
 			<div class="subNav-item-one">홈</div>

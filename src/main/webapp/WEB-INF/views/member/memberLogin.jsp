@@ -14,26 +14,26 @@
 </head>
 <body>
 <script type="text/javascript" src="/js/memberLogin.js"></script>
-	<main class="flex-center column">
-		
-		<a href="/">	
-			<img class="loginLogo" alt="" src="/images/logoName.png">
-		</a>
-		<div class="message" hidden="hidden">
-			<spring:message code="${message}" ></spring:message>
+	<main>
+		<div class="flex-center column">
+			<a href="/">	
+				<img class="loginLogo" alt="" src="/images/logoName.png">
+			</a>
+			<div class="message" hidden="hidden">
+				<spring:message code="${message}" ></spring:message>
+			</div>
+			<form class="loginFrm" action="./login" method="post">
+				<div class="form-group">
+					<input type="email" name="email" class="form-control loginInput-email" placeholder="이메일" >
+				</div>
+				<div class="form-group">
+					<input type="password" name="password" class="form-control loginInput-pw" placeholder="비밀번호" >
+				</div>
+				
+				<button class="btn-big btn-default">button</button>
+				
+			</form>
 		</div>
-		<form class="loginFrm" action="./login" method="post">
-			<div class="form-group">
-				<input type="email" name="email" class="form-control loginInput-email" placeholder="이메일" >
-			</div>
-			<div class="form-group">
-				<input type="password" name="password" class="form-control loginInput-pw" placeholder="비밀번호" >
-			</div>
-			
-			<button class="btn-big btn-default">button</button>
-			
-		</form>
-		
 	
 	
 	

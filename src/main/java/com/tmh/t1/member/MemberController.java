@@ -52,7 +52,7 @@ public class MemberController {
 		
 		memberService.memberUpdate(memberVO);
 		
-		return "redirect:../member/memberPage";
+		return "redirect:/member/myPage";
 	}
 	
 	//eb_마이페이지
