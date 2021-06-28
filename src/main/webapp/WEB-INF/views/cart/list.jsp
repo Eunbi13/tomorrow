@@ -342,22 +342,17 @@ margin-top:20px;
 		if($(this).prop("checked")){
 			
 			let productNum=$(this).attr("title");
-			alert("checked productNum!"+$(this).attr('title'));
-			
 			
 			$(".cartNum"+productNum).each(function(){
 				
-			   alert("checked cartNum!"+$(this).attr('title'));
 				validity_ar.push($(this).attr("title"));
 			});
 			
-			
 		} else{
 			let productNum=$(this).attr("title");
-			alert("XXXXchecked productNum!"+$(this).attr('title'));
+	
 			$(".cartNum"+productNum).each(function(){
 				
-				alert("XXXXchecked cartNum!"+$(this).attr('title'));
 				 un_validity_ar.push($(this).attr("title"));
 			});
 			
