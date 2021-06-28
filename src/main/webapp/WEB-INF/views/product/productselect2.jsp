@@ -325,7 +325,7 @@ ol li:before {
     position: relative;
     
     position: sticky;
-	top: 117px;
+	top: 116px;
 	z-index: 100;
 	  
     background-color: hsl(0, 0%, 97%);
