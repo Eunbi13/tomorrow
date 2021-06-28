@@ -14,6 +14,8 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 	<main>
+	
+	<!-- eb_mypage상단네비주소 -->
 	<c:import url="../template/myPageNav.jsp"></c:import>
 		
 		<hr>

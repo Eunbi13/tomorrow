@@ -14,22 +14,10 @@
 <c:import url="../template/header.jsp"></c:import>
 	<main>
 	
-		<ul class="mpNav">
-				<li class="mpNav-item ">
-					<a class="on " href="/member/myPage">프로필</a></li>
-				<li class="mpNav-item ">
-					<a class=" " href="/orders/list">나의 쇼핑</a></li>
-				<li class="mpNav-item ">
-					<a class="memberUpdate" href="/member/update">설정</a></li>
-			<sec:authorize access="hasRole('ROLE_B')">
-				<li class="mpNav-item ">
-					<a id="brandHome" class=" " href="#">브랜드 설정</a></li>
-			</sec:authorize>
-			<sec:authorize access="hasRole('ROLE_M')">
-				<li class="mpNav-item ">
-					<a class=" " href="#">관리자 페이지</a></li>
-			</sec:authorize>
-		</ul>
+	<!-- eb_mypage상단네비주소 -->
+	<c:import url="../template/myPageNav.jsp"></c:import>
+	
+	
 		<hr>
 		<div id="ajaxDIV">
 			<ul class="mpSubNav ">
