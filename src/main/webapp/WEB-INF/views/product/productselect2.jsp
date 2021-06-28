@@ -554,7 +554,7 @@ ol li:before {
 										</div>
 										<div class="num" style="width:200px; height:23px; font-size:16px; padding-bottom:20px; font-weight: bold; float: right;">
 										       <!--  cartPrice-->
-											       <input type="text" readonly name="cartPrice" id="cartPrice" class="cartPricePlus"  value="" style=" width:180px; height:20px; background-color:transparent; font-weight:800; border:0 solid black; text-align:right;" />
+											       <input type="text" readonly name="cartPrice" id="cartPrice" class="cartPricePlus"  value="" style=" height:20px; background-color:transparent; font-weight:800; border:0 solid black; text-align:right;" />
 											  원
 										</div> 
 							    <button type="button" class="close delete" onclick='opClose.call(this)'  id="opDelete" title="" data-productNum="${vo.productNum}"  data-brandNum="${vo.brandNum}" aria-label="Close">
