@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+
 .line{
 margin-top:16px;
 }
@@ -192,7 +193,7 @@ border-color:lightgray;
      	      </div>
      	       
      	       <div>
-     	    	 <textarea name="cancelMemo" cols="50" rows="5" class="nosize" style="resize: none; border-color:lightgray;"> </textarea>
+     	    	 <textarea  name="cancelMemo" cols="60" rows="5" class="nosize" style="resize: none;  padding: 15px;  font-size: 16px; border-color:lightgray;"> </textarea>
      	      </div>
      	       <input type="hidden" name="cartNum" value="${cartVO.cartNum}">
      	      <input type="hidden" name="kind" value="${sel}">

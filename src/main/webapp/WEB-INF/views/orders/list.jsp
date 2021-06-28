@@ -237,6 +237,7 @@ webkit-box-flex: 1; */
 .prName{
    font-weight: bold; 
    margin-top:10px;
+   margin-right:10px;
    font-size:18px;
    }
 
@@ -519,6 +520,8 @@ webkit-box-flex: 1; */
 		window.open(link01,"_blank","width=500, height=740;");
 	}
 
+	
+	// before 기간 선택해서 검색
 	let before_num=0;
 	$(".before").click(function(){
 
@@ -565,8 +568,7 @@ webkit-box-flex: 1; */
 			
 			let be =before_num;
 			 let st =$("#status").val();
-			 alert("be:"+be+"/st:"+st); 
-			 
+		
 			$.ajax({
 				type: "get", 
 				url: "../orders/ajaxList", 
@@ -591,7 +593,7 @@ webkit-box-flex: 1; */
 
 
 
-
+	// status  주문상태 선택해서 검색
 	let status_num=0;
 
 	$(".status").click(function(){
@@ -605,24 +607,24 @@ webkit-box-flex: 1; */
 		
 		console.log('attr.name:'+$(".sm-btn").attr("name"));
 		
-		$(".sm-btn").each(function(){
-			if($(this).attr("title")=="status"){
-				console.log("  status가 이ㅁ 존재 ");
-				console.log($(this).val());
-				$("#statusBtn").each(function(){
-					if($(this).val()==previous){
-						console.log("삭제될 것의 타이는?"+$(this).val());
-						$(this).remove();
-						$("#status").remove();
+			$(".sm-btn").each(function(){
+				if($(this).attr("title")=="status"){
+					console.log("  status가 이ㅁ 존재 ");
+					console.log($(this).val());
+					$("#statusBtn").each(function(){
+						if($(this).val()==previous){
+							console.log("삭제될 것의 타이는?"+$(this).val());
+							$(this).remove();
+							$("#status").remove();
+							
+						}
 						
-					}
+					});
 					
-				});
+				}
 				
-			}
-			
-		});
-			
+			});
+				
 		       
 		
 				let text='<button type="button" id="statusBtn" class="btn sm-btn btn-close" value="'+status_num +'" title="status" > '+content+'</button>   '
@@ -637,7 +639,7 @@ webkit-box-flex: 1; */
 			
 				 let be =$("#before").val();
 			     let st =status_num;
-				 alert("be:"+be+"/st:"+st); 
+				
 				
 				 
 				$.ajax({
@@ -668,8 +670,6 @@ webkit-box-flex: 1; */
 		 
 		 let be =$("#before").val();
 		 let st =$("#status").val();
-		 alert("be:"+be+"/st:"+st); 
-
 		
 		 
 		$.ajax({
@@ -697,10 +697,7 @@ webkit-box-flex: 1; */
 		
 		let be =$("#before").val();
 		 let st =$("#status").val();
-		 alert("be:"+be+"/st:"+st); 
-
 		
-		 
 		$.ajax({
 			type: "get", 
 			url: "../orders/ajaxList", 

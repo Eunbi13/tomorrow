@@ -27,6 +27,7 @@ shipping  -->
 }
 .productN{
  font-size: 16px;
+ color: black;
 }
 
 .productPic{
@@ -368,15 +369,11 @@ padding-left:20px;
   width: 600px;
   height: 500px;
 }
-.agreeTd{
-	backgroun-color:#d9d9d9;
-	font-weight:bold;
-	color:#808080;
-	text-align: center;
-}
+
 
 .agree-add{
 font-size:14px;
+margin-top:20px;
 }
 
 .modal-dialog.modal-fullsize {
@@ -390,8 +387,48 @@ font-size:14px;
   min-height: 100%;
   border-radius: 0; 
 }
+.agreeT{
+width:600px;
+height: 300px;
+ }
+ 
+ .agreeT th{
+ text-align: center;
+ background-color: #d9d9d9;
+ font-size: 16px;
+ border: 1px gray solid;
+ height: 40px;
+ }
+ 
+ .agreeT td{
+ 
+ font-size: 16px;
+ border: 1px gray solid;
+ border-radius: 0px;
 
-
+ }
+ 
+ .money{
+  font-weight:800;
+ }
+ 
+ .card-body{
+ 
+ padding-bottom:0px;
+  }
+  
+ .shipBtn{
+ margin-bottom:0px;
+ }
+.cardShip{
+  padding-bottom:0px;
+  width: 100%; 
+  height:180px; 
+   padding-bottom: -10px; 
+   margin-bottom: 10px; 
+   border: 1px solid LightGray; 
+   border-radius:10px;
+}
 </style>
 </head>
 <body>
@@ -420,8 +457,8 @@ font-size:14px;
 	           
 	            
 	        	<!-- shipping select -->
-		          <div class="card" style="width: 100%; height:200px; margin-bottom: 10px; border: 1px solid LightGray; border-radius:10px;">
-					  <div class="card-body ">
+		          <div class="card cardShip" >
+					  <div class="card-body mb-0 pb-0">
 				         
 					  
 					      <div class="card-title" style="float:left; font-weight: bold; font-size: 18px;">${shipping.shipTitle}</div>
@@ -432,15 +469,15 @@ font-size:14px;
 								</c:if>
 					     
 					          <div style="font-size: 16px;  clear:both; "> ${shipping.shipAddress}  ${shipping.shipDetailAddress}</div>
-					    	  <div  style="font-size: 14px; font-weight: lighter; padding-bottom:10px;"> ${shipping.shipName} ${shipping.shipPhone} </div>
+					    	  <div  class="mt-1 mb-1 pb-1" style="font-size: 14px; font-weight: lighter;  "> ${shipping.shipName} ${shipping.shipPhone} </div>
 					    	
 							
-					    	 <div title="${shipping.shipNum}" style="width:150px; height:50px; float: left;">
-								 <button type="button" class="btn shipDelBtn" title="${shipping.shipNum}"  style="font-size:14px; border: 1px solid LightGray">삭제</button>   
-								 <button type="button" class="btn shipUpdateBtn" id="shipUpdateBtn${shipping.shipNum}" title="${shipping.shipNum}" data-toggle="modal" data-target="#shippingUpdateModal" style="font-size:14px; border: 1px solid LightGray">수정</button>
+					    	 <div title="${shipping.shipNum}" style="width:150px; height:50px; float: left; margin-bottom:0px;">
+								 <button type="button" class="btn shipDelBtn shipBtn" title="${shipping.shipNum}"  style="font-size:14px; border: 1px solid LightGray">삭제</button>   
+								 <button type="button" class="btn shipUpdateBtn shipBtn" id="shipUpdateBtn${shipping.shipNum}" title="${shipping.shipNum}" data-toggle="modal" data-target="#shippingUpdateModal" style="font-size:14px; border: 1px solid LightGray">수정</button>
 							 </div>
-							 <div style="width:70px; height:50px;  float: right;">
-							   <button type="button" class="btn btn-default shipSelect" style="font-size:14px;" title="${shipping.shipNum}" >선택</button>
+							 <div style="width:70px; height:50px;  float: right; margin-bottom:0px;">
+							   <button type="button" class="btn btn-default shipSelect shipBtn" style="font-size:14px;" title="${shipping.shipNum}" >선택</button>
 							 </div>
 						  
 					  </div>
@@ -859,7 +896,7 @@ font-size:14px;
 													      <div class="media-body">
 													          <div class="mt-0 mb-0 productN">${productVO.productName}</div>
 													           <div class="gray"> ${cartVO.unitName}</div>
-													           <div style="float:left; font-size:14px; font-weight:bold;"> ${cartVO.cartPrice}원 &nbsp; </div> <div class="grayN" style="float:left;">| &nbsp; ${cartVO.amount}개</div>
+													           <div style="float:left; font-size:14px; font-weight:bold; color: black;'"> ${cartVO.cartPrice}원 &nbsp; </div> <div class="grayN" style="float:left;">| &nbsp; ${cartVO.amount}개</div>
 													      </div>
 													     </div>
 														</li>
@@ -934,7 +971,7 @@ font-size:14px;
             
        <!--  약관동의 The Modal -->
   <div class="modal fade" id="agreeModal">
-    <div class="modal-dialog  modal-lg " >
+    <div class="modal-dialog  "  style="max-width: 100%; width: auto; max-height: 100%; height: auto; display: table;">
       <div class="modal-content ">
       
         <!-- Modal Header -->
@@ -944,31 +981,32 @@ font-size:14px;
         </div>
         
         <!-- Modal body -->
-        <div class="modal-body">
-          	<table>
-          	 	<tr>
-          	 		<td class="agreeTd">제공 받는자</td>
-          	 		<td class="agreeTd">제공목적</td>
-          	 		<td class="agreeTd">항목</td>
-          	 		<td class="agreeTd">보유 및 이용기간</td>
-          	 	</tr>
-          	 	<tr>
-          	 		<td>주식회사 홈니즈</td>
-          	 		<td>상품 및 경품(서비스) 배송(전송), 제품 설치, 반품, 환불, 고객상담 등 정보통신서비스제공계약 및 전자상거래(통신판매)계약의 이행을 위해 필요한 업무의 처리</td>
-          	 		<td>1) 구매자정보(닉네임, 이름, 휴대폰번호, 이메일주소)
-						2) 수령인정보(이름, 휴대폰번호, 주소)
-						3) 상품 구매, 취소, 반품, 교환정보
-						4) 송장정보
-						5) 개인통관고유부호 (해외배송상품 구매시)
-					</td>
-          	 		<td>서비스 제공 목적 달성시 까지
-
-					단, 관계 법령이 정한 시점까지 보존
-					</td>
-          	 	</tr>
-          	</table>
-          	
+        <div class="modal-body " >
+          	<div style="text-align:center; vertical-align: center; padding-top:100px;">
+	          	<table class="agreeT">
+	          	 	<tr>
+	          	 		<th class="agreeTd">제공 받는자</th>
+	          	 		<th class="agreeTd">제공목적</th>
+	          	 		<th class="agreeTd">항목</th>
+	          	 		<th class="agreeTd">보유 및 이용기간</th>
+	          	 	</tr>
+	          	 	<tr>
+	          	 		<td>주식회사 홈니즈</td>
+	          	 		<td>상품 및 경품(서비스) 배송(전송), 제품 설치, 반품, 환불, 고객상담 등 정보통신서비스제공계약 및 전자상거래(통신판매)계약의 이행을 위해 필요한 업무의 처리</td>
+	          	 		<td>1) 구매자정보(닉네임, 이름, 휴대폰번호, 이메일주소)
+							2) 수령인정보(이름, 휴대폰번호, 주소)
+							3) 상품 구매, 취소, 반품, 교환정보
+							4) 송장정보
+							5) 개인통관고유부호 (해외배송상품 구매시)
+						</td>
+	          	 		<td>서비스 제공 목적 달성시 까지
+	
+						단, 관계 법령이 정한 시점까지 보존
+						</td>
+	          	 	</tr>
+	          	</table>
           	<div class="agree-add">개인정보 제공에 동의하지 않으실 수 있으며, 동의하지 않으실 경우 서비스 이용이 제한될 수 있습니다.</div>
+          </div>
         </div>
         
         <!-- Modal footer -->
@@ -991,16 +1029,16 @@ font-size:14px;
             </div>
            
             <div class="bg-light rounded d-flex flex-column">
-                <div class="p-2 ml-3">
+                <div class="p-2 ml-2 mb-2">
                     <div class="ordersSub3">결제금액</div>
                 </div>
                 <div class="p-2 d-flex">
                     <div class="col-8 middle">총 상품 금액</div>
-                    <div class="ml-auto money">${ordersVO.itemsPrice}원</div>
+                    <div class="ml-auto money mr-2">${ordersVO.itemsPrice}원</div>
                 </div>
                 <div class="p-2 d-flex">
                     <div class="col-8 middle">배송비</div>
-                    <div class="ml-auto money">${ordersVO.shippingFee}원</div>
+                    <div class="ml-auto money mr-2">${ordersVO.shippingFee}원</div>
                 </div>
              
                 <div class="border-top px-4 mx-3"> </div>
@@ -1010,9 +1048,9 @@ font-size:14px;
                 
                 <div class="p-2 d-flex pt-3">
                     <div class="col-8 ordersSub4"><b>최종 결제 금액</b></div>
-                     <input type="hidden" id="orderNum" value="${ordersVO.orderNum}">
+                     <input type="hidden" id="orderNum"  value="${ordersVO.orderNum}">
                     
-                    <div class="ml-auto" id="payment" title="${ordersVO.payment}"><b class="green money2"> ${ordersVO.payment}원</b></div>
+                    <div class="ml-auto mr-2" id="payment" title="${ordersVO.payment}"><b class="green money"> ${ordersVO.payment}원</b></div>
                 </div>
                 <div class="p-2 d-flex pt-3 agree">
                    <div class="agree1">  <input type="checkbox">&nbsp;&nbsp; 아래 내용에 모두 동의합니다. (필수)

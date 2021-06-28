@@ -41,14 +41,23 @@
 								(select * from cart 
 					    		where username=#{username} and 
 					    		
-					    		
-					    		
-					    		<if test="status == null ">
-								(validity > 1 and  20 > validity)
-								</if>
-								<if test="status != null">
-								 validity=#{status}
-								</if>
+					    		<choose>
+					    		  	<when test="status == null">
+					    		  		(validity > 1 and  20 > validity)
+					    		  	</when>
+					    		  	<when test="status == 8">
+					    		  	   (validity = '11' or validity = '12')
+					    		  	</when>
+					    		  	<when test="status == 9">
+					    		  		(validity = '13' or validity = '14' or validity = '15')
+					    		  	</when>
+					    		  	<when test="status == 10">
+					    		  	    (validity = '8' or validity = '9' or validity = '10')
+					    		  	</when>
+					    		  	<otherwise>
+					    		  		validity=#{status}
+					    		  	</otherwise>
+			    		       </choose>
 								
 					    		) C
 								on C.orderNum = O.orderNum)
@@ -71,12 +80,23 @@
 								(select * from cart 
 					    		where username=#{username} and 
 					    		
-								<if test="status == null ">
-								(validity > 1 and  20 > validity)
-								</if>
-								<if test="status != null">
-								 validity=#{status}
-								</if>
+								<choose>
+					    		  	<when test="status == null">
+					    		  		(validity > 1 and  20 > validity)
+					    		  	</when>
+					    		  	<when test="status == 8">
+					    		  	   (validity = '11' or validity = '12')
+					    		  	</when>
+					    		  	<when test="status == 9">
+					    		  		(validity = '13' or validity = '14' or validity = '15')
+					    		  	</when>
+					    		  	<when test="status == 10">
+					    		  	    (validity = '8' or validity = '9' or validity = '10')
+					    		  	</when>
+					    		  	<otherwise>
+					    		  		validity=#{status}
+					    		  	</otherwise>
+			    		       </choose>
 					    		) C
 								on C.orderNum = O.orderNum)
                                  ) B
@@ -124,12 +144,23 @@
 					    		
 					    		
 					    		
-					    		<if test="status == null ">
-							(validity > 1 and  20 > validity)
-								</if>
-								<if test="status != null">
-								 validity=#{status}
-								</if>
+					    		<choose>
+					    		  	<when test="status == null">
+					    		  		(validity > 1 and  20 > validity)
+					    		  	</when>
+					    		  	<when test="status == 8">
+					    		  	   (validity = '11' or validity = '12')
+					    		  	</when>
+					    		  	<when test="status == 9">
+					    		  		(validity = '13' or validity = '14' or validity = '15')
+					    		  	</when>
+					    		  	<when test="status == 10">
+					    		  	    (validity = '8' or validity = '9' or validity = '10')
+					    		  	</when>
+					    		  	<otherwise>
+					    		  		validity=#{status}
+					    		  	</otherwise>
+			    		       </choose>
 								
 					    		) C
 								on C.orderNum = O.orderNum)
@@ -191,13 +222,23 @@
 					inner join 
 						(select * from cart 
 			    		where username=#{username} and 
-			    		
-				    		<if test="status == null ">
-							(validity > 1 and  20 > validity)
-							</if>
-							<if test="status != null">
-							 validity=#{status}
-							</if>
+			    		  <choose>
+				    		  	<when test="status == null">
+				    		  		(validity > 1 and  20 > validity)
+				    		  	</when>
+				    		  	<when test="status == 8">
+				    		  	   (validity = '11' or validity = '12')
+				    		  	</when>
+				    		  	<when test="status == 9">
+				    		  		(validity = '13' or validity = '14' or validity = '15')
+				    		  	</when>
+				    		  	<when test="status == 10">
+				    		  	    (validity = '8' or validity = '9' or validity = '10')
+				    		  	</when>
+				    		  	<otherwise>
+				    		  		validity=#{status}
+				    		  	</otherwise>
+			    		  </choose>
 						
 			    		) C
 					on C.orderNum = O.orderNum
