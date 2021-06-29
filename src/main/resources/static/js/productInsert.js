@@ -8,7 +8,6 @@ $('#EX').click(function(){
 
 //eb_이미지 미리보기
 //대표이미지(input태그)에 변화가 있을 경우
-$('.repImg').hide();
 $('#rep').change(function(){
 	let fileList = this.files;
 	let reader = new FileReader();
@@ -16,10 +15,27 @@ $('#rep').change(function(){
 	//로드 이벤트가 실행되면 보여지고 싶은 선택자 src속성에 넣기
 	reader.addEventListener('load', function(){
 		$('.repImg').attr('src', reader.result);
-		$('.repImg').show();
+		$('.repImg').css('width', '100%');
+		$('.repImg').css('height', '100%');
 	})
 })
 
+$('body').on('change','#add-file-image', function(){
+	let p = $(this).prev().html();
+	console.log($(p).attr('class'))
+	console.log($(p+':eq(0)').attr('src'))
+	console.log($(p).attr('src'))
+	$(this).attr('class','hihi')
+	let fileList = this.files;
+	let reader = new FileReader();
+	reader.readAsDataURL(fileList[0])
+	reader.addEventListener('load', function(){
+		$(p).attr('src', reader.result);
+		$(p).css('width', '100%');
+		$(p).css('height', '100%');
+		console.log($(p).attr('class'))
+	})
+})
 
 //eb_imageAdd
 $('#imageAdd').click(function(){
@@ -30,6 +46,7 @@ $('#imageAdd').click(function(){
 $('#files').on('click', '.deleteImage', function(){
 	$(this).parent().remove();
 });
+
 
 //eb_카테고리 대분류에서 선택시
 $('.ch').click(function(){

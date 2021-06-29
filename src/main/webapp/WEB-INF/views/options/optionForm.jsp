@@ -9,42 +9,33 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel">옵션</h3>
-        <h3 id="EX">?</h3>
+        <div class="title">옵션 추가 하기</div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
       <!-- 시작 -->
-	     <ul>
+	    <ul>
 			<li>옵션 명: 옵션의 이름을 정합니다</li>
 			<li>옵션 값: 옵션의 값을 정합니다. '/'을 기준으로 입력해주세요</li>
-			<li>옵션 가격: 옵션별로 가격을 책정합니다. 아무것도 입력하지 않을 경우 +0원으로 입력됩니다.</li>
 		</ul>
-		<img id="optionEX" alt="" src="/images/optionEX.PNG">
         <fieldset>
-	        <div class="optionForm">
-				<div class="col-sm-11 row">
-					<div class="form-group col-md-4">
-						<label>옵션명</label>
-						<div >
-							<input class="form-control kinds" name="op" type="text" placeholder="Please kinds">
-						</div>
+        	<div class="addForm">
+				<div class="optionForm ">
+					<div class="form-group ">
+						<label class="form-label-op">옵션명</label>
+						<input class="form-control form-control-op kinds" name="op" type="text" placeholder="컬러">
 					</div>
-					<div class="form-group col-md-8">
-						<label>옵션값</label>
-						<div >
-							<input class="form-control names" name="op" type="text" placeholder="Please name">
-						</div>
+					<div class="form-group ">
+						<label class="form-label-op">옵션값</label>
+						<input class="form-control form-control-op names" name="op" type="text" placeholder="블랙/화이트/레드/블루">
 					</div>
-					
+					<hr>
 				</div>
 			</div>
-			<div class="addForm"></div>
-			<div class="col-sm-1 row form-group" >
-				<div class="form-control" id="add">+</div>
-			</div>
+			<div class="btn-outline btn-outline-op" id="add">추가</div>
+			
 		</fieldset>
       </div>
       <div class="modal-footer">

@@ -31,7 +31,7 @@
 					<input type="password" name="password" class="form-control loginInput-pw" placeholder="비밀번호" >
 				</div>
 				
-				<button class="btn-default-custome btn-big ">button</button>
+				<button class="btn-default-custom  btn-big ">button</button>
 				
 			</form>
 

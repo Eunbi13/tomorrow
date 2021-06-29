@@ -30,9 +30,6 @@ legend{
 	flex-shrink: 0;
 }
 
-
-	
-
 /* 라벨 옆에 중요표시 */
 span{
 	color:red;
@@ -57,31 +54,27 @@ span{
 }
 
 /* 미리보기 */
-
+/* input[type="file"] */
 .preview-box{
+	width: 100%;	
 	height: 60px;
 	position: relative;
-	width: 100%;	
-}
-.preview{
-	width: 60px;
-	height: 60px;
-	border-radius:0.25em;
+	display: flex;	
+	flex-wrap: wrap;
 }
 
-
-.file-image{
+/* input[type="file"] label */
+.file-label{
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 60px;
 	height: 60px;
-	line-height: 50px;
 	border: 3px dashed #dbdbdb;
 	border-radius: 0.25rem;
-	color:#dbdbdb;
-	font-size: 25px;
-	position:absolute;
-	left:0;
+	margin-right: 10px;
 }
-.file-image:hover{
+.file-label:hover{
 	width: 60px;
 	height: 60px;
 	line-height: 50px;
@@ -93,41 +86,100 @@ span{
 	z-index: 100;
 	opacity: 0.5;
 }
-
-/*추가이미지*/
+/* input[type="file"] label-image */
+.preview-item{
+	width: 30px;
+	height: 30px;
+}
+/*추가이미지 설정*/
 #imageAdd{
 	width: 30px;
 	max-width:100px;
 	padding: 5px 8px;
 }
 
-/*test*/
-.preview-box-2{
-	height: 60px;
-	position: relative;
-	width: 100%;	
-	background-color: yellow;
+
+.deleteImage{
+	padding-left: 5px;
+	color:  #A63F82;
+	position: absolute;
+	top:0;
+}
+
+/*옵션 라디오 버튼*/
+p{
+	margin-top: 6px;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+
+input[type="radio"]{
+	margin: 8px;
+}
+
+#optionButton{
+	flex-shrink:0;
+	font-size: 12px;
+	margin-left: 12px;
+}
+
+/*옵션 모달창*/
+.title{
+	font-size: 24px;
+	width: 100%;
+	text-align: center;
+	margin-top: 80px;
+	margin-bottom: 50px;
+}
+
+li{
+	margin:15px 20px ;
+	font-size: 15px;
+}
+
+.addForm{
+	width: 90%;
+	margin: 0 auto;
+}
+
+.form-label-op{
+	width: 150px;
+	font-size: 15px;
+	font-weight: bold;
+	flex-shrink: 0;
+}
+.form-control-op{
+	width: 100%;
+	margin: 0.5rem 0;
+	height:  40px;
+	font-size: 13px;
+}
+
+.btn-outline-op{
+	float: right !important;
+	font-size: 12px !important;
+	width: 40px !important;
+	height: 35px !important;
+	padding: 10px 0!important;
+	margin-right: 40px !important; 
+}
+/* eb_productUpdate */
+#category{
 	display: flex;
+	align-items: baseline;
 }
 
-.add-priview-box{
-
+.category-item{
+	font-size: 15px !important;
+	font-weight: bold !important;
+	margin: 20px;
 }
 
 
-
-.file-image-2{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 60px;
-	height: 60px;
-	border: 3px dashed #dbdbdb;
-	border-radius: 0.25rem;
-	margin-right: 10px;
-}
-
-.preview-2{
-	width: 30px;
-	height: 30px;
+.right{
+	float: right;
+	margin-top: -80px;
+	margin-bottom: 100px;
+	text-align: center;
 }

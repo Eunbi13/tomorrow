@@ -54,28 +54,28 @@
 			<div class="form-group ">
 				<label class=" form-label" >대표 이미지<span>*</span></label>
 				<div class="preview-box">
-					<img class="preview repImg" alt="" src="">
-					<label class="rep text-center file-image" for="rep">+</label>
+					<label class="rep text-center file-label" for="rep">
+						<img class="preview-item repImg" src="/images/plusIcon.png">
+					</label>
 					<input hidden="hidden" id="rep" type="file" name="rep" class="" >
 				</div>
 			</div>
 			<div class="form-group ">
 				<label class=" form-label" >추가 이미지</label>
-				<div id="files" class="preview-box-2">
+				<div id="files" class="preview-box">
 					<!-- 추가 이미지 장소 -->
 				</div>
 				<div id="imageAdd" class="btn-outline">+</div>
 				<div id="filesSample" style="display: none">
-					<div class="add-priview-box">
-						<label class="file-image-2" for="add-file-image">
-							<img class="add-img preview-2" src="/images/plusIcon.png">
+					<div class="priview-box">
+						<label class="file-label" for="add-file-image">
+							<img class="add-img preview-item" src="/images/plusIcon.png">
 						</label>
 						<input id="add-file-image" hidden="hidden"  type="file" name="files" class="" >
-						<label class="deleteImage">x</label>
+						<div class="deleteImage">x</div></div> 
 					</div>
 				</div>
 				
-			</div>
 		</fieldset>
 <hr>
 
@@ -112,29 +112,28 @@
 			</div>
 		</fieldset>
 <hr>
-				<fieldset>
+		<fieldset>
 			<legend>옵션</legend>
-			<small>옵션은 한 개 이상 넣어주세요.</small>
-			<label class=" form-label">옵션 구성 타입 </label>
-				조합 일체선택형<input type="radio" id="notUse" name="o1" checked>
-				조합 분리선택형<input type="radio" id="use" name="o1">
-			<!-- Button trigger modal -->
-			<button id="optionButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-			  옵션추가하기
-			</button>
-
-			<div>
-				<div id="importForm">
-					<c:import url="../options/optionForm.jsp"></c:import>
-				</div>
-			</div>
-			<div class="container-sml" id="table">
+			<div class="form-group ">
+				<label class=" form-label">옵션 구성 타입 
+					<p>옵션은 한 개 이상 넣어주세요.</p>
+				</label>
+				<input type="radio" id="notUse" name="o1" checked>조합 일체선택형
+				<input type="radio" id="use" name="o1">조합 분리선택형
+				<!-- Button trigger modal -->
+				<button id="optionButton" class="btn-outline" type="button"  data-toggle="modal" data-target="#exampleModal">
+				  옵션추가하기
+				</button>
 				
-			</div>
 			
+			</div>
+			<div class="" id="table"><!-- 옵션 테이블 자리 --></div>
+			<div id="importForm">
+				<c:import url="../options/optionForm.jsp"></c:import>
+			</div>
 		</fieldset>
 
-		<button>저장하기</button>
+		<button class="btn-default-custom">저장하기</button>
 	</form>
 	
 	</div>	

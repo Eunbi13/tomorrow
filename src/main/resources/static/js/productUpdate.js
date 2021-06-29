@@ -9,15 +9,25 @@ $('#productPicButton').click(function(){
 
 //eb_제품의 카테고리 수정
 let category ='';
-$('#changeCategoryNM').click(function(){
+$('body').on('click', '#changeCategoryNM', function(){
 	category=$('#category').html();
 	$('#category').empty();
-	$('#categoryCheckBox').removeAttr('hidden');
-});
+	$('#categoryCheckBox').css('display', '');
+	cC++;
+	$('#categoryCancel').removeAttr('hidden');
+})
+
 	
 //eb_제품의 카테고리 수정을 취소
+let cC=0;
 $('#categoryCancel').click(function(){
-	$('#category').append(category);
-	$('#categoryCheckBox').attr('hidden', 'hidden')
+	if(cC>0){
+		$('#category').append(category);
+				
+		$('#categoryCheckBox').css('display', 'none')
+		$('#two').empty();
+		$('#three').empty();
+	}
+	cC--;
 })
 
