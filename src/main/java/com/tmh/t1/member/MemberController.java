@@ -59,8 +59,7 @@ public class MemberController {
 				
 			}
 		}
-		
-		String filename =memberService.memberUpdate(memberVO,  profileImage);
+		String filename =memberService.memberUpdate(auth, memberVO,  profileImage);
 		//session에 담기는 정보 수정
 		MemberVO mem=(MemberVO)auth.getPrincipal();
 		mem.setUsername(memberVO.getUsername());

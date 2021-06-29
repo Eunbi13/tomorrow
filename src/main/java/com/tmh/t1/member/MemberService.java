@@ -7,6 +7,7 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -40,9 +41,17 @@ public class MemberService implements UserDetailsService{
 	
 	
 	//eb_회원정보 수정(설정)
-	public String memberUpdate(MemberVO memberVO,MultipartFile profileImage)throws Exception{
-		String filename=fileManager.save(profileImage, filePath);
-		memberVO.setProfileImage(filename);
+	public String memberUpdate(Authentication auth,MemberVO memberVO,MultipartFile profileImage)throws Exception{
+		//프로필 이미지가 변경되지 않은 경우
+		MemberVO vo2 = (MemberVO)auth.getPrincipal();
+		String filename="";
+		if(profileImage.getSize()<1) {
+			memberVO.setProfileImage(vo2.getProfileImage());
+			filename=vo2.getProfileImage();
+		}else {
+			filename=fileManager.save(profileImage, filePath);
+			memberVO.setProfileImage(filename);
+		}
 		memberMapper.memberUpdate(memberVO);
 		return filename;
 	}
