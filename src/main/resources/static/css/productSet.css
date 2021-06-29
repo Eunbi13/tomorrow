@@ -95,6 +95,39 @@ span{
 }
 
 /*추가이미지*/
-.btn-default-custome{
-	font-size: 15px;
+#imageAdd{
+	width: 30px;
+	max-width:100px;
+	padding: 5px 8px;
+}
+
+/*test*/
+.preview-box-2{
+	height: 60px;
+	position: relative;
+	width: 100%;	
+	background-color: yellow;
+	display: flex;
+}
+
+.add-priview-box{
+
+}
+
+
+
+.file-image-2{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 60px;
+	height: 60px;
+	border: 3px dashed #dbdbdb;
+	border-radius: 0.25rem;
+	margin-right: 10px;
+}
+
+.preview-2{
+	width: 30px;
+	height: 30px;
 }

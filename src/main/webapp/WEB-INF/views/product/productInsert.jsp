@@ -54,26 +54,26 @@
 			<div class="form-group ">
 				<label class=" form-label" >대표 이미지<span>*</span></label>
 				<div class="preview-box">
-					<img class="preview" alt="" src="">
+					<img class="preview repImg" alt="" src="">
 					<label class="rep text-center file-image" for="rep">+</label>
 					<input hidden="hidden" id="rep" type="file" name="rep" class="" >
 				</div>
 			</div>
 			<div class="form-group ">
 				<label class=" form-label" >추가 이미지</label>
-				<div id="files" class="preview-box">
-					<img class="add-img" alt="" src="">
+				<div id="files" class="preview-box-2">
+					<!-- 추가 이미지 장소 -->
 				</div>
-				<div id="imageAdd" class="btn-default-custom">이미지 추가</div>
-						
-					
-					<div id="filesSample" style="display: none">
-						<div class="form-group " >
-							<label class="file-image" for="add-file-image">+</label>
-							<input id="add-file-image" hidden="hidden"  type="file" name="files" class="" >
-							<label class="deleteImage">x</label>
-						</div>
+				<div id="imageAdd" class="btn-outline">+</div>
+				<div id="filesSample" style="display: none">
+					<div class="add-priview-box">
+						<label class="file-image-2" for="add-file-image">
+							<img class="add-img preview-2" src="/images/plusIcon.png">
+						</label>
+						<input id="add-file-image" hidden="hidden"  type="file" name="files" class="" >
+						<label class="deleteImage">x</label>
 					</div>
+				</div>
 				
 			</div>
 		</fieldset>

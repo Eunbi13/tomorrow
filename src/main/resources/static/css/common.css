@@ -68,12 +68,10 @@ main, div.mainNav{
 	font-weight: bold;
 	font-size: 18px;
 	text-align: center;
-	border-radius:0;
 	background-color: #FFF;
 	color:#A63F82;
-	border-color: #A63F82;
-	border:1px solid;
-	border-radius:6px;
+	border:1px solid #A63F82;
+	border-radius:.25rem;
 
 }
 .btn-outline:hover, .btn-outline:focus, .bbtn-outline:active, .btn-outline.active, .open .dropdown-toggle.btn-outline {
