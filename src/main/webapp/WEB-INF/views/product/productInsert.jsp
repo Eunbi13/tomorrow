@@ -14,7 +14,7 @@
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-<div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+<main>
 <h1>상품 등록 페이지 </h1>
 
 
@@ -75,8 +75,8 @@
 
 		<fieldset>
 			<legend>상세 페이지 작성</legend>
-		<div class="form-group">
-			<textarea id="summernote" name="contents" class="form-control" id="exampleFormControlTextarea1" placeholder="Please contents"></textarea>
+		<div class="">
+			<textarea id="summernote" name="contents"></textarea>
 		</div> 
 			
 		</fieldset>	
@@ -132,7 +132,7 @@
 	</form>
 	
 		
-</div>
+</main>
 
 <c:import url="../template/footer.jsp"></c:import>
 <script type="text/javascript" src="/js/productInsert.js"></script>

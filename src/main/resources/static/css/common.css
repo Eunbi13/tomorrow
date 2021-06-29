@@ -46,7 +46,7 @@ header{
 	color:#ff7777;
 }
 /* mk_버튼 */
-.btn-default{
+.btn-default-custome{
 	width:125px;
     max-width:100%;
 	padding:11px 22px;

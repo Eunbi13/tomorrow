@@ -96,7 +96,7 @@
 			</div>
 		</div>
 		
-		<button class="btn btn-default">회원 정보 수정</button>
+		<button class="btn btn-default-custome">회원 정보 수정</button>
 	</form:form>
 </div>
 </main>
