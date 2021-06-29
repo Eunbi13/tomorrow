@@ -12,7 +12,7 @@
 <c:import url="../template/bootStrap.jsp"></c:import>
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
-<title>store select</title>
+<title>내일부터 하는 인테리어, 내일의 집</title>
 
 <style type="text/css">
 

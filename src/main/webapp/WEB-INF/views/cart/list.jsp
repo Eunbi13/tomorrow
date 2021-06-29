@@ -105,8 +105,8 @@ margin-top:20px;
                   <div class="d-flex justify-content-between d-top">
 				    <div class="p-2 ">
 		                       <div class="custom-control custom-checkbox">
-								  <input type="checkbox" checked class="custom-control-input" id="allCheck">
-								  <label class="custom-control-label" style="font-size:18px;" for="allCheck">모두선택</label>
+								  <input type="checkbox" checked class="custom-control-input" id="allCheck"  style="font-size:18px; margin-top:40px;" >
+								  <label class="custom-control-label" style="font-size:18px; margin-top:10px;" for="allCheck">모두선택</label>
 								</div>
 				    </div>
 				   
