@@ -49,7 +49,7 @@
 	</form>
 	<div class="row">
 		<div class="btn-outline" id="running">탈퇴신청</div>
-		<div class="btn-default-custome" id="cancel">취소하기</div>
+		<div class="btn-default-custom" id="cancel">취소하기</div>
 	</div>
 
 

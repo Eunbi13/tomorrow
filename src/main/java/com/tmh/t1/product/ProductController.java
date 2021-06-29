@@ -82,7 +82,6 @@ public class ProductController {
 		//brand가 가지고 있는 카테고리(대분류)를 가져욤
 		List<CategoryVO> categoryOne =productService.getCategoryOne(auth);
 		model.addAttribute("categoryOne", categoryOne);
-		System.out.println("프로덕트 인서트 화면 열림");
 		return "product/productInsert";
 	}
 	
