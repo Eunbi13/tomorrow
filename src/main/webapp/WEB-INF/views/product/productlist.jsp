@@ -44,7 +44,7 @@ h5 {
 }
 
 .next {
-	right: 0;
+	right: 200px;
 	border-radius: 3px 0 0 3px;
 }
 
@@ -111,10 +111,9 @@ to {
 }
 
 /* item list */
-.store-category-flex-container {
-	display: flex;
-	flex-wrap: nowrap;
+.swiper-slide {
 	width: 80px;
+	height: 100%;
 }
 
 .store-category-flex-container>img {
@@ -201,6 +200,9 @@ btn-secondary {
 
 	<br>
 
+	
+	<br>
+	
 	<!-- 카테고리 슬라이드 -->
 	<div class="cat-slide">
 	<c:import url="../template/categorySlideT.jsp"></c:import>

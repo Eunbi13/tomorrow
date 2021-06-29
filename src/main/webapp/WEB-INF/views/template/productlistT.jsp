@@ -16,7 +16,8 @@
 }
 .store-list-item-card{
 	margin-right: 5px;
-	flex-basis: 25%
+	flex-basis: 25%;
+	height: auto;
 	display: flex;
  	flex-direction: column;
 }
@@ -29,7 +30,10 @@
 </style>
 </head>
 <body>
+	
+	<h1 style="margin: 20px; margin-top: 70px;">오늘의 딜</h1> 
 	<div class="item-container">
+	
 	<c:forEach items="${productlist}" var="vo">
 		<div class="store-list-item-card">
 			<a href="./productselect2?productNum=${vo.productNum}">
@@ -37,16 +41,16 @@
 				alt="item pic">
 				
 				<!-- 브랜드 이름 -->
-				<div class="brand" style="color: gray;">
+				<div class="brand" style="color: gray; margin-top:5px;">
 					<c:if test="${brandVO.brandNum eq productVO.brandNum}">
 						${vo.brandVO.brandName }
 					</c:if>
 				</div>
 				
 				<!-- 제품 이름 title -->
-				<div class="item-title" style="color: black;">
+				<div class="item-title" style="color: black; margin-top:5px;">
 					${vo.productName}</div> <!-- 가격 -->
-				<div class="card-price" >
+				<div class="card-price" style="margin-top:5px;">
 					<!-- 할인 x 거르기 / 할인 %-->
 					<c:choose>
 						<c:when test="${vo.discountPrice eq vo.productPrice}"></c:when>
@@ -65,16 +69,19 @@
 				</div>
 				
 				<!-- 무배 특가 미니배너 -->
-				<div class="minbanner">
-					<div class="minbanner-ship" >
+				
+				<div class="minbanner" >
+					<br><br>
+					
+					<div class="minbanner-ship" style="float:left; font-size:15px; color:#A63F82; text-align:left; margin-right: 3px;" >
 						<c:if test="${vo.shippingFee eq 0 }">
-							<div>무료배송</div>
+							<div> <button disabled="disabled">무료배송</button>    </div>
 						</c:if>
 					</div>
-
-					<div class="minbanner-price">
+					
+					<div class="minbanner-price" style="float:left; font-size:15px; color:#A63F82; text-align:left; ">
 						<c:if test="${((vo.productPrice - vo.discountPrice)/100) >=20}">
-							<div>특가</div>
+							<div><button disabled="disabled" style="b">특가</button></div>
 						</c:if>
 					</div>
 					

@@ -535,7 +535,7 @@ textarea:focus {
 							style="color: #A63F82; width:48%;"  >장바구니</button>
 							
 						<button type="button" onclick="directPay()" class="store-select-button btn btn-default"
-							style="background-color: #A63F82; #A63F82; width:48%;">바로구매</button>
+							style="background-color: #a63f82; width:48%; ">바로구매</button>
 					</div>
 					
 					
