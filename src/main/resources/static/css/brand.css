@@ -89,3 +89,8 @@ span{
 .btn-file{
 	background-color:  #A63F82;
 }
+
+.btn-file-name{
+	display: inline;
+	margin-left: 10px;
+}

@@ -116,7 +116,7 @@
 				<div class="form-box ">
 					<label for="btn-file" class="btn-default">파일선택</label>
 					<input id="btn-file" type="file" name="files" hidden="hidden">
-					<div class="btn-file-name"></div>
+					<div class="btn-file-name">선택된 파일이 없습니다.</div>
 					
 				</div>
 			</div>
