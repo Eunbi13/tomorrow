@@ -45,7 +45,7 @@ header{
 	font-weight:bold;
 	color:#ff7777;
 }
-
+/* mk_버튼 */
 .btn-default{
 	width:125px;
     max-width:100%;
@@ -64,9 +64,7 @@ header{
 	color:#FFF;
 	border-color: #732944;
 }
-
-.btn-outline{
-    
+.btn-outline{   
     width:125px;
     max-width:100%;
 	padding:11px 22px;
@@ -87,4 +85,13 @@ header{
 	border-color: #A63F82;;
 }
 
+/* eb_flex */
+.flex-center{
+	display: flex;
+	justify-content : center;	
+}
 
+.column{
+	flex-direction: column;
+	align-items: center;
+}

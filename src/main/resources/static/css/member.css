@@ -4,11 +4,11 @@
 	height: 1.9rem;
 	margin: 1.2rem 0.5rem;
 }
-/* 가운데 정렬 되도록 설정 */
-.flex-center{
+/* 가운데 정렬 되도록 설정 common으로 이동*/
+/* .flex-center{
 	display: flex;
 	justify-content : center;	
-}
+} */
 /* 화면이 768px보다 작으면 화면을 꽉채우고 크면 적정크기로 보이도록 설정 */
 .joinFrm{
 	width: 100%;
@@ -75,10 +75,11 @@
 /* 
 	eb_memberLogin 
 */
-.column{
+/* common으로 이동 */
+/* .column{ 
 	flex-direction: column;
 	align-items: center;
-}
+} */
 .loginLogo{
 	margin-top: 6rem;
 	width: 9rem;
