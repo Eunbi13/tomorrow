@@ -14,30 +14,28 @@ $('#rep').change(function(){
 	})
 })
 
-$('body').on('change','#add-file-image', function(){
-	let p = $(this).prev().html();
-	console.log($(p).attr('class'))
-	console.log($(p+':eq(0)').attr('src'))
-	console.log($(p).attr('src'))
-	$(this).attr('class','hihi')
+$('body').on('change','.add-file-image', function(){
+	let id = $(this).attr('id');//img의 타이틀과 동일
+	
 	let fileList = this.files;
 	let reader = new FileReader();
 	reader.readAsDataURL(fileList[0])
 	reader.addEventListener('load', function(){
-		$(p).attr('src', reader.result);
-		$(p).css('width', '100%');
-		$(p).css('height', '100%');
-		console.log($(p).attr('class'))
+		$('img[title="'+id+'"]').attr('src', reader.result);
+		$('img[title="'+id+'"]').css('width', '100%');
+		$('img[title="'+id+'"]').css('height', '100%');
 	})
 })
 
 //eb_imageAdd
+//id가 중복되지 않도록 설정하고 미리보기를 삽입할 id도 지정하겠다.//id중복되면 안되는거 잊지 말기
 index=0;
 index=$('#files label').length;
 $('#imageAdd').click(function(){
 	index++;
 	$('#filesSample label').attr('for', 'add-file-image-'+index);
 	$('#filesSample input').attr('id','add-file-image-'+index);
+	$('#filesSample img').attr('title','add-file-image-'+index)
 	let imageInput = $('#filesSample').html();
 	$('#files').append(imageInput);
 });
