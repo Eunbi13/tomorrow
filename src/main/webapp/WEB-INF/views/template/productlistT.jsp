@@ -30,7 +30,7 @@
 </style>
 </head>
 <body>
-	
+<main>
 	<h1 style="margin: 20px; margin-top: 70px;">오늘의 딜</h1> 
 	<div class="item-container">
 	
@@ -92,6 +92,6 @@
 	</div>
 
 
-
+</main>
 </body>
 </html>
