@@ -1,10 +1,4 @@
-//eb_modal 옵션 예시 부분 수정할 예정
-$('#optionEX').hide();
 
-$('#EX').click(function(){
-	$('#optionEX').show();
-	
-});
 
 //eb_이미지 미리보기
 //대표이미지(input태그)에 변화가 있을 경우
@@ -38,7 +32,12 @@ $('body').on('change','#add-file-image', function(){
 })
 
 //eb_imageAdd
+index=0;
+index=$('#files label').length;
 $('#imageAdd').click(function(){
+	index++;
+	$('#filesSample label').attr('for', 'add-file-image-'+index);
+	$('#filesSample input').attr('id','add-file-image-'+index);
 	let imageInput = $('#filesSample').html();
 	$('#files').append(imageInput);
 });

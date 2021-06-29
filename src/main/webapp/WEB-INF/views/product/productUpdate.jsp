@@ -68,7 +68,7 @@
 				<label class=" form-label">대표 이미지<span>*</span></label>
 				<div class="preview-box">
 					<label class="rep text-center file-label" for="rep">
-						<img class="preview-item repImg" src="/upload/productImages/${productVO.productPic}">
+						<img class="preview repImg" src="/upload/productImages/${productVO.productPic}">
 					</label>
 					<input hidden="hidden" id="rep" type="file" name="rep" style="" value="${productVO.productPic}">
 				</div>
@@ -79,8 +79,10 @@
 				<label class=" form-label" >추가 이미지</label>
 				<div id="files" class="preview-box">
 					<c:forEach items="${productVO.images }" var="img">
-						<img class="preview" alt="" src="/upload/productImages/${img.fileName}">
-						<input hidden="hidden" type="file" name="files" style="" value="${img.fileName}">
+						<label class="file-label" for="add-file-image">
+							<img class="add-img preview" src="/upload/productImages/${img.fileName}">
+						</label>
+						<input id="add-file-image" hidden="hidden" type="file" name="files" style="" value="${img.fileName}">
 					</c:forEach>
 					<!-- 추가 이미지 장소 -->
 				</div>
@@ -147,7 +149,7 @@
 </main>
 
 <c:import url="../template/footer.jsp"></c:import>
-<script type="text/javascript" src="/js/productInsert.js"></script>
+<script type="text/javascript" src="/js/productSet.js"></script>
 <script type="text/javascript" src="/js/productUpdate.js"></script>
 </body>
 </html>

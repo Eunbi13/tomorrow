@@ -39,17 +39,20 @@ public class ProductService {
 	public Long setUpdateProduct(ProductVO productVO,String categoryID, MultipartFile [] files, MultipartFile rep)throws Exception{
 		ProductImagesVO imagesVO = new ProductImagesVO();
 		String fileName="";
-
+		
 		//update
 		Long result = productMapper.setUpdateProduct(productVO);
-		//대표이미지(productPic)를 변경하는 경우 업데이트
-		if(rep.getSize()>0) {
+		//대표이미지(productPic) 이름이 다르면 업데이트
+		ProductVO vo2 =productMapper.getProdInfo(productVO);
+		if(!rep.getOriginalFilename().equals(vo2.getProductPic())) {
 			fileName = fileManager.save(rep, filePath);
 			productVO.setProductPic(fileName);
 			result = productMapper.setUpdateProductPic(productVO);
 		}
 		//추가 이미지 변경하는 경우 (delete&insert)사용
-		imagesVO.setProductNum(productVO.getProductNum());
+		//다 지우고 업뎃
+		result = productMapper.deleteProdImg(productVO);
+		imagesVO.setProductNum(vo2.getProductNum());
 		for(MultipartFile f: files) {
 			if(f.getSize()>0) {
 				fileName =fileManager.save(f, filePath);

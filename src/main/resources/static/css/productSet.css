@@ -86,6 +86,12 @@ span{
 	z-index: 100;
 	opacity: 0.5;
 }
+
+.preview{
+	width: 60px;
+	height: 60px;
+	border-radius: 0.25rem;
+}
 /* input[type="file"] label-image */
 .preview-item{
 	width: 30px;

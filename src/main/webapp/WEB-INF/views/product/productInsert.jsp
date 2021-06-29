@@ -140,7 +140,7 @@
 </main>
 
 <c:import url="../template/footer.jsp"></c:import>
-<script type="text/javascript" src="/js/productInsert.js"></script>
+<script type="text/javascript" src="/js/productSet.js"></script>
 
 </body>
 </html>
