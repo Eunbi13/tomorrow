@@ -16,7 +16,7 @@ shipping  -->
 <meta charset="UTF-8">
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
-<title>Insert title here</title>
+<title>내일부터 하는 인테리어, 내일의 집</title>
 <style type="text/css">
 .brandN{
  font-weight:700;

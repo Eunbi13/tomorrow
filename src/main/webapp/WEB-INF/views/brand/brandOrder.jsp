@@ -259,6 +259,12 @@ webkit-box-flex: 1; */
     color:#A63F82;
     text-align: center;
 }
+
+.order_list_menu_list_wrap:hover, .order_list_menu_list_wrap:focus, .order_list_menu_list_wrap:active{
+    color:#e5b8d7;
+    text-align: center;
+    
+}
 .order_list_menu{
     box-shadow: 0 1px 3px 0 #dbdbdb;
     margin-top: 20px;

@@ -43,7 +43,7 @@
 					    		
 					    		<choose>
 					    		  	<when test="status == null">
-					    		  		(validity > 1 and  20 > validity)
+					    		  		(validity > 1 and  8 > validity)
 					    		  	</when>
 					    		  	<when test="status == 8">
 					    		  	   (validity = '11' or validity = '12')
@@ -82,7 +82,7 @@
 					    		
 								<choose>
 					    		  	<when test="status == null">
-					    		  		(validity > 1 and  20 > validity)
+					    		  		(validity > 1 and  8 > validity)
 					    		  	</when>
 					    		  	<when test="status == 8">
 					    		  	   (validity = '11' or validity = '12')
@@ -106,11 +106,49 @@
     	
     	
     	<select id="getCartList" parameterType="OrdersVO" resultType="cartVO">
-    		select * from cart 
-    		where validity > 1 
-    		and orderNum in 
-    		(SELECT orderNum FROM orders 
-    		WHERE orderDay BETWEEN DATE_ADD(NOW(),INTERVAL -1 MONTH ) AND NOW())
+  
+    		select C.*, O.* from 
+				(
+				select * from cart 
+	    		where username=#{username} and 
+	    		           <choose>
+				    		  	<when test="status == null">
+				    		  		(validity > 1 and  8 > validity)
+				    		  	</when>
+				    		  	<when test="status == 8">
+				    		  	   (validity = '11' or validity = '12')
+				    		  	</when>
+				    		  	<when test="status == 9">
+				    		  		(validity = '13' or validity = '14' or validity = '15')
+				    		  	</when>
+				    		  	<when test="status == 10">
+				    		  	    (validity = '8' or validity = '9' or validity = '10')
+				    		  	</when>
+				    		  	<otherwise>
+				    		  		validity=#{status}
+				    		  	</otherwise>
+			    		  </choose>
+		
+				   ) C
+					inner join 
+						(select * from orders 
+							where
+							
+							orderDay BETWEEN DATE_ADD(NOW(),INTERVAL 
+							-
+								<if test="before == null ">
+								3
+								</if>
+								<if test="before != null ">
+								#{before}
+								</if>
+							
+							MONTH ) AND NOW()
+						
+			    		) O
+					on C.orderNum = O.orderNum
+			             order by C.cartNum desc
+	    	
 
     	</select>
     	
@@ -146,7 +184,7 @@
 					    		
 					    		<choose>
 					    		  	<when test="status == null">
-					    		  		(validity > 1 and  20 > validity)
+					    		  		(validity > 1 and   8 > validity)
 					    		  	</when>
 					    		  	<when test="status == 8">
 					    		  	   (validity = '11' or validity = '12')
@@ -224,7 +262,7 @@
 			    		where username=#{username} and 
 			    		  <choose>
 				    		  	<when test="status == null">
-				    		  		(validity > 1 and  20 > validity)
+				    		  		(validity > 1 and 8 > validity)
 				    		  	</when>
 				    		  	<when test="status == 8">
 				    		  	   (validity = '11' or validity = '12')

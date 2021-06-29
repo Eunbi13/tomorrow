@@ -22,7 +22,7 @@ public interface OrdersMapper {
 	
 	public  List<OrdersVO> getList(OrdersVO ordesVO)throws Exception;
 	
-//	public  List<CartVO> getCartList(OrdersVO ordesVO)throws Exception;
+	public  List<CartVO> getCartList(OrdersVO ordesVO)throws Exception;
 	
 	public  List<BrandVO> getBrandList(OrdersVO ordesVO)throws Exception;
 	

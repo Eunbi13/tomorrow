@@ -138,27 +138,58 @@ $("#opPrint").append(source);
 
 function directPay(){
 	
-	 alert("directPay!");
-//바로결제를 누를 때는 validity 20 넣기
-
-	$(".valid").each(function(){
-		$(this).val(20);
+	   // 바로결제 버튼 클릭시, 아무 옵션도 선택 안했다면 경고창! 유효성검사
+	  let source=$("#opPrint").html().trim();
+	  if(source==null || source==""){
+		  
+		  alert("옵션 선택 후에 버튼을 클릭해 주세요.");
+	  }else{
 		
-	});
-  //DB에 있는 validity가 20(바로결제 상태)인 cartVO를 싹 지워준다.
-   $.ajax({
-	type:"get",
-	url:"../cart/directPayDelete",
-	data:{},
-	success:function(data){
-		alert(data+'의 정보를 삭제하였습니다');
-		 $("#frm").submit();
-	}
-});
+		
+					 alert("directPay!");
+			   //바로결제를 누를 때는 validity 20 넣기
+			
+				$(".valid").each(function(){
+					$(this).val(20);
+					
+				});
+			  //DB에 있는 validity가 20(바로결제 상태)인 cartVO를 싹 지워준다.
+			   $.ajax({
+				type:"get",
+				url:"../cart/directPayDelete",
+				data:{},
+				success:function(data){
+					alert(data+'의 정보를 삭제하였습니다');
+					 $("#frm").submit();
+				}
+			});
    
-
+		
+		
+	}
+	  
   
 }
+
+
+ // 장바구니버튼 클시 이벤트 
+
+  $("#cartInsertBtn").click(function(){
+	
+			
+	   // 장바구니 버튼 클릭시, 아무 옵션도 선택 안했다면 경고창! 유효성검사
+	  let source=$("#opPrint").html().trim();
+	  if(source==null || source==""){
+		  
+		  alert("옵션 선택 후에 버튼을 클릭해 주세요.");
+	  }else{
+		//옵션이 있다면 바로 submit!
+		 $("#frm").submit();
+	   
+	 }
+	  
+	
+  });
 
 	
 	
