@@ -81,33 +81,6 @@ $(".contents").on("click", function() {
 });
 
 
-// 파일첨부에 이미지 파일만 선택 가능
-/*
-function fileCheck(obj) {
-	let pathPoint = obj.value.lastIndexOf('.');
-	let filePoint = obj.value.substring(pathPoint+1, obj.length);
-	let fileType = filePoint.toLowerCase();
-	
-	if(fileType == 'jpg'||fileType == 'gif'||fileType == 'png'||fileType == 'jpeg'||fileType == 'bmp') {
-		// 정상적인 이미지 확장자 파일
-	} else {
-		alert('이미지 파일이 아닙니다.');
-		let parentObj = obj.parentNode;
-		let node = parentObj.replaceChild(obj.cloneNode(true), obj);
-		return false;
-	}
-	
-	if(filetype == 'bmp') {
-		let upload = confirm('적절한 이미지 포맷이 아닙니다. 그래도 계속 하시겠습니까?');
-		if(!upload) {
-			return false;
-		}
-	}
-}
-*/
-
-
-
 /*
 // .fmtOption 클릭
 $(".fmtOption").on("click", function() {
