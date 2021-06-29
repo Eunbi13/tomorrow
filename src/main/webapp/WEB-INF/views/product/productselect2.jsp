@@ -12,7 +12,7 @@
 <c:import url="../template/bootStrap.jsp"></c:import>
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
-<title>store select</title>
+<title>내일부터 하는 인테리어, 내일의 집</title>
 
 <style type="text/css">
 
@@ -187,7 +187,7 @@ select.classic {
 }
 
 .btn-orders{
-    
+    height:55px;
     width:125px;
     max-width:100%;
 	padding:15px 22px;
@@ -209,6 +209,7 @@ select.classic {
 }
 
 .btn-default{
+    height:55px;
     width:125px;
     max-width:100%;
 	padding:15px 22px;
@@ -530,7 +531,7 @@ textarea:focus {
 					
 
 					<div class="store-select-buttons">
-						<button type="submit"
+						<button type="button" id="cartInsertBtn"
 							class="store-select-button btn btn-orders"
 							style="color: #A63F82; width:48%;"  >장바구니</button>
 							
@@ -751,6 +752,10 @@ textarea:focus {
  
  </main>
   <script>
+  
+ 
+  
+  
   //스크롤 위치에 따른 메뉴활성화 효과
   $('#nav nav a').on('click', function(event) {
 	    $(this).parent().find('a').removeClass('active');

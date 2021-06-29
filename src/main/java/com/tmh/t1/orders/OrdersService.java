@@ -38,6 +38,12 @@ public class OrdersService {
 		
 		return ordersMapper.getPage(ordersVO);
 	}
+    
+	public List<CartVO> getCartList(OrdersVO ordesVO)throws Exception{
+		
+		return ordersMapper.getCartList(ordesVO);
+	}
+
 	
 	public  List<BrandVO> getBrandList(OrdersVO ordesVO)throws Exception{
 		return ordersMapper.getBrandList(ordesVO);

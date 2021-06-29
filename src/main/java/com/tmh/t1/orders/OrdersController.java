@@ -80,16 +80,35 @@ public class OrdersController {
 		
     	List<BrandVO> brandAr = ordersService.getBrandList(ordersVO);
 		System.out.println("brandAr 완성");
-		
-		List<OrdersVO> OrderAr=ordersService.getOrdersList(ordersVO);
-		System.out.println("orderAr 완성");
-		
 		// 해당 orderNum 을 가지고, validity가 2이상인  cartVO 를 리스트로 가져온다.
+		List<OrdersVO> orderAr=ordersService.getOrdersList(ordersVO);
+
 		mv.addObject("ar", ar);
 		mv.addObject("brandAr", brandAr);
-		mv.addObject("orderAr", OrderAr);
+		mv.addObject("orderAr", orderAr);
+		
+		ordersVO.setStatus((long)2);
+		List<CartVO> ar2 = ordersService.getCartList(ordersVO);
+		ordersVO.setStatus((long)3);
+		List<CartVO> ar3 = ordersService.getCartList(ordersVO);
+		ordersVO.setStatus((long)4);
+		List<CartVO> ar4 = ordersService.getCartList(ordersVO);
+		ordersVO.setStatus((long)5);
+		List<CartVO> ar5 = ordersService.getCartList(ordersVO);
+		ordersVO.setStatus((long)6);
+		List<CartVO> ar6 = ordersService.getCartList(ordersVO);
+	
+		
+		mv.addObject("ar2", ar2);
+		mv.addObject("ar3", ar3);
+		mv.addObject("ar4", ar4);
+		mv.addObject("ar5", ar5);
+		mv.addObject("ar6", ar6);
+		
+		
 		return mv;
 	}
+	
 	
 	// orders/list.jsp에서 기간,주문상태별 검색 시 리스트 갱신
 	@GetMapping("ajaxList")
@@ -125,6 +144,40 @@ public class OrdersController {
 		return mv;
 	}
 
+	
+	// orders/list.jsp에서 기간,주문상태별 검색 시  상태별 숫자 갱신
+		@GetMapping("ajaxNum")
+		public ModelAndView getAjaxNum(OrdersVO ordersVO)throws Exception{
+			ModelAndView mv = new ModelAndView();
+			System.out.println("입장!!");
+			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+			UserDetails userDetails = (UserDetails)principal; 
+			String username = userDetails.getUsername();
+			ordersVO.setUsername(username);
+			System.out.println("getBefore:"+ordersVO.getBefore());
+			
+			
+			ordersVO.setStatus((long)2);
+			List<CartVO> ar2 = ordersService.getCartList(ordersVO);
+			ordersVO.setStatus((long)3);
+			List<CartVO> ar3 = ordersService.getCartList(ordersVO);
+			ordersVO.setStatus((long)4);
+			List<CartVO> ar4 = ordersService.getCartList(ordersVO);
+			ordersVO.setStatus((long)5);
+			List<CartVO> ar5 = ordersService.getCartList(ordersVO);
+			ordersVO.setStatus((long)6);
+			List<CartVO> ar6 = ordersService.getCartList(ordersVO);
+		
+			
+			mv.addObject("ar2", ar2);
+			mv.addObject("ar3", ar3);
+			mv.addObject("ar4", ar4);
+			mv.addObject("ar5", ar5);
+			mv.addObject("ar6", ar6);
+			
+			
+			return mv;
+		}
 	
 	@GetMapping("insert")
 	public void setInsert(OrdersVO ordersVO)throws Exception{

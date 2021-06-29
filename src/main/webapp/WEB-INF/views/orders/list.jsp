@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <c:import url="../template/bootStrap.jsp"></c:import>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>내일부터 하는 인테리어, 내일의 집</title>
 <link href='https://css.gg/close-o.css' rel='stylesheet'>
 <style>
 .shipping{
@@ -210,6 +212,13 @@ webkit-box-flex: 1; */
 .order_list_menu_list_wrap {
     color:#A63F82;
     text-align: center;
+     font-weight: bold;
+}
+
+.order_list_menu_list_wrap:hover, .order_list_menu_list_wrap:focus, .order_list_menu_list_wrap:active{
+    color:#732944;
+    text-align: center;
+    font-weight: bold;
 }
 .order_list_menu{
     box-shadow: 0 1px 3px 0 #dbdbdb;
@@ -251,35 +260,37 @@ webkit-box-flex: 1; */
 <div class="container">
  <div style="font-size:24px; font-weight:bold; margin-top:40px;"> 주문배송내역 조회</div> 
 
- 	<div class="order_list_menu rounded">
- 		<a class="order_list_menu_list" href="/orders/list">
- 			<div class="order_list_menu_list_wrap">
- 				<div class="order_list_menu_list_title">입금대기</div>
- 				</div>
- 		</a>
- 		<a class="order_list_menu_list" href="/orders/list?status=2">
+  
+ 	<div id="order_list_menu" class="order_list_menu rounded">
+ 		
+ 		<a class="order_list_menu_list" title="2" >
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">결제완료</div>
+ 				<div class="order_list_menu_list_value">${fn:length(ar2)}  </div>
  			</div>
  		</a>
- 		<a class="order_list_menu_list" href="/orders/list?status=3">
+ 		<a class="order_list_menu_list" title="3" >
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">배송준비</div>
+ 				<div class="order_list_menu_list_value"> ${fn:length(ar3)}   </div>
  			</div>
  		</a>
- 		<a class="order_list_menu_list" href="/orders/list?status=4">
+ 		<a class="order_list_menu_list" title="4" >
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">배송중</div>
+ 				<div class="order_list_menu_list_value"> ${fn:length(ar4)}  </div>
  			</div>
  		</a>
- 		<a class="order_list_menu_list" href="/orders/list?status=5">
+ 		<a class="order_list_menu_list" title="5" >
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">배송완료</div>
+ 				<div class="order_list_menu_list_value"> ${fn:length(ar5)}  </div>
  			</div>
  		</a>
- 		<a class="order_list_menu_list" href="/orders/list?status=6">
+ 		<a class="order_list_menu_list" title="6" >
  			<div class="order_list_menu_list_wrap">
  				<div class="order_list_menu_list_title">구매확정</div>
+ 				<div class="order_list_menu_list_value"> ${fn:length(ar6)}  </div>
  			</div>
  		</a>
  	</div>
@@ -496,6 +507,34 @@ webkit-box-flex: 1; */
 
 
 <script type="text/javascript">
+
+//order_list_menu_list 클릭시, 누른 주문상태와  가지고 있는 기간 버튼의 기간의 가져와서  리스트 갱신
+$(".order_list_menu_list").click(function(){
+	alert("hi");
+	 let st=$(this).attr("title");
+	let be =$("#before").val();
+    alert("be:"+be+"st:"+st);
+
+	$.ajax({
+		type: "get", 
+		url: "../orders/ajaxList", 
+	
+		data:{
+		   before:be,
+		   status:st
+			
+		}, 
+		success:function(data){
+			console.log(data);
+			$("#AjaxList").empty();
+			
+			$("#AjaxList").html(data);
+		}
+		
+	}); 
+	
+});
+
      //브랜드별 배송비 
     $(".shipping").each(function(){
 	
@@ -582,6 +621,22 @@ webkit-box-flex: 1; */
 					$("#AjaxList").empty();
 					
 					$("#AjaxList").html(data);
+				}
+				
+			});
+			
+			$.ajax({
+				type: "get", 
+				url: "../orders/ajaxNum", 
+			
+				data:{
+					before:be
+				}, 
+				success:function(data){
+					console.log(data);
+					$("#order_list_menu").empty();
+					
+					$("#order_list_menu").html(data);
 				}
 				
 			});
@@ -714,6 +769,22 @@ webkit-box-flex: 1; */
 				$("#AjaxList").empty();
 				
 				$("#AjaxList").html(data);
+			}
+			
+		});
+		
+		$.ajax({
+			type: "get", 
+			url: "../orders/ajaxNum", 
+		
+			data:{
+				before:be
+			}, 
+			success:function(data){
+				console.log(data);
+				$("#order_list_menu").empty();
+				
+				$("#order_list_menu").html(data);
 			}
 			
 		});
