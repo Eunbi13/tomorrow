@@ -93,7 +93,7 @@ public class MemberService implements UserDetailsService{
 		//password 암호화
 		memberVO.setPassword(passwordEncoder.encode(memberVO.getPassword()));
 		//처음 생성시 프로필이미지 적용 
-		memberVO.setProfileImage("/images/none.jpg");
+		memberVO.setProfileImage("none.jpg");
 		Long result = memberMapper.memberJoin(memberVO);
 		if(result<1) {
 			throw new Exception();
