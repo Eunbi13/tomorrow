@@ -38,11 +38,13 @@ public class CartController {
 	@Autowired
 	private ShippingService shippingService;
 	
+	//
     @GetMapping("select")
     public CartVO getSelect(CartVO cartVO)throws Exception{
 	    	return cartVO = cartService.getSelect(cartVO);
 	    }
     
+    //minkyung_장바구니 페이지
 	@GetMapping("list")	
 	public ModelAndView getList(CartVO cartVO)throws Exception{
 		ModelAndView mv= new ModelAndView();
@@ -51,18 +53,19 @@ public class CartController {
 		UserDetails userDetails = (UserDetails)principal; 
 		String username = userDetails.getUsername();
 	   	cartVO.setUsername(username);
+	   	//장바구니에는 validity가 0과 1 인 cartVO가 표시된다. 
 	   	cartVO.setValid("zero");
 	   	System.out.println("username:"+username);
-	   	
+	   	//장바구니 안에 있는 브랜드들
 	    List<BrandVO> brandAr = cartService.getBrandList(cartVO);
-	    
+	    //장바구니 안에 있는 상품들 
 	    List<ProductVO> productAr = cartService.getProductList(cartVO);
-	    
+	    //장바구니 안에 있는 옵션들 
 	   	List<CartVO> cartAr = cartService.getCartList(cartVO);
 	   	
 	   	long a =cartAr.size();
-	   	if(a == 0) {
-	   		
+	   	if(a == 0) { 
+	   	  //장바구니에 상품이 없는 경우, empty로 이동
 	   	  mv.setViewName("cart/empty");
 	   		
 	   	} else {
@@ -75,7 +78,6 @@ public class CartController {
 	   	}
 	    
 	    return mv;
-		
 	}
 	
 	
@@ -86,7 +88,7 @@ public class CartController {
 		
 	}
 	
-	//상세페이지에서 장바구니 버튼을 눌릴때 cartVO Insert
+	//minkyung_상세페이지에서 장바구니 버튼을 눌릴때 cartVO Insert
 	@PostMapping("insert")
 	public ModelAndView setInsert(Long [] brandNum, Long [] productNum, Long [] unitPrice, String [] unitName, Long [] cartPrice, Long [] amount, Long [] validity)throws Exception{
 		 // 만들어지는 cartVO를 담을 List 선언
@@ -99,8 +101,6 @@ public class CartController {
 		
 	    for(int i=0; i<brandNum.length; i++) {
 	    	//새로운 cartVO 생성
-	    	
-	    	
 			CartVO cartVO = new CartVO(); 
 			cartVO.setBrandNum(brandNum[i]);
 			cartVO.setProductNum(productNum[i]);
@@ -259,7 +259,7 @@ public class CartController {
 	
 	
 	
-	
+	 //minkyung_장바구니 페이지_옵션단위(회색박스) 삭제
 	@ResponseBody 
 	@GetMapping("optionDelete")
 	public ModelAndView setOptionDelete(Long cartNum)throws Exception{
@@ -271,6 +271,7 @@ public class CartController {
 		mv.setViewName("common/ajaxResult");
 		return mv;
 	}
+	 //minkyung_장바구니 페이지_상품단위 삭제(상품안에 있는 옵션 다 삭제)
 	@ResponseBody 
 	@GetMapping("productDelete")
 	public ModelAndView setProductDelete(long [] productNum)throws Exception{
@@ -281,6 +282,7 @@ public class CartController {
 		return mv;
 	}
 	
+	//minkyung_상세페이지:바로결제 클릭시,전에 바로결제 안에 있던 cartVO를 삭제한다.
 	@ResponseBody 
 	@GetMapping("directPayDelete")
 	public ModelAndView setDirectPayDelete(CartVO cartVO)throws Exception{
@@ -293,7 +295,8 @@ public class CartController {
 	}
 	
 	
-	
+	//minkyung_장바구니 -> 결제페이지 넘어갈 때, 체크된 상품들만 validity를 1로, 체크 안 된 상품들은 0으로 업뎃
+	//결제페이지에는 validity가 1인 상품만 표시 된다
 	@ResponseBody 
 	@PostMapping("validityUpdate")
 	public ModelAndView setValidityUpdate(long [] cartNum, long [] unCartNum)throws Exception{
@@ -305,6 +308,7 @@ public class CartController {
 		mv.setViewName("common/ajaxResult");
 		return mv;
 	}
+	
 	
 	@ResponseBody 
 	@PostMapping("brandShipUpdate")

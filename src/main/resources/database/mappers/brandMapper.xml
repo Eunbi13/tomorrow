@@ -101,7 +101,7 @@
     	
     	</select>
     	
-    	<!--  나중에 고치기 -->
+    	
     	<select id="getCartSelect" parameterType="cartVO" resultMap="cartListResult">
     		select C.*, O.*, P.* from 
 				(

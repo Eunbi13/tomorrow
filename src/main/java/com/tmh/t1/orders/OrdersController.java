@@ -37,7 +37,7 @@ public class OrdersController {
 	private CartService cartService;
 	
 	
-	
+	//minkyung_주문상세보기
 	@GetMapping("select")
 	public ModelAndView getSelect(OrdersVO ordersVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -49,6 +49,7 @@ public class OrdersController {
         return mv;
 	}
 	
+	//minkyung_주문/결제 페이지
 	@GetMapping("page")
 	public ModelAndView getPage(OrdersVO ordersVO)throws Exception{
 		System.out.println("page입장!!");
@@ -59,7 +60,7 @@ public class OrdersController {
         return mv;
 	}
 	
-	
+	//minkyung_주문배송내역 조회
 	@GetMapping("list")
 	public ModelAndView getOrdersList(OrdersVO ordersVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -110,7 +111,7 @@ public class OrdersController {
 	}
 	
 	
-	// orders/list.jsp에서 기간,주문상태별 검색 시 리스트 갱신
+	// minkyung_주문배송내역 조회: orders/list.jsp에서 기간,주문상태별 검색 시 리스트 갱신
 	@GetMapping("ajaxList")
 	public ModelAndView getAjaxList(OrdersVO ordersVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -145,7 +146,7 @@ public class OrdersController {
 	}
 
 	
-	// orders/list.jsp에서 기간,주문상태별 검색 시  상태별 숫자 갱신
+	// minkyung_주문배송내역 조회: orders/list.jsp에서 기간,주문상태별 검색 시  상태별 숫자 갱신
 		@GetMapping("ajaxNum")
 		public ModelAndView getAjaxNum(OrdersVO ordersVO)throws Exception{
 			ModelAndView mv = new ModelAndView();
@@ -181,18 +182,13 @@ public class OrdersController {
 	
 	@GetMapping("insert")
 	public void setInsert(OrdersVO ordersVO)throws Exception{
-	System.out.println("겟 맵핑 입장!!");
-//		//orderVO.setUserName(memberVO);
-//		// 1.장바구니에서 결제 -> cartVO validity=true 인 것만 가져오기..
-//		 
-//		// 2.바로결제 -> 상품번호 가져오기 
 
 	}
 	
+	// minkyung_ 장바구니에서 결제페이지로 이동
 	@ResponseBody 
 	@PostMapping("insert")
 	public ModelAndView setInsert(OrdersVO ordersVO, ModelAndView mv)throws Exception{
-		System.out.println("입장!!");
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
 		UserDetails userDetails = (UserDetails)principal; 
 		String username = userDetails.getUsername();
@@ -255,6 +251,7 @@ public class OrdersController {
 		return mv;
 	}
 	
+	// minkyung_결제페이지에셔 결제버튼 누를시 시행
 	@GetMapping("update")
 	public ModelAndView setUpdate(OrdersVO ordersVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -316,7 +313,7 @@ public class OrdersController {
 		
 	}
 	
- 
+	// minkyung_주문배송조회에서 취소/환불/교환 신청시
 	@GetMapping("cancel")
 	public ModelAndView setCancelUpdate(CartVO cartVO, int kind)throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -387,9 +384,7 @@ public class OrdersController {
 	}
 	
 	
-	
-	
-	
+
 	@ResponseBody 
 	@GetMapping("delete")
 	public ModelAndView setDelete(OrdersVO ordersVO)throws Exception{

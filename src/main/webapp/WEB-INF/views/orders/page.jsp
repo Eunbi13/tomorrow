@@ -436,8 +436,8 @@ height: 300px;
  font-weight: 700;
  font-size: 12px;
  line-height: 14px;
-  letter-spacing: 0.5px;
-    }
+ letter-spacing: 0.5px;
+}
     
     
  input[type='checkbox']:checked {background-color: #A63F82;} 
@@ -447,7 +447,8 @@ height: 300px;
  position:  absolute;
  line-height: 22px;
  font-size: 20px;
- padding-left: 4px;}
+ padding-left: 4px;
+ }
     
   input[type='checkbox']{
   width: 18px !important;
@@ -457,7 +458,7 @@ height: 300px;
   -o-appearance: none;
    appearance:none;
   background-color: #FFF;
- /* position:  absolute; */
+ 
   outline: 1px solid black;
   line-height: 22px;
   font-size: 20px;
