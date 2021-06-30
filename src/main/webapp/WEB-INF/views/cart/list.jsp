@@ -104,13 +104,15 @@ margin-top:20px;
     
                   <div class="d-flex justify-content-between d-top">
 				    <div class="p-2 ">
-		                       <div class="custom-control custom-checkbox">
-								  <input type="checkbox" checked class="custom-control-input" id="allCheck"  style="font-size:18px; margin-top:40px;" >
-								  <label class="custom-control-label" style="font-size:18px; margin-top:10px;" for="allCheck">모두선택</label>
-								</div>
+				               <div class="custom-control custom-checkbox mb-0">
+							      <input type="checkbox" checked class="custom-control-input" id="allCheck" name="example1">
+							      <label class="custom-control-label" for="allCheck" style="padding-top:10px; font-size:18px;">모두선택</label>
+							    </div>
+		                       
+								
 				    </div>
 				   
-				    <div class="p-2"><button type="button" class="btn opdi" id="selectedDelete" style="font-size:18px; width: 120px;">선택삭제</button></div>
+				    <div class="p-2"><button type="button" class="btn opdi" id="selectedDelete" style="font-size:16px; width: 100px; ">선택삭제</button></div>
 				  </div>      
             
             
