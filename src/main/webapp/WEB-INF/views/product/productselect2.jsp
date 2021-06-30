@@ -218,11 +218,14 @@ select.classic {
 	border-radius:0;
 	border:1px solid;
 	border-radius:6px;
+	background-color: #A63F82;
+	color:#FFF;
+	border-color: #A63F82;
 }
 
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
  
-	background-color: #732944;
+	background-color:#732944;
 	color:#FFF;
 	border-color: #732944;
  
@@ -327,7 +330,7 @@ ol li:before {
     position: relative;
     
     position: sticky;
-	top: 116px;
+	top: 108px;
 	z-index: 100;
 	  
     background-color: hsl(0, 0%, 97%);
