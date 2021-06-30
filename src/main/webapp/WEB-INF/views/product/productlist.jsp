@@ -213,8 +213,7 @@ btn-secondary {
 	<div class="productList-T">
 	<c:import url="../template/productlistT.jsp"></c:import>
 	</div>
-
-	<script type="text/javascript" src="../resources/js/productList.js"></script>
+	<script type="text/javascript" src="../js/productList.js"></script>
 </main>
 </body>
 </html>

@@ -776,8 +776,8 @@ textarea:focus {
 </script>
 
 	<!-- <script type="text/javascript" src="../resources/js/productSelect.js"></script> -->
-	<script type="text/javascript" src="../resources/js/productSelect2.js"></script>
-	<script type="text/javascript" src="../resources/js/productSelect3.js"></script>
+	<script type="text/javascript" src="../js/productSelect2.js"></script>
+	<script type="text/javascript" src="../js/productSelect3.js"></script>
 	 <c:import url="../template/footer.jsp"></c:import>
 </body>
 </html>
