@@ -354,7 +354,7 @@ $("#carts").on("click", "#selectedDelete", function(){
 						newProductPrice += parseInt(cartPrice);
 					});
 					
-					  alert(newProductPrice);
+					
 					//Product 별 금액 입력
 					$("#productVOPrice"+productNum).val(newProductPrice);
 					

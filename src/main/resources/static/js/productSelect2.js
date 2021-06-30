@@ -146,7 +146,6 @@ function directPay(){
 	  }else{
 		
 		
-					 alert("directPay!");
 			   //바로결제를 누를 때는 validity 20 넣기
 			
 				$(".valid").each(function(){
@@ -159,7 +158,7 @@ function directPay(){
 				url:"../cart/directPayDelete",
 				data:{},
 				success:function(data){
-					alert(data+'의 정보를 삭제하였습니다');
+					
 					 $("#frm").submit();
 				}
 			});

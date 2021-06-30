@@ -339,10 +339,12 @@ $("#finalBtn").click(function(){
 
     }else{
 	
+	// checkbox아래 알림말을 띄우고, checkbox색상을 변경
 	$("#alert").append("결제 진행 필수사항을 동의해주세요");
 	$("#agreeCheck").css({"outline": "2px solid #f77"});
 	
 	
+	//checkbox상태가 변할때 마다 알림말을 띄웠다 없앴다 해준다
 	
 	$("#agreeCheck").change(function(){
 		

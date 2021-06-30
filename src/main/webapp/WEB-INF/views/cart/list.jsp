@@ -532,6 +532,7 @@ $(".productPrice").each(function(){
     	//1+2 의 조건이면  그 중 가장 적은 shippingFee 한번만 적용
     	$(".shippingFee"+b_index).each(function(){
     		if($(this).val()==0){//3. 그 브랜드에서 구매한 product shippingFee 중 0이 하나라도 있음
+    			console.log("shippingFee 중 0이 하나라도 있음"+b_index);
     			shipCheck=true;
     		}
     	});
@@ -1074,10 +1075,10 @@ $(".directInputBox").on({
 							    	 let shipCheck=false;
 							    	//2.그 브랜드의 어떤 productVO shippingFee도 0이 아님  
 							    	//1+2 의 조건이면  그 중 가장 적은 shippingFee 한번만 적용
-							    	$(".shippingFee"+b_index).each(function(){ //+ checked 된 애들중..
+							    	$(".shippingFee"+b_index).each(function(){ 
 							    		
-							    				  if($("#shippingFee"+productNum).val()==0){//3. 그 브랜드에서 구매한 product shippingFee 중 0이 하나라도 있음
-							    					 
+							    				  if($(this).val()==0){//3. 그 브랜드에서 구매한 product shippingFee 중 0이 하나라도 있음
+							    						console.log("shippingFee 중 0이 하나라도 있음"+b_index);
 							    					  shipCheck=true;
 										    		  }
 							    			   });
@@ -1129,7 +1130,7 @@ $(".directInputBox").on({
     				success:function(data){
     					data = data.trim();
     					if(data==1){
-    						alert('등록 성공');
+    						
     					}else {
     						alert('등록 실패');
     					}

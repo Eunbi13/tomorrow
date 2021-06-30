@@ -894,7 +894,7 @@ $(".directInputBox").on({
     				success:function(data){
     					data = data.trim();
     					if(data==1){
-    						alert('등록 성공');
+    					
     					}else {
     						alert('등록 실패');
     					}
@@ -1717,7 +1717,7 @@ $(".amountSelect").change(function() {
 			
 			let be =before_num;
 			 let st =$("#status").val();
-			 alert("be:"+be+"/st:"+st); 
+			 
 			 
 			$.ajax({
 				type: "get", 
@@ -1789,7 +1789,7 @@ $(".amountSelect").change(function() {
 			
 				 let be =$("#before").val();
 			     let st =status_num;
-				 alert("be:"+be+"/st:"+st); 
+			
 				
 				 
 				$.ajax({
@@ -1820,7 +1820,7 @@ $(".amountSelect").change(function() {
 		 
 		 let be =$("#before").val();
 		 let st =$("#status").val();
-		 alert("be:"+be+"/st:"+st); 
+		
 
 		
 		 
@@ -1849,7 +1849,7 @@ $(".amountSelect").change(function() {
 		
 		let be =$("#before").val();
 		 let st =$("#status").val();
-		 alert("be:"+be+"/st:"+st); 
+		
 
 		
 		 
@@ -1876,7 +1876,56 @@ $(".amountSelect").change(function() {
 
 	
 
-
+	if(brandPrice>=30000){//한 브랜드에서 구매한게 3만원 이상
+    	console.log(b_index+" is over30000");
+    	$(".brandShipping"+b_index).each(function(){
+    		$(this).val(0);//cartVO is Free에 0 넣기 반복돌리자
+    	});
+    	
+    	$("#shipping"+b_index).val("배송비 무료");
+    	$("#shipping"+b_index).attr("title", 0);
+    	
+    } else{//1.한 브랜드에서 구매한게 3만원 이하 
+    	 let shipCheck=false;
+    	//2.그 브랜드의 어떤 productVO shippingFee도 0이 아님  
+    	//1+2 의 조건이면  그 중 가장 적은 shippingFee 한번만 적용
+    	$(".shippingFee"+b_index).each(function(){
+    		if($(this).val()==0){//3. 그 브랜드에서 구매한 product shippingFee 중 0이 하나라도 있음
+    			console.log("shippingFee 중 0이 하나라도 있음"+b_index);
+    			shipCheck=true;
+    		}
+    	});
+    	
+    	if(shipCheck==true){
+    		
+	    	//1+3 의 조건이면 그 브랜드 안 모든  cartVO is free의 true, 브랜드 배송비 무료
+			$(".brandShipping"+b_index).each(function(){
+	    		$(this).val(0);//cartVO is Free에 0 넣기 반복돌리자
+	    	});
+			$("#shipping"+b_index).val("배송비 무료");
+	    	$("#shipping"+b_index).attr("title", 0);
+    		
+    	} else{
+    		
+    		let shipFee=100000; //shipFee에 가장 작은 배송비를 넣을 것 
+    		$(".shippingFee"+b_index).each(function(){
+    			let shipFee2=$(this).val();
+    			if(shipFee2 <= shipFee){
+    				shipFee=shipFee2;
+    			}
+    		});
+    		
+    		$(".brandShipping"+b_index).each(function(){
+	    		$(this).val(shipFee);//cartVO is Free에 찾은 가장 작은 배송비 넣기 반복돌리자
+	    	});
+    	
+    	$("#shipping"+b_index).val("배송비"+shipFee+"원");
+    	$("#shipping"+b_index).attr("title", shipFee);
+    	}
+    	
+    }
+	
+});
 	</script>
 
 	<c:import url="../template/footer.jsp"></c:import>

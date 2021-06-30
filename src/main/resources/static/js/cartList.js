@@ -1,9 +1,15 @@
+
+
+
+
+
+
+
 // 장바구니에서 바로결제 버튼 누를시 
 
 // ->선택 product범위의 cartVO들을 validity=1로 그 외 것들을 다 validity=0으로 업뎃해준다.
 	$(".directPay").click(function(){
-		
-	   alert("hi!");
+	
 
 
 		// <!-- ////각 cartVO의 validity 검사-> ajax를 이용해 DB에 업데이트 
@@ -20,7 +26,7 @@
 		if( productNum == $(this).attr("title")){
 			
 			checkedProductNum =$(this).attr("title");
-			alert("checked productNum!"+$(this).attr('title'));
+		
 			
 			// 그 상품의 옵션범위의 cartVO.cartNum을 찾아 배열에 넣어준다
 			$(".cartNum"+productNum).each(function(){
@@ -39,8 +45,6 @@
 			
 			// 그 외 상품들의 옵션범위의 모든 cartVO.cartNum을 찾아 배열에 넣어준다
 			$(".cartNum"+productNum).each(function(){
-				
-				alert("XXXXchecked cartNum!"+$(this).attr('title'));
 				 un_validity_ar.push($(this).attr("title"));
 			});
 			
@@ -223,8 +227,7 @@
 		success:function(data){
 			data = data.trim();
             if(data>0){
-	           alert("통과")
-				
+	         
 				 $("#orderFrm").submit();
 				
 
