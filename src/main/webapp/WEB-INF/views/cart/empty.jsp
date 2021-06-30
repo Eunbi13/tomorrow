@@ -28,7 +28,7 @@ img{
 
 
 .btn-default{
-    width: 350px;
+    width: 220px;
     height: 60px;
 	padding:11px 30px;
 	font-weight: bold;
