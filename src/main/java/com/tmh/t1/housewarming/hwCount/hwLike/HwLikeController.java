@@ -1,4 +1,4 @@
-package com.tmh.t1.housewarming.hwReply;
+package com.tmh.t1.housewarming.hwCount.hwLike;
 
 import java.util.List;
 
@@ -16,34 +16,33 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tmh.t1.housewarming.hwCount.HwCountVO;
 import com.tmh.t1.member.MemberVO;
 
 @Controller
-@RequestMapping("/hwReply/**")
-public class HwReplyController {
+@RequestMapping("/hwLike/**")
+public class HwLikeController {
 	
 	@Autowired
-	private HwReplyService hwReplyService;
+	private HwLikeService hwLikeService;
 	
-	@GetMapping("hwReplyList")
-	public void getList(HwReplyVO hwReplyVO, Model model) throws Exception {
-		System.out.println(hwReplyVO.getHwNum());
-		List<HwReplyVO> ar = hwReplyService.getList(hwReplyVO);
+	@GetMapping("hwLikeList")
+	public void getList(HwCountVO hwCountVO, Model model) throws Exception {
+		List<HwCountVO> ar = hwLikeService.getList(hwCountVO);
 		model.addAttribute("list", ar);
 	}
 	
-	@PostMapping("hwReplyInsert")
-	public ModelAndView setInsert(HwReplyVO hwReplyVO) throws Exception {
+	@PostMapping("hwLikeInsert")
+	public ModelAndView setInsert(HwLikeVO hwLikeVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		int result = hwReplyService.setInsert(hwReplyVO);
+		int result = hwLikeService.setInsert(hwLikeVO);
 		mv.addObject("result", result);
 		mv.setViewName("common/ajaxResult");
 		return mv;
 	}
 
-	@PostMapping("hwReplyDelete")
-	@ResponseBody
-	public void setDelete(int hwReplyNum) throws Exception {
+	@PostMapping("hwLikeDelete")
+	public void setDelete(int hwLikeNum) throws Exception {
 		System.out.println("Start");
 		
 		System.out.println("finish");

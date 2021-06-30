@@ -64,9 +64,12 @@ public class HousewarmingController {
 	}
 	
 	@PostMapping("update")
-	public String setUpdate(HousewarmingVO housewarmingVO) throws Exception {
+	public ModelAndView setUpdate(HousewarmingVO housewarmingVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
 		int result = housewarmingService.setUpdate(housewarmingVO);
-		return "redirect:./list";
+		mv.addObject("result", result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
 	}
 	
 	@GetMapping("delete")
