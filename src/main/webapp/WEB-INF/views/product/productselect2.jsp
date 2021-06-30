@@ -391,22 +391,12 @@ textarea:focus {
 			<div class="main-pic-wrap"> 
 			<!-- select 좌측 작은 사진 -->
 			<ul class="main-pic-small" >
-				<c:choose>
-				<c:when test="">
-					<c:forEach items="${productlist}" var="vo">
-						<li >	
+				<li>	
 						<button class="main-pic-small-bt">
 							<img alt="상품이미지" class="pic-small"
-							src="../images/categoryPic/A1.webp">
+							src="/upload/productImages/${vo.productPic}">
 						</button>
-						</li>
-					</c:forEach>	
-				</c:when>
-				</c:choose>
-				
-				
-				
-				
+				</li>
 			</ul>
 				<!-- select 메인 우측 사진 -->
 				<div class="main-pic-big">
