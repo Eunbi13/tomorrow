@@ -173,19 +173,19 @@ btn-secondary {
 	<div class="bannerslideshow-container">
 		<div class="mySlides fade2">
 			<img class="bannermain_slideImg"
-				src="../resources/images/bannerPic/162209186771469586.webp">
+				src="../images/bannerPic/162209186771469586.webp">
 		</div>
 		<div class="mySlides fade2">
 			<img class="bannermain_slideImg"
-				src="../resources/images/bannerPic/162218735790467604.webp">
+				src="../images/bannerPic/162218735790467604.webp">
 		</div>
 		<div class="mySlides fade2">
 			<img class="bannermain_slideImg"
-				src="../resources/images/bannerPic/162219370940295239.webp">
+				src="../images/bannerPic/162219370940295239.webp">
 		</div>
 		<div class="mySlides fade2">
 			<img class="bannermain_slideImg"
-				src="../resources/images/bannerPic/162219375916346105.webp">
+				src="../images/bannerPic/162219375916346105.webp">
 		</div>
 		<a class="prev" onclick="plusSlides(-1)">❮</a> <a class="next"
 			onclick="plusSlides(1)">❯</a>

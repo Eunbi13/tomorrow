@@ -397,7 +397,7 @@ textarea:focus {
 						<li >	
 						<button class="main-pic-small-bt">
 							<img alt="상품이미지" class="pic-small"
-							src="../resources/images/categoryPic/A1.webp">
+							src="../images/categoryPic/A1.webp">
 						</button>
 						</li>
 					</c:forEach>	

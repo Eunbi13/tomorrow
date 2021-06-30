@@ -37,7 +37,7 @@
 	<c:forEach items="${productlist}" var="vo">
 		<div class="store-list-item-card">
 			<a href="./productselect2?productNum=${vo.productNum}">
-			<img class="item-img" src="../resources/images/storeEX/plate.webp"
+			<img class="item-img" src="../images/storeEX/plate.webp"
 				alt="item pic">
 				
 				<!-- 브랜드 이름 -->
