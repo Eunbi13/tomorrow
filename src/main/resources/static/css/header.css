@@ -5,7 +5,7 @@ header{
 	position: sticky;
 	top:0;
 	border-bottom: 1px solid #dbdbdb;
-	z-index:101;
+	z-index:201;
 	background-color: white;
 }
 
@@ -205,7 +205,7 @@ div.sticky-chlid{
 	border-bottom: 1px solid #dbdbdb !important;
 	background-color: white !important;
 	width: 100%;
-	z-index:100;
+	z-index:200;
 }
 
 .subNav{
@@ -223,7 +223,7 @@ div.sticky-chlid{
 }
 
 .subNav-item>a{
-	padding: 5px 10px;
+	padding: 12px 10px;
 	margin: 5px 10px;
 	position:relative;
 	height: inherit;

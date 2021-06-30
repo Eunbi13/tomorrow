@@ -169,8 +169,7 @@ btn-secondary {
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
-<main>
-
+<div style="margin-top: 50px;">
 	<div class="bannerslideshow-container">
 		<div class="mySlides fade2">
 			<img class="bannermain_slideImg"
@@ -188,10 +187,12 @@ btn-secondary {
 			<img class="bannermain_slideImg"
 				src="../images/bannerPic/162219375916346105.webp">
 		</div>
-		<a class="prev" onclick="plusSlides(-1)">❮</a> <a class="next"
-			onclick="plusSlides(1)">❯</a>
+		<a class="prev" style="top:15em !important;" onclick="plusSlides(-1)">❮</a> 
+		<a class="next" style="top:15em !important; right: 10.5em;" onclick="plusSlides(1)">❯</a>
 	</div>
 	<br>
+	</div>
+<main>
 	<div style="text-align: center">
 		<span class="dot" onclick="currentSlide(1)"></span> <span class="dot"
 			onclick="currentSlide(2)"></span> <span class="dot"
@@ -215,6 +216,7 @@ btn-secondary {
 	<c:import url="../template/productlistT.jsp"></c:import>
 	</div>
 	<script type="text/javascript" src="../js/productList.js"></script>
+
 </main>
 </body>
 </html>
