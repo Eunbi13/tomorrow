@@ -2,49 +2,21 @@
  * eb_DOM이 생성되었을 시점에 실행=$(document).ready
  */
 $(document).ready(function(){
-	//페이지 열렸을 때 실행
-	open();
-	function open(){
-		//class="on"인 메뉴의 서브네비 보여주기
-		let title =$('.on').attr('title');
-		console.log(title)
-		//let subNavItem=$('.'+title).html();
-		//$('.subNav').html(subNavItem);
-		$('#'+title).show();
-	}
-	//nav클릭할경우
-	$('nav a').click(function(){
-		$('nav a').removeClass('on');
-		$(this).addClass('on');
-		open();
-	})
+	//서브 네비 먼저 숨기기	
+	$('.subNav-item').hide();
+	//페이지 열렸을 때 url 주소에 따라 커뮤니티/스토어 선택되는 코드
+	let homeUrl = location.href;
+	let urlNum = homeUrl.lastIndexOf('localhost')+('localhost').length;
+	$('.mainNav-item a').removeClass('on');
+	$('a[href="'+homeUrl.substring(urlNum)+'"]').addClass('on');
 	
-	$('.mainNav-item a').mouseenter(function(){
-		//let subNavItem=$('.item-community').html();
-		//$('.subNav').html(subNavItem);
-		let title =$(this).attr('title');
-		$('.subNav-item').hide();
-		$('#'+title).show();
-	})
+	//열린 페이지 맞는 서브 네비 보여주기
+	let title =$('.on').attr('title');
+	$('#'+title).show();
 	
-	$('a[title="item-community"]').mouseleave(function(){
-		open();
-	})
 	
-	$('a[title="item-store"]').mouseenter(function(){
-		let subNavItem=$('.item-store').html();
-		$('.subNav').html(subNavItem);
-	})
-	
-	$('a[title="item-store"]').mouseleave(function(){
-		open();
-	})
-	
-	/*
-		프로필 드랍박스 보더 설정
-		홀수면 프로필 드랍박스 클릭한 것임으로 css 설정
-		짝수면 프로필 드랍박스 벗어난 것임으로 css 초기화
-	*/
+	//프로필 클릭하면 드랍다운창 뜨면서 테두리 생기도록 설정
+	//한번 더 클릭하면 드랍다운창 닫히면서 테두리도 닫힘
 	let count=0;
 	$('img[alt="profile"]').click(function(){
 		$(this).css('border', '1px solid #A63F82');
@@ -54,11 +26,24 @@ $(document).ready(function(){
 			$('img[alt="profile"]').css('border','');
 		}
 	})
-
 	//마우스 위치에 따라 서브 네비 보이기
-	$('a[title="item-community"]').mouseenter(function(){
-		$('.subNav').css('position', 'inherit')
+	$('.mainNav-item-one').mouseenter(function(){
+		//scroll위치에 관계없이 보여주기 위해서 위치 바꾸기
+		$('.sticky-chlid>div').css('transform','translate(0px, 0px)');
+		title =$(this).attr('title');
+		$('.subNav-item').hide();
+		$('#'+title).show();
 	})
-	$('a[title="item-store"]')
+	
+	//스크롤 위치 감지
+	$(window).scroll(function(){
+		let scrollNum = $(document).scrollTop();
+		//스크롤 위치가 50보다 크면 css트랜드레이트 생기도록 하기
+		if(scrollNum>100){
+			$('.sticky-chlid>div').css('transform','translate(0px, -100px)');
+		}else {
+			$('.sticky-chlid>div').css('transform','translate(0px, 0px)');
+		}
+	})
 
 })

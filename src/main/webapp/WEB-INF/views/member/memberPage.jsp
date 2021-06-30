@@ -27,7 +27,7 @@
 					<li class="mpSubNav-item "><a class=" " href="/brand/brandOrder?username=<sec:authentication property="principal.username"/>">주문조회</a></li>
 				</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_M')">
-					<li class="mpSubNav-item "><a class=" " href="#">브랜드수락</a></li>
+					<li class="mpSubNav-item "><a class=" " href="/brand/mList">브랜드수락리스트</a></li>
 					<li class="mpSubNav-item "><a class=" " href="#">집들이수락</a></li>
 				</sec:authorize>
 			</ul>

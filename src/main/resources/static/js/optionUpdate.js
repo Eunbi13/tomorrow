@@ -1,25 +1,50 @@
 /**
  * 
  */
-//이벤트 막는 버튼
+//option table 생성하는 함수
+option();
+
+//#table과 관련된 이벤트 막기
+//optionONEvent();은 productSet.js에 있음
 optionOFFEvent();
 function optionOFFEvent(){
 	$('#table').off('click');
 }
-//eb_옵션 추가 버튼 사용 못하게 설정 
+//eb_옵션 추가&라디오 버튼 사용 못하게 설정 
 let optionCheck=false;
 $('#optionButton').hide();
+$('#optionUpdateCancel').hide();
 //수정버튼 누르면 옵션 추가보튼 사용할 수 있고 input readonly설정 지우기
+let tableData="";
 $('#optionUpdateButton').click(function(){
+	//취소버튼 활성화를 위해 #table 데이터 담아두기
+	tableData=$('#table').html();
+	
 	$('#optionButton').show();
-	$('#table input').removeAttr('readonly')
+	$('#optionUpdateCancel').show();
+	$('#optionUpdateButton').hide();
+	$('#table input').removeAttr('readonly');
 	//이벤트 실행 버튼
 	optionONEvent();
-	$('.frmBtn').text('저장하기');
 	optionCheck=true;
+	$('input[type="radio"]').attr('onclick','return(true)');
+	
+})
+//옵션 수정 취소 버튼
+$('#optionUpdateCancel').click(function(){
+	$('#table').html(tableData);
+	$('#optionButton').hide();
+	$('#optionUpdateCancel').hide();
+	$('#optionUpdateButton').show();
+	optionOFFEvent()
+	optionCheck=false;
+	$('input[type="radio"]').attr('onclick','return(false)');
 })
 
-$('.frmBtn').click(function(){
+
+
+
+/*$('.frmBtn').click(function(){
 	if(optionCheck){
 		$('#optionFrm').submit();
 	}else{
@@ -27,8 +52,8 @@ $('.frmBtn').click(function(){
 		location.href='/product/productselect2?productNum='+productNum;
 	}
 });
+*/
 
-option();
 //eb_업데이트 페이지 열릴때, 옵션vo를 테이블 형태로 보여주기
 function option(){
 	let optionKinds =[];
@@ -77,5 +102,5 @@ function option(){
 	}
 	
 	
-}
+}//option()fin
 

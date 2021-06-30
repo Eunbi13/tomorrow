@@ -6,43 +6,38 @@ html, body{
 	letter-spacing: -1px;
 	line-height: 1;
 }
-main, div.mainNav{
+main{
 	width: 100%;
 	margin: 0 auto;
 }
 @media(min-width: 375px){
-	main, div.mainNav{
+	main{
 		width: calc(100% - 120px);
 		max-width: 100%;
 	}
 }
 @media(min-width: 768px){
-	main, div.mainNav{
+	main{
 		width: calc(100% - 120px);
 		max-width: 100%;
 	}
 }
 @media(min-width: 1024px){
-	main, div.mainNav{
+	main{
 		width: calc(100% - 120px);
 		max-width: 100%;
 	}
 }
 @media(min-width: 1256px){
-	main, div.mainNav{
+	main{
 		width: 1136px;
 		max-width: 100%;
 	}
 }
-/*common  */
 
 
 
-.red{
-	font-weight:bold;
-	color:#ff7777;
-}
-/* mk_버튼 */
+/* mk_button */
 .btn-default-custom{
 	width:125px;
     max-width:100%;
@@ -94,4 +89,15 @@ main, div.mainNav{
 .mid-main{
 	width: 80%;
 	margin: 0 auto;
+}
+/*eb_logo*/
+.logoName{
+	height: 38px;
+	margin: 24px 10px;
+}
+
+/*eb_ect*/
+.red{
+	font-weight:bold;
+	color:#ff7777;
 }

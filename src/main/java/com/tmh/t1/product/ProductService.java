@@ -31,14 +31,22 @@ public class ProductService {
 	@Autowired
 	private FileManager fileManager;
 	@Autowired
+	private OptionsMapper optionsMapper;
+	@Autowired
 	private OptionsManager optionsManager;
 	@Value("${productInsert.filePath}")
 	private String filePath;
 	
-	//eb_productUpdate 
-	public Long setUpdateProduct(ProductVO productVO,String categoryID, MultipartFile [] files, MultipartFile rep)throws Exception{
+	//eb_productUpdate (POST)
+	public Long setUpdateProduct(OptionsVO optionsVO,ProductVO productVO,Long categoryID, MultipartFile [] files, MultipartFile rep)throws Exception{
 		ProductImagesVO imagesVO = new ProductImagesVO();
 		String fileName="";
+		
+		//categoryID 수정
+		Map<String, Long> map = new HashMap<String, Long>();
+		map.put("productNum", productVO.getProductNum());
+		map.put("categoryID", categoryID);
+		productMapper.setUpdateProduct_category(map);
 		
 		//update
 		Long result = productMapper.setUpdateProduct(productVO);
@@ -60,11 +68,14 @@ public class ProductService {
 				result = productMapper.setImages(imagesVO);
 			}
 		}
-		
+		//product과 관련된 옵션 전부 삭제
+		result=optionsMapper.deleteOptinos(productVO.getProductNum());
+		//option다시 삽입
+		result = optionsManager.optionSave(optionsVO, map);
 		return result;
 	}
 	
-	//eb_productUpdate 수정하기 위한 상품과 관련된 정보 불러오기
+	//eb_productUpdate 수정하기 위한 상품과 관련된 정보 불러오기(GET)
 	public Map<String, Object> getProductInfo(ProductVO productVO)throws Exception{
 		Long productNum = productVO.getProductNum();
 		//product 정보 productImages(추가 이미지) 포함
@@ -73,12 +84,14 @@ public class ProductService {
 		CategoryVO categoryVO=categoryMapper.getProdCategory(productNum);
 		//상품이 속한 카테고리(대분류>중분류>소분류)
 		String categoryNM = categoryMapper.getCategoryNM(categoryVO);
-		
+		//product_options 정보
+		 List<OptionsVO> optionList=optionsMapper.getProdOptions(productNum);
 	
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("productVO", productVO);
 		map.put("categoryVO", categoryVO);
 		map.put("categoryNM", categoryNM);
+		map.put("optionList", optionList);
 		return map;
 	}
 	

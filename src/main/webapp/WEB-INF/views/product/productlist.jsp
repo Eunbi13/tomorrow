@@ -5,6 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"
+	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <style type="text/css">
 h5 {
 	margin-left: 30px;
@@ -18,7 +20,9 @@ h5 {
 	width: 100%;
 	height: 15%;
 	margin: auto;
+	z-index: 0;
 }
+
 
 .bannermain_slideImg {
 	width: 100%;
@@ -160,6 +164,8 @@ btn-secondary {
 } 
 .cat-slide{
 	width: 100%;
+	z-index: -10 !important;
+	background-color: yellow;
 }
 </style>
 <c:import url="../template/bootStrap.jsp"></c:import>
@@ -167,9 +173,8 @@ btn-secondary {
 <title>store list</title>
 </head>
 <body>
-<main>
 	<c:import url="../template/header.jsp"></c:import>
-
+<main>
 	<div class="bannerslideshow-container">
 		<div class="mySlides fade2">
 			<img class="bannermain_slideImg"
@@ -215,6 +220,8 @@ btn-secondary {
 	</div>
 
 	<script type="text/javascript" src="../resources/js/productList.js"></script>
+
+
 </main>
 </body>
 </html>

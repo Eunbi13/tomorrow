@@ -171,13 +171,13 @@ public class BrandController {
 	}
 	
 	//eb_brandList 브랜드 리스트(brandAccept용)
-	@GetMapping("list")
+	@GetMapping("mList")
 	public String getBrandList(Model model)throws Exception{
 		//brandList전체 불러오기
 		List<BrandVO> list = brandService.getBrandList();
 		System.out.println(list.toString());
 		model.addAttribute("list", list);
-		return "/brand/brandList";
+		return "/manager/acceptBrandList";
 	}
 	
 	

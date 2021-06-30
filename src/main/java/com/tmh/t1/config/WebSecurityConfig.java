@@ -42,7 +42,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.antMatchers("/").permitAll()
 				.antMatchers("/member/memberJoin").permitAll()
 				.antMatchers("/member/**").hasRole("U")
-				.anyRequest().authenticated()//현재 유저가 누구인지 확인
+				.antMatchers("/product/insert").hasRole("B")
+				.antMatchers("/product/update").hasRole("B")
+				.antMatchers("/product/**").permitAll()
+				.antMatchers("/options/update").hasRole("B")
+				.antMatchers("/housewarming/**").permitAll()
+				//.anyRequest().authenticated()//현재 유저가 누구인지 확인
 				.and()
 			.formLogin()
 				.usernameParameter("email")

@@ -1,4 +1,29 @@
+/*productUpdate 전용*/
 
+//eb_제품의 카테고리 수정
+let category ='';
+$('body').on('click', '#changeCategoryNM', function(){
+	category=$('#category').html();
+	$('#category').empty();
+	$('#categoryCheckBox').css('display', '');
+	cC++;
+	$('#categoryCancel').removeAttr('hidden');
+})
+
+//eb_제품의 카테고리 수정을 취소
+let cC=0;
+$('#categoryCancel').click(function(){
+	if(cC>0){
+		$('#category').append(category);
+				
+		$('#categoryCheckBox').css('display', 'none')
+		$('#two').empty();
+		$('#three').empty();
+	}
+	cC--;
+})
+
+/*productInsert & update 공통으로 들어가는 코트*/
 
 //eb_이미지 미리보기
 //대표이미지(input태그)에 변화가 있을 경우
@@ -9,8 +34,8 @@ $('#rep').change(function(){
 	//로드 이벤트가 실행되면 보여지고 싶은 선택자 src속성에 넣기
 	reader.addEventListener('load', function(){
 		$('.repImg').attr('src', reader.result);
-		$('.repImg').css('width', '100%');
-		$('.repImg').css('height', '100%');
+		$('.repImg').css('width', '60px');
+		$('.repImg').css('height', '60px');
 	})
 })
 
@@ -22,8 +47,8 @@ $('body').on('change','.add-file-image', function(){
 	reader.readAsDataURL(fileList[0])
 	reader.addEventListener('load', function(){
 		$('img[title="'+id+'"]').attr('src', reader.result);
-		$('img[title="'+id+'"]').css('width', '100%');
-		$('img[title="'+id+'"]').css('height', '100%');
+		$('img[title="'+id+'"]').css('width', '60px');
+		$('img[title="'+id+'"]').css('height', '60px');
 	})
 })
 
@@ -35,9 +60,15 @@ $('#imageAdd').click(function(){
 	index++;
 	$('#filesSample label').attr('for', 'add-file-image-'+index);
 	$('#filesSample input').attr('id','add-file-image-'+index);
-	$('#filesSample img').attr('title','add-file-image-'+index)
+	$('#filesSample img').attr('title','add-file-image-'+index);
 	let imageInput = $('#filesSample').html();
 	$('#files').append(imageInput);
+	
+	//title중복 방지 위해 리셋
+	$('#filesSample label').attr('for', '');
+	$('#filesSample input').attr('id','');
+	$('#filesSample img').attr('title','');
+	
 });
 //eb_imageDelete
 $('#files').on('click', '.deleteImage', function(){
@@ -131,7 +162,8 @@ $('#modal').click(function(){
 	let step="";
 	
 	$('.kinds').each(function(i, k){
-		countI=tcount++;
+		//count더하는 이유는 update에서 중복되는 것을 방지 하기 위해
+		countI=count+tcount++;
 		kind = $(k).val();
 		//makeThead
 		$('#table').append(makeThead(kind, countI));

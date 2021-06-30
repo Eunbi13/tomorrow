@@ -17,7 +17,6 @@ public interface ProductMapper {
 	public Long setUpdateProductPic(ProductVO productVO)throws Exception;
 	//eb_productUpdate 추가이미지 지우기
 	public Long deleteProdImg(ProductVO productVO)throws Exception;
-	
 	//eb_productUpdate 상품의 카테고리 중간 테이블(product_category)에 업데이트
 	public Long setUpdateProduct_category(Map<String, Long> map)throws Exception;
 	

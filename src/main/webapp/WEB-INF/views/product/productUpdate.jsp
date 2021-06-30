@@ -26,10 +26,9 @@
 			<div class=" "> 
 				<div class="form-group"><!-- 클릭하면 ajax로 중부류, 소분류 불러오기 -->
 					<div class="form-box ">
-						
 						<div id="category" >
 							<input hidden="hidden" class="form-control" name="categoryID" value="${categoryVO.categoryID}">
-							<div class="category-item">${categoryNM}</div>
+							<div class="category-item">${categoryNM}<!-- 가구>소파/침실가구>소파 --></div>
 							<div id="changeCategoryNM" class="btn-outline">변경하기</div>
 						</div>
 					</div>
@@ -37,7 +36,7 @@
 					<div id="categoryCheckBox" class="form-group" style="display: none;">
 						<div class="form-box ">
 							<label class=" form-label">선택*</label>
-							<c:forEach items="${categoryOne}" var="vo">
+							<c:forEach items="${categoryOne}" var="vo" >
 							<div class="  form-check-inline ">
 								<input class="form-check-input ch" type="checkbox" name="one" value="${vo.categoryID}">
 								<label class="form-check-label" for="inlineCheckbox1">${vo.category_detail_NM }</label>
@@ -78,21 +77,21 @@
 			<div class="form-group ">
 				<label class=" form-label" >추가 이미지</label>
 				<div id="files" class="preview-box">
-					<c:forEach items="${productVO.images }" var="img">
-						<label class="file-label" for="add-file-image">
-							<img class="add-img preview" src="/upload/productImages/${img.fileName}">
+					<c:forEach items="${productVO.images }" var="img" varStatus="i">
+						<label class="file-label" for="add-file-image-${i.index }">
+							<img title="add-file-image-${i.index }" class="add-img preview" src="/upload/productImages/${img.fileName}">
 						</label>
-						<input id="add-file-image" hidden="hidden" type="file" name="files" style="" value="${img.fileName}">
+						<input id="add-file-image-${i.index }" class="add-file-image" hidden="hidden" type="file" name="files" value="${img.fileName}">
 					</c:forEach>
 					<!-- 추가 이미지 장소 -->
 				</div>
 				<div id="imageAdd" class="btn-outline">+</div>
-				<div id="filesSample" style="display: none">
+				<div id="filesSample"  style="display: none">
 					<div class="priview-box">
 						<label class="file-label" for="add-file-image">
 							<img class="add-img preview-item" src="/images/plusIcon.png">
 						</label>
-						<input id="add-file-image" hidden="hidden"  type="file" name="files" class="" >
+						<input id="add-file-image" class="add-file-image"  hidden="hidden"  type="file" name="files">
 						<div class="deleteImage">x</div></div> 
 					</div>
 				</div>
@@ -136,11 +135,42 @@
 				</div>
 			</div>
 		</fieldset>
-	<br>
+<hr>
+		<fieldset>
+				<legend>옵션</legend>
+				<div id="form-group">
+					<label class=" form-label">옵션 구성 타입 
+						<p>옵션은 한 개 이상 넣어주세요.</p>
+					</label>
+					<input type="radio" id="notUse" name="o1" checked>조합 일체선택형
+					<input type="radio" id="use" name="o1">조합 분리선택형
+					<div class="btn btn-outline" id="optionUpdateButton">수정하기</div>
+					<!-- Button trigger modal -->
+					<div id="optionButton" type="button" class="btn btn-outline" data-toggle="modal" data-target="#exampleModal">
+						옵션추가하기
+					</div>
+					<div id="optionUpdateCancel" class="btn btn-outline">취소하기</div>
+				</div>	
+				<div class="" id="table"><!-- 옵션 테이블 자리 --></div>
+				<div id="importForm">
+					<c:import url="../options/optionForm.jsp"></c:import>
+				</div>
+					
+					
+		
+				<div id="options" hidden="hidden">
+					<c:forEach items="${optionList }" var="op">
+						<div class="optionKinds">${op.optionKinds }</div>
+						<div class="optionName">${op.optionName }</div>
+						<div class="optionPrice">${op.optionPrice }</div>
+						<div class="step">${op.step }</div>
+					</c:forEach>
+				</div>
+
+			</fieldset>
 			
 		<div class="right">
 			<button class="btn-outline">저장하기</button>
-			<p class="">옵션설정페이지로 넘어갑니다.</p>
 		</div>
 	</form>
 	
@@ -150,6 +180,6 @@
 
 <c:import url="../template/footer.jsp"></c:import>
 <script type="text/javascript" src="/js/productSet.js"></script>
-<script type="text/javascript" src="/js/productUpdate.js"></script>
+<script type="text/javascript" src="/js/optionUpdate.js"></script>
 </body>
 </html>

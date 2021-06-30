@@ -1,16 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-</head>
-<body>
-	<main>
+
+
 		<!-- 카테고리 리스트 -->
 		<h1 class="store-category-list-head">카테고리</h1>
 		<!-- Swiper -->
@@ -90,8 +82,3 @@
 				},
 			});
 		</script>
-
-
-	</main>
-</body>
-</html>

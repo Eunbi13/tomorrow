@@ -13,11 +13,9 @@
 <link rel="stylesheet" type="text/css" href="/css/member.css">
 </head>
 <body>
-	<header>
-		<img class="joinLogo" alt="" src="/images/logoName.png">
-	</header>
 	
-	<main >
+<main >
+	<img class="logoName" alt="" src="/images/logoName.png">
 	<div class="flex-center">
 		<div class="joinFrm">
 			<h5><strong>회원가입</strong></h5>

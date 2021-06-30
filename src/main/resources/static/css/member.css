@@ -1,9 +1,5 @@
 @charset "UTF-8";
 /* eb_memberJoin */
-.joinLogo{
-	height: 1.9rem;
-	margin: 1.2rem 0.5rem;
-}
 /* 가운데 정렬 되도록 설정 common으로 이동*/
 /* .flex-center{
 	display: flex;

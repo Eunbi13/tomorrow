@@ -14,10 +14,10 @@
 				<img class="logo" src="/images/logo.PNG"  alt="내일의집 로고">
 			</a>
 		</div>
-		<nav class="mainNav-item mainNav-item-a">
+		<nav class="mainNav-item ">
 
-			<a class="" title="item-community" href="#">커뮤니티</a>
-			<a class="on" title="item-store" href="/product/productlist">스토어</a>
+			<a class="mainNav-item-one " title="item-community" href="/housewarming/list">커뮤니티</a>
+			<a class="mainNav-item-one" title="item-store" href="/product/productlist">스토어</a>
 
 		</nav>
 		<div class="mainNav-item">
@@ -61,20 +61,23 @@
 		</div>
 	</div>
 </header>	
-<div class="sticky-chlid">
-	<div class="subNav ">	
-		<div class="subNav-item  aa" id="item-community" >
-				<div class="subNav-item-one">홈</div>
-				<div class="subNav-item-one">집들이</div>
-		</div>
-
+	<!-- 스크롤 올라가면  y축 올리고 hover일때 y정상복귀 -->
+	<div class="sticky-chlid">
+		<div>
+			<div class="subNav ">	
+				<div class="subNav-item  aa" id="item-community" >
+						<div class="subNav-item-one">홈</div>
+						<div class="subNav-item-one">집들이</div>
+				</div>
 		
-	<div class="subNav-item  aa" id="item-store"  >
-		<div class="subNav-item-one">스토어홈</div>
-		<div class="subNav-item-one">카테고리</div>
+				
+				<div class="subNav-item  aa" id="item-store"  >
+					<div class="subNav-item-one">스토어홈</div>
+					<div class="subNav-item-one">카테고리</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	</div>
-</div>
 
 	
 	
