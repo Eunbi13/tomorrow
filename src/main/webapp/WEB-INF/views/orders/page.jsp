@@ -429,6 +429,42 @@ height: 300px;
    border: 1px solid LightGray; 
    border-radius:10px;
 }
+
+#alert{
+ padding-top: 12px;
+ color: #f77;
+ font-weight: 700;
+ font-size: 12px;
+ line-height: 14px;
+  letter-spacing: 0.5px;
+    }
+    
+    
+ input[type='checkbox']:checked {background-color: #A63F82;} 
+ input[type='checkbox']:checked:after {
+ content: '\2713';
+ color: white;
+ position:  absolute;
+ line-height: 22px;
+ font-size: 20px;
+ padding-left: 4px;}
+    
+  input[type='checkbox']{
+  width: 18px !important;
+  height: 18px !important;
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+  -o-appearance: none;
+   appearance:none;
+  background-color: #FFF;
+ /* position:  absolute; */
+  outline: 1px solid black;
+  line-height: 22px;
+  font-size: 20px;
+  box-shadow: none;
+  font-size: 14px;
+  
+} 
 </style>
 </head>
 <body>
@@ -1053,7 +1089,8 @@ height: 300px;
                     <div class="ml-auto mr-2" id="payment" title="${ordersVO.payment}"><b class="green money"> ${ordersVO.payment}원</b></div>
                 </div>
                 <div class="p-2 d-flex pt-3 agree">
-                   <div class="agree1">  <input type="checkbox">&nbsp;&nbsp; 아래 내용에 모두 동의합니다. (필수)
+                   <div class="agree1">  <input type="checkbox" id="agreeCheck">&nbsp;&nbsp; 아래 내용에 모두 동의합니다. (필수)
+                        <div id="alert"> </div>
                        <hr style="border: solid 1px #d9d9d9;">
                     <div class="agree3"> 
                       <ul>

@@ -7,17 +7,17 @@
 <c:import url="../template/bootStrap.jsp"></c:import>
 <meta charset="UTF-8">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>내일부터 하는 인테리어, 내일의 집</title>
 <style type="text/css">
 
-.container{
-	margin-top: 120px;
-	margin-bottom:200px;
-/* 	text-align: center; */
+.container_empty{
+    margin-top: 120px;
+	margin-bottom:200px; 
+ 	text-align: center; 
 
 	width:250px; 
 	height:300px; 
-	line-height:200px;
+	line-height:200px; 
 
 }
 .catImg{
@@ -58,7 +58,7 @@
 <c:import url="../template/header.jsp"></c:import>
 <main>
 
-<div class="container">
+<div class="container container_empty">
 
 <img class="catImg" src="/images/oPic/cat.png"><br>
 <button type="button" class="btn btn-default" onclick="location.href='/product/productlist'"> 상품 담으러 가기 </button>
