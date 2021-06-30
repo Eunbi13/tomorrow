@@ -16,7 +16,7 @@
 		</div>
 		<nav class="mainNav-item mainNav-item-a">
 
-			<a class="" title="item-community" href="#">커뮤니티</a>
+			<a class="" title="item-community" href="/housewarming/list">커뮤니티</a>
 			<a class="on" title="item-store" href="/product/productlist">스토어</a>
 
 		</nav>

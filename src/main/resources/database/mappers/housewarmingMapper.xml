@@ -49,7 +49,7 @@
    		
    		<insert id="setInsert" parameterType="HousewarmingVO" useGeneratedKeys="true" keyProperty="hwNum">
    			insert into housewarming (space, spaceSize, work, field, familyType, area, style, period, budget, totalTone, wallColor, bottomColor, detail, link, copyright, coverImg, title, username, contents)
-   			values(#{space}, #{spaceSize}, #{work}, #{field}, #{familyType}, #{area}, #{style}, #{period}, #{budget}, #{totalTone}, #{wallColor}, #{bottomColor}, #{detail}, #{link}, #{copyright}, 1, #{title}, #{username}, #{contents})
+   			values(#{space}, #{spaceSize}, #{work}, #{field}, #{familyType}, #{area}, #{style}, #{period}, #{budget}, #{totalTone}, #{wallColor}, #{bottomColor}, #{detail}, #{link}, #{copyright}, 0, #{title}, #{username}, #{contents})
    		</insert>
    		
    		<insert id="setFileInsert" parameterType="HwFileVO">
@@ -61,20 +61,28 @@
    			update housewarming set hit=hit+1 where hwNum=#{hwNum}
    		</update>
    		
+   	<!-- 	<update id="setLikeAddUpdate" parameterType="HousewarmingVO">
+   			update housewarming set like=like+1 where hwNum=#{hwNum}
+   		</update>
+   		
+   		<update id="setScrapAddUpdate" parameterType="HousewarmingVO">
+   			update housewarming set scrap=scrap+1 where hwNum=#{hwNum}
+   		</update>
+   		
+   		<update id="setLikeSubtractUpdate" parameterType="HousewarmingVO">
+   			update housewarming set like=like-1 where hwNum=#{hwNum}
+   		</update>
+   		
+   		<update id="setScrapSubtractUpdate" parameterType="HousewarmingVO">
+   			update housewarming set scrap=scrap-1 where hwNum=#{hwNum}
+   		</update> -->
+   		
    		<update id="setUpdate" parameterType="HousewarmingVO">
    			update housewarming 
    			set space=#{space}, spaceSize=#{spaceSize}, work=#{work}, field=#{field}, familyType=#{familyType}, area=#{area}, style=#{style}, period=#{period}, budget=#{budget}, 
    			totalTone=#{totalTone}, wallColor=#{wallColor}, bottomColor=#{bottomColor}, detail=#{detail}, link=#{link}, copyright=#{copyright}, title=#{title}, contents=#{contents}, like=#{like}, scrap=#{scrap} 
    			where hwNum=#{hwNum}
    		</update>
-   		
-   		<!-- <update id="setLikeInsert" parameterType="HousewarmingVO">
-   			insert into hwLike values(#{hwNum}, #{username})
-   		</update>
-   		
-   		<update id="setScrapInsert" parameterType="HousewarmingVO">
-   			insert into hwScrap values(#{hwNum}, #{username})
-   		</update> -->
    		
    		<delete id="setDelete" parameterType="HousewarmingVO">
    			delete from housewarming where hwNum=#{hwNum}

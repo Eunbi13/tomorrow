@@ -12,7 +12,6 @@ $("#comments").on("click", "#remove", function(){
 	$.ajax({
 		type: "POST",
 		url: "../hwReply/hwReplyDelete",
-		traditional: true, 					//배열은 전송
 		data:{hwReplyNum:hwReplyNum},
 		success:function(data){
 			alert(data);
