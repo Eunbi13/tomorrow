@@ -86,7 +86,7 @@
 			<label class="form-label">프로필 이미지</label>
 			<div class="col-sm-10">
 				<img src="/upload/member/<sec:authentication property="principal.profileImage"/>" class="profileImage-add" alt="profileImage">
-				<input hidden="hidden" class="form-control" type="file" name="profileImage">
+				<input hidden="hidden" class="form-control" type="file" name="profileImage" value="<sec:authentication property="principal.profileImage"/>"> 
 			</div>
 		</div>
 		<div class="updateFrm-group">
@@ -96,7 +96,7 @@
 			</div>
 		</div>
 		
-		<button class="btn btn-default">회원 정보 수정</button>
+		<button class="btn btn-default-custom">회원 정보 수정</button>
 	</form:form>
 </div>
 </main>
@@ -109,7 +109,7 @@
 	console.log(getE)
 	let es = getE.split('&#64;');
 	$('.id').val(es[0]);
-	$('.domain').val(es[1])
+	$('.domain').val(es[1].replace('&#46;','.'))
 	
 	
 	let username = '<sec:authentication property="principal.username"/>';
@@ -122,6 +122,8 @@
 	}else if(gender=='M'){
 		$('#M').prop('checked', true);
 	}
+	
+	//file 변화 없을 경우 그대로 벨류 넘기기
 </script>
 
 </body>

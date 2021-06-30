@@ -8,22 +8,15 @@ $('#EX').click(function(){
 
 //eb_이미지 미리보기
 //대표이미지(input태그)에 변화가 있을 경우
+$('.preview').hide();
 $('#rep').change(function(){
-	//input태그를 매개변수로 준다.
-	console.log(this);
-	//<input hidden="hidden" id="rep" type="file" name="rep" class="form-control col-sm-10">
-	console.log(this.files);
-	//fileList {0:File, length:1}
-	//선택자의 파일배열을 fileList에 담는다.
 	let fileList = this.files;
-	//파일리더 선언
 	let reader = new FileReader();
-	//이미지의 url을 읽어주는 메서드, 매개값으로 input에 담긴 파일을 넣는다.
-	//base64 인코딩 된 스트링 데이터가 result 속성(attribute)에 담아지게 된다(자동)
 	reader.readAsDataURL(fileList[0])
 	//로드 이벤트가 실행되면 보여지고 싶은 선택자 src속성에 넣기
 	reader.addEventListener('load', function(){
 		$('.preview').attr('src', reader.result);
+		$('.preview').show();
 	})
 })
 

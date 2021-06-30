@@ -2,6 +2,8 @@
 
 /* eb_header설정 */
 header{ 
+	padding-top: 20px; 
+	background-color: white;
 	position: sticky;
 	top:0;
 	z-index: 500;
@@ -34,7 +36,7 @@ a:hover{ color: #A63F82; }
 .mainNav-item:nth-child(1){
 	flex-basis: 0.5rem;
 }
-.logo{ height: 2rem;}
+.logo{ height: 30px;}
 
 /* 커뮤니티 스토어 nav*/
 .mainNav-item:nth-child(2){
@@ -52,7 +54,8 @@ a:hover{ color: #A63F82; }
 /* 로그인/회원가입(member) flex(내부 container) */
 .mainNav-item-one{
 	display:flex;
-	align-items: flex-end;
+ 	padding-top:10px;
+	align-items: flex-start;
 }
 /* item들끼리 여백필요 */
 .mainNav-item a{
@@ -91,9 +94,9 @@ a[title="cartIcon"]{ margin:0; }
 }
 /* 장바구니&프사 이미지 설정 */
 .mainNav-item-one img{
-	width: 1.8rem;
-	height: 1.8rem;
-	border-radius: 1rem;
+	width: 30px;
+	height: 30px;
+	border-radius: 1em;
 	
 }
 img[alt="profile"]:hover{
@@ -104,11 +107,11 @@ img[alt="profile"]:hover{
 /* 글쓰기 드랍버튼 설정 */
 a[title=write]{
 	margin-left:0;
-	padding: 0.6rem 1rem;
+	padding: 10px 18px;
 	border-radius: 0.25rem;
 	background-color: #A63F82;
 	color:#FFF;
-	font-size: 1rem;
+	font-size: 15px;
 }
 a[title=write]:hover{
 	background-color: #732944;

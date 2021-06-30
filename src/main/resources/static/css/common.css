@@ -36,17 +36,14 @@ main, div.mainNav{
 }
 /*common  */
 
-header{ 
-	padding-top: 20px; 
-	background-color: white;
-}
+
 
 .red{
 	font-weight:bold;
 	color:#ff7777;
 }
 /* mk_버튼 */
-.btn-default{
+.btn-default-custom{
 	width:125px;
     max-width:100%;
 	padding:11px 22px;
@@ -94,4 +91,9 @@ header{
 .column{
 	flex-direction: column;
 	align-items: center;
+}
+
+.mid-main{
+	width: 80%;
+	margin: 0 auto;
 }

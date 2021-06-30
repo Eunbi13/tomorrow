@@ -1,9 +1,5 @@
 @charset "UTF-8";
 
-.mid{
-	width: 80%;
-	margin: 0 auto;
-}
 
 .flex-row-center{
 	align-items: center;
@@ -75,7 +71,11 @@ span{
 	flex-shrink: 10;
 	width: 100%;
 }
+.form-check-inline{
+	padding: 8px;	
+}
 
+/* 상품소개 */
 .textarea{
 	width:inherit;
 	resize: none;

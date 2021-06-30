@@ -47,9 +47,23 @@
 	user-select: none;
 }
 
+.content-detail-content-section__content {
+    margin: 0px auto;
+    max-width: 750px;
+    padding: 0px 15px;
+    box-sizing: border-box;
+}
+
 @media ( min-width : 768px) {
 	.bd-placeholder-img-lg {
 		font-size: 3.5rem;
+	}
+	.project-detail-metadata {
+    margin: 0px 0px 50px;
+    padding: 0px 24px 25px;
+    background-color: rgb(247, 248, 250);
+    border-radius: 4px;
+    border: none;
 	}
 }
 </style>
@@ -64,93 +78,83 @@
 <body>
 	<c:import url="../template/header.jsp"></c:import>
 	
-	<!-- coverImg -->
-	<div>
-		<%-- <c:forEach items="${vo.hwfile}" var="file"> --%>
-			<a href="/upload/housewarming/${vo.hwfile.fileName}">${file.originName}</a>
-		<%-- </c:forEach> --%>
-	</div>
-
-	<div class="container" style="margin-top: 30px">
-		<div class="row">
-			<h5 class="pb-4 mb-4">온라인 집들이</h5>
-
-			<div class="blog-post">
-				<h2 class="blog-post-title">${vo.title}</h2>
-				<p class="blog-post-meta">
-					<a href="#">${vo.username}</a> <input type="button"
-						class="btn btn-primary" value="팔로우">
-				</p>
-				<div class="jumbotron mt-3">
-					<table class="table table-borderless">
-						<tbody>
-							<tr>
-								<th scope="row">공간</th>
-								<td>${vo.space}</td>
-							</tr>
-							<tr>
-								<th scope="row">평수</th>
-								<td>${vo.spaceSize}</td>
-							</tr>
-							<tr>
-								<th scope="row">작업</th>
-								<td>${vo.work}</td>
-							</tr>
-							<tr>
-								<th scope="row">분야</th>
-								<td>${vo.field}</td>
-							</tr>
-							<tr>
-								<th scope="row">가족형태</th>
-								<td>${vo.familyType}</td>
-							</tr>
-							<tr>
-								<th scope="row">지역</th>
-								<td>${vo.area}</td>
-							</tr>
-							<tr>
-								<th scope="row">기간</th>
-								<td>${vo.period}</td>
-							</tr>
-							<tr>
-								<th scope="row">예산</th>
-								<td>${vo.budget}</td>
-							</tr>
-							<tr>
-								<th scope="row">세부공사</th>
-								<td>${vo.detail}</td>
-							</tr>
-						</tbody>
-					</table>
+	<div class="content">
+		<!-- coverImg -->
+		<div>
+			<%-- <c:forEach items="${vo.hwfile}" var="file"> --%>
+				<a href="/upload/housewarming/${vo.hwfile.fileName}">${file.originName}</a>
+			<%-- </c:forEach> --%>
+		</div>
+	
+		<div class="content-detail-content-section__content" style="margin-top: 30px">
+			<div class="row">
+				<h5 class="pb-4 mb-4">온라인 집들이</h5>
+	
+				<div class="blog-post">
+					<h2 class="blog-post-title">${vo.title}</h2>
+					<p class="blog-post-meta">
+						<h5>${vo.username}</h5> 
+					</p>
+					<div class="jumbotron mt-3 project-detail-metadata">
+						<table class="table table-borderless">
+							<tbody>
+								<tr>
+									<th scope="row">공간</th>
+									<td>${vo.space}</td>
+								</tr>
+								<tr>
+									<th scope="row">평수</th>
+									<td>${vo.spaceSize}</td>
+								</tr>
+								<tr>
+									<th scope="row">작업</th>
+									<td>${vo.work}</td>
+								</tr>
+								<tr>
+									<th scope="row">분야</th>
+									<td>${vo.field}</td>
+								</tr>
+								<tr>
+									<th scope="row">가족형태</th>
+									<td>${vo.familyType}</td>
+								</tr>
+								<tr>
+									<th scope="row">지역</th>
+									<td>${vo.area}</td>
+								</tr>
+								<tr>
+									<th scope="row">기간</th>
+									<td>${vo.period}</td>
+								</tr>
+								<tr>
+									<th scope="row">예산</th>
+									<td>${vo.budget}</td>
+								</tr>
+								<tr>
+									<th scope="row">세부공사</th>
+									<td>${vo.detail}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+	
+					<p>${vo.contents}</p>
+	
 				</div>
-
-				<p>${vo.contents}</p>
-				<p>
-					Yeah, she dances to her own beat. Oh, no. You could've been the
-					greatest. 'Cause, baby, <a href="#">you're a firework</a>. Maybe a
-					reason why all the doors are closed. Open up your heart and just
-					let it begin. So très chic, yeah, she's a classic.
-				</p>
-
+	
 			</div>
-
 		</div>
 
-		<%-- <sec:authentication property="principal" var="pinfo" />
-		<sec:authorize access="isAuthenticated()">
-			<c:if test="${pinfo.username eq vo.username}">
-				<button type="button" class="btn btn-primary">Update</button>
-			</c:if>
-		</sec:authorize> --%>
-		
 		<sec:authentication property="principal" var="pinfo" />
 		<sec:authorize access="isAuthenticated()">
-			<c:if test="${pinfo.username eq vo.username}">
-				<a href="./update?hwNum=${vo.hwNum}" class="btn btn-success">Update</a>
+			<c:if test="${pinfo.username eq admin}">
+				<c:if test="${vo.coverImg eq 0}">
+					<a href="./update?hwNum=${vo.hwNum}" class="btn btn-success">Update</a>
+					<a href="./delete?hwNum=${vo.hwNum}" class="btn btn-danger">Delete</a>
+				</c:if>
 			</c:if>
 		</sec:authorize>
 		
-		<a href="./delete?hwNum=${vo.hwNum}" class="btn btn-danger">Delete</a>
 		
 		<div>
 			<input type="button" class="btn btn-primary" id="like" value="Like">

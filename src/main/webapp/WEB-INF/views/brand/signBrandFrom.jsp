@@ -13,7 +13,7 @@
 
 <body>
 <main>
-<div class="mid">
+<div class="mid-main">
 	<div class="flex-center column" >
 		<div class="flex-center flex-row-center">
 			<img alt="" src="/images/logoName.png">
@@ -129,7 +129,7 @@
 			</div>
 		</div>
 		</fieldset>
-		<button class="btn-default">button</button>
+		<button class="btn-default-custom">button</button>
 	</form:form>
 
 

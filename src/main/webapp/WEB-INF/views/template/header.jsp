@@ -48,7 +48,7 @@
 				</sec:authorize>
 			</div>
 			<div class="mainNav-item-one">
-				<div class="dropdown ">
+				<div class="dropdown">
 					<a class="dropdown-toggle write" title="write" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						글쓰기
 					</a>

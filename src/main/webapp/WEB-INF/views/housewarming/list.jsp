@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,7 +65,19 @@
 	<div class="container" style="margin-top: 30px">
 
 		<div class="row">
+			<sec:authentication property="principal" var="pinfo" />
+			<sec:authorize access="isAuthenticated()">
+			<c:if test="${pinfo.username eq 'admin'}">
+				<div>
+					<a href="./list?coverImg=0" type="button">발행 대기 목록</a>
+					<a href="./list?coverImg=1" type="button">발행 목록</a>
+					<%-- <c:if test=""></c:if> --%>
+				</div>
+			</c:if>
+			</sec:authorize>
+			
 			<c:forEach items="#{list}" var="vo">
+			<c:if test="${vo.coverImg eq 1}">
 				<div class="col-md-4">
 					<a href="./select?hwNum=${vo.hwNum}">
 						<div class="card mb-4 shadow-sm">
@@ -89,6 +102,7 @@
 						</div>
 					</a>
 				</div>
+			</c:if>
 			</c:forEach>
 
 
