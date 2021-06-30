@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="/css/common.css">
 <link rel="stylesheet" type="text/css" href="/css/header.css">
 <script type="text/javascript" src="/js/header.js"></script>
-<!-- 상단 카테고리 -->
+<!-- 상단 카테고리// -->
 <header>
 	<div class="mainNav">
 		<div class="mainNav-item">
