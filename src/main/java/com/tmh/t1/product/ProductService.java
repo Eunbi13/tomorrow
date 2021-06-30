@@ -161,13 +161,15 @@ public class ProductService {
 			return productMapper.getOptionsList(productVO);
 		}
 		
-		public List<ProductImagesVO> getImageList(ProductImagesVO imagesVO) throws Exception{
-			return productMapper.getImageList(imagesVO);
+		public List<ProductImagesVO> getDetailImage(ProductVO productVO) throws Exception{
+			return productMapper.getDetailImage(productVO);
 		}
 		
 		//select
 		public ProductVO getSelect(ProductVO productVO)throws Exception{
 			return productMapper.getSelect(productVO);
 		}
+		
+		
 
 }

@@ -389,9 +389,19 @@ textarea:focus {
 	<div id="home" class="main">
 		<div class="main-pic" >
 			<div class="main-pic-wrap"> 
+				<img alt="상품이미지" class="pic-small"
+							src="/upload/productImages/${vo.productImagesVO.fileName}">
 			<!-- select 좌측 작은 사진 -->
 			<ul class="main-pic-small" >
-				<c:choose>
+				<c:if test="${productVO.productNum eq productVO.productImagesVO.productNum}">
+		 			 <li >	
+						<button class="main-pic-small-bt">
+							<img alt="상품이미지" class="pic-small"
+							src="/upload/productImages/${vo.images.fileName}">
+						</button>
+					</li>	
+				</c:if>
+				<%-- <c:choose>
 				<c:when test="">
 					<c:forEach items="${productlist}" var="vo">
 						<li >	
@@ -402,7 +412,7 @@ textarea:focus {
 						</li>
 					</c:forEach>	
 				</c:when>
-				</c:choose>
+				</c:choose> --%>
 				
 				
 				
