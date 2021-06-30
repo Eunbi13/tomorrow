@@ -13,14 +13,14 @@
 .container{
 	margin-top: 120px;
 	margin-bottom:200px;
-	text-align: center;
+/* 	text-align: center; */
 
 	width:250px; 
 	height:300px; 
 	line-height:200px;
 
 }
-img{
+.catImg{
 	max-width:80%; 
 	max-height:80%;
 	vertical-align:middle;
@@ -60,7 +60,7 @@ img{
 
 <div class="container">
 
-<img src="/images/oPic/cat.png"><br>
+<img class="catImg" src="/images/oPic/cat.png"><br>
 <button type="button" class="btn btn-default" onclick="location.href='/product/productlist'"> 상품 담으러 가기 </button>
 
 
