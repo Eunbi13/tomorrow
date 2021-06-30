@@ -167,7 +167,7 @@ public class BrandController {
 	public String brandSelect(Model model, BrandVO brandVO)throws Exception{
 		brandVO = brandService.selectBrand(brandVO);
 		model.addAttribute("vo", brandVO);
-		return "/brand/brandSelect";
+		return "/manager/acceptBrandSelect";
 	}
 	
 	//eb_brandList 브랜드 리스트(brandAccept용)
