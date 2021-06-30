@@ -16,8 +16,8 @@
 		</div>
 		<nav class="mainNav-item ">
 
-			<a class="mainNav-item-one " title="item-community" href="/housewarming/list">커뮤니티</a>
-			<a class="mainNav-item-one" title="item-store" href="/product/productlist">스토어</a>
+			<a class="mainNav-item-one mainNav-item-T" title="item-community" href="/housewarming/list">커뮤니티</a>
+			<a class="mainNav-item-one mainNav-item-T" title="item-store" href="/product/productlist">스토어</a>
 
 		</nav>
 		<div class="mainNav-item">
@@ -66,14 +66,14 @@
 		<div>
 			<div class="subNav ">	
 				<div class="subNav-item  aa" id="item-community" >
-						<div class="subNav-item-one">홈</div>
-						<div class="subNav-item-one">집들이</div>
+					<a class="subNav-item-one on" href="">홈</a>
+					<a class="subNav-item-one" href="">집들이</a>
 				</div>
 		
 				
 				<div class="subNav-item  aa" id="item-store"  >
-					<div class="subNav-item-one">스토어홈</div>
-					<div class="subNav-item-one">카테고리</div>
+					<a class="subNav-item-one on" href="">스토어홈</a>
+					<a class="subNav-item-one" href="">카테고리</a>
 				</div>
 			</div>
 		</div>

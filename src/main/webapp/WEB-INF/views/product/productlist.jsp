@@ -164,8 +164,6 @@ btn-secondary {
 } 
 .cat-slide{
 	width: 100%;
-	z-index: -10 !important;
-	background-color: yellow;
 }
 </style>
 <c:import url="../template/bootStrap.jsp"></c:import>

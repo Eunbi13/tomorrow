@@ -12,6 +12,7 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 <main>
+	<div class="mid-main">
 	<h1>판매자 수락하기 위한 리스트 출력 페이지</h1>
 		<table class="table">
 			<thead>
@@ -30,13 +31,13 @@
 					<th scope="row">${i.count }</th>
 					<td><a href="./select?brandNum=${vo.brandNum }">${vo.companyName}</a></td>
 					<td>${vo.brandName}</td>
-					<c:if test="${vo.accept }"><td>수락</td></c:if>
-					<c:if test="!${vo.accept }"><td>미수락</td></c:if>
+					<c:if test="${vo.accept eq true}"><td>수락</td></c:if>
+					<c:if test="${vo.accept eq false }"><td>미수락</td></c:if>
 				</tr>
 	</c:forEach>
 			</tbody>
 		</table>
-		
+	</div>	
 </main>
 <c:import url="../template/footer.jsp"></c:import>
 </body>

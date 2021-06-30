@@ -27,7 +27,7 @@ $(document).ready(function(){
 		}
 	})
 	//마우스 위치에 따라 서브 네비 보이기
-	$('.mainNav-item-one').mouseenter(function(){
+	$('.mainNav-item-T').mouseenter(function(){
 		//scroll위치에 관계없이 보여주기 위해서 위치 바꾸기
 		$('.sticky-chlid>div').css('transform','translate(0px, 0px)');
 		title =$(this).attr('title');
@@ -41,7 +41,7 @@ $(document).ready(function(){
 		//스크롤 위치가 50보다 크면 css트랜드레이트 생기도록 하기
 		if(scrollNum>100){
 			$('.sticky-chlid>div').css('transform','translate(0px, -100px)');
-		}else {
+		}else if(scrollNum<100){
 			$('.sticky-chlid>div').css('transform','translate(0px, 0px)');
 		}
 	})
