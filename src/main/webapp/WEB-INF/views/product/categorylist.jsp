@@ -203,15 +203,10 @@ btn-secondary {
 	
 	<br>
 	
-	<!-- 카테고리 슬라이드 -->
-	<div class="cat-slide">
-	<c:import url="../template/categorySlideT.jsp"></c:import>
-	</div>
-	
 	
 	<!-- 상품 리스트 -->
-	<div class="productList-T">
-	<c:import url="../template/productlistT.jsp"></c:import>
+	<div class="productList-CT">
+	<c:import url="../template/productlistCT.jsp"></c:import>
 	</div>
 	<script type="text/javascript" src="../js/productList.js"></script>
 </main>
