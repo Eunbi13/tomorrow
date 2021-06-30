@@ -125,7 +125,8 @@ public class BrandService {
 			brandVO.setReferenceFile(fileName);
 		}
 		
-		//brandInsert
+		//brandInsert 처음에 무조건 거부
+		brandVO.setAccept(false);
 		Long result = brandMapper.signBrand(brandVO);
 		
 		//신청할때 선택한 대분류 카테고리 brand_cateogy테이블에 삽입 

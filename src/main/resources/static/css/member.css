@@ -21,15 +21,15 @@
 }
 /* input item창 */
 .form-control{
-	margin: 0.5rem 0;
+	margin: 12px 0;
 	height: 1.9rem;
-	font-size: 0.7rem;
+	font-size: 12px;
 }
 /* input item설명 */
 .bold{
 	font-weight: bold;
-	font-size: 0.9rem;
-	margin: 0.8rem 0;
+	font-size: 15px;
+	margin: 12px 0;
 }
 
 /* email input item 설정 */
@@ -50,22 +50,23 @@
 }
 /* 약관동의 글씨 간격 조정 */
 .accept label{
-	margin: 0.6rem 0;
+	font-size: 15px;
+	margin: 12px 0;
 }
 /* 회원가입완 버튼 */
 .btn-big{
 	width: 100%;
-	height: 3.6rem;
-	line-height: 3.6rem;
+	height: 64px;
+	line-height: 24px;
 	margin: 1.4rem 0;
-	font-size: 1.2rem;
+	font-size: 24px;
 	font-weight: bold;
 	border-radius: 0.25rem;
 	text-align: center;
 }
 
 .font-small{
-	font-size: 0.7rem;
+	font-size: 12px;
 }
 
 /* 
@@ -76,10 +77,12 @@
 	flex-direction: column;
 	align-items: center;
 } */
+
+
 .loginLogo{
-	margin-top: 6rem;
-	width: 9rem;
-	margin-bottom: 1.4rem;
+	margin-top: 147px;
+	width: 147px;
+	margin-bottom: 10px;
 }
 
 /* 로그인 창 크기*/
@@ -168,7 +171,7 @@ h4{
 }
 	
 #contents strong{
-	font-size: 1.1rem;
+	font-size: 15px;
 	letter-spacing: -2px;
 }
 

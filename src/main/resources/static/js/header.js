@@ -41,7 +41,7 @@ $(document).ready(function(){
 		//스크롤 위치가 50보다 크면 css트랜드레이트 생기도록 하기
 		if(scrollNum>100){
 			$('.sticky-chlid>div').css('transform','translate(0px, -100px)');
-		}else if(scrollNum<100){
+		}else if(scrollNum<100||scrollNum==0){
 			$('.sticky-chlid>div').css('transform','translate(0px, 0px)');
 		}
 	})

@@ -89,7 +89,7 @@
 		
 		
 				<div id="error" style="font-size: 0.8em; color: red; margin: 0.8rem 0;"></div>
-				<div id="btn" class="btn-big btn-default-custome">회원가입 완료</div>
+				<button id="btn" class="btn-default-custom btn-big ">회원가입 완료</button>
 			</form:form>
 	
 		</div>

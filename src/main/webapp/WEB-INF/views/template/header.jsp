@@ -66,8 +66,8 @@
 		<div>
 			<div class="subNav ">	
 				<div class="subNav-item  aa" id="item-community" >
-					<a class="subNav-item-one on" href="">홈</a>
-					<a class="subNav-item-one" href="">집들이</a>
+					<a class="subNav-item-one on" href="/housewarming/list">홈</a>
+				<!-- 	<a class="subNav-item-one" href="">집들이</a> -->
 				</div>
 		
 				

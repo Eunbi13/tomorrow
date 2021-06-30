@@ -8,12 +8,14 @@
 <meta charset="UTF-8">
 <c:import url="../template/bootStrap.jsp"></c:import>
 <title>내일부터 하는 인테리어, 내일의 집</title>
+
+<link rel="stylesheet" type="text/css" href="/css/manager.css">
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
 <main>
-	<div class="mid-main">
-	<h1>판매자 수락하기 위한 리스트 출력 페이지</h1>
+<div class="mid-main">
+	<h1>Brand List</h1>
 		<table class="table">
 			<thead>
 				<tr>

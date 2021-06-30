@@ -39,10 +39,6 @@ public class BrandVO {
 
 	private String [] categories;
 	
-	public boolean isAccept() {
-		this.accept=false;
-		return this.accept;
-	}
 	
 
 	private String orderNum;
