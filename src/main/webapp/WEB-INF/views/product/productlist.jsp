@@ -168,8 +168,8 @@ btn-secondary {
 <title>store list</title>
 </head>
 <body>
-<main>
 	<c:import url="../template/header.jsp"></c:import>
+<main>
 
 	<div class="bannerslideshow-container">
 		<div class="mySlides fade2">
