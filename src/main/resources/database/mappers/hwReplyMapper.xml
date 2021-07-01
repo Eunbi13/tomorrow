@@ -25,4 +25,8 @@
 		update hwReply set step=step+1 where hwReplyNum=#{hwReplyNum} and step>#{step}
 	</update>
 	
+	<delete id="setDelete" parameterType="HwReplyVO">
+		delete from hwReply where hwReplyNum=#{hwReplyNum}
+	</delete>
+	
 </mapper>

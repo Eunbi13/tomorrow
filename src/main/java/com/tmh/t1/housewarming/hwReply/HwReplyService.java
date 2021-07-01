@@ -54,5 +54,10 @@ public class HwReplyService {
 	public int setInsert(HwReplyVO hwReplyVO) throws Exception {
 		return hwReplyMapper.setInsert(hwReplyVO);
 	}
+	
+	// Delete
+	public int setDelete(HwReplyVO hwReplyVO) throws Exception {
+		return hwReplyMapper.setDelete(hwReplyVO);
+	}
 
 }

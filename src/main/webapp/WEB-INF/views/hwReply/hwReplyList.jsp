@@ -13,8 +13,8 @@
 				
 				<td>
 					<sec:authentication property="principal" var="pinfo" />
-					<c:if test="${pinfo.username eq vo.username}">
-						<button type="button" class="btn btn-danger" id="remove" value="${reply.hwReplyNum}">Delete</button>
+					<c:if test="${pinfo.username eq reply.username}">
+						<button type="button" class="btn btn-default remove" id="remove" value="${reply.hwReplyNum}">Delete</button>
 					</c:if>
 				</td>
 			</tr>

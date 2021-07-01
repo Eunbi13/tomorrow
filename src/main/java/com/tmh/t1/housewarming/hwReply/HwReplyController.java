@@ -39,9 +39,11 @@ public class HwReplyController {
 	}
 
 	@PostMapping("hwReplyDelete")
-	public void setDelete(int hwReplyNum) throws Exception {
-		System.out.println("Start");
-		
-		System.out.println("finish");
+	public ModelAndView setDelete(HwReplyVO hwReplyVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		int result = hwReplyService.setDelete(hwReplyVO);
+		mv.addObject("result", result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
 	}
 }
