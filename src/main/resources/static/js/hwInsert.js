@@ -2,15 +2,19 @@
  * 
  */
 
-let familyType = "";
-let cnt = 0;
+var familyType = "";
+var style = "";
+var detail = "";
+var cnt = 0;
+var scnt = 0;
+var dcnt = 0;
 
 // dropdown
-// button click > active > add array > ajax insert
 
+//----------------------가족형태---------------------
 $(".fmtOption").on("click", function() {
 	console.log($(this).html());
-	fmt = $(this).html();
+	var fmt = $(this).html();
 	
 	if(cnt > 0) {
 		familyType = familyType + "," + fmt;
@@ -19,17 +23,128 @@ $(".fmtOption").on("click", function() {
 	}
 	console.log(familyType);
 	
+	// fmtBtn 추가
+	console.log("sample" + $("#sample").html());
+	$(".fmtUl").append($("#sample").html());
+
+	$(".fmtUl li:last").children().val(fmt);
+	
 	cnt++;
+	
+	fmtDel()
+	
+	$(".checkFamilyType").val(familyType);
 });
 
 // 버튼 누르면 삭제
-function del() {
+function fmtDel() {
 	$(".delete").each(function(s1, s2) {
 		$(s2).on("click", function() {
 			$(this).parent().remove();
+			
+			if(cnt > 0) {
+				familyType = familyType.replace(","+$(this).val(), "");
+			} else {
+				familyType = familyType.replace($(this).val(), "");
+			}
+			
+			cnt--;
+			
+			console.log(familyType);
 		});
 	});
 }
+
+//----------------------스타일---------------------
+$(".styleOption").on("click", function() {
+	console.log($(this).html());
+	var stt = $(this).html();
+	
+	if(scnt > 0) {
+		style = style + "," + stt;
+	} else {
+		style = stt;
+	}
+	console.log(style);
+	
+	// sttBtn 추가
+	console.log("sample" + $("#sample").html());
+	$(".sttUl").append($("#sample").html());
+
+	$(".sttUl li:last").children().val(stt);
+	
+	scnt++;
+	
+	styleDel()
+	
+	$(".checkStyle").val(style);
+	
+});
+
+// 버튼 누르면 삭제
+function styleDel() {
+	$(".delete").each(function(s1, s2) {
+		$(s2).on("click", function() {
+			$(this).parent().remove();
+			
+			if(scnt > 0) {
+				style = style.replace(","+$(this).val(), "");
+			} else {
+				style = style.replace($(this).val(), "");
+			}
+			
+			scnt--;
+			
+			console.log(style);
+		});
+	});
+}
+
+//----------------------디테일---------------------
+$(".detailOption").on("click", function() {
+	console.log($(this).html());
+	var dtt = $(this).html();
+	
+	if(dcnt > 0) {
+		detail = detail + "," + dtt;
+	} else {
+		detail = dtt;
+	}
+	console.log(detail);
+	
+	// sttBtn 추가
+	console.log("sample" + $("#sample").html());
+	$(".dttUl").append($("#sample").html());
+
+	$(".dttUl li:last").children().val(dtt);
+	
+	dcnt++;
+	
+	detailDel()
+	
+	$(".checkDetail").val(detail);
+	
+});
+
+// 버튼 누르면 삭제
+function detailDel() {
+	$(".delete").each(function(s1, s2) {
+		$(s2).on("click", function() {
+			$(this).parent().remove();
+			
+			if(dcnt > 0) {
+				detail = detail.replace(","+$(this).val(), "");
+			} else {
+				detail = detail.replace($(this).val(), "");
+			}
+			
+			dcnt--;
+			
+			console.log(detail);
+		});
+	});
+}
+
 
 // 기간 -> 주, 개월 클릭시 text 변경
 $(".week").on("click", function() {
@@ -59,7 +174,6 @@ $(".total").each(function(s1) {
 });
 
 // totalTone 체크 시
-/*
 $("input:checkbox[class='total']").on("change", function() {	
 	for (let i=0; i<ar.length(); i++) {
 		if ($("input:checkbox[id=totalTone" + i + "]").is(":checked") == true) {
@@ -72,100 +186,7 @@ $("input:checkbox[class='total']").on("change", function() {
 		}
 	}
 });
-*/
 
 
-// contents 클릭시 사진추가 버튼 생성
-$(".contents").on("click", function() {
-	
-});
 
-
-/*
-// .fmtOption 클릭
-$(".fmtOption").on("click", function() {
-	// 해당 value를 fmtBtn의 value로 설정
-	// value 추출
-	console.log($(this).val());
-	type = $(this).val();
-	
-	$(".delete").each(function(s1, s2) {
-		if(s1 == cnt) {
-			// fmtBtn value 설정
-			console.log($(this).val());
-			$(this).val(type);
-			console.log($(this).val());
-		}
-	});
-	
-	// fmtBtn 추가
-	console.log("sample" + $("#sample").html());
-	$("#fmt").append($("#sample").html());
-	cnt++;
-	
-	del()
-	
-});
-
-
-// .styleOption 클릭
-$(".styleOption").on("click", function() {
-	// 해당 value를 fmtBtn의 value로 설정
-	// value 추출
-	console.log($(this).val());
-	type = $(this).val();
-	
-	$(".delete").each(function(s1, s2) {
-		if(s1 == stCnt) {
-			// fmtBtn value 설정
-			console.log($(this).val());
-			$(this).val(type);
-			console.log($(this).val());
-		}
-	});
-	
-	// fmtBtn 추가
-	console.log("sample" + $("#sample").html());
-	$("#style").append($("#sample").html());
-	stCnt++;
-	
-	del()
-	
-});
-
-// .detailOption 클릭
-$(".detailOption").on("click", function() {
-	// 해당 value를 fmtBtn의 value로 설정
-	// value 추출
-	console.log($(this).val());
-	type = $(this).val();
-	
-	$(".delete").each(function(s1, s2) {
-		if(s1 == dtCnt) {
-			// fmtBtn value 설정
-			console.log($(this).val());
-			$(this).val(type);
-			console.log($(this).val());
-		}
-	});
-	
-	// fmtBtn 추가
-	console.log("sample" + $("#sample").html());
-	$("#detail").append($("#sample").html());
-	dtCnt++;
-	
-	del()
-	
-});
-
-
-function changee() {
-	$(".delete").each(function(s1, s2) {
-		if(s1 == cnt) {
-			// fmtBtn value 설정
-			$(this).val(type);
-		}
-	});
-}
-*/
 
