@@ -717,7 +717,7 @@ textarea:focus {
 							   			<td>${vo.brandVO.brandName}-주소는 브랜드홈에서 확인하세요</td>
 							   		</tr>
 							   		<tr>
-							   			<td class="td_title">고객센 전화번호</td>
+							   			<td class="td_title">고객센터 전화번호</td>
 							   			<td>${vo.brandVO.managerPhone}</td>
 							   		</tr>
 							   		<tr>
