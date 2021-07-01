@@ -14,38 +14,32 @@
 <title>내일부터 하는 인테리어, 내일의 집</title>
 </head>
 <body>
-<script type="text/javascript">
-	$('.write').hide();
-	let brandUsername = '${brandVO.username}';
-	let username = $('div[title="username"]').text();
-	
-	
-	if(username==brandUsername){
-		$('.write').show();
-	}
-</script>
+
 <c:import url="../template/header.jsp"></c:import>
 	<main class="brandHome-box">
-		<div class="brandHome-category">
-		
+		<div>
 			<div title="brandName"><a href="brand/home?brandNum=${brandVO.brandNum }">${brandVO.brandName }</a></div>
-			<div id="brandNum" title="${brandVO.brandNum }"></div>
-			<div class="category">
-				<div class="categoryOne">
-					<ul>
+			<div class="brandHome-category">
+				
+				<div id="brandNum" title="${brandVO.brandNum }"></div>
+				<div id="select-categoryOne"><!-- categoryOne 이름 뜰 곳 --></div>
+				<div id="select-category">
+					
+					<!--ajax통해서 brandHome_selectCategory append  -->
+				</div>
+				
+				
+				<div class="category">
+					<div class="categoryOne">
 						<c:forEach items="${one}" var="one" varStatus="i">
-							<li title="${one.categoryID}">${one.category_detail_NM}</li>
+							<dl>
+								<dt title="${one.categoryID}" class="category-list">${one.category_detail_NM}</dt>
+							</dl>
 						</c:forEach>
-					</ul>
+					</div>
 				</div>
+				
 			</div>
-			<sec:authorize access="isAuthenticated()">
-				<div class="write" >
-					<div hidden="hidden" title="username"><sec:authentication property="principal.username"/></div>
-					<a class="btn-outline" href="/product/insert">글쓰기</a>
-					<!-- <a class="btn-outline" href="/product/delete">판매중지하기</a> -->
-				</div>
-			</sec:authorize>
 		</div>
 			
 		<div id="productList" class="brandHome-productList">
@@ -54,8 +48,7 @@
 	</main>
 	
 	
-<!-- eun productList -->	
-<script type="text/javascript" src="../js/productList.js"></script>
+
 	
 <c:import url="../template/footer.jsp"></c:import>
 <script type="text/javascript" src="/js/brand.js"></script>

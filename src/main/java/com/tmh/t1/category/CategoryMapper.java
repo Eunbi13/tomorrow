@@ -31,7 +31,13 @@ public interface CategoryMapper {
 	//eb categoryID를 기반으로 다음단계(대->중->소) 카테고리 조회
 	public List<CategoryVO> getNextCategory(CategoryVO categoryVO)throws Exception;
 	
+	//eb_brandHome ajax에서 사용 소>중 찾기 파라미터로 브랜드넘이랑 카테고리 아이디 받고 있음-->
+	public List<CategoryVO> getTwoFromThree(Map<String, String> map) throws Exception;
+	
+	
+	
 	//수정할지도 모름
 	public List<CategoryVO> getCategoryID(Long BrandNum)throws Exception;
-	public List<CategoryVO> getBrandCategory(List<Integer> categoryIDs)throws Exception;
+	//사용안함
+	public List<CategoryVO> getBrandCategory(List<Long> productNums)throws Exception;
 }

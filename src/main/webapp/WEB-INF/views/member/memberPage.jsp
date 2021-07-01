@@ -25,6 +25,7 @@
 				<sec:authorize access="hasRole('ROLE_B')">
 					<li class="mpSubNav-item "><a id="brandHome" class=" " href="/brand/home?username=<sec:authentication property="principal.username"/>">브랜드홈</a></li>
 					<li class="mpSubNav-item "><a class=" " href="/brand/brandOrder?username=<sec:authentication property="principal.username"/>">주문조회</a></li>
+					<li><a class="" href="/product/insert">상품 등록하기</a></li>
 				</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_M')">
 					<li class="mpSubNav-item "><a class=" " href="/brand/mList">브랜드수락리스트</a></li>

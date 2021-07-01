@@ -3,11 +3,15 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
     <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
+ 
+ <!-- eun productList -->	
+<script type="text/javascript" src="../js/productList.js"></script>
     
-<dl>
-	<dt>상품 개수</dt>
-	<dd>${productListSize}</dd>
-</dl>
+<div style="display: flex;">
+	<p style="margin-right: 10px;">상품 개수</p>
+	<p>${productListSize}</p>
+</div>
+<hr>
 <!-- eun productList -->	
 <div class="item-container">
 	<c:forEach items="${productlist}" var="vo">

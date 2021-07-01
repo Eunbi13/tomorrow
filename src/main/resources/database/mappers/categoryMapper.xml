@@ -61,7 +61,27 @@
 			AND C.groupID=C2.groupID
 			AND C.category_LEV=C2.category_LEV+1
 	</select>
+	<!-- eb_brandHome ajax에서 사용 소>중 찾기 파라미터로 브랜드넘이랑 카테고리 아이디 받고 있음-->
+	<select id="getTwoFromThree" parameterType="java.util.Map" resultType="CategoryVO">
+		SELECT two.* 
+		FROM category two, ( SELECT DISTINCT c.*
+							FROM product_category pc
+							join (SELECT * 
+								  FROM product 
+								  WHERE brandNum=#{brandNum} 
+								  GROUP BY productNum DESC) p 
+							on pc.productNum = p.productNum
+							JOIN category c
+							ON pc.categoryID=c.categoryID
+							WHERE c.groupId = (SELECT groupId 
+											   FROM category 
+											   WHERE categoryID=#{categoryID})	
+							) three
+		WHERE two.category_LEV=three.category_parent 
+		AND two.category_detail_Lev = three.category_detail_parent
+		AND two.groupID= three.groupID
 	
+	</select>
 	<!-- 수정할듯 -->
 	<select id="getCategoryID" parameterType="java.lang.Long" resultType="CategoryVO">
 		SELECT distinct C.* 
@@ -71,16 +91,15 @@
 			  WHERE productNum IN (SELECT productNum FROM product WHERE brandNum=#{brandNum})) PC 
 		WHERE C.categoryID=PC.categoryID
 	</select>
-	<!-- eb_ -->
+	<!-- 사용안함 -->
 	<select id="getBrandCategory" parameterType="java.util.List" resultType="CategoryVO">
-		SELECT distinct C.* FROM category C, (SELECT * FROM category where categoryID IN 
-		<foreach collection="categoryIDs" item="categoryID" index="idx" separator="," open="(" close=")">
-	    	#{categoryID}
-	    </foreach>) ID
-		WHERE C.category_detail_LEV=ID.category_detail_parent 
-		AND C.category_LEV=ID.category_parent
-		AND C.groupID=ID.groupID
-		
+		SELECT * FROM category 
+		WHERE categoryID in (
+			SELECT DISTINCT categoryID FROM product_category WHERE productNum IN 
+			<foreach collection="productNums" item="productNum" index="idx" separator="," open="(" close=")">
+		    	#{productNum}
+		    </foreach>
+			)
 	</select>
 
  
