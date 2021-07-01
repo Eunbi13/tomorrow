@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tmh.t1.member.MemberVO;
+import com.tmh.t1.util.Pager;
 
 @Controller
 @RequestMapping("/hwReply/**")
@@ -26,9 +27,9 @@ public class HwReplyController {
 	private HwReplyService hwReplyService;
 	
 	@GetMapping("hwReplyList")
-	public void getList(HwReplyVO hwReplyVO, Model model) throws Exception {
+	public void getList(HwReplyVO hwReplyVO, Model model, Pager pager) throws Exception {
 		System.out.println(hwReplyVO.getHwNum());
-		List<HwReplyVO> ar = hwReplyService.getList(hwReplyVO);
+		List<HwReplyVO> ar = hwReplyService.getList(pager);
 		model.addAttribute("list", ar);
 	}
 	

@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.tmh.t1.housewarming.HousewarmingVO;
 import com.tmh.t1.util.FileManager;
+import com.tmh.t1.util.Pager;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
@@ -39,8 +40,8 @@ public class HwReplyService {
 //	}
 	
 	// List
-	public List<HwReplyVO> getList(HwReplyVO hwReplyVO) throws Exception {
-		return hwReplyMapper.getList(hwReplyVO);
+	public List<HwReplyVO> getList(Pager pager) throws Exception {
+		return hwReplyMapper.getList(pager);
 	}
 
 	// Insert

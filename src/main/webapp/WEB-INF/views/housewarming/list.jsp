@@ -47,7 +47,7 @@
 			</sec:authorize>
 			
 			<c:forEach items="#{list}" var="vo">
-				<%-- <c:if test="${vo.coverImg eq 1}"> --%>
+				<c:if test="${vo.coverImg eq 1}">
 					<div class="col-md-4">
 						<a href="./select?hwNum=${vo.hwNum}">
 							<div class="card mb-4 shadow-sm">
@@ -67,7 +67,7 @@
 							</div>
 						</a>
 					</div>
-				<%-- </c:if> --%>
+				</c:if>
 			</c:forEach>
 			
 		</div>

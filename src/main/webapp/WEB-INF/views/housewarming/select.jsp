@@ -70,11 +70,13 @@
 		<!-- coverImg -->
 		<div class="content-detail-cover-image">
 			<div class="content-detail-cover-image__sizer">
-				<div class="content-detail-cover-image__inner-sizer"></div>
+				<div class="content-detail-cover-image__inner-sizer">
+					<div class="content-detail-cover-image__image">
+						<img alt="coverImg" src="../upload/housewarming/${vo.hwfile.fileName}">
+					</div>
+				</div>
 			</div>
-			<div class="content-detail-cover-image__image">
-				<img alt="coverImg" src="../upload/housewarming/${vo.hwfile.fileName}">
-			</div>
+			
 		</div>
 	
 	

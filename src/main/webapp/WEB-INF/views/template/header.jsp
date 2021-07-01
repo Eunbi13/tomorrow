@@ -15,7 +15,7 @@
 		</div>
 		<nav class="mainNav-item ">
 
-			<a class="mainNav-item-one mainNav-item-T" title="item-community" href="/">커뮤니티</a>
+			<a class="mainNav-item-one mainNav-item-T" title="item-community" href="/housewarming/list">커뮤니티</a>
 			<a class="mainNav-item-one mainNav-item-T" title="item-store" href="/product/productlist">스토어</a>
 
 		</nav>
@@ -52,7 +52,12 @@
 						글쓰기
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="/housewarming/insert">집들이 글쓰기</a>
+						<sec:authorize access="!isAuthenticated()">
+							<a class="dropdown-item" href="/member/login">집들이 글쓰기</a>
+						</sec:authorize>
+						<sec:authorize access="isAuthenticated()">
+							<a class="dropdown-item" href="/housewarming/insert">집들이 글쓰기</a>
+						</sec:authorize>
 						<a class="dropdown-item" href="#">고객센터</a>
 					</div>
 				</div>
@@ -65,8 +70,8 @@
 		<div>
 			<div class="subNav ">	
 				<div class="subNav-item  aa" id="item-community" >
-					<a class="subNav-item-one on" href="/">홈</a>
-					<a class="subNav-item-one" href="/housewarming/list">집들이</a>
+					<a class="subNav-item-one on" href="/housewarming/list">홈</a>
+					<!-- <a class="subNav-item-one" href="/housewarming/list">집들이</a> -->
 				</div>
 		
 				
