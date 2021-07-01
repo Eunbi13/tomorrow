@@ -170,7 +170,7 @@ public class BrandController {
 		if(result<1) {
 			return "/brand/brandSelect";
 		}
-		return "redirect:./list";
+		return "redirect:/brand/mList";
 	}
 	
 	//eb_brandList 브랜드 리스트(brandAccept용)

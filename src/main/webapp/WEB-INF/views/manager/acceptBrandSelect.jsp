@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <c:import url="../template/bootStrap.jsp"></c:import>
 <title>내일부터 하는 인테리어, 내일의 집</title>
-<link rel="stylesheet" type="text/css" href="/css/brand.css">
+<link rel="stylesheet" type="text/css" href="/css/manager.css">
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
@@ -71,17 +71,17 @@
 			<c:if test="${vo.accept eq false }"><dd>미수락</dd></c:if>
 		</dl>
 		
-			<form action="./accept" method="post">
+			<form id="acceptFrm" action="./accept" method="post" >
 				<input hidden="hidden" name="brandNum" value="${vo.brandNum }" type="text">
 				<div class="row">
-					<div class="btn-default-custom">입접 수락</div>
+					<div id="accept" class="btn-default-custom">입접 수락</div>
 					<div id="back" class="btn-outline">뒤로가기</div>
 				</div>
 			</form>
 		</div>
 	</main>
 <c:import url="../template/footer.jsp"></c:import>
-<script type="text/javascript" src=""></script>
+<script type="text/javascript" src="/js/manager.js"></script>
 
 </body>
 </html>

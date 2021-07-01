@@ -18,7 +18,7 @@ public interface BrandMapper {
 	
 	//eb_brandAccept(brandAccept용)
 	public Long setBrandAccept(BrandVO brandVO) throws Exception;
-	//eb_brandSelect(brandAccept용)
+	//eb_brandSelect(brandAccept용)(상세정보)
 	public BrandVO selectBrand(BrandVO brandVO) throws Exception;
 	//eb_brandList전체 불러오기(brandAccept용)
 	public List<BrandVO> getBrandList()throws Exception;

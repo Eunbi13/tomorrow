@@ -95,35 +95,3 @@ span{
 	margin-left: 10px;
 }
 
-
-/*eb_acceptBrandSelect.jsp*/
-.inform{
-	padding: 80px 0;
-	width: 60%;
-	margin: 0 auto;
-}
-
-/* brand정보 부분 */
-dl{
-	display: flex;
-	align-items: center;
-}
-dt{
-	width: 200px;
-	padding: 10px;
-	font-size: 15px;
-}
-
-dd{
-	font-size: 12px;
-	margin: 0 5px;
-}
-
-/**/
-.row{
-	flex-direction: row-reverse;
-}
-
-.row div{
-	margin-right: 10px;
-}

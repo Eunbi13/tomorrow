@@ -1,11 +1,6 @@
 /**
  * 
  */
-//eb_acceptBrandSelect.jsp 뒤로가기 버튼
-$('#back').click(function(){
-		window.history.back();
-	})
-
 
 /*eb_brandHome.jsp*/
 //category select
