@@ -10,6 +10,7 @@
 			<tr>
 				<td>${reply.username}</td>
 				<td>${reply.comment}</td>
+				<td>${reply.regDate}</td>
 				
 				<td>
 					<c:if test="${pinfo.username eq vo.username}">

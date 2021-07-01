@@ -48,10 +48,8 @@
 	
 	
 				<div id="contents">
-					<strong>내가 쓴 글</strong>
-					<div class="contentsBox">
-						
-					</div>
+					<strong>집들이</strong>
+					<div class="contentsBox"></div>
 				</div>
 	
 			</div>
