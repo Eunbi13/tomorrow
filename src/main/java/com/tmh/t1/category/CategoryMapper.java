@@ -10,11 +10,11 @@ public interface CategoryMapper {
 	
 	public List<CategoryVO> getCategory(CategoryVO categoryVO)throws Exception;
 	
-	public CategoryVO selectCategoryOne(CategoryVO categoryVO)throws Exception;
+	public List<CategoryVO> selectCategoryOne(CategoryVO categoryVO)throws Exception;
 	
-	public CategoryVO selectCategoryTwo(CategoryVO categoryVO)throws Exception;
+	public List<CategoryVO> selectCategoryTwo(CategoryVO categoryVO)throws Exception;
 	
-	public CategoryVO selectCategoryThree(CategoryVO categoryVO)throws Exception;
+	public List<CategoryVO> selectCategoryThree(CategoryVO categoryVO)throws Exception;
 	
 	//eb_productUpdate 카테고리 아이디를 파라미터로 받아서 대분류>중분류>소분류(문자열)로 출력 
 	//소분류만 가능

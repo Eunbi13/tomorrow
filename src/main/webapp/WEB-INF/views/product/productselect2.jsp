@@ -239,11 +239,6 @@ select.classic {
 
 /*  nav 삭제예정*/
 
-
-
-
-
-
 .subTitle{
    font-size: 22px;
    font-weight:bold;
@@ -397,14 +392,14 @@ textarea:focus {
 				<li>	
 						<button class="main-pic-small-bt">
 							<img alt="상품이미지" class="pic-small"
-							src="/upload/productImages/${vo.productPic}">
+							src="/upload/productImages/${vo.productPic}"  onerror="this.src='../images/SAMPLE.jpg'">
 						</button>
 				</li>
 			</ul>
 				<!-- select 메인 우측 사진 -->
 				<div class="main-pic-big">
 					<img alt="상품이미지" style="width:560px; height:auto; border-radius: 15px;"
-					src="/upload/productImages/${vo.productPic}">
+					src="/upload/productImages/${vo.productPic}" onerror="this.src='../images/SAMPLE.jpg'">
 				</div>
 			</div>
 		</div> <!--div class="main-pic"-->

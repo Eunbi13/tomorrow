@@ -37,7 +37,7 @@
 	<c:forEach items="${productlist}" var="vo">
 		<div class="store-list-item-card">
 			<a href="./productselect2?productNum=${vo.productNum}">
-			<img class="item-img" src="/upload/productImages/${vo.productPic}"
+			<img class="item-img" src="/upload/productImages/${vo.productPic}" onerror="this.src='../images/SAMPLE.jpg'"
 				alt="item pic">
 				
 				<!-- 브랜드 이름 -->
@@ -73,15 +73,15 @@
 				<div class="minbanner" >
 					<br><br>
 					
-					<div class="minbanner-ship" style="float:left; font-size:15px; color:#A63F82; text-align:left; margin-right: 3px;" >
+					<div class="minbanner-ship" style="float:left; font-size:15px; color:white; text-align:left; margin-right: 3px;" >
 						<c:if test="${vo.shippingFee eq 0 }">
-							<div> <button disabled="disabled">무료배송</button>    </div>
+							<div> <button disabled="disabled" style="border-radius:0.5em; background:#ededed; color:black;">무료배송</button>    </div>
 						</c:if>
 					</div>
 					
 					<div class="minbanner-price" style="float:left; font-size:15px; color:#A63F82; text-align:left; ">
 						<c:if test="${((vo.productPrice - vo.discountPrice)/100) >=20}">
-							<div><button disabled="disabled" style="b">특가</button></div>
+							<div><button disabled="disabled" style="border-radius:0.5em; background:#A63F82; color:white;">특가</button></div>
 						</c:if>
 					</div>
 					

@@ -111,10 +111,7 @@ public class ProductController {
 		
 		List<OptionsVO> optionsar = productService.getOptionsList(productVO);
 		model.addAttribute("options", optionsar);
-		
-		
-		
-		
+
 	}
 	
 	@GetMapping("productselect")
@@ -139,8 +136,8 @@ public class ProductController {
 		model.addAttribute("optionsar", optionsar); 
 		int opsize = optionsar.size();
 		model.addAttribute("opsize", opsize);
-	
-		
+
 	}
+	
 	
 }

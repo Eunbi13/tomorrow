@@ -15,15 +15,15 @@ public class CategoryService {
 		return categoryMapper.getCategory(categoryVO);
 	}
 
-	public CategoryVO selectCategoryOne(CategoryVO categoryVO) throws Exception{
+	public List<CategoryVO> selectCategoryOne(CategoryVO categoryVO) throws Exception{
 		return categoryMapper.selectCategoryOne(categoryVO);
 	}
 	
-	public CategoryVO selectCategoryTwo(CategoryVO categoryVO) throws Exception{
+	public List<CategoryVO> selectCategoryTwo(CategoryVO categoryVO) throws Exception{
 		return categoryMapper.selectCategoryTwo(categoryVO);
 	}
 	
-	public CategoryVO selectCategoryThree(CategoryVO categoryVO) throws Exception{
+	public List<CategoryVO> selectCategoryThree(CategoryVO categoryVO) throws Exception{
 		return categoryMapper.selectCategoryThree(categoryVO);
 	}
 }
