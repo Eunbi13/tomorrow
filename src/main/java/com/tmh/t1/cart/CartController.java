@@ -309,11 +309,10 @@ public class CartController {
 		return mv;
 	}
 	
-	
+	//minkyung_brandShipping 업데이트: 장바구니에서 브랜드별 배송료 계산해 각 CartVO마다 업뎃 해줌
 	@ResponseBody 
 	@PostMapping("brandShipUpdate")
 	public int setBrandShipUpdate(CartVO cartVO)throws Exception{
-		System.out.println("setBrandShip Update입장");
 		int result= cartService.setBrandShipUpdate(cartVO);
 		
 		return result;
@@ -322,7 +321,7 @@ public class CartController {
 	
 	
 	
-	
+	//minkyung_장바구니: 수량 변경시 마다 ajax로 업데이트 해줌
 	@ResponseBody 
 	@PostMapping("amountUpdate")
 	public ModelAndView setAmountUpdate(CartVO cartVO)throws Exception{
@@ -333,6 +332,7 @@ public class CartController {
 		return mv;
 	}
 	
+	//minkyung_결제완료한 후 cartVO 업데이트:validity를 2로 변경
 	@ResponseBody 
 	@PostMapping("orderUpdate")
 	public ModelAndView setOrderUpdate(CartVO cartVO)throws Exception{

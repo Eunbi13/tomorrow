@@ -26,8 +26,7 @@ public class ShippingController {
 	@Autowired
 	private ShippingService shippingService;
 	
-	//셀렉트
-	
+	//minkyung_가장 작은 shipNum을 찾아(기본 배송지가 없는 경우, 가장 먼저 쓰던 배송지를 불러온다)
 	@ResponseBody
 	@GetMapping("minNum")
 	public Long getMinNum(ShippingVO shippingVO)throws Exception{
@@ -37,7 +36,8 @@ public class ShippingController {
 		shippingVO.setUsername(username);
 		return shippingService.getMinNum(shippingVO);
 	}
-
+	
+	//minkyung_배송지 선택
     @ResponseBody
 	@GetMapping("shippingSelect")
 	public ModelAndView getSelect(ShippingVO shippingVO)throws Exception{
@@ -51,7 +51,7 @@ public class ShippingController {
 		return mv;
 	}
 
-	//리스트
+   //minkyung_배송지 리스트
     @ResponseBody
 	@GetMapping("shippingList")
 	public ModelAndView getList(ShippingVO shippingVO,  ModelAndView mv)throws Exception{
@@ -70,8 +70,7 @@ public class ShippingController {
 		return mv;
 	}
 	
-	//삽입
-	
+        //minkyung_배송지 추가
 		@GetMapping("shippingInsert")
 		public void setInsert(ShippingVO shippingVO)throws Exception{
 			ModelAndView mv = new ModelAndView();
@@ -92,7 +91,7 @@ public class ShippingController {
 			return result;
 		}
 		
-		//삭제
+		//minkyung_배송지 삭제
 		@RequestMapping("shippingDelete")
 		public ModelAndView setDelete(ShippingVO shippingVO)throws Exception{
 			ModelAndView mv = new ModelAndView();
@@ -110,7 +109,7 @@ public class ShippingController {
 			return mv;
 		}
 		
-		//수정
+		//minkyung_배송지 수정
 		@GetMapping("shippingUpdate")
 		public void setUpdate(ShippingVO shippingVO, Model model)throws Exception{
 			shippingVO = shippingService.getSelect(shippingVO);
