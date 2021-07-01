@@ -6,77 +6,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<c:import url="../template/bootStrap.jsp"></c:import>
-	<meta charset="UTF-8">
-	<title>내일부터 하는 인테리어, 내일의 집</title>
-	
-	<style>
-	.fakeimg {
-		height: 200px;
-		background: #aaa;
-	}
-	
-	.content-detail-cover-image {
-	    position: relative;
-	    overflow: hidden;
-	    box-sizing: border-box;
-	}
+<c:import url="../template/bootStrap.jsp"></c:import>
+<meta charset="UTF-8">
+<title>내일부터 하는 인테리어, 내일의 집</title>
 
-	.content-detail-cover-image__sizer {
-	    width: 100%;
-	    max-height: calc(100vh - 350px);
+
+<!----------------- Bootstrap ----------------->
+<link rel="canonical"
+	href="https://getbootstrap.com/docs/4.6/examples/album/">
+<!-- Bootstrap core CSS -->
+<!-- <link href="/docs/4.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"> -->
+<!-- Favicons -->
+<link rel="apple-touch-icon"
+	href="/docs/4.6/assets/img/favicons/apple-touch-icon.png"
+	sizes="180x180">
+<link rel="icon" href="/docs/4.6/assets/img/favicons/favicon-32x32.png"
+	sizes="32x32" type="image/png">
+<link rel="icon" href="/docs/4.6/assets/img/favicons/favicon-16x16.png"
+	sizes="16x16" type="image/png">
+<!-- <link rel="manifest" href="/docs/4.6/assets/img/favicons/manifest.json"> -->
+<link rel="mask-icon"
+	href="/docs/4.6/assets/img/favicons/safari-pinned-tab.svg"
+	color="#563d7c">
+<link rel="icon" href="/docs/4.6/assets/img/favicons/favicon.ico">
+<meta name="msapplication-config"
+	content="/docs/4.6/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#563d7c">
+<style>
+.fakeimg {
+	height: 200px;
+	background: #aaa;
+}
+
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.content-detail-content-section__content {
+    margin: 0px auto;
+    max-width: 750px;
+    padding: 0px 15px;
+    box-sizing: border-box;
+}
+
+@media ( min-width : 768px) {
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
 	}
-	
-	.content-detail-cover-image__inner-sizer {
-	    width: 100%;
-	    padding-bottom: 66.6666666667%;
+	.project-detail-metadata {
+    margin: 0px 0px 50px;
+    padding: 0px 24px 25px;
+    background-color: rgb(247, 248, 250);
+    border-radius: 4px;
+    border: none;
 	}
-	
-	.bd-placeholder-img {
-		font-size: 1.125rem;
-		text-anchor: middle;
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
-		user-select: none;
-	}
-	
-	.content-detail-content-section__content {
-	    margin: 0px auto;
-	    max-width: 750px;
-	    padding: 0px 15px;
-	    box-sizing: border-box;
-	}
-	
-	@media ( min-width : 768px) {
-		.bd-placeholder-img-lg {
-			font-size: 3.5rem;
-		}
-		.project-detail-metadata {
-	    margin: 0px 0px 50px;
-	    padding: 0px 24px 25px;
-	    background-color: rgb(247, 248, 250);
-	    border-radius: 4px;
-	    border: none;
-		}
-	}
-	</style>
+}
+</style>
+<!-- Custom styles for this template -->
+<!-- <link href="album.css" rel="stylesheet"> -->
+<!----------------- /Bootstrap ----------------->
+
+
+
+
 </head>
-
 <body>
 	<c:import url="../template/header.jsp"></c:import>
 	
 	<div class="content">
 		<!-- coverImg -->
-		<div class="content-detail-cover-image">
-			<div class="content-detail-cover-image__sizer">
-				<div class="content-detail-cover-image__inner-sizer"></div>
-			</div>
-			<div class="content-detail-cover-image__image">
-				<img alt="coverImg" src="../upload/housewarming/${vo.hwfile.fileName}">
-			</div>
+		<div>
+			<%-- <c:forEach items="${vo.hwfile}" var="file"> --%>
+				<a href="/upload/housewarming/${vo.hwfile.fileName}">${file.originName}</a>
+			<%-- </c:forEach> --%>
 		</div>
-	
 	
 		<div class="content-detail-content-section__content" style="margin-top: 30px">
 			<div class="row">
@@ -85,7 +93,6 @@
 				<div class="blog-post">
 					<h2 class="blog-post-title">${vo.title}</h2>
 					<p class="blog-post-meta">
-						<img src="../upload/member/${member.profileImage}" alt="profile">
 						<h5>${vo.username}</h5> 
 					</p>
 					<div class="jumbotron mt-3 project-detail-metadata">
@@ -150,9 +157,9 @@
 		
 		
 		<div>
-			<input type="button" class="btn btn-primary" id="like" value="like">
+			<input type="button" class="btn btn-primary" id="like" value="Like">
 			<p> 좋아요 : ${vo.like} </p>
-			<input type="button" class="btn btn-success" id="scrap" value="scrap">
+			<input type="button" class="btn btn-success" id="scrap" value="Scrap">
 			<p> 스크랩 : ${vo.scrap} </p>
 		</div>
 		
