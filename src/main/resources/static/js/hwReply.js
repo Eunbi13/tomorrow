@@ -10,21 +10,6 @@ $("#comments").on("click", ".remove", function(){
 	hwReplyNum = $(this).val();
 	console.log(hwReplyNum);
 	
-	/*$.ajax({
-		type: "POST",
-		url: "../hwReply/hwReplyDelete",
-		data:{hwReplyNum:hwReplyNum},
-		success:function(data){
-			if(data > 0) {
-				alert("삭제 완료");
-				getList();
-			} else {
-				alert("삭제 실패");
-			}
-		}
-	});
-	*/
-	
 	$.post("../hwReply/hwReplyDelete", 
 	{
 		hwReplyNum:hwReplyNum
