@@ -15,8 +15,13 @@
 		</div>
 		<nav class="mainNav-item ">
 
-			<a class="mainNav-item-one mainNav-item-T" title="item-community" href="/">커뮤니티</a>
+<<<<<<< HEAD
+			<a class="mainNav-item-one mainNav-item-T" title="item-community" href="/housewarming/list">커뮤니티</a>
 			<a class="mainNav-item-one mainNav-item-T" title="item-store" href="/product/productlist">스토어</a>
+=======
+			<a class="" title="item-community" href="#">커뮤니티</a>
+			<a class="on" title="item-store" href="/product/productlist">스토어</a>
+>>>>>>> parent of 925e8af (-)
 
 		</nav>
 		<div class="mainNav-item">
@@ -65,8 +70,8 @@
 		<div>
 			<div class="subNav ">	
 				<div class="subNav-item  aa" id="item-community" >
-					<a class="subNav-item-one on" href="/">홈</a>
-					<a class="subNav-item-one" href="/housewarming/list">집들이</a>
+					<a class="subNav-item-one on" href="/housewarming/list">홈</a>
+				<!-- 	<a class="subNav-item-one" href="">집들이</a> -->
 				</div>
 		
 				
