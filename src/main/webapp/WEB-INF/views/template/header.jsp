@@ -15,13 +15,8 @@
 		</div>
 		<nav class="mainNav-item ">
 
-<<<<<<< HEAD
 			<a class="mainNav-item-one mainNav-item-T" title="item-community" href="/housewarming/list">커뮤니티</a>
 			<a class="mainNav-item-one mainNav-item-T" title="item-store" href="/product/productlist">스토어</a>
-=======
-			<a class="" title="item-community" href="#">커뮤니티</a>
-			<a class="on" title="item-store" href="/product/productlist">스토어</a>
->>>>>>> parent of 925e8af (-)
 
 		</nav>
 		<div class="mainNav-item">
