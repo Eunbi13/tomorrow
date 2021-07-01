@@ -4,6 +4,7 @@ html, body{
 	color: #424242;
 	font-family: "Noto Sans KR", "Apple SD Gothic Neo", "맑은 고딕", "Malgun Gothic", sans-serif;
 	letter-spacing: -1px;
+	font-size: 18px;
 	line-height: 1;
 }
 main{

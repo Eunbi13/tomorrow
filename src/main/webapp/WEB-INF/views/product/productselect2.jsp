@@ -659,7 +659,7 @@ textarea:focus {
 					   		<tr>
 					   			<td class="td_title">교환배송비</td>
 					   			<td>
-					   				${vo.shippingFee}*2원
+					   				(${vo.shippingFee}원) x 2
 					   			
 					   			</td>
 					   		</tr>
@@ -717,7 +717,7 @@ textarea:focus {
 							   			<td>${vo.brandVO.brandName}-주소는 브랜드홈에서 확인하세요</td>
 							   		</tr>
 							   		<tr>
-							   			<td class="td_title">고객센테 전화번호</td>
+							   			<td class="td_title">고객센 전화번호</td>
 							   			<td>${vo.brandVO.managerPhone}</td>
 							   		</tr>
 							   		<tr>

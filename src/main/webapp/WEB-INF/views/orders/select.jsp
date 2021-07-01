@@ -305,6 +305,7 @@ margin-top:40px;
 										 					               <button class="btn four-btn" onclick="location.href='./cancel?cartNum=${cartVO.cartNum}&kind=3'"> 교환 </button>  
 										 					               <button class="btn four-btn" onclick="location.href='./confirm?cartNum=${cartVO.cartNum}'"> 구매확정 </button>  
 										 					               <button class="btn four-btn" onclick="delivery_tracking('https://tracker.delivery/#/${cartVO.carrierId}/${cartVO.trackId}');"> 배송추적  </button>
+	        														   
 	        														  </div>
 								 						         </c:if> 
 								 						         <!-- 배송완료 -->
@@ -435,6 +436,14 @@ margin-top:40px;
  			
 
 <script type="text/javascript">
+
+	//delivery_tracking pop up 띄우기
+	
+	function delivery_tracking(link01){
+		
+		window.open(link01,"_blank","width=500, height=740;");
+	}
+
 
   //브랜드별 배송비 
 	$(".shipping").each(function(){

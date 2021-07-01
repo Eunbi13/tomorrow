@@ -504,7 +504,27 @@ webkit-box-flex: 1; */
 		 			   		  		<c:if test="${cartVO.validity==2 || cartVO.validity==3|| cartVO.validity==4 || cartVO.validity==5 || cartVO.validity==6|| cartVO.validity==7}" >
 												 			          
 					 					<tr>
-					 						<td>${cartVO.validity}</td>
+					 						<td>
+					 							<c:if test="${cartVO.validity==2}">
+ 					                             	결제완료 | 일반택배배송
+ 						                         </c:if> 
+ 						                         <c:if test="${cartVO.validity==3}">
+ 					                             	배송준비 | 일반택배배송
+ 						                         </c:if> 
+ 						                         <c:if test="${cartVO.validity==4}">
+ 					                             	배송중 | 일반택배배송
+ 						                         </c:if> 
+ 						                         <c:if test="${cartVO.validity==5}">
+ 					                             	배송완료 | 일반택배배송
+ 						                         </c:if> 
+ 						                          <c:if test="${cartVO.validity==6}">
+ 					                             	구매확정 | 일반택배배송
+ 						                         </c:if> 
+ 						                         <c:if test="${cartVO.validity==7}">
+ 					                             	리뷰작성 | 일반택배배송
+ 						                         </c:if> 
+ 						                         
+					 						</td>
 					 						<td>
 					 						  <!-- Button trigger modal -->
 													<button type="button" class="btn-orderDetail orderDetail" title="${cartVO.cartNum}" data-toggle="modal" data-target="#orderDetail">
@@ -549,7 +569,16 @@ webkit-box-flex: 1; */
 			 					<c:if test="${cartVO.validity==11 || cartVO.validity==12}" >
 									 			          
 				 					<tr>
-				 						<td>${cartVO.validity} </td>
+				 						<td>
+ 						                         <c:if test="${cartVO.validity==11}">
+ 					                             	취소요청 | 일반택배배송
+ 						                         </c:if> 
+ 						                          <c:if test="${cartVO.validity==12}">
+ 					                             	취소완료 | 일반택배배송
+ 						                         </c:if> 
+ 						                         
+			
+				 						</td>
 				 					    <td>
 				 					    	  <!-- Button trigger modal -->
 										<button type="button" class="btn-orderDetail orderDetail candelDetail" title="${cartVO.cartNum}" data-toggle="modal" data-target="#orderDetail">
@@ -590,7 +619,18 @@ webkit-box-flex: 1; */
 		 					<c:forEach items="${ar}" var="cartVO">
 			 					<c:if test="${cartVO.validity==13 || cartVO.validity==14|| cartVO.validity==15}">			                  
 				 					<tr>
-				 						<td>${cartVO.validity}</td>
+				 						<td>
+			 						         <c:if test="${cartVO.validity==13}">
+					                             교환요청 | 일반택배배송
+					                         </c:if> 
+					                          <c:if test="${cartVO.validity==14}">
+				                             	교환진행중 | 일반택배배송
+					                         </c:if> 
+					                          <c:if test="${cartVO.validity==15}">
+				                             	교환완료 | 일반택배배송
+					                         </c:if> 
+				 						
+				 						</td>
 				 						<td>
 				 					    	  <!-- Button trigger modal -->
 										<button type="button" class="btn-orderDetail orderDetail" title="${cartVO.cartNum}" data-toggle="modal" data-target="#orderDetail">
@@ -633,7 +673,17 @@ webkit-box-flex: 1; */
 		 					<c:forEach items="${ar}" var="cartVO">
 			 					<c:if test="${cartVO.validity==8 || cartVO.validity==9|| cartVO.validity==10}">			                  
 				 					<tr>
-				 						<td>${cartVO.validity}</td>
+				 						<td>
+				 							<c:if test="${cartVO.validity==8}">
+				                             	환불요청 | 일반택배배송
+					                         </c:if> 
+					                         <c:if test="${cartVO.validity==9}">
+				                             	환불진행중 | 일반택배배송
+					                         </c:if> 
+					                         <c:if test="${cartVO.validity==10}">
+				                             	환불완료 | 일반택배배송
+					                         </c:if> 
+				 						</td>
 				 						<td>
 				 					    	  <!-- Button trigger modal -->
 										<button type="button" class="btn-orderDetail orderDetail" title="${cartVO.cartNum}" data-toggle="modal" data-target="#orderDetail">
@@ -878,7 +928,6 @@ webkit-box-flex: 1; */
  //------------------ 주문상태 변경 
  $("#statusUpdate").click(function(){
 	 let radioVal = $('input[name="validity"]:checked').val();
-	 alert("radioVal:"+radioVal);
 	 
 	 if(radioVal=='4'){ // 배송중(출고완료)  선택시
 
@@ -900,9 +949,7 @@ webkit-box-flex: 1; */
 	 if(radioVal=='5'||radioVal=='6'){  /// 배송완료/ 구매확정 선택
 		 
 		 let trackId= $("#trackId").val();
-		 alert("trackId:"+trackId);
 		 let carrierId= $("#carrierId").val();
-		 alert("carrierId:"+carrierId);
 		 if(trackId != null && trackId !="" && carrierId != null && carrierId !="" ){
 		
 			 $("#updateFrm").submit();
