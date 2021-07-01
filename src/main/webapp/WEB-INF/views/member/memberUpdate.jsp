@@ -84,7 +84,7 @@
 		</div>
 		<div class="updateFrm-group">
 			<label class="form-label">프로필 이미지</label>
-			<div class="col-sm-10">
+			<div class="updateInput img" id="addImg">
 				<img src="/upload/member/<sec:authentication property="principal.profileImage"/>" class="profileImage-add" alt="profileImage">
 				<input hidden="hidden" class="form-control" type="file" name="profileImage" value="<sec:authentication property="principal.profileImage"/>"> 
 			</div>
@@ -96,7 +96,7 @@
 			</div>
 		</div>
 		
-		<button class="btn btn-default-custom">회원 정보 수정</button>
+		<button class="btn btn-default-custom">수정하기</button>
 	</form:form>
 </div>
 </main>

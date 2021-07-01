@@ -215,33 +215,34 @@ main{
 }
 
 
-
-
-.updateFrm{
-	width: 60%;
-	
-}
-
 .updateFrm-group{
 	display: flex;
 	margin: 1rem 0;
 	align-items: center;
+	width: 60%;
 }
 
 .form-label{
-	width: 5rem;
+	width: 100px;
 	font-weight: bold;
+	flex-shrink: 0;
 }
 
 small{
 	display: block;
 	margin: 0.2rem 0;
 }
-
-.profileImage-add{
-	width: 12rem;
+.img{
+	width: 198px;
+	height: 198px;
 	border: 1px solid #dbdbdb;
+	margin-left: 18px;
 	border-radius: 0.3rem;
+	background-color: white;
+}
+.profileImage-add{
+	width: 198px;
+	height: 198px;
 }
 
 

@@ -187,8 +187,8 @@ btn-secondary {
 			<img class="bannermain_slideImg"
 				src="../images/bannerPic/162219375916346105.webp">
 		</div>
-		<a class="prev" style="top:15em !important;" onclick="plusSlides(-1)">❮</a> 
-		<a class="next" style="top:15em !important; right: 0" onclick="plusSlides(1)">❯</a>
+		<a class="prev" style="top:17em !important;" onclick="plusSlides(-1)">❮</a> 
+		<a class="next" style="top:17em !important; right: 0" onclick="plusSlides(1)">❯</a>
 	</div>
 	<br>
 	</div>
