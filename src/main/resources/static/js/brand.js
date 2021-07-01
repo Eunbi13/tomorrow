@@ -1,6 +1,13 @@
 /**
  * 
  */
+//eb_acceptBrandSelect.jsp 뒤로가기 버튼
+$('#back').click(function(){
+		window.history.back();
+	})
+
+
+/*eb_brandHome.jsp*/
 //category select
 $('li').click(function(){
 	let categoryID = $(this).attr('title');
@@ -15,12 +22,6 @@ $('li').click(function(){
 		
 	});
 });
-
-
-
-
-
-
 
 let price = [];
 let disPrice = [];

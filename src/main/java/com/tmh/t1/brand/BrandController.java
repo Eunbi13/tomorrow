@@ -151,6 +151,18 @@ public class BrandController {
 		
 	}
 	
+	
+	
+	//eb_brandSelect 브랜드 리스트에서 a태그로 접속(brandAccept용)
+	//accept 수락&미수락 처리 페이지
+	@GetMapping("select")
+	public String brandSelect(Model model, BrandVO brandVO)throws Exception{
+		Map<String, Object> info = brandService.selectBrand(brandVO);
+		model.addAttribute("vo", info.get("brandVO"));
+		model.addAttribute("categoryVOs", info.get("categoryVOs"));
+		return "/manager/acceptBrandSelect";
+	}
+	
 	//eb_brandAccept(brandAccept용)
 	@PostMapping("accept")
 	public String setBrandAccept(BrandVO brandVO)throws Exception{
@@ -159,15 +171,6 @@ public class BrandController {
 			return "/brand/brandSelect";
 		}
 		return "redirect:./list";
-	}
-	
-	//eb_brandSelect 브랜드 리스트에서 a태그로 접속(brandAccept용)
-	//accept 수락&미수락 처리 페이지
-	@GetMapping("select")
-	public String brandSelect(Model model, BrandVO brandVO)throws Exception{
-		brandVO = brandService.selectBrand(brandVO);
-		model.addAttribute("vo", brandVO);
-		return "/manager/acceptBrandSelect";
 	}
 	
 	//eb_brandList 브랜드 리스트(brandAccept용)

@@ -33,6 +33,6 @@
 		</div>
 </div>
 <c:import url="../template/footer.jsp"></c:import>
-<script type="text/javascript" src="/js/brandHome.js"></script>
+<script type="text/javascript" src="/js/brand.js"></script>
 </body>
 </html>
