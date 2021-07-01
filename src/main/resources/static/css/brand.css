@@ -95,3 +95,57 @@ span{
 	margin-left: 10px;
 }
 
+
+
+/*    brandHome     */
+.brandHome-box{
+	display: flex;
+	margin: 100px auto;
+}
+
+.brandHome-category{
+	width: 300px;
+	flex-shrink: 0;
+}
+
+div[title="brandName"]{
+	font-size: 36px;
+	font-weight: bold;
+	text-align: center;
+}
+/*카테고리*/
+.category{
+	margin-left: 20px;
+}
+
+/*글쓰기 버튼*/
+.write{
+	float:right;
+}
+
+
+/*상품*/
+.brandHome-productList{
+	flex-basis: 1;
+	flex-shrink: 1;
+}
+
+
+dl{
+	display: flex;
+	align-items: center;
+}
+dt{
+	width: 100px;
+	padding: 10px;
+	font-size: 15px;
+}
+
+dd{
+	font-size: 15px;
+	margin: 0 5px;
+}
+
+ul, li{
+	list-style:none;
+}
