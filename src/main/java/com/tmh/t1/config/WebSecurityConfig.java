@@ -45,7 +45,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.antMatchers("/brand/mList").hasRole("M")//브랜드 리스트
 				.antMatchers("/brand/select").hasRole("M")//브랜드 수락 상세페이지
 				.antMatchers("/brand/accept").hasRole("M")//브랜드 수락 페이지
-				.antMatchers("/brand/**").hasAnyRole("M","B")
+				.antMatchers("/brand/signBrand").hasRole("U")
+				.antMatchers("/brand/**").permitAll()
 				.antMatchers("/product/insert").hasRole("B")
 				.antMatchers("/product/update").hasRole("B")
 				.antMatchers("/product/**").permitAll()

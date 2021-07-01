@@ -73,6 +73,7 @@
 		
 			<form id="acceptFrm" action="./accept" method="post" >
 				<input hidden="hidden" name="brandNum" value="${vo.brandNum }" type="text">
+				<input hidden="hidden" name="username" value="${vo.username }" type="text">
 				<div class="row">
 					<div id="accept" class="btn-default-custom">입접 수락</div>
 					<div id="back" class="btn-outline">뒤로가기</div>

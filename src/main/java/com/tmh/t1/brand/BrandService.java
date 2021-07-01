@@ -16,6 +16,7 @@ import com.tmh.t1.cart.CartMapper;
 import com.tmh.t1.cart.CartVO;
 import com.tmh.t1.category.CategoryMapper;
 import com.tmh.t1.category.CategoryVO;
+import com.tmh.t1.member.MemberMapper;
 import com.tmh.t1.orders.OrdersVO;
 import com.tmh.t1.product.ProductMapper;
 import com.tmh.t1.product.ProductVO;
@@ -32,6 +33,8 @@ public class BrandService {
 	private CategoryMapper categoryMapper;
 	@Autowired
 	private ProductMapper productMapper;
+	@Autowired
+	private MemberMapper memberMapper;
 	@Autowired
 	private FileManager fileManager;
 	@Value("${brandInsert.filePath}")
@@ -64,7 +67,13 @@ public class BrandService {
 
 	//eb_brandAccept(brandAccept용)(입점 수락하기)
 	public Long setBrandAccept(BrandVO brandVO) throws Exception{
-		return brandMapper.setBrandAccept(brandVO);
+		Long result = brandMapper.setBrandAccept(brandVO);
+		Map<String , String> map = new HashMap<>();
+		map.put("username", brandVO.getUsername());
+		map.put("roleName", "ROLE_B");
+		result = memberMapper.setRole(map);
+		
+		return result;
 	}
 	//eb_brandSelect(brandAccept용)(입점하는 브랜드의 정보 상세보기)
 	public Map<String, Object> selectBrand(BrandVO brandVO) throws Exception{
