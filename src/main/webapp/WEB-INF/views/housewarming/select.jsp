@@ -70,10 +70,11 @@
 		<!-- coverImg -->
 		<div class="content-detail-cover-image">
 			<div class="content-detail-cover-image__sizer">
-				<div class="content-detail-cover-image__inner-sizer"></div>
-			</div>
-			<div class="content-detail-cover-image__image">
-				<img alt="coverImg" src="../upload/housewarming/${vo.hwfile.fileName}">
+				<div class="content-detail-cover-image__inner-sizer">
+					<div class="content-detail-cover-image__image">
+						<img alt="coverImg" src="../upload/housewarming/${vo.hwfile.fileName}">
+					</div>
+				</div>
 			</div>
 		</div>
 	
@@ -166,6 +167,25 @@
 			<div id="comments" title="${vo.hwNum}">
 				<!-- reply list -->
 			</div>
+			<!-- Pager -->
+			<%-- <div class="container d-flex justify-content-center">
+				<ul class="pagination">
+					<li th:classappend="${pager.pre? 'disable':'active'}"  class="page-item">
+						<a th:if="${pager.pre}" class="page-link pager" href="#" th:title="${pager.startNum-1}">Previous</a>
+						<!-- if else ==> if unless 
+					 		unless 사용시에도 조건식은 사용
+					 		if문에 사용한 조건식과동일한 조건식 사용
+						-->
+						<span th:unless="${pager.pre}" class="page-link">Previous</span>
+					</li>
+				 	<li class="page-item" th:each="i : ${#numbers.sequence(pager.startNum, pager.lastNum)}">
+				 		<a class="page-link pager" href="#" th:text="${i}" th:title="${i}">Previous</a>
+				 	</li>
+					<li th:if="${pager.next}" class="page-item">
+						<a class="page-link" href="#" th:title="${pager.lastNum+1}" >Next</a>
+					</li>
+				</ul>
+			</div> --%>
 		</div>
 	</div>
 

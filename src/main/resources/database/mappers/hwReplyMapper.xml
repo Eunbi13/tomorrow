@@ -6,7 +6,14 @@
 <mapper namespace="com.tmh.t1.housewarming.hwReply.HwReplyMapper">
 
 	<select id="getList" parameterType="HwReplyVO" resultType="HwReplyVO">
-		select * from hwReply where hwNum=#{hwNum} order by hwReplyNum desc
+		select * from hwReply 
+		where hwNum=#{hwNum} 
+		order by hwReplyNum desc
+		<!-- limit #{startRow}, #{perPage} -->
+	</select>
+	
+	<select id="getTotalCount" parameterType="Pager" resultType="java.lang.Long">
+		select count(hwReplyNum) from hwReply
 	</select>
 	
 	<insert id="setInsert" parameterType="HwReplyVO">
@@ -17,5 +24,9 @@
 	<update id="setUpdate" parameterType="HwReplyVO">
 		update hwReply set step=step+1 where hwReplyNum=#{hwReplyNum} and step>#{step}
 	</update>
+	
+	<delete id="setDelete" parameterType="HwReplyVO">
+		delete from hwReply where hwReplyNum=#{hwReplyNum}
+	</delete>
 	
 </mapper>
