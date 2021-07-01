@@ -131,11 +131,8 @@ public class OrdersController {
 		List<OrdersVO> ar = ordersService.getList(ordersVO);
 		
     	List<BrandVO> brandAr = ordersService.getBrandList(ordersVO);
-		System.out.println("brandAr 완성");
-
 		
 		List<OrdersVO> OrderAr=ordersService.getOrdersList(ordersVO);
-		System.out.println("orderAr 완성");
 		
 		// 해당 orderNum 을 가지고, validity가 2이상인  cartVO 를 리스트로 가져온다.
 		mv.addObject("ar", ar);
