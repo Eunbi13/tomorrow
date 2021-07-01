@@ -115,7 +115,8 @@
     	<select id="getProductList" parameterType="ProductVO" resultMap="ProductVO">
     		SELECT p.*, b.*
 			FROM product p INNER JOIN brand b 
-			ON p.brandNum = b.brandNum
+			ON p.brandNum = b.brandNum 
+			ORDER BY productnum DESC
     	</select>
     	
     	<resultMap type="BrandVO" id="brandVO">
