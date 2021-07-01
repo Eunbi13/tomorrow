@@ -42,11 +42,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.antMatchers("/").permitAll()
 				.antMatchers("/member/memberJoin").permitAll()
 				.antMatchers("/member/**").hasRole("U")
-				.antMatchers("/brand/**").hasRole("B")
 				.antMatchers("/brand/mList").hasRole("M")//브랜드 리스트
 				.antMatchers("/brand/select").hasRole("M")//브랜드 수락 상세페이지
 				.antMatchers("/brand/accept").hasRole("M")//브랜드 수락 페이지
-				.antMatchers("/brand/**").permitAll()
+				.antMatchers("/brand/**").hasAnyRole("M","B")
 				.antMatchers("/product/insert").hasRole("B")
 				.antMatchers("/product/update").hasRole("B")
 				.antMatchers("/product/**").permitAll()
