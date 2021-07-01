@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tmh.t1.housewarming.hwCount.hwLike.HwLikeMapper">
+
+	<select id="getList" parameterType="HwLikeVO" resultType="HwLikeVO">
+		select * from hwLike where username=#{username} order by hwLikeNum desc
+	</select>
+	
+	<insert id="setInsert" parameterType="HwLikeVO">
+		insert into hwLike (hwNum, username) 
+		values(#{hwNum}, #{username})
+	</insert>
+	
+</mapper>

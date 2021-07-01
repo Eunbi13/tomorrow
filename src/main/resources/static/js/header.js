@@ -35,9 +35,12 @@ $(document).ready(function(){
 		$('#'+title).show();
 	})
 	
+	$('.mainNav-item-T').mouseleave(function(){
+		$('.sticky-chlid>div').css('transform','translate(0px, -100px)');
+	})
 	//스크롤 위치 감지
+	let scrollNum = $(document).scrollTop();
 	$(window).scroll(function(){
-		let scrollNum = $(document).scrollTop();
 		//스크롤 위치가 50보다 크면 css트랜드레이트 생기도록 하기
 		if(scrollNum>100){
 			$('.sticky-chlid>div').css('transform','translate(0px, -100px)');
@@ -47,3 +50,6 @@ $(document).ready(function(){
 	})
 
 })
+
+
+
