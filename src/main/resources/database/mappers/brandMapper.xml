@@ -10,7 +10,7 @@
 		<update id="setBrandAccept" parameterType="BrandVO" >
 			update brand set accept=true where brandNum=#{brandNum}
 		</update>
-		<!-- eb_brandSelect(brandAccept용) -->
+		<!-- eb_brandSelect(brandAccept용)(상세정보) -->
 		<select id="selectBrand" parameterType="BrandVO" resultType="BrandVO">
 			select * from brand where brandNum=#{brandNum}
 		</select>

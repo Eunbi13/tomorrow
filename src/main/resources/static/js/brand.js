@@ -1,6 +1,8 @@
 /**
  * 
  */
+
+/*eb_brandHome.jsp*/
 //category select
 $('li').click(function(){
 	let categoryID = $(this).attr('title');
@@ -15,12 +17,6 @@ $('li').click(function(){
 		
 	});
 });
-
-
-
-
-
-
 
 let price = [];
 let disPrice = [];

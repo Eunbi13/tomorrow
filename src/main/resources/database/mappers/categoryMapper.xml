@@ -41,13 +41,13 @@
 		WHERE categoryID = (SELECT categoryID FROM product_category WHERE productNum=${productNum})
 	</select>
 	
-	<!--eb brandInsert에서 사용, 대분류 카테고리 조회 -->
+	<!--eb brandInsert(입점신청)에서 사용, 대분류 카테고리 조회 -->
 	<select id="getBigCategory" resultType="CategoryVO">
 			SELECT categoryID, category_detail_NM FROM category 
 			WHERE category_detail_parent=0 AND category_parent=0
 	</select>
 
-	<!--eb productInsert & brandHome 에서 사용 -->
+	<!--eb productInsert(입점신청) & brandHome 에서 사용 -->
 	<!-- brand가 가입시 선택한 대분류만 조회 -->
 	<select id="getCategoryOne" parameterType="java.util.Map" resultType="CategoryVO">
 		SELECT * FROM category WHERE categoryID IN 

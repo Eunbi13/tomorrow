@@ -8,43 +8,80 @@
 <meta charset="UTF-8">
 <c:import url="../template/bootStrap.jsp"></c:import>
 <title>내일부터 하는 인테리어, 내일의 집</title>
+<link rel="stylesheet" type="text/css" href="/css/manager.css">
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-<div class="container">
-	<div id="brandNum">${vo.brandNum }</div>
-	<div>${vo.username }</div>
-	<div>${vo.companyName }</div>
-	<div>${vo.registrationNum }</div>
-	<div>${vo.companyHomepage }</div>
-	<div>${vo.managerName }</div>
-	<div>${vo.managerPhone }</div>
-	<div>${vo.managerEmail}</div>
-	<div>${vo.brandName }</div>
-	<div>${vo.brandIntro}</div>
-	<div>${vo.referenceFile}</div>
-	<!-- 왜이래?  -->
-	<c:if test="${vo.accept} eq false">
-		<div>수락상태</div>
-	</c:if>
-
-	<div id="accept">수락</div>
-
-</div>
+	<main>
+		<div class="inform">
+		<dl>
+			<dt>별명</dt>
+			<dd>${vo.username }</dd>
+		</dl>
+		<hr>
+		<dl>	
+			<dt>회사 이름</dt>
+			<dd>${vo.companyName }</dd>
+		</dl>
+		<dl>	
+			<dt>사업자 등록번호</dt>
+			<dd>${vo.registrationNum }</dd>
+		</dl>
+		<dl>	
+			<dt>홈페이지</dt>
+			<dd>${vo.companyHomepage }</dd>
+		</dl>
+		<hr>
+		<dl>
+			<dt>이름</dt>
+			<dd>${vo.managerName }</dd>
+		</dl>
+		<dl>	
+			<dt>전화번호</dt>
+			<dd>${vo.managerPhone }</dd>
+		</dl>
+		<dl>	
+			<dt>이메일</dt>
+			<dd>${vo.managerEmail}</dd>
+		</dl>
+		<hr>
+		<dl>
+			<dt>대표브랜드 이름</dt>
+			<dd>${vo.brandName }</dd>
+		</dl>
+		<dl>	
+			<dt>취급 카테고리</dt>
+			<c:forEach items="${categoryVOs}" var="c">
+				<dd>${c.category_detail_NM }</dd>
+			</c:forEach>
+		</dl>
+		<dl>	
+			<dt>상품소개</dt>
+			<dd>${vo.brandIntro}</dd>
+		</dl>
+		<dl>	
+			<dt>판매 관련 파일 첨부</dt>
+			<dd>${vo.referenceFile}</dd>
+			<dd>fileDown 미구현</dd>
+		</dl>
+		<hr>
+		<dl>	
+			<dt>입점 상태</dt>
+			<c:if test="${vo.accept eq true}"><dd>수락</dd></c:if>
+			<c:if test="${vo.accept eq false }"><dd>미수락</dd></c:if>
+		</dl>
+		
+			<form id="acceptFrm" action="./accept" method="post" >
+				<input hidden="hidden" name="brandNum" value="${vo.brandNum }" type="text">
+				<div class="row">
+					<div id="accept" class="btn-default-custom">입접 수락</div>
+					<div id="back" class="btn-outline">뒤로가기</div>
+				</div>
+			</form>
+		</div>
+	</main>
 <c:import url="../template/footer.jsp"></c:import>
-<script type="text/javascript">
-//eb_수락할 경우 //정상 작동
-let brandNum = $('#brandNum').text();
-$('#accept').click(function(){
-	$.ajax({
-		type:"POST",
-		url:"./accept",
-		data:{brandNum: brandNum},
-		success:function(data){
-			//엘럿창해서 list로 가야함
-		}
-	})
-});
-</script>
+<script type="text/javascript" src="/js/manager.js"></script>
+
 </body>
 </html>

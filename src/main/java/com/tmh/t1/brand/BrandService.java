@@ -62,16 +62,24 @@ public class BrandService {
 	
 	
 
-	//eb_brandAccept(brandAccept용)
+	//eb_brandAccept(brandAccept용)(입점 수락하기)
 	public Long setBrandAccept(BrandVO brandVO) throws Exception{
 		return brandMapper.setBrandAccept(brandVO);
 	}
-	//eb_brandSelect(brandAccept용)
-	public BrandVO selectBrand(BrandVO brandVO) throws Exception{
-		return brandMapper.selectBrand(brandVO);
+	//eb_brandSelect(brandAccept용)(입점하는 브랜드의 정보 상세보기)
+	public Map<String, Object> selectBrand(BrandVO brandVO) throws Exception{
+		Map<String , String> map = new HashMap<>();
+		map.put("username", brandVO.getUsername());
+		map.put("brandNum", brandVO.getBrandNum()+"");
+		List<CategoryVO> categoryVOs=categoryMapper.getCategoryOne(map);
+		brandVO=brandMapper.selectBrand(brandVO);
+		Map<String, Object> info = new HashMap<>();
+		info.put("brandVO", brandVO);
+		info.put("categoryVOs", categoryVOs);
+		return info;
 	}
 	
-	//eb_brandList전체 불러오기(brandAccept용)
+	//eb_brandList전체 불러오기(brandAccept용)브랜드 리스트
 	public List<BrandVO> getBrandList()throws Exception{
 		return brandMapper.getBrandList();
 	}
