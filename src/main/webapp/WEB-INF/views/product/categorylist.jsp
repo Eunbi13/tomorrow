@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <style type="text/css">
 h5 {
 	margin-left: 30px;
@@ -168,8 +167,9 @@ btn-secondary {
 <title>store list</title>
 </head>
 <body>
+<main>
 	<c:import url="../template/header.jsp"></c:import>
-<div style="margin-top: 50px;">
+
 	<div class="bannerslideshow-container">
 		<div class="mySlides fade2">
 			<img class="bannermain_slideImg"
@@ -187,12 +187,10 @@ btn-secondary {
 			<img class="bannermain_slideImg"
 				src="../images/bannerPic/162219375916346105.webp">
 		</div>
-		<a class="prev" style="top:17em !important;" onclick="plusSlides(-1)">❮</a> 
-		<a class="next" style="top:17em !important; right: 0" onclick="plusSlides(1)">❯</a>
+		<a class="prev" onclick="plusSlides(-1)">❮</a> <a class="next"
+			onclick="plusSlides(1)">❯</a>
 	</div>
 	<br>
-	</div>
-<main>
 	<div style="text-align: center">
 		<span class="dot" onclick="currentSlide(1)"></span> <span class="dot"
 			onclick="currentSlide(2)"></span> <span class="dot"
@@ -205,18 +203,12 @@ btn-secondary {
 	
 	<br>
 	
-	<!-- 카테고리 슬라이드 -->
-	<div class="cat-slide">
-	<c:import url="../template/categorySlideT.jsp"></c:import>
-	</div>
-	
 	
 	<!-- 상품 리스트 -->
-	<div class="productList-T">
-	<c:import url="../template/productlistT.jsp"></c:import>
+	<div class="productList-CT">
+	<c:import url="../template/productlistCT.jsp"></c:import>
 	</div>
 	<script type="text/javascript" src="../js/productList.js"></script>
-
 </main>
 </body>
 </html>

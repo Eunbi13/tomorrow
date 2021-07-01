@@ -16,10 +16,14 @@ let postcode=$("#shipPostcode").val();
 
 $("#finalBtn").click(function(){
 	
+	//약관 동의 유효성 검사
+	let agree=$("#agreeCheck").prop("checked")
 	
+	if(agree){
+   
+	//shippingVO가 아예없었을 경우, form에 입력한 배송지 정보부터 shipping DB에 입력해 준다.
 	 if($("#shipFrm3").length>0){
-		//shippingVO가 아예없었을 경우, form에 입력한 배송지 정보부터 shipping DB에 입력해 준다.
-		 console.log("shipFrm3  enter!!");
+		
 	
 	// shipping Insert!
 		let shipTitle= $("#shipTitle7").val();
@@ -108,11 +112,8 @@ $("#finalBtn").click(function(){
 										data = data.trim();
 										console.log("../cart/orderUpdate 후 data"+data);
 										if(data>0){
-											alert('주문 성공');
 											
 			    
-											
-											
 										// cartVO 업데이트 성공했으면, ordersVO 업데이트 시작
 										// orderVO update: paymentType, shippingMemo,name,email, phone , shipName, shipPhone, shipAddress, postcode
 								        //넘어온 cartVO의 orderNum에도 이 order넘버를 넣어준다!
@@ -162,7 +163,6 @@ $("#finalBtn").click(function(){
 															data= $.trim(data);
 															console.log("trim 이후 data"+data);
 															if(data>0){
-															alert('업데이트 성공');
 															
 															    //  ordersVO 업데이트  성공하면, 주문자 정보 업데이트 하면서 결제완료 페이지로 넘겨준다.
 															    $("#updateFrm").submit();
@@ -255,7 +255,7 @@ $("#finalBtn").click(function(){
 										data = data.trim();
 										console.log("../cart/orderUpdate 후 data"+data);
 										if(data>0){
-											alert('주문 성공');
+											
 											
 										// cartVO 업데이트 성공했으면 ordersVO 업데이트 시작
 										// orderVO update: paymentType, shippingMemo,name,email, phone , shipName, shipPhone, shipAddress, postcode
@@ -304,7 +304,7 @@ $("#finalBtn").click(function(){
 															data= $.trim(data);
 															console.log("trim 이후 data"+data);
 															if(data>0){
-															alert('업데이트 성공');
+													
 															
 															
 															    $("#updateFrm").submit();
@@ -336,11 +336,41 @@ $("#finalBtn").click(function(){
 			});  //function(rsp)  end
 			
 	 }//(shippingVO있을때 )if end
+
+    }else{
+	
+	$("#alert").append("결제 진행 필수사항을 동의해주세요");
+	$("#agreeCheck").css({"outline": "2px solid #f77"});
+	
+	
+	
+	$("#agreeCheck").change(function(){
+		
+		
+		if($("#agreeCheck").prop("checked")){
+			$("#alert").empty();
+			$("#agreeCheck").css({"outline": "1px solid black"});
+			
+		} else{
+			$("#alert").append("결제 진행 필수사항을 동의해주세요");
+	        $("#agreeCheck").css({"outline": "2px solid #f77"});
+		}
+		
+		
+	});
+	
+	
+}//agree 유효성 검사 end
 		
 		
 		
 		
 });// click event end
+
+
+
+
+
 
 
 // 주문상품의 brand Shipping 표시하기 
