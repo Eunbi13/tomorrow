@@ -122,7 +122,7 @@ public class ProductController {
 
 
 	@GetMapping("productselect2")
-	public void getSelect2(ProductVO productVO, Model model)throws Exception{
+	public void getSelect2(ProductVO productVO, ProductImagesVO imgVO, Model model)throws Exception{
 		productVO = productService.getSelect(productVO);
 		model.addAttribute("vo", productVO);
 
@@ -136,7 +136,11 @@ public class ProductController {
 		model.addAttribute("optionsar", optionsar); 
 		int opsize = optionsar.size();
 		model.addAttribute("opsize", opsize);
-
+		
+		List<ProductImagesVO> imagear = productService.getImageList(imgVO);
+		model.addAttribute("imgar", imagear);
+		int imgsize = imagear.size();
+		model.addAttribute("imgsize", imgsize);
 	}
 	
 	

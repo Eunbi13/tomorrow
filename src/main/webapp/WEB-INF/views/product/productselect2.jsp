@@ -392,14 +392,15 @@ textarea:focus {
 				<li>	
 						<button class="main-pic-small-bt">
 							<img alt="상품이미지" class="pic-small"
-							src="/upload/productImages/${vo.productPic}"  onerror="this.src='../images/SAMPLE.jpg'">
+							src="/upload/productImages/${vo.productPic}"  onerror="this.src='../images/AnyConv.com__SAMEPLE.webp'">
 						</button>
 				</li>
 			</ul>
 				<!-- select 메인 우측 사진 -->
 				<div class="main-pic-big">
+					
 					<img alt="상품이미지" style="width:560px; height:auto; border-radius: 15px;"
-					src="/upload/productImages/${vo.productPic}" onerror="this.src='../images/SAMPLE.jpg'">
+					src="/upload/productImages/${vo.productPic}" onerror="this.src='../images/AnyConv.com__SAMEPLE.webp'">
 				</div>
 			</div>
 		</div> <!--div class="main-pic"-->
