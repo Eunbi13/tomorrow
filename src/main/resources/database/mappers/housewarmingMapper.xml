@@ -19,6 +19,14 @@
 			WHERE H.hwNum=#{hwNum}
    		</select>
    		
+   		<select id="getListM" resultMap="selectResult" parameterType="HousewarmingVO">
+			SELECT H.*, HF.* from
+			housewarming H left join hwFile HF
+			on H.hwNum = HF.hwNum
+			order by H.hwNum desc
+			WHERE H.username=#{username}
+   		</select>
+   		
    		<resultMap type="HousewarmingVO" id="selectResult">
    			<id column="hwNum" property="hwNum"/>
    			<result column="space" property="space"/>
@@ -36,6 +44,7 @@
    			<result column="detail" property="detail"/>
    			<result column="link" property="link"/>
    			<result column="copyright" property="copyright"/>
+   			<result column="coverImg" property="coverImg"/>
    			<result column="title" property="title"/>
    			<result column="username" property="username"/>
    			<result column="contents" property="contents"/>
@@ -81,8 +90,7 @@
    		
    		<update id="setUpdate" parameterType="HousewarmingVO">
    			update housewarming 
-   			set space=#{space}, spaceSize=#{spaceSize}, work=#{work}, field=#{field}, familyType=#{familyType}, area=#{area}, style=#{style}, period=#{period}, budget=#{budget}, 
-   			totalTone=#{totalTone}, wallColor=#{wallColor}, bottomColor=#{bottomColor}, detail=#{detail}, link=#{link}, copyright=#{copyright}, title=#{title}, contents=#{contents}, like=#{like}, scrap=#{scrap} 
+   			set coverImg=#{coverImg} 
    			where hwNum=#{hwNum}
    		</update>
    		

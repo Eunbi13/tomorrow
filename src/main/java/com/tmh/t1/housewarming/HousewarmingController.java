@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.tmh.t1.member.MemberVO;
 
 @Controller
-@RequestMapping("/housewarming/**")
+//@RequestMapping("/housewarming/**")
 public class HousewarmingController {
 	
 	@Autowired
@@ -27,19 +27,31 @@ public class HousewarmingController {
 	@Value("${housewarming.filePath}")
 	private String filePath;
 	
-	@GetMapping("list")
+	@GetMapping("/housewarming/list")
 	public void getList(Model model) throws Exception {
 		List<HousewarmingVO> ar = housewarmingService.getList();
 		model.addAttribute("list", ar);
 	}
 	
-	@GetMapping("select")
+	@GetMapping("/housewarming/list0")
+	public void getList0(Model model) throws Exception {
+		List<HousewarmingVO> ar = housewarmingService.getList();
+		model.addAttribute("list", ar);
+	}
+	
+	@GetMapping("/member/memberPage")
+	public void getListM(HousewarmingVO housewarmingVO, Model model) throws Exception {
+		List<HousewarmingVO> ar = housewarmingService.getListM(housewarmingVO);
+		model.addAttribute("list", ar);
+	}
+	
+	@GetMapping("/housewarming/select")
 	public void getSelect(HousewarmingVO housewarmingVO, Model model) throws Exception {
 		housewarmingVO = housewarmingService.getSelect(housewarmingVO);
 		model.addAttribute("vo", housewarmingVO);
 	}
 	
-	@GetMapping("insert")
+	@GetMapping("/housewarming/insert")
 	public void setInsert(Model model, HttpSession session, Authentication auth) throws Exception {
 		String username = auth.getName();
 		System.out.println("************USER NAME : " + username + "******************");
@@ -48,31 +60,28 @@ public class HousewarmingController {
 		model.addAttribute("vo", housewarmingVO);
 	}
 	
-	@PostMapping("insert")
+	@PostMapping("/housewarming/insert")
 	public String setInsert(HousewarmingVO housewarmingVO, MultipartFile file) throws Exception {
 		int result = housewarmingService.setInsert(housewarmingVO, file);
 		System.out.println("Insert : " + result);
 		return "redirect:./list";
 	}
 	
-	@GetMapping("update")
-	public void setUpdate(HousewarmingVO housewarmingVO, Model model) throws Exception {
-		housewarmingVO = housewarmingService.getSelect(housewarmingVO);
-		model.addAttribute("vo", housewarmingVO);
-//		model.addAttribute("action", "update");
-//		return "board/form";
-	}
+//	@GetMapping("/housewarming/update")
+//	public void setUpdate(HousewarmingVO housewarmingVO, Model model) throws Exception {
+//		housewarmingVO = housewarmingService.getSelect(housewarmingVO);
+//		model.addAttribute("vo", housewarmingVO);
+////		model.addAttribute("action", "update");
+////		return "board/form";
+//	}
 	
-	@PostMapping("update")
-	public ModelAndView setUpdate(HousewarmingVO housewarmingVO) throws Exception {
-		ModelAndView mv = new ModelAndView();
+	@PostMapping("/housewarming/update")
+	public String setUpdate(HousewarmingVO housewarmingVO) throws Exception {
 		int result = housewarmingService.setUpdate(housewarmingVO);
-		mv.addObject("result", result);
-		mv.setViewName("common/ajaxResult");
-		return mv;
+		return "redirect:./list";
 	}
 	
-	@GetMapping("delete")
+	@GetMapping("/housewarming/delete")
 	public String setDelete(HousewarmingVO housewarmingVO) throws Exception {
 		int result = housewarmingService.setDelete(housewarmingVO);
 		return "redirect:./list";
