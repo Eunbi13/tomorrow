@@ -53,6 +53,9 @@
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="/housewarming/insert">집들이 글쓰기</a>
+						<sec:authorize access="hasRole('ROLE_B')">
+							<a class="dropdown-item" href="/product/insert">상품 등록하기</a>
+						</sec:authorize>
 						<a class="dropdown-item" href="#">고객센터</a>
 					</div>
 				</div>

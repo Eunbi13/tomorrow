@@ -7,7 +7,6 @@ header{
 	border-bottom: 1px solid #dbdbdb;
 	z-index:201;
 	background-color: white;
-	max-height: 110px;
 }
 
 /*mainNav*/
@@ -85,7 +84,6 @@ a:hover{ color: #A63F82; }
 .mainNav-item:nth-child(3){
 	flex-grow: 4;
 	justify-content: flex-end;
-	flex-shrink: 2;
 }
 
 /* 로그인/회원가입(member) flex(내부 container) */
@@ -96,7 +94,7 @@ a:hover{ color: #A63F82; }
 }
 /* item들끼리 여백필요 */
 .mainNav-item a{
-	margin: 0 30px;
+	margin: 0 20px;
 }
 .mainNav-item-one a{
 	margin: 0 20px;
