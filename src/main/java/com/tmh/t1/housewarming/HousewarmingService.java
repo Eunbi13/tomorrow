@@ -30,7 +30,7 @@ public class HousewarmingService {
 	public List<HousewarmingVO> getList() throws Exception {
 		return housewarmingMapper.getList();
 	}
-
+	
 	// Select
 	public HousewarmingVO getSelect(HousewarmingVO housewarmingVO) throws Exception {
 		housewarmingMapper.setHitUpdate(housewarmingVO);

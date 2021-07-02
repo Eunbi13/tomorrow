@@ -5,9 +5,11 @@
     
     <mapper namespace="com.tmh.t1.housewarming.HousewarmingMapper">
     	
-    	<select id="getList" resultType="HousewarmingVO">
-			select * from housewarming
-			order by hwNum desc
+    	<select id="getList" resultMap="selectResult">
+			SELECT H.*, HF.* from
+			housewarming H left join hwFile HF
+			on H.hwNum = HF.hwNum
+			order by H.hwNum desc
    		</select>
    		
    		<select id="getSelect" resultMap="selectResult" parameterType="HousewarmingVO">

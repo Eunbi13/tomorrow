@@ -1,6 +1,6 @@
 /**
  * 
- */
+
 
 getList()
 
@@ -20,3 +20,9 @@ $(".coverImg1").on("click", function() {
 	console.log($("#sample1").html());
 	$(".listHw").append($("#sample1").html());
 });
+
+ */
+getList();
+function getList() {
+	console.log($(".coverImgT").val());
+}

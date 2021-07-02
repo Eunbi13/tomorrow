@@ -21,7 +21,7 @@
   		<typeAlias type="com.tmh.t1.housewarming.hwReply.HwReplyVO" alias="HwReplyVO"/>
   		<typeAlias type="com.tmh.t1.housewarming.hwCount.HwCountVO" alias="HwCountVO"/>
   		<typeAlias type="com.tmh.t1.housewarming.hwCount.hwLike.HwLikeVO" alias="HwLikeVO"/>
-  		<!-- <typeAlias type="com.tmh.t1.housewarming.hwCount.hwScrap.HwScrapVO" alias="HwScrapVO"/> -->
+  		<typeAlias type="com.tmh.t1.housewarming.hwTag.HwTagVO" alias="HwTagVO"/>
   		<typeAlias type="com.tmh.t1.util.Pager" alias="Pager"/>
   		
   		<typeAlias type="com.tmh.t1.product.ProductVO" alias="ProductVO"/>

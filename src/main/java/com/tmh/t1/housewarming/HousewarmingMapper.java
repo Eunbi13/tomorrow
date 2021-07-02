@@ -9,7 +9,7 @@ public interface HousewarmingMapper {
 	
 	// List
 	public List<HousewarmingVO> getList() throws Exception;
-	
+
 	// Select
 	public HousewarmingVO getSelect(HousewarmingVO housewarmingVO) throws Exception;
 	
