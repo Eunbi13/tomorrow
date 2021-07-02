@@ -63,7 +63,7 @@
 	</select>
 	<!-- eb_brandHome ajax에서 사용 소>중 찾기 파라미터로 브랜드넘이랑 카테고리 아이디 받고 있음-->
 	<select id="getTwoFromThree" parameterType="java.util.Map" resultType="CategoryVO">
-		SELECT two.* 
+		SELECT DISTINCT two.* 
 		FROM category two, ( SELECT DISTINCT c.*
 							FROM product_category pc
 							join (SELECT * 
