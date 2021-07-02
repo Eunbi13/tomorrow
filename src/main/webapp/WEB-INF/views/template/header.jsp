@@ -15,7 +15,7 @@
 		</div>
 		<nav class="mainNav-item ">
 
-			<a class="mainNav-item-one mainNav-item-T" title="item-community" href="/">커뮤니티</a>
+			<a class="mainNav-item-one mainNav-item-T" title="item-community" href="/housewarmin/list">커뮤니티</a>
 			<a class="mainNav-item-one mainNav-item-T" title="item-store" href="/product/productlist">스토어</a>
 
 		</nav>
