@@ -4,7 +4,7 @@
 .flex-row-center{
 	align-items: center;
 }
-.flex-row-center div, img{
+.flex-row-center div{
 	margin: 60px 8px;
 }
 
@@ -95,3 +95,73 @@ span{
 	margin-left: 10px;
 }
 
+
+
+/*    brandHome     */
+.brandHome-box{
+	display: flex;
+	margin: 100px auto;
+}
+
+.brandHome-box:nth-child(1){
+	margin-right: 20px;
+	width: 200px;
+}
+
+div[title="brandName"]{
+	font-size: 28px;
+	font-weight: bold;
+	text-align: center;
+	margin: 40px 0;
+}
+/*카테고리*/
+.brandHome-category{
+	width: 200px;
+	flex-shrink: 0;
+}
+/*대분류 선택하면 보이는 ajax로 동작하는 부분*/
+#select-categoryOne{
+	font-weight: bold;
+	padding: 12px 20px;
+	font-size: 18px;
+}
+
+
+#select-category{
+	background-color: #eee;
+	margin: 0 20px;
+}
+
+/*ajax categoryTwo*/
+.two{
+	font-size: 15px;
+	padding: 10px;
+	cursor: pointer;
+}
+
+
+/*브랜드 홈 클릭하면 보이는 카테고리 대분류*/
+.category{
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+
+
+/*상품*/
+.brandHome-productList{
+	flex-shrink: 1;
+}
+
+
+
+.category-list{
+	padding: 10px;
+	font-size: 15px;
+	border-left: 1px solid #bdbdbd;
+	cursor: pointer;
+}
+
+.category-list:hover{
+	color:  #A63F82;
+}

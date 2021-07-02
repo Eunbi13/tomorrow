@@ -1,12 +1,14 @@
 /**
  * 
  */
-
-/*eb_brandHome.jsp*/
-//category select
-$('li').click(function(){
+$(document).ready(function(){
+	
+$('body').on('click', 'dt', function(){
 	let categoryID = $(this).attr('title');
 	let brandNum = $('#brandNum').attr('title');
+	let categoryOneNM = $(this).text();
+/*eb_brandHome.jsp*/
+//category 선택하면 관련 상품 뜨기
 	$.ajax({
 		type:"GET",
 		url:"/product/prodFromCat",
@@ -16,7 +18,24 @@ $('li').click(function(){
 		}		
 		
 	});
+//eb_brandHome
+//category 선택하면 카테고리 더하기
+	$.ajax({
+		type:"GET",
+		url:"/product/getTwoCategory",
+		data:{categoryID:categoryID, brandNum:brandNum},
+		success:function(data){
+			$('#select-category').html(data);
+			$('#select-categoryOne').text(categoryOneNM);
+		}		
+		
+	});
+
 });
+
+
+
+
 
 let price = [];
 let disPrice = [];
@@ -37,4 +56,4 @@ $('.percent').each(function(k, per){
 })
 
 
-
+})

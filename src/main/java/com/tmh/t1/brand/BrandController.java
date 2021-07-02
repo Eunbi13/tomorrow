@@ -194,9 +194,9 @@ public class BrandController {
 		List<ProductVO> productList = brandService.getBrandHomeList(brandVO);
 		//category List
 		List<CategoryVO> one = brandService.getBrandCategory(brandVO);
-
+		
 		model.addAttribute("brandVO", brandVO);
-		model.addAttribute("productList", productList);
+		model.addAttribute("productlist", productList);
 		model.addAttribute("productListSize", productList.size());
 		model.addAttribute("one", one);
 		

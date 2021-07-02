@@ -151,8 +151,7 @@ to {
 	float: left;
 }
 
-.
-btn-secondary {
+.btn-secondary {
 	float: left;
 }
 /* productlist 불러오는 부분에 flex 설정 (flex-container) */

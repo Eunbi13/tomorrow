@@ -226,18 +226,19 @@ main{
 	width: 100px;
 	font-weight: bold;
 	flex-shrink: 0;
+	font-size: 15px;
 }
 
 small{
 	display: block;
-	margin: 0.2rem 0;
+	margin: 4px 0;
 }
 .img{
 	width: 198px;
 	height: 198px;
 	border: 1px solid #dbdbdb;
 	margin-left: 18px;
-	border-radius: 0.3rem;
+	border-radius: 0.25rem;
 	background-color: white;
 }
 .profileImage-add{

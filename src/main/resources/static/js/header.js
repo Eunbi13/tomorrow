@@ -34,20 +34,22 @@ $(document).ready(function(){
 		$('.subNav-item').hide();
 		$('#'+title).show();
 	})
-	
+	let scrollCheck=false;
 	$('.mainNav-item-T').mouseleave(function(){
-		$('.sticky-chlid>div').css('transform','translate(0px, -100px)');
+		scrollCheck=true;
 	})
 	//스크롤 위치 감지
 	let scrollNum = $(document).scrollTop();
 	$(window).scroll(function(){
 		//스크롤 위치가 50보다 크면 css트랜드레이트 생기도록 하기
-		if(scrollNum>100){
-			$('.sticky-chlid>div').css('transform','translate(0px, -100px)');
+		if(scrollNum>100||scrollCheck){
+				$('.sticky-chlid>div').css('transform','translate(0px, -100px)');
 		}else if(scrollNum<100||scrollNum==0){
 			$('.sticky-chlid>div').css('transform','translate(0px, 0px)');
 		}
 	})
+	
+
 
 })
 

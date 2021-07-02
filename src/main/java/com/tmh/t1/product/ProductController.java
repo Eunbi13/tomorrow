@@ -71,9 +71,9 @@ public class ProductController {
 		//brandHome에서 카테고리 선택하는 경우 필요
 		map.put("brandNum", brandNum);
 		List<ProductVO> list=productService.getProdFromCat(map);
-		model.addAttribute("productList", list);
+		model.addAttribute("productlist", list);
 		model.addAttribute("productListSize", list.size());
-		return "template/productList";
+		return "template/productList_brandHome";
 	}
 	
 	//eb_Productinsert start
