@@ -52,6 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.antMatchers("/product/**").permitAll()
 				.antMatchers("/housewarming/insert").hasRole("U")
 				.antMatchers("/housewarming/**").permitAll()
+				.antMatchers("/orders/list").hasRole("U")
 				//.anyRequest().authenticated()//현재 유저가 누구인지 확인
 				.and()
 			.formLogin()
