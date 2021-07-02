@@ -158,7 +158,7 @@ public class ProductService {
 			throw new Exception();
 		}
 		
-		return result;
+		return productVO.getProductNum();
 	}
 	
 	
