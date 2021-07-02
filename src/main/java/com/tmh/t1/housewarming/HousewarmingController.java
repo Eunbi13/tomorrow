@@ -67,21 +67,18 @@ public class HousewarmingController {
 		return "redirect:./list";
 	}
 	
-	@GetMapping("/housewarming/update")
-	public void setUpdate(HousewarmingVO housewarmingVO, Model model) throws Exception {
-		housewarmingVO = housewarmingService.getSelect(housewarmingVO);
-		model.addAttribute("vo", housewarmingVO);
-//		model.addAttribute("action", "update");
-//		return "board/form";
-	}
+//	@GetMapping("/housewarming/update")
+//	public void setUpdate(HousewarmingVO housewarmingVO, Model model) throws Exception {
+//		housewarmingVO = housewarmingService.getSelect(housewarmingVO);
+//		model.addAttribute("vo", housewarmingVO);
+////		model.addAttribute("action", "update");
+////		return "board/form";
+//	}
 	
 	@PostMapping("/housewarming/update")
-	public ModelAndView setUpdate(HousewarmingVO housewarmingVO) throws Exception {
-		ModelAndView mv = new ModelAndView();
+	public String setUpdate(HousewarmingVO housewarmingVO) throws Exception {
 		int result = housewarmingService.setUpdate(housewarmingVO);
-		mv.addObject("result", result);
-		mv.setViewName("common/ajaxResult");
-		return mv;
+		return "redirect:./list";
 	}
 	
 	@GetMapping("/housewarming/delete")

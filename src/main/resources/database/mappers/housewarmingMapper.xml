@@ -90,8 +90,7 @@
    		
    		<update id="setUpdate" parameterType="HousewarmingVO">
    			update housewarming 
-   			set space=#{space}, spaceSize=#{spaceSize}, work=#{work}, field=#{field}, familyType=#{familyType}, area=#{area}, style=#{style}, period=#{period}, budget=#{budget}, 
-   			totalTone=#{totalTone}, wallColor=#{wallColor}, bottomColor=#{bottomColor}, detail=#{detail}, link=#{link}, copyright=#{copyright}, title=#{title}, contents=#{contents}, like=#{like}, scrap=#{scrap} 
+   			set coverImg=#{coverImg} 
    			where hwNum=#{hwNum}
    		</update>
    		

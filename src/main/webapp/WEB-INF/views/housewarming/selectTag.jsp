@@ -135,15 +135,16 @@
 					<p class="hwNumText" hidden="hidden">${vo.hwNum}</p>
 					
 					<div id="sncontents">${vo.contents}</div>
-					<form id="frm" action="../hwTag/hwTagInsert" method="post" enctype="multipart/form-data">
+					<!-- <form id="frm" action="../hwTag/hwTagInsert" method="post" enctype="multipart/form-data">
 						<div class="form-group">
 							<input type="text" id="productNum" name="productNum" placeholder="URL을 입력하세요.">
+							<button class="btn btn-default plus">+</button>
 						</div>
-						<button class="btn btn-default plus">+</button>
-						<div id="submitB">
-							<button type="submit" class="btn btn-outline-primary">발행</button>
+						
+						<div id="sb">
 						</div>
-					</form>
+					</form> -->
+					<button class="btn btn-outline-primary bal">발행</button>
 	
 				</div>
 	

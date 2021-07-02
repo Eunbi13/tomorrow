@@ -20,18 +20,31 @@ $("#sncontents").find("img").each(function(s1, s2) {
 	});
 });
 */
-
-$(".plus").on("click", function() {
-	$(".plus").prepend($(".tagSample").html());
+$(".bal").on("click", function() {
+	
+	$.post("../housewarming/update", 
+	{
+		hwNum:hwNum,
+		coverImg:1
+	}, 
+	function(data){
+		data = data.trim();
+		if(data > 0){
+			console.log("완료");
+			alert("발행 완료");
+		} else {
+			console.log("실패");
+		}
+	});
 });
 
 
+
 function tagInsert() {
-	
-	productNum = $("#productNum").val().lastIndexOf("=");
-	console.log($("#productNum").val());
+	productNum = $("#productNum").val();
+	productNum = productNum.substring(productNum.length()-2, productNum.length());
 	console.log(productNum);
-	
+	/*
 	$.post("../hwTag/hwTagInsert", 
 	{
 		hwNum:hwNum,
@@ -48,21 +61,8 @@ function tagInsert() {
 		}
 	});
 	
-	/*
-	$.post("../housewarming/update", 
-	{
-		hwNum:hwNum,
-		coverImg:1
-	}, 
-	function(data){
-		data = data.trim();
-		if(data > 0){
-			console.log("완료");
-			alert("발행 완료");
-		} else {
-			console.log("실패");
-		}
-	});
 	*/
+	
+	
 	
 }
