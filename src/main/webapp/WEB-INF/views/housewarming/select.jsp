@@ -86,7 +86,7 @@
 				<div class="blog-post">
 					<h2 class="blog-post-title">${vo.title}</h2>
 					<p class="blog-post-meta">
-						<img src="../upload/member/${member.profileImage}" alt="profile">
+						<%-- <img src="../upload/member/${member.profileImage}" alt="profile"> --%>
 						<h5>${vo.username}</h5> 
 					</p>
 					<div class="jumbotron mt-3 project-detail-metadata">
@@ -138,12 +138,14 @@
 	
 			</div>
 		</div>
-		
+
 		<div>
-			<input type="button" class="btn btn-primary" id="like" value="like">
-			<p> 좋아요 : ${vo.like} </p>
-			<input type="button" class="btn btn-success" id="scrap" value="scrap">
-			<p> 스크랩 : ${vo.scrap} </p>
+			<sec:authentication property="principal" var="pinfo" />
+			<sec:authorize access="isAuthenticated()">
+			<c:if test="${pinfo.username eq 'admin'}">
+				<a href="./delete?hwNum=${vo.hwNum}" class="btn btn-default">삭제</a>
+			</c:if>
+			</sec:authorize>
 		</div>
 		
 		<div class="reply">

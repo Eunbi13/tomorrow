@@ -1,5 +1,8 @@
 /**
- * $.ajax({
+ * 
+ */
+
+$.ajax({
 		url:"./",
 		type: "GET",
 		data: {hwNum:hwNum},
@@ -16,24 +19,3 @@
 		}
 		
 	});
- */
-
-$("#like").on("click", function() {
-	let hwNum = $("#hwNum").val();
-	let like = $("#like").val()+1;
-	
-	$.post("./update", 
-	{
-		hwNum:hwNum,
-		like:like
-	}, 
-	function(data){
-		data = data.trim();
-		if(data==1){
-			
-		}else {
-			alert('등록 실패');
-		}
-	});
-	
-})

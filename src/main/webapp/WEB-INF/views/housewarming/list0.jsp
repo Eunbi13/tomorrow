@@ -49,9 +49,9 @@
 			
 			<c:forEach items="${list}" var="vo">
 				<c:choose>
-					<c:when test="${vo.coverImg eq 1}">
+					<c:when test="${vo.coverImg eq 0}">
 						<div class="col-md-4 coverImg">
-							<a href="./select?hwNum=${vo.hwNum}">
+							<a href="./selectTag?hwNum=${vo.hwNum}">
 								<div class="card mb-4 shadow-sm">
 									<img class="bd-placeholder-img card-img-top" width="100%" height="225" alt="coverImg" src="../upload/housewarming/${vo.hwfile.fileName}">
 									<div class="card-body">

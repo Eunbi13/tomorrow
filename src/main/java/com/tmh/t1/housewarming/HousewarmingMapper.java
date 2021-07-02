@@ -9,9 +9,14 @@ public interface HousewarmingMapper {
 	
 	// List
 	public List<HousewarmingVO> getList() throws Exception;
+	
+	// List
+	public List<HousewarmingVO> getListM(HousewarmingVO housewarmingVO) throws Exception;
+
 
 	// Select
 	public HousewarmingVO getSelect(HousewarmingVO housewarmingVO) throws Exception;
+	
 	
 	// Insert
 	public int setInsert(HousewarmingVO housewarmingVO) throws Exception;
