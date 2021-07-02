@@ -133,7 +133,7 @@
 			</div>
 		</fieldset>
 
-		<button class="btn-default-custom">저장하기</button>
+		<button class="btn-default-custom" style="margin-bottom: 40px; float: right;">저장하기</button>
 	</form>
 	
 	</div>	
