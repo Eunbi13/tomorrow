@@ -31,6 +31,11 @@ public class HousewarmingService {
 		return housewarmingMapper.getList();
 	}
 	
+	// List
+	public List<HousewarmingVO> getListM(HousewarmingVO housewarmingVO) throws Exception {
+		return housewarmingMapper.getListM(housewarmingVO);
+	}
+	
 	// Select
 	public HousewarmingVO getSelect(HousewarmingVO housewarmingVO) throws Exception {
 		housewarmingMapper.setHitUpdate(housewarmingVO);

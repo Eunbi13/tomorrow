@@ -29,7 +29,7 @@
 				</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_M')">
 					<li class="mpSubNav-item "><a class=" " href="/brand/mList">브랜드수락리스트</a></li>
-					<li class="mpSubNav-item "><a class=" " href="#">집들이수락</a></li>
+					<li class="mpSubNav-item "><a class=" " href="/housewarming/list0">집들이수락</a></li>
 				</sec:authorize>
 			</ul>
 			<hr>
@@ -51,7 +51,31 @@
 				<div id="contents">
 					<strong>내가 쓴 글</strong>
 					<div class="contentsBox">
-						
+						<c:forEach items="${list}" var="vo">
+							<c:choose>
+								<c:when test="${vo.coverImg eq 1 and vo.username eq pinfo.username}">
+									<div class="col-md-4 coverImg">
+										<a href="./select?hwNum=${vo.hwNum}">
+											<div class="card mb-4 shadow-sm">
+												<img class="bd-placeholder-img card-img-top" width="100%" height="225" alt="coverImg" src="../upload/housewarming/${vo.hwfile.fileName}">
+												<div class="card-body">
+													<p class="card-text">${vo.title}</p>
+													<p class="coverImgT" hidden="hidden">${vo.coverImg}</p>
+													<div class="d-flex justify-content-between align-items-center">
+														<div class="btn-group">
+															<button type="button" class="btn btn-sm btn-outline-secondary">${vo.username}</button>
+														</div>
+													</div>
+													<div>
+														<small class="text-muted">조회 ${vo.hit}</small>
+													</div>
+												</div>
+											</div>
+										</a>
+									</div>
+								</c:when>
+							</c:choose>
+						</c:forEach>
 					</div>
 				</div>
 	

@@ -15,26 +15,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tmh.t1.housewarming.HousewarmingService;
+import com.tmh.t1.housewarming.HousewarmingVO;
 import com.tmh.t1.member.MemberVO;
 
 @Controller
-@RequestMapping("/housewarming/**")
+//@RequestMapping("/hwTag/**")
 public class HwTagController {
 	
 	@Autowired
 	private HwTagService hwTagService;
+	@Autowired
+	private HousewarmingService housewarmingService;
 	
-	@GetMapping("selectTag")
-	public void getSelect(HwTagVO hwTagVO, Model model) throws Exception {
+	@GetMapping("/housewarming/selectTag")
+	public void getSelect(HousewarmingVO housewarmingVO, HwTagVO hwTagVO, Model model) throws Exception {
 		hwTagVO = hwTagService.getSelect(hwTagVO);
-		model.addAttribute("vo", hwTagVO);
+		model.addAttribute("tag", hwTagVO);
+		housewarmingVO = housewarmingService.getSelect(housewarmingVO);
+		model.addAttribute("vo", housewarmingVO);
 	}
 	
-	@PostMapping("selectTag")
-	public String setInsert(HwTagVO hwTagVO) throws Exception {
+	@PostMapping("/hwTag/hwTagInsert")
+	public ModelAndView setInsert(HwTagVO hwTagVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
 		int result = hwTagService.setInsert(hwTagVO);
-		System.out.println("Insert : " + result);
-		return "redirect:./list";
+		mv.addObject("result", result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
 	}
 
 }

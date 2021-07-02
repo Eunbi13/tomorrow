@@ -86,7 +86,7 @@
 				<div class="blog-post">
 					<h2 class="blog-post-title">${vo.title}</h2>
 					<p class="blog-post-meta">
-						<img src="../upload/member/${member.profileImage}" alt="profile">
+						<%-- <img src="../upload/member/${member.profileImage}" alt="profile"> --%>
 						<h5>${vo.username}</h5> 
 					</p>
 					<div class="jumbotron mt-3 project-detail-metadata">
@@ -131,45 +131,35 @@
 							</tbody>
 						</table>
 					</div>
-	
+					
+					<p class="hwNumText" hidden="hidden">${vo.hwNum}</p>
+					
 					<div id="sncontents">${vo.contents}</div>
+					<form id="frm" action="../hwTag/hwTagInsert" method="post" enctype="multipart/form-data">
+						<div class="form-group">
+							<input type="text" id="productNum" name="productNum" placeholder="URL을 입력하세요.">
+						</div>
+						<button class="btn btn-default plus">+</button>
+						<div id="submitB">
+							<button type="submit" class="btn btn-outline-primary">발행</button>
+						</div>
+					</form>
 	
 				</div>
 	
 			</div>
 		</div>
 		
-		<div>
-			<input type="button" class="btn btn-primary" id="like" value="like">
-			<p> 좋아요 : ${vo.like} </p>
-			<input type="button" class="btn btn-success" id="scrap" value="scrap">
-			<p> 스크랩 : ${vo.scrap} </p>
-		</div>
-		
-		<div class="reply">
-			<h4>댓글</h4>
-			<div class="form-group">
-			<sec:authentication property="principal" var="pinfo" />
-				<input type="hidden" class="form-control" id="username" name="username" value="${pinfo.username}">
-				<input type="text" class="form-control" placeholder="격려와 칭찬은 작성자에게 큰 힘이 됩니다 :)" id="comment" name="comment">
-				<input type="button" class="btn" id="write" value="등록">
-			</div>
-			<div id="comments" title="${vo.hwNum}">
-				<!-- reply list -->
-			</div>
-		</div>
 	</div>
 	
 	<div class="tagSample" hidden="hidden">
-		<div class="tag">
-			<input type="text" id="productNum" name="productNum" placeholder="URL을 입력하세요.">
-			<button class="btn btn-default">+</button>
-		</div>
+			<div class="form-group">
+				<input type="text" id="productNum" name="productNum" placeholder="URL을 입력하세요.">
+			</div>
 	</div>
 
 	<c:import url="../template/footer.jsp"></c:import>
 	
-	<script type="text/javascript" src="../js/hwReply.js"></script>
 	<script type="text/javascript" src="../js/hwSelect.js"></script>
 	<script type="text/javascript" src="../js/hwSelectTag.js"></script>
 </body>
