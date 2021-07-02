@@ -34,8 +34,7 @@
 
 
 	<div class="container" style="margin-top: 30px">
-
-		<div class="row">
+	
 			<sec:authentication property="principal" var="pinfo" />
 			<sec:authorize access="isAuthenticated()">
 			<c:if test="${pinfo.username eq 'admin'}">
@@ -45,29 +44,33 @@
 				</div>
 			</c:if>
 			</sec:authorize>
+
+		<div class="row">
 			
-			<c:forEach items="#{list}" var="vo">
-				<%-- <c:if test="${vo.coverImg eq 1}"> --%>
-					<div class="col-md-4">
-						<a href="./select?hwNum=${vo.hwNum}">
-							<div class="card mb-4 shadow-sm">
-								<img class="bd-placeholder-img card-img-top" width="100%" height="225" alt="coverImg" src="/upload/housewarming/${vo.hwfile.fileName}">
-		
-								<div class="card-body">
-									<p class="card-text">${vo.title}</p>
-									<div class="d-flex justify-content-between align-items-center">
-										<div class="btn-group">
-											<button type="button" class="btn btn-sm btn-outline-secondary">${vo.username}</button>
+			<c:forEach items="${list}" var="vo">
+				<%-- <c:choose>
+					<c:when test="${vo.coverImg eq 1}"> --%>
+						<div class="col-md-4 coverImg">
+							<a href="./select?hwNum=${vo.hwNum}">
+								<div class="card mb-4 shadow-sm">
+									<img class="bd-placeholder-img card-img-top" width="100%" height="225" alt="coverImg" src="../upload/housewarming/${vo.hwfile.fileName}">
+									<div class="card-body">
+										<p class="card-text">${vo.title}</p>
+										<p class="coverImgT" >${vo.coverImg}</p>
+										<div class="d-flex justify-content-between align-items-center">
+											<div class="btn-group">
+												<button type="button" class="btn btn-sm btn-outline-secondary">${vo.username}</button>
+											</div>
+										</div>
+										<div>
+											<small class="text-muted">조회 ${vo.hit}</small>
 										</div>
 									</div>
-									<div>
-										<small class="text-muted">조회 ${vo.hit}</small>
-									</div>
 								</div>
-							</div>
-						</a>
-					</div>
-				<%-- </c:if> --%>
+							</a>
+						</div>
+					<%-- </c:when>
+				</c:choose> --%>
 			</c:forEach>
 			
 		</div>

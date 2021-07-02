@@ -155,15 +155,15 @@
 							<div class="form-group">
 								<label for="work">작업</label>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" id="work" name="work" value="self"> 
+									<input class="form-check-input" type="radio" id="work" name="work" value="셀프,DIY"> 
 									<label class="form-check-label" for="inlineRadio1">셀프,DIY</label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" id="work" name="work" value="halfself"> 
+									<input class="form-check-input" type="radio" id="work" name="work" value="반셀프"> 
 									<label class="form-check-label" for="inlineRadio2">반셀프</label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" id="work" name="work" value="expert"> 
+									<input class="form-check-input" type="radio" id="work" name="work" value="전문가"> 
 									<label class="form-check-label" for="inlineRadio3">전문가</label>
 								</div>
 							</div>
