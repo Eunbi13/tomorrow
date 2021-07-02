@@ -23,15 +23,15 @@
         <fieldset>
         	<div class="addForm">
 				<div class="optionForm ">
-					<div class="form-group ">
-						<label class="form-label-op">옵션명</label>
-						<input class="form-control form-control-op kinds" name="op" type="text" placeholder="컬러">
-					</div>
-					<div class="form-group ">
-						<label class="form-label-op">옵션값</label>
-						<input class="form-control form-control-op names" name="op" type="text" placeholder="블랙/화이트/레드/블루">
-					</div>
-					<hr>
+						<div class="form-group ">
+							<label class="form-label-op">옵션명</label>
+							<input class="form-control form-control-op kinds" name="op" type="text" placeholder="컬러">
+						</div>
+						<div class="form-group ">
+							<label class="form-label-op">옵션값</label>
+							<input class="form-control form-control-op names" name="op" type="text" placeholder="블랙/화이트/레드/블루">
+						</div>
+						<hr>
 				</div>
 			</div>
 			<div class="btn-outline btn-outline-op" id="add">추가</div>

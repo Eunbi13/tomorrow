@@ -188,9 +188,8 @@ $('#modal').click(function(){
 	})//each kind
 //modal 닫힐 때 input창 초기화
 	let optionForm =$('.optionForm').html();
-	$('.optionForm').empty();
-	//$('.addForm').empty();
-	$('.optionForm').html(optionForm);
+	$('.addForm').empty();
+	$('.addForm').html('<div class="optionForm ">'+optionForm+'</div>');
 });
 //이벤트 활성화
 optionONEvent();
