@@ -16,7 +16,7 @@
 <div class="mid-main">
 	<div class="flex-center column" >
 		<div class="flex-center flex-row-center">
-			<img alt="" src="/images/logoName.png">
+			<a href="/"><img alt="" src="/images/logoName.png"></a>
 			<div>스토어관리센터</div>
 		</div>
 		<h1>입점신청</h1>

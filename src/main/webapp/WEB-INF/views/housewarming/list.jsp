@@ -51,7 +51,7 @@
 					<div class="col-md-4">
 						<a href="./select?hwNum=${vo.hwNum}">
 							<div class="card mb-4 shadow-sm">
-								<img class="bd-placeholder-img card-img-top" width="100%" height="225" alt="coverImg" src="../resources/upload/housewarming/${vo.hwfile.fileName}">
+								<img class="bd-placeholder-img card-img-top" width="100%" height="225" alt="coverImg" src="/upload/housewarming/${vo.hwfile.fileName}">
 		
 								<div class="card-body">
 									<p class="card-text">${vo.title}</p>

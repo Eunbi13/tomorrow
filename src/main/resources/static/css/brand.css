@@ -57,6 +57,8 @@ legend{
 span{
 	color:red;
 	margin-left: 3px;
+	font-size: 12px !important;
+
 }
 
 .form-control{
