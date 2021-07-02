@@ -72,7 +72,7 @@
 							<img class="add-img preview-item" src="/images/plusIcon.png">
 						</label>
 						<input id="add-file-image" class="add-file-image"  hidden="hidden"  type="file" name="files" >
-						<div class="deleteImage">x</div></div> 
+						<div class="deleteImage" style="cursor: pointer;">x</div></div> 
 					</div>
 				</div>
 				
