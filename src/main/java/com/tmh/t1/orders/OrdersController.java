@@ -362,7 +362,7 @@ public class OrdersController {
 	@GetMapping("confirm")
 	public ModelAndView setConfirmUpdate(CartVO cartVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		cartVO.setValid("confirm");
+		cartVO.setValidity((long)6);
 		int result = ordersService.setConfirmUpdate(cartVO);
 		String message="구매확정 실패";
 		String path="./";

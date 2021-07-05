@@ -510,10 +510,10 @@ webkit-box-flex: 1; */
 
 //order_list_menu_list 클릭시, 누른 주문상태와  가지고 있는 기간 버튼의 기간의 가져와서  리스트 갱신
 $(".order_list_menu_list").click(function(){
-	alert("hi");
+
 	 let st=$(this).attr("title");
 	let be =$("#before").val();
-    alert("be:"+be+"st:"+st);
+ 
 
 	$.ajax({
 		type: "get", 
