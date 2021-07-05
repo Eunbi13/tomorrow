@@ -88,7 +88,7 @@ public class CartController {
 		
 	}
 	
-	//minkyung_상세페이지에서 장바구니 버튼을 눌릴때 cartVO Insert
+	//minkyung_상세페이지에서 장바구니 or 바로결제 버튼을 눌릴때 cartVO Insert
 	@PostMapping("insert")
 	public ModelAndView setInsert(Long [] brandNum, Long [] productNum, Long [] unitPrice, String [] unitName, Long [] cartPrice, Long [] amount, Long [] validity)throws Exception{
 		 // 만들어지는 cartVO를 담을 List 선언
@@ -111,17 +111,16 @@ public class CartController {
 			cartVO.setValidity(validity[i]);
 			cartVO.setUsername(username);
 			
-			
 					if(validity[i]==0) {
+						//상세페이지에서 장바구니를 누른 경우
 						//동일한 옵션이름을 가진 cartVO가 있는지 검사
 						CartVO cartVO2 = cartService.getSameOption(cartVO);
 					
-						
 							if(cartVO2 == null) {
-								//동일한 옵션이 없다면 새로 세팅된 cartVO를 List에 넣기
+							//동일한 옵션이 없다면 새로 세팅된 cartVO를 List에 넣기
 								ar.add(cartVO);
 							}else {
-								//동일한 옵션이 있다면 그 옵션의 amount와 cartPrice를 업데이트
+							//동일한 옵션이 있다면 그 옵션의 amount와 cartPrice를 업데이트
 								Long amount2=cartVO2.getAmount();
 								amount2=amount2+amount[i];
 								Long unitPrice2 = cartVO2.getUnitPrice();
@@ -131,11 +130,10 @@ public class CartController {
 								cartVO2.setCartPrice(cartPrice2);
 								
 								int result =cartService.setAmountUpdate(cartVO2);
-								
 							}
 						
 					} else {
-						
+					  //상세페이지에서 바로결제를 누른 경우
 						ar.add(cartVO);
 					}
 			
@@ -147,43 +145,40 @@ public class CartController {
 	    int result = cartService.setInsert(ar);
 	    
 	    if(validity[0]==0) {
+	      //상세페이지에서 장바구니를 누른 경우
 	       String message="장바구니로 이동합니다.";
 		   String path="./list";
 			
-			
 			mv.addObject("msg", message);
 			mv.addObject("path", path);
-	
-			
 			mv.setViewName("common/commonResult");
 			
-		 return mv;
+		    return mv;
 	    } else {
-	    	//바로결제를 눌렀을때는! 바로 결제 페이지로 가기 위 바로 orderInsert 실행
+	    	//상세페이지에서 바로결제를 누른 경우
+	    	//바로 결제 페이지로 가기 위해 order/insert 실행
 	    	OrdersVO ordersVO = new OrdersVO();
 			ordersVO.setUsername(username);
 			
 			CartVO cartVO = new CartVO();
-			
 			cartVO.setUsername(username);
 			cartVO.setValid("directPay");
 
 			List<CartVO> cartAr = cartService.getCartList(cartVO);
 			
-			 //orderInsert 들어가기전 username, itemsPrice, shippingFee, payment을 채우고 들어가야 함.
+	    //orderInsert 하기 전 
+		//username, itemsPrice, shippingFee, payment을 채우고 들어가야 함.
 				//총 상품비용 구하기
 				 Long itemsPrice=(long)0;
 				 Long shippingFee=(long)0;
 				     for(CartVO vo : cartAr) {
 				    	itemsPrice += (long) vo.getCartPrice();
 				    	Long cartNum= (long) vo.getCartNum();
-				    	System.out.println(" 새로 생긴 cartNum:"+cartNum);
+				    	
 				    	CartVO cartVO2=cartService.getSelect(vo);
 				    	shippingFee = (long) cartVO2.getProductVO().getShippingFee();
-				    	
 				     }
-				     
-			     System.out.println("shippingFee:"+shippingFee);
+				 //itemsPrice 입력
 			     ordersVO.setItemsPrice(itemsPrice);
 			     
 			     //배송비 구하기
@@ -203,12 +198,9 @@ public class CartController {
 				    	    vo.setBrandShipping((long)shippingFee);
 				    	    cartService.setBrandShipUpdate(vo);
 				    	 }
-		     }
+		          }
 		
-			 
 			result = ordersService.setInsert(ordersVO);
-			
-			System.out.println("controller getOrderNum: "+ordersVO.getOrderNum());
 			
 			//디폴트 배송지 가져오기
 	    	ShippingVO shippingVO= new ShippingVO();
@@ -222,7 +214,7 @@ public class CartController {
 				shippingVO.setShipNum(DefaultNum);
 				shippingVO = shippingService.getSelect(shippingVO);
 				
-				//만약 디폴트 배송지가 없으면? 회원의 배송지넘버중 가장 작은수를 선택해서 띄운다.
+			//만약 디폴트 배송지가 없으면? 회원의 배송지넘버중 가장 작은수를 선택해서 띄운다.
 				if(shippingVO == null) {
 				    shippingVO= new ShippingVO();
 				    shippingVO.setUsername(username);
@@ -232,15 +224,9 @@ public class CartController {
 				}
 			
 			}
-			System.out.println("shippingVO:"+shippingVO);
-			
-			
 
 	        List<BrandVO> brandAr = cartService.getBrandList(cartVO);
-	    
 	        List<ProductVO> productAr = cartService.getProductList(cartVO);
-	    
-	     
 	      
 	        mv.addObject("shippingAr", shippingAr);
 	        mv.addObject("brandAr", brandAr);

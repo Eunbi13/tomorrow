@@ -482,7 +482,6 @@ textarea:focus {
 			
 			    <div class="select-wrap">			
 			    	<select id="selectop" class="classic" name="options" onchange='addList()'>
-									<!-- 0 쓰지마라 ... -->
 						<option value="optionKinds" selected disabled>${vo.optionsVOs.get(0).optionKinds} </option> <!-- 수정 -->
 						<c:forEach items="${optionsar}" var="OPvo" varStatus="status">
 							<option value="${OPvo.optionNum}" data-OPname="${OPvo.optionName}" data-OPprice="${vo.discountPrice + OPvo.optionPrice}">
@@ -544,11 +543,11 @@ textarea:focus {
 						      <!-- productNum  -->
 							  <div title="${vo.productNum}" class="cartCheck alert alert-secondary alert-dismissible fade show" style="width:100%; height:100%; padding-bottom:40px; word-break:break-all; word-wrap:break-word;" >
 							  		 <!-- unitName  -->
-							  		<div id=""> <input name="unitName" id="unitName" value=""  style=" width:180px; height:20px; background-color:transparent;border:0 solid black; text-align:;">   </div>
+							  		<div id=""> <input name="unitName" readonly id="unitName" value=""  style=" width:300px; height:20px; background-color:transparent;border:0 solid black; text-align:;">   </div>
 							  		   <div>
 								  		    <div style="width:70px; height:20px; font-size:12px; float: left;">
 											     <!--  amount/ 숫자만 입력할수 있도록 type number 지정 -->
-											     <input style="width:70px; height:20px; ime-mode:disabled;" onfocus='amountSave.call(this)' onchange='go.call(this)' type="number" min="1"  class="box" data-product-num="${vo.productNum}" title="" id="directInputBox" name="amount" value="1"/>
+											     <input onfocus='amountSave.call(this)' onchange='go.call(this)' type="number" min="1"  class="box" data-product-num="${vo.productNum}" title="" id="directInputBox" name="amount" value="1" style="width:70px; height:20px; ime-mode:disabled;"/>
 											</div>
 											<div class="num" style="min-width:70px; height:23px; font-size:16px; padding-bottom:20px; font-weight: bold; float: right;">
 											       <!--  cartPrice-->
@@ -562,13 +561,11 @@ textarea:focus {
 							 </div>
 							 
 					       </li>
-
 				       </div>
-					       
-					    </div>
 				       
+					</div>  
 
-				      <!-- option end-->
+	     <!-- option end-->
 				
                 
 		
