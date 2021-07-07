@@ -198,11 +198,7 @@ public class OrdersController {
 
 		List<CartVO> cartAr = cartService.getCartList(cartVO);
 
-	    System.out.println(cartAr);
-	
 		int result = ordersService.setInsert(ordersVO);
-		
-		System.out.println("controller: "+ordersVO.getOrderNum());
 		
 		//디폴트 배송지 가져오기
     	ShippingVO shippingVO= new ShippingVO();

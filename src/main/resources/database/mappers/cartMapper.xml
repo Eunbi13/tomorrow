@@ -10,6 +10,29 @@
        <select id="getSameOption" parameterType="CartVO" resultType="CartVO">
            select * from cart where unitName=#{unitName} and username=#{username} and validity &lt; 2
 	    </select> 
+	    
+	    
+	 <!-- minkyung_ 결제페이지에 넘어갈 brand List구하기 -->
+	     <select id="getBrandList" parameterType="CartVO" resultType="BrandVO">
+			select brandNum, brandName, companyName
+				from brand
+					where brandNum in 
+							(select brandNum from cart where username=#{username} and 
+								<if test="valid =='zero'">
+								(validity='0'or validity='1')
+								</if>
+								<if test="valid =='one'">
+								 validity='1'
+								</if>
+								<if test="valid =='two'">
+								validity='2'
+								</if>
+								<if test="valid =='directPay'">
+								validity='20'
+								</if>
+						
+						    group by brandNum)
+	    </select> 
    
 
      <!-- minkyung_ 결제페이지에 넘어갈 product List구하기 -->
@@ -54,29 +77,6 @@
 				    
 	    </select> 
 
-	    <!-- minkyung_ 결제페이지에 넘어갈 brand List구하기 -->
-	     <select id="getBrandList" parameterType="CartVO" resultType="BrandVO">
-			select brandNum, brandName, companyName
-				from brand
-					where brandNum in 
-							(select brandNum from cart where username=#{username} and 
-								<if test="valid =='zero'">
-								(validity='0'or validity='1')
-								</if>
-								<if test="valid =='one'">
-								 validity='1'
-								</if>
-								<if test="valid =='two'">
-								validity='2'
-								</if>
-								<if test="valid =='directPay'">
-								validity='20'
-								</if>
-						
-						    group by brandNum)
-	    </select> 
-    
-    
         <!-- minkyung_ 결제페이지에 넘어갈 CartVO List구하기 -->
         <select id="getCartList" parameterType="CartVO" resultType="CartVO">
     	    select * from cart where username=#{username} and 
@@ -124,9 +124,7 @@
 	        	<id column="brandNum" property="brandNum" />
 	        	<result column="brandName" property="brandName" />
              </association>
-	           
-
-	    
+	       
 	    </resultMap>
     
     

@@ -48,7 +48,6 @@ public class CartController {
 	@GetMapping("list")	
 	public ModelAndView getList(CartVO cartVO)throws Exception{
 		ModelAndView mv= new ModelAndView();
-		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
 		UserDetails userDetails = (UserDetails)principal; 
 		String username = userDetails.getUsername();
@@ -64,19 +63,17 @@ public class CartController {
 	   	List<CartVO> cartAr = cartService.getCartList(cartVO);
 	   	
 	   	long a =cartAr.size();
+	   	
 	   	if(a == 0) { 
 	   	  //장바구니에 상품이 없는 경우, empty로 이동
 	   	  mv.setViewName("cart/empty");
-	   		
 	   	} else {
-
+	   	  //장바구니에 상품이 하나라도 있는 경우
 	    mv.addObject("brandAr", brandAr);
 	    mv.addObject("productAr", productAr);
 	    mv.addObject("cartAr", cartAr);
-	   
 	    mv.setViewName("cart/list");
 	   	}
-	    
 	    return mv;
 	}
 	
