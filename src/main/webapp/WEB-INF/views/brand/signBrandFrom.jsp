@@ -99,7 +99,7 @@
 				<c:forEach items="${categories }" var="vo">
 					<div class="form-check-inline ">
 						<input class="" type="checkbox" name="categories"  value="${vo.categoryID}">
-						<div class="" >${vo.category_detail_NM }</div>
+						<div class="" style="margin-left:5px; font-size: 15px;">${vo.category_detail_NM }</div>
 					</div>
 				</c:forEach>
 				</div>
@@ -114,7 +114,7 @@
 			<div class="form-group">
 				<div class="form-label">판매 관련 파일 첨부</div>
 				<div class="form-box ">
-					<label for="btn-file" class="btn-default">파일선택</label>
+					<label for="btn-file" class="btn-outline">파일선택</label>
 					<input id="btn-file" type="file" name="files" hidden="hidden">
 					<div class="btn-file-name">선택된 파일이 없습니다.</div>
 					

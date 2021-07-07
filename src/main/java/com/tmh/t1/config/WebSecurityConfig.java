@@ -53,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.antMatchers("/housewarming/insert").hasRole("U")
 				.antMatchers("/housewarming/**").permitAll()
 				.antMatchers("/orders/list").hasRole("U")
-				//.anyRequest().authenticated()//현재 유저가 누구인지 확인
+				.anyRequest().authenticated()//현재 유저가 누구인지 확인
 				.and()
 			.formLogin()
 				.usernameParameter("email")
@@ -68,7 +68,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.invalidateHttpSession(true)
 				.deleteCookies("JSESSIONID")
 				.permitAll()
-			
+			.and()
+			.exceptionHandling()
+			.accessDeniedPage("/403")//권한이 없는 사람이 접근했을 때
 			;
 	}
 	

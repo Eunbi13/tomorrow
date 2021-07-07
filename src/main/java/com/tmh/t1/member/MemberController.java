@@ -50,11 +50,11 @@ public class MemberController {
 	@PostMapping("update")
 	public String memberUpdate(Authentication auth,MultipartFile profileImage, Model model, @Valid MemberVO memberVO, Errors errors)throws Exception{
 		
-		//별명(username)이 변경되었을 경우
+		//사용자가 별명(username)을 변경 하는 경우
 		if(!auth.getName().equals(memberVO.getUsername())) {
 			System.out.println("username change");
-			if(!memberService.usernameErrors(memberVO, errors)) {
-				System.out.println("이미 있는 이름");
+			if(memberService.usernameErrors(memberVO, errors)) {
+				//이미 있는 이름이므로 view로 돌아간다.
 				return "member/memberUpdate";
 				
 			}
@@ -103,18 +103,20 @@ public class MemberController {
 	}
 
 	@PostMapping("memberJoin")
-	public String memberJoin(Model model, @Valid MemberVO memberVO, Errors errors) throws Exception{
+	public String memberJoin(@Valid MemberVO memberVO, Errors errors, Model model) throws Exception{
 		//valid 이메일, 패스워드 에러
 		if(memberService.memberErrors(memberVO, errors)) {
 			return "member/memberJoin";
 		}
 		//valid별명(username) 에러
 		if(memberService.usernameErrors(memberVO, errors)) {
-			return "member/memberUpdate";
+			return "member/memberJoin";
 		}
 		Long result = memberService.memberJoin(memberVO);
-		System.out.println("회원가입 성공: "+result);
-
+		if(result<1) {
+			return "member/memberJoin";
+		}
+		
 		return "redirect:/member/login";
 	}
 

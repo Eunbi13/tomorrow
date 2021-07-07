@@ -25,12 +25,8 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-	//eb_프로덕트 판매중지
-	@GetMapping("delete")
-	public String getList(ProductVO productVO)throws Exception{
-		
-		return "redirect:./";
-	}
+	//eb_판매자 권한 없이 insert&update에 접근했을 경우
+	
 	
 	//eb_ProductUpdate 파라미터: 상품번호
 	@GetMapping("update")

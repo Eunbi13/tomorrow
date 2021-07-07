@@ -52,7 +52,7 @@
 			<label class="form-label">별명<small>*필수항목</small></label>
 			<div class="col-sm-10">
 			<form:input id="un" type="text" class="form-control" placeholder="별명" path="username" value=""></form:input>
-			<form:errors path="username" cssStyle="font-size: 0.8em"></form:errors>
+			<form:errors path="username" class="red" cssStyle="font-size: 0.8em"></form:errors>
 				</div>
 		</div>
 		<div class="updateFrm-group">

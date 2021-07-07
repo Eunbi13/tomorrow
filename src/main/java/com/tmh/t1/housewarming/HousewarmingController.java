@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.tmh.t1.member.MemberVO;
 
 @Controller
-//@RequestMapping("/housewarming/**")
+@RequestMapping("/housewarming/**")
 public class HousewarmingController {
 	
 	@Autowired
@@ -27,13 +27,13 @@ public class HousewarmingController {
 	@Value("${housewarming.filePath}")
 	private String filePath;
 	
-	@GetMapping("/housewarming/list")
+	@GetMapping("list")
 	public void getList(Model model) throws Exception {
 		List<HousewarmingVO> ar = housewarmingService.getList();
 		model.addAttribute("list", ar);
 	}
 	
-	@GetMapping("/housewarming/list0")
+	@GetMapping("list0")
 	public void getList0(Model model) throws Exception {
 		List<HousewarmingVO> ar = housewarmingService.getList();
 		model.addAttribute("list", ar);
@@ -45,13 +45,13 @@ public class HousewarmingController {
 		model.addAttribute("list", ar);
 	}
 	
-	@GetMapping("/housewarming/select")
+	@GetMapping("select")
 	public void getSelect(HousewarmingVO housewarmingVO, Model model) throws Exception {
 		housewarmingVO = housewarmingService.getSelect(housewarmingVO);
 		model.addAttribute("vo", housewarmingVO);
 	}
 	
-	@GetMapping("/housewarming/insert")
+	@GetMapping("insert")
 	public void setInsert(Model model, HttpSession session, Authentication auth) throws Exception {
 		String username = auth.getName();
 		System.out.println("************USER NAME : " + username + "******************");
@@ -60,7 +60,7 @@ public class HousewarmingController {
 		model.addAttribute("vo", housewarmingVO);
 	}
 	
-	@PostMapping("/housewarming/insert")
+	@PostMapping("insert")
 	public String setInsert(HousewarmingVO housewarmingVO, MultipartFile file) throws Exception {
 		int result = housewarmingService.setInsert(housewarmingVO, file);
 		System.out.println("Insert : " + result);
@@ -75,13 +75,13 @@ public class HousewarmingController {
 ////		return "board/form";
 //	}
 	
-	@PostMapping("/housewarming/update")
+	@PostMapping("update")
 	public String setUpdate(HousewarmingVO housewarmingVO) throws Exception {
 		int result = housewarmingService.setUpdate(housewarmingVO);
 		return "redirect:./list";
 	}
 	
-	@GetMapping("/housewarming/delete")
+	@GetMapping("delete")
 	public String setDelete(HousewarmingVO housewarmingVO) throws Exception {
 		int result = housewarmingService.setDelete(housewarmingVO);
 		return "redirect:./list";

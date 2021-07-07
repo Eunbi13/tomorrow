@@ -18,4 +18,10 @@ public class HomeController {
 			return "redirect:/housewarming/list";
 		}
 	}
+	
+	@GetMapping("/403")
+	public String accessDenied() {
+		return "template/error/403";
+	}
+	
 }

@@ -41,6 +41,7 @@ public class MemberService implements UserDetailsService{
 	
 	
 	//eb_회원정보 수정(설정)
+	@Transactional(rollbackFor = Exception.class)
 	public String memberUpdate(Authentication auth,MemberVO memberVO,MultipartFile profileImage)throws Exception{
 		//프로필 이미지가 변경되지 않은 경우
 		MemberVO vo2 = (MemberVO)auth.getPrincipal();

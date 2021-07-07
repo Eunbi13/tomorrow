@@ -52,7 +52,7 @@ main{
 	border-radius:.25rem;
 }
  
-.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+.btn-default-custom:hover, .btn-default-custom:focus, .btn-default-custom:active, .btn-default-custom.active, .open .dropdown-toggle.btn-default {
 	background-color: #732944;
 	color:#FFF;
 	border-color: #732944;

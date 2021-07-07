@@ -27,23 +27,17 @@
 		}
 	}
 	</style>
+	
+<link rel="stylesheet" type="text/css" href="/css/housewarningList0.css">
+	
 </head>
 
 <body>
 	<c:import url="../template/header.jsp"></c:import>
 
-
-	<div class="container" style="margin-top: 30px">
-	<%-- 
-			<sec:authentication property="principal" var="pinfo" />
-			<sec:authorize access="isAuthenticated()">
-			<c:if test="${pinfo.username eq 'admin'}">
-				<div>
-					<button class="btn btn-default coverImg1">발행 목록</button>
-					<button class="btn btn-default coverImg0">발행 대기 목록</button>
-				</div>
-			</c:if>
-			</sec:authorize> --%>
+<main>
+	
+	<div style="margin-top: 100px;">
 
 		<div class="row">
 			
@@ -59,7 +53,7 @@
 										<p class="coverImgT" hidden="hidden">${vo.coverImg}</p>
 										<div class="d-flex justify-content-between align-items-center">
 											<div class="btn-group">
-												<button type="button" class="btn btn-sm btn-outline-secondary">${vo.username}</button>
+												<button  class="username">${vo.username}</button>
 											</div>
 										</div>
 										<div>
@@ -74,7 +68,7 @@
 			</c:forEach>
 			
 		</div>
-	</div>
+
 	
 	<div id="sample0" hidden="hidden">
 		<div id="coverImg0">
@@ -126,7 +120,10 @@
 			</c:if>
 		</div>
 	</div>
-
+	
+	
+	</div>
+</main>
 	<c:import url="../template/footer.jsp"></c:import>
 	<script type="text/javascript" src="/js/hwList.js"></script>
 </body>
