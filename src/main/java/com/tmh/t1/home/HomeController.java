@@ -19,6 +19,7 @@ public class HomeController {
 		}
 	}
 	
+	//eb_권한 없을 경우 이동
 	@GetMapping("/403")
 	public String accessDenied() {
 		return "template/error/403";
