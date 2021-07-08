@@ -19,7 +19,7 @@ $('body').on('click', 'dt', function(){
 		
 	});
 //eb_brandHome
-//category 선택하면 카테고리 더하기
+//category 선택하면 선택한 카테고리와 그 하위 카테고리 보여주기
 	$.ajax({
 		type:"GET",
 		url:"/product/getTwoCategory",
