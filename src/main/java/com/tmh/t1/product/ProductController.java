@@ -93,7 +93,6 @@ public class ProductController {
 	@PostMapping("insert")
 	public String setProduct(Authentication auth,ProductVO productVO,String categoryID, OptionsVO optionsVO, MultipartFile [] files, MultipartFile rep)throws Exception{
 		Long productNum=productService.setProduct(auth, productVO,categoryID, optionsVO, files, rep);
-		System.out.println("프로덕트 인서트 성공");
 		return "redirect:./productselect2?productNum="+productNum;
 	}
 	
