@@ -564,22 +564,19 @@ $(".order_list_menu_list").click(function(){
 	$(".before").click(function(){
 
 		 let previous=  before_num;
-			console.log("previous:"+previous);
+			
 		    
 			let content =$(this).text();
-			console.log($(this).attr("title"));
-			 before_num =$(this).attr("title");
-			console.log("status_num:"+ before_num);
 			
-			console.log('attr.name:'+$(".sm-btn").attr("name"));
+			 before_num =$(this).attr("title");
+			
 			
 			
 			if($(".sm-btn").attr("title")=="before"){
-				console.log("   before가 이ㅁ 존재 ");
-				console.log($(this).val());
+				
 				$("#beforeBtn").each(function(){
 					if($(this).val()==previous){
-						console.log("삭제될 것의 밸류는?"+$(this).val());
+						
 						$(this).remove();
 						$("#before").remove();
 					}
@@ -588,7 +585,7 @@ $(".order_list_menu_list").click(function(){
 			
 				let text='<button type="button" id="beforeBtn" class="btn sm-btn btn-close" value="'+before_num +'" title="before" > '+content+'</button>   '
 				text +=  '<input type="hidden" id="before" name="before" value="'+ before_num +'">';
-				console.log(content);
+			
 				$("#before_search").append(function(n){
 				      return text;
 				    });
@@ -597,7 +594,7 @@ $(".order_list_menu_list").click(function(){
 
 				let text='<button type="button" id="beforeBtn" class="btn sm-btn btn-close" value="'+before_num +'" title="before" > '+content+'</button>   '
 				text +=  '<input type="hidden" id="before" name="before" value="'+ before_num +'">';
-				console.log(content);
+			
 				$("#before_search").append(function(n){
 				      return text;
 				 });
@@ -652,22 +649,14 @@ $(".order_list_menu_list").click(function(){
 
 	$(".status").click(function(){
 	    let previous= status_num;
-		console.log("previous:"+previous);
-	    
 		let content =$(this).text();
-		console.log($(this).attr("title"));
 		status_num =$(this).attr("title");
-		console.log("status_num:"+status_num);
-		
-		console.log('attr.name:'+$(".sm-btn").attr("name"));
-		
+	
 			$(".sm-btn").each(function(){
 				if($(this).attr("title")=="status"){
-					console.log("  status가 이ㅁ 존재 ");
-					console.log($(this).val());
+					
 					$("#statusBtn").each(function(){
 						if($(this).val()==previous){
-							console.log("삭제될 것의 타이는?"+$(this).val());
 							$(this).remove();
 							$("#status").remove();
 							
@@ -680,10 +669,9 @@ $(".order_list_menu_list").click(function(){
 			});
 				
 		       
-		
 				let text='<button type="button" id="statusBtn" class="btn sm-btn btn-close" value="'+status_num +'" title="status" > '+content+'</button>   '
 				text +=  '<input type="hidden" id="status" name="status" value="'+status_num +'">';
-				console.log(content);
+				
 				$("#status_search").append(function(n){
 					
 					
@@ -706,7 +694,7 @@ $(".order_list_menu_list").click(function(){
 						
 					}, 
 					success:function(data){
-						console.log(data);
+						
 						$("#AjaxList").empty();
 						
 						$("#AjaxList").html(data);

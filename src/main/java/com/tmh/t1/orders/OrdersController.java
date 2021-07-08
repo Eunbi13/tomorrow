@@ -64,23 +64,18 @@ public class OrdersController {
 	@GetMapping("list")
 	public ModelAndView getOrdersList(OrdersVO ordersVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		System.out.println("입장!!");
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
 		UserDetails userDetails = (UserDetails)principal; 
 		String username = userDetails.getUsername();
 		ordersVO.setUsername(username);
 		
-		System.out.println("getBefore:"+ordersVO.getBefore());
-		
 		CartVO cartVO = new CartVO();
 		
 		cartVO.setUsername(username);
 
-		
 		List<OrdersVO> ar = ordersService.getList(ordersVO);
 		
     	List<BrandVO> brandAr = ordersService.getBrandList(ordersVO);
-		System.out.println("brandAr 완성");
 		// 해당 orderNum 을 가지고, validity가 2이상인  cartVO 를 리스트로 가져온다.
 		List<OrdersVO> orderAr=ordersService.getOrdersList(ordersVO);
 
@@ -88,6 +83,7 @@ public class OrdersController {
 		mv.addObject("brandAr", brandAr);
 		mv.addObject("orderAr", orderAr);
 		
+		//주문상태별 cartVO 갯수 표시 위해 List생성
 		ordersVO.setStatus((long)2);
 		List<CartVO> ar2 = ordersService.getCartList(ordersVO);
 		ordersVO.setStatus((long)3);
@@ -192,7 +188,6 @@ public class OrdersController {
 		ordersVO.setUsername(username);
 		
 		CartVO cartVO = new CartVO();
-		
 		cartVO.setUsername(username);
 		cartVO.setValid("one");
 
@@ -200,7 +195,7 @@ public class OrdersController {
 
 		int result = ordersService.setInsert(ordersVO);
 		
-		//디폴트 배송지 가져오기
+		//배송지 가져오기
     	ShippingVO shippingVO= new ShippingVO();
 		shippingVO.setUsername(username);
 		List<ShippingVO> shippingAr = shippingService.getList(shippingVO);
@@ -208,11 +203,12 @@ public class OrdersController {
 			//만약 배송지가 아예없으면? 입력창 띄우기--page.jsp에서 
 		} else {
 			shippingVO.setIsDefault(true);
+			//디폴트 배송지넘버 가져오기
 			Long DefaultNum=shippingService.getDefaultNum(shippingVO);
 			shippingVO.setShipNum(DefaultNum);
 			shippingVO = shippingService.getSelect(shippingVO);
 			
-			//만약 디폴트 배송지가 없으면? 회원의 배송지넘버중 가장 작은수를 선택해서 띄운다.
+		//만약 디폴트 배송지가 없으면? 회원의 배송지넘버중 가장 작은수의 배송지 가져오기
 			if(shippingVO == null) {
 			    shippingVO= new ShippingVO();
 			    shippingVO.setUsername(username);
@@ -220,10 +216,7 @@ public class OrdersController {
 				shippingVO.setShipNum(shipNum);
 				shippingVO = shippingService.getSelect(shippingVO);
 			}
-		
 		}
-		System.out.println("shippingVO:"+shippingVO);
-		
 		
 
         List<BrandVO> brandAr = cartService.getBrandList(cartVO);

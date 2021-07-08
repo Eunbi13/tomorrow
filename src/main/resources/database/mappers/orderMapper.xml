@@ -11,7 +11,139 @@
     	
     	
     	
-	     <select id="getBrandList" parameterType="OrdersVO" resultType="BrandVO">
+    	<select id="getSelectBrandList" parameterType="OrdersVO" resultType="BrandVO">
+			select brandNum, brandName,companyName, managerPhone from brand
+				where brandNum in 
+					(select  C.brandNum from
+						(select * from orders 
+						where orderNum=#{orderNum})O
+						    		inner join 
+											(select * from cart 
+								    		where orderNum=#{orderNum}
+								    		) C 
+							    		on C.orderNum = O.orderNum
+				                        group by brandNum)
+			
+	    </select> 
+    	
+    	
+    	
+    	<select id="getSelect" parameterType="OrdersVO" resultMap="cartListResult">
+    		select O.*, C.*, P.* from
+    			(select * from orders 
+    			where orderNum=#{orderNum}
+    			)O
+    			inner join 
+						(select * from cart 
+			    		where orderNum=#{orderNum} 
+			    		) C
+			    		on C.orderNum = O.orderNum
+			    		left join (select productPic, productName, productNum, shippingFee from product) P 
+			            on P.productNum = C.productNum
+			           
+    	</select>
+    	
+    	<select id="getCartList" parameterType="OrdersVO" resultType="cartVO">
+  
+    		select C.*, O.* from 
+				(
+				select * from cart 
+	    		where username=#{username} and 
+	    		           <choose>
+				    		  	<when test="status == null">
+				    		  		(validity > 1 and  8 > validity)
+				    		  	</when>
+				    		  	<when test="status == 8">
+				    		  	   (validity = '11' or validity = '12')
+				    		  	</when>
+				    		  	<when test="status == 9">
+				    		  		(validity = '13' or validity = '14' or validity = '15')
+				    		  	</when>
+				    		  	<when test="status == 10">
+				    		  	    (validity = '8' or validity = '9' or validity = '10')
+				    		  	</when>
+				    		  	<otherwise>
+				    		  		validity=#{status}
+				    		  	</otherwise>
+			    		  </choose>
+		
+				   ) C
+					inner join 
+						(select * from orders 
+							where
+							
+							orderDay BETWEEN DATE_ADD(NOW(),INTERVAL 
+							-
+								<if test="before == null ">
+								3
+								</if>
+								<if test="before != null ">
+								#{before}
+								</if>
+							
+							MONTH ) AND NOW()
+						
+			    		) O
+					on C.orderNum = O.orderNum
+			             order by C.cartNum desc
+	    	
+
+    	</select>
+    	
+    	
+    	<select id="getOrdersList" parameterType="OrdersVO" resultMap="cartListResult">
+    	   select orderNum, orderDay from orders
+				
+				where 
+				
+				orderNum in
+				
+						(select C.orderNum from 
+					    		((select * from orders where username=#{username} and 
+								
+								orderDay BETWEEN DATE_ADD(NOW(),INTERVAL 
+								-
+								<if test="before == null ">
+								3
+								</if>
+								<if test="before != null ">
+								#{before}
+								</if>
+								
+								
+								MONTH ) AND NOW()
+								
+								) O
+								inner join 
+								(select * from cart 
+					    		where username=#{username} and 
+					    		
+					    		<choose>
+					    		  	<when test="status == null">
+					    		  		(validity > 1 and   8 > validity)
+					    		  	</when>
+					    		  	<when test="status == 8">
+					    		  	   (validity = '11' or validity = '12')
+					    		  	</when>
+					    		  	<when test="status == 9">
+					    		  		(validity = '13' or validity = '14' or validity = '15')
+					    		  	</when>
+					    		  	<when test="status == 10">
+					    		  	    (validity = '8' or validity = '9' or validity = '10')
+					    		  	</when>
+					    		  	<otherwise>
+					    		  		validity=#{status}
+					    		  	</otherwise>
+			    		       </choose>
+								
+					    		) C
+								on C.orderNum = O.orderNum)
+				            group by C.orderNum)
+				             order by orderNum desc
+    	
+    	</select>
+    	
+    	 <select id="getBrandList" parameterType="OrdersVO" resultType="BrandVO">
 			select  A.brandNum, A.brandName,A.companyName, A.managerPhone, B.orderNum
 			from
 			(select brandNum, brandName,companyName, managerPhone from brand
@@ -104,141 +236,6 @@
 			group by orderNum, brandNum
 	    </select> 
     	
-    	
-    	<select id="getCartList" parameterType="OrdersVO" resultType="cartVO">
-  
-    		select C.*, O.* from 
-				(
-				select * from cart 
-	    		where username=#{username} and 
-	    		           <choose>
-				    		  	<when test="status == null">
-				    		  		(validity > 1 and  8 > validity)
-				    		  	</when>
-				    		  	<when test="status == 8">
-				    		  	   (validity = '11' or validity = '12')
-				    		  	</when>
-				    		  	<when test="status == 9">
-				    		  		(validity = '13' or validity = '14' or validity = '15')
-				    		  	</when>
-				    		  	<when test="status == 10">
-				    		  	    (validity = '8' or validity = '9' or validity = '10')
-				    		  	</when>
-				    		  	<otherwise>
-				    		  		validity=#{status}
-				    		  	</otherwise>
-			    		  </choose>
-		
-				   ) C
-					inner join 
-						(select * from orders 
-							where
-							
-							orderDay BETWEEN DATE_ADD(NOW(),INTERVAL 
-							-
-								<if test="before == null ">
-								3
-								</if>
-								<if test="before != null ">
-								#{before}
-								</if>
-							
-							MONTH ) AND NOW()
-						
-			    		) O
-					on C.orderNum = O.orderNum
-			             order by C.cartNum desc
-	    	
-
-    	</select>
-    	
-    	<select id="getOrdersList" parameterType="OrdersVO" resultMap="cartListResult">
-    	   select orderNum, orderDay from orders
-				
-				where 
-				
-				orderNum in
-				
-				
-						(select C.orderNum from 
-					    		((select * from orders where username=#{username} and 
-								
-								orderDay BETWEEN DATE_ADD(NOW(),INTERVAL 
-								-
-								<if test="before == null ">
-								3
-								</if>
-								<if test="before != null ">
-								#{before}
-								</if>
-								
-								
-								MONTH ) AND NOW()
-								
-								) O
-								inner join 
-								(select * from cart 
-					    		where username=#{username} and 
-					    		
-					    		
-					    		
-					    		<choose>
-					    		  	<when test="status == null">
-					    		  		(validity > 1 and   8 > validity)
-					    		  	</when>
-					    		  	<when test="status == 8">
-					    		  	   (validity = '11' or validity = '12')
-					    		  	</when>
-					    		  	<when test="status == 9">
-					    		  		(validity = '13' or validity = '14' or validity = '15')
-					    		  	</when>
-					    		  	<when test="status == 10">
-					    		  	    (validity = '8' or validity = '9' or validity = '10')
-					    		  	</when>
-					    		  	<otherwise>
-					    		  		validity=#{status}
-					    		  	</otherwise>
-			    		       </choose>
-								
-					    		) C
-								on C.orderNum = O.orderNum)
-				            group by C.orderNum)
-				             order by orderNum desc
-    	
-    	</select>
-    	
-    	
-    	<select id="getSelectBrandList" parameterType="OrdersVO" resultType="BrandVO">
-			select brandNum, brandName,companyName, managerPhone from brand
-				where brandNum in 
-					(select  C.brandNum from
-						(select * from orders 
-						where orderNum=#{orderNum})O
-						    		inner join 
-											(select * from cart 
-								    		where orderNum=#{orderNum}
-								    		) C 
-							    		on C.orderNum = O.orderNum
-				                        group by brandNum)
-			
-	    </select> 
-    	
-    	
-    	
-    	<select id="getSelect" parameterType="OrdersVO" resultMap="cartListResult">
-    		select O.*, C.*, P.* from
-    			(select * from orders 
-    			where orderNum=#{orderNum}
-    			)O
-    			inner join 
-						(select * from cart 
-			    		where orderNum=#{orderNum} 
-			    		) C
-			    		on C.orderNum = O.orderNum
-			    		left join (select productPic, productName, productNum, shippingFee from product) P 
-			            on P.productNum = C.productNum
-			           
-    	</select>
     	
     	<select id="getList" parameterType="OrdersVO" resultMap="cartListResult">
     	   select C.*, O.*, P.*, C.carrierId, C.trackId from 

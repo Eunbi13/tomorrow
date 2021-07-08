@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <interface id="1" language="java" name="com.tmh.t1.product.ProductMapper" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/product/ProductMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="371" width="335" x="1755" y="1740"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="2" language="java" name="com.tmh.t1.housewarming.hwReply.HwReplyMapper" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/housewarming/hwReply/HwReplyMapper.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="173" width="237" x="722" y="1740"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="3" language="java" name="com.tmh.t1.product.ProductService" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/product/ProductService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="317" width="501" x="1377" y="1347"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.tmh.t1.option.OptionsManager" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/option/OptionsManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="285" x="1031" y="1740"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.tmh.t1.category.CategoryService" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/category/CategoryService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="173" width="338" x="999" y="1347"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="com.tmh.t1.shipping.ShippingService" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/shipping/ShippingService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="245" width="254" x="3393" y="1347"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="com.tmh.t1.member.MemberService" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/member/MemberService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="245" width="361" x="3687" y="1347"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="com.tmh.t1.category.CategoryController" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/category/CategoryController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="137" width="289" x="999" y="972"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="9" language="java" name="com.tmh.t1.member.MemberMapper" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/member/MemberMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="191" width="234" x="3078" y="1740"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="10" language="java" name="com.tmh.t1.housewarming.hwReply.HwReplyController" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/housewarming/hwReply/HwReplyController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="137" width="234" x="725" y="972"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="11" language="java" name="com.tmh.t1.option.OptionsMapper" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/option/OptionsMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="137" width="269" x="1337" y="2151"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="12" language="java" name="com.tmh.t1.brand.BrandMapper" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/brand/BrandMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="245" width="271" x="2481" y="1740"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="13" language="java" name="com.tmh.t1.housewarming.HousewarmingMapper" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/housewarming/HousewarmingMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="209" width="311" x="2130" y="1740"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="14" language="java" name="com.tmh.t1.product.ProductController" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/product/ProductController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="263" width="505" x="1377" y="972"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="15" language="java" name="com.tmh.t1.shipping.ShippingMapper" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/shipping/ShippingMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="227" width="254" x="3667" y="1740"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="16" language="java" name="com.tmh.t1.housewarming.HousewarmingController" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/housewarming/HousewarmingController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="245" width="286" x="2033" y="972"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="com.tmh.t1.brand.BrandService" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/brand/BrandService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="353" width="316" x="2384" y="1347"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="18" language="java" name="com.tmh.t1.category.CategoryMapper" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/category/CategoryMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="281" width="338" x="1377" y="1740"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="19" language="java" name="com.tmh.t1.cart.CartService" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/cart/CartService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="353" width="246" x="2792" y="1347"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="com.tmh.t1.brand.BrandController" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/brand/BrandController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="281" width="393" x="2359" y="972"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="21" language="java" name="com.tmh.t1.cart.CartMapper" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/cart/CartMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="335" width="246" x="2792" y="1740"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="22" language="java" name="com.tmh.t1.cart.CartController" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/cart/CartController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="281" width="422" x="2792" y="972"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="com.tmh.t1.orders.OrdersController" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/orders/OrdersController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="335" width="333" x="3254" y="972"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="com.tmh.t1.orders.OrdersService" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/orders/OrdersService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="299" width="275" x="3078" y="1347"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="com.tmh.t1.shipping.ShippingController" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/shipping/ShippingController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="245" width="300" x="3627" y="972"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="com.tmh.t1.option.OptionsService" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/option/OptionsService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="127" x="374" y="972"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="com.tmh.t1.member.MemberController" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/member/MemberController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="263" width="433" x="3967" y="972"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="28" language="java" name="com.tmh.t1.orders.OrdersMapper" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/orders/OrdersMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="263" width="275" x="3352" y="1740"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="29" language="java" name="com.tmh.t1.option.OptionsController" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/option/OptionsController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="144" x="541" y="972"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="com.tmh.t1.housewarming.hwReply.HwReplyService" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/housewarming/hwReply/HwReplyService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="137" width="237" x="722" y="1347"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="com.tmh.t1.housewarming.HousewarmingService" project="tomorrow" 
+    file="/tomorrow/src/main/java/com/tmh/t1/housewarming/HousewarmingService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="245" width="311" x="2033" y="1347"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="32">    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="33" name="shippingService"/>      
+      <multiplicity id="34" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="35">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="36" name="categoryService"/>      
+      <multiplicity id="37" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="38">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="39" name="ordersMapper"/>      
+      <multiplicity id="40" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="41">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="42" name="memberMapper"/>      
+      <multiplicity id="43" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="44">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="45" name="productService"/>      
+      <multiplicity id="46" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="47">    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="48" name="ordersService"/>      
+      <multiplicity id="49" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="50">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="51" name="ordersService"/>      
+      <multiplicity id="52" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="53">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="54" name="memberMapper"/>      
+      <multiplicity id="55" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="56">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="57" name="categoryMapper"/>      
+      <multiplicity id="58" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="59">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="60" name="hwReplyMapper"/>      
+      <multiplicity id="61" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="62">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="63" name="housewarmingService"/>      
+      <multiplicity id="64" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="31" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="65">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="66" name="shippingService"/>      
+      <multiplicity id="67" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="68">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="69" name="brandService"/>      
+      <multiplicity id="70" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="71">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="72" name="productMapper"/>      
+      <multiplicity id="73" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="74">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="75" name="optionsManager"/>      
+      <multiplicity id="76" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="77">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="78" name="categoryMapper"/>      
+      <multiplicity id="79" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="80">    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="81" name="cartService"/>      
+      <multiplicity id="82" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="83">    
+    <bendpoint x="1346" y="1740"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="84" name="optionsMapper"/>      
+      <multiplicity id="85" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="86">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="87" name="shippingMapper"/>      
+      <multiplicity id="88" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="89">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="90" name="hwReplyService"/>      
+      <multiplicity id="91" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="92">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="93" name="cartMapper"/>      
+      <multiplicity id="94" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="95">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="96" name="brandMapper"/>      
+      <multiplicity id="97" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="98">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="99" name="cartMapper"/>      
+      <multiplicity id="100" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="101">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="102" name="categoryMapper"/>      
+      <multiplicity id="103" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="104">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="105" name="memberService"/>      
+      <multiplicity id="106" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="107">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="108" name="cartMapper"/>      
+      <multiplicity id="109" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="110">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="111" name="cartService"/>      
+      <multiplicity id="112" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="113">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="114" name="shippingService"/>      
+      <multiplicity id="115" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="116">    
+    <end type="SOURCE" refId="31" navigable="false">      
+      <attribute id="117" name="housewarmingMapper"/>      
+      <multiplicity id="118" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="119">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="120" name="productMapper"/>      
+      <multiplicity id="121" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="122">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="123" name="optionsMapper"/>      
+      <multiplicity id="124" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
