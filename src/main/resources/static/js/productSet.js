@@ -155,17 +155,17 @@ let count =0;
 let tcount=0;
 $('#modal').click(function(){
 	//count: 만들어진 테이블이 있을 경우, i값이 같아서 중복으로 tr태그가 들어가는 것을 방지
-	let count=$('table').length;
+	count=$('table').length;
 	console.log('table: '+count);
 	let kind="";
 	let names="";
 	let step="";
 	
 	$('.kinds').each(function(i, k){
-		//count더하는 이유는 update에서 중복되는 것을 방지 하기 위해
+		//count더하는 이유는 update에서 숫자가 중복되는 것을 방지 하기 위해
 		countI=count+tcount++;
 		kind = $(k).val();
-		//makeThead
+		//makeThead 테이블 헤드 제작
 		$('#table').append(makeThead(kind, countI));
 			
 			$('.names').each(function(j, n){
@@ -178,7 +178,7 @@ $('#modal').click(function(){
 						}else{
 							step='0';
 						}
-						//makeTbody
+						//makeTbody테이블 행 제작
 						$('tbody.t'+countI).append(makeTbody(kind, nm, 0,step));
 						
 					}
@@ -192,6 +192,7 @@ $('#modal').click(function(){
 	$('.addForm').html('<div class="optionForm ">'+optionForm+'</div>');
 });
 //이벤트 활성화
+//optionUpdate.js에서 수정안할 경우를 위해 온오프 함수를 만들 필요 있음
 optionONEvent();
 function optionONEvent(){
 $('#table').on('click','td.add', function(){
@@ -202,10 +203,6 @@ $('#table').on('click','td.add', function(){
 		let name="";
 		//table 찾기 위한 title 값
 		let a = $(this).attr('title');
-		//makeTbody할때 내가 클릭한 총 횟수만큼 이벤트가 일어남,, 왜지?
-		//이유는 이벤트위임 잘못해서 ㅇㅇ count변수 필요없어짐 
-		//그걸 방지하기 위한 count와 stop 변수
-		count = $('tbody.'+a+'>tr').length;
 		
 		console.log(count)
 		let c=$('tbody.'+a+'>:eq(0)').html();
@@ -219,7 +216,6 @@ $('#table').on('click','td.add', function(){
 		})
 		
 		$('tbody.'+a).append(makeTbody(kind, name, 0,step));
-		let stop = $('tbody.'+a+'>tr').length;
 	
 });
 $('#table').on('click','table',function(){

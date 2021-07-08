@@ -12,8 +12,8 @@ public class OptionsManager {
 	@Autowired
 	private OptionsMapper optionsMapper;
 
-	//eb_optionSave테이블에 데이터 저장 
-	//product_options테이블에 데이터 넣기 위해 List<Long> optionNums 반환
+	//eb_optionSave 테이블에 데이터 저장 
+	//product_options 테이블에 데이터 넣기 위해 List<Long> optionNums 반환
 	public Long optionSave(OptionsVO optionsVO, Map<String, Long> map)throws Exception{
 		List<Long> optionNums = new ArrayList<Long>();
 		

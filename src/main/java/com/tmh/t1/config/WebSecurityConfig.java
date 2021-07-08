@@ -45,14 +45,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.antMatchers("/brand/mList").hasRole("M")//브랜드 리스트
 				.antMatchers("/brand/select").hasRole("M")//브랜드 수락 상세페이지
 				.antMatchers("/brand/accept").hasRole("M")//브랜드 수락 페이지
-				.antMatchers("/brand/signBrand").hasRole("U")
+				.antMatchers("/brand/signBrand").hasRole("U")//브랜드 입점 페이지
 				.antMatchers("/brand/**").permitAll()
-				.antMatchers("/product/insert").hasRole("B")
-				.antMatchers("/product/update").hasRole("B")
+				.antMatchers("/product/insert").hasRole("B")//상품 등록 페이지
+				.antMatchers("/product/update").hasRole("B")//상품 수정 페이지
 				.antMatchers("/product/**").permitAll()
-				.antMatchers("/housewarming/insert").hasRole("U")
+				.antMatchers("/housewarming/insert").hasRole("U")//집들이 등록 페이지
 				.antMatchers("/housewarming/**").permitAll()
-				.antMatchers("/orders/list").hasRole("U")
+				.antMatchers("/orders/list").hasRole("U")//주문조회 페이지
 				.anyRequest().authenticated()//현재 유저가 누구인지 확인
 				.and()
 			.exceptionHandling()
